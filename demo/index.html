@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en" data-theme="neutral">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>el-framework · demo</title>
+  <link rel="stylesheet" href="../tokens.css">
+  <link rel="stylesheet" href="../themes.css">
+  <link rel="stylesheet" href="../base.css">
+  <link rel="stylesheet" href="../elements-display.css">
+  <link rel="stylesheet" href="../elements-lists.css">
+  <link rel="stylesheet" href="../elements-controls.css">
+  <link rel="stylesheet" href="../elements-inputs.css">
+  <link rel="stylesheet" href="../elements-containers.css">
+  <link rel="stylesheet" href="../elements-dataviz.css">
+  <link rel="stylesheet" href="../elements-interactions.css">
+  <link rel="stylesheet" href="../elements-size.css">
+</head>
+<body class="el-reset">
+  <header class="el-demo-bar">
+    <strong>el-framework</strong>
+    <select id="theme-picker" data-theme-picker>
+      <option>neutral</option><option>polaroid</option><option>cockpit</option>
+      <option>cockpit-paper</option><option>console</option><option>compact</option>
+      <option>casebook</option><option>agent-paper</option><option>agent-pulse</option>
+      <option>agent-history</option><option>terminal</option><option>swiss</option>
+    </select>
+    <span class="el-hint">12 themes · 100+ primitives · size tokens</span>
+  </header>
+
+  <main class="el-page">
+    <h1 class="el-display">el-framework</h1>
+    <p class="el-lede">A standalone CSS framework with 12 themes and 100+ elements. Works in HTML, TypeScript, and Python/Tkinter.</p>
+
+    <h2>Demo pages</h2>
+    <ul class="el-list-links">
+      <li><a href="display.html">Display</a> — pill, dot, big-num, gauge, sparkline, badge, avatar, progress, skeleton, spinner, rating, swatch</li>
+      <li><a href="lists.html">Lists</a> — timeline, accordion, kanban, table, card, hover-card, chip, tree-list, breadcrumb, pagination, def-list, task-list, stepper</li>
+      <li><a href="controls.html">Controls</a> — dropdown, check, toggle, switch, slider, range, segmented, search, palette, combobox, multi-select, dropdown-menu, context-menu, radio</li>
+      <li><a href="inputs.html">Inputs</a> — input, textarea, search-bar, prompt, file-upload, swatch-input, signature-pad, audio-waveform, code-block, kbd-input</li>
+      <li><a href="dataviz.html">Data viz</a> — mini-bars, mini-line, entity-graph, treemap, heatmap, scatter, sankey-stub, diff-view, markdown</li>
+      <li><a href="containers.html">Containers</a> — panel, tabs h/v/pill, modal, drawer, bento, split, sticky-*, masonry, scroll-shadow, toast-region</li>
+      <li><a href="interactions.html">Interactions</a> — drag/drop, drop-zone, hover-detail, tooltip, popover, context-menu, toast, infinite-trigger, anchor-nav</li>
+    </ul>
+
+    <h2>Theme overview</h2>
+    <ul class="el-list-links">
+      <li><a href="themes.html">themes.html</a> — all 12 themes side-by-side</li>
+      <li><a href="sizes.html">sizes.html</a> — 6 size buckets</li>
+    </ul>
+
+    <h2>Install</h2>
+    <pre class="el-code-block"><span class="el-comment"># HTML</span>
+&lt;link rel="stylesheet" href="el-framework/tokens.css"&gt;
+&lt;link rel="stylesheet" href="el-framework/themes.css"&gt;
+&lt;link rel="stylesheet" href="el-framework/base.css"&gt;
+&lt;link rel="stylesheet" href="el-framework/elements.css"&gt;
+
+<span class="el-comment"># npm</span>
+npm install el-framework
+
+<span class="el-comment"># Python (Tkinter)</span>
+from el_framework import get_theme, ElWidget
+theme = get_theme(<span class="el-string">'polaroid'</span>)
+btn = ElWidget(parent, <span class="el-string">'btn'</span>, theme=theme, text=<span class="el-string">'OK'</span>)
+
+<span class="el-comment"># TypeScript</span>
+<span class="el-keyword">import</span> <span class="el-string">'el-framework'</span>;
+<span class="el-keyword">const</span> pill = <span class="el-keyword">new</span> <span class="el-fn">ElPill</span>(document.body);</pre>
+  </main>
+
+  <script src="../theme-switcher.js"></script>
+  <script src="../elements.js"></script>
+</body>
+</html>
