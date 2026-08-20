@@ -7,10 +7,36 @@
   <br><br>
   Drop in the CSS files, pick a theme, ship. Works in HTML, TypeScript, and Python/Tkinter.
   <br><br>
+  <a href="https://greyok00.github.io/greyok-ui-framework/demo/"><img src="https://img.shields.io/badge/demo-LIVE-success?style=for-the-badge" alt="Live Demo"></a>
   <a href="https://github.com/greyok00/greyok-ui-framework"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="MIT"></a>
   <a href="https://github.com/greyok00/greyok-ui-framework"><img src="https://img.shields.io/badge/version-0.1.0-orange.svg" alt="v0.1.0"></a>
   <a href="https://github.com/greyok00/greyok-ui-framework"><img src="https://img.shields.io/badge/greyok-00d4aa.svg" alt="greyok"></a>
 </p>
+
+---
+
+## 👀 See it live
+
+**[→ greyok00.github.io/greyok-ui-framework/demo/](https://greyok00.github.io/greyok-ui-framework/demo/)**
+
+Every theme, every element, every category — running live in your browser. No install, no build. Click any theme in the picker to re-skin the whole page instantly.
+
+| | |
+|---|---|
+| 🪟 Landing page | [demo/index.html](https://greyok00.github.io/greyok-ui-framework/demo/) — wordmark hero, 7 category cards, install tabs, 12 theme preview cards |
+| ✦ Display | [demo/display.html](https://greyok00.github.io/greyok-ui-framework/demo/display.html) |
+| ≡ Lists | [demo/lists.html](https://greyok00.github.io/greyok-ui-framework/demo/lists.html) |
+| ⚙ Controls | [demo/controls.html](https://greyok00.github.io/greyok-ui-framework/demo/controls.html) |
+| ⎘ Inputs | [demo/inputs.html](https://greyok00.github.io/greyok-ui-framework/demo/inputs.html) |
+| 📊 Data viz | [demo/dataviz.html](https://greyok00.github.io/greyok-ui-framework/demo/dataviz.html) |
+| ▤ Containers | [demo/containers.html](https://greyok00.github.io/greyok-ui-framework/demo/containers.html) |
+| ↔ Interactions | [demo/interactions.html](https://greyok00.github.io/greyok-ui-framework/demo/interactions.html) |
+| 🎨 Themes grid | [demo/themes.html](https://greyok00.github.io/greyok-ui-framework/demo/themes.html) |
+| 📐 Sizes grid | [demo/sizes.html](https://greyok00.github.io/greyok-ui-framework/demo/sizes.html) |
+
+---
+
+## Overview
 
 ---
 
