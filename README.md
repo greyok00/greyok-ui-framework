@@ -46,7 +46,7 @@ A drop-in CSS framework that ships with **12 ready-made themes** (`cockpit`, `po
 
 ```
 ┌──────────────────────────────────────────────────────────────┐
-│  100 elements · 12 themes · 6 sizes · 3 languages · 0 build  │
+│  100 elements · 12 themes · 6 sizes · 0 build  │
 └──────────────────────────────────────────────────────────────┘
 ```
 
