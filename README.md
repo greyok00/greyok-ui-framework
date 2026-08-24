@@ -38,10 +38,6 @@ Every theme, every element, every category — running live in your browser. No 
 
 ## Overview
 
----
-
-## Overview
-
 A drop-in CSS framework that ships with **12 ready-made themes** (`cockpit`, `polaroid`, `console`, `terminal`, `swiss` …) and **~100 primitives** spanning display, lists, controls, data viz, containers, inputs, and interactions. Each theme declares the full token set so `live` and `fail` always read distinct, no `:root` overrides, and the same theme surface works across HTML, TypeScript, and a Python/Tkinter bridge.
 
 ```

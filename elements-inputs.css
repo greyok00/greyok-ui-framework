@@ -1,9 +1,7 @@
-/* ──────────────────────────────────────────────────────────
-   INPUTS — 10 primitives
-   ──────────────────────────────────────────────────────────
-*/
 
-/* ── text input ── */
+
+
+
 .el-input {
   padding: 9px 14px;
   background: var(--el-panel);
@@ -21,7 +19,7 @@
 .el-input::placeholder { color: var(--el-mute); font-weight: 400; }
 .el-input:disabled { opacity: 0.5; cursor: not-allowed; }
 
-/* ── textarea ── */
+
 .el-textarea {
   padding: var(--el-space-3) var(--el-space-4);
   background: var(--el-panel);
@@ -39,7 +37,7 @@
 }
 .el-textarea:focus { border-color: var(--el-accent); box-shadow: 0 0 0 3px color-mix(in oklab, var(--el-accent) 18%, transparent); }
 
-/* ── search-bar (input + dropdown + button combo) ── */
+
 .el-search-bar {
   display: grid;
   grid-template-columns: 1fr auto auto;
@@ -51,7 +49,7 @@
   align-items: center;
 }
 
-/* ── prompt (multi-line, with prefix) ── */
+
 .el-prompt {
   display: block;
   width: 100%;
@@ -68,7 +66,7 @@
 }
 .el-prompt::before { content: "› "; color: var(--el-accent); }
 
-/* ── file upload ── */
+
 .el-file-upload {
   display: flex; flex-direction: column; align-items: center;
   justify-content: center;
@@ -86,7 +84,7 @@
 .el-file-upload .icon { font-size: var(--el-fs-xl); color: var(--el-mute); }
 .el-file-upload .hint { font-size: var(--el-fs-sm); }
 
-/* ── color swatch input (color picker) ── */
+
 input.el-swatch-input {
   width: 40px; height: 28px;
   padding: 0;
@@ -98,7 +96,7 @@ input.el-swatch-input {
 input.el-swatch-input::-webkit-color-swatch-wrapper { padding: 0; }
 input.el-swatch-input::-webkit-color-swatch { border: none; border-radius: 2px; }
 
-/* ── signature pad ── */
+
 .el-signature-pad {
   background: var(--el-panel);
   border: var(--el-bw) solid var(--el-line);
@@ -107,7 +105,7 @@ input.el-swatch-input::-webkit-color-swatch { border: none; border-radius: 2px; 
   display: block;
 }
 
-/* ── audio waveform ── */
+
 .el-audio-waveform {
   display: flex;
   align-items: center;
@@ -127,7 +125,7 @@ input.el-swatch-input::-webkit-color-swatch { border: none; border-radius: 2px; 
 }
 .el-audio-waveform .bar.played { background: var(--el-live); opacity: 1; }
 
-/* ── code block ── */
+
 .el-code-block {
   display: block;
   padding: var(--el-space-4);
@@ -146,7 +144,7 @@ input.el-swatch-input::-webkit-color-swatch { border: none; border-radius: 2px; 
 .el-code-block .el-number  { color: var(--el-warn); }
 .el-code-block .el-fn      { color: var(--el-info); }
 
-/* ── kbd input (text input showing keyboard shortcut) ── */
+
 input.el-kbd-input {
   display: inline-block;
   padding: 4px 10px;

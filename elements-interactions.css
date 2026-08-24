@@ -1,9 +1,7 @@
-/* ──────────────────────────────────────────────────────────
-   INTERACTIONS — 10 primitives
-   ──────────────────────────────────────────────────────────
-*/
 
-/* ── draggable row / chip ── */
+
+
+
 [data-draggable] {
   cursor: grab;
   user-select: none;
@@ -11,7 +9,7 @@
 [data-draggable].dragging { opacity: 0.4; }
 [data-draggable].drop-target { outline: 2px dashed var(--el-accent); outline-offset: 2px; }
 
-/* ── drop zone ── */
+
 .el-drop-zone {
   border: 2px dashed var(--el-line-strong);
   background: var(--el-panel);
@@ -23,7 +21,7 @@
 }
 .el-drop-zone.over { border-color: var(--el-accent); background: var(--el-accent-soft); }
 
-/* ── hover-detail (truncated line → reveal full on hover) ── */
+
 [data-hover-detail] {
   cursor: pointer;
   position: relative;
@@ -48,7 +46,7 @@
 }
 [data-hover-detail]:hover::after { opacity: 1; }
 
-/* ── tooltip ── */
+
 .el-tooltip {
   position: relative;
   display: inline-block;
@@ -74,7 +72,7 @@
 }
 .el-tooltip:hover::after { opacity: 1; }
 
-/* ── popover ── */
+
 .el-popover {
   position: relative;
   display: inline-block;
@@ -101,12 +99,12 @@
 .el-popover.open .el-pop { opacity: 1; pointer-events: auto; transform: translateY(0); }
 .el-popover .el-pop > h4 { margin: 0 0 var(--el-space-1); font-size: var(--el-fs-sm); color: var(--el-accent); font-family: var(--el-font-mono); letter-spacing: 0.06em; text-transform: uppercase; }
 
-/* ── context-menu ── see elements-controls.css (.el-context-menu) — duplicate class is fine */
 
-/* ── toast ── */
-.el-toast { /* see elements-containers.css for base */ }
 
-/* ── skeleton shimmer ── */
+
+.el-toast {  }
+
+
 .el-shimmer-block {
   height: 16px;
   background: linear-gradient(90deg,
@@ -118,7 +116,7 @@
   animation: el-shimmer 1.4s ease infinite;
 }
 
-/* ── infinite-scroll trigger ── */
+
 .el-infinite-trigger {
   height: 32px;
   display: flex; align-items: center; justify-content: center;
@@ -127,7 +125,7 @@
   font-size: var(--el-fs-xs);
 }
 
-/* ── anchor-nav (sticky jump links) ── */
+
 .el-anchor-nav {
   position: sticky;
   top: var(--el-space-3);

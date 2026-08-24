@@ -1,7 +1,5 @@
-/* ──────────────────────────────────────────────────────────
-   BASE — reset, body defaults, focus ring, scrollbar, type
-   ──────────────────────────────────────────────────────────
-*/
+
+
 
 .el-reset,
 .el-reset * {
@@ -63,7 +61,7 @@ code, pre {
 
 button { font-family: inherit; }
 
-/* page container helpers */
+
 .el-page { padding: var(--el-space-5); max-width: 1280px; margin: 0 auto; }
 .el-page-full { padding: var(--el-space-5); }
 
@@ -72,7 +70,7 @@ button { font-family: inherit; }
 .el-row-flex { display: flex; gap: var(--el-space-3); align-items: center; }
 .el-divider { border: 0; border-top: var(--el-bw) solid var(--el-line); margin: var(--el-space-3) 0; }
 
-/* demo page top bar */
+
 .el-demo-bar {
   display: flex;
   justify-content: space-between;
@@ -100,14 +98,14 @@ button { font-family: inherit; }
 }
 .el-demo-bar .el-cluster { gap: var(--el-space-3); }
 
-/* size demo wrapper */
+
 .el-sizes {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: var(--el-space-4);
 }
 
-/* element label row */
+
 .el-spec {
   font-family: var(--el-font-mono);
   font-size: var(--el-fs-xs);

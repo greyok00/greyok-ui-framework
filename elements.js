@@ -1,29 +1,25 @@
-/* ──────────────────────────────────────────────────────────
-   ELEMENTS.JS — interactive hooks for el-* primitives
-   ──────────────────────────────────────────────────────────
-   Drop-in. No deps. Each hook is mounted once on DOMContentLoaded
-   and only attaches handlers to elements currently on the page.
-*/
+
+
 
 (function Elements() {
   'use strict';
 
-  // ── helpers ──
+  
   const $  = (sel, root) => (root || document).querySelector(sel);
   const $$ = (sel, root) => Array.from((root || document).querySelectorAll(sel));
   const on = (el, ev, fn, opts) => el && el.addEventListener(ev, fn, opts);
   const fire = (el, name, detail) => el && el.dispatchEvent(new CustomEvent(name, { detail, bubbles: true }));
 
-  // ────────────────────────────────────────────────────────────
-  // 1.  Theme bridge — sync any [data-theme-picker] not wired by
-  //     theme-switcher.js (e.g. radio chips). Already covered above.
-  // ────────────────────────────────────────────────────────────
-  // (theme-switcher.js handles <select>, [data-set-theme], and hashchange)
+  
+  
+  
+  
+  
 
-  // ────────────────────────────────────────────────────────────
-  // 2.  Tabs — three flavors: .el-tabs-h, .el-tabs-v, .el-tabs-pill
-  //     Markup: <button class="tab" data-target="#panel-id">Label</button>
-  // ────────────────────────────────────────────────────────────
+  
+  
+  
+  
   function wireTabs(root) {
     ['.el-tabs-h', '.el-tabs-v', '.el-tabs-pill'].forEach(cls => {
       $$(`${cls} [data-target]`, root).forEach(tab => {
@@ -34,9 +30,9 @@
           tab.classList.add('on');
           const tgt = document.querySelector(tab.dataset.target);
           if (!tgt) return;
-          // sibling panel visibility
+          
           const panels = $$(`.${cls}-panel[data-for="${group.id || ''}"]`, document);
-          // simpler: hide all panels whose id starts with group.id, then show target
+          
           const groupId = group.id;
           if (groupId) {
             $$(`[data-tabpanel][data-group="${groupId}"]`, document).forEach(p => p.hidden = (p.id !== tab.dataset.target.replace('#', '')));
@@ -47,11 +43,11 @@
     });
   }
 
-  // ────────────────────────────────────────────────────────────
-  // 3.  Accordion — exclusive mode (only one open at a time)
-  //     Markup: .el-accordion > details > summary
-  //     Optional: [data-exclusive]
-  // ────────────────────────────────────────────────────────────
+  
+  
+  
+  
+  
   function wireAccordion(root) {
     $$('.el-accordion', root).forEach(acc => {
       if (acc.__wired) return; acc.__wired = true;
@@ -66,10 +62,10 @@
     });
   }
 
-  // ────────────────────────────────────────────────────────────
-  // 4.  Segmented control — buttons sharing the same parent
-  //     Markup: <div class="el-segmented"><button>…</button></div>
-  // ────────────────────────────────────────────────────────────
+  
+  
+  
+  
   function wireSegmented(root) {
     $$('.el-segmented', root).forEach(seg => {
       if (seg.__wired) return; seg.__wired = true;
@@ -83,9 +79,9 @@
     });
   }
 
-  // ────────────────────────────────────────────────────────────
-  // 5.  Toggle / Switch / Check / Radio — click toggles .on
-  // ────────────────────────────────────────────────────────────
+  
+  
+  
   function wireToggles(root) {
     ['.el-toggle', '.el-switch', '.el-check'].forEach(cls => {
       $$(cls, root).forEach(el => {
@@ -96,7 +92,7 @@
         });
       });
     });
-    // radio groups: <input name="x"> wrapped by .el-radio
+    
     $$('.el-radio input[type="radio"]', root).forEach(inp => {
       if (inp.__wired) return; inp.__wired = true;
       on(inp, 'change', () => {
@@ -110,10 +106,10 @@
     });
   }
 
-  // ────────────────────────────────────────────────────────────
-  // 6.  Hover-card — click locks open
-  //     Markup: .el-hover-card[data-lock-target]
-  // ────────────────────────────────────────────────────────────
+  
+  
+  
+  
   function wireHoverCard(root) {
     $$('.el-hover-card', root).forEach(card => {
       if (card.__wired) return; card.__wired = true;
@@ -121,10 +117,10 @@
     });
   }
 
-  // ────────────────────────────────────────────────────────────
-  // 7.  Tree-list — click .toggle to collapse
-  //     Markup: .el-tree-list > li > .node > .toggle + ul
-  // ────────────────────────────────────────────────────────────
+  
+  
+  
+  
   function wireTreeList(root) {
     $$('.el-tree-list .node', root).forEach(node => {
       if (node.__wired) return; node.__wired = true;
@@ -137,10 +133,10 @@
     });
   }
 
-  // ────────────────────────────────────────────────────────────
-  // 8.  Drag / Drop — reorder lists
-  //     Markup: [data-draggable] inside [data-target-list]
-  // ────────────────────────────────────────────────────────────
+  
+  
+  
+  
   function wireDragDrop(root) {
     $$('[data-draggable]', root).forEach(el => {
       if (el.__wired) return; el.__wired = true;
@@ -171,10 +167,10 @@
     });
   }
 
-  // ────────────────────────────────────────────────────────────
-  // 9.  Combobox — filter menu items by typed input
-  //     Markup: .el-combobox > input + .menu > .opt[data-value]
-  // ────────────────────────────────────────────────────────────
+  
+  
+  
+  
   function wireCombobox(root) {
     $$('.el-combobox', root).forEach(cb => {
       if (cb.__wired) return; cb.__wired = true;
@@ -197,9 +193,9 @@
     });
   }
 
-  // ────────────────────────────────────────────────────────────
-  // 10. Multi-select pills — type to add, click × to remove
-  // ────────────────────────────────────────────────────────────
+  
+  
+  
   function wireMultiSelect(root) {
     $$('.el-multi-select', root).forEach(ms => {
       if (ms.__wired) return; ms.__wired = true;
@@ -231,9 +227,9 @@
     });
   }
 
-  // ────────────────────────────────────────────────────────────
-  // 11. Dropdown-menu — click .trigger to toggle .open
-  // ────────────────────────────────────────────────────────────
+  
+  
+  
   function wireDropdownMenu(root) {
     $$('.el-dropdown-menu', root).forEach(dm => {
       if (dm.__wired) return; dm.__wired = true;
@@ -245,9 +241,9 @@
     });
   }
 
-  // ────────────────────────────────────────────────────────────
-  // 12. Context menu — right-click .el-context-target to show
-  // ────────────────────────────────────────────────────────────
+  
+  
+  
   function wireContextMenu(root) {
     $$('[data-context-target]', root).forEach(t => {
       if (t.__wired) return; t.__wired = true;
@@ -271,23 +267,23 @@
     });
   }
 
-  // ────────────────────────────────────────────────────────────
-  // 13. Tooltip positioning — for el-tooltip[data-tip]
-  //     (CSS handles basic; this only adds dynamic positioning
-  //      if data-tip-placement is set)
-  // ────────────────────────────────────────────────────────────
+  
+  
+  
+  
+  
   function wireTooltip(root) {
     $$('.el-tooltip[data-tip-placement]', root).forEach(t => {
       if (t.__wired) return; t.__wired = true;
       on(t, 'mouseenter', () => {
-        // CSS handles positioning via [data-tip-placement=…] selectors if needed
+        
       });
     });
   }
 
-  // ────────────────────────────────────────────────────────────
-  // 14. Popover — click .el-popover to toggle .open
-  // ────────────────────────────────────────────────────────────
+  
+  
+  
   function wirePopover(root) {
     $$('.el-popover', root).forEach(p => {
       if (p.__wired) return; p.__wired = true;
@@ -301,9 +297,9 @@
     on(document, 'click', () => $$('.el-popover.open').forEach(o => o.classList.remove('open')));
   }
 
-  // ────────────────────────────────────────────────────────────
-  // 15. Modal — [data-modal-open="<id>"] opens, [data-modal-close] closes
-  // ────────────────────────────────────────────────────────────
+  
+  
+  
   function wireModal(root) {
     $$('[data-modal-open]', root).forEach(btn => {
       if (btn.__wired) return; btn.__wired = true;
@@ -325,9 +321,9 @@
     });
   }
 
-  // ────────────────────────────────────────────────────────────
-  // 16. Drawer — [data-drawer-open="<id>"] / [data-drawer-close]
-  // ────────────────────────────────────────────────────────────
+  
+  
+  
   function wireDrawer(root) {
     $$('[data-drawer-open]', root).forEach(btn => {
       if (btn.__wired) return; btn.__wired = true;
@@ -342,9 +338,9 @@
     });
   }
 
-  // ────────────────────────────────────────────────────────────
-  // 17. Toast queue — call elToast.push(msg, variant?) to enqueue
-  // ────────────────────────────────────────────────────────────
+  
+  
+  
   function ensureToastRegion() {
     let r = $('.el-toast-region');
     if (!r) {
@@ -365,11 +361,11 @@
   }
   window.elToast = { push: pushToast };
 
-  // ────────────────────────────────────────────────────────────
-  // 18. Pagination — client-side paging of [data-page-source]
-  //     Markup: <ul data-page-source="#list">…
-  //             <div class="el-pagination" data-page-size="5">
-  // ────────────────────────────────────────────────────────────
+  
+  
+  
+  
+  
   function wirePagination(root) {
     $$('.el-pagination[data-page-source]', root).forEach(pag => {
       if (pag.__wired) return; pag.__wired = true;
@@ -402,10 +398,10 @@
     });
   }
 
-  // ────────────────────────────────────────────────────────────
-  // 19. Breadcrumb collapse — if > 5 segments, show "..."
-  //     Markup: .el-breadcrumb[data-collapse-after="4"]
-  // ────────────────────────────────────────────────────────────
+  
+  
+  
+  
   function wireBreadcrumb(root) {
     $$('.el-breadcrumb[data-collapse-after]', root).forEach(bc => {
       if (bc.__wired) return; bc.__wired = true;
@@ -420,10 +416,10 @@
     });
   }
 
-  // ────────────────────────────────────────────────────────────
-  // 20. Scroll-shadow — IntersectionObserver to update data-shadow
-  //     Markup: .el-scroll-shadow
-  // ────────────────────────────────────────────────────────────
+  
+  
+  
+  
   function wireScrollShadow(root) {
     if (!('IntersectionObserver' in window)) return;
     $$('.el-scroll-shadow', root).forEach(s => {
@@ -442,9 +438,9 @@
     });
   }
 
-  // ────────────────────────────────────────────────────────────
-  // 21. Chip toggle — click .el-chip to toggle .added
-  // ────────────────────────────────────────────────────────────
+  
+  
+  
   function wireChips(root) {
     $$('.el-chip', root).forEach(c => {
       if (c.__wired) return; c.__wired = true;
@@ -452,9 +448,9 @@
     });
   }
 
-  // ────────────────────────────────────────────────────────────
-  // 22. Table sort — click th to toggle data-sort-dir on tbody
-  // ────────────────────────────────────────────────────────────
+  
+  
+  
   function wireTable(root) {
     $$('.el-table', root).forEach(tbl => {
       const ths = $$('thead th', tbl);
@@ -477,9 +473,9 @@
     });
   }
 
-  // ────────────────────────────────────────────────────────────
-  // 23. Palette filter — type into .el-palette .input to filter rows
-  // ────────────────────────────────────────────────────────────
+  
+  
+  
   function wirePalette(root) {
     $$('.el-palette .input', root).forEach(input => {
       if (input.__wired) return; input.__wired = true;
@@ -493,9 +489,9 @@
     });
   }
 
-  // ────────────────────────────────────────────────────────────
-  // 24. Anchor-nav — IntersectionObserver to mark active link
-  // ────────────────────────────────────────────────────────────
+  
+  
+  
   function wireAnchorNav(root) {
     if (!('IntersectionObserver' in window)) return;
     $$('.el-anchor-nav', root).forEach(nav => {
@@ -516,9 +512,9 @@
     });
   }
 
-  // ────────────────────────────────────────────────────────────
-  // Master init — run all hooks on load + on dynamic content
-  // ────────────────────────────────────────────────────────────
+  
+  
+  
   function init(root) {
     root = root || document;
     wireTabs(root);
@@ -543,7 +539,7 @@
     wireTable(root);
     wirePalette(root);
     wireAnchorNav(root);
-    // interactive stubs (real behavior for every element)
+    
     wireSignaturePad(root);
     wireAudioWaveform(root);
     wireFileUpload(root);
@@ -567,16 +563,16 @@
   }
 
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
+    document.addEventListener('DOMContentLoaded', () => init());
   } else {
     init();
   }
 
-  // ────────────────────────────────────────────────────────────
-  // STUBS — real interactive behavior for every element
-  // ────────────────────────────────────────────────────────────
+  
+  
+  
 
-  // Signature pad — pointer/touch draw
+  
   function wireSignaturePad(root) {
     $$('.el-signature-pad', root).forEach(canvas => {
       if (canvas.__wired) return; canvas.__wired = true;
@@ -601,12 +597,12 @@
       on(canvas, 'pointermove', e => move(e.offsetX, e.offsetY));
       on(canvas, 'pointerup',   stop);
       on(canvas, 'pointerleave', stop);
-      // double-click to clear
+      
       on(canvas, 'dblclick', () => ctx.clearRect(0, 0, canvas.width, canvas.height));
     });
   }
 
-  // Audio waveform — click to seek + play button
+  
   function wireAudioWaveform(root) {
     $$('.el-audio-waveform', root).forEach(w => {
       if (w.__wired) return; w.__wired = true;
@@ -634,12 +630,12 @@
         }, 120);
       };
       const pause = () => { playing = false; if (timer) clearInterval(timer); };
-      // double-click to play/pause
+      
       on(w, 'dblclick', () => playing ? pause() : play());
     });
   }
 
-  // File upload — drag/drop + click to pick
+  
   function wireFileUpload(root) {
     $$('.el-file-upload', root).forEach(fu => {
       if (fu.__wired) return; fu.__wired = true;
@@ -669,11 +665,11 @@
     });
   }
 
-  // Code block — line numbers + click-to-copy button
+  
   function wireCodeBlock(root) {
     $$('.el-code-block', root).forEach(cb => {
       if (cb.__wired) return; cb.__wired = true;
-      // add line numbers
+      
       const text = cb.textContent.replace(/\n$/, '');
       const lines = text.split('\n');
       cb.innerHTML = '';
@@ -692,7 +688,7 @@
         row.appendChild(num); row.appendChild(code);
         cb.appendChild(row);
       });
-      // copy button
+      
       const btn = document.createElement('button');
       btn.textContent = 'Copy';
       btn.style.cssText = 'position:absolute;top:8px;right:8px;font:11px var(--el-font-mono);padding:2px 8px;border:1px solid var(--el-line);background:var(--el-panel);color:var(--el-ink);border-radius:4px;cursor:pointer;';
@@ -708,7 +704,7 @@
     });
   }
 
-  // Kbd input — capture next keystroke
+  
   function wireKbdInput(root) {
     $$('.el-kbd-input', root).forEach(inp => {
       if (inp.__wired) return; inp.__wired = true;
@@ -730,7 +726,7 @@
     });
   }
 
-  // Rating — click stars to set
+  
   function wireRating(root) {
     $$('.el-rating', root).forEach(r => {
       if (r.__wired) return; r.__wired = true;
@@ -752,7 +748,7 @@
     });
   }
 
-  // Progress — animate to data-target
+  
   function wireProgressAnimate(root) {
     $$('.el-progress[data-animate-to]', root).forEach(p => {
       if (p.__wired) return; p.__wired = true;
@@ -765,7 +761,7 @@
     });
   }
 
-  // Toast — click × to dismiss
+  
   function wireToastDismiss(root) {
     on(root, 'click', e => {
       if (e.target.classList.contains('close') && e.target.closest('.el-toast')) {
@@ -774,7 +770,7 @@
     });
   }
 
-  // Palette — ↑/↓/Enter keyboard nav
+  
   function wirePaletteKeyboard(root) {
     $$('.el-palette', root).forEach(pal => {
       if (pal.__wired) return; pal.__wired = true;
@@ -803,7 +799,7 @@
     });
   }
 
-  // Combobox — ↑/↓/Enter/Esc
+  
   function wireComboboxKeyboard(root) {
     $$('.el-combobox', root).forEach(cb => {
       if (cb.__wired) return; cb.__wired = true;
@@ -824,7 +820,7 @@
     });
   }
 
-  // Tabs — ←/→ keyboard
+  
   function wireTabsKeyboard(root) {
     ['.el-tabs-h', '.el-tabs-v', '.el-tabs-pill'].forEach(cls => {
       $$(cls, root).forEach(group => {
@@ -843,7 +839,7 @@
     });
   }
 
-  // Accordion — Enter/Space to toggle
+  
   function wireAccordionKeyboard(root) {
     $$('.el-accordion summary', root).forEach(s => {
       if (s.__wired) return; s.__wired = true;
@@ -857,7 +853,7 @@
     });
   }
 
-  // Tree-list — ←/→ collapse/expand
+  
   function wireTreeListKeyboard(root) {
     $$('.el-tree-list .node', root).forEach(n => {
       if (n.__wired) return; n.__wired = true;
@@ -871,7 +867,7 @@
     });
   }
 
-  // Toggle/Switch/Check — Space/Enter to flip
+  
   function wireToggleKeyboard(root) {
     ['.el-toggle', '.el-switch', '.el-check'].forEach(cls => {
       $$(cls, root).forEach(el => {
@@ -887,7 +883,7 @@
     });
   }
 
-  // Modal — Esc closes, focus trap
+  
   function wireModalKeyboard(root) {
     $$('.el-modal-backdrop', root).forEach(bd => {
       if (bd.__wired) return; bd.__wired = true;
@@ -900,7 +896,7 @@
     });
   }
 
-  // Drawer — Esc closes
+  
   function wireDrawerKeyboard(root) {
     $$('.el-drawer', root).forEach(d => {
       if (d.__wired) return; d.__wired = true;
@@ -910,7 +906,7 @@
     });
   }
 
-  // Slider — show live value next to it
+  
   function wireSlider(root) {
     $$('.el-slider', root).forEach(s => {
       if (s.__wired) return; s.__wired = true;
@@ -928,7 +924,7 @@
     });
   }
 
-  // Search bar — Enter fires search event
+  
   function wireSearchBar(root) {
     $$('.el-search', root).forEach(s => {
       if (s.__wired) return; s.__wired = true;
@@ -941,7 +937,7 @@
     });
   }
 
-  // Prompt — Cmd/Ctrl+Enter submits
+  
   function wirePrompt(root) {
     $$('.el-prompt', root).forEach(p => {
       if (p.__wired) return; p.__wired = true;
@@ -955,7 +951,7 @@
     });
   }
 
-  // Clipboard — anything with [data-copy] copies its text on click
+  
   function wireClipboard(root) {
     $$('[data-copy]', root).forEach(el => {
       if (el.__wired) return; el.__wired = true;
@@ -974,6 +970,6 @@
     });
   }
 
-  // expose for re-init after dynamic HTML insertion
+  
   window.elInit = init;
 })();

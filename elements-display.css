@@ -1,9 +1,7 @@
-/* ──────────────────────────────────────────────────────────
-   DISPLAY — 15 primitives
-   ──────────────────────────────────────────────────────────
-*/
 
-/* ── status pill ── */
+
+
+
 .el-pill {
   display: inline-flex;
   align-items: center;
@@ -27,7 +25,7 @@
 .el-pill.info  { color: var(--el-info); }
 .el-pill.ghost { color: var(--el-ink-soft); }
 
-/* ── status dot ── */
+
 .el-dot {
   display: inline-block;
   width: 8px; height: 8px;
@@ -46,7 +44,7 @@
   50%      { opacity: 0.55; transform: scale(0.88); }
 }
 
-/* ── big number ── */
+
 .el-big-num {
   display: inline-flex;
   align-items: baseline;
@@ -69,7 +67,7 @@
 .el-big-num.warn   { color: var(--el-warn); }
 .el-big-num.ok     { color: var(--el-ok); }
 
-/* ── vertical gauge ── */
+
 .el-gauge {
   display: inline-flex;
   flex-direction: column;
@@ -96,11 +94,11 @@
 .el-gauge.fail  .val { color: var(--el-fail); }
 .el-gauge.radial { background: linear-gradient(180deg, color-mix(in oklab, var(--el-panel) 95%, var(--el-bg)) 0%, var(--el-panel) 100%); }
 
-/* ── sparkline ── */
+
 .el-sparkline { display: inline-flex; vertical-align: middle; }
 .el-sparkline svg { display: block; }
 
-/* ── barograph ── */
+
 .el-barograph {
   display: flex;
   align-items: flex-end;
@@ -120,7 +118,7 @@
 .el-barograph .bar.warn { background: var(--el-warn); opacity: 0.85; }
 .el-barograph .bar.fail { background: var(--el-fail); opacity: 0.9; }
 
-/* ── kbd ── */
+
 .el-kbd {
   display: inline-block;
   padding: 3px 8px;
@@ -136,7 +134,7 @@
   box-shadow: 0 1px 0 var(--el-bg) inset;
 }
 
-/* ── badge ── */
+
 .el-badge {
   display: inline-flex;
   align-items: center;
@@ -155,7 +153,7 @@
 .el-badge.fail { color: var(--el-fail); border-color: color-mix(in oklab, var(--el-fail) 40%, transparent); background: color-mix(in oklab, var(--el-fail) 10%, var(--el-panel)); }
 .el-badge.live { color: var(--el-live); border-color: color-mix(in oklab, var(--el-live) 40%, transparent); background: color-mix(in oklab, var(--el-live) 10%, var(--el-panel)); animation: el-pulse 1.6s ease infinite; }
 
-/* ── avatar ── */
+
 .el-avatar {
   display: inline-flex;
   align-items: center;
@@ -180,7 +178,7 @@
   width: 11px; height: 11px;
 }
 
-/* ── progress (linear) ── */
+
 .el-progress {
   width: 100%;
   height: 8px;
@@ -202,7 +200,7 @@
 .el-progress.fail > .fill { background: linear-gradient(90deg, color-mix(in oklab, var(--el-fail) 80%, currentColor) 0%, var(--el-fail) 100%); box-shadow: 0 0 8px color-mix(in oklab, var(--el-fail) 40%, transparent); }
 .el-progress.ok   > .fill { background: linear-gradient(90deg, color-mix(in oklab, var(--el-ok) 80%, var(--el-live)) 0%, var(--el-ok) 100%); box-shadow: 0 0 8px color-mix(in oklab, var(--el-ok) 40%, transparent); }
 
-/* ── progress (circular) ── */
+
 .el-progress.circular {
   width: 48px; height: 48px;
   background: transparent;
@@ -210,7 +208,7 @@
 }
 .el-progress.circular svg { transform: rotate(-90deg); }
 
-/* ── skeleton loader ── */
+
 .el-skeleton {
   display: block;
   height: 16px;
@@ -229,7 +227,7 @@
   100% { background-position: -200% 0; }
 }
 
-/* ── spinner ── */
+
 .el-spinner {
   display: inline-block;
   width: 18px; height: 18px;
@@ -241,7 +239,7 @@
 }
 @keyframes el-spin { to { transform: rotate(360deg); } }
 
-/* ── empty state ── */
+
 .el-empty {
   display: flex;
   flex-direction: column;
@@ -257,7 +255,7 @@
 .el-empty .el-msg  { font-size: var(--el-fs-md); color: var(--el-ink-soft); }
 .el-empty .el-hint { font-size: var(--el-fs-sm); color: var(--el-mute); }
 
-/* ── rating ── */
+
 .el-rating {
   display: inline-flex;
   gap: 2px;
@@ -266,7 +264,7 @@
 .el-rating .star { font-size: var(--el-fs-md); }
 .el-rating .star.on { color: var(--el-warn); }
 
-/* ── color swatch ── */
+
 .el-swatch {
   display: inline-block;
   width: 22px; height: 22px;

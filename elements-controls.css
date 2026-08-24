@@ -1,9 +1,7 @@
-/* ──────────────────────────────────────────────────────────
-   CONTROLS — 15 primitives
-   ──────────────────────────────────────────────────────────
-*/
 
-/* ── dropdown (native select) ── */
+
+
+
 .el-dropdown {
   padding: 7px 12px;
   background: var(--el-panel);
@@ -19,7 +17,7 @@
 .el-dropdown:hover { border-color: var(--el-accent); }
 .el-dropdown:focus { border-color: var(--el-accent); box-shadow: 0 0 0 3px color-mix(in oklab, var(--el-accent) 20%, transparent); outline: none; }
 
-/* ── checkbox ── */
+
 .el-check {
   display: inline-block;
   position: relative;
@@ -44,7 +42,7 @@
 .el-check.on, .el-check input:checked + .el-check { background: var(--el-accent); border-color: var(--el-accent); }
 .el-check.on::after { opacity: 1; }
 
-/* ── toggle (round) ── */
+
 .el-toggle {
   display: inline-block;
   position: relative;
@@ -68,7 +66,7 @@
 .el-toggle.on { background: var(--el-accent); border-color: var(--el-accent); }
 .el-toggle.on::after { transform: translateX(18px); background: var(--el-on-accent); }
 
-/* ── switch (rectangular, like iOS) ── */
+
 .el-switch {
   display: inline-block;
   position: relative;
@@ -92,7 +90,7 @@
 .el-switch.on { background: var(--el-accent); border-color: var(--el-accent); }
 .el-switch.on::after { transform: translateX(22px); background: var(--el-on-accent); }
 
-/* ── slider ── */
+
 .el-slider {
   -webkit-appearance: none;
   appearance: none;
@@ -119,12 +117,12 @@
   border: 2px solid var(--el-bg);
 }
 
-/* ── range (display a value alongside the slider) ── */
+
 .el-range { display: flex; align-items: center; gap: var(--el-space-2); }
 .el-range .el-slider { flex: 1; }
 .el-range .val { font-family: var(--el-font-mono); font-size: var(--el-fs-sm); color: var(--el-accent); min-width: 48px; text-align: right; }
 
-/* ── segmented control ── */
+
 .el-segmented {
   display: inline-flex;
   border: var(--el-bw) solid color-mix(in oklab, var(--el-line) 70%, transparent);
@@ -149,7 +147,7 @@
 .el-segmented button.on { background: var(--el-accent); color: var(--el-on-accent); box-shadow: var(--el-shadow-1); }
 .el-segmented button:hover:not(.on) { background: var(--el-panel-2); color: var(--el-ink); }
 
-/* ── search input ── */
+
 .el-search {
   padding: 8px 14px;
   background: var(--el-panel);
@@ -165,7 +163,7 @@
 .el-search:focus { border-color: var(--el-accent); box-shadow: 0 0 0 3px color-mix(in oklab, var(--el-accent) 20%, transparent); }
 .el-search::placeholder { color: var(--el-mute); }
 
-/* ── command palette ── */
+
 .el-palette {
   background: var(--el-panel);
   border: var(--el-bw) solid var(--el-line);
@@ -198,7 +196,7 @@
 .el-palette .results .row:hover, .el-palette .results .row.sel { background: var(--el-accent-soft); }
 .el-palette .results .row .key { color: var(--el-accent); font-weight: 700; }
 
-/* ── combobox ── */
+
 .el-combobox {
   position: relative;
   display: inline-block;
@@ -238,7 +236,7 @@
 }
 .el-combobox .menu .opt:hover, .el-combobox .menu .opt.sel { background: var(--el-accent-soft); color: var(--el-accent); }
 
-/* ── multi-select pills ── */
+
 .el-multi-select {
   display: flex; flex-wrap: wrap; gap: var(--el-space-1);
   padding: var(--el-space-2);
@@ -262,7 +260,7 @@
 .el-multi-select .pill .x:hover { opacity: 1; }
 .el-multi-select input { flex: 1; min-width: 80px; border: 0; outline: none; background: transparent; color: var(--el-ink); font-family: var(--el-font-mono); font-size: var(--el-fs-sm); }
 
-/* ── dropdown menu (custom, not native select) ── */
+
 .el-dropdown-menu {
   position: relative;
   display: inline-block;
@@ -299,7 +297,7 @@
 .el-dropdown-menu .menu .item:hover { background: var(--el-accent-soft); color: var(--el-accent); }
 .el-dropdown-menu .menu .sep { height: var(--el-bw); background: var(--el-line); margin: var(--el-space-1) 0; }
 
-/* ── context menu ── */
+
 .el-context-menu {
   position: fixed;
   background: var(--el-panel);
@@ -316,7 +314,7 @@
 .el-context-menu .item:hover { background: var(--el-accent-soft); color: var(--el-accent); }
 .el-context-menu .sep { height: var(--el-bw); background: var(--el-line); margin: var(--el-space-1) 0; }
 
-/* ── radio ── */
+
 .el-radio {
   display: inline-flex; align-items: center; gap: var(--el-space-1);
   cursor: pointer;
