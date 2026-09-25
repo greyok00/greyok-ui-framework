@@ -23,7 +23,7 @@ Every theme, every element, every category — running live in your browser. No 
 
 | | |
 |---|---|
-| 🪟 Landing page | [demo/index.html](https://greyok00.github.io/greyok-ui-framework/demo/) — wordmark hero, 7 category cards, install tabs, 12 theme preview cards |
+| 🪟 Landing page | [demo/index.html](https://greyok00.github.io/greyok-ui-framework/demo/) — wordmark hero, 7 category cards, install tabs, 15 theme preview cards |
 | ✦ Display | [demo/display.html](https://greyok00.github.io/greyok-ui-framework/demo/display.html) |
 | ≡ Lists | [demo/lists.html](https://greyok00.github.io/greyok-ui-framework/demo/lists.html) |
 | ⚙ Controls | [demo/controls.html](https://greyok00.github.io/greyok-ui-framework/demo/controls.html) |
@@ -43,7 +43,7 @@ A drop-in CSS framework that ships with **15 ready-made themes** — 12 original
 
 ```
 ┌──────────────────────────────────────────────────────────────┐
-│  100 elements · 12 themes · 6 sizes · 0 build  │
+│  100 elements · 15 themes · 6 sizes · 0 build  │
 └──────────────────────────────────────────────────────────────┘
 ```
 
@@ -187,6 +187,30 @@ Every theme applies through `[data-theme="<slug>"]`. The pill bar shows the bg +
       <td><span style="display:inline-block;width:60px;height:18px;border-radius:3px;background:#00b8a9"></span> <code>#00b8a9</code></td>
       <td><span style="display:inline-block;width:60px;height:18px;border-radius:3px;background:#d62828"></span> <code>#d62828</code></td>
     </tr>
+    <tr>
+      <td><code>bespoke</code></td>
+      <td>maison luxury — ivory + bronze</td>
+      <td><span style="display:inline-block;width:60px;height:18px;border-radius:3px;background:#ffffff;border:1px solid #ccc"></span> <code>#ffffff</code></td>
+      <td><span style="display:inline-block;width:60px;height:18px;border-radius:3px;background:#8b6914"></span> <code>#8b6914</code></td>
+      <td><span style="display:inline-block;width:60px;height:18px;border-radius:3px;background:#c4a882"></span> <code>#c4a882</code></td>
+      <td><span style="display:inline-block;width:60px;height:18px;border-radius:3px;background:#a83232"></span> <code>#a83232</code></td>
+    </tr>
+    <tr>
+      <td><code>torque</code></td>
+      <td>motorsport — black + racing red</td>
+      <td><span style="display:inline-block;width:60px;height:18px;border-radius:3px;background:#000000;border:1px solid #333"></span> <code>#000000</code></td>
+      <td><span style="display:inline-block;width:60px;height:18px;border-radius:3px;background:#ff2800"></span> <code>#ff2800</code></td>
+      <td><span style="display:inline-block;width:60px;height:18px;border-radius:3px;background:#ff2800"></span> <code>#ff2800</code></td>
+      <td><span style="display:inline-block;width:60px;height:18px;border-radius:3px;background:#ff2800"></span> <code>#ff2800</code></td>
+    </tr>
+    <tr>
+      <td><code>umami</code></td>
+      <td>omakase — charcoal + gold</td>
+      <td><span style="display:inline-block;width:60px;height:18px;border-radius:3px;background:#0a0a0a;border:1px solid #333"></span> <code>#0a0a0a</code></td>
+      <td><span style="display:inline-block;width:60px;height:18px;border-radius:3px;background:#d4a030"></span> <code>#d4a030</code></td>
+      <td><span style="display:inline-block;width:60px;height:18px;border-radius:3px;background:#d4a030"></span> <code>#d4a030</code></td>
+      <td><span style="display:inline-block;width:60px;height:18px;border-radius:3px;background:#800020"></span> <code>#800020</code></td>
+    </tr>
   </tbody>
 </table>
 
@@ -230,7 +254,7 @@ Then import the CSS by name (`greyok-ui-framework/tokens.css`, etc.) — the pac
 ```python
 from greyok_ui_framework import ElTheme, ElWidget, get_theme
 
-theme = get_theme("cockpit")            # any of 12 themes
+theme = get_theme("cockpit")            # any of 15 themes
 btn = ElWidget(parent, "btn", theme=theme, text="Run", command=handler)
 btn.pack()
 
@@ -260,6 +284,7 @@ A 25-line IIFE (`theme-switcher.js`) reads `localStorage['el-theme']` first, fal
   <option>cockpit-paper</option><option>console</option><option>compact</option>
   <option>casebook</option><option>agent-paper</option><option>agent-pulse</option>
   <option>agent-history</option><option>terminal</option><option>swiss</option>
+  <option>bespoke</option><option>torque</option><option>umami</option>
 </select>
 <script>
   document.getElementById('theme-picker').addEventListener('change', e => {
@@ -326,6 +351,7 @@ demo/
 ├── interactions.html   ← drag/drop, tooltip, popover, context-menu, toast…
 ├── misc.html           ← v1.0 primitives: datepicker, carousel, palette, split, icons, charts…
 ├── themes.html         ← grid of theme cards (every theme × 8 elements)
+├── showcase.html        ← v2 visual showcase (one tour, every theme)
 └── sizes.html          ← same element in all 6 size buckets × 2 themes
 ```
 
@@ -334,7 +360,7 @@ demo/
 ```
 greyok-ui-framework/
 ├── tokens.css               # ~55 CSS vars (neutral defaults)
-├── themes.css               # 15 [data-theme="..."] blocks (12 + 3 luxury)
+├── themes.css               # 15 themes — 14 [data-theme] blocks + neutral (:root default in tokens.css)
 ├── base.css                 # reset, focus ring, scrollbar, demo bar
 ├── elements-display.css     # 15 display primitives
 ├── elements-lists.css       # 15 list primitives
@@ -359,7 +385,7 @@ greyok-ui-framework/
 │   └── greyok_ui_framework.py  # Tkinter bridge — CSS → ElTheme dataclass
 ├── typescript/
 │   └── elements.d.ts        # declarations for every el-* class + data-* attr
-├── demo/                    # 11 demo HTML files
+├── demo/                    # 12 demo HTML files
 ├── assets/                  # logo.svg, icon.svg, wordmark.svg, icons.svg (24-icon sprite)
 ├── package.json
 ├── LICENSE                  # MIT
@@ -387,3 +413,13 @@ python3 -m http.server 8768 --bind 127.0.0.1
 ## License
 
 MIT © [greyok00](https://github.com/greyok00) — see [LICENSE](LICENSE).
+
+## Changelog
+
+**v1.0.0 (2026-09-25) — v1.0 primitives, charts, identity tokens.** First major release since v0.1.0: ~100 primitives, 15 themes, SVG charts, and a token identity layer.
+
+- **v1.0 primitives** — `@layer` architecture, datepicker, select, carousel, command palette, toast/promise, resizable split, bottom bar, glass, skeleton, 24-icon sprite, plus 3 luxury themes (`bespoke`, `torque`, `umami`).
+- **Charts** — dependency-free SVG primitives (`sparkline`, `bar`, `line`, `area`, `donut`) in `charts.js`, CSS-animated, reduced-motion aware.
+- **Identity tokens v2** — `--el-raise-1/2/3` elevation layers, `--el-hairline`, per-theme personality hooks; refinement pass across every element category.
+- **Fixed** — `data-chart` auto-render mapped chart kinds to undefined variables, so charts never rendered without manual JS; the theme switcher didn't offer the luxury themes.
+- **Release gates** — `bin/verify.sh` (19 checks: brace balance, palette freeze, JS syntax, demo coverage, icons) and a pytest suite (9 tests: token cross-check, themes, icons, dupes) run locally before every push; `tools/tokens-codegen.py` turns design-token JSON into CSS custom properties.
