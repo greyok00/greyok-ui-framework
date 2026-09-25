@@ -3,13 +3,13 @@
 </p>
 
 <p align="center">
-  <strong>CSS + JS framework — ~100 UI primitives, 12 themes, 6 size buckets.</strong>
+  <strong>CSS + JS framework — ~100 UI primitives, 15 themes, 6 size buckets.</strong>
   <br><br>
   Drop in the CSS files, pick a theme, ship. Works in HTML, TypeScript, and Python/Tkinter.
   <br><br>
   <a href="https://greyok00.github.io/greyok-ui-framework/demo/"><img src="https://img.shields.io/badge/demo-LIVE-success?style=for-the-badge" alt="Live Demo"></a>
   <a href="https://github.com/greyok00/greyok-ui-framework"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="MIT"></a>
-  <a href="https://github.com/greyok00/greyok-ui-framework"><img src="https://img.shields.io/badge/version-0.1.0-orange.svg" alt="v0.1.0"></a>
+  <a href="https://github.com/greyok00/greyok-ui-framework"><img src="https://img.shields.io/badge/version-1.0.0-orange.svg" alt="v1.0.0"></a>
   <a href="https://github.com/greyok00/greyok-ui-framework"><img src="https://img.shields.io/badge/greyok-00d4aa.svg" alt="greyok"></a>
 </p>
 
@@ -31,6 +31,7 @@ Every theme, every element, every category — running live in your browser. No 
 | 📊 Data viz | [demo/dataviz.html](https://greyok00.github.io/greyok-ui-framework/demo/dataviz.html) |
 | ▤ Containers | [demo/containers.html](https://greyok00.github.io/greyok-ui-framework/demo/containers.html) |
 | ↔ Interactions | [demo/interactions.html](https://greyok00.github.io/greyok-ui-framework/demo/interactions.html) |
+| ✨ Misc & charts | [demo/misc.html](https://greyok00.github.io/greyok-ui-framework/demo/misc.html) |
 | 🎨 Themes grid | [demo/themes.html](https://greyok00.github.io/greyok-ui-framework/demo/themes.html) |
 | 📐 Sizes grid | [demo/sizes.html](https://greyok00.github.io/greyok-ui-framework/demo/sizes.html) |
 
@@ -38,7 +39,7 @@ Every theme, every element, every category — running live in your browser. No 
 
 ## Overview
 
-A drop-in CSS framework that ships with **12 ready-made themes** (`cockpit`, `polaroid`, `console`, `terminal`, `swiss` …) and **~100 primitives** spanning display, lists, controls, data viz, containers, inputs, and interactions. Each theme declares the full token set so `live` and `fail` always read distinct, no `:root` overrides, and the same theme surface works across HTML, TypeScript, and a Python/Tkinter bridge.
+A drop-in CSS framework that ships with **15 ready-made themes** — 12 originals (`cockpit`, `polaroid`, `console`, `terminal`, `swiss` …) plus 3 luxury themes (`bespoke`, `torque`, `umami`) added in v1.0 and **~100 primitives** spanning display, lists, controls, data viz, containers, inputs, and interactions. Each theme declares the full token set so `live` and `fail` always read distinct, no `:root` overrides, and the same theme surface works across HTML, TypeScript, and a Python/Tkinter bridge.
 
 ```
 ┌──────────────────────────────────────────────────────────────┐
@@ -59,7 +60,7 @@ A drop-in CSS framework that ships with **12 ready-made themes** (`cockpit`, `po
   <tbody>
     <tr>
       <td align="center"><strong>~100</strong></td>
-      <td align="center"><strong>12</strong></td>
+      <td align="center"><strong>15</strong></td>
       <td align="center"><strong>6</strong></td>
       <td align="center"><strong>~55 CSS vars</strong></td>
       <td align="center"><strong>HTML · TS · Python</strong></td>
@@ -272,11 +273,14 @@ A 25-line IIFE (`theme-switcher.js`) reads `localStorage['el-theme']` first, fal
 
 | Layer | What you get |
 |---|---|
-| **Elements** | ~100 primitives across 7 categories — Display, Lists, Controls, Data viz, Containers, Inputs, Interactions |
-| **Themes** | 12 swappable themes via `[data-theme="…"]`. Switcher persists to `localStorage` + URL hash. Every theme declares the full token set. |
+| **Elements** | ~100 primitives across 8 categories — Display, Lists, Controls, Data viz, Containers, Inputs, Interactions, Misc (datepicker, styled select, carousel, command palette with fuzzy highlight + recents, toast promise, resizable split, icon sprite, bottom bar, glass, skeleton-to-content, SPA view transitions) |
+| **Themes** | 15 swappable themes via `[data-theme="…"]` (12 originals + 3 luxury in v1.0). Switcher persists to `localStorage` + URL hash. Every theme declares the full token set. |
 | **Sizes** | 6 buckets — `xs` (48 px) / `sm` (50 × 200) / `md` / `lg` (1200 × 400) / `full` (1200 × 800) / `tray` (720 × 420) |
 | **Tokens** | ~55 CSS variables — color, type, space, radius, shadow, motion |
 | **Stubs** | ~40 wire functions in `elements.js` — signature-pad draw, waveform seek/play, file-upload drop, code-block copy, kbd-input capture, palette arrow-nav, tabs keyboard, modal/drawer esc-close, clipboard, … |
+| **Charts** | `charts.js` — dependency-free SVG primitives: `Sparkline`, `Bar`, `Line`, `Area`, `Donut`. Colors via CSS custom props (`var(--el-accent)` with `currentColor` fallback), `<title>` tooltips, CSS-drawn animations that respect `prefers-reduced-motion`. Or drop `<span data-chart="sparkline" data-values="1,2,3">` and let `Charts.auto()` render it. |
+| **Architecture** | Single `@layer` cascade (`el-tokens` / `el-elements`) — element CSS never fights app CSS. Focus-visible rings, `prefers-reduced-motion`, print styles, and container queries built in. |
+| **Tooling** | `bin/verify.sh` release checks (brace balance, palette freeze vs HEAD, JS syntax, demo class coverage, icon sprite) · `tools/tokens-codegen.py` regenerates token CSS from the design-tokens JSON · pytest suite in `tests/` |
 | **Bridges** | TypeScript declarations (`.el-*` classes + `data-*` attrs) and Python/Tkinter (`greyok_ui_framework.py` parses CSS → `ElTheme` dataclass) |
 
 ## Sizes
@@ -303,6 +307,8 @@ Apply directly on any element: `<span class="el-pill el--xs">…</span>`
 | **Containers** | 12 | panel, tabs (h/v/pill), modal, drawer, bento, split, sticky-*, masonry, scroll-shadow, toast-region |
 | **Inputs** | 10 | input, textarea, search-bar, prompt, file-upload, swatch-input, signature-pad, audio-waveform, code-block, kbd-input |
 | **Interactions** | 10 | drag/drop, drop-zone, hover-detail, tooltip, popover, context-menu, toast, infinite-trigger, anchor-nav |
+| **Misc (v1.0)** | 9 | datepicker, select, carousel, command palette, split-resizable, bottom-bar, glass, skeleton→content, icon sprite + SPA view transitions |
+| **Charts (v1.0)** | 5 | sparkline, bar, line, area, donut (SVG, `charts.js`) |
 
 ## Demo pages
 
@@ -318,7 +324,8 @@ demo/
 ├── containers.html     ← panel, tabs, modal, drawer, bento, split-pane…
 ├── inputs.html         ← input, textarea, search-bar, prompt, file-upload…
 ├── interactions.html   ← drag/drop, tooltip, popover, context-menu, toast…
-├── themes.html         ← 4×3 grid of theme cards (every theme × 8 elements)
+├── misc.html           ← v1.0 primitives: datepicker, carousel, palette, split, icons, charts…
+├── themes.html         ← grid of theme cards (every theme × 8 elements)
 └── sizes.html          ← same element in all 6 size buckets × 2 themes
 ```
 
@@ -327,24 +334,33 @@ demo/
 ```
 greyok-ui-framework/
 ├── tokens.css               # ~55 CSS vars (neutral defaults)
-├── themes.css               # 12 [data-theme="..."] blocks
+├── themes.css               # 15 [data-theme="..."] blocks (12 + 3 luxury)
 ├── base.css                 # reset, focus ring, scrollbar, demo bar
 ├── elements-display.css     # 15 display primitives
 ├── elements-lists.css       # 15 list primitives
 ├── elements-controls.css    # 15 control primitives
-├── elements-dataviz.css     # 10 data-viz primitives
+├── elements-dataviz.css     # 10 data-viz primitives + .el-chart container
 ├── elements-containers.css  # 12 container primitives
 ├── elements-inputs.css      # 10 input primitives
 ├── elements-interactions.css # 10 interaction primitives
+├── elements-misc.css        # v1.0 primitives (datepicker, carousel, palette, split, icons…)
 ├── elements-size.css        # 6 size buckets
-├── elements.js              # ~40 wire functions (interactive stubs)
+├── elements.js              # ~45 wire functions (interactive stubs)
+├── charts.js                # SVG chart primitives (sparkline/bar/line/area/donut)
 ├── theme-switcher.js        # localStorage + URL hash bridge
+├── bin/
+│   └── verify.sh            # release checks (CSS balance, palette freeze, icons…)
+├── tools/
+│   ├── minify.py            # comment stripper / minifier
+│   └── tokens-codegen.py    # design-tokens JSON → CSS custom properties
+├── tests/
+│   └── test_framework.py    # pytest: var cross-check, themes, icons, dupes
 ├── python/
 │   └── greyok_ui_framework.py  # Tkinter bridge — CSS → ElTheme dataclass
 ├── typescript/
 │   └── elements.d.ts        # declarations for every el-* class + data-* attr
-├── demo/                    # 10 demo HTML files
-├── assets/                  # logo.svg, icon.svg, wordmark.svg
+├── demo/                    # 11 demo HTML files
+├── assets/                  # logo.svg, icon.svg, wordmark.svg, icons.svg (24-icon sprite)
 ├── package.json
 ├── LICENSE                  # MIT
 └── README.md
@@ -358,6 +374,7 @@ greyok-ui-framework/
 - Themes declare the **full** token set; never partial overrides
 - Demo pages use the theme switcher at the top
 - Zero `:root` overrides — themes only inherit through `[data-theme]` selectors
+- **Palette freeze** — all 12 original palettes are byte-identical since v0.1.0; `bin/verify.sh` enforces it against git HEAD. New themes append to `themes.css`, existing color tokens never change.
 
 ## Run the demo
 
