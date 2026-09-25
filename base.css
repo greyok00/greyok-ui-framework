@@ -59,6 +59,14 @@ a:hover { border-bottom-color: var(--el-accent); }
   transition: outline-offset var(--el-dur-fast) var(--el-ease), box-shadow var(--el-dur-fast) var(--el-ease);
 }
 
+/* 2026 interaction baseline: hover/press live on transform+opacity (compositor-only) */
+.el-reset button, .el-reset [role="button"], .el-reset a,
+[class*="el-"] button, [class*="el-"] [role="button"] {
+  transition-property: color, background-color, border-color, box-shadow, transform, opacity, filter;
+  transition-duration: var(--el-dur-fast);
+  transition-timing-function: var(--el-ease-out);
+}
+
 ::-webkit-scrollbar { width: 10px; height: 10px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb {
@@ -67,7 +75,7 @@ a:hover { border-bottom-color: var(--el-accent); }
   border: 2px solid transparent;
   background-clip: padding-box;
 }
-::-webkit-scrollbar-thumb:hover { background-color: var(--el-accent); background-clip: padding-box; }
+::-webkit-scrollbar-thumb:hover { background-color: color-mix(in oklab, var(--el-ink-soft) 75%, transparent); background-clip: padding-box; }
 
 kbd { font-family: var(--el-font-mono); font-size: var(--el-fs-xs); }
 

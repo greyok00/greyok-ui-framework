@@ -15,11 +15,11 @@
   border-radius: var(--el-r-md);
   outline: none;
   width: 100%;
-  box-shadow: var(--el-hairline);
+  box-shadow: var(--el-inset-field), var(--el-hairline);
   transition: border-color var(--el-dur-fast) var(--el-ease), box-shadow var(--el-dur-fast) var(--el-ease), background var(--el-dur-fast) var(--el-ease);
 }
-.el-input:hover { border-color: color-mix(in oklab, var(--el-accent) 45%, var(--el-line)); }
-.el-input:focus { border-color: var(--el-accent); background: var(--el-panel); box-shadow: 0 0 0 3px color-mix(in oklab, var(--el-accent) 18%, transparent), var(--el-hairline); }
+.el-input:hover { border-color: color-mix(in oklab, var(--el-ink-soft) 50%, var(--el-line)); }
+.el-input:focus { border-color: var(--el-accent); background: var(--el-panel); box-shadow: var(--el-ring), var(--el-inset-field); }
 .el-input::placeholder { color: var(--el-mute); font-weight: 400; }
 .el-input:disabled { opacity: 0.5; cursor: not-allowed; }
 
@@ -37,11 +37,11 @@
   min-height: 80px;
   resize: vertical;
   line-height: 1.6;
-  box-shadow: var(--el-hairline);
+  box-shadow: var(--el-inset-field), var(--el-hairline);
   transition: border-color var(--el-dur-fast) var(--el-ease), box-shadow var(--el-dur-fast) var(--el-ease);
 }
-.el-textarea:hover { border-color: color-mix(in oklab, var(--el-accent) 45%, var(--el-line)); }
-.el-textarea:focus { border-color: var(--el-accent); background: var(--el-panel); box-shadow: 0 0 0 3px color-mix(in oklab, var(--el-accent) 18%, transparent), var(--el-hairline); }
+.el-textarea:hover { border-color: color-mix(in oklab, var(--el-ink-soft) 50%, var(--el-line)); }
+.el-textarea:focus { border-color: var(--el-accent); background: var(--el-panel); box-shadow: var(--el-ring), var(--el-inset-field); }
 
 
 .el-search-bar {
@@ -72,7 +72,7 @@
   box-shadow: var(--el-hairline);
   transition: border-color var(--el-dur-fast) var(--el-ease), box-shadow var(--el-dur-fast) var(--el-ease);
 }
-.el-prompt:focus { border-color: var(--el-accent); box-shadow: 0 0 0 3px color-mix(in oklab, var(--el-accent) 18%, transparent); }
+.el-prompt:focus { border-color: var(--el-accent); box-shadow: var(--el-ring); }
 .el-prompt::before { content: "› "; color: var(--el-accent); }
 
 

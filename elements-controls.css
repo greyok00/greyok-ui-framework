@@ -14,18 +14,18 @@
   color: var(--el-on-accent);
   border: var(--el-bw-emph) solid color-mix(in oklab, var(--el-accent) 82%, var(--el-overlay));
   border-radius: var(--el-r-md);
-  font-family: var(--el-font-mono);
-  font-size: var(--el-fs-sm);
-  font-weight: var(--el-label-weight);
-  letter-spacing: 0.02em;
+  font-family: var(--el-font-body);
+  font-size: var(--el-fs-md);
+  font-weight: 600;
+  letter-spacing: 0;
   cursor: pointer;
   text-align: center;
   white-space: nowrap;
-  box-shadow: var(--el-raise-1);
-  transition: background var(--el-dur-fast) var(--el-ease), border-color var(--el-dur-fast) var(--el-ease), color var(--el-dur-fast) var(--el-ease), box-shadow var(--el-dur-fast) var(--el-ease), transform var(--el-dur-fast) var(--el-ease);
+  box-shadow: var(--el-raise-1), var(--el-hairline);
+  transition: background var(--el-dur-fast) var(--el-ease), border-color var(--el-dur-fast) var(--el-ease), color var(--el-dur-fast) var(--el-ease), box-shadow var(--el-dur-fast) var(--el-ease), transform var(--el-dur-fast) var(--el-ease), filter var(--el-dur-fast) var(--el-ease);
 }
-.el-btn:hover { background: var(--el-accent-hover); border-color: var(--el-accent-hover); box-shadow: var(--el-raise-2); transform: translateY(-1px); }
-.el-btn:active { transform: translateY(0) scale(0.98); box-shadow: var(--el-raise-1); transition-duration: 60ms; }
+.el-btn:hover { filter: brightness(1.07); border-color: var(--el-accent-hover); box-shadow: var(--el-raise-2), var(--el-hairline); transform: var(--el-lift); }
+.el-btn:active { transform: var(--el-press); box-shadow: var(--el-raise-1); transition-duration: 60ms; }
 .el-btn:focus-visible { outline: 2px solid var(--el-focus-ring); outline-offset: 2px; }
 .el-btn:disabled, .el-btn[aria-disabled="true"] { opacity: 0.45; cursor: not-allowed; transform: none; box-shadow: none; }
 .el-btn.loading { color: transparent; pointer-events: none; }
@@ -63,16 +63,16 @@
   background: var(--el-panel);
   border: var(--el-bw) solid var(--el-edge);
   color: var(--el-ink);
-  font-family: var(--el-font-mono);
-  font-size: var(--el-fs-sm);
+  font-family: var(--el-font-body);
+  font-size: var(--el-fs-md);
   font-weight: 500;
   border-radius: var(--el-r-md);
   cursor: pointer;
   box-shadow: var(--el-hairline);
   transition: border-color var(--el-dur-fast) var(--el-ease), box-shadow var(--el-dur-fast) var(--el-ease), background var(--el-dur-fast) var(--el-ease);
 }
-.el-dropdown:hover { border-color: var(--el-accent); }
-.el-dropdown:focus { border-color: var(--el-accent); box-shadow: 0 0 0 3px color-mix(in oklab, var(--el-accent) 20%, transparent); outline: none; }
+.el-dropdown:hover { border-color: color-mix(in oklab, var(--el-ink-soft) 55%, var(--el-line)); background: var(--el-panel-2); }
+.el-dropdown:focus { border-color: var(--el-accent); box-shadow: var(--el-ring); outline: none; }
 
 
 .el-check {
@@ -88,7 +88,7 @@
   box-shadow: var(--el-hairline);
   transition: background var(--el-dur-fast) var(--el-ease), border-color var(--el-dur-fast) var(--el-ease), box-shadow var(--el-dur-fast) var(--el-ease), transform var(--el-dur-fast) var(--el-ease);
 }
-.el-check:hover { border-color: var(--el-accent); }
+.el-check:hover { border-color: color-mix(in oklab, var(--el-ink-soft) 65%, var(--el-line-strong)); background: var(--el-panel-3); }
 .el-check:active { transform: scale(0.9); }
 .el-check::after {
   content: "";
@@ -133,7 +133,7 @@
   box-shadow: 0 1px 2px color-mix(in oklab, var(--el-overlay) 60%, transparent);
   transition: transform var(--el-dur-base) var(--el-ease), background var(--el-dur-fast) var(--el-ease);
 }
-.el-toggle:hover { border-color: var(--el-accent); }
+.el-toggle:hover { border-color: color-mix(in oklab, var(--el-ink-soft) 60%, var(--el-line-strong)); }
 .el-toggle.on { background: var(--el-accent); border-color: var(--el-accent); box-shadow: inset 0 1px 2px color-mix(in oklab, var(--el-overlay) 25%, transparent), 0 0 8px color-mix(in oklab, var(--el-accent) 30%, transparent); }
 .el-toggle.on::after { transform: translateX(18px); background: linear-gradient(180deg, color-mix(in oklab, var(--el-on-accent) 30%, var(--el-on-accent)), var(--el-on-accent)); }
 
@@ -160,7 +160,7 @@
   box-shadow: 0 1px 2px color-mix(in oklab, var(--el-overlay) 60%, transparent);
   transition: transform var(--el-dur-base) var(--el-ease), background var(--el-dur-fast) var(--el-ease);
 }
-.el-switch:hover { border-color: var(--el-accent); }
+.el-switch:hover { border-color: color-mix(in oklab, var(--el-ink-soft) 60%, var(--el-line-strong)); }
 .el-switch.on { background: var(--el-accent); border-color: var(--el-accent); }
 .el-switch.on::after { transform: translateX(22px); background: linear-gradient(180deg, color-mix(in oklab, var(--el-on-accent) 25%, var(--el-on-accent)), var(--el-on-accent)); }
 
@@ -219,8 +219,8 @@
   background: transparent;
   border: 0;
   color: var(--el-ink-soft);
-  font-family: var(--el-font-mono);
-  font-size: var(--el-fs-sm);
+  font-family: var(--el-font-body);
+  font-size: var(--el-fs-md);
   font-weight: 500;
   cursor: pointer;
   border-radius: var(--el-r-pill);
@@ -240,16 +240,16 @@
   background: color-mix(in oklab, var(--el-panel) 92%, var(--el-bg));
   border: var(--el-bw) solid var(--el-edge);
   color: var(--el-ink);
-  font-family: var(--el-font-mono);
-  font-size: var(--el-fs-sm);
+  font-family: var(--el-font-body);
+  font-size: var(--el-fs-md);
   border-radius: var(--el-r-md);
   outline: none;
   width: 100%;
-  box-shadow: var(--el-hairline);
+  box-shadow: var(--el-inset-field), var(--el-hairline);
   transition: border-color var(--el-dur-fast) var(--el-ease), box-shadow var(--el-dur-fast) var(--el-ease), background var(--el-dur-fast) var(--el-ease);
 }
-.el-search:hover { border-color: color-mix(in oklab, var(--el-accent) 45%, var(--el-line)); }
-.el-search:focus { border-color: var(--el-accent); background: var(--el-panel); box-shadow: 0 0 0 3px color-mix(in oklab, var(--el-accent) 20%, transparent), var(--el-hairline); }
+.el-search:hover { border-color: color-mix(in oklab, var(--el-ink-soft) 50%, var(--el-line)); }
+.el-search:focus { border-color: var(--el-accent); background: var(--el-panel); box-shadow: var(--el-ring), var(--el-inset-field); }
 .el-search::placeholder { color: var(--el-mute); }
 
 
@@ -280,13 +280,14 @@
   margin: 1px var(--el-space-1);
   padding: var(--el-space-2) var(--el-space-2);
   cursor: pointer;
-  font-family: var(--el-font-mono);
-  font-size: var(--el-fs-sm);
+  font-family: var(--el-font-body);
+  font-size: var(--el-fs-md);
   align-items: center;
   border-radius: var(--el-r-sm);
   transition: background var(--el-dur-fast) var(--el-ease);
 }
-.el-palette .results .row:hover, .el-palette .results .row.sel { background: var(--el-accent-soft); }
+.el-palette .results .row:hover { background: var(--el-panel-2); }
+.el-palette .results .row.sel { background: var(--el-accent-soft); box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--el-accent) 30%, transparent); }
 .el-palette .results .row .key {
   color: var(--el-accent);
   font-weight: var(--el-label-weight);
@@ -310,33 +311,38 @@
   background: var(--el-panel);
   border: var(--el-bw) solid var(--el-line);
   color: var(--el-ink);
-  font-family: var(--el-font-mono);
-  font-size: var(--el-fs-sm);
+  font-family: var(--el-font-body);
+  font-size: var(--el-fs-md);
   border-radius: var(--el-r-sm);
   outline: none;
 }
-.el-combobox input:focus { border-color: var(--el-accent); }
+.el-combobox input:focus { border-color: var(--el-accent); box-shadow: var(--el-ring); }
 .el-combobox .menu {
   position: absolute;
   top: calc(100% + 2px);
   left: 0; right: 0;
-  background: var(--el-panel);
-  border: var(--el-bw) solid var(--el-line);
-  border-radius: var(--el-r-sm);
+  background: color-mix(in oklab, var(--el-panel) 97%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: var(--el-bw) solid var(--el-edge);
+  border-radius: var(--el-r-md);
   max-height: 200px;
   overflow-y: auto;
   z-index: 10;
-  box-shadow: var(--el-shadow-2);
+  box-shadow: var(--el-raise-3);
+  padding: var(--el-space-1);
   display: none;
 }
-.el-combobox.open .menu { display: block; }
+.el-combobox.open .menu { display: block; animation: el-menu-in var(--el-dur-fast) var(--el-ease-out); }
 .el-combobox .menu .opt {
   padding: var(--el-space-2) var(--el-space-3);
-  font-family: var(--el-font-mono);
-  font-size: var(--el-fs-sm);
+  font-family: var(--el-font-body);
+  font-size: var(--el-fs-md);
   cursor: pointer;
+  border-radius: var(--el-r-sm);
 }
-.el-combobox .menu .opt:hover, .el-combobox .menu .opt.sel { background: var(--el-accent-soft); color: var(--el-accent); }
+.el-combobox .menu .opt:hover { background: var(--el-panel-3); }
+.el-combobox .menu .opt.sel { background: var(--el-accent-soft); color: var(--el-ink); box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--el-accent) 30%, transparent); }
 
 
 .el-multi-select {
@@ -374,15 +380,15 @@
   background: var(--el-panel);
   border: var(--el-bw) solid var(--el-edge);
   color: var(--el-ink);
-  font-family: var(--el-font-mono);
-  font-size: var(--el-fs-sm);
+  font-family: var(--el-font-body);
+  font-size: var(--el-fs-md);
   border-radius: var(--el-r-md);
   cursor: pointer;
   box-shadow: var(--el-raise-1), var(--el-hairline);
-  transition: border-color var(--el-dur-fast) var(--el-ease), background var(--el-dur-fast) var(--el-ease);
+  transition: border-color var(--el-dur-fast) var(--el-ease), background var(--el-dur-fast) var(--el-ease), transform var(--el-dur-fast) var(--el-ease);
 }
-.el-dropdown-menu .trigger:hover { border-color: color-mix(in oklab, var(--el-accent) 50%, var(--el-line)); }
-.el-dropdown-menu.open .menu { display: block; animation: el-menu-in var(--el-dur-fast) var(--el-ease); }
+.el-dropdown-menu .trigger:hover { border-color: color-mix(in oklab, var(--el-ink-soft) 55%, var(--el-line)); background: var(--el-panel-2); }
+.el-dropdown-menu.open .menu { display: block; animation: el-menu-in var(--el-dur-base) var(--el-ease-out); }
 .el-dropdown-menu .menu {
   display: none;
   position: absolute;
@@ -400,12 +406,12 @@
 .el-dropdown-menu .menu .item {
   padding: calc(var(--el-ctl-pad-y) - 3px) var(--el-space-3);
   cursor: pointer;
-  font-family: var(--el-font-mono);
-  font-size: var(--el-fs-sm);
+  font-family: var(--el-font-body);
+  font-size: var(--el-fs-md);
   border-radius: var(--el-r-sm);
   transition: background var(--el-dur-fast) var(--el-ease), color var(--el-dur-fast) var(--el-ease);
 }
-.el-dropdown-menu .menu .item:hover { background: var(--el-accent-soft); color: var(--el-accent); }
+.el-dropdown-menu .menu .item:hover { background: var(--el-panel-3); color: var(--el-ink); }
 .el-dropdown-menu .menu .sep { height: var(--el-bw); background: var(--el-line); margin: var(--el-space-1) 0; }
 
 
@@ -422,9 +428,9 @@
   display: none;
   min-width: 180px;
 }
-.el-context-menu.open { display: block; animation: el-menu-in var(--el-dur-fast) var(--el-ease); }
-.el-context-menu .item { padding: calc(var(--el-ctl-pad-y) - 3px) var(--el-space-3); cursor: pointer; font-family: var(--el-font-mono); font-size: var(--el-fs-sm); border-radius: var(--el-r-sm); transition: background var(--el-dur-fast) var(--el-ease), color var(--el-dur-fast) var(--el-ease); }
-.el-context-menu .item:hover { background: var(--el-accent-soft); color: var(--el-accent); }
+.el-context-menu.open { display: block; animation: el-menu-in var(--el-dur-base) var(--el-ease-out); }
+.el-context-menu .item { padding: calc(var(--el-ctl-pad-y) - 3px) var(--el-space-3); cursor: pointer; font-family: var(--el-font-body); font-size: var(--el-fs-md); border-radius: var(--el-r-sm); transition: background var(--el-dur-fast) var(--el-ease), color var(--el-dur-fast) var(--el-ease); }
+.el-context-menu .item:hover { background: var(--el-panel-3); color: var(--el-ink); }
 .el-context-menu .sep { height: var(--el-bw); background: var(--el-line); margin: var(--el-space-1) 0; }
 
 
@@ -442,7 +448,7 @@
   position: relative;
   transition: border-color var(--el-dur-fast) var(--el-ease), box-shadow var(--el-dur-fast) var(--el-ease);
 }
-.el-radio:hover .dot { border-color: var(--el-accent); }
+.el-radio:hover .dot { border-color: color-mix(in oklab, var(--el-ink-soft) 65%, var(--el-line-strong)); }
 .el-radio input { display: none; }
 .el-radio input:checked + .dot { border-color: var(--el-accent); box-shadow: 0 0 0 3px color-mix(in oklab, var(--el-accent) 16%, transparent); }
 .el-radio input:checked + .dot::after {
@@ -456,7 +462,7 @@
   animation: el-radio-pop var(--el-dur-fast) var(--el-ease);
 }
 @keyframes el-radio-pop { from { transform: translate(-50%, -50%) scale(0.4); } }
-@keyframes el-menu-in { from { opacity: 0; transform: translateY(-4px) scale(0.98); } }
+@keyframes el-menu-in { from { opacity: 0; transform: translateY(-6px) scale(0.97); filter: blur(2px); } }
 
 
 

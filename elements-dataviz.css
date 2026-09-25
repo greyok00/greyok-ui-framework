@@ -155,8 +155,8 @@
   background: var(--el-panel-2);
   border: var(--el-bw) solid var(--el-line);
   border-left: 3px solid var(--el-accent);
-  font-family: var(--el-font-mono);
-  font-size: var(--el-fs-sm);
+  font-family: var(--el-font-body);
+  font-size: var(--el-fs-md);
 }
 .el-sankey .flows { display: flex; flex-direction: column; gap: 2px; }
 .el-sankey .flows .flow {
@@ -210,7 +210,7 @@
 .el-md ul, .el-md ol { padding-left: var(--el-space-5); }
 .el-md table { width: 100%; border-collapse: collapse; }
 .el-md table th, .el-md table td { padding: var(--el-space-2); border: var(--el-bw) solid var(--el-line); }
-.el-md table th { background: var(--el-panel-2); color: var(--el-accent); }
+.el-md table th { background: var(--el-panel-2); color: var(--el-ink-soft); }
 
 
 /* svg charts (charts.js) */

@@ -35,15 +35,15 @@
   padding: var(--el-space-2);
   z-index: 50;
   display: none;
-  font-family: var(--el-font-mono);
-  font-size: var(--el-fs-sm);
+  font-family: var(--el-font-body);
+  font-size: var(--el-fs-md);
 }
-.el-datepicker.open { display: block; animation: el-menu-in var(--el-dur-fast) var(--el-ease); }
+.el-datepicker.open { display: block; animation: el-menu-in var(--el-dur-base) var(--el-ease-out); }
 .el-datepicker .head {
   display: flex; align-items: center; justify-content: space-between;
   padding: var(--el-space-1) var(--el-space-2) var(--el-space-2);
 }
-.el-datepicker .head .label { color: var(--el-accent); font-weight: 700; }
+.el-datepicker .head .label { color: var(--el-ink); font-weight: 600; }
 .el-datepicker .head button {
   background: transparent; border: 0; color: var(--el-ink-soft);
   cursor: pointer; padding: 2px 8px; border-radius: var(--el-r-sm);
@@ -79,16 +79,16 @@
   background: var(--el-panel);
   border: var(--el-bw) solid var(--el-edge);
   color: var(--el-ink);
-  font-family: var(--el-font-mono);
-  font-size: var(--el-fs-sm);
+  font-family: var(--el-font-body);
+  font-size: var(--el-fs-md);
   font-weight: 500;
   border-radius: var(--el-r-md);
   cursor: pointer;
   box-shadow: var(--el-raise-1), var(--el-hairline);
   transition: border-color var(--el-dur-fast) var(--el-ease), box-shadow var(--el-dur-fast) var(--el-ease), background var(--el-dur-fast) var(--el-ease);
 }
-.el-select select:hover { border-color: var(--el-accent); }
-.el-select select:focus { border-color: var(--el-accent); box-shadow: 0 0 0 3px color-mix(in oklab, var(--el-accent) 20%, transparent); outline: none; }
+.el-select select:hover { border-color: color-mix(in oklab, var(--el-ink-soft) 55%, var(--el-line)); background: var(--el-panel-2); }
+.el-select select:focus { border-color: var(--el-accent); box-shadow: var(--el-ring); outline: none; }
 .el-select::after {
   content: "";
   position: absolute;
@@ -133,7 +133,7 @@
   box-shadow: var(--el-raise-1), var(--el-hairline);
   transition: border-color var(--el-dur-fast) var(--el-ease), background var(--el-dur-fast) var(--el-ease), color var(--el-dur-fast) var(--el-ease), transform var(--el-dur-fast) var(--el-ease);
 }
-.el-carousel .nav:hover { border-color: var(--el-accent); color: var(--el-accent); transform: scale(1.06); }
+.el-carousel .nav:hover { border-color: color-mix(in oklab, var(--el-ink-soft) 55%, var(--el-line)); background: var(--el-panel-2); color: var(--el-ink); transform: scale(1.06); }
 .el-carousel .nav:active { transform: scale(0.96); }
 .el-carousel .dots {
   grid-column: 1 / -1;
@@ -216,8 +216,9 @@
   display: flex; flex-direction: column; align-items: center; gap: 2px;
   background: transparent; border: 0;
   color: var(--el-ink-soft);
-  font-family: var(--el-font-mono);
+  font-family: var(--el-font-body);
   font-size: var(--el-fs-xs);
+  font-weight: 500;
   cursor: pointer;
   padding: var(--el-space-1) var(--el-space-3);
   border-radius: var(--el-r-md);

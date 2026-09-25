@@ -93,11 +93,23 @@
 
   /* ── identity system (v2): per-theme personality, overridable in themes.css ── */
   /* layered elevation — components use --el-raise-*; --el-shadow-* stay frozen */
-  --el-raise-1: var(--el-shadow-1);
-  --el-raise-2: var(--el-shadow-2);
-  --el-raise-3: var(--el-shadow-3);
+  --el-raise-1: 0 1px 2px color-mix(in oklab, var(--el-overlay) 55%, transparent),
+                0 1px 1px color-mix(in oklab, var(--el-overlay) 30%, transparent);
+  --el-raise-2: 0 2px 4px color-mix(in oklab, var(--el-overlay) 45%, transparent),
+                0 12px 28px -8px color-mix(in oklab, var(--el-overlay) 70%, transparent);
+  --el-raise-3: 0 4px 12px color-mix(in oklab, var(--el-overlay) 50%, transparent),
+                0 32px 64px -16px color-mix(in oklab, var(--el-overlay) 85%, transparent);
   --el-hairline: inset 0 1px 0 color-mix(in oklab, var(--el-ink) 7%, transparent);
   --el-edge:     color-mix(in oklab, var(--el-line) 75%, transparent);
+
+  /* 2026 motion + focus recipes (non-color design decisions live here) */
+  --el-ease-out:    cubic-bezier(.22, 1, .36, 1);
+  --el-ease-spring: cubic-bezier(.34, 1.35, .5, 1);
+  --el-ring:        0 0 0 3px color-mix(in oklab, var(--el-accent) 20%, transparent);
+  --el-ring-strong: 0 0 0 3px color-mix(in oklab, var(--el-accent) 30%, transparent);
+  --el-inset-field: inset 0 1px 2px color-mix(in oklab, var(--el-overlay) 24%, transparent);
+  --el-lift: translateY(-1px);
+  --el-press: scale(.985);
 
   /* ornament: top accent bar height on primary surfaces (0 = off) */
   --el-bar-h: 3px;

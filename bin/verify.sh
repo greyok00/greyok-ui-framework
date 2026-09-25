@@ -24,7 +24,7 @@ if git rev-parse HEAD >/dev/null 2>&1; then
       ok "$f unchanged"
     else
       # allow new content; every historical --el-<color> declaration must survive verbatim
-      missing=$(git show HEAD:"$f" 2>/dev/null | grep -E -- '--el-(bg|panel|line|ink|accent|ok|warn|fail|info|live|teal|on-accent|mute|focus-ring|overlay|shadow)[-:]' | sort -u | while IFS= read -r line; do grep -qF -- "$line" "$f" || echo "$line"; done)
+      missing=$(git show HEAD:"$f" 2>/dev/null | grep -E -- '^\s*--el-(bg|panel|line|ink|accent|ok|warn|fail|info|live|teal|on-accent|mute|focus-ring|overlay|shadow)[-:]' | sort -u | while IFS= read -r line; do grep -qF -- "$line" "$f" || echo "$line"; done)
       if [ -z "$missing" ]; then ok "$f: all frozen color tokens intact"; else note "$f lost/changed: $missing"; fi
     fi
   done
