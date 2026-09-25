@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en" data-theme="neutral">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Misc primitives · el-framework</title>
+  <link rel="stylesheet" href="../tokens.css">
+  <link rel="stylesheet" href="../themes.css">
+  <link rel="stylesheet" href="../base.css">
+  <link rel="stylesheet" href="../elements-display.css">
+  <link rel="stylesheet" href="../elements-controls.css">
+  <link rel="stylesheet" href="../elements-containers.css">
+  <link rel="stylesheet" href="../elements-misc.css">
+  <link rel="stylesheet" href="../elements-dataviz.css">
+</head>
+<body class="el-reset">
+  <header class="el-demo-bar">
+    <strong>Misc primitives</strong>
+    <select id="theme-picker" data-theme-picker>
+      <option>neutral</option><option>polaroid</option><option>cockpit</option>
+      <option>cockpit-paper</option><option>console</option><option>compact</option>
+      <option>casebook</option><option>agent-paper</option><option>agent-pulse</option>
+      <option>agent-history</option><option>terminal</option><option>swiss</option>
+      <option>bespoke</option><option>torque</option><option>umami</option>
+    </select>
+    <a href="index.html">← index</a>
+  </header>
+
+  <main class="el-page">
+    <h1>v1.0 primitives</h1>
+
+    <h2>Date picker</h2>
+    <div style="display:inline-block;position:relative">
+      <button class="el-card el-date-toggle" type="button" style="cursor:pointer">📅 pick a date</button>
+      <div class="el-datepicker">
+        <div class="head">
+          <button type="button" class="prev">‹</button>
+          <span class="label"></span>
+          <button type="button" class="next">›</button>
+        </div>
+        <div class="grid"></div>
+      </div>
+    </div>
+
+    <h2>Select</h2>
+    <div class="el-select">
+      <select>
+        <option>choose…</option>
+        <option>option A</option>
+        <option>option B</option>
+      </select>
+    </div>
+
+    <h2>Command palette</h2>
+    <div class="el-palette" style="max-width:420px" data-recent-store="demo:palette">
+      <input class="input" placeholder="type to filter…">
+      <div class="results">
+        <div class="row" data-run="open"><span class="key">O</span><span class="label">Open file</span><span></span></div>
+        <div class="row" data-run="save"><span class="key">S</span><span class="label">Save changes</span><span></span></div>
+        <div class="row" data-run="deploy"><span class="key">D</span><span class="label">Deploy site</span><span></span></div>
+        <div class="row" data-run="theme"><span class="key">T</span><span class="label">Toggle theme</span><span></span></div>
+      </div>
+    </div>
+
+    <h2>Carousel</h2>
+    <div class="el-carousel" style="max-width:420px">
+      <button type="button" class="nav" data-dir="prev">‹</button>
+      <div class="track">
+        <div class="slide"><div class="el-card" style="padding:var(--el-space-5);text-align:center">Slide 1</div></div>
+        <div class="slide"><div class="el-card" style="padding:var(--el-space-5);text-align:center">Slide 2</div></div>
+        <div class="slide"><div class="el-card" style="padding:var(--el-space-5);text-align:center">Slide 3</div></div>
+      </div>
+      <button type="button" class="nav" data-dir="next">›</button>
+      <div class="dots"></div>
+    </div>
+
+    <h2>Toast (promise)</h2>
+    <div class="el-cluster">
+      <button class="el-card" type="button" onclick="Elements.toastPromise(new Promise(r => setTimeout(() => r(), 1500)), { loading: 'Deploying…', success: 'Deployed', error: 'Deploy failed' })" style="cursor:pointer">Run promise → toast</button>
+      <button class="el-card" type="button" onclick="Elements.toast('Saved.', { variant: 'ok' })" style="cursor:pointer">Plain toast</button>
+    </div>
+
+    <h2>Resizable split</h2>
+    <div class="el-split-resizable" style="border:var(--el-bw) solid var(--el-line);border-radius:var(--el-r-md);overflow:hidden">
+      <div class="pane" style="width:50%;background:var(--el-panel)">Left pane — drag the handle</div>
+      <div class="handle" role="separator" aria-orientation="vertical"></div>
+      <div class="pane" style="flex:1">Right pane</div>
+    </div>
+
+    <h2>Icons</h2>
+    <div class="el-cluster" id="icon-row">
+      <!-- populated by Elements.icon() below -->
+    </div>
+
+    <h2>Bottom bar</h2>
+    <nav class="el-bottom-bar" style="position:static;margin-bottom:120px">
+      <button type="button" class="on">Home</button>
+      <button type="button">Search</button>
+      <button type="button">Alerts</button>
+      <button type="button">More</button>
+    </nav>
+
+    <h2>Glass + skeleton</h2>
+    <div class="el-glass" style="padding:var(--el-space-4);border-radius:var(--el-r-lg);max-width:420px">
+      <span class="el-skeleton" style="width:60%"></span>
+      <span class="el-skeleton lg" style="width:80%;margin-top:var(--el-space-2)"></span>
+    </div>
+
+    <h2>Charts</h2>
+    <div class="el-cluster" style="align-items:flex-end;flex-wrap:wrap">
+      <span class="el-chart" data-chart="sparkline" data-values="4,8,6,10,7,12,9,14" data-width="200" data-height="48"></span>
+      <span class="el-chart" data-chart="bar" data-values="5,9,4,11,8,13" data-width="200" data-height="80" data-label="req/s"></span>
+      <span class="el-chart" data-chart="line" data-values="2,6,4,9,7,12,10,15" data-width="240" data-height="100" data-label="latency ms"></span>
+      <span class="el-chart" data-chart="area" data-values="10,7,12,8,14,11,16" data-width="200" data-height="80"></span>
+      <span class="el-chart" data-chart="donut" data-values="72" data-width="96" data-label="uptime"></span>
+    </div>
+  </main>
+
+  <script src="../theme-switcher.js"></script>
+  <script src="../elements.js"></script>
+  <script src="../charts.js"></script>
+  <script>
+    // icons via Elements.icon() — sprite lives in assets/icons.svg
+    ['search','close','check','plus','calendar','user','download','trash','star','heart','menu','info']
+      .forEach(n => document.getElementById('icon-row').appendChild(Elements.icon(n)));
+  </script>
+</body>
+</html>
