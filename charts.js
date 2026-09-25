@@ -181,7 +181,7 @@
   }
 
   // ── auto-render ────────────────────────────────────────────────────────────
-  const kinds = { sparkline, bar, line, donut, area };
+  const kinds = { sparkline: Sparkline, bar: Bar, line: Line, donut: Donut, area: Area };
 
   function auto(root) {
     (root || document).querySelectorAll('[data-chart]').forEach(node => {
