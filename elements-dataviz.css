@@ -7,32 +7,35 @@
 .el-mini-bars {
   display: flex;
   align-items: flex-end;
-  gap: 1px;
+  gap: 2px;
   height: 56px;
   padding: var(--el-space-1);
-  background: var(--el-panel);
-  border: var(--el-bw) solid var(--el-line);
+  background: color-mix(in oklab, var(--el-panel) 70%, var(--el-bg));
+  border: var(--el-bw) solid var(--el-edge);
+  border-radius: var(--el-r-sm);
 }
 .el-mini-bars .bar {
   flex: 1;
   min-height: 2px;
-  background: var(--el-accent);
-  border-radius: 1px 1px 0 0;
-  opacity: 0.7;
+  background: linear-gradient(180deg, color-mix(in oklab, var(--el-on-accent) 20%, var(--el-accent)), var(--el-accent));
+  border-radius: 2px 2px 0 0;
+  opacity: 0.75;
   position: relative;
+  transition: opacity var(--el-dur-fast) var(--el-ease), transform var(--el-dur-fast) var(--el-ease);
 }
 .el-mini-bars .bar.ok    { background: var(--el-ok); }
 .el-mini-bars .bar.warn  { background: var(--el-warn); }
 .el-mini-bars .bar.fail  { background: var(--el-fail); opacity: 0.9; }
-.el-mini-bars .bar:hover { opacity: 1; }
+.el-mini-bars .bar:hover { opacity: 1; transform: scaleY(1.02); transform-origin: bottom; }
 
 
 .el-mini-line {
   display: block;
   width: 100%;
   height: 56px;
-  background: var(--el-panel);
-  border: var(--el-bw) solid var(--el-line);
+  background: color-mix(in oklab, var(--el-panel) 70%, var(--el-bg));
+  border: var(--el-bw) solid var(--el-edge);
+  border-radius: var(--el-r-sm);
 }
 
 
@@ -42,7 +45,7 @@
   height: 240px;
   background: var(--el-panel);
   border: var(--el-bw) solid var(--el-line);
-  background-image: radial-gradient(var(--el-line) 1px, transparent 1px);
+  background-image: radial-gradient(color-mix(in oklab, var(--el-line) 60%, transparent) 1px, transparent 1px);
   background-size: 24px 24px;
 }
 .el-entity-graph .node {
@@ -69,13 +72,14 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(4, 60px);
-  gap: 2px;
+  gap: 3px;
   background: var(--el-bg);
-  padding: 2px;
-  border: var(--el-bw) solid var(--el-line);
+  padding: 3px;
+  border: var(--el-bw) solid var(--el-edge);
+  border-radius: var(--el-r-sm);
 }
 .el-treemap .cell {
-  background: var(--el-accent);
+  background: linear-gradient(180deg, color-mix(in oklab, var(--el-on-accent) 16%, var(--el-accent)), var(--el-accent));
   color: var(--el-on-accent);
   padding: var(--el-space-2);
   font-family: var(--el-font-mono);
@@ -83,7 +87,10 @@
   overflow: hidden;
   border-radius: var(--el-r-sm);
   display: flex; align-items: end;
+  box-shadow: inset 0 1px 0 color-mix(in oklab, var(--el-on-accent) 25%, transparent);
+  transition: filter var(--el-dur-fast) var(--el-ease);
 }
+.el-treemap .cell:hover { filter: brightness(1.08); }
 .el-treemap .cell.ok   { background: var(--el-ok); }
 .el-treemap .cell.warn { background: var(--el-warn); color: var(--el-bg); }
 .el-treemap .cell.fail { background: var(--el-fail); }
@@ -97,16 +104,19 @@
   display: grid;
   grid-auto-flow: column;
   grid-template-rows: repeat(7, 12px);
-  gap: 1px;
+  gap: 2px;
   padding: var(--el-space-1);
-  background: var(--el-panel);
-  border: var(--el-bw) solid var(--el-line);
+  background: color-mix(in oklab, var(--el-panel) 70%, var(--el-bg));
+  border: var(--el-bw) solid var(--el-edge);
+  border-radius: var(--el-r-sm);
 }
 .el-heatmap .cell {
   width: 12px; height: 12px;
   background: var(--el-panel-3);
-  border-radius: 1px;
+  border-radius: 2px;
+  transition: transform var(--el-dur-fast) var(--el-ease), box-shadow var(--el-dur-fast) var(--el-ease);
 }
+.el-heatmap .cell:hover { transform: scale(1.25); box-shadow: 0 0 0 1px var(--el-bg); }
 .el-heatmap .cell.lvl-1 { background: var(--el-accent-soft); }
 .el-heatmap .cell.lvl-2 { background: color-mix(in oklab, var(--el-accent) 50%, var(--el-panel)); }
 .el-heatmap .cell.lvl-3 { background: var(--el-accent); }
@@ -117,19 +127,22 @@
   position: relative;
   width: 100%;
   height: 200px;
-  background: var(--el-panel);
-  border: var(--el-bw) solid var(--el-line);
+  background: color-mix(in oklab, var(--el-panel) 70%, var(--el-bg));
+  border: var(--el-bw) solid var(--el-edge);
+  border-radius: var(--el-r-sm);
   background-image:
     linear-gradient(to right, transparent calc(100% - 1px), var(--el-line) calc(100% - 1px)),
     linear-gradient(to bottom, transparent calc(100% - 1px), var(--el-line) calc(100% - 1px));
 }
 .el-scatter .pt {
   position: absolute;
-  width: 6px; height: 6px;
+  width: 7px; height: 7px;
   border-radius: 50%;
   background: var(--el-accent);
   transform: translate(-50%, -50%);
+  transition: transform var(--el-dur-fast) var(--el-ease), box-shadow var(--el-dur-fast) var(--el-ease);
 }
+.el-scatter .pt:hover { transform: translate(-50%, -50%) scale(1.6); box-shadow: 0 0 0 2px var(--el-bg); }
 .el-scatter .pt.warn { background: var(--el-warn); }
 .el-scatter .pt.fail { background: var(--el-fail); }
 .el-scatter .pt.live { background: var(--el-live); box-shadow: 0 0 6px var(--el-live); }
@@ -156,10 +169,11 @@
 .el-diff {
   font-family: var(--el-font-mono);
   font-size: var(--el-fs-sm);
-  background: var(--el-panel-2);
-  border: var(--el-bw) solid var(--el-line);
+  background: color-mix(in oklab, var(--el-panel-2) 60%, var(--el-panel));
+  border: var(--el-bw) solid var(--el-edge);
   border-radius: var(--el-r-md);
   overflow: hidden;
+  box-shadow: var(--el-raise-1), var(--el-hairline);
 }
 .el-diff .row {
   display: grid;
@@ -203,10 +217,11 @@
 .el-chart {
   display: inline-flex;
   vertical-align: middle;
-  background: var(--el-panel);
-  border: var(--el-bw) solid var(--el-line);
+  background: color-mix(in oklab, var(--el-panel) 80%, var(--el-bg));
+  border: var(--el-bw) solid var(--el-edge);
   border-radius: var(--el-r-md);
   padding: var(--el-space-2);
+  box-shadow: var(--el-raise-1), var(--el-hairline);
 }
 .el-chart > svg { display: block; max-width: 100%; }
 .el-chart-svg [class*="el-chart-anim-"] {

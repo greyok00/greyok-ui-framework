@@ -6,23 +6,28 @@
   align-items: center;
   justify-content: center;
   gap: var(--el-space-2);
-  padding: var(--el-space-2) var(--el-space-4);
-  min-height: var(--el-size-md);
-  background: var(--el-accent);
+  padding: var(--el-ctl-pad-y) var(--el-ctl-pad-x);
+  min-height: var(--el-ctl-min-h);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--el-on-accent) 14%, transparent), transparent 42%),
+    var(--el-accent);
   color: var(--el-on-accent);
-  border: var(--el-bw) solid var(--el-accent);
+  border: var(--el-bw-emph) solid color-mix(in oklab, var(--el-accent) 82%, var(--el-overlay));
   border-radius: var(--el-r-md);
   font-family: var(--el-font-mono);
   font-size: var(--el-fs-sm);
-  font-weight: 700;
+  font-weight: var(--el-label-weight);
+  letter-spacing: 0.02em;
   cursor: pointer;
   text-align: center;
   white-space: nowrap;
+  box-shadow: var(--el-raise-1);
   transition: background var(--el-dur-fast) var(--el-ease), border-color var(--el-dur-fast) var(--el-ease), color var(--el-dur-fast) var(--el-ease), box-shadow var(--el-dur-fast) var(--el-ease), transform var(--el-dur-fast) var(--el-ease);
 }
-.el-btn:hover { background: var(--el-accent-hover); border-color: var(--el-accent-hover); }
-.el-btn:active { transform: translateY(1px) scale(0.99); }
-.el-btn:disabled, .el-btn[aria-disabled="true"] { opacity: 0.45; cursor: not-allowed; transform: none; }
+.el-btn:hover { background: var(--el-accent-hover); border-color: var(--el-accent-hover); box-shadow: var(--el-raise-2); transform: translateY(-1px); }
+.el-btn:active { transform: translateY(0) scale(0.98); box-shadow: var(--el-raise-1); transition-duration: 60ms; }
+.el-btn:focus-visible { outline: 2px solid var(--el-focus-ring); outline-offset: 2px; }
+.el-btn:disabled, .el-btn[aria-disabled="true"] { opacity: 0.45; cursor: not-allowed; transform: none; box-shadow: none; }
 .el-btn.loading { color: transparent; pointer-events: none; }
 .el-btn.loading::after {
   content: "";
@@ -33,11 +38,19 @@
   border-radius: 50%;
   animation: el-spin 0.6s linear infinite;
 }
-.el-btn--outline { background: transparent; color: var(--el-accent); }
+.el-btn--outline {
+  background: color-mix(in oklab, var(--el-accent) 6%, transparent);
+  color: var(--el-accent);
+  border-color: color-mix(in oklab, var(--el-accent) 45%, transparent);
+}
 .el-btn--outline:hover { background: var(--el-accent-soft); border-color: var(--el-accent); }
-.el-btn--ghost { background: transparent; border-color: transparent; color: var(--el-ink-soft); }
-.el-btn--ghost:hover { background: var(--el-panel-2); color: var(--el-ink); }
-.el-btn--danger { background: var(--el-fail); border-color: var(--el-fail); color: var(--el-on-accent); }
+.el-btn--ghost { background: transparent; border-color: transparent; color: var(--el-ink-soft); box-shadow: none; }
+.el-btn--ghost:hover { background: var(--el-panel-2); color: var(--el-ink); box-shadow: none; transform: none; }
+.el-btn--danger {
+  background: linear-gradient(180deg, color-mix(in oklab, var(--el-on-accent) 12%, transparent), transparent 42%), var(--el-fail);
+  border-color: color-mix(in oklab, var(--el-fail) 82%, var(--el-bg));
+  color: var(--el-on-accent);
+}
 .el-btn--danger:hover { background: var(--el-fail); border-color: var(--el-fail); filter: brightness(1.12); }
 @keyframes el-spin { to { transform: rotate(360deg); } }
 
@@ -46,16 +59,17 @@
 
 
 .el-dropdown {
-  padding: 7px 12px;
+  padding: calc(var(--el-ctl-pad-y) - 2px) var(--el-ctl-pad-x);
   background: var(--el-panel);
-  border: var(--el-bw) solid color-mix(in oklab, var(--el-line) 70%, transparent);
+  border: var(--el-bw) solid var(--el-edge);
   color: var(--el-ink);
   font-family: var(--el-font-mono);
   font-size: var(--el-fs-sm);
   font-weight: 500;
   border-radius: var(--el-r-md);
   cursor: pointer;
-  transition: border-color var(--el-dur-fast) var(--el-ease), box-shadow var(--el-dur-fast) var(--el-ease);
+  box-shadow: var(--el-hairline);
+  transition: border-color var(--el-dur-fast) var(--el-ease), box-shadow var(--el-dur-fast) var(--el-ease), background var(--el-dur-fast) var(--el-ease);
 }
 .el-dropdown:hover { border-color: var(--el-accent); }
 .el-dropdown:focus { border-color: var(--el-accent); box-shadow: 0 0 0 3px color-mix(in oklab, var(--el-accent) 20%, transparent); outline: none; }
@@ -64,14 +78,18 @@
 .el-check {
   display: inline-block;
   position: relative;
-  width: 16px; height: 16px;
+  width: 17px; height: 17px;
   border: var(--el-bw-2) solid var(--el-line-strong);
   background: var(--el-panel-2);
   cursor: pointer;
   vertical-align: middle;
   border-radius: var(--el-r-sm);
   flex-shrink: 0;
+  box-shadow: var(--el-hairline);
+  transition: background var(--el-dur-fast) var(--el-ease), border-color var(--el-dur-fast) var(--el-ease), box-shadow var(--el-dur-fast) var(--el-ease), transform var(--el-dur-fast) var(--el-ease);
 }
+.el-check:hover { border-color: var(--el-accent); }
+.el-check:active { transform: scale(0.9); }
 .el-check::after {
   content: "";
   position: absolute;
@@ -79,59 +97,72 @@
   width: 4px; height: 8px;
   border: solid var(--el-on-accent);
   border-width: 0 2px 2px 0;
-  transform: rotate(45deg);
+  transform: rotate(45deg) scale(0.5);
+  transform-origin: 50% 50%;
   opacity: 0;
+  transition: opacity var(--el-dur-fast) var(--el-ease), transform var(--el-dur-fast) var(--el-ease);
 }
-.el-check.on, .el-check input:checked + .el-check { background: var(--el-accent); border-color: var(--el-accent); }
-.el-check.on::after { opacity: 1; }
+.el-check.on, .el-check input:checked + .el-check {
+  background: var(--el-accent);
+  border-color: var(--el-accent);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--el-accent) 18%, transparent);
+}
+.el-check.on::after, .el-check input:checked + .el-check::after { opacity: 1; transform: rotate(45deg) scale(1); }
 
 
 .el-toggle {
   display: inline-block;
   position: relative;
-  width: 36px; height: 18px;
-  background: var(--el-panel-2);
+  width: 38px; height: 20px;
+  background: var(--el-panel-3);
   border: var(--el-bw) solid var(--el-line-strong);
   border-radius: var(--el-r-pill);
   cursor: pointer;
   vertical-align: middle;
-  transition: background var(--el-dur-fast) var(--el-ease);
+  box-shadow: inset 0 1px 2px color-mix(in oklab, var(--el-overlay) 40%, transparent);
+  transition: background var(--el-dur-fast) var(--el-ease), border-color var(--el-dur-fast) var(--el-ease), box-shadow var(--el-dur-fast) var(--el-ease);
 }
 .el-toggle::after {
   content: "";
   position: absolute;
-  left: 1px; top: 1px;
+  left: 2px; top: 50%;
   width: 14px; height: 14px;
-  background: var(--el-ink-soft);
+  margin-top: -7px;
+  background: linear-gradient(180deg, color-mix(in oklab, var(--el-ink) 25%, var(--el-ink-soft)), var(--el-ink-soft));
   border-radius: 50%;
-  transition: transform var(--el-dur-fast) var(--el-ease);
+  box-shadow: 0 1px 2px color-mix(in oklab, var(--el-overlay) 60%, transparent);
+  transition: transform var(--el-dur-base) var(--el-ease), background var(--el-dur-fast) var(--el-ease);
 }
-.el-toggle.on { background: var(--el-accent); border-color: var(--el-accent); }
-.el-toggle.on::after { transform: translateX(18px); background: var(--el-on-accent); }
+.el-toggle:hover { border-color: var(--el-accent); }
+.el-toggle.on { background: var(--el-accent); border-color: var(--el-accent); box-shadow: inset 0 1px 2px color-mix(in oklab, var(--el-overlay) 25%, transparent), 0 0 8px color-mix(in oklab, var(--el-accent) 30%, transparent); }
+.el-toggle.on::after { transform: translateX(18px); background: linear-gradient(180deg, color-mix(in oklab, var(--el-on-accent) 30%, var(--el-on-accent)), var(--el-on-accent)); }
 
 
 .el-switch {
   display: inline-block;
   position: relative;
-  width: 44px; height: 22px;
-  background: var(--el-panel-2);
+  width: 46px; height: 24px;
+  background: var(--el-panel-3);
   border: var(--el-bw) solid var(--el-line-strong);
   border-radius: var(--el-r-sm);
   cursor: pointer;
   vertical-align: middle;
-  transition: background var(--el-dur-fast) var(--el-ease);
+  box-shadow: inset 0 1px 2px color-mix(in oklab, var(--el-overlay) 40%, transparent);
+  transition: background var(--el-dur-fast) var(--el-ease), border-color var(--el-dur-fast) var(--el-ease);
 }
 .el-switch::after {
   content: "";
   position: absolute;
-  left: 1px; top: 1px;
+  left: 2px; top: 2px;
   width: 18px; height: 18px;
-  background: var(--el-ink-soft);
-  border-radius: var(--el-r-sm);
-  transition: transform var(--el-dur-fast) var(--el-ease);
+  background: linear-gradient(180deg, color-mix(in oklab, var(--el-ink) 10%, var(--el-ink-soft)), var(--el-ink-soft));
+  border-radius: calc(var(--el-r-sm) - 2px);
+  box-shadow: 0 1px 2px color-mix(in oklab, var(--el-overlay) 60%, transparent);
+  transition: transform var(--el-dur-base) var(--el-ease), background var(--el-dur-fast) var(--el-ease);
 }
+.el-switch:hover { border-color: var(--el-accent); }
 .el-switch.on { background: var(--el-accent); border-color: var(--el-accent); }
-.el-switch.on::after { transform: translateX(22px); background: var(--el-on-accent); }
+.el-switch.on::after { transform: translateX(22px); background: linear-gradient(180deg, color-mix(in oklab, var(--el-on-accent) 25%, var(--el-on-accent)), var(--el-on-accent)); }
 
 
 .el-slider {
@@ -139,25 +170,32 @@
   appearance: none;
   width: 100%;
   height: 6px;
-  background: var(--el-panel-2);
+  background:
+    linear-gradient(90deg, var(--el-accent) var(--el-fill, 0%), color-mix(in oklab, var(--el-accent) 0%, var(--el-panel-3)) var(--el-fill, 0%));
   border-radius: var(--el-r-pill);
   outline: none;
   cursor: pointer;
+  box-shadow: inset 0 1px 2px color-mix(in oklab, var(--el-overlay) 40%, transparent);
 }
 .el-slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   width: 16px; height: 16px;
-  background: var(--el-accent);
+  background: linear-gradient(180deg, color-mix(in oklab, var(--el-on-accent) 20%, var(--el-accent)), var(--el-accent));
   border-radius: 50%;
-  cursor: pointer;
+  cursor: grab;
   border: 2px solid var(--el-bg);
+  box-shadow: 0 1px 3px color-mix(in oklab, var(--el-overlay) 60%, transparent);
+  transition: transform var(--el-dur-fast) var(--el-ease), box-shadow var(--el-dur-fast) var(--el-ease);
 }
+.el-slider::-webkit-slider-thumb:hover { transform: scale(1.15); box-shadow: 0 0 0 4px color-mix(in oklab, var(--el-accent) 20%, transparent); }
+.el-slider:active::-webkit-slider-thumb { cursor: grabbing; transform: scale(1.05); }
 .el-slider::-moz-range-thumb {
   width: 16px; height: 16px;
   background: var(--el-accent);
   border-radius: 50%;
-  cursor: pointer;
+  cursor: grab;
   border: 2px solid var(--el-bg);
+  box-shadow: 0 1px 3px color-mix(in oklab, var(--el-overlay) 60%, transparent);
 }
 
 
@@ -168,15 +206,16 @@
 
 .el-segmented {
   display: inline-flex;
-  border: var(--el-bw) solid color-mix(in oklab, var(--el-line) 70%, transparent);
+  border: var(--el-bw) solid var(--el-edge);
   border-radius: var(--el-r-pill);
   overflow: hidden;
   background: color-mix(in oklab, var(--el-panel-2) 80%, transparent);
   padding: 3px;
   gap: 2px;
+  box-shadow: inset 0 1px 2px color-mix(in oklab, var(--el-overlay) 30%, transparent);
 }
 .el-segmented button {
-  padding: var(--el-space-1) var(--el-space-3);
+  padding: calc(var(--el-ctl-pad-y) - 4px) var(--el-space-3);
   background: transparent;
   border: 0;
   color: var(--el-ink-soft);
@@ -185,33 +224,41 @@
   font-weight: 500;
   cursor: pointer;
   border-radius: var(--el-r-pill);
-  transition: background var(--el-dur-fast) var(--el-ease), color var(--el-dur-fast) var(--el-ease);
+  transition: background var(--el-dur-fast) var(--el-ease), color var(--el-dur-fast) var(--el-ease), box-shadow var(--el-dur-fast) var(--el-ease);
 }
-.el-segmented button.on { background: var(--el-accent); color: var(--el-on-accent); box-shadow: var(--el-shadow-1); }
-.el-segmented button:hover:not(.on) { background: var(--el-panel-2); color: var(--el-ink); }
+.el-segmented button.on {
+  background: var(--el-accent);
+  color: var(--el-on-accent);
+  font-weight: var(--el-label-weight);
+  box-shadow: 0 1px 2px color-mix(in oklab, var(--el-overlay) 50%, transparent), inset 0 1px 0 color-mix(in oklab, var(--el-on-accent) 22%, transparent);
+}
+.el-segmented button:hover:not(.on) { background: var(--el-panel-3); color: var(--el-ink); }
 
 
 .el-search {
-  padding: 8px 14px;
-  background: var(--el-panel);
-  border: var(--el-bw) solid color-mix(in oklab, var(--el-line) 70%, transparent);
+  padding: calc(var(--el-ctl-pad-y) - 1px) var(--el-ctl-pad-x);
+  background: color-mix(in oklab, var(--el-panel) 92%, var(--el-bg));
+  border: var(--el-bw) solid var(--el-edge);
   color: var(--el-ink);
   font-family: var(--el-font-mono);
   font-size: var(--el-fs-sm);
   border-radius: var(--el-r-md);
   outline: none;
   width: 100%;
-  transition: border-color var(--el-dur-fast) var(--el-ease), box-shadow var(--el-dur-fast) var(--el-ease);
+  box-shadow: var(--el-hairline);
+  transition: border-color var(--el-dur-fast) var(--el-ease), box-shadow var(--el-dur-fast) var(--el-ease), background var(--el-dur-fast) var(--el-ease);
 }
-.el-search:focus { border-color: var(--el-accent); box-shadow: 0 0 0 3px color-mix(in oklab, var(--el-accent) 20%, transparent); }
+.el-search:hover { border-color: color-mix(in oklab, var(--el-accent) 45%, var(--el-line)); }
+.el-search:focus { border-color: var(--el-accent); background: var(--el-panel); box-shadow: 0 0 0 3px color-mix(in oklab, var(--el-accent) 20%, transparent), var(--el-hairline); }
 .el-search::placeholder { color: var(--el-mute); }
 
 
 .el-palette {
   background: var(--el-panel);
-  border: var(--el-bw) solid var(--el-line);
+  border: var(--el-bw) solid var(--el-edge);
   border-radius: var(--el-r-md);
   overflow: hidden;
+  box-shadow: var(--el-raise-1), var(--el-hairline);
 }
 .el-palette .input {
   width: 100%;
@@ -230,14 +277,26 @@
   display: grid;
   grid-template-columns: 60px 1fr 60px;
   gap: var(--el-space-2);
-  padding: var(--el-space-2) var(--el-space-3);
+  margin: 1px var(--el-space-1);
+  padding: var(--el-space-2) var(--el-space-2);
   cursor: pointer;
   font-family: var(--el-font-mono);
   font-size: var(--el-fs-sm);
   align-items: center;
+  border-radius: var(--el-r-sm);
+  transition: background var(--el-dur-fast) var(--el-ease);
 }
 .el-palette .results .row:hover, .el-palette .results .row.sel { background: var(--el-accent-soft); }
-.el-palette .results .row .key { color: var(--el-accent); font-weight: 700; }
+.el-palette .results .row .key {
+  color: var(--el-accent);
+  font-weight: var(--el-label-weight);
+  font-size: var(--el-fs-xs);
+  padding: 1px 5px;
+  border: var(--el-bw) solid color-mix(in oklab, var(--el-accent) 35%, transparent);
+  border-radius: var(--el-r-sm);
+  justify-self: start;
+  background: color-mix(in oklab, var(--el-accent) 8%, transparent);
+}
 
 
 .el-combobox {
@@ -293,11 +352,13 @@
   display: inline-flex; align-items: center; gap: var(--el-space-1);
   padding: 2px 8px;
   background: var(--el-accent-soft);
-  border: var(--el-bw) solid var(--el-accent);
+  border: var(--el-bw) solid color-mix(in oklab, var(--el-accent) 45%, transparent);
   color: var(--el-accent);
   border-radius: var(--el-r-pill);
   font-family: var(--el-font-mono);
-  font-size: var(--el-fs-sm);
+  font-size: var(--el-fs-xs);
+  font-weight: var(--el-label-weight);
+  box-shadow: inset 0 1px 0 color-mix(in oklab, var(--el-accent) 15%, transparent);
 }
 .el-multi-select .pill .x { cursor: pointer; opacity: 0.6; }
 .el-multi-select .pill .x:hover { opacity: 1; }
@@ -309,33 +370,40 @@
   display: inline-block;
 }
 .el-dropdown-menu .trigger {
-  padding: 6px 12px;
+  padding: calc(var(--el-ctl-pad-y) - 3px) var(--el-ctl-pad-x);
   background: var(--el-panel);
-  border: var(--el-bw) solid var(--el-line);
+  border: var(--el-bw) solid var(--el-edge);
   color: var(--el-ink);
   font-family: var(--el-font-mono);
   font-size: var(--el-fs-sm);
-  border-radius: var(--el-r-sm);
+  border-radius: var(--el-r-md);
   cursor: pointer;
+  box-shadow: var(--el-raise-1), var(--el-hairline);
+  transition: border-color var(--el-dur-fast) var(--el-ease), background var(--el-dur-fast) var(--el-ease);
 }
-.el-dropdown-menu.open .menu { display: block; }
+.el-dropdown-menu .trigger:hover { border-color: color-mix(in oklab, var(--el-accent) 50%, var(--el-line)); }
+.el-dropdown-menu.open .menu { display: block; animation: el-menu-in var(--el-dur-fast) var(--el-ease); }
 .el-dropdown-menu .menu {
   display: none;
   position: absolute;
-  top: calc(100% + 2px); left: 0;
+  top: calc(100% + 4px); left: 0;
   min-width: 180px;
-  background: var(--el-panel);
-  border: var(--el-bw) solid var(--el-line);
-  border-radius: var(--el-r-sm);
-  box-shadow: var(--el-shadow-2);
-  padding: var(--el-space-1) 0;
+  background: color-mix(in oklab, var(--el-panel) 96%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: var(--el-bw) solid var(--el-edge);
+  border-radius: var(--el-r-md);
+  box-shadow: var(--el-raise-3);
+  padding: var(--el-space-1);
   z-index: 10;
 }
 .el-dropdown-menu .menu .item {
-  padding: var(--el-space-2) var(--el-space-3);
+  padding: calc(var(--el-ctl-pad-y) - 3px) var(--el-space-3);
   cursor: pointer;
   font-family: var(--el-font-mono);
   font-size: var(--el-fs-sm);
+  border-radius: var(--el-r-sm);
+  transition: background var(--el-dur-fast) var(--el-ease), color var(--el-dur-fast) var(--el-ease);
 }
 .el-dropdown-menu .menu .item:hover { background: var(--el-accent-soft); color: var(--el-accent); }
 .el-dropdown-menu .menu .sep { height: var(--el-bw); background: var(--el-line); margin: var(--el-space-1) 0; }
@@ -343,17 +411,19 @@
 
 .el-context-menu {
   position: fixed;
-  background: var(--el-panel);
-  border: var(--el-bw) solid var(--el-line-strong);
-  border-radius: var(--el-r-sm);
-  box-shadow: var(--el-shadow-3);
-  padding: var(--el-space-1) 0;
+  background: color-mix(in oklab, var(--el-panel) 96%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: var(--el-bw) solid var(--el-edge);
+  border-radius: var(--el-r-md);
+  box-shadow: var(--el-raise-3);
+  padding: var(--el-space-1);
   z-index: 1000;
   display: none;
   min-width: 180px;
 }
-.el-context-menu.open { display: block; }
-.el-context-menu .item { padding: var(--el-space-2) var(--el-space-3); cursor: pointer; font-family: var(--el-font-mono); font-size: var(--el-fs-sm); }
+.el-context-menu.open { display: block; animation: el-menu-in var(--el-dur-fast) var(--el-ease); }
+.el-context-menu .item { padding: calc(var(--el-ctl-pad-y) - 3px) var(--el-space-3); cursor: pointer; font-family: var(--el-font-mono); font-size: var(--el-fs-sm); border-radius: var(--el-r-sm); transition: background var(--el-dur-fast) var(--el-ease), color var(--el-dur-fast) var(--el-ease); }
 .el-context-menu .item:hover { background: var(--el-accent-soft); color: var(--el-accent); }
 .el-context-menu .sep { height: var(--el-bw); background: var(--el-line); margin: var(--el-space-1) 0; }
 
@@ -365,23 +435,28 @@
   font-size: var(--el-fs-sm);
 }
 .el-radio .dot {
-  width: 14px; height: 14px;
+  width: 15px; height: 15px;
   border: var(--el-bw-2) solid var(--el-line-strong);
   border-radius: 50%;
   background: var(--el-panel-2);
   position: relative;
+  transition: border-color var(--el-dur-fast) var(--el-ease), box-shadow var(--el-dur-fast) var(--el-ease);
 }
+.el-radio:hover .dot { border-color: var(--el-accent); }
 .el-radio input { display: none; }
-.el-radio input:checked + .dot { border-color: var(--el-accent); }
+.el-radio input:checked + .dot { border-color: var(--el-accent); box-shadow: 0 0 0 3px color-mix(in oklab, var(--el-accent) 16%, transparent); }
 .el-radio input:checked + .dot::after {
   content: "";
   position: absolute;
   top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  width: 8px; height: 8px;
+  transform: translate(-50%, -50%) scale(1);
+  width: 7px; height: 7px;
   background: var(--el-accent);
   border-radius: 50%;
+  animation: el-radio-pop var(--el-dur-fast) var(--el-ease);
 }
+@keyframes el-radio-pop { from { transform: translate(-50%, -50%) scale(0.4); } }
+@keyframes el-menu-in { from { opacity: 0; transform: translateY(-4px) scale(0.98); } }
 
 
 

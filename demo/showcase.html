@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="en" data-theme="console">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>greyok-ui-framework · v2 visual showcase</title>
+  <link rel="stylesheet" href="../tokens.css">
+  <link rel="stylesheet" href="../themes.css">
+  <link rel="stylesheet" href="../base.css">
+  <link rel="stylesheet" href="../elements-display.css">
+  <link rel="stylesheet" href="../elements-lists.css">
+  <link rel="stylesheet" href="../elements-controls.css">
+  <link rel="stylesheet" href="../elements-inputs.css">
+  <link rel="stylesheet" href="../elements-containers.css">
+  <link rel="stylesheet" href="../elements-misc.css">
+  <link rel="stylesheet" href="../elements-dataviz.css">
+  <link rel="stylesheet" href="../elements-interactions.css">
+  <link rel="stylesheet" href="../elements-size.css">
+</head>
+<body class="el-reset">
+  <header class="el-demo-bar" style="position:sticky;top:var(--el-space-2);z-index:10">
+    <strong>greyok-ui-framework · v2 showcase</strong>
+    <span class="el-hint">one tour · 15 themes · flip the picker</span>
+    <select id="theme-picker" data-theme-picker>
+      <option>console</option><option>neutral</option><option>polaroid</option>
+      <option>cockpit</option><option>cockpit-paper</option><option>compact</option>
+      <option>casebook</option><option>agent-paper</option><option>agent-pulse</option>
+      <option>agent-history</option><option>terminal</option><option>swiss</option>
+      <option>bespoke</option><option>torque</option><option>umami</option>
+    </select>
+    <span class="el-dot live"></span>
+  </header>
+
+  <main class="el-page" style="max-width:1080px;margin:0 auto;padding-bottom:var(--el-space-6)">
+
+    <!-- 01 · Hero -->
+    <section class="el-card" style="margin:var(--el-space-5) 0;padding:var(--el-space-6) var(--el-space-5);text-align:center">
+      <span class="el-badge">greyok-ui-framework</span>
+      <h1 style="font-family:var(--el-font-display);font-size:var(--el-fs-2xl);letter-spacing:var(--el-head-tracking, -0.02em);margin:var(--el-space-3) 0 var(--el-space-2);line-height:1.1">A design system that<br>changes character, not just color</h1>
+      <p style="color:var(--el-ink-soft);max-width:560px;margin:0 auto;line-height:1.6;font-size:var(--el-fs-md)">15 themes with their own radius, border, shadow, ornament and type voice — flip the picker and every element re-skins below.</p>
+      <div class="el-cluster" style="justify-content:center;margin-top:var(--el-space-4);flex-wrap:wrap">
+        <span class="el-pill ok">100+ primitives</span>
+        <span class="el-pill info">charts.js</span>
+        <span class="el-pill ghost">@layer + reduced-motion</span>
+      </div>
+    </section>
+
+    <!-- 02 · Buttons -->
+    <div class="el-section-head"><h2>Buttons</h2><span class="rule"></span></div>
+    <div class="el-cluster" style="flex-wrap:wrap">
+      <button class="el-btn el--sm">Compact</button>
+      <button class="el-btn">Default</button>
+      <button class="el-btn el--lg">Large</button>
+      <button class="el-btn el-btn--outline">Outline</button>
+      <button class="el-btn el-btn--ghost">Ghost</button>
+      <button class="el-btn el-btn--danger">Danger</button>
+      <button class="el-btn el--icon" type="button" aria-label="icon button"><span class="el-icon">?</span></button>
+      <button class="el-btn" disabled>Disabled</button>
+    </div>
+
+    <!-- 03 · Status atoms -->
+    <div class="el-section-head"><h2>Status atoms</h2><span class="rule"></span></div>
+    <div class="el-cluster" style="flex-wrap:wrap;gap:var(--el-space-3)">
+      <span class="el-pill ok">operational</span>
+      <span class="el-pill warn">degraded</span>
+      <span class="el-pill fail">incident</span>
+      <span class="el-pill live">streaming</span>
+      <span class="el-badge">v2.0</span>
+      <span class="el-badge ok">passed</span>
+      <span class="el-badge fail">failed</span>
+      <span class="el-dot live"></span><span class="el-dot ok"></span><span class="el-dot warn"></span>
+      <kbd class="el-kbd">⌘ K</kbd>
+      <span class="el-avatar">GT<span class="el-dot ok"></span></span>
+      <span class="el-avatar" style="border-radius:var(--el-r-lg)">A2</span>
+    </div>
+
+    <!-- 04 · Cards · panels -->
+    <div class="el-section-head"><h2>Cards &amp; panels</h2><span class="rule"></span></div>
+    <div class="el-bento" style="grid-template-columns:repeat(auto-fit,minmax(240px,1fr))">
+      <div class="el-card">
+        <h3>Standard card</h3>
+        <div class="sub">hover lift · accent bar · per-theme ornament</div>
+        <div class="el-cluster"><span class="el-chip added">chip</span><span class="el-chip">chip</span></div>
+      </div>
+      <div class="el-panel">
+        <div class="el-panel-head">panel · head<span class="el-badge">sys</span></div>
+        <div class="el-def-list" style="font-size:var(--el-fs-xs)">
+          <dt>region</dt><dd>eu-central</dd>
+          <dt>uptime</dt><dd>99.98%</dd>
+        </div>
+      </div>
+      <div class="el-card" style="display:flex;flex-direction:column;gap:var(--el-space-2)">
+        <span class="el-big-num">42 <span class="total">/100</span><span class="lbl">score</span></span>
+        <div class="el-progress"><span class="fill" style="width:42%"></span></div>
+        <div class="el-progress ok"><span class="fill" style="width:88%"></span></div>
+      </div>
+    </div>
+
+    <!-- 05 · Inputs & controls -->
+    <div class="el-section-head"><h2>Inputs &amp; controls</h2><span class="rule"></span></div>
+    <div class="el-bento" style="grid-template-columns:repeat(auto-fit,minmax(250px,1fr))">
+      <div class="el-card">
+        <div class="lbl">Text + select</div>
+        <input class="el-input" placeholder="Type something…" style="margin-bottom:var(--el-space-2)">
+        <div class="el-select"><select><option>choose…</option><option>option A</option><option>option B</option></select></div>
+      </div>
+      <div class="el-card">
+        <div class="lbl">Toggles &amp; choices</div>
+        <div class="el-cluster" style="flex-wrap:wrap;row-gap:var(--el-space-2)">
+          <span class="el-toggle on"></span><span class="el-toggle"></span>
+          <span class="el-switch on"></span><span class="el-switch"></span>
+          <span class="el-check on"></span><span class="el-check"></span>
+          <label class="el-radio"><input type="radio" checked><span class="dot"></span>radio</label>
+        </div>
+        <div class="el-range" style="margin-top:var(--el-space-3)"><input class="el-slider" type="range" value="60"><span class="val">60%</span></div>
+      </div>
+      <div class="el-card">
+        <div class="lbl">Segmented · search · dropdown</div>
+        <div class="el-segmented" style="margin-bottom:var(--el-space-2)">
+          <button type="button" class="on">Day</button><button type="button">Week</button><button type="button">Month</button>
+        </div>
+        <input class="el-search" placeholder="Search…" style="margin-bottom:var(--el-space-2)">
+        <div class="el-dropdown-menu">
+          <button type="button" class="trigger">Actions ▾</button>
+          <div class="menu">
+            <div class="item">Duplicate</div><div class="item">Rename</div><div class="sep"></div><div class="item">Delete</div>
+          </div>
+        </div>
+      </div>
+      <div class="el-card">
+        <div class="lbl">Command palette · datepicker</div>
+        <div class="el-palette" style="margin-bottom:var(--el-space-3)">
+          <input class="input" placeholder="Type to filter…">
+          <div class="results">
+            <div class="row"><span class="key">O</span><span class="label">Open file</span><span></span></div>
+            <div class="row sel"><span class="key">S</span><span class="label">Save changes</span><span></span></div>
+            <div class="row"><span class="key">D</span><span class="label">Deploy site</span><span></span></div>
+          </div>
+        </div>
+        <div style="display:inline-block;position:relative">
+          <button class="el-btn el--sm el-date-toggle" type="button">📅 pick a date</button>
+          <div class="el-datepicker">
+            <div class="head"><button type="button" class="prev">‹</button><span class="label">September 2026</span><button type="button" class="next">›</button></div>
+            <div class="grid"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 06 · Data display -->
+    <div class="el-section-head"><h2>Data display</h2><span class="rule"></span></div>
+    <div class="el-bento" style="grid-template-columns:repeat(auto-fit,minmax(230px,1fr))">
+      <div class="el-card">
+        <div class="lbl">Gauges</div>
+        <div class="el-cluster" style="flex-wrap:wrap">
+          <span class="el-gauge ok"><span class="name">MEM</span><span class="val">99%</span></span>
+          <span class="el-gauge warn"><span class="name">DSK</span><span class="val">88%</span></span>
+          <span class="el-gauge fail"><span class="name">NET</span><span class="val">12%</span></span>
+        </div>
+      </div>
+      <div class="el-card">
+        <div class="lbl">Sparkline + bars</div>
+        <span class="el-sparkline"><svg width="150" height="36" viewBox="0 0 150 36"><polyline points="0,30 20,22 40,26 60,14 80,18 100,8 120,12 150,4" fill="none" stroke="var(--el-accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <div class="el-mini-bars" style="margin-top:var(--el-space-2);height:44px"><span class="bar" style="height:30%"></span><span class="bar" style="height:55%"></span><span class="bar warn" style="height:80%"></span><span class="bar ok" style="height:40%"></span><span class="bar" style="height:65%"></span></div>
+      </div>
+      <div class="el-card">
+        <div class="lbl">Heatmap · treemap</div>
+        <div class="el-heatmap" style="max-width:180px"><span class="cell"></span><span class="cell lvl-1"></span><span class="cell lvl-2"></span><span class="cell lvl-3"></span><span class="cell lvl-4"></span><span class="cell lvl-2"></span><span class="cell"></span><span class="cell lvl-3"></span><span class="cell lvl-1"></span><span class="cell"></span><span class="cell lvl-4"></span><span class="cell lvl-2"></span></div>
+      </div>
+    </div>
+
+    <!-- 07 · Charts -->
+    <div class="el-section-head"><h2>Charts <small style="font-family:var(--el-font-mono);color:var(--el-mute);font-size:var(--el-fs-xs)">charts.js</small></h2><span class="rule"></span></div>
+    <div class="el-card" style="padding:var(--el-space-5)">
+      <div class="el-cluster" style="align-items:flex-end;flex-wrap:wrap;gap:var(--el-space-5)">
+        <span class="el-chart" data-chart="sparkline" data-values="4,8,6,10,7,12,9,14" data-width="200" data-height="44"></span>
+        <span class="el-chart" data-chart="bar" data-values="5,9,4,11,8,13" data-width="200" data-height="84" data-label="req/s"></span>
+        <span class="el-chart" data-chart="line" data-values="2,6,4,9,7,12,10,15" data-width="240" data-height="104"></span>
+        <span class="el-chart" data-chart="donut" data-values="72" data-width="104" data-label="uptime"></span>
+      </div>
+    </div>
+
+    <!-- 08 · Tabs · table · lists -->
+    <div class="el-section-head"><h2>Navigation &amp; data</h2><span class="rule"></span></div>
+    <div class="el-bento" style="grid-template-columns:2fr 1fr;align-items:start">
+      <div class="el-panel">
+        <div class="el-tabs-h">
+          <button type="button" class="tab on">Overview<span class="el-badge">12</span></button>
+          <button type="button" class="tab">Sessions</button>
+          <button type="button" class="tab">Settings</button>
+        </div>
+        <table class="el-table" style="margin-top:var(--el-space-3)">
+          <thead><tr><th>Region</th><th>Latency</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr class="OK"><td>eu-central</td><td>42 ms</td><td><span class="el-dot ok"></span> healthy</td></tr>
+            <tr class="HIGH"><td>us-east</td><td>120 ms</td><td><span class="el-dot warn"></span> slow</td></tr>
+            <tr class="CRIT"><td>ap-south</td><td>—</td><td><span class="el-dot fail"></span> down</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:var(--el-space-3)">
+        <div class="el-panel">
+          <div class="el-panel-head">breadcrumb · stepper</div>
+          <nav class="el-breadcrumb" style="margin-bottom:var(--el-space-3)"><a href="#">home</a><span class="sep">/</span><a href="#">library</a><span class="sep">/</span><span class="current">assets</span></nav>
+          <ol class="el-stepper"><li class="done"><span class="num">1</span>Build</li><li class="active"><span class="num">2</span>Test</li><li><span class="num">3</span>Ship</li></ol>
+        </div>
+        <div class="el-panel">
+          <div class="el-panel-head">pagination</div>
+          <div class="el-pagination"><button type="button" class="page">‹</button><button type="button" class="page on">1</button><button type="button" class="page">2</button><button type="button" class="page">3</button><button type="button" class="page">›</button></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 09 · Overlays & feedback -->
+    <div class="el-section-head"><h2>Overlays &amp; feedback</h2><span class="rule"></span></div>
+    <div class="el-bento" style="grid-template-columns:repeat(auto-fit,minmax(250px,1fr))">
+      <div class="el-card">
+        <div class="lbl">Accordion</div>
+        <div class="el-accordion">
+          <details open><summary>What changed in v2?</summary><div class="body">Per-theme identity tokens: radius, border, shadow, ornament, type.</div></details>
+          <details><summary>Is the palette frozen?</summary><div class="body">Yes — hex values are byte-identical to the baseline.</div></details>
+        </div>
+      </div>
+      <div class="el-card">
+        <div class="lbl">Toast previews</div>
+        <div class="el-cluster" style="flex-direction:column;align-items:stretch;gap:var(--el-space-2)">
+          <div class="el-toast" style="position:static;animation:none;min-width:0">Deployed to production<span class="close">✕</span></div>
+          <div class="el-toast ok" style="position:static;animation:none;min-width:0">Backup verified<span class="close">✕</span></div>
+          <div class="el-toast fail" style="position:static;animation:none;min-width:0">Build failed — check logs<span class="close">✕</span></div>
+        </div>
+      </div>
+      <div class="el-card">
+        <div class="lbl">Empty &amp; loading</div>
+        <div class="el-empty" style="padding:var(--el-space-3) 0">
+          <span class="el-msg">Nothing here yet</span><span class="el-hint">Create your first project to begin.</span>
+          <span class="el-skeleton" style="width:80%"></span>
+        </div>
+        <div class="el-cluster" style="margin-top:var(--el-space-2)"><span class="el-spinner"></span><span class="el-skeleton" style="width:60%"></span></div>
+      </div>
+    </div>
+
+    <!-- 10 · Icons + bottom bar -->
+    <div class="el-section-head"><h2>Icons &amp; bottom bar</h2><span class="rule"></span></div>
+    <div class="el-card" style="padding:var(--el-space-5)">
+      <div class="el-cluster" id="icon-row" style="flex-wrap:wrap;gap:var(--el-space-3)"></div>
+      <nav class="el-bottom-bar" style="position:static;margin-top:var(--el-space-5);border-radius:var(--el-r-lg)">
+        <button type="button" class="on">Home</button>
+        <button type="button">Search</button>
+        <button type="button">Alerts</button>
+        <button type="button">More</button>
+      </nav>
+    </div>
+
+    <div style="height:var(--el-space-6)"></div>
+  </main>
+
+  <script src="../theme-switcher.js"></script>
+  <script src="../elements.js"></script>
+  <script src="../charts.js"></script>
+  <script>
+    const ICONS = ["check","settings","search","clock","calendar","star","copy","edit","download","upload","info","heart"];
+    const row = document.getElementById("icon-row");
+    for (const name of ICONS) {
+      const s = document.createElement("span");
+      s.title = name;
+      s.style.cssText = "display:inline-flex;width:22px;height:22px;color:var(--el-accent)";
+      if (window.Elements && Elements.icon) { const i = Elements.icon(name); (i && i.nodeType) ? s.appendChild(i) : (s.innerHTML = i || name); }
+      else s.textContent = name;
+      row.appendChild(s);
+    }
+  </script>
+</body>
+</html>

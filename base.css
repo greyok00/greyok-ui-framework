@@ -17,8 +17,9 @@ html, body {
   color: var(--el-ink);
   font-family: var(--el-font-body);
   font-size: var(--el-fs-md);
+  font-weight: var(--el-body-weight);
   font-feature-settings: var(--el-font-feat);
-  line-height: 1.5;
+  line-height: 1.55;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
@@ -26,11 +27,26 @@ html, body {
 
 * { box-sizing: border-box; }
 
+h1, h2, h3, h4 {
+  font-family: var(--el-font-display);
+  font-weight: var(--el-head-weight);
+  letter-spacing: var(--el-head-tracking);
+  text-transform: var(--el-head-case);
+  line-height: 1.18;
+  color: var(--el-ink);
+  text-wrap: balance;
+}
+h1 { font-size: var(--el-fs-2xl); }
+h2 { font-size: var(--el-fs-xl); }
+h3 { font-size: var(--el-fs-lg); }
+h4 { font-size: var(--el-fs-md); }
+p  { text-wrap: pretty; }
+
 a {
   color: var(--el-accent);
   text-decoration: none;
   border-bottom: 1px dotted transparent;
-  transition: border-color var(--el-dur-fast) var(--el-ease);
+  transition: border-color var(--el-dur-fast) var(--el-ease), color var(--el-dur-fast) var(--el-ease);
 }
 a:hover { border-bottom-color: var(--el-accent); }
 
@@ -38,9 +54,9 @@ a:hover { border-bottom-color: var(--el-accent); }
 
 :focus-visible {
   outline: 2px solid var(--el-focus-ring);
-  outline-offset: 3px;
+  outline-offset: 2px;
   border-radius: var(--el-r-sm);
-  transition: outline-offset var(--el-dur-fast) var(--el-ease);
+  transition: outline-offset var(--el-dur-fast) var(--el-ease), box-shadow var(--el-dur-fast) var(--el-ease);
 }
 
 ::-webkit-scrollbar { width: 10px; height: 10px; }
@@ -71,24 +87,50 @@ button { font-family: inherit; }
 .el-row-flex { display: flex; gap: var(--el-space-3); align-items: center; }
 .el-divider { border: 0; border-top: var(--el-bw) solid var(--el-line); margin: var(--el-space-3) 0; }
 
+/* section heading device (showcase + demos) */
+.el-section-head {
+  display: flex;
+  align-items: baseline;
+  gap: var(--el-space-3);
+  margin: var(--el-space-6) 0 var(--el-space-3);
+}
+.el-section-head h2 { margin: 0; font-size: var(--el-fs-lg); }
+.el-section-head .rule {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, var(--el-line-strong), transparent);
+  align-self: center;
+}
+
 
 .el-demo-bar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: var(--el-space-3) var(--el-space-4);
-  background: color-mix(in oklab, var(--el-panel) 92%, transparent);
-  backdrop-filter: blur(12px) saturate(1.2);
-  -webkit-backdrop-filter: blur(12px) saturate(1.2);
-  border: var(--el-bw) solid color-mix(in oklab, var(--el-line) 70%, transparent);
-  border-bottom: 2px solid var(--el-accent);
-  border-radius: var(--el-r-md);
-  box-shadow: var(--el-shadow-2);
+  padding: var(--el-space-2) var(--el-space-4);
+  background: color-mix(in oklab, var(--el-panel) 82%, transparent);
+  backdrop-filter: blur(16px) saturate(1.4);
+  -webkit-backdrop-filter: blur(16px) saturate(1.4);
+  border: var(--el-bw) solid var(--el-edge);
+  border-radius: var(--el-r-lg);
+  box-shadow: var(--el-raise-2);
   margin: var(--el-space-3) var(--el-space-4);
+  position: relative;
+  overflow: hidden;
+}
+.el-demo-bar::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: var(--el-bar-h);
+  background: linear-gradient(90deg, var(--el-accent), color-mix(in oklab, var(--el-accent) 20%, transparent));
+  pointer-events: none;
 }
 .el-demo-bar h1 {
   font-family: var(--el-font-display);
   font-size: var(--el-fs-lg);
+  font-weight: var(--el-head-weight);
+  letter-spacing: var(--el-head-tracking);
   margin: 0;
 }
 .el-demo-bar h1 small {

@@ -24,19 +24,21 @@
 /* date-picker */
 .el-datepicker {
   position: absolute;
-  top: calc(100% + 4px); left: 0;
+  top: calc(100% + 6px); left: 0;
   min-width: 240px;
-  background: var(--el-panel);
-  border: var(--el-bw) solid var(--el-line-strong);
-  border-radius: var(--el-r-md);
-  box-shadow: var(--el-shadow-3);
+  background: color-mix(in oklab, var(--el-panel) 96%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: var(--el-bw) solid var(--el-edge);
+  border-radius: var(--el-r-lg);
+  box-shadow: var(--el-raise-3), var(--el-hairline);
   padding: var(--el-space-2);
   z-index: 50;
   display: none;
   font-family: var(--el-font-mono);
   font-size: var(--el-fs-sm);
 }
-.el-datepicker.open { display: block; }
+.el-datepicker.open { display: block; animation: el-menu-in var(--el-dur-fast) var(--el-ease); }
 .el-datepicker .head {
   display: flex; align-items: center; justify-content: space-between;
   padding: var(--el-space-1) var(--el-space-2) var(--el-space-2);
@@ -58,9 +60,9 @@
   border: 0; background: transparent; color: var(--el-ink);
   padding: 4px 0; cursor: pointer; border-radius: var(--el-r-sm);
   font-family: inherit; font-size: inherit;
-  transition: background var(--el-dur-fast) var(--el-ease), color var(--el-dur-fast) var(--el-ease);
+  transition: background var(--el-dur-fast) var(--el-ease), color var(--el-dur-fast) var(--el-ease), box-shadow var(--el-dur-fast) var(--el-ease);
 }
-.el-datepicker .day:hover { background: var(--el-panel-2); }
+.el-datepicker .day:hover { background: var(--el-panel-2); box-shadow: inset 0 0 0 1px var(--el-line); }
 .el-datepicker .day.muted { color: var(--el-mute); }
 .el-datepicker .day.today { border: 1px solid var(--el-accent); }
 .el-datepicker .day.sel { background: var(--el-accent); color: var(--el-on-accent); }
@@ -73,16 +75,17 @@
 .el-select select {
   appearance: none;
   -webkit-appearance: none;
-  padding: 7px 32px 7px 12px;
+  padding: calc(var(--el-ctl-pad-y) - 2px) 32px calc(var(--el-ctl-pad-y) - 2px) var(--el-ctl-pad-x);
   background: var(--el-panel);
-  border: var(--el-bw) solid color-mix(in oklab, var(--el-line) 70%, transparent);
+  border: var(--el-bw) solid var(--el-edge);
   color: var(--el-ink);
   font-family: var(--el-font-mono);
   font-size: var(--el-fs-sm);
   font-weight: 500;
   border-radius: var(--el-r-md);
   cursor: pointer;
-  transition: border-color var(--el-dur-fast) var(--el-ease), box-shadow var(--el-dur-fast) var(--el-ease);
+  box-shadow: var(--el-raise-1), var(--el-hairline);
+  transition: border-color var(--el-dur-fast) var(--el-ease), box-shadow var(--el-dur-fast) var(--el-ease), background var(--el-dur-fast) var(--el-ease);
 }
 .el-select select:hover { border-color: var(--el-accent); }
 .el-select select:focus { border-color: var(--el-accent); box-shadow: 0 0 0 3px color-mix(in oklab, var(--el-accent) 20%, transparent); outline: none; }
@@ -120,16 +123,18 @@
 }
 .el-carousel .nav {
   background: var(--el-panel);
-  border: var(--el-bw) solid var(--el-line);
+  border: var(--el-bw) solid var(--el-edge);
   color: var(--el-ink);
   border-radius: var(--el-r-pill);
   min-width: var(--el-size-md);
   min-height: var(--el-size-md);
   cursor: pointer;
   display: inline-flex; align-items: center; justify-content: center;
-  transition: border-color var(--el-dur-fast) var(--el-ease), background var(--el-dur-fast) var(--el-ease);
+  box-shadow: var(--el-raise-1), var(--el-hairline);
+  transition: border-color var(--el-dur-fast) var(--el-ease), background var(--el-dur-fast) var(--el-ease), color var(--el-dur-fast) var(--el-ease), transform var(--el-dur-fast) var(--el-ease);
 }
-.el-carousel .nav:hover { border-color: var(--el-accent); color: var(--el-accent); }
+.el-carousel .nav:hover { border-color: var(--el-accent); color: var(--el-accent); transform: scale(1.06); }
+.el-carousel .nav:active { transform: scale(0.96); }
 .el-carousel .dots {
   grid-column: 1 / -1;
   display: flex; justify-content: center; gap: var(--el-space-1);
@@ -139,9 +144,10 @@
   border: 0; border-radius: var(--el-r-pill);
   background: var(--el-line-strong);
   cursor: pointer;
-  transition: background var(--el-dur-fast) var(--el-ease), width var(--el-dur-fast) var(--el-ease);
+  transition: background var(--el-dur-fast) var(--el-ease), width var(--el-dur-base) var(--el-ease), box-shadow var(--el-dur-fast) var(--el-ease);
 }
-.el-carousel .dots button.on { background: var(--el-accent); width: 20px; }
+.el-carousel .dots button:hover { background: var(--el-ink-soft); }
+.el-carousel .dots button.on { background: var(--el-accent); width: 20px; box-shadow: 0 0 6px color-mix(in oklab, var(--el-accent) 45%, transparent); }
 
 /* command palette: fuzzy highlight + recents */
 .el-palette .results .row mark {
@@ -213,11 +219,13 @@
   font-size: var(--el-fs-xs);
   cursor: pointer;
   padding: var(--el-space-1) var(--el-space-3);
-  border-radius: var(--el-r-sm);
+  border-radius: var(--el-r-md);
   text-decoration: none;
-  transition: color var(--el-dur-fast) var(--el-ease), background var(--el-dur-fast) var(--el-ease);
+  position: relative;
+  transition: color var(--el-dur-fast) var(--el-ease), background var(--el-dur-fast) var(--el-ease), transform var(--el-dur-fast) var(--el-ease);
 }
-.el-bottom-bar a:hover, .el-bottom-bar button:hover { color: var(--el-ink); }
+.el-bottom-bar a:hover, .el-bottom-bar button:hover { color: var(--el-ink); background: var(--el-panel-2); }
+.el-bottom-bar a:active, .el-bottom-bar button:active { transform: scale(0.96); }
 .el-bottom-bar a.on, .el-bottom-bar button.on { color: var(--el-accent); background: var(--el-accent-soft); }
 
 /* glass utility */

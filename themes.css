@@ -21,6 +21,16 @@
   --el-focus-ring: rgba(184,105,60,.55);
   --el-font-body: 'Inter', system-ui, sans-serif;
   --el-font-display: 'Space Grotesk', sans-serif;
+  /* identity: photo-frame — soft, rounded, framed, no bar */
+  --el-r-sm: 10px; --el-r-md: 14px; --el-r-lg: 20px; --el-r-xl: 26px;
+  --el-raise-1: 0 1px 2px color-mix(in oklab, var(--el-overlay) 45%, transparent);
+  --el-raise-2: 0 2px 4px color-mix(in oklab, var(--el-overlay) 40%, transparent), 0 14px 32px -12px color-mix(in oklab, var(--el-overlay) 75%, transparent);
+  --el-raise-3: 0 4px 10px color-mix(in oklab, var(--el-overlay) 40%, transparent), 0 28px 72px -24px color-mix(in oklab, var(--el-overlay) 90%, transparent);
+  --el-bar-h: 0;
+  --el-ctl-pad-y: 10px; --el-ctl-pad-x: 16px; --el-ctl-min-h: 40px; --el-card-pad: 24px;
+  --el-head-weight: 620; --el-head-tracking: 0;
+  --el-dur-fast: 150ms; --el-dur-base: 280ms; --el-ease: cubic-bezier(.33, 1, .68, 1);
+
 }
 
 
@@ -40,6 +50,18 @@
   --el-font-body: 'JetBrains Mono', 'Courier New', monospace;
   --el-font-display: 'JetBrains Mono', 'Courier New', monospace;
   --el-font-mono: 'JetBrains Mono', 'Courier New', monospace;
+  /* identity: instrument panel — tight, square-ish, inset, engraved labels */
+  --el-r-sm: 4px; --el-r-md: 6px; --el-r-lg: 8px; --el-r-xl: 12px;
+  --el-bw-emph: 2px;
+  --el-raise-1: inset 0 1px 0 color-mix(in oklab, var(--el-overlay) 40%, transparent);
+  --el-raise-2: inset 0 0 12px color-mix(in oklab, var(--el-overlay) 70%, transparent), 0 0 0 1px color-mix(in oklab, var(--el-line-strong) 50%, transparent);
+  --el-raise-3: inset 0 0 20px color-mix(in oklab, var(--el-overlay) 80%, transparent), 0 4px 16px var(--el-overlay);
+  --el-bar-h: 2px;
+  --el-ctl-pad-y: 6px; --el-ctl-pad-x: 12px; --el-ctl-min-h: 34px; --el-card-pad: 16px;
+  --el-head-case: uppercase; --el-head-tracking: 0.04em; --el-head-weight: 600;
+  --el-label-tracking: 0.12em;
+  --el-dur-fast: 90ms; --el-dur-base: 160ms;
+
 }
 
 
@@ -57,6 +79,18 @@
   --el-focus-ring: rgba(212,168,90,.55);
   --el-font-body: 'JetBrains Mono', 'Courier New', monospace;
   --el-font-display: 'JetBrains Mono', 'Courier New', monospace;
+  /* identity: aged instrument — warm, square-ish, inset, engraved */
+  --el-r-sm: 4px; --el-r-md: 6px; --el-r-lg: 8px; --el-r-xl: 12px;
+  --el-bw-emph: 2px;
+  --el-raise-1: inset 0 1px 0 color-mix(in oklab, var(--el-overlay) 40%, transparent);
+  --el-raise-2: 0 0 0 1px color-mix(in oklab, var(--el-line-strong) 45%, transparent), 0 6px 16px -6px color-mix(in oklab, var(--el-overlay) 75%, transparent);
+  --el-raise-3: 0 0 0 1px color-mix(in oklab, var(--el-line-strong) 45%, transparent), 0 20px 48px -16px color-mix(in oklab, var(--el-overlay) 90%, transparent);
+  --el-bar-h: 2px;
+  --el-ctl-pad-y: 6px; --el-ctl-pad-x: 12px; --el-ctl-min-h: 34px; --el-card-pad: 16px;
+  --el-head-case: uppercase; --el-head-tracking: 0.04em; --el-head-weight: 600;
+  --el-label-tracking: 0.12em;
+  --el-dur-fast: 100ms; --el-dur-base: 180ms;
+
 }
 
 
@@ -76,6 +110,14 @@
   --el-font-body: 'JetBrains Mono', 'SF Mono', monospace;
   --el-font-display: 'JetBrains Mono', 'SF Mono', monospace;
   --el-font-mono: 'JetBrains Mono', 'SF Mono', monospace;
+  /* identity: modern SaaS dark — ring + layered ambient elevation */
+  --el-raise-1: 0 1px 2px color-mix(in oklab, var(--el-overlay) 60%, transparent);
+  --el-raise-2: 0 0 0 1px color-mix(in oklab, var(--el-line) 55%, transparent), 0 2px 4px color-mix(in oklab, var(--el-overlay) 55%, transparent), 0 12px 24px -8px color-mix(in oklab, var(--el-overlay) 70%, transparent);
+  --el-raise-3: 0 0 0 1px color-mix(in oklab, var(--el-line) 55%, transparent), 0 24px 64px -16px color-mix(in oklab, var(--el-overlay) 85%, transparent);
+  --el-bar-h: 2px;
+  --el-head-weight: 680;
+  --el-ctl-pad-y: 8px; --el-ctl-pad-x: 14px; --el-ctl-min-h: 38px;
+
 }
 
 
@@ -91,6 +133,16 @@
   --el-shadow-2: 0 4px 12px rgba(0,0,0,.45);
   --el-overlay: rgba(0,0,0,.6);
   --el-focus-ring: rgba(255,140,66,.55);
+  /* identity: dense utility — tight controls, small radii, no ornament, fast */
+  --el-r-sm: 4px; --el-r-md: 6px; --el-r-lg: 8px; --el-r-xl: 10px;
+  --el-raise-1: 0 1px 2px color-mix(in oklab, var(--el-overlay) 55%, transparent);
+  --el-raise-2: 0 2px 6px color-mix(in oklab, var(--el-overlay) 65%, transparent), 0 8px 20px -8px color-mix(in oklab, var(--el-overlay) 80%, transparent);
+  --el-raise-3: 0 12px 32px -8px color-mix(in oklab, var(--el-overlay) 90%, transparent);
+  --el-bar-h: 0;
+  --el-ctl-pad-y: 5px; --el-ctl-pad-x: 10px; --el-ctl-min-h: 30px; --el-card-pad: 14px;
+  --el-head-weight: 700; --el-label-tracking: 0.06em;
+  --el-dur-fast: 90ms; --el-dur-base: 140ms;
+
 }
 
 
@@ -108,6 +160,16 @@
   --el-focus-ring: rgba(139,94,52,.55);
   --el-font-body: 'EB Garamond', 'Cormorant Garamond', 'Times New Roman', serif;
   --el-font-display: 'EB Garamond', serif;
+  /* identity: legal document — crisp, flat parchment, slow deliberate ease */
+  --el-r-sm: 2px; --el-r-md: 3px; --el-r-lg: 4px; --el-r-xl: 6px;
+  --el-raise-1: 0 1px 2px color-mix(in oklab, var(--el-overlay) 30%, transparent);
+  --el-raise-2: 0 2px 8px color-mix(in oklab, var(--el-overlay) 35%, transparent), 0 16px 40px -16px color-mix(in oklab, var(--el-overlay) 60%, transparent);
+  --el-raise-3: 0 24px 64px -20px color-mix(in oklab, var(--el-overlay) 75%, transparent);
+  --el-bar-h: 0;
+  --el-ctl-pad-y: 10px; --el-ctl-pad-x: 16px; --el-ctl-min-h: 42px; --el-card-pad: 24px;
+  --el-head-weight: 520; --el-head-tracking: 0.01em;
+  --el-dur-fast: 180ms; --el-dur-base: 320ms; --el-ease: cubic-bezier(0.25, 0.1, 0.25, 1);
+
 }
 
 
@@ -125,6 +187,16 @@
   --el-focus-ring: rgba(14,124,134,.55);
   --el-font-body: 'Inter', system-ui, sans-serif;
   --el-font-display: 'Fraunces', 'Cormorant Garamond', 'Times New Roman', serif;
+  /* identity: editorial print — airy, soft-cornered, quiet shadows */
+  --el-r-sm: 8px; --el-r-md: 12px; --el-r-lg: 18px; --el-r-xl: 26px;
+  --el-raise-1: 0 1px 2px color-mix(in oklab, var(--el-overlay) 20%, transparent);
+  --el-raise-2: 0 1px 2px color-mix(in oklab, var(--el-overlay) 18%, transparent), 0 16px 40px -16px color-mix(in oklab, var(--el-overlay) 45%, transparent);
+  --el-raise-3: 0 28px 72px -24px color-mix(in oklab, var(--el-overlay) 55%, transparent);
+  --el-bar-h: 0;
+  --el-ctl-pad-y: 11px; --el-ctl-pad-x: 16px; --el-ctl-min-h: 42px; --el-card-pad: 26px;
+  --el-head-weight: 560; --el-head-tracking: -0.015em;
+  --el-dur-fast: 160ms; --el-dur-base: 300ms;
+
 }
 
 
@@ -143,6 +215,13 @@
   --el-focus-ring: rgba(255,176,0,.55);
   --el-font-body: 'Space Grotesk', 'Inter', sans-serif;
   --el-font-display: 'Space Grotesk', sans-serif;
+  /* identity: signal glow — amber halo rings over the glow shadows */
+  --el-raise-1: 0 0 0 1px color-mix(in oklab, var(--el-accent) 18%, transparent), var(--el-shadow-1);
+  --el-raise-2: 0 0 0 1px color-mix(in oklab, var(--el-accent) 20%, transparent), var(--el-shadow-2);
+  --el-raise-3: 0 0 0 1px color-mix(in oklab, var(--el-accent) 22%, transparent), var(--el-shadow-3);
+  --el-bar-h: 3px;
+  --el-head-tracking: -0.005em;
+
 }
 
 
@@ -161,6 +240,15 @@
   --el-font-body: 'JetBrains Mono', 'SF Mono', monospace;
   --el-font-display: 'Fraunces', serif;
   --el-font-mono: 'JetBrains Mono', 'SF Mono', monospace;
+  /* identity: ledger — hairline offset, mono labels, restrained */
+  --el-r-sm: 4px; --el-r-md: 6px; --el-r-lg: 10px; --el-r-xl: 14px;
+  --el-raise-1: 0 1px 0 color-mix(in oklab, var(--el-line-strong) 40%, transparent);
+  --el-raise-2: 0 1px 2px color-mix(in oklab, var(--el-overlay) 25%, transparent), 0 8px 20px -8px color-mix(in oklab, var(--el-overlay) 40%, transparent);
+  --el-raise-3: 0 16px 48px -16px color-mix(in oklab, var(--el-overlay) 60%, transparent);
+  --el-bar-h: 2px;
+  --el-ctl-pad-y: 7px; --el-ctl-pad-x: 12px; --el-ctl-min-h: 36px;
+  --el-head-weight: 560;
+
 }
 
 
@@ -180,6 +268,17 @@
   --el-font-body: 'JetBrains Mono', 'Courier New', monospace;
   --el-font-display: 'JetBrains Mono', 'Courier New', monospace;
   --el-font-mono: 'JetBrains Mono', 'Courier New', monospace;
+  /* identity: phosphor CRT — small radii, glow bleed, engraved uppercase */
+  --el-r-sm: 3px; --el-r-md: 5px; --el-r-lg: 7px; --el-r-xl: 10px;
+  --el-raise-1: var(--el-shadow-1);
+  --el-raise-2: 0 0 0 1px color-mix(in oklab, var(--el-accent) 25%, transparent), var(--el-shadow-2);
+  --el-raise-3: 0 0 0 1px color-mix(in oklab, var(--el-accent) 30%, transparent), var(--el-shadow-3);
+  --el-bar-h: 0;
+  --el-ctl-pad-y: 7px; --el-ctl-pad-x: 12px; --el-ctl-min-h: 36px;
+  --el-head-case: uppercase; --el-head-tracking: 0.06em;
+  --el-label-tracking: 0.12em;
+  --el-dur-fast: 90ms; --el-dur-base: 160ms;
+
 }
 
 
@@ -197,6 +296,16 @@
   --el-focus-ring: rgba(214,40,40,.55);
   --el-font-body: 'Inter', 'Helvetica Neue', sans-serif;
   --el-font-display: 'Helvetica Neue', 'Inter', sans-serif;
+  /* identity: international style — near-square, hairline rules, hard offset shadows, heavy bar */
+  --el-r-sm: 2px; --el-r-md: 3px; --el-r-lg: 4px; --el-r-xl: 6px;
+  --el-raise-1: 0 1px 0 color-mix(in oklab, var(--el-line-2) 70%, transparent);
+  --el-raise-2: 0 4px 0 color-mix(in oklab, var(--el-line-2) 85%, transparent);
+  --el-raise-3: 0 8px 0 color-mix(in oklab, var(--el-line-2) 90%, transparent);
+  --el-bar-h: 4px;
+  --el-ctl-pad-y: 10px; --el-ctl-pad-x: 16px; --el-ctl-min-h: 40px;
+  --el-head-weight: 750; --el-head-tracking: -0.02em;
+  --el-dur-fast: 100ms; --el-dur-base: 160ms;
+
 }
 
 
@@ -220,6 +329,16 @@
   --el-font-display: 'Bodoni MT', Didot, Georgia, serif;
   --el-font-mono: Georgia, serif;
   --el-r-none: 0; --el-r-sm: 0; --el-r-md: 0; --el-r-lg: 0; --el-r-xl: 0;
+  /* identity: maison — rectangular, generous, unhurried luxury ease */
+  --el-raise-1: 0 1px 2px color-mix(in oklab, var(--el-overlay) 40%, transparent);
+  --el-raise-2: 0 1px 2px color-mix(in oklab, var(--el-overlay) 40%, transparent), 0 12px 32px -12px color-mix(in oklab, var(--el-overlay) 60%, transparent);
+  --el-raise-3: 0 1px 2px color-mix(in oklab, var(--el-overlay) 40%, transparent), 0 24px 64px -20px color-mix(in oklab, var(--el-overlay) 75%, transparent);
+  --el-bar-h: 0;
+  --el-ctl-pad-y: 12px; --el-ctl-pad-x: 22px; --el-ctl-min-h: 46px; --el-card-pad: 28px;
+  --el-head-weight: 480; --el-head-tracking: 0.02em;
+  --el-label-tracking: 0.14em;
+  --el-dur-fast: 240ms; --el-dur-base: 600ms; --el-dur-slow: 800ms; --el-ease: cubic-bezier(0.25, 0.1, 0.25, 1);
+
 }
 
 [data-theme="torque"] {
@@ -239,6 +358,17 @@
   --el-font-display: 'Futura', 'Helvetica Neue', Geneva, sans-serif;
   --el-font-mono: 'Helvetica Neue', Geneva, sans-serif;
   --el-r-none: 0; --el-r-sm: 0; --el-r-md: 0; --el-r-lg: 0; --el-r-xl: 0;
+  /* identity: motorsport — rectangular, 2px borders, hard offset shadows, staccato motion */
+  --el-bw-emph: 2px;
+  --el-raise-1: 0 2px 0 color-mix(in oklab, var(--el-line-strong) 80%, transparent);
+  --el-raise-2: 0 4px 0 color-mix(in oklab, var(--el-line-strong) 90%, transparent), 0 8px 24px -6px color-mix(in oklab, var(--el-overlay) 80%, transparent);
+  --el-raise-3: 0 8px 0 color-mix(in oklab, var(--el-line-strong) 90%, transparent), 0 16px 48px -8px color-mix(in oklab, var(--el-overlay) 90%, transparent);
+  --el-bar-h: 0;
+  --el-ctl-pad-y: 10px; --el-ctl-pad-x: 20px; --el-ctl-min-h: 42px; --el-card-pad: 24px;
+  --el-head-weight: 800; --el-head-case: uppercase; --el-head-tracking: 0.08em;
+  --el-label-tracking: 0.14em;
+  --el-dur-fast: 90ms; --el-dur-base: 150ms; --el-ease: cubic-bezier(.2, 0, 0, 1);
+
 }
 
 [data-theme="umami"] {
@@ -258,6 +388,15 @@
   --el-font-display: 'Didot', Georgia, serif;
   --el-font-mono: Georgia, serif;
   --el-r-none: 0; --el-r-sm: 0; --el-r-md: 0; --el-r-lg: 0; --el-r-xl: 0;
+  /* identity: omakase — rectangular, spacious, warm, slow service */
+  --el-raise-1: 0 1px 2px color-mix(in oklab, var(--el-overlay) 50%, transparent);
+  --el-raise-2: 0 2px 4px color-mix(in oklab, var(--el-overlay) 55%, transparent), 0 16px 48px -12px color-mix(in oklab, var(--el-overlay) 80%, transparent);
+  --el-raise-3: 0 2px 4px color-mix(in oklab, var(--el-overlay) 55%, transparent), 0 28px 80px -20px color-mix(in oklab, var(--el-overlay) 95%, transparent);
+  --el-bar-h: 0;
+  --el-ctl-pad-y: 12px; --el-ctl-pad-x: 22px; --el-ctl-min-h: 46px; --el-card-pad: 28px;
+  --el-head-weight: 450; --el-head-tracking: 0.03em;
+  --el-dur-fast: 260ms; --el-dur-base: 640ms; --el-dur-slow: 800ms; --el-ease: cubic-bezier(0.25, 0.1, 0.25, 1);
+
 }
 
 }

@@ -8,17 +8,19 @@
   display: inline-flex;
   align-items: center;
   gap: var(--el-space-1);
-  padding: 4px 10px;
+  padding: 3px 10px;
   font-family: var(--el-font-mono);
-  font-size: var(--el-fs-sm);
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  border: var(--el-bw) solid color-mix(in oklab, currentColor 30%, transparent);
+  font-size: var(--el-fs-xs);
+  font-weight: var(--el-label-weight);
+  letter-spacing: 0.04em;
+  border: var(--el-bw) solid color-mix(in oklab, currentColor 32%, transparent);
   border-radius: var(--el-r-pill);
-  background: color-mix(in oklab, currentColor 8%, var(--el-panel));
+  background: color-mix(in oklab, currentColor 9%, var(--el-panel));
   color: var(--el-ink);
   white-space: nowrap;
-  box-shadow: 0 1px 0 color-mix(in oklab, currentColor 18%, transparent) inset, 0 1px 2px rgba(0,0,0,.08);
+  box-shadow:
+    inset 0 1px 0 color-mix(in oklab, currentColor 14%, transparent),
+    0 1px 2px color-mix(in oklab, var(--el-overlay) 40%, transparent);
 }
 .el-pill.ok    { color: var(--el-ok); }
 .el-pill.warn  { color: var(--el-warn); }
@@ -76,18 +78,22 @@
   align-items: center;
   justify-content: flex-end;
   gap: var(--el-space-1);
-  width: 64px; min-height: 80px;
+  width: 72px; min-height: 84px;
   padding: var(--el-space-3) var(--el-space-2) var(--el-space-2);
-  border: var(--el-bw) solid color-mix(in oklab, var(--el-line) 70%, transparent);
+  border: var(--el-bw) solid var(--el-edge);
   border-radius: var(--el-r-md);
-  background: linear-gradient(180deg, color-mix(in oklab, var(--el-panel) 95%, var(--el-bg)) 0%, var(--el-panel) 100%);
+  background: linear-gradient(180deg, color-mix(in oklab, var(--el-panel-2) 55%, var(--el-panel)) 0%, var(--el-panel) 100%);
   font-family: var(--el-font-mono);
   font-size: var(--el-fs-xs);
   color: var(--el-ink-soft);
-  box-shadow: var(--el-shadow-1), 0 1px 0 color-mix(in oklab, var(--el-line) 50%, transparent) inset;
+  box-shadow: var(--el-raise-1), var(--el-hairline);
+  position: relative;
+  overflow: hidden;
+  transition: transform var(--el-dur-fast) var(--el-ease), box-shadow var(--el-dur-fast) var(--el-ease);
 }
-.el-gauge .name { letter-spacing: 0.06em; text-transform: uppercase; font-weight: 600; opacity: 0.85; }
-.el-gauge .val  { font-family: var(--el-font-display); font-size: var(--el-fs-lg); font-weight: 300; letter-spacing: -0.02em; color: var(--el-ink); line-height: 1; }
+.el-gauge:hover { transform: translateY(-2px); box-shadow: var(--el-raise-2); }
+.el-gauge .name { letter-spacing: var(--el-label-tracking); text-transform: uppercase; font-weight: var(--el-label-weight); opacity: 0.85; }
+.el-gauge .val  { font-family: var(--el-font-display); font-size: var(--el-fs-xl); font-weight: 350; letter-spacing: var(--el-head-tracking); color: var(--el-ink); line-height: 1; }
 .el-gauge.ok    { color: var(--el-ok); }
 .el-gauge.ok    .val { color: var(--el-ok); }
 .el-gauge.warn  { color: var(--el-warn); }
@@ -123,9 +129,9 @@
 
 .el-kbd {
   display: inline-block;
-  padding: 3px 8px;
+  padding: 2px 7px;
   font-family: var(--el-font-mono);
-  font-size: var(--el-fs-sm);
+  font-size: var(--el-fs-xs);
   font-weight: 500;
   background: linear-gradient(180deg, var(--el-panel-2) 0%, var(--el-panel-3) 100%);
   border: var(--el-bw) solid var(--el-line-strong);
@@ -133,22 +139,24 @@
   border-radius: var(--el-r-sm);
   color: var(--el-ink);
   white-space: nowrap;
-  box-shadow: 0 1px 0 var(--el-bg) inset;
+  box-shadow: inset 0 1px 0 color-mix(in oklab, var(--el-ink) 8%, transparent);
 }
 
 
 .el-badge {
   display: inline-flex;
   align-items: center;
-  padding: 1px 7px;
+  gap: 4px;
+  padding: 2px 8px;
   font-family: var(--el-font-mono);
   font-size: var(--el-fs-xs);
-  font-weight: 600;
+  font-weight: var(--el-label-weight);
   background: color-mix(in oklab, var(--el-panel-2) 80%, transparent);
   border: var(--el-bw) solid color-mix(in oklab, var(--el-line) 80%, transparent);
   border-radius: var(--el-r-pill);
   color: var(--el-ink-soft);
-  letter-spacing: 0.02em;
+  letter-spacing: 0.04em;
+  box-shadow: inset 0 1px 0 color-mix(in oklab, var(--el-ink) 5%, transparent);
 }
 .el-badge.ok   { color: var(--el-ok);   border-color: color-mix(in oklab, var(--el-ok)   40%, transparent); background: color-mix(in oklab, var(--el-ok)   10%, var(--el-panel)); }
 .el-badge.warn { color: var(--el-warn); border-color: color-mix(in oklab, var(--el-warn) 40%, transparent); background: color-mix(in oklab, var(--el-warn) 10%, var(--el-panel)); }
@@ -170,7 +178,7 @@
   letter-spacing: 0.02em;
   flex-shrink: 0;
   position: relative;
-  box-shadow: var(--el-shadow-1);
+  box-shadow: var(--el-raise-1), 0 0 0 2px var(--el-bg), 0 0 0 3px color-mix(in oklab, var(--el-line-strong) 60%, transparent);
 }
 .el-avatar img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
 .el-avatar .el-dot {
@@ -188,7 +196,7 @@
   border-radius: var(--el-r-pill);
   overflow: hidden;
   position: relative;
-  box-shadow: 0 1px 0 var(--el-bg) inset;
+  box-shadow: inset 0 1px 2px color-mix(in oklab, var(--el-overlay) 40%, transparent);
 }
 .el-progress > .fill {
   display: block;
@@ -196,7 +204,7 @@
   background: linear-gradient(90deg, color-mix(in oklab, var(--el-accent) 80%, var(--el-info)) 0%, var(--el-accent) 100%);
   border-radius: var(--el-r-pill);
   transition: width var(--el-dur-base) var(--el-ease);
-  box-shadow: 0 0 8px color-mix(in oklab, var(--el-accent) 40%, transparent);
+  box-shadow: 0 0 8px color-mix(in oklab, var(--el-accent) 40%, transparent), inset 0 1px 0 color-mix(in oklab, var(--el-on-accent) 25%, transparent);
 }
 .el-progress.warn > .fill { background: linear-gradient(90deg, color-mix(in oklab, var(--el-warn) 80%, var(--el-fail)) 0%, var(--el-warn) 100%); box-shadow: 0 0 8px color-mix(in oklab, var(--el-warn) 40%, transparent); }
 .el-progress.fail > .fill { background: linear-gradient(90deg, color-mix(in oklab, var(--el-fail) 80%, currentColor) 0%, var(--el-fail) 100%); box-shadow: 0 0 8px color-mix(in oklab, var(--el-fail) 40%, transparent); }

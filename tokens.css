@@ -84,12 +84,41 @@
   --el-dur-slow: 400ms;
   --el-ease:     cubic-bezier(.4, 0, .2, 1);
 
-  
+
   --el-size-xs: 24px;
   --el-size-sm: 32px;
   --el-size-md: 40px;
   --el-size-lg: 48px;
   --el-size-xl: 56px;
+
+  /* ── identity system (v2): per-theme personality, overridable in themes.css ── */
+  /* layered elevation — components use --el-raise-*; --el-shadow-* stay frozen */
+  --el-raise-1: var(--el-shadow-1);
+  --el-raise-2: var(--el-shadow-2);
+  --el-raise-3: var(--el-shadow-3);
+  --el-hairline: inset 0 1px 0 color-mix(in oklab, var(--el-ink) 7%, transparent);
+  --el-edge:     color-mix(in oklab, var(--el-line) 75%, transparent);
+
+  /* ornament: top accent bar height on primary surfaces (0 = off) */
+  --el-bar-h: 3px;
+
+  /* border character */
+  --el-bw-emph: 1px;          /* emphasized control border weight */
+
+  /* typography voice */
+  --el-head-weight: 640;
+  --el-head-tracking: -0.01em;
+  --el-head-case: none;
+  --el-label-weight: 650;
+  --el-label-tracking: 0.09em;
+  --el-label-case: uppercase;
+  --el-body-weight: 400;
+
+  /* control density */
+  --el-ctl-pad-y: 9px;
+  --el-ctl-pad-x: 14px;
+  --el-ctl-min-h: 38px;
+  --el-card-pad: 20px;
 }
 
 }
