@@ -1,3 +1,5 @@
+@layer el-elements {
+
 
 
 
@@ -195,3 +197,42 @@
 .el-md table { width: 100%; border-collapse: collapse; }
 .el-md table th, .el-md table td { padding: var(--el-space-2); border: var(--el-bw) solid var(--el-line); }
 .el-md table th { background: var(--el-panel-2); color: var(--el-accent); }
+
+
+/* svg charts (charts.js) */
+.el-chart {
+  display: inline-flex;
+  vertical-align: middle;
+  background: var(--el-panel);
+  border: var(--el-bw) solid var(--el-line);
+  border-radius: var(--el-r-md);
+  padding: var(--el-space-2);
+}
+.el-chart > svg { display: block; max-width: 100%; }
+.el-chart-svg [class*="el-chart-anim-"] {
+  animation-duration: var(--el-dur-slow);
+  animation-timing-function: var(--el-ease);
+  animation-fill-mode: both;
+}
+.el-chart-svg .el-chart-anim-line {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation-name: el-chart-draw;
+}
+.el-chart-svg .el-chart-anim-fade { animation-name: el-chart-fade; }
+.el-chart-svg .el-chart-anim-bar  { animation-name: el-chart-grow; animation-duration: var(--el-dur-base); }
+.el-chart-svg .el-chart-anim-donut {
+  animation-name: el-chart-donut;
+  animation-duration: var(--el-dur-slow);
+}
+@keyframes el-chart-draw   { to { stroke-dashoffset: 0; } }
+@keyframes el-chart-fade   { from { opacity: 0; } }
+@keyframes el-chart-grow   { from { transform: scaleY(0); } }
+@keyframes el-chart-donut  { from { stroke-dashoffset: var(--el-chart-c, 999); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .el-chart-svg [class*="el-chart-anim-"] { animation: none; }
+  .el-chart-svg .el-chart-anim-line { stroke-dashoffset: 0; }
+}
+
+}

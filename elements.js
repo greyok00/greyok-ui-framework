@@ -361,6 +361,33 @@
   }
   window.elToast = { push: pushToast };
 
+  function toast(msg, opts) {
+    opts = opts || {};
+    const r = ensureToastRegion();
+    const t = document.createElement('div');
+    t.className = `el-toast ${opts.variant || opts.type || ''}`;
+    t.innerHTML = `<span>${msg}</span><span class="close">×</span>`;
+    if (opts.duration !== 0) setTimeout(() => t.remove(), opts.duration || 4000);
+    r.appendChild(t);
+    $('.close', t).addEventListener('click', () => t.remove());
+    fire(r, 'el:toast', { msg });
+    return t;
+  }
+  function toastPromise(promise, opts) {
+    opts = opts || {};
+    const t = toast(opts.loading || 'Loading…', { duration: 0 });
+    const done = (variant, msg) => {
+      t.className = `el-toast ${variant}`;
+      $('span', t).textContent = msg;
+      setTimeout(() => t.remove(), 4000);
+    };
+    Promise.resolve(promise).then(
+      v => done('ok', typeof opts.success === 'function' ? opts.success() : (opts.success || 'Done')),
+      err => done('fail', typeof opts.error === 'function' ? opts.error(err) : (opts.error || 'Failed'))
+    );
+    return promise;
+  }
+
   
   
   
@@ -480,11 +507,63 @@
     $$('.el-palette .input', root).forEach(input => {
       if (input.__wired) return; input.__wired = true;
       const palette = input.closest('.el-palette');
+      const store = palette.dataset.recentStore || 'el:palette:recent';
+      let recent = [];
+      try { recent = JSON.parse(localStorage.getItem(store) || '[]'); } catch (e) {}
+      const target = r => $('.label', r) || r.children[1] || r;
+      const label = r => (r.dataset.label || target(r).textContent.trim());
+      const rows = $$('.row', palette);
+      rows.forEach(r => {
+        if (recent.includes(label(r))) r.dataset.recent = '';
+      });
+      const sortRows = (q) => {
+        const scored = rows.map(r => {
+          const t = label(r).toLowerCase();
+          let score = 0;
+          if (q) {
+            let i = -1;
+            for (const ch of q) { i = t.indexOf(ch, i + 1); if (i < 0) { score = -1; break; } score += 1; }
+            if (score >= 0 && t.startsWith(q)) score += 10;
+            if (recent.includes(label(r))) score += 5;
+          } else {
+            score = recent.includes(label(r)) ? 5 : 0;
+          }
+          return { r, score };
+        }).filter(s => s.score >= 0);
+        scored.sort((a, b) => b.score - a.score);
+        return scored.map(s => s.r);
+      };
+      const highlight = (r, q) => {
+        const span = target(r);
+        const text = label(r);
+        if (!q) { span.textContent = text; return; }
+        let html = '', ti = 0;
+        const lower = text.toLowerCase();
+        let i = -1;
+        for (const ch of q) {
+          i = lower.indexOf(ch, i + 1);
+          if (i < 0) break;
+          html += text.slice(ti, i) + '<mark>' + text[i] + '</mark>';
+          ti = i + 1;
+        }
+        html += text.slice(ti);
+        span.innerHTML = html;
+      };
       on(input, 'input', () => {
-        const q = input.value.toLowerCase();
-        $$('.row', palette).forEach(r => {
-          r.hidden = !r.textContent.toLowerCase().includes(q);
+        const q = input.value.trim().toLowerCase();
+        const order = sortRows(q);
+        rows.forEach(r => r.hidden = !order.includes(r));
+        order.forEach(r => {
+          if (!r.hidden) { palette.querySelector('.results').appendChild(r); highlight(r, q); }
         });
+      });
+      on(palette, 'el:run', () => {
+        const sel = $('.row.sel', palette) || $$('.row:not([hidden])', palette)[0];
+        if (!sel) return;
+        const key = label(sel);
+        recent = [key].concat(recent.filter(r => r !== key)).slice(0, 5);
+        try { localStorage.setItem(store, JSON.stringify(recent)); } catch (e) {}
+        sel.dataset.recent = '';
       });
     });
   }
@@ -560,6 +639,10 @@
     wireSearchBar(root);
     wirePrompt(root);
     wireClipboard(root);
+    wireDatePicker(root);
+    wireCarousel(root);
+    wireSplitResizable(root);
+    wireSkeletonLoaded(root);
   }
 
   if (document.readyState === 'loading') {
@@ -970,6 +1053,174 @@
     });
   }
 
-  
+  function wireDatePicker(root) {
+    $$('.el-datepicker', root).forEach(dp => {
+      if (dp.__wired) return; dp.__wired = true;
+      const owner = dp.hasAttribute('data-for') ? document.getElementById(dp.dataset.for) : $('.el-date-toggle', dp.parentElement);
+      const label = $('.head .label', dp);
+      const grid = $('.grid', dp);
+      const prev = $('.head .prev', dp);
+      const next = $('.head .next', dp);
+      if (!grid || !label || !prev || !next) return;
+      let view = new Date();
+      view.setDate(1);
+      let sel = null;
+      const render = () => {
+        label.textContent = view.toLocaleString('en', { month: 'short', year: 'numeric' });
+        grid.innerHTML = '';
+        ['S','M','T','W','T','F','S'].forEach(d => {
+          const c = document.createElement('span');
+          c.className = 'dow'; c.textContent = d;
+          grid.appendChild(c);
+        });
+        const first = new Date(view.getFullYear(), view.getMonth(), 1);
+        const days = new Date(view.getFullYear(), view.getMonth() + 1, 0).getDate();
+        for (let i = 0; i < (first.getDay() + 6) % 7; i++) grid.appendChild(document.createElement('span'));
+        const today = new Date();
+        for (let d = 1; d <= days; d++) {
+          const b = document.createElement('button');
+          b.type = 'button'; b.className = 'day'; b.textContent = d;
+          const dt = new Date(view.getFullYear(), view.getMonth(), d);
+          if (dt.toDateString() === today.toDateString()) b.classList.add('today');
+          if (sel && dt.toDateString() === sel.toDateString()) b.classList.add('sel');
+          grid.appendChild(b);
+        }
+      };
+      const open = (o) => {
+        dp.classList.toggle('open', o);
+        if (o) (grid.querySelector('.day.sel') || grid.querySelector('.day'))?.focus();
+      };
+      on(prev, 'click', () => { view.setMonth(view.getMonth() - 1); render(); });
+      on(next, 'click', () => { view.setMonth(view.getMonth() + 1); render(); });
+      on(grid, 'click', e => {
+        const b = e.target.closest('.day');
+        if (!b) return;
+        sel = new Date(view.getFullYear(), view.getMonth(), parseInt(b.textContent, 10));
+        if (owner && owner !== dp) {
+          owner.dataset.value = sel.toISOString().slice(0, 10);
+          if (owner.tagName === 'INPUT') owner.value = owner.dataset.value;
+        }
+        fire(dp, 'el:date', { date: sel });
+        dp.classList.remove('open');
+        render();
+      });
+      on(grid, 'keydown', e => {
+        const days = $$('.day', grid);
+        const idx = days.indexOf(document.activeElement);
+        let n = idx;
+        if (e.key === 'ArrowRight') n = Math.min(days.length - 1, idx + 1);
+        else if (e.key === 'ArrowLeft') n = Math.max(0, idx - 1);
+        else if (e.key === 'ArrowDown') n = Math.min(days.length - 1, idx + 7);
+        else if (e.key === 'ArrowUp') n = Math.max(0, idx - 7);
+        else if (e.key === 'Enter') { e.preventDefault(); document.activeElement.click(); return; }
+        else if (e.key === 'Escape') { dp.classList.remove('open'); return; }
+        else return;
+        e.preventDefault();
+        if (n >= 0 && days[n]) days[n].focus();
+      });
+      if (owner && owner !== dp) {
+        on(owner, 'click', () => open(!dp.classList.contains('open')));
+        on(owner, 'keydown', e => { if (e.key === 'Escape') dp.classList.remove('open'); });
+      }
+      on(document, 'click', e => { if (!dp.contains(e.target) && !(owner && owner.contains(e.target))) dp.classList.remove('open'); });
+      render();
+    });
+  }
+
+  function wireCarousel(root) {
+    $$('.el-carousel', root).forEach(c => {
+      if (c.__wired) return; c.__wired = true;
+      const track = $('.track', c);
+      const dotsBox = $('.dots', c);
+      if (!track) return;
+      const slides = $$('.slide', track);
+      if (!slides.length) return;
+      const dots = dotsBox ? slides.map((s, i) => {
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.setAttribute('aria-label', `slide ${i + 1}`);
+        on(b, 'click', () => track.scrollTo({ left: s.offsetLeft - track.offsetLeft, behavior: 'smooth' }));
+        dotsBox.appendChild(b);
+        return b;
+      }) : [];
+      const cur = () => Math.round(track.scrollLeft / (slides[0].offsetWidth + parseFloat(getComputedStyle(track).columnGap || 0)) || 0);
+      const render = () => { const i = cur(); dots.forEach((d, j) => d.classList.toggle('on', j === i)); fire(c, 'el:slide-change', { index: i }); };
+      $$('.nav', c).forEach(btn => on(btn, 'click', () => {
+        const dirv = btn.dataset.dir === 'prev' ? -1 : 1;
+        const i = Math.min(slides.length - 1, Math.max(0, cur() + dirv));
+        track.scrollTo({ left: slides[i].offsetLeft - track.offsetLeft, behavior: 'smooth' });
+      }));
+      on(track, 'scroll', () => { if (dots.length) requestAnimationFrame(render); }, { passive: true });
+      if (dots.length) dots[0].classList.add('on');
+    });
+  }
+
+  function wireSplitResizable(root) {
+    $$('.el-split-resizable', root).forEach(sp => {
+      if (sp.__wired) return; sp.__wired = true;
+      const handle = $('.handle', sp);
+      if (!handle) return;
+      let down = false;
+      const panes = $$('.pane', sp);
+      on(handle, 'pointerdown', e => {
+        down = true;
+        sp.classList.add('dragging');
+        handle.setPointerCapture(e.pointerId);
+        e.preventDefault();
+      });
+      on(handle, 'pointermove', e => {
+        if (!down) return;
+        const rect = sp.getBoundingClientRect();
+        const pct = ((e.clientX - rect.left) / rect.width) * 100;
+        const min = parseFloat(getComputedStyle(sp).getPropertyValue('--el-split-min')) || 80;
+        const maxPct = parseFloat(getComputedStyle(sp).getPropertyValue('--el-split-max')) || 90;
+        const clamped = Math.max(min, Math.min(maxPct, pct));
+        panes.forEach(p => p.style.width = clamped + '%');
+        fire(sp, 'el:resize', { pct: clamped });
+      });
+      const up = () => { down = false; sp.classList.remove('dragging'); };
+      on(handle, 'pointerup', up);
+      on(handle, 'pointercancel', up);
+    });
+  }
+
+  function wireSkeletonLoaded(root) {
+    $$('.el-skeleton[data-loaded]', root).forEach(sk => {
+      if (sk.__wired) return; sk.__wired = true;
+      const ms = parseFloat(getComputedStyle(sk).animationDuration) * 1000 || 200;
+      setTimeout(() => sk.remove(), ms + 50);
+    });
+  }
+
+  function icon(name) {
+    const span = document.createElement('span');
+    span.className = 'el-icon';
+    const use = document.createElementNS('http://www.w3.org/2000/svg', 'use');
+    use.setAttribute('href', (document.getElementById('el-icons') ? '' : 'assets/icons.svg') + '#el-i-' + name);
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.appendChild(use);
+    span.appendChild(svg);
+    return span;
+  }
+
+  function setView(fn) {
+    const doc = document;
+    const apply = () => { fn(); if (doc.body) doc.body.classList.add('el-view-fade'); };
+    if (doc.startViewTransition && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      doc.startViewTransition(apply);
+    } else {
+      apply();
+    }
+  }
+
+  window.Elements = {
+    toast,
+    toastPromise,
+    icon,
+    setView,
+    supportsViewTransition: typeof document.startViewTransition === 'function'
+  };
+
+
   window.elInit = init;
 })();

@@ -1,3 +1,5 @@
+@layer el-tokens {
+
 
 
 
@@ -49,12 +51,12 @@
   --el-font-feat: "tnum" 1, "ss01" 1;
 
   
-  --el-fs-xs:  10px;
-  --el-fs-sm:  11px;
-  --el-fs-md:  13px;
-  --el-fs-lg:  16px;
-  --el-fs-xl:  24px;
-  --el-fs-2xl: 36px;
+  --el-fs-xs:  0.625rem;
+  --el-fs-sm:  0.6875rem;
+  --el-fs-md:  0.8125rem;
+  --el-fs-lg:  1rem;
+  --el-fs-xl:  1.5rem;
+  --el-fs-2xl: 2.25rem;
 
   
   --el-space-1: 4px;
@@ -88,4 +90,6 @@
   --el-size-md: 40px;
   --el-size-lg: 48px;
   --el-size-xl: 56px;
+}
+
 }

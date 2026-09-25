@@ -100,7 +100,10 @@ declare namespace ElFramework {
     | "agent-pulse"
     | "agent-history"
     | "terminal"
-    | "swiss";
+    | "swiss"
+    | "bespoke"
+    | "torque"
+    | "umami";
 
   // ── Helper to read a token from the current theme ──
 
@@ -207,6 +210,15 @@ declare namespace ElFramework {
   interface ElToast extends HTMLDivElement {}
   interface ElInfiniteScrollTrigger extends HTMLDivElement {}
   interface ElAnchorNav extends HTMLElement {}
+
+  // ── Misc (elements-misc.css + JS API) ──
+
+  interface ElDatePicker extends HTMLDivElement {}
+  interface ElSelect extends HTMLDivElement {}
+  interface ElCarousel extends HTMLDivElement {}
+  interface ElSplitResizable extends HTMLDivElement {}
+  interface ElBottomBar extends HTMLElement {}
+  interface ElIcon extends HTMLSpanElement {}
 }
 
 // ── Global HTML element class augmentations ──
@@ -302,6 +314,13 @@ declare global {
     "div.el-toast": ElFramework.ElToast;
     "div.el-infinite-scroll-trigger": ElFramework.ElInfiniteScrollTrigger;
     "nav.el-anchor-nav": ElFramework.ElAnchorNav;
+    // Misc
+    "div.el-datepicker": ElFramework.ElDatePicker;
+    "div.el-select": ElFramework.ElSelect;
+    "div.el-carousel": ElFramework.ElCarousel;
+    "div.el-split-resizable": ElFramework.ElSplitResizable;
+    "nav.el-bottom-bar": ElFramework.ElBottomBar;
+    "span.el-icon": ElFramework.ElIcon;
   }
 }
 
@@ -342,6 +361,29 @@ interface HTMLOrSVGElement {
     treeId?: string;
     /** Theme slug override. */
     theme?: import("el-framework/typescript/elements").ThemeSlug;
+    /** Datepicker trigger element id (`data-for` on `.el-datepicker`). */
+    for?: string;
+    /** localStorage key for palette recents. */
+    recentStore?: string;
+    /** Carousel nav direction. */
+    dir?: "prev" | "next";
+  };
+}
+
+/** Global helpers registered by `elements.js`. */
+interface Window {
+  elToast: { push(msg: string, variant?: string): void };
+  elInit(root?: ParentNode): void;
+  Elements: {
+    toast(msg: string, opts?: { variant?: string; type?: string; duration?: number }): HTMLElement;
+    toastPromise<T>(p: Promise<T> | T, opts?: {
+      loading?: string;
+      success?: string | (() => string);
+      error?: string | ((err: unknown) => string);
+    }): Promise<T> | T;
+    icon(name: string): HTMLElement;
+    setView(fn: () => void): void;
+    supportsViewTransition: boolean;
   };
 }
 

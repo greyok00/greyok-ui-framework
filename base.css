@@ -1,5 +1,6 @@
+@layer el-reset, el-tokens, el-themes, el-elements;
 
-
+@layer el-reset {
 
 .el-reset,
 .el-reset * {
@@ -113,3 +114,36 @@ button { font-family: inherit; }
   margin-bottom: var(--el-space-2);
 }
 .el-spec b { color: var(--el-accent); font-weight: 700; }
+
+
+@media (prefers-reduced-motion: reduce) {
+  .el-reset, .el-reset *, [class*="el-"] {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+
+@media print {
+  html, body {
+    background: #fff !important;
+    color: #000 !important;
+    font-size: 11pt;
+  }
+  .el-demo-bar, .el-toast-region, .el-bottom-bar,
+  ::-webkit-scrollbar { display: none !important; }
+  * {
+    box-shadow: none !important;
+    text-shadow: none !important;
+    backdrop-filter: none !important;
+  }
+  .el-card, .el-panel, .el-bento > .tile {
+    border-color: #ccc !important;
+    transform: none !important;
+  }
+  a { color: inherit; border-bottom: 1px solid #999; }
+}
+
+}

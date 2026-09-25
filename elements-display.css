@@ -1,3 +1,5 @@
+@layer el-elements {
+
 
 
 
@@ -277,3 +279,5 @@
 .el-swatch.rounded { border-radius: 50%; }
 .el-swatch.lg { width: 40px; height: 40px; }
 .el-swatch.xs { width: 12px; height: 12px; }
+
+}

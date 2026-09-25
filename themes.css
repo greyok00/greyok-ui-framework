@@ -1,3 +1,5 @@
+@layer el-themes {
+
 
 
 
@@ -195,4 +197,67 @@
   --el-focus-ring: rgba(214,40,40,.55);
   --el-font-body: 'Inter', 'Helvetica Neue', sans-serif;
   --el-font-display: 'Helvetica Neue', 'Inter', sans-serif;
+}
+
+
+
+/* ── Luxury themes (bespoke · torque · umami) ── */
+
+[data-theme="bespoke"] {
+  --el-bg: #ffffff; --el-panel: #fafafa; --el-panel-2: #f0f0f0; --el-panel-3: #e5e5e5;
+  --el-line: #d4d4d4; --el-line-2: #b8b8b8; --el-line-strong: #000000;
+  --el-ink: #000000; --el-ink-soft: #333333; --el-mute: #666666;
+  --el-on-accent: #ffffff;
+  --el-accent: #8b6914; --el-accent-hover: #c4a882; --el-accent-soft: rgba(139,105,20,0.12);
+  --el-ok: #2a7a2a; --el-warn: #8b6914; --el-fail: #a83232;
+  --el-info: #333333; --el-live: #c4a882; --el-teal: #333333;
+  --el-shadow-1: 0 1px 2px rgba(0,0,0,.08);
+  --el-shadow-2: 0 4px 12px rgba(0,0,0,.12);
+  --el-shadow-3: 0 8px 32px rgba(0,0,0,.18);
+  --el-overlay: rgba(0,0,0,.5);
+  --el-focus-ring: rgba(139,105,20,.6);
+  --el-font-body: 'Bodoni MT', Didot, Georgia, serif;
+  --el-font-display: 'Bodoni MT', Didot, Georgia, serif;
+  --el-font-mono: Georgia, serif;
+  --el-r-none: 0; --el-r-sm: 0; --el-r-md: 0; --el-r-lg: 0; --el-r-xl: 0;
+}
+
+[data-theme="torque"] {
+  --el-bg: #000000; --el-panel: #1a1a1a; --el-panel-2: #242424; --el-panel-3: #2e2e2e;
+  --el-line: #2a2a2a; --el-line-2: #1f1f1f; --el-line-strong: #3a3a3a;
+  --el-ink: #ffffff; --el-ink-soft: #a0a0a0; --el-mute: #606060;
+  --el-on-accent: #000000;
+  --el-accent: #ff2800; --el-accent-hover: #ff5230; --el-accent-soft: rgba(255,40,0,0.14);
+  --el-ok: #c9a84c; --el-warn: #c9a84c; --el-fail: #ff2800;
+  --el-info: #a0a0a0; --el-live: #ff2800; --el-teal: #c9a84c;
+  --el-shadow-1: 0 1px 2px rgba(0,0,0,.6);
+  --el-shadow-2: 0 4px 16px rgba(0,0,0,.7);
+  --el-shadow-3: 0 8px 40px rgba(255,40,0,.15);
+  --el-overlay: rgba(0,0,0,.8);
+  --el-focus-ring: rgba(255,40,0,.6);
+  --el-font-body: 'Futura', 'Helvetica Neue', Geneva, sans-serif;
+  --el-font-display: 'Futura', 'Helvetica Neue', Geneva, sans-serif;
+  --el-font-mono: 'Helvetica Neue', Geneva, sans-serif;
+  --el-r-none: 0; --el-r-sm: 0; --el-r-md: 0; --el-r-lg: 0; --el-r-xl: 0;
+}
+
+[data-theme="umami"] {
+  --el-bg: #0a0a0a; --el-panel: #141414; --el-panel-2: #1e1e1e; --el-panel-3: #282828;
+  --el-line: #262626; --el-line-2: #1a1a1a; --el-line-strong: #3a3a3a;
+  --el-ink: #ffffff; --el-ink-soft: #a0a0a0; --el-mute: #606060;
+  --el-on-accent: #0a0a0a;
+  --el-accent: #d4a030; --el-accent-hover: #e4b455; --el-accent-soft: rgba(212,160,48,0.14);
+  --el-ok: #7a8a4a; --el-warn: #d4a030; --el-fail: #800020;
+  --el-info: #a0a0a0; --el-live: #d4a030; --el-teal: #800020;
+  --el-shadow-1: 0 1px 2px rgba(0,0,0,.5);
+  --el-shadow-2: 0 4px 16px rgba(0,0,0,.65);
+  --el-shadow-3: 0 8px 40px rgba(212,160,48,.12);
+  --el-overlay: rgba(0,0,0,.8);
+  --el-focus-ring: rgba(212,160,48,.6);
+  --el-font-body: 'Didot', Georgia, serif;
+  --el-font-display: 'Didot', Georgia, serif;
+  --el-font-mono: Georgia, serif;
+  --el-r-none: 0; --el-r-sm: 0; --el-r-md: 0; --el-r-lg: 0; --el-r-xl: 0;
+}
+
 }
