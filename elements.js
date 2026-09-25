@@ -1192,11 +1192,17 @@
     });
   }
 
+  // Sprite URL resolves from THIS script's location (root or demo/ both work);
+  // a page that inlines the sprite as <svg id="el-icons"> skips the fetch.
+  const ICON_SPRITE_URL = (typeof document.currentScript !== 'undefined' && document.currentScript && document.currentScript.src)
+    ? new URL('assets/icons.svg', document.currentScript.src).href
+    : 'assets/icons.svg';
+
   function icon(name) {
     const span = document.createElement('span');
     span.className = 'el-icon';
     const use = document.createElementNS('http://www.w3.org/2000/svg', 'use');
-    use.setAttribute('href', (document.getElementById('el-icons') ? '' : 'assets/icons.svg') + '#el-i-' + name);
+    use.setAttribute('href', (document.getElementById('el-icons') ? '' : ICON_SPRITE_URL) + '#el-i-' + name);
     const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
     svg.appendChild(use);
     span.appendChild(svg);
