@@ -399,4 +399,36 @@
 
 }
 
+
+[data-theme="aurora"] {
+  --el-bg: #0d0a1c; --el-panel: #16112e; --el-panel-2: #1d1740; --el-panel-3: #261f56;
+  --el-line: #2b2354; --el-line-2: #201944; --el-line-strong: #3e3480;
+  --el-ink: #edeaff; --el-ink-soft: #a89fd8; --el-mute: #6f66a8;
+  --el-on-accent: #0d0a1c;
+  --el-accent: #8b5cf6; --el-accent-hover: #a78bfa; --el-accent-soft: rgba(139,92,246,0.16);
+  --el-ok: #3ddc97; --el-warn: #ffc857; --el-fail: #ff5470;
+  --el-info: #5ea8ff; --el-live: #2de2e6; --el-teal: #3ddbd9;
+  --el-shadow-1: 0 1px 2px rgba(0,0,0,.35);
+  --el-shadow-2: 0 6px 20px rgba(10,6,30,.5), 0 0 0 1px rgba(139,92,246,.08);
+  --el-shadow-3: 0 12px 48px rgba(10,6,30,.65), 0 0 40px rgba(139,92,246,.15);
+  --el-overlay: rgba(6,4,16,.6);
+  --el-focus-ring: rgba(167,139,250,.6);
+  --el-font-body: 'Inter', system-ui, sans-serif;
+  --el-font-display: 'Space Grotesk', sans-serif;
+  --el-font-mono: 'JetBrains Mono', ui-monospace, Menlo, monospace;
+  /* identity: glow card — deep indigo, violet bloom, rounded, ambient elevation */
+  --el-r-sm: 10px; --el-r-md: 14px; --el-r-lg: 18px; --el-r-xl: 26px;
+  --el-bw-emph: 1.5px;
+  --el-raise-1: 0 1px 2px rgba(0,0,0,.3), 0 0 0 1px color-mix(in oklab, var(--el-line-strong) 30%, transparent);
+  --el-raise-2: 0 4px 14px rgba(6,4,16,.55), 0 0 24px rgba(139,92,246,.10);
+  --el-raise-3: 0 10px 40px rgba(6,4,16,.7), 0 0 48px rgba(139,92,246,.18);
+  --el-lift: 0 0 0 1px color-mix(in oklab, var(--el-accent) 35%, transparent), 0 0 20px rgba(139,92,246,.22);
+  --el-bar-h: 3px;
+  --el-ctl-pad-y: 10px; --el-ctl-pad-x: 18px; --el-ctl-min-h: 42px; --el-card-pad: 24px;
+  --el-head-weight: 640; --el-head-tracking: 0.01em;
+  --el-label-tracking: 0.1em;
+  --el-dur-fast: 120ms; --el-dur-base: 240ms; --el-ease: cubic-bezier(.33, 1, .68, 1);
+
+}
+
 }

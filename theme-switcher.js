@@ -7,7 +7,7 @@
     'neutral', 'polaroid', 'cockpit', 'cockpit-paper', 'console',
     'compact', 'casebook', 'agent-paper', 'agent-pulse',
     'agent-history', 'terminal', 'swiss',
-    'bespoke', 'torque', 'umami'
+    'bespoke', 'torque', 'umami', 'aurora'
   ]);
   const DEFAULT = 'neutral';
 
