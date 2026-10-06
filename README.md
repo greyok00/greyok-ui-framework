@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <strong>CSS + JS framework — ~100 UI primitives, 16 themes, 6 size buckets.</strong>
+  <strong>CSS + JS framework — ~100 UI primitives, 15 themes, 6 size buckets.</strong>
   <br><br>
   Drop in the CSS files, pick a theme, ship. Works in HTML, TypeScript, and Python/Tkinter.
   <br><br>
@@ -23,7 +23,7 @@ Every theme, every element, every category — running live in your browser. No 
 
 | | |
 |---|---|
-| 🪟 Landing page | [demo/index.html](https://greyok00.github.io/greyok-ui-framework/demo/) — wordmark hero, 7 category cards, install tabs, 16 theme preview cards |
+| 🪟 Landing page | [demo/index.html](https://greyok00.github.io/greyok-ui-framework/demo/) — wordmark hero, 7 category cards, install tabs, 15 theme preview cards |
 | ✦ Display | [demo/display.html](https://greyok00.github.io/greyok-ui-framework/demo/display.html) |
 | ≡ Lists | [demo/lists.html](https://greyok00.github.io/greyok-ui-framework/demo/lists.html) |
 | ⚙ Controls | [demo/controls.html](https://greyok00.github.io/greyok-ui-framework/demo/controls.html) |
@@ -43,7 +43,7 @@ A drop-in CSS framework that ships with **15 ready-made themes** — 12 original
 
 ```
 ┌──────────────────────────────────────────────────────────────┐
-│  100 elements · 16 themes · 6 sizes · 0 build  │
+│  100 elements · 15 themes · 6 sizes · 0 build  │
 └──────────────────────────────────────────────────────────────┘
 ```
 
@@ -254,7 +254,7 @@ Then import the CSS by name (`greyok-ui-framework/tokens.css`, etc.) — the pac
 ```python
 from greyok_ui_framework import ElTheme, ElWidget, get_theme
 
-theme = get_theme("cockpit")            # any of 16 themes
+theme = get_theme("cockpit")            # any of 15 themes
 btn = ElWidget(parent, "btn", theme=theme, text="Run", command=handler)
 btn.pack()
 
@@ -360,7 +360,7 @@ demo/
 ```
 greyok-ui-framework/
 ├── tokens.css               # ~55 CSS vars (neutral defaults)
-├── themes.css               # 16 themes — 15 [data-theme] blocks + neutral (:root default in tokens.css)
+├── themes.css               # 15 themes — 14 [data-theme] blocks + neutral (:root default in tokens.css)
 ├── base.css                 # reset, focus ring, scrollbar, demo bar
 ├── elements-display.css     # 15 display primitives
 ├── elements-lists.css       # 15 list primitives
@@ -413,20 +413,3 @@ python3 -m http.server 8768 --bind 127.0.0.1
 ## License
 
 MIT © [greyok00](https://github.com/greyok00) — see [LICENSE](LICENSE).
-
-## Changelog
-
-**v1.0.1 (2026-10-04) — a 16th theme: aurora.** One new theme, plus the counts that describe the set.
-
-- **Added** — **`aurora`**, a violet-on-deep-indigo theme (`--el-bg: #0d0a1c`, `--el-accent: #8b5cf6`) declaring the full `--el-*` token set like every other theme, no partial overrides. It is in the theme switcher's cycle and has a preview card on the landing page. `themes.css` now holds 15 `[data-theme]` blocks plus the neutral `:root` default in `tokens.css` — 16 themes.
-- **Changed** — theme counts corrected to 16 in `README.md` (hero line, landing-page description, the ASCII summary block, the Python example comment, and the file map), in `demo/index.html` (the hero pill), and in `demo/showcase.html`. The 12 original palettes are untouched; `bin/verify.sh` re-confirms every frozen color token is byte-identical to `HEAD`.
-
-Verified with `bin/verify.sh` (19 checks: OK) and `tests/test_framework.py` (pass).
-
-**v1.0.0 (2026-09-25) — v1.0 primitives, charts, identity tokens.** First major release since v0.1.0: ~100 primitives, 15 themes, SVG charts, and a token identity layer.
-
-- **v1.0 primitives** — `@layer` architecture, datepicker, select, carousel, command palette, toast/promise, resizable split, bottom bar, glass, skeleton, 24-icon sprite, plus 3 luxury themes (`bespoke`, `torque`, `umami`).
-- **Charts** — dependency-free SVG primitives (`sparkline`, `bar`, `line`, `area`, `donut`) in `charts.js`, CSS-animated, reduced-motion aware.
-- **Identity tokens v2** — `--el-raise-1/2/3` elevation layers, `--el-hairline`, per-theme personality hooks; refinement pass across every element category.
-- **Fixed** — `data-chart` auto-render mapped chart kinds to undefined variables, so charts never rendered without manual JS; the theme switcher didn't offer the luxury themes.
-- **Release gates** — `bin/verify.sh` (19 checks: brace balance, palette freeze, JS syntax, demo coverage, icons) and a pytest suite (9 tests: token cross-check, themes, icons, dupes) run locally before every push; `tools/tokens-codegen.py` turns design-token JSON into CSS custom properties.
