@@ -1,6 +1,6 @@
 {
   "name": "greyok-ui-framework",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "greyok-ui-framework \u2014 ~100 CSS primitives, 12 swappable themes, 6 size buckets. Works in HTML/CSS, Tkinter (Python bridge), and TypeScript. Drop in tokens + theme + element CSS, pick a theme, ship.",
   "type": "module",
   "main": "elements.js",
