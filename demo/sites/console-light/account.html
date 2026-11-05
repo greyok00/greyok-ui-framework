@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="en" data-theme="console-light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Workspace settings — Lodestone</title>
+<link rel="stylesheet" href="../../../base.css">
+<link rel="stylesheet" href="../../../fonts.css">
+<link rel="stylesheet" href="../../../tokens.css">
+<link rel="stylesheet" href="../../../tokens-v2.css">
+<link rel="stylesheet" href="../../../elements-display.css">
+<link rel="stylesheet" href="../../../elements-structure.css">
+<link rel="stylesheet" href="../../../elements-lists.css">
+<link rel="stylesheet" href="../../../elements-app.css">
+<link rel="stylesheet" href="../../../elements-containers.css">
+<link rel="stylesheet" href="../../../elements-controls.css">
+<link rel="stylesheet" href="../../../elements-inputs.css">
+<link rel="stylesheet" href="../../../elements-dataviz.css">
+<link rel="stylesheet" href="../../../elements-overlay.css">
+<link rel="stylesheet" href="../../../elements-interactions.css">
+<link rel="stylesheet" href="../../../elements-misc.css">
+<link rel="stylesheet" href="../../../elements-size.css">
+<link rel="stylesheet" href="../../../elements-workflow.css">
+<link rel="stylesheet" href="../../../elements-inspector.css">
+<link rel="stylesheet" href="../../../elements-reader.css">
+<link rel="stylesheet" href="../../../elements-assistant.css">
+<link rel="stylesheet" href="../../../themes/src/dashboard-light.css">
+<script src="../../../elements.js" defer></script>
+<script src="../../../charts.js" defer></script>
+</head>
+<body class="el-reset">
+<div class="site-shell">
+
+  <nav class="el-navbar el-navbar--rail" aria-label="Lodestone">
+    <a class="brand" href="index.html">
+      <span class="brand-mark" aria-hidden="true">L</span>
+      <span class="brand-label">Lodestone</span>
+    </a>
+    <div class="links">
+      <a href="index.html"><svg class="el-icon"><use href="../../../assets/icons.svg#el-i-search"/></svg>Monitor</a>
+      <a href="catalog.html"><svg class="el-icon"><use href="../../../assets/icons.svg#el-i-heart"/></svg>Collectors</a>
+      <a href="article.html"><svg class="el-icon"><use href="../../../assets/icons.svg#el-i-edit"/></svg>Postmortems</a>
+      <a href="account.html" aria-current="page"><svg class="el-icon"><use href="../../../assets/icons.svg#el-i-user"/></svg>Workspace</a>
+      <a href="app.html"><svg class="el-icon"><use href="../../../assets/icons.svg#el-i-external"/></svg>Console</a>
+    </div>
+    <div class="actions">
+      <button class="el-btn" data-command="cmd-acct"><svg class="el-icon"><use href="../../../assets/icons.svg#el-i-settings"/></svg>Quick find</button>
+    </div>
+    <div class="rail-note">
+      <span>Brightcart Logistics</span>
+      <span>plan Ops · 148 collectors</span>
+    </div>
+  </nav>
+
+  <div class="site-main">
+    <main class="el-page">
+      <div class="el-banner el-banner--warn" role="status">
+        <span class="glyph" aria-hidden="true"><svg class="el-icon"><use href="../../../assets/icons.svg#el-i-info"/></svg></span>
+        <span class="copy"><strong>Cardinality pressure</strong><span class="detail">at current growth you'll hit the series ceiling on Nov 19. Enable per-environment sampling under "Agents".</span></span>
+        <button class="action" data-toast="Jumped to Agents → sampling (below)">Fix it now</button>
+        <button class="close" data-banner-close aria-label="Dismiss"><svg class="el-icon"><use href="../../../assets/icons.svg#el-i-close"/></svg></button>
+      </div>
+
+      <div class="settings-grid" style="display:grid; grid-template-columns: 216px minmax(0,1fr); gap: var(--el-space-6); margin-top: var(--el-space-5);">
+        <aside class="el-sidebar" aria-label="Settings sections">
+          <div class="head">Workspace settings</div>
+          <div class="grp">
+            <span class="label">General</span>
+            <a href="#" aria-current="page">Profile</a>
+            <a href="#">Team members</a>
+            <a href="#">Notifications</a>
+          </div>
+          <div class="grp">
+            <span class="label">Fleet</span>
+            <a href="#">Agents <span class="el-badge">attention</span></a>
+            <a href="#">Regions &amp; routing</a>
+            <a href="#">API keys</a>
+          </div>
+          <div class="grp">
+            <span class="label">Danger zone</span>
+            <a href="#">Delete workspace</a>
+          </div>
+          <div class="toggle-wrap"><button class="toggle" data-sidebar-toggle aria-label="Collapse sidebar">‹</button></div>
+        </aside>
+
+        <div style="display:grid; gap: var(--el-space-5); min-width: 0;">
+
+          <section class="el-section el-section--flush" style="padding: 0;">
+            <div class="el-section-head">
+              <div><p class="el-eyebrow">General</p><h2 style="font-size: var(--el-fs-xl);">Profile</h2></div>
+            </div>
+            <div class="el-card">
+              <div class="fields-row" style="display:grid; grid-template-columns: 1fr 1fr; gap: var(--el-space-4);">
+                <div class="el-field">
+                  <label class="el-label" for="org-name">Organization name</label>
+                  <input class="el-input" id="org-name" value="Brightcart Logistics" />
+                  <span class="el-hint">Appears on invoices and alert messages.</span>
+                </div>
+                <div class="el-field">
+                  <label class="el-label" for="org-slug">Console slug</label>
+                  <input class="el-input" id="org-slug" value="brightcart" />
+                </div>
+                <div class="el-field" data-invalid="true">
+                  <label class="el-label" for="support-email">Support contact</label>
+                  <input class="el-input" id="support-email" value="ops@bounce-brightcart" />
+                  <span class="el-error">That domain doesn't resolve — undeliverable alerts get dropped.</span>
+                </div>
+                <div class="el-field">
+                  <label class="el-label" for="tz">Display timezone</label>
+                  <select class="el-select" id="tz">
+                    <option selected>(UTC-07:00) America/Phoenix</option>
+                    <option>(UTC+00:00) UTC</option>
+                    <option>(UTC+02:00) Europe/Helsinki</option>
+                  </select>
+                </div>
+                <div class="el-field el-field--wide" style="grid-column: 1 / -1;">
+                  <label class="el-label" for="digest">Incident digest template</label>
+                  <textarea class="el-textarea" id="digest" rows="4">On {{date}} at {{time}}, {{service}} {{alert}}. Blast radius: {{hosts}} hosts. Runbook: {{link}}. Current state: {{state}}.</textarea>
+                  <span class="el-hint">Used for the daily 09:00 digest. 328 characters, 3 placeholders unresolved. <span class="el-spinner" role="progressbar" aria-label="Validating template"></span> validating…</span>
+                </div>
+                <div class="el-field">
+                  <label class="el-label" for="find">Find a member</label>
+                  <span class="el-search-field"><input class="el-search" id="find" type="search" placeholder="Search by email…" /></span>
+                </div>
+                <div class="el-field">
+                  <label class="el-label" for="def-route">Default alert route</label>
+                  <div class="el-dropdown" tabindex="0">Slack · #on-call-brightcart <svg class="el-icon"><use href="../../../assets/icons.svg#el-i-chevron-down"/></svg></div>
+                </div>
+              </div>
+              <div class="el-card-foot">
+                <button class="el-btn" data-toast="Profile saved (draft until you hit Save)" data-toast-variant="ok">Save changes</button>
+                <button class="el-btn el-btn--ghost" data-toast="Reverted to last saved profile">Revert</button>
+              </div>
+            </div>
+          </section>
+
+          <section class="el-section el-section--flush" style="padding: 0;">
+            <div class="el-section-head">
+              <div><p class="el-eyebrow">Fleet</p><h2 style="font-size: var(--el-fs-xl);">Agents</h2></div>
+              <div class="actions"><span class="el-pill"><span class="el-status-dot ok" data-state="ok"></span>146 up · 2 flapping</span></div>
+            </div>
+            <div class="el-card">
+              <div class="el-fact-grid" style="grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: var(--el-space-3);">
+                <div class="el-fact"><span class="k">sampling</span><span class="v">adaptive</span></div>
+                <div class="el-fact"><span class="k">agent channel</span><span class="v">v4-stable</span></div>
+                <div class="el-fact is-hot"><span class="k">ceiling date</span><span class="v">Nov 19</span></div>
+              </div>
+              <div class="fields-row" style="display:grid; grid-template-columns: 1fr 1fr; gap: var(--el-space-4); margin-top: var(--el-space-4);">
+                <div class="el-field">
+                  <span class="el-label">Update channel</span>
+                  <div class="el-segmented" role="tablist" aria-label="Update channel">
+                    <button class="on" aria-selected="true">v4-stable</button>
+                    <button>candidate</button>
+                    <button>nightly</button>
+                  </div>
+                  <span class="el-hint">Candidate gets releases ~5 days early.</span>
+                </div>
+                <div class="el-field">
+                  <label class="el-label" for="retention">Local buffer retention</label>
+                  <div class="ctl-with-val" style="display:flex; align-items:center; gap:12px;">
+                    <input class="el-slider" id="retention" type="range" min="5" max="120" value="45" step="5" style="flex:1;" aria-label="Local buffer retention in minutes" />
+                    <span class="el-slider-val"><span class="val">45</span> min</span>
+                  </div>
+                  <span class="el-hint">How long the agent holds data when uplink is down. 45 minutes covered the Oct 17 brownout.</span>
+                </div>
+              </div>
+              <div class="options-block" style="display:grid; gap: var(--el-space-3); margin-top: var(--el-space-4);">
+                <div class="opt-line" style="display:flex; align-items:center; gap:10px;">
+                  <span class="el-switch on" role="switch" aria-checked="true"></span>
+                  <span class="opt-copy"><span style="font-size: var(--el-fs-md);">Per-environment sampling</span> <span class="el-badge">recommended</span><div style="font-size: var(--el-fs-sm); color: var(--el-mute);">Cut series count ~40% by sampling staging traffic.</div></span>
+                </div>
+                <div class="opt-line" style="display:flex; align-items:center; gap:10px;">
+                  <span class="el-switch" role="switch" aria-checked="false"></span>
+                  <span class="opt-copy"><span style="font-size: var(--el-fs-md);">Auto-upgrade agents during quiet hours</span><div style="font-size: var(--el-fs-sm); color: var(--el-mute);">02:00–05:00 local host time.</div></span>
+                </div>
+                <div class="opt-line" style="display:flex; align-items:flex-start; gap:10px;">
+                  <span class="el-check on" role="checkbox" aria-checked="true"></span>
+                  <span class="opt-copy"><span style="font-size: var(--el-fs-md);">Include preview namespaces in drift alerts</span><div style="font-size: var(--el-fs-sm); color: var(--el-mute);">Recommended since the Oct 17 incident.</div></span>
+                </div>
+                <div class="opt-line" style="display:flex; align-items:center; gap:10px;">
+                  <span class="el-check" role="checkbox" aria-checked="false"></span>
+                  <span class="opt-copy"><span style="font-size: var(--el-fs-md);">Anonymize hostnames in shared dashboards</span></span>
+                </div>
+                <fieldset class="radios" style="border:0; padding:0; margin: var(--el-space-2) 0 0; display:grid; gap:8px;">
+                  <legend style="font-size: var(--el-fs-sm); color: var(--el-ink-soft); padding:0;">When a series ceiling is hit:</legend>
+                  <label class="el-radio"><input type="radio" name="ceiling" checked><span class="dot"></span>Sample oldest series first</label>
+                  <label class="el-radio"><input type="radio" name="ceiling"><span class="dot"></span>Refuse new series, keep existing</label>
+                  <label class="el-radio"><input type="radio" name="ceiling"><span class="dot"></span>Page a human (never recommended)</label>
+                </fieldset>
+              </div>
+              <div class="el-card-foot">
+                <div class="el-btn-group" role="group" aria-label="Bulk agent actions">
+                  <button class="el-btn el-btn--outline" data-toast="Draining 2 flapping agents…">Drain flaps</button>
+                  <button class="el-btn el-btn--outline" data-toast="146 agents pinged — 146 answered">Ping all</button>
+                  <button class="el-btn" data-toast="Sampling policy applied to 148 agents" data-toast-variant="ok">Apply sampling</button>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="el-section el-section--flush" style="padding: 0;">
+            <div class="el-panel">
+              <div class="el-panel-head">onboarding checklist · 3 of 5 done</div>
+              <ol class="el-stepper">
+                <li class="done"><span class="num">✓</span>Install the first collector</li>
+                <li class="done"><span class="num">✓</span>Invite the on-call rota</li>
+                <li class="done"><span class="num">✓</span>Connect Slack</li>
+                <li class="active"><span class="num">4</span>Enable per-environment sampling</li>
+                <li><span class="num">5</span>Set the first SLO</li>
+              </ol>
+              <div class="el-inline-alert el-inline-alert--ok">
+                <div><div class="title">Almost there</div><div class="body">Finishing step 4 lifts you under the 62% cardinality mark and clears the warning banner above.</div></div>
+              </div>
+              <div class="el-skeleton-block" style="margin-top: var(--el-space-3); display:grid; gap:8px;">
+                <div class="el-skeleton text" style="width: 70%;"></div>
+                <div class="el-skeleton text" style="width: 46%;"></div>
+              </div>
+              <div class="actions" style="margin-top: var(--el-space-3); display:flex; gap:10px; align-items:center;">
+                <button class="el-btn el-btn--outline" data-toast="Sampling dry-run in progress (no alerts)"><svg class="el-icon"><use href="../../../assets/icons.svg#el-i-download"/></svg>Dry-run first</button>
+                <button class="el-btn" data-toast="Sampling policy applied to 148 agents" data-toast-variant="ok">Apply sampling</button>
+                <div class="el-menu-anchor">
+                  <button class="el-btn el-btn--ghost" data-menu="menu-more" aria-haspopup="true">More <svg class="el-icon"><use href="../../../assets/icons.svg#el-i-chevron-down"/></svg></button>
+                  <div class="el-menu" id="menu-more" role="menu" aria-label="More actions">
+                    <div class="el-menu-label">Batch tools</div>
+                    <button class="el-menu-item" data-toast="CSV export of 148 agents queued">Export agents as CSV</button>
+                    <button class="el-menu-item" data-toast="Copy command loaded — paste on any host">Copy install command <span class="hint">⌘C</span></button>
+                    <div class="el-menu-sep" role="separator"></div>
+                    <button class="el-menu-item is-danger" data-toast="Reset only resets settings, never data">Reset workspace settings</button>
+                  </div>
+                </div>
+                <span class="el-pill">4 of 5 steps</span>
+              </div>
+            </div>
+          </section>
+
+          <section class="el-section el-section--flush" style="padding: 0;">
+            <div class="el-section-head">
+              <div><p class="el-eyebrow">Danger zone</p><h2 style="font-size: var(--el-fs-xl);">Deactivate workspace</h2></div>
+            </div>
+            <div class="el-card el-card--flat">
+              <p class="sub" style="margin:0 0 var(--el-space-3);">Deactivation pauses data ingest and alerts for 14 days, then deletes everything. Export first; the export includes the 13-month metric archive.</p>
+              <div class="actions" style="display:flex; gap:10px; align-items:center;">
+                <button class="el-btn el-btn--danger" data-dialog-open="dlg-deactivate">Deactivate Brightcart workspace</button>
+                <span class="el-pill" data-tip="Last export: Oct 30, 2026 (4.2 GB)" tabindex="0"><svg class="el-icon"><use href="../../../assets/icons.svg#el-i-download"/></svg>export available</span>
+              </div>
+            </div>
+          </section>
+
+          <div class="el-pagination" data-page-source="#acct-pages" data-page-size="2" style="margin-top: var(--el-space-2);">
+            <button class="page" data-action="prev" aria-label="Previous settings block">‹ prev</button>
+            <button class="page on" data-action="next">Profile</button>
+            <button class="page" data-action="next">Agents</button>
+            <button class="page" data-action="next" aria-hidden="true" hidden>API keys</button>
+            <span class="info">1 / 2</span>
+          </div>
+        </div>
+      </div>
+
+      <footer class="el-footer">
+        <div class="cols">
+          <div class="col"><span class="label">Product</span><a href="index.html">Monitor</a><a href="catalog.html">Signals</a><a href="app.html">Console</a></div>
+          <div class="col"><span class="label">Fleet</span><a href="account.html">Workspace settings</a><a href="account.html">Billing</a></div>
+          <div class="col"><span class="label">Fine print</span><a href="#">Status</a><a href="#">Security</a><a href="#">DPA</a></div>
+        </div>
+        <div class="small">Settings v4.12 · last save 26 days ago by M. Okonjo</div>
+      </footer>
+    </main>
+  </div>
+</div>
+
+<!-- deactivate confirmation dialog -->
+<dialog class="el-dialog" id="dlg-deactivate" aria-label="Confirm deactivation">
+  <div class="el-dialog-head">
+    <h3 class="el-dialog-title">Deactivate this workspace?</h3>
+    <button class="el-dialog-close" data-dialog-close aria-label="Close"><svg class="el-icon"><use href="../../../assets/icons.svg#el-i-x"/></svg></button>
+  </div>
+  <div class="el-dialog-body">
+    <div class="el-inline-alert el-inline-alert--fail">
+      <div><div class="title">This pauses 148 collectors</div><div class="body">Data ingests stop immediately. After 14 days the workspace and its 13-month archive are deleted for good.</div></div>
+    </div>
+    <div class="el-field">
+      <label class="el-label" for="confirm-name">Type <code>brightcart</code> to confirm</label>
+      <input class="el-input" id="confirm-name" placeholder="brightcart" />
+    </div>
+  </div>
+  <div class="el-dialog-foot">
+    <button class="el-btn el-btn--ghost" data-dialog-close>Cancel</button>
+    <button class="el-btn el-btn--danger" data-toast="Deactivation scheduled: ingest stops in 30 seconds, window open until Nov 17" data-toast-variant="fail" data-dialog-close>Deactivate workspace</button>
+  </div>
+</dialog>
+
+<!-- quick palette for the workspace -->
+<div class="el-command" id="cmd-acct" role="dialog" aria-label="Quick find">
+  <div class="el-command-panel">
+    <input class="el-command-input" placeholder="Search agents, settings, actions…" autocomplete="off" />
+    <div class="el-command-results">
+      <div class="el-command-group">Agents</div>
+      <button class="el-command-row sel" data-value="web05"><span>web-05 · pdx-1</span><span class="key">ok</span></button>
+      <button class="el-command-row" data-value="wkr12"><span>wkr-12 · den-2</span><span class="key">drained</span></button>
+      <button class="el-command-row" data-value="edge11"><span>edge-11 · ams-3</span><span class="key">warn</span></button>
+      <div class="el-command-group">Settings</div>
+      <button class="el-command-row" data-value="retn"><span>Retention policy</span><span class="key">45 d</span></button>
+      <button class="el-command-row" data-value="sso"><span>SSO &amp; billing owner</span><span class="key">IT</span></button>
+      <div class="el-command-empty">No agent or setting matches — try "drain" or "retention".</div>
+      <div class="el-command-foot"><span><kbd class="el-kbd">↑↓</kbd> navigate</span><span><kbd class="el-kbd">↵</kbd> run</span><span><kbd class="el-kbd">esc</kbd> close</span></div>
+    </div>
+  </div>
+</div>
+
+<script>
+window.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('[data-banner-close]').forEach(b =>
+    b.addEventListener('click', () => b.closest('.el-banner')?.classList.add('is-dismissed')));
+  document.querySelectorAll('[data-sidebar-toggle]').forEach(b =>
+    b.addEventListener('click', () => b.closest('.el-sidebar')?.classList.toggle('collapsed')));
+  const q = new URLSearchParams(location.search).get('open');
+  if (q && window.Elements) {
+    const t = document.getElementById(q);
+    if (t && t.classList.contains('el-dialog') && window.Elements.openDialog) window.Elements.openDialog(t);
+    if (t && t.classList.contains('el-command') && window.Elements.openCommand) window.Elements.openCommand(t);
+  }
+});
+</script>
+</body>
+</html>

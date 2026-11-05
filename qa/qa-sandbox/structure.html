@@ -1,0 +1,406 @@
+<!doctype html>
+<html lang="en" data-theme="neutral">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Structure sandbox — group 1 + surface rows</title>
+<link rel="stylesheet" href="../../base.css">
+<link rel="stylesheet" href="../../fonts.css">
+<link rel="stylesheet" href="../../tokens.css">
+<link rel="stylesheet" href="../../tokens-v2.css">
+<link rel="stylesheet" href="../../elements-display.css">
+<link rel="stylesheet" href="../../elements-lists.css">
+<link rel="stylesheet" href="../../elements-controls.css">
+<link rel="stylesheet" href="../../elements-inputs.css">
+<link rel="stylesheet" href="../../elements-dataviz.css">
+<link rel="stylesheet" href="../../elements-containers.css">
+<link rel="stylesheet" href="../../elements-structure.css">
+<link rel="stylesheet" href="../../elements-interactions.css">
+<link rel="stylesheet" href="../../elements-misc.css">
+<link rel="stylesheet" href="../../elements-size.css">
+<link rel="stylesheet" href="../../elements-workflow.css">
+<link rel="stylesheet" href="../../elements-inspector.css">
+<link rel="stylesheet" href="../../elements-reader.css">
+<link rel="stylesheet" href="../../themes.css">
+<style>
+  .spec { display: grid; gap: 10px; margin-bottom: 44px; }
+  .spec > .t { font-family: var(--el-font-mono); font-size: var(--el-fs-xs); color: var(--el-mute); letter-spacing: var(--el-label-tracking); text-transform: uppercase; }
+  .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; align-items: start; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; align-items: stretch; }
+  .rail-shell { display: grid; grid-template-columns: var(--el-rail-w) 1fr; border: 1px solid var(--el-edge); border-radius: var(--el-r-md); overflow: clip; min-height: 300px; }
+  .side-shell { display: grid; grid-template-columns: var(--el-rail-w) 1fr; border: 1px solid var(--el-edge); border-radius: var(--el-r-md); overflow: clip; min-height: 340px; position: relative; max-height: 380px; }
+  .plate-1 { background: radial-gradient(120% 140% at 20% 10%, color-mix(in oklab, var(--el-teal) 55%, var(--el-info)) 0%, color-mix(in oklab, var(--el-panel) 88%, var(--el-bg)) 72%); }
+  .plate-2 { background: radial-gradient(140% 120% at 80% 20%, color-mix(in oklab, var(--el-accent) 42%, var(--el-fail)) 0%, color-mix(in oklab, var(--el-panel) 92%, var(--el-bg)) 70%); }
+  .plate-3 { background: conic-gradient(from 210deg at 30% 70%, color-mix(in oklab, var(--el-info) 55%, var(--el-panel)), color-mix(in oklab, var(--el-teal) 45%, var(--el-panel)), color-mix(in oklab, var(--el-accent) 40%, var(--el-panel)), color-mix(in oklab, var(--el-info) 55%, var(--el-panel))); }
+</style>
+</head>
+<body>
+<main class="el-page" style="padding-bottom:var(--el-space-6)">
+
+  <!-- banner row -->
+  <div class="spec" id="specs-banner">
+    <p class="t">banner — dismissible announcement bar</p>
+    <div class="el-banner" id="b1">
+      <span class="glyph">◆</span>
+      <span class="copy"><b>v0.4.0 structure</b> <span class="detail">new structural slots land tonight — pages restyle without markup changes.</span></span>
+      <a class="action" href="#b1">Review</a>
+      <button class="close" type="button" onclick="dismiss('b1')" aria-label="Dismiss">✕</button>
+    </div>
+    <div class="el-banner el-banner--info" id="b2">
+      <span class="glyph">ⓘ</span>
+      <span class="copy"><b>Scheduled maintenance</b> <span class="detail">Saturday 03:00–04:00 UTC.</span></span>
+      <button class="close" type="button" onclick="dismiss('b2')" aria-label="Dismiss">✕</button>
+    </div>
+    <div class="grid-2" style="align-items:stretch">
+      <div class="el-banner el-banner--warn is-dismissed" id="b3">
+        <span class="glyph">▲</span>
+        <span class="copy"><b>Quota at 85%</b> <span class="detail">add capacity before Friday.</span></span>
+        <button class="close" type="button" onclick="undismiss('b3')" aria-label="Restore">↺</button>
+      </div>
+      <div class="el-banner el-banner--fail" id="b4">
+        <span class="glyph">✕</span>
+        <span class="copy"><b>Sync failed</b> <span class="detail">retrying in 4 minutes.</span></span>
+        <button class="action" type="button">Retry now</button>
+        <button class="close" type="button" aria-label="Dismiss" disabled>✕</button>
+      </div>
+      <div class="el-banner el-banner--ok" id="b5">
+        <span class="glyph">✓</span>
+        <span class="copy"><b>Backup verified</b> <span class="detail">14,203 objects checked.</span></span>
+        <button class="close" type="button" aria-label="Dismiss" disabled>✕</button>
+      </div>
+      <nav class="el-banner el-banner--attached" aria-label="attached">
+        <span class="glyph">▤</span>
+        <span class="copy"><strong>Attached</strong> <span class="detail">window-attached, square corners.</span></span>
+        <button class="close" type="button" aria-label="Dismiss" disabled>✕</button>
+      </nav>
+    </div>
+  </div>
+
+  <!-- navbar top -->
+  <div class="spec" id="specs-nav-top">
+    <p class="t">navbar --top (sticky app bar)</p>
+    <nav class="el-navbar el-navbar--top">
+      <a class="brand" href="#top"><span>Framework</span></a>
+      <span class="links">
+        <a href="#top" aria-current="page">Overview</a>
+        <a href="#top">Components</a>
+        <a href="#top">Themes</a>
+        <a href="#top" aria-disabled="true">Enterprise</a>
+      </span>
+      <span class="actions">
+        <button class="el-btn el-btn--ghost" style="min-height:34px">Log in</button>
+        <button class="el-btn" style="min-height:34px">Get started</button>
+      </span>
+    </nav>
+  </div>
+
+  <!-- headerbar -->
+  <div class="spec" id="specs-headerbar">
+    <p class="t">navbar --headerbar (GTK6 window-attached)</p>
+    <div style="border:1px solid var(--el-edge);border-radius:var(--el-r-md) var(--el-r-md) 0 0;overflow:clip">
+      <header class="el-navbar el-navbar--headerbar">
+        <span class="lead">
+          <button class="el-btn el-btn--ghost" style="min-height:30px;padding:4px 10px">‹ Back</button>
+          <button class="el-btn el-btn--ghost" style="min-height:30px;padding:4px 10px">New</button>
+        </span>
+        <span class="title-block">
+          <span class="title">Ledger — November</span>
+          <span class="subtitle">12 invoices · 2 drafts</span>
+        </span>
+        <span class="end">
+          <span class="el-pill live">synced</span>
+          <button class="el-btn" style="min-height:30px">Share</button>
+        </span>
+      </header>
+      <div style="padding:var(--el-space-4);background:var(--el-panel)">window content plane</div>
+    </div>
+  </div>
+
+  <!-- rail -->
+  <div class="spec" id="specs-rail">
+    <p class="t">navbar --rail (dock rail)</p>
+    <div class="rail-shell">
+      <nav class="el-navbar el-navbar--rail">
+        <a class="brand" href="#top"><span>W</span></a>
+        <span class="links">
+          <a href="#top" aria-current="page">Home</a>
+          <a href="#top">Files</a>
+          <a href="#top">Media</a>
+          <a href="#top" aria-disabled="true">Trash</a>
+        </span>
+        <span class="actions">
+          <button class="el-btn" style="min-height:32px">Settings</button>
+        </span>
+      </nav>
+      <div style="padding:var(--el-space-4);background:var(--el-bg)">content plane</div>
+    </div>
+  </div>
+
+  <!-- sidebar -->
+  <div class="spec" id="specs-sidebar">
+    <p class="t">sidebar — section list, collapsible groups + collapsed rail</p>
+    <div class="side-shell">
+      <aside class="el-sidebar" id="side1">
+        <div class="head"><a class="brand" href="#top"><span class="txt">Desk</span></a></div>
+        <div class="grp">
+          <div class="label"><span>Workspace</span></div>
+          <a href="#top" aria-current="page"><span>◈</span><span class="txt">Overview</span><span class="end">12</span></a>
+          <a href="#top"><span>◇</span><span class="txt">Research</span><span class="end">38</span></a>
+          <a href="#top" aria-disabled="true"><span>◱</span><span class="txt">Archive</span></a>
+        </div>
+        <details class="grp" open>
+          <summary><span class="txt">Collections</span><span class="chev"></span></summary>
+          <a href="#top"><span>◆</span><span class="txt">Sources</span><span class="end">142</span></a>
+          <a href="#top"><span>▤</span><span class="txt">Notes</span><span class="end">27</span></a>
+          <button type="button"><span>▣</span><span class="txt">Corpus</span><span class="end">3</span></button>
+        </details>
+        <div class="grp">
+          <div class="label"><span>System</span></div>
+          <a href="#top"><span>⚙</span><span class="txt">Settings</span></a>
+          <a href="#top"><span>⌘</span><span class="txt">Keyboard</span><span class="end">⌘K</span></a>
+        </div>
+        <button class="toggle" type="button" style="margin-top:auto" onclick="side1.classList.toggle('collapsed')" aria-label="Collapse sidebar"><span class="chev"></span></button>
+      </aside>
+      <div style="padding:var(--el-space-4);background:var(--el-bg);display:grid;gap:var(--el-space-3);align-content:start">
+        <button class="el-btn" style="width:fit-content;min-height:32px" onclick="side1.classList.toggle('collapsed')">Toggle collapse</button>
+        <p style="margin:0;color:var(--el-ink-soft);max-width:var(--el-measure)">Sticky sidebar with group labels and a collapsible Collections group. The toggle button shrinks the rail to icons; details/summary gives the collapse affordance.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- heroes -->
+  <div class="spec" id="specs-heroes">
+    <p class="t">hero --left · --centered</p>
+    <div class="grid-2">
+      <header class="el-hero el-hero--left" style="border:1px solid var(--el-edge);border-radius:var(--el-r-lg)">
+        <p class="el-eyebrow">Structural slot</p>
+        <h1>Build the page frame once</h1>
+        <p>Left anatomy: eyebrow, display line, lede at measure, action cluster.</p>
+        <span class="actions">
+          <button class="el-btn">Primary</button>
+          <button class="el-btn el-btn--ghost">Ghost</button>
+        </span>
+      </header>
+      <header class="el-hero el-hero--centered" style="border:1px solid var(--el-edge);border-radius:var(--el-r-lg)">
+        <p class="el-eyebrow">Release 24</p>
+        <h1>Centered display anatomy</h1>
+        <p>Everything centers under the balance-wrapped display line.</p>
+        <span class="actions">
+          <button class="el-btn">Ship it</button>
+          <a class="el-btn el-btn--ghost" href="#top">Docs</a>
+        </span>
+      </header>
+    </div>
+  </div>
+
+  <div class="spec" id="specs-split">
+    <p class="t">hero --split (copy + media plate)</p>
+    <header class="el-hero el-hero--split" style="border:1px solid var(--el-edge);border-radius:var(--el-r-lg)">
+      <span class="copy">
+        <p class="el-eyebrow">Split anatomy</p>
+        <h1>Copy beside a framed media plate</h1>
+        <p>The copy column keeps its measure while the plate fills the row.</p>
+        <span class="actions">
+          <button class="el-btn">Explore</button>
+          <button class="el-btn el-btn--ghost">Watch film</button>
+        </span>
+      </span>
+      <span class="media"><span class="fill plate-1"></span></span>
+    </header>
+  </div>
+
+  <div class="spec" id="specs-poster">
+    <p class="t">hero --poster (full-bleed media + scrim)</p>
+    <header class="el-hero el-hero--poster" style="border-radius:var(--el-r-lg)">
+      <span class="media"><span class="fill plate-3"></span></span>
+      <p class="el-eyebrow">Poster anatomy</p>
+      <h1>Lede sits on an ink-safe scrim</h1>
+      <p>The scrim is a bg-derived gradient, so any theme keeps contrast.</p>
+      <span class="actions">
+        <button class="el-btn">Start now</button>
+        <button class="el-btn el-btn--ghost">See pricing</button>
+      </span>
+    </header>
+  </div>
+
+  <!-- sections -->
+  <div class="spec" id="specs-sections">
+    <p class="t">section shell (+ dense)</p>
+    <section class="el-section" style="border:1px solid var(--el-edge);border-radius:var(--el-r-lg);padding-inline:var(--el-space-5)">
+      <h2>Section shell</h2>
+      <p>Heading, body at measure, and an action cluster — the demo-site workhorse.</p>
+      <div class="el-section-head"><h3>Inner head device</h3><span class="rule"></span></div>
+      <span class="actions">
+        <button class="el-btn el-btn--ghost">Learn more</button>
+        <a href="#top">Read the docs</a>
+      </span>
+    </section>
+    <section class="el-section el-section--dense" style="border:1px solid var(--el-edge);border-radius:var(--el-r-lg);padding-inline:var(--el-space-5)">
+      <h3>Dense section</h3>
+      <p>Reduced block padding for editorial stacks.</p>
+    </section>
+  </div>
+
+  <!-- pricing -->
+  <div class="spec" id="specs-pricing">
+    <p class="t">pricing — plan cards (featured + selectable + plain)</p>
+    <div class="grid-3">
+      <div class="el-pricing">
+        <p class="name">Solo</p>
+        <p class="price">$0<span class="per">/mo</span></p>
+        <ul class="feats">
+          <li>One workspace</li>
+          <li>Community themes</li>
+          <li class="off">SSO + audit log</li>
+        </ul>
+        <span class="cta"><button class="el-btn el-btn--ghost">Start free</button></span>
+        <p class="note">no card required</p>
+      </div>
+      <div class="el-pricing el-pricing--featured">
+        <p class="flag">Most popular</p>
+        <p class="name">Studio</p>
+        <p class="price">$19<span class="per">/mo</span></p>
+        <ul class="feats">
+          <li>Unlimited workspaces</li>
+          <li>All 20 themes</li>
+          <li>Priority support</li>
+        </ul>
+        <span class="cta"><button class="el-btn">Choose Studio</button></span>
+        <p class="note">billed yearly</p>
+      </div>
+      <div class="el-pricing el-pricing--select is-on" tabindex="0" role="radio" aria-checked="true">
+        <p class="name">Team — picked</p>
+        <p class="price">$79<span class="per">/mo</span></p>
+        <ul class="feats">
+          <li>Everything in Studio</li>
+          <li>SSO + audit log</li>
+          <li>Seat pooling</li>
+        </ul>
+        <span class="cta"><button class="el-btn" disabled style="width:100%">Selected</button></span>
+        <p class="note">per 5 seats</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- testimonial -->
+  <div class="spec" id="specs-testimonial">
+    <p class="t">testimonial + compact</p>
+    <div class="grid-2" style="align-items:stretch">
+      <blockquote class="el-testimonial">
+        <p class="quote">We rebuilt the console on the structural slots in an afternoon — the themes did the personality work for us.</p>
+        <span class="attrib">
+          <span class="el-avatar">MK</span>
+          <span class="who"><span class="name">Mara Kell</span><span class="role">Design lead, Northbeam</span></span>
+        </span>
+      </blockquote>
+      <blockquote class="el-testimonial el-testimonial--compact">
+        <p class="q">Hairlines hold at 4K and the focus ring never disappears. That is the whole pitch.</p>
+        <span class="attrib">
+          <span class="who"><span class="name">R. Barham</span><span class="role">Owner</span></span>
+        </span>
+      </blockquote>
+    </div>
+  </div>
+
+  <!-- media band -->
+  <div class="spec" id="specs-band">
+    <p class="t">media band — base / flip / caption</p>
+    <div class="el-media-band">
+      <span class="media"><span class="fill plate-2"></span></span>
+      <span class="body">
+        <p class="label">Case study</p>
+        <h3>Publisher desk at 100+ sources</h3>
+        <p>The band keeps media and copy on one hairline plate with a caption slot.</p>
+        <span class="actions"><button class="el-btn el-btn--ghost">Read the case</button></span>
+      </span>
+    </div>
+    <figure class="el-media-band el-media-band--flip el-media-band--flat" style="margin-left:var(--el-space-5)">
+      <span class="media">
+        <span class="fill plate-1" style="min-height:220px"></span>
+        <figcaption>plate: conic wash — caption slot rides the hairline</figcaption>
+      </span>
+      <span class="body" style="padding-inline:var(--el-space-5) var(--el-space-6)">
+        <p class="label">Flip variant</p>
+        <h3>DOM media first — flip order swaps copy to the left</h3>
+        <p>The flip modifier only swaps the column order.</p>
+      </span>
+    </figure>
+  </div>
+
+  <!-- footer -->
+  <div class="spec" id="specs-footer">
+    <p class="t">footer — columns + small print + colophon</p>
+    <footer class="el-footer" style="border:1px solid var(--el-edge);border-radius:var(--el-r-lg)">
+      <div class="cols">
+        <div class="col">
+          <div class="label">Product</div>
+          <ul>
+            <li><a href="#top">Elements</a></li>
+            <li><a href="#top">Themes</a></li>
+            <li><a href="#top">Sizes</a></li>
+          </ul>
+        </div>
+        <div class="col">
+          <div class="label">Company</div>
+          <ul>
+            <li><a href="#top">About</a></li>
+            <li><a href="#top">Careers</a></li>
+            <li><a href="#top">Contact</a></li>
+          </ul>
+        </div>
+        <div class="col">
+          <div class="label">Legal</div>
+          <ul>
+            <li><a href="#top">Privacy</a></li>
+            <li><a href="#top">Terms</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="small">
+        <span>© 2026 Framework — all rights reserved</span>
+        <span>v0.4.0 · neutral</span>
+      </div>
+      <div class="colophon">Set in the serif reading voice, the colophon is the quiet fine print that sits under the ledger.</div>
+    </footer>
+  </div>
+
+  <!-- empty state completions -->
+  <div class="spec" id="specs-empty">
+    <p class="t">empty state — display base + structure completions</p>
+    <div class="grid-2">
+      <div class="el-empty" style="border:1px dashed var(--el-line);border-radius:var(--el-r-md)">
+        <span class="el-icon">◇</span>
+        <span class="el-title">No sources yet</span>
+        <span class="el-msg">Connect a source to populate the ledger.</span>
+        <span class="el-action"><button class="el-btn" style="min-height:34px">Connect source</button></span>
+      </div>
+      <div class="el-empty" style="border:1px dashed var(--el-line);border-radius:var(--el-r-md)">
+        <span class="el-msg">Legacy anatomy</span>
+        <span class="el-hint">icon + msg + hint without the new slots keeps rendering.</span>
+        <span class="el-skeleton" style="width:70%"></span>
+      </div>
+    </div>
+  </div>
+
+</main>
+<script>
+  document.documentElement.dataset.theme = new URLSearchParams(location.search).get("theme") || "neutral";
+  function dismiss(id) { document.getElementById(id).classList.add("is-dismissed"); }
+  function undismiss(id) { document.getElementById(id).classList.remove("is-dismissed"); }
+  /* ?snap=<id> scrolls a specimen block into view for the QA shot */
+  const Q = new URLSearchParams(location.search);
+  const snap = Q.get("snap");
+  if (snap) { const t = document.getElementById(snap); if (t) t.scrollIntoView({ block: "start" }); }
+  /* ?open=<id> strips is-dismissed so a banner state can be shot */
+  const open = Q.get("open");
+  if (open) { const t = document.getElementById(open); if (t) t.classList.remove("is-dismissed"); }
+  /* ?collapse=1 pre-collapses the sidebar rail */
+  if (Q.get("collapse")) { const t = document.getElementById("side1"); if (t) t.classList.add("collapsed"); }
+  /* ?focus=<selector> programmatic keyboard-style focus for the state-machine shot */
+  const foc = Q.get("focus");
+  if (foc) { const t = document.querySelector(foc); const b = document.querySelector(Q.get("focus2") || foc); if (t) { if (b && b !== t) b.focus(); t.focus(); } }
+  /* keep window height honest for the dpr pass */
+  document.title = document.title + " · " + document.querySelectorAll(".el-hero").length;
+</script>
+</body>
+</html>

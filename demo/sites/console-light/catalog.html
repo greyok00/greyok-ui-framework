@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="en" data-theme="console-light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Collectors — Lodestone</title>
+<link rel="stylesheet" href="../../../base.css">
+<link rel="stylesheet" href="../../../fonts.css">
+<link rel="stylesheet" href="../../../tokens.css">
+<link rel="stylesheet" href="../../../tokens-v2.css">
+<link rel="stylesheet" href="../../../elements-display.css">
+<link rel="stylesheet" href="../../../elements-structure.css">
+<link rel="stylesheet" href="../../../elements-lists.css">
+<link rel="stylesheet" href="../../../elements-app.css">
+<link rel="stylesheet" href="../../../elements-containers.css">
+<link rel="stylesheet" href="../../../elements-controls.css">
+<link rel="stylesheet" href="../../../elements-inputs.css">
+<link rel="stylesheet" href="../../../elements-dataviz.css">
+<link rel="stylesheet" href="../../../elements-overlay.css">
+<link rel="stylesheet" href="../../../elements-interactions.css">
+<link rel="stylesheet" href="../../../elements-misc.css">
+<link rel="stylesheet" href="../../../elements-size.css">
+<link rel="stylesheet" href="../../../elements-workflow.css">
+<link rel="stylesheet" href="../../../elements-inspector.css">
+<link rel="stylesheet" href="../../../elements-reader.css">
+<link rel="stylesheet" href="../../../elements-assistant.css">
+<link rel="stylesheet" href="../../../themes/src/dashboard-light.css">
+<script src="../../../elements.js" defer></script>
+<script src="../../../charts.js" defer></script>
+</head>
+<body class="el-reset">
+<div class="site-shell">
+
+  <nav class="el-navbar el-navbar--rail" aria-label="Lodestone">
+    <a class="brand" href="index.html">
+      <span class="brand-mark" aria-hidden="true">L</span>
+      <span class="brand-label">Lodestone</span>
+    </a>
+    <div class="links">
+      <a href="index.html"><svg class="el-icon"><use href="../../../assets/icons.svg#el-i-search"/></svg>Monitor</a>
+      <a href="catalog.html" aria-current="page"><svg class="el-icon"><use href="../../../assets/icons.svg#el-i-heart"/></svg>Collectors</a>
+      <a href="article.html"><svg class="el-icon"><use href="../../../assets/icons.svg#el-i-edit"/></svg>Postmortems</a>
+      <a href="account.html"><svg class="el-icon"><use href="../../../assets/icons.svg#el-i-user"/></svg>Workspace</a>
+      <a href="app.html"><svg class="el-icon"><use href="../../../assets/icons.svg#el-i-external"/></svg>Console</a>
+    </div>
+    <div class="actions">
+      <button class="el-btn" data-command="cmd-catalog"><svg class="el-icon"><use href="../../../assets/icons.svg#el-i-search"/></svg>Quick find</button>
+      <button class="el-btn el-btn--outline" data-drawer-open="drw-install"><svg class="el-icon"><use href="../../../assets/icons.svg#el-i-plus"/></svg>Install collector</button>
+    </div>
+    <div class="rail-note">
+      <span>42 signal types · 7 platforms</span>
+      <span>catalog synced 4 min ago</span>
+    </div>
+  </nav>
+
+  <div class="site-main">
+    <main class="el-page">
+
+      <section class="el-section">
+        <p class="el-eyebrow">The collector catalog</p>
+        <h1 style="font-size: var(--el-fs-2xl); margin: 0 0 8px;">Pick what Lodestone listens to.</h1>
+        <p style="color: var(--el-ink-soft); max-width: 62ch; margin-top: 0;">Every collector is a small, self-updating agent. Install one per host; it discovers local services on its own and starts reporting in under a minute.</p>
+        <div class="actions" style="margin-top: var(--el-space-4); display:flex; flex-wrap:wrap; gap:10px; align-items:center;">
+          <span class="el-search-field" style="max-width: 320px;">
+            <input class="el-search" type="search" placeholder="Search 42 collectors…" aria-label="Search collectors" />
+          </span>
+          <button class="el-chip is-selected" aria-pressed="true">all (42)</button>
+          <button class="el-chip" aria-pressed="false">linux (14)</button>
+          <button class="el-chip" aria-pressed="false">kubernetes (9)</button>
+          <button class="el-chip" aria-pressed="false">databases (7)</button>
+          <button class="el-chip" aria-pressed="false">cloud (6)</button>
+          <button class="el-chip" aria-pressed="false">network (4)</button>
+          <button class="el-chip" aria-pressed="false"><svg class="el-icon"><use href="../../../assets/icons.svg#el-i-plus"/></svg>request one</button>
+        </div>
+      </section>
+
+      <section class="el-section el-section--dense">
+        <div class="el-section-head">
+          <div>
+            <p class="el-eyebrow">Most installed this month</p>
+            <h2>Popular collectors</h2>
+          </div>
+          <div class="actions">
+            <span class="el-pill"><span class="el-status-dot live" data-state="live"></span>3,214 installed now</span>
+          </div>
+        </div>
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:var(--el-space-3);">
+          <article class="el-card el-card--raised is-interactive">
+            <div class="el-card-foot" style="margin:0; padding:0; border:0; justify-content:space-between;">
+              <span class="el-avatar" aria-hidden="true">n</span>
+              <span class="el-badge">v4.12</span>
+            </div>
+            <h3 style="margin-top: var(--el-space-3);">Postgres Deep Probe</h3>
+            <p class="sub">Waits, locks, replication lag, bloat. Knows 11 ways your primary can quietly die.</p>
+            <div class="el-stat-row" style="align-items:center;">
+              <span class="el-status-dot ok" data-state="ok"></span><span style="font-size: var(--el-fs-sm); color: var(--el-ink-soft);">912,340 installs</span>
+            </div>
+            <div class="el-card-foot">
+              <button class="el-btn" data-toast="Postgres Deep Probe scheduled — lands with agent v4.13">Install</button>
+              <button class="el-btn el-btn--ghost" data-drawer-open="drw-pg">Details</button>
+            </div>
+          </article>
+          <article class="el-card el-card--raised is-interactive">
+            <div class="el-card-foot" style="margin:0; padding:0; border:0; justify-content:space-between;">
+              <span class="el-avatar" aria-hidden="true">k</span>
+              <span class="el-badge">v4.12</span>
+            </div>
+            <h3 style="margin-top: var(--el-space-3);">K8s Pod Sweeper</h3>
+            <p class="sub">Per-pod CPU throttling, restart storms, eviction reasons. No sidecar containers.</p>
+            <div class="el-stat-row" style="align-items:center;">
+              <span class="el-status-dot ok" data-state="ok"></span><span style="font-size: var(--el-fs-sm); color: var(--el-ink-soft);">731,006 installs</span>
+            </div>
+            <div class="el-card-foot">
+              <button class="el-btn" data-toast="K8s Pod Sweeper scheduled — lands with agent v4.13">Install</button>
+              <button class="el-btn el-btn--ghost" data-toast="Pod Sweeper docs open in the console">Docs</button>
+            </div>
+          </article>
+          <article class="el-card el-card--raised is-interactive">
+            <div class="el-card-foot" style="margin:0; padding:0; border:0; justify-content:space-between;">
+              <span class="el-avatar" aria-hidden="true">d</span>
+              <span class="el-badge"><svg class="el-icon"><use href="../../../assets/icons.svg#el-i-clock"/></svg> beta</span>
+            </div>
+            <h3 style="margin-top: var(--el-space-3);">Disk Forecaster</h3>
+            <p class="sub">Predicts disk-full to the hour using your own growth curve, then tells you which log did it.</p>
+            <div class="el-stat-row" style="align-items:center;">
+              <span class="el-status-dot running" data-state="running"></span><span style="font-size: var(--el-fs-sm); color: var(--el-ink-soft);">88,120 installs · rolling out</span>
+            </div>
+            <div class="el-card-foot">
+              <button class="el-btn" data-toast="Disk Forecaster queued for your 3 DB hosts">Install</button>
+              <button class="el-btn el-btn--ghost" data-drawer-open="drw-pg">Details</button>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="el-section">
+        <div class="el-section-head">
+          <div>
+            <p class="el-eyebrow">Everything else</p>
+            <h2>Full catalog</h2>
+          </div>
+          <div class="actions">
+            <span class="el-pill">viewing 1–6 of 42</span>
+            <button class="el-btn el-btn--ghost" data-toast="Catalog API: GET /v1/collectors?platform=linux">Export list</button>
+          </div>
+        </div>
+        <div class="table-scroll">
+          <table class="el-table el-table--bank" data-page-source="#cat-rows" data-page-size="6">
+            <thead><tr><th>Collector</th><th>Platform</th><th>Installs</th><th class="num">p95 ingest (ms)</th><th>Fleet state</th><th></th></tr></thead>
+            <tbody id="cat-rows">
+              <tr><td>System Sentinel</td><td><span class="el-chip">linux</span></td><td>1,204,551</td><td class="num">12</td><td><span class="el-status-pill ok" data-state="ok">healthy</span></td><td><svg class="el-icon"><use href="../../../assets/icons.svg#el-i-external"/></svg></td></tr>
+              <tr><td>Nginx Traffic Weir</td><td><span class="el-chip">network</span></td><td>655,102</td><td class="num">9</td><td><span class="el-status-pill ok" data-state="ok">healthy</span></td><td><svg class="el-icon"><use href="../../../assets/icons.svg#el-i-external"/></svg></td></tr>
+              <tr><td>Redis Ratchet</td><td><span class="el-chip">databases</span></td><td>408,770</td><td class="num">7</td><td><span class="el-status-pill running" data-state="running">updating</span></td><td><svg class="el-icon"><use href="../../../assets/icons.svg#el-i-external"/></svg></td></tr>
+              <tr><td>AWS Bill Hound</td><td><span class="el-chip">cloud</span></td><td>301,220</td><td class="num">44</td><td><span class="el-status-pill warn" data-state="warn">degraded</span></td><td><svg class="el-icon"><use href="../../../assets/icons.svg#el-i-external"/></svg></td></tr>
+              <tr><td>Golang GC Watcher</td><td><span class="el-chip">linux</span></td><td>212,455</td><td class="num">5</td><td><span class="el-status-pill ok" data-state="ok">healthy</span></td><td><svg class="el-icon"><use href="../../../assets/icons.svg#el-i-external"/></svg></td></tr>
+              <tr><td>Windows Perf Ridge</td><td><span class="el-chip">windows</span></td><td>88,432</td><td class="num">21</td><td><span class="el-status-pill queued" data-state="idle">queued</span></td><td><svg class="el-icon"><use href="../../../assets/icons.svg#el-i-external"/></svg></td></tr>
+              <tr hidden><td>Kafka Corridor</td><td><span class="el-chip">streaming</span></td><td>184,090</td><td class="num">31</td><td><span class="el-status-pill ok" data-state="ok">healthy</span></td><td><svg class="el-icon"><use href="../../../assets/icons.svg#el-i-external"/></svg></td></tr>
+              <tr hidden><td>CUDA Furnace</td><td><span class="el-chip">gpu</span></td><td>40,117</td><td class="num">60</td><td><span class="el-status-pill ok" data-state="ok">healthy</span></td><td><svg class="el-icon"><use href="../../../assets/icons.svg#el-i-external"/></svg></td></tr>
+              <tr hidden><td>MySQL Slow Log Tail</td><td><span class="el-chip">databases</span></td><td>398,889</td><td class="num">8</td><td><span class="el-status-pill ok" data-state="ok">healthy</span></td><td><svg class="el-icon"><use href="../../../assets/icons.svg#el-i-external"/></svg></td></tr>
+              <tr hidden><td>Envoy Sidecar Scout</td><td><span class="el-chip">kubernetes</span></td><td>151,336</td><td class="num">14</td><td><span class="el-status-pill ok" data-state="ok">healthy</span></td><td><svg class="el-icon"><use href="../../../assets/icons.svg#el-i-external"/></svg></td></tr>
+              <tr hidden><td>SNMP Fence Reader</td><td><span class="el-chip">network</span></td><td>70,552</td><td class="num">38</td><td><span class="el-status-pill warn" data-state="warn">degraded</span></td><td><svg class="el-icon"><use href="../../../assets/icons.svg#el-i-external"/></svg></td></tr>
+              <tr hidden><td>FreeBSD ZFS Lens</td><td><span class="el-chip">bsd</span></td><td>22,301</td><td class="num">11</td><td><span class="el-status-pill queued" data-state="idle">queued</span></td><td><svg class="el-icon"><use href="../../../assets/icons.svg#el-i-external"/></svg></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="el-pagination" data-page-source="#cat-rows" data-page-size="6" style="margin-top: var(--el-space-3);">
+          <button class="page" data-action="first" aria-label="First page">«</button>
+          <button class="page" data-action="prev" aria-label="Previous page">‹</button>
+          <button class="page on" data-action="next">1</button>
+          <button class="page" data-action="next">2</button>
+          <button class="page" data-action="next">3</button>
+          <button class="page" data-action="next" aria-label="Next page">›</button>
+          <button class="page" data-action="last" aria-label="Last page">»</button>
+          <span class="info">1 / 2</span>
+        </div>
+      </section>
+
+      <section class="el-section el-section--dense">
+        <div class="el-empty" style="max-width: 460px; margin: var(--el-space-5) 0;">
+          <svg class="el-icon"><use href="../../../assets/icons.svg#el-i-search"/></svg>
+          <div class="el-msg">No collector for "Riak" yet</div>
+          <div class="el-hint">24 votes this quarter. Request it and we'll put you on the build list — median time to first beta is 6 weeks.</div>
+          <div class="actions">
+            <button class="el-btn" data-toast="Vote recorded for a Riak collector — you're #25" data-toast-variant="ok">Request a Riak collector</button>
+            <a class="el-btn el-btn--outline" href="article.html">Read how collectors are built</a>
+          </div>
+        </div>
+      </section>
+
+      <footer class="el-footer">
+        <div class="cols">
+          <div class="col"><span class="label">Product</span><a href="index.html">Monitor</a><a href="catalog.html">Signals</a><a href="app.html">Console</a></div>
+          <div class="col"><span class="label">Read</span><a href="article.html">Postmortems</a><a href="article.html">Data stories</a></div>
+          <div class="col"><span class="label">Fleet</span><a href="account.html">Workspace settings</a><a href="account.html">Billing</a></div>
+          <div class="col"><span class="label">Fine print</span><a href="#">Status</a><a href="#">Security</a></div>
+        </div>
+        <div class="small">© 2026 Lodestone Instruments Inc. · catalog build 4.12.0-rc3</div>
+      </footer>
+    </main>
+  </div>
+</div>
+
+<!-- collector detail drawer -->
+<aside class="el-drawer right" id="drw-pg" aria-label="Collector details">
+  <header class="el-drawer-head">
+    <span class="el-avatar" aria-hidden="true">n</span>
+    <div>
+      <strong>Postgres Deep Probe</strong>
+      <div><span class="el-chip">databases</span> <span class="el-badge">v4.12</span></div>
+    </div>
+    <button class="el-drawer-close" data-drawer-close aria-label="Close"><svg class="el-icon"><use href="../../../assets/icons.svg#el-i-close"/></svg></button>
+  </header>
+  <div class="el-drawer-body">
+    <p>Ships with 41 pre-built checks: waits, locks, WAL drift, replication lag, bloat per relation, and the 11 classic death modes of a primary.</p>
+    <div class="el-panel">
+      <div class="el-panel-head">resource cost on host</div>
+      <div class="el-fact-grid">
+        <div class="el-fact"><span class="k">RSS</span><span class="v">38 MB</span></div>
+        <div class="el-fact"><span class="k">CPU mean</span><span class="v">0.7%</span></div>
+        <div class="el-fact"><span class="k">Net out</span><span class="v">1.1 kB/s</span></div>
+      </div>
+    </div>
+    <div class="table-scroll">
+      <table class="el-table el-table--bank">
+        <thead><tr><th>Metric</th><th class="num">Every</th><th>Retention</th></tr></thead>
+        <tbody>
+          <tr><td>Row-level waits</td><td class="num">30s</td><td>13 months</td></tr>
+          <tr><td>Lock graph</td><td class="num">30s</td><td>90 days</td></tr>
+          <tr><td>Bloat, per relation</td><td class="num">6h</td><td>13 months</td></tr>
+          <tr><td>Slow query digests</td><td class="num">1m</td><td>90 days</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <footer class="el-drawer-foot">
+    <button class="el-btn" data-toast="Postgres Deep Probe scheduled — lands with agent v4.13" data-toast-variant="ok">Install on 12 hosts</button>
+    <button class="el-btn el-btn--outline" data-drawer-close>Close</button>
+  </footer>
+</aside>
+
+<!-- install drawer: platform chooser -->
+<aside class="el-drawer right" id="drw-install" aria-label="Install collector">
+  <header class="el-drawer-head">
+    <strong>Install a collector</strong>
+    <button class="el-drawer-close" data-drawer-close aria-label="Close"><svg class="el-icon"><use href="../../../assets/icons.svg#el-i-close"/></svg></button>
+  </header>
+  <div class="el-drawer-body">
+    <div class="el-field">
+      <label class="el-field-label" for="inst-host">Host or IP</label>
+      <div class="el-input-wrap"><input class="el-input" id="inst-host" placeholder="web-04.brightcart.internal" /></div>
+      <span class="el-field-note">The agent discovers nearby services on first boot.</span>
+    </div>
+    <div class="el-field">
+      <label class="el-field-label" for="inst-signal">Signal bundle</label>
+      <select class="el-select" id="inst-signal">
+        <option>Metrics only (recommended first)</option>
+        <option>Metrics + logs</option>
+        <option>Everything, 30-second rollups</option>
+      </select>
+    </div>
+    <div class="el-inline-alert el-inline-alert--info">
+      <div><div class="title">Firewall note</div><div class="body">Outbound TCP 443 only. No inbound ports are opened on your hosts.</div></div>
+    </div>
+  </div>
+  <footer class="el-drawer-foot">
+    <button class="el-btn" data-toast="Install queued for web-04 — first datapoints in ~40s" data-toast-variant="ok">Install collector</button>
+    <button class="el-btn el-btn--ghost" data-drawer-close>Cancel</button>
+  </footer>
+</aside>
+
+<!-- quick-find command palette -->
+<div class="el-command" id="cmd-catalog" role="dialog" aria-label="Quick find">
+  <div class="el-command-panel">
+    <input class="el-command-input" placeholder="Search collectors, hosts, actions…" autocomplete="off" />
+    <div class="el-command-results">
+      <div class="el-command-group">Collectors</div>
+      <button class="el-command-row sel" data-value="pg"><span>Postgres Deep Probe</span><span class="key">912k</span></button>
+      <button class="el-command-row" data-value="k8s"><span>K8s Pod Sweeper</span><span class="key">731k</span></button>
+      <button class="el-command-row" data-value="disk"><span>Disk Forecaster</span><span class="key">88k · beta</span></button>
+      <button class="el-command-row" data-value="riak"><span>Request a Riak collector</span><span class="key">+1</span></button>
+      <div class="el-command-empty">Nothing matches — try "redis" or "nginx".</div>
+    </div>
+    <div class="el-command-foot"><span><kbd class="el-kbd">↑↓</kbd> navigate</span><span><kbd class="el-kbd">↵</kbd> run</span><span><kbd class="el-kbd">esc</kbd> close</span></div>
+  </div>
+</div>
+
+<script>
+window.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('[data-banner-close]').forEach(b =>
+    b.addEventListener('click', () => b.closest('.el-banner')?.classList.add('is-dismissed')));
+  const q = new URLSearchParams(location.search).get('open');
+  if (q && window.Elements) {
+    const t = document.getElementById(q);
+    if (t && t.classList.contains('el-command') && window.Elements.openCommand) window.Elements.openCommand(t);
+    if (t && t.classList.contains('el-drawer') && window.Elements.openDrawer) window.Elements.openDrawer(t);
+  }
+});
+</script>
+</body>
+</html>

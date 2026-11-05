@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en" data-theme="mono-console">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Workspace settings — Ridgeline Systems</title>
+<link rel="stylesheet" href="../../../base.css">
+<link rel="stylesheet" href="../../../fonts.css">
+<link rel="stylesheet" href="../../../tokens.css">
+<link rel="stylesheet" href="../../../elements-display.css">
+<link rel="stylesheet" href="../../../elements-structure.css">
+<link rel="stylesheet" href="../../../elements-lists.css">
+<link rel="stylesheet" href="../../../elements-app.css">
+<link rel="stylesheet" href="../../../elements-containers.css">
+<link rel="stylesheet" href="../../../elements-controls.css">
+<link rel="stylesheet" href="../../../elements-inputs.css">
+<link rel="stylesheet" href="../../../elements-dataviz.css">
+<link rel="stylesheet" href="../../../elements-overlay.css">
+<link rel="stylesheet" href="../../../elements-interactions.css">
+<link rel="stylesheet" href="../../../elements-misc.css">
+<link rel="stylesheet" href="../../../elements-size.css">
+<link rel="stylesheet" href="../../../elements-workflow.css">
+<link rel="stylesheet" href="../../../elements-inspector.css">
+<link rel="stylesheet" href="../../../elements-reader.css">
+<link rel="stylesheet" href="../../../elements-assistant.css">
+<link rel="stylesheet" href="../../../themes/src/tech-mono.css">
+<script src="../../../elements.js" defer></script>
+<script src="../../../charts.js" defer></script>
+</head>
+<body>
+<div class="el-page">
+
+  <nav class="el-navbar el-navbar--top" aria-label="Primary">
+    <a class="brand" href="index.html">Ridgeline</a>
+    <ul class="links">
+      <li><a href="index.html">Console</a></li>
+      <li><a href="catalog.html">Runners</a></li>
+      <li><a href="article.html">Docs</a></li>
+      <li><a href="account.html" aria-current="page">Account</a></li>
+      <li><a href="app.html">App</a></li>
+    </ul>
+    <div class="actions"><span class="el-avatar" aria-hidden="true">DV</span></div>
+  </nav>
+
+  <main>
+    <section class="el-section el-section--flush">
+      <div class="el-banner el-banner--warn">
+        <span class="glyph">!</span>
+        <div class="copy"><strong>Cache island 3 of 6 in rollover</strong> until Thu 02:00 UTC — expect +9s on restores from dublin-1.</div>
+        <button class="action el-btn el-btn--outline" type="button" data-toast="Island status refreshed">Refresh status</button>
+      </div>
+    </section>
+
+    <section class="el-section">
+      <h1 style="margin-top:0;">Workspace settings</h1>
+      <p class="el-hint">Settings apply to the cartwheel-freight workspace. Billing surfaces in the app mock, not here.</p>
+
+      <div class="el-stepper" role="list" aria-label="Workspace setup steps">
+        <li class="done" role="listitem"><span class="num">1</span> Create workspace</li>
+        <li class="done" role="listitem"><span class="num">2</span> Pick runner lanes</li>
+        <li class="active" role="listitem"><span class="num">3</span> Set cache policy</li>
+        <li role="listitem"><span class="num">4</span> Invite team</li>
+      </div>
+    </section>
+
+    <section class="el-section el-section--dense">
+      <div class="el-cluster" style="display:grid;grid-template-columns:3fr 2fr;gap:var(--el-space-4);align-items:start;">
+        <form class="el-panel" style="padding:var(--el-space-4);display:grid;gap:var(--el-space-3);">
+          <h2 style="margin:0;font-size:var(--el-fs-lg);">Identity</h2>
+          <label class="el-field">
+            <span class="el-label">Workspace name</span>
+            <input class="el-input" type="text" value="cartwheel-freight" required>
+            <span class="el-hint">Lowercase, dashes only. This name prefixes every job id.</span>
+          </label>
+          <label class="el-field">
+            <span class="el-label">On-call notes</span>
+            <textarea class="el-textarea" rows="4" placeholder="Who to reach when a lane wedges…">Pager: cartwheel-platform. Escalate after 5m. Lane lockout: ping #ridge-ops.</textarea>
+            <span class="el-hint">Rendered verbatim into job failure emails.</span>
+          </label>
+          <div class="el-field">
+            <span class="el-label">Default runner island</span>
+            <select class="el-select" style="padding:9px 12px;border:1px solid var(--el-line);background:var(--el-panel-2);color:var(--el-ink);border-radius:2px;font-family:var(--el-font-mono);font-size:var(--el-fs-sm);">
+              <option>Portland-2 (nearest, warmest)</option><option>Denver-1</option><option>Ashburn-4</option><option>Dublin-1</option>
+            </select>
+            <span class="el-hint">Jobs can override per-pipeline; this is the fleet default.</span>
+          </div>
+          <label class="el-field">
+            <span class="el-label">Log search</span>
+            <span class="el-search-bar" style="display:inline-flex;flex:1;">
+              <input class="el-search el-search-inline" type="search" placeholder="Filter settings — try cache" aria-label="Search settings">
+            </span>
+          </label>
+
+          <h2 style="margin:var(--el-space-2) 0 0;font-size:var(--el-fs-lg);">Build policy</h2>
+          <div class="el-field">
+            <span class="el-label">Cache writeback</span>
+            <div class="el-segmented" role="group" aria-label="cache writeback">
+              <button class="on" type="button">island + origin</button>
+              <button type="button">island only</button>
+              <button type="button">off</button>
+            </div>
+            <span class="el-hint">Island-only is cheaper; cross-region reads stay available.</span>
+          </div>
+          <label class="el-field">
+            <span class="el-label">
+              <span class="el-switch on" role="switch" aria-checked="true" tabindex="0"><input type="checkbox" checked></span>
+              Kill wedged jobs after 30 minutes
+            </span>
+            <span class="el-hint">Wedge detection reads the timeline stall, not the clock.</span>
+          </label>
+          <div class="el-field">
+            <span class="el-label">Failure email digests</span>
+            <div class="el-check-group" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;">
+              <span class="el-check on"><input type="checkbox" checked></span><span style="font-size:var(--el-fs-sm);color:var(--el-ink-soft);">Compile failures</span>
+              <span class="el-check"><input type="checkbox"></span><span style="font-size:var(--el-fs-sm);color:var(--el-ink-soft);">Queue wedges</span>
+            </div>
+            <span class="el-hint">Digest bundles failures per island; realtime pages go to the on-call email.</span>
+          </div>
+          <div class="el-field">
+            <span class="el-label">Runner arch</span>
+            <div class="el-radio-group" style="display:grid;gap:8px;">
+              <span class="el-radio"><input type="radio" name="arch" checked><span class="dot"></span><span>x86 (default)</span></span>
+              <span class="el-radio"><input type="radio" name="arch"><span class="dot"></span><span>arm64</span></span>
+            </div>
+          </div>
+          <label class="el-field">
+            <span class="el-label">Warmup budget</span>
+            <input class="el-slider" type="range" min="0" max="2000" value="800" step="50">
+            <span class="el-hint">800 GB &middot; covers most monorepos &middot; bump for media trees</span>
+          </label>
+
+          <div class="el-inline-alert el-inline-alert--warn" style="display:flex;gap:10px;align-items:start;">
+            <span class="el-icon" aria-hidden="true">&Delta;</span>
+            <div><strong>Policy conflicts with plan Solo.</strong> Island-only writeback requires the Fleet plan or higher.</div>
+          </div>
+
+          <div class="el-field" data-invalid>
+            <span class="el-label">Retention endpoint</span>
+            <input class="el-input" aria-invalid="true" value="s3://cartwheel-logs//">
+            <span class="el-error">Double slash in bucket path — the ledger will reject it.</span>
+          </div>
+
+          <div style="display:flex;gap:var(--el-space-2);align-items:center;">
+            <button class="el-btn" type="button" data-toast="Workspace settings saved" data-toast-variant="ok">Save changes</button>
+            <div class="el-btn-group" role="group" aria-label="policy presets">
+              <button class="el-btn el-btn--outline" type="button">Strict</button>
+              <button class="el-btn el-btn--outline" type="button">Balanced</button>
+              <button class="el-btn el-btn--outline" type="button">Cheap</button>
+            </div>
+            <button class="el-btn el-btn--ghost" type="button">Discard</button>
+            <button class="el-btn el-btn--danger" type="button" data-dialog-open="delete-ws" style="margin-left:auto;">Delete workspace</button>
+          </div>
+        </form>
+
+        <aside style="display:grid;gap:var(--el-space-3);">
+          <div class="el-panel" style="padding:var(--el-space-3);">
+            <h3 style="margin:0 0 8px;font-size:var(--el-fs-md);">Quick actions</h3>
+            <div style="display:grid;gap:8px;">
+              <button class="el-btn el-btn--squared" type="button" data-toast="Export started — ledger dump in progress">Export ledger (30d)</button>
+              <button class="el-btn el-btn--outline" type="button" data-command="ridgeline-cmd"><span class="el-kbd">/</span>&nbsp;Command bar</button>
+              <button class="el-btn el-btn--ghost" type="button" data-toast="Usage report queued" data-toast-variant="info">Request usage report <span class="el-spinner" aria-hidden="true"></span></button>
+            </div>
+          </div>
+          <div class="el-panel" style="padding:var(--el-space-3);">
+            <h3 style="margin:0 0 8px;font-size:var(--el-fs-md);">Billing</h3>
+            <p class="el-hint" style="margin:0 0 12px;">Oct 2026 — fleet plan, 12 runners.</p>
+            <table class="el-table el-table--ruled" style="width:100%;">
+              <thead><tr><th scope="col">Invoice</th><th scope="col" class="num">Amount</th></tr></thead>
+              <tbody>
+                <tr><td>INV-8891</td><td class="num">$2,204.10</td></tr>
+                <tr><td>INV-8712</td><td class="num">$2,204.10</td></tr>
+                <tr><td>INV-8500</td><td class="num">$2,190.55</td></tr>
+              </tbody>
+            </table>
+            <nav class="el-pagination" aria-label="invoice pages" style="margin-top:12px;">
+              <button class="page disabled" type="button" aria-label="Previous page">&lsaquo;</button>
+              <button class="page on" type="button">1</button>
+              <button class="page" type="button">2</button>
+              <span class="info">1–3 of 41</span>
+              <button class="page" type="button" aria-label="Next page">&rsaquo;</button>
+            </nav>
+          </div>
+          <div class="panel-skeleton" aria-hidden="true">
+            <h3 style="margin:0 0 8px;font-size:var(--el-fs-md);">Next invoice</h3>
+            <div class="el-skeleton" style="height:14px;width:70%;margin-bottom:8px;"></div>
+            <div class="el-skeleton" style="height:14px;width:46%;margin-bottom:8px;"></div>
+            <div class="el-skeleton" style="height:14px;width:58%;"></div>
+          </div>
+          <div class="el-panel" style="padding:var(--el-space-3);">
+            <h3 style="margin:0 0 8px;font-size:var(--el-fs-md);">Pins</h3>
+            <span class="el-pill">cache-island:portland-2</span>
+            <span class="el-badge live" style="margin-left:6px;">rolling</span>
+          </div>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer class="el-footer el-footer--plain">
+    <p class="colophon">Change history for this workspace is in the audit ledger — every edit is signed.</p>
+  </footer>
+
+</div>
+
+<dialog class="el-dialog" id="delete-ws">
+  <div class="el-dialog-head">
+    <h3 class="el-dialog-title">Delete cartwheel-freight?</h3>
+    <button class="el-dialog-close" type="button" aria-label="Close" data-dialog-close>&times;</button>
+  </div>
+  <form class="el-dialog-body" method="dialog">
+    <p style="margin-top:0;">This frees the reserved lanes and <strong>permanently deletes the cache island</strong>. Invoices remain; builds do not.</p>
+  </form>
+  <div class="el-dialog-foot">
+    <button class="el-btn el-btn--ghost" type="button" data-dialog-close>Keep workspace</button>
+    <button class="el-btn el-btn--danger" type="button" data-toast="Deletion scheduled — 7-day grace period" data-toast-variant="fail" data-dialog-close>Schedule deletion</button>
+  </div>
+</dialog>
+
+<div class="el-command" id="ridgeline-cmd" role="dialog" aria-label="Command bar">
+  <div class="el-command-panel">
+    <input class="el-command-input" type="text" placeholder="Type a command…" aria-label="Command input">
+    <div class="el-command-results">
+      <div class="el-command-group">Settings</div>
+      <button class="el-command-row sel" type="button">Save workspace settings <span class="el-command-hint">S</span></button>
+      <button class="el-command-row" type="button">Change cache policy <span class="el-command-hint">C</span></button>
+      <div class="el-command-group">Fleet</div>
+      <button class="el-command-row" type="button">Open runner catalog <span class="el-command-hint">G R</span></button>
+    </div>
+    <div class="el-command-foot"><span class="el-hint">enter to run &middot; esc to close</span></div>
+  </div>
+</div>
+
+</body>
+</html>

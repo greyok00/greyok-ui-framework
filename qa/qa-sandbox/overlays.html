@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en" data-theme="neutral">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Overlay sandbox · el-framework</title>
+<link rel="stylesheet" href="../../fonts.css">
+<link rel="stylesheet" href="../../tokens.css">
+<link rel="stylesheet" href="../../tokens-v2.css">
+<link rel="stylesheet" href="../../base.css">
+<link rel="stylesheet" href="../../elements-structure.css">
+<link rel="stylesheet" href="../../elements-display.css">
+<link rel="stylesheet" href="../../elements-inputs.css">
+<link rel="stylesheet" href="../../elements-controls.css">
+<link rel="stylesheet" href="../../elements-overlay.css">
+</head>
+<body class="el-reset">
+
+<header class="el-demo-bar">
+  <strong>Overlay sandbox</strong>
+  <span>Group 5 — dialog / drawer / popover / tooltip / toast / command / menu</span>
+</header>
+
+<main class="el-page">
+
+  <section class="el-section" id="sec-dialog">
+    <h2>Dialog — native &lt;dialog&gt; panel + ::backdrop scrim</h2>
+    <p>Anatomy: .el-dialog-head (title + .el-dialog-close), .el-dialog-body, .el-dialog-foot. JS: [data-dialog-open]/[data-dialog-close], Esc, focus returns to the opener, scrim clicks close.</p>
+    <div class="el-cluster">
+      <button class="el-btn" id="open-native-dialog" data-dialog-open="dlg-native">Open dialog</button>
+      <button class="el-btn--ghost el-btn" data-dialog-open="dlg-div">Div-mode dialog</button>
+      <button class="el-btn--outline el-btn" data-toast="Snapshot queued" data-toast-variant="ok">Toast · ok</button>
+      <button class="el-btn--danger el-btn" disabled>Disabled · danger</button>
+      <button class="el-btn--squared el-btn">Squared</button>
+    </div>
+    <div class="el-cluster">
+      <div class="el-btn-group">
+        <button class="el-btn">First</button>
+        <button class="el-btn" disabled>Middle off</button>
+        <button class="el-btn">Last</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="el-section" id="sec-drawer">
+    <h2>Drawer — side sheet, slides from its edge</h2>
+    <p>Trigger keeps aria-expanded; scrim = .el-scrim[data-dialog-scrim]; Esc closes; .is-open (+ legacy .open) state classes.</p>
+    <div class="el-cluster">
+      <button class="el-btn" data-drawer-open="dw-right">Drawer → right</button>
+      <button class="el-btn" data-drawer-open="dw-bottom">Drawer ↑ bottom</button>
+      <button class="el-btn" data-drawer-open="dw-top">Drawer ↓ top</button>
+    </div>
+  </section>
+
+  <section class="el-section" id="sec-popover">
+    <h2>Popover — anchored surface (below / --above) + menu anatomy</h2>
+    <div class="el-cluster" style="align-items:flex-start">
+      <div class="el-popover" id="pop-1">
+        <button class="el-btn" aria-haspopup="true">Click for popover</button>
+        <div class="el-pop" role="dialog" aria-label="Finding detail">
+          <h4>Finding detail</h4>
+          <p>auth.login failed 4× from 192.0.2.41 in the last hour. Severity: HIGH.</p>
+        </div>
+      </div>
+      <div class="el-popover el-popover--above" id="pop-2">
+        <button class="el-btn" aria-haspopup="true">Above anchor</button>
+        <div class="el-pop" role="dialog" aria-label="Quick look">
+          <h4>Quick look</h4>
+          <p>Panel pops with fade + 0.97 scale. Reduced-motion = opacity only.</p>
+        </div>
+      </div>
+      <div class="el-menu-anchor" id="menu-1">
+        <button class="el-btn" data-menu="men-1" aria-haspopup="menu" aria-expanded="false">Actions menu</button>
+        <div class="el-menu" id="men-1" role="menu" aria-label="Actions">
+          <div class="el-menu-label">Runbook</div>
+          <button class="el-menu-item" role="menuitem" data-value="run-playbook">
+            <svg aria-hidden="true" width="14" height="14" viewBox="0 0 16 16"><path d="M8 1v14M2 5l6-4 6 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            Run playbook<span class="hint">⌘R</span>
+          </button>
+          <button class="el-menu-item" role="menuitem">Acknowledge</button>
+          <div class="el-menu-sep" role="separator"></div>
+          <button class="el-menu-item" role="menuitem" aria-disabled="true">Suppress (off)</button>
+          <button class="el-menu-item is-danger" role="menuitem">Delete<span class="hint">⌫</span></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="el-section" id="sec-tooltip">
+    <h2>Tooltip — CSS-only hover / focus voice (no JS)</h2>
+    <div class="el-cluster">
+      <span class="el-tooltip" data-tip="Last seen 4 minutes ago"><button class="el-btn">Hover for tooltip</button></span>
+      <span class="el-tooltip el-tooltip--below" data-tip="Below placement"><button class="el-btn--ghost el-btn">Focus me (below)</button></span>
+    </div>
+  </section>
+
+  <section class="el-section" id="sec-toast">
+    <h2>Toast stack — declarative + imperative</h2>
+    <p>[data-toast] pushes through the region; window.elToast.push(msg, variant) is the API; region caps at 5 and animates out via .is-leaving.</p>
+    <div class="el-cluster">
+      <button class="el-btn" data-toast="Snapshot saved to run store" data-toast-variant="ok" id="toast-x3">Push one toast</button>
+      <button class="el-btn--ghost el-btn" data-toast="Sync complete" data-toast-variant="ok" data-toast-duration="0">ok · persistent</button>
+      <button class="el-btn--ghost el-btn" data-toast="Disk above 90%" data-toast-variant="warn">warn</button>
+      <button class="el-btn--ghost el-btn" data-toast="Build failed — check logs" data-toast-variant="fail">fail</button>
+      <button class="el-btn--ghost el-btn" data-toast="Model synced (v2)" data-toast-variant="info">info</button>
+    </div>
+  </section>
+
+  <section class="el-section" id="sec-command">
+    <h2>Command palette — type-to-run</h2>
+    <div class="el-cluster">
+      <button class="el-btn" data-command="cmd-1" id="open-command" aria-haspopup="dialog">Open palette ⌘K</button>
+    </div>
+  </section>
+
+</main>
+
+<!-- scrims (pair with their panel via data-scrim / data-dialog-scrim) -->
+<div class="el-scrim" id="scrim-div" data-dialog-scrim="dlg-div"></div>
+<div class="el-scrim" id="scrim-drawer" data-dialog-scrim="dw-right"></div>
+<div class="el-scrim" id="scrim-drawer-b" data-dialog-scrim="dw-bottom"></div>
+<div class="el-scrim" id="scrim-drawer-t" data-dialog-scrim="dw-top"></div>
+
+<!-- native dialog -->
+<dialog class="el-dialog" id="dlg-native" aria-label="Confirm purge">
+  <div class="el-dialog-head">
+    <h3 class="el-dialog-title">Purge snapshots</h3>
+    <button class="el-dialog-close" data-dialog-close aria-label="Close dialog">×</button>
+  </div>
+  <div class="el-dialog-body">
+    <p>This clears 14 local snapshots from the run store. Snapshots stay on the server.</p>
+    <input class="el-input" placeholder="type PURGE to confirm" autofocus>
+  </div>
+  <div class="el-dialog-foot">
+    <button class="el-btn--ghost el-btn" data-dialog-close>Cancel</button>
+    <button class="el-btn" data-dialog-close>Purge now</button>
+  </div>
+</dialog>
+
+<!-- div-mode dialog + scrim -->
+<div class="el-dialog" id="dlg-div" role="dialog" aria-modal="true" aria-label="Add source" data-scrim="scrim-div">
+  <div class="el-dialog-head">
+    <h3 class="el-dialog-title">Add source</h3>
+    <button class="el-dialog-close" data-dialog-close aria-label="Close dialog">×</button>
+  </div>
+  <div class="el-dialog-body">
+    <p>Div-mode pair: .el-dialog panel + .el-scrim, opened by JS, closed on Esc / scrim click.</p>
+  </div>
+  <div class="el-dialog-foot">
+    <button class="el-btn--outline el-btn" data-dialog-close>Close</button>
+  </div>
+</div>
+
+<!-- drawers -->
+<div class="el-drawer right" id="dw-right" role="dialog" aria-label="Detail sheet" data-scrim="scrim-drawer">
+  <div class="el-drawer-head">Detail sheet <button class="el-dialog-close" data-drawer-close aria-label="Close drawer">×</button></div>
+  <div class="el-drawer-body">
+    <div class="el-field">
+      <span class="el-label">Label</span>
+      <input class="el-input" value="auth.login.failed.admin">
+      <span class="el-hint">Rule path as seen in the last scan</span>
+    </div>
+  </div>
+  <div class="el-drawer-foot">
+    <button class="el-btn--ghost el-btn" data-drawer-close>Cancel</button>
+    <button class="el-btn" data-drawer-close>Save</button>
+  </div>
+</div>
+<div class="el-drawer bottom" id="dw-bottom" role="dialog" aria-label="Log tail"><div class="el-drawer-head">Log tail</div><div class="el-drawer-body"><p>Bottom sheet: 260px tall, slides up.</p></div></div>
+<div class="el-drawer top" id="dw-top" role="dialog" aria-label="Filters"><div class="el-drawer-head">Filters</div><div class="el-drawer-body"><p>Top sheet: slides down.</p></div></div>
+
+<!-- command palette -->
+<div class="el-command" id="cmd-1" role="dialog" aria-modal="true" aria-label="Command palette">
+  <div class="el-command-panel">
+    <input class="el-command-input" placeholder="Type a command…" aria-label="Command palette">
+    <div class="el-command-results" role="listbox" aria-label="Commands">
+      <div class="el-command-group">Navigate</div>
+      <button class="el-command-row" data-command-item data-label="Open findings" data-value="open-findings"><span>Open findings</span><span class="key">⌘F</span></button>
+      <button class="el-command-row" data-command-item data-label="Open timeline" data-value="open-timeline"><span>Open timeline</span><span class="key">⌘T</span></button>
+      <div class="el-command-group">Runs</div>
+      <button class="el-command-row" data-command-item data-label="Run scan now" data-value="run-scan"><span>Run scan now</span><span class="key">R</span></button>
+      <button class="el-command-row" data-command-item data-label="Purge snapshots" data-value="purge-snapshots"><span>Purge snapshots</span><span class="key">P</span></button>
+      <button class="el-command-row" data-command-item data-label="Copy run id" data-value="copy-run-id"><span>Copy run id</span><span class="key">C</span></button>
+    </div>
+    <div class="el-command-empty" hidden>No commands match — Esc to close.</div>
+    <div class="el-command-foot"><kbd>↑↓</kbd> navigate <kbd>↵</kbd> run <kbd>esc</kbd> close</div>
+  </div>
+</div>
+
+<script src="../../elements.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const q = new URLSearchParams(location.search);
+  const show = q.get('show') || '';
+  const has = (s) => show.split(',').includes(s);
+  if (has('dialog')) window.Elements.openDialog('dlg-native', document.getElementById('open-native-dialog'));
+  if (has('divdialog')) window.Elements.openDialog('dlg-div', document.querySelector('[data-dialog-open="dlg-div"]'));
+  if (has('drawer')) {
+    window.Elements.openDrawer(document.getElementById('dw-right'), document.querySelector('[data-drawer-open="dw-right"]'));
+  }
+  if (has('drawer-bottom')) window.Elements.openDrawer(document.getElementById('dw-bottom'));
+  if (has('drawer-top')) window.Elements.openDrawer(document.getElementById('dw-top'));
+  if (has('popover')) {
+    ['pop-1', 'pop-2'].forEach(id => {
+      const p = document.getElementById(id);
+      p.classList.add('is-open', 'open');
+      const t = p.firstElementChild;
+      if (t) t.setAttribute('aria-expanded', 'true');
+    });
+  }
+  if (has('menu')) {
+    const m = document.getElementById('men-1');
+    m.classList.add('is-open');
+    document.querySelector('[data-menu="men-1"]').setAttribute('aria-expanded', 'true');
+  }
+  if (has('command')) window.Elements.command.open('cmd-1', document.getElementById('open-command'));
+  const n = parseInt(q.get('toasts') || '0', 10);
+  const hold = q.has('hold');
+  const msgs = ['Snapshot saved to run store', 'Sync complete — 3 artifacts', 'Scan queued behind lane 2', ];
+  const vars = ['ok', 'info', 'warn'];
+  for (let i = 0; i < n; i++) window.elToast.push(msgs[i % msgs.length], vars[i % vars.length], { duration: hold ? 0 : 4000 });
+  const focusId = q.get('focus');
+  if (focusId) {
+    const el = document.getElementById(focusId);
+    if (el) el.focus();
+  }
+});
+</script>
+</body>
+</html>

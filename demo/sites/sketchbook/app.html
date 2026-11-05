@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="en" data-theme="sketchbook">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sketch Ledger — Poppy Alder app</title>
+<link rel="stylesheet" href="../../../base.css">
+<link rel="stylesheet" href="../../../fonts.css">
+<link rel="stylesheet" href="../../../tokens.css">
+<link rel="stylesheet" href="../../../elements-display.css">
+<link rel="stylesheet" href="../../../elements-structure.css">
+<link rel="stylesheet" href="../../../elements-lists.css">
+<link rel="stylesheet" href="../../../elements-app.css">
+<link rel="stylesheet" href="../../../elements-containers.css">
+<link rel="stylesheet" href="../../../elements-controls.css">
+<link rel="stylesheet" href="../../../elements-inputs.css">
+<link rel="stylesheet" href="../../../elements-dataviz.css">
+<link rel="stylesheet" href="../../../elements-overlay.css">
+<link rel="stylesheet" href="../../../elements-interactions.css">
+<link rel="stylesheet" href="../../../elements-misc.css">
+<link rel="stylesheet" href="../../../elements-size.css">
+<link rel="stylesheet" href="../../../elements-workflow.css">
+<link rel="stylesheet" href="../../../elements-inspector.css">
+<link rel="stylesheet" href="../../../elements-reader.css">
+<link rel="stylesheet" href="../../../elements-assistant.css">
+<link rel="stylesheet" href="../../../themes/src/illustration.css">
+<script src="../../../elements.js" defer></script>
+<script src="../../../charts.js" defer></script>
+</head>
+<body style="padding:12px;">
+<div class="el-page el-page--flush">
+
+  <main>
+    <div class="el-appwin">
+      <div class="el-titlebar">
+        <span class="lead"><span class="el-status-dot live" aria-hidden="true"></span><span class="el-hint" style="margin:0;">ledger synced &middot; clingman studio</span></span>
+        <div class="el-app-title">Sketch Ledger <small>wall five of six</small></div>
+        <div class="winbtns">
+          <span class="el-tooltip" data-tip="Minimize the ledger" tabindex="0">
+            <button class="el-winbtn min" type="button" aria-label="Minimize"></button>
+          </span>
+          <button class="el-winbtn max" type="button" aria-label="Maximize"></button>
+          <button class="el-winbtn close" type="button" aria-label="Close"></button>
+        </div>
+      </div>
+
+      <div class="el-menubar" role="menubar">
+        <div class="el-menu-anchor" style="position:relative;">
+          <button class="el-menubar-item" data-menu="ledger-menu" aria-expanded="false">Ledger</button>
+          <div class="el-menu" id="ledger-menu" role="menu">
+            <div class="el-menu-label">Entries</div>
+            <button class="el-menu-item" type="button">112-F &middot; elevator wall <span class="hint">open</span></button>
+            <button class="el-menu-item" type="button">104 &middot; Radler stairwell <span class="hint">delivered</span></button>
+            <button class="el-menu-item" type="button">Folio &middot; fence post studies <span class="hint">3 of 8 sold</span></button>
+            <div class="el-menu-sep" role="separator"></div>
+            <button class="el-menu-item is-danger" type="button" data-toast="Draft discarded — entry kept" data-toast-variant="fail">Discard draft entry…</button>
+          </div>
+        </div>
+        <button class="el-menubar-item" type="button">Walls</button>
+        <button class="el-menubar-item" type="button" data-command="ledger-cmd-app">Commands</button>
+        <div class="el-menubar-sep" role="separator"></div>
+        <div class="el-menubar-spring"></div>
+        <span class="el-status-pill running" style="margin-right:8px;">1 wall painting</span>
+      </div>
+
+      <div class="el-headerbar">
+        <span class="el-headerbar-label">Paint schedule &middot; this week</span>
+        <span class="spring"></span>
+        <div class="el-popover">
+          <button class="el-btn el-btn--outline" type="button" aria-expanded="false">Filter</button>
+          <div class="el-pop">
+            <h4>Filter the schedule</h4>
+            <label class="check-row" style="display:inline-flex;align-items:center;gap:8px;"><span class="el-check on"><input type="checkbox" checked aria-label="only north face rows"></span>
+            <span style="font-size:var(--el-fs-sm);">north face only</span></label>
+          </div>
+        </div>
+        <label class="el-search-field">
+          <input class="el-search" type="search" placeholder="Search entries" aria-label="Search entries">
+        </label>
+        <span class="el-tooltip" data-tip="Open the entry's provenance card" tabindex="0">
+          <button class="el-btn" type="button">Open archive</button>
+        </span>
+      </div>
+
+      <div class="el-appwin-body pane-split">
+        <aside class="el-sidebar pane-rail">
+          <div class="head">
+            <span class="brand">Wall five</span>
+            <button class="toggle" type="button" aria-label="Collapse sidebar"><span class="chev">&#8964;</span></button>
+          </div>
+          <div class="grp">
+            <span class="label">Ledger</span>
+            <button type="button" aria-current="page">Paint schedule</button>
+            <button type="button">Entries</button>
+            <button type="button">Provenance</button>
+          </div>
+          <div class="grp">
+            <span class="label">Site</span>
+            <button type="button">Lift calendar <span class="el-badge" style="margin-left:auto;">2</span></button>
+            <button type="button">Bucket list</button>
+          </div>
+          <div class="end"><span class="el-hint" style="margin:0;">weather gate friday</span></div>
+        </aside>
+
+        <div class="pane-main">
+          <div class="el-stat-row stat-3up">
+            <div class="el-stat">
+              <span class="el-stat-label">wall painted</span>
+              <span class="el-stat-value">62<small>%</small></span>
+              <span class="el-stat-delta up">9pt</span>
+              <span class="el-sparkline el-chart" data-chart="sparkline" data-values="12,19,26,31,41,48,55,62" data-width="110" data-height="26" data-color="var(--el-accent)"></span>
+            </div>
+            <div class="el-stat">
+              <span class="el-stat-label">grid transfer</span>
+              <span class="el-stat-value">7<small>&nbsp;of 10</small></span>
+              <span class="el-stat-delta flat">&plusmn;0</span>
+              <span class="el-chart" data-chart="line" data-values="1,2,3,4,5,5,6,7" data-width="110" data-height="26" data-color="var(--el-accent)" data-label="columns"></span>
+            </div>
+            <div class="el-stat is-live">
+              <span class="el-stat-label">open briefs</span>
+              <span class="el-stat-value">9</span>
+              <span class="el-stat-note">14 held &middot; 4 january slots</span>
+            </div>
+          </div>
+
+          <div class="el-progress-truth" aria-label="wall pipeline">
+            <span class="el-pt-chunk is-done">study &#10003; <span class="el-pt-count">112-F</span></span>
+            <span class="el-pt-chunk is-done">grid &#10003; <span class="el-pt-count">7/10</span></span>
+            <span class="el-pt-chunk is-running">paint <span class="el-pt-count">62%</span></span>
+            <span class="el-pt-chunk is-stale">trim <span class="el-pt-count">brass queued</span></span>
+            <span class="el-pt-chunk">close-out <span class="el-pt-count">seal + photos</span></span>
+          </div>
+
+          <div class="el-stage-rail">
+            <div class="el-stage is-done"><span class="el-stage-dot"></span><span class="el-stage-name">Truck study &middot; 8&times;24</span><span class="el-dur">1 pass</span></div>
+            <div class="el-stage is-running"><span class="el-stage-dot"></span><span class="el-stage-name">Marker green pass &middot; north face</span><span class="el-stage-count">bucket 2/2</span></div>
+            <div class="el-stage is-queued"><span class="el-stage-dot"></span><span class="el-stage-name">Brass trim</span><span class="el-stage-count">week 3</span></div>
+            <div class="el-stage is-stale"><span class="el-stage-dot"></span><span class="el-stage-name">Seal + graffiti coat</span><span class="el-stage-count">forecast pending</span></div>
+          </div>
+
+          <table class="el-table el-table--ruled">
+            <thead><tr><th scope="col">Entry</th><th scope="col">Wall</th><th scope="col">Schedule state</th><th scope="col" class="num">Paint %</th><th scope="col">&#9654; 8wk</th></tr></thead>
+            <tbody>
+              <tr class="is-selected"><td class="num">112-F</td><td>Elevator, north face</td><td><span class="el-status-dot running" aria-hidden="true"></span> <span class="el-status-pill running">painting</span></td><td class="num">62%</td><td><span class="el-sparkline el-chart" data-chart="sparkline" data-values="12,19,26,31,41,48,55,62" data-width="90" data-height="22" data-color="var(--el-accent)"></span></td></tr>
+              <tr><td class="num">112-E</td><td>Elevator, west face</td><td><span class="el-badge ok">done</span></td><td class="num">100%</td><td><span class="el-chart" data-chart="bar" data-values="40,55,70,80,88,94,98,100" data-width="90" data-height="22" data-color="var(--el-accent)"></span></td></tr>
+              <tr><td class="num">104</td><td>Radler stairwell</td><td><span class="el-badge ok">delivered</span></td><td class="num">100%</td><td><span class="el-chart" data-chart="donut" data-values="100,0" data-width="22" data-height="22" data-color="var(--el-accent)"></span></td></tr>
+              <tr><td class="num">096</td><td>Fence folio</td><td><span class="el-badge warn">3 sold, 1 shelf</span></td><td class="num">—</td><td><span class="el-chart" data-chart="line" data-values="1,2,2,3,4,5,6,7" data-width="90" data-height="22" data-color="var(--el-accent)" data-label="studies"></span></td></tr>
+              <tr><td class="num">088</td><td>Bakery window</td><td><span class="el-badge">archived</span></td><td class="num">100%</td><td><span class="el-sparkline el-chart" data-chart="sparkline" data-values="30,34,38,40,44,46,48,50" data-width="90" data-height="22" data-color="var(--el-accent)"></span></td></tr>
+              <tr><td class="num">112-G</td><td>Seal + coat</td><td><span class="el-status-dot warn" aria-hidden="true"></span> <span class="el-status-pill warn">forecast</span></td><td class="num">—</td><td><span style="display:inline-flex;gap:4px;"><span class="el-skeleton" style="width:34px;height:14px;"></span><span class="el-skeleton" style="width:22px;height:14px;"></span></span></td></tr>
+            </tbody>
+          </table>
+
+          <div class="el-cluster panel-duo">
+            <div class="el-panel" style="padding:var(--el-space-3);">
+              <h3 style="margin:0 0 10px;font-size:var(--el-fs-md);">Bucket pressure</h3>
+              <div class="el-meter" style="--el-meter-value:64%;"><div class="fill"></div></div>
+              <span class="el-meter-label">marker green &middot; bucket 2 of 2 &middot; on the lift</span>
+              <div class="el-meter ok" style="--el-meter-value:100%;margin-top:10px;"><div class="fill"></div></div>
+              <span class="el-meter-label">charcoal &middot; spent, west face done</span>
+              <div class="el-meter warn" style="--el-meter-value:48%;margin-top:10px;"><div class="fill"></div></div>
+              <span class="el-meter-label">brass &middot; unopened &middot; trim line week 3</span>
+              <div class="el-progress" data-animate-to="0" style="margin-top:12px;"><div class="fill" style="width:62%;"></div></div>
+              <span class="el-meter-label">wall five &middot; 62% painted &middot; north face open</span>
+            </div>
+            <div class="el-panel" style="padding:var(--el-space-3);">
+              <h3 style="margin:0 0 10px;font-size:var(--el-fs-md);">Ladder ladder &middot; entry 112-F</h3>
+              <div class="el-ladder" style="min-width:0;">
+                <div class="el-ladder-step is-done"><span class="el-ladder-idx">01</span><span class="el-ladder-label">Truck study drawn</span><span class="el-ladder-meta">1 pass</span></div>
+                <div class="el-ladder-step is-done"><span class="el-ladder-idx">02</span><span class="el-ladder-label">Grid on the wall</span><span class="el-ladder-meta">7/10</span></div>
+                <div class="el-ladder-step is-running"><span class="el-ladder-idx">03</span><span class="el-ladder-label">Marker green pass</span><span class="el-ladder-meta">this week</span></div>
+                <div class="el-ladder-step"><span class="el-ladder-idx">04</span><span class="el-ladder-label">Brass trim</span><span class="el-ladder-meta">queued</span></div>
+                <div class="el-ladder-step is-stale"><span class="el-ladder-idx">05</span><span class="el-ladder-label">Seal + graffiti coat</span><span class="el-ladder-meta">forecast pending</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="el-actionbar">
+            <span class="lead"><span class="el-hint" style="margin:0;">entry 112-F &middot; north face &middot; lift at 22 feet</span></span>
+            <div class="el-menu-anchor" style="position:relative;">
+              <button class="el-btn el-btn--outline" type="button" data-menu="row-menu" aria-expanded="false">Entry actions &#9662;</button>
+              <div class="el-menu" id="row-menu" role="menu">
+                <button class="el-menu-item on" type="button">Log tonight's paint</button>
+                <button class="el-menu-item" type="button" data-toast="Lift week extended to Friday" data-toast-variant="info">Extend lift week</button>
+                <div class="el-menu-sep" role="separator"></div>
+                <button class="el-menu-item is-danger" type="button" data-toast="Entry flagged stale — paint schedule paused" data-toast-variant="fail">Pause the schedule</button>
+              </div>
+            </div>
+            <div class="actions">
+              <button class="el-btn el-btn--ghost" type="button" data-drawer-open="ledger-drawer-app">Open dossier</button>
+              <button class="el-btn el-btn--outline" type="button" data-toast="Photograph queued for tonight's pass" data-toast-variant="info">Log a photo</button>
+              <button class="el-btn" type="button" data-toast="Paint logged — 62% &middot; bucket 2 of 2" data-toast-variant="ok">Log tonight's paint</button>
+            </div>
+          </div>
+
+          <div class="el-tabbar" role="tablist" style="margin-top:auto;">
+            <button class="el-tabbar-item is-active" role="tab" aria-selected="true" type="button"><span class="el-icon">&#9638;</span>Schedule</button>
+            <button class="el-tabbar-item" role="tab" type="button"><span class="el-icon">&#9638;</span>Entries</button>
+            <button class="el-tabbar-item" role="tab" type="button"><span class="el-icon">&#9638;</span>Buckets&nbsp;<span class="count">3</span></button>
+            <button class="el-tabbar-item" role="tab" aria-disabled="true" type="button"><span class="el-icon">&#9638;</span>Archive</button>
+          </div>
+        </div>
+
+        <aside class="pane-aside">
+          <div class="el-listbox" role="listbox" aria-label="Paint today">
+            <div class="el-listbox-header">Paint today &middot; north face</div>
+            <button class="el-listbox-row" role="option" aria-selected="false" type="button"><svg viewBox="0 0 16 16" width="14" height="14" fill="currentColor" aria-hidden="true"><rect x="2" y="2" width="12" height="12"/></svg><span>columns 8&ndash;9 &middot; green</span><span class="count">2h</span></button>
+            <button class="el-listbox-row" role="option" aria-selected="true" type="button"><svg viewBox="0 0 16 16" width="14" height="14" fill="currentColor" aria-hidden="true"><rect x="2" y="2" width="12" height="12"/></svg><span>column 10 &middot; green</span><span class="count">3h</span></button>
+            <button class="el-listbox-row" role="option" aria-selected="false" type="button"><span>B</span><span>fig shadow line &middot; charcoal</span><span class="count">30m</span></button>
+            <button class="el-listbox-row" role="option" aria-selected="false" type="button" aria-disabled="true"><span>T</span><span>brass trim</span><span class="count">week 3</span></button>
+            <button class="el-listbox-row" role="option" aria-selected="false" type="button"><span class="el-skeleton" style="width:56px;height:8px;display:inline-block;"></span><span class="el-skeleton" style="width:80px;height:8px;display:inline-block;margin-left:auto;"></span></button>
+          </div>
+
+          <div class="el-inspector el-inspector--docked is-docked" aria-label="Entry inspector">
+            <div class="el-inspector-header"><span>Entry inspector</span><button class="el-inspector-close" type="button" aria-label="Hide inspector">&times;</button></div>
+            <div class="el-inspector-body">
+              <p style="margin-top:0;font-size:var(--el-fs-sm);color:var(--el-ink-soft);">112-F is the winter wall. Study drawn in one pass, approved same day, gridded at 8.25 feet per study foot.</p>
+              <div class="el-fact-grid facts-2">
+                <div class="el-fact"><span class="k">buckets green</span><span class="v">2</span></div>
+                <div class="el-fact is-hot"><span class="k">painted</span><span class="v">62%</span></div>
+              </div>
+              <label class="el-field" style="margin-top:var(--el-space-3);">
+                <span class="el-label">Weather gate</span>
+                <select class="el-select" style="padding:8px 12px;border-radius:8px 10px 7px 11px;font-size:var(--el-fs-sm);">
+                  <option>Friday close</option><option>Flexible to Monday</option>
+                </select>
+              </label>
+            </div>
+          </div>
+
+          <div class="el-notification-stack" aria-label="Ledger notifications">
+            <article class="el-notification running">
+              <span class="icon"><span class="el-icon">&#9654;</span></span>
+              <div class="head"><span class="title">North face on schedule</span><span class="app">sketch-ledger</span>
+                <button class="close" type="button" aria-label="Dismiss notification">&times;</button></div>
+              <div class="body">Column 10 grids tomorrow morning. Lift stays at 22 feet through the green pass.</div>
+              <span class="time">today</span>
+              <div class="actions"><button type="button" data-toast="Lift calendar updated — north face holds" data-toast-variant="info">Confirm lift</button><button type="button">View grid</button></div>
+            </article>
+            <article class="el-notification fail">
+              <span class="icon"><span class="el-icon">&#215;</span></span>
+              <div class="head"><span class="title">Weather gate closes Friday</span><span class="app">sketch-ledger</span>
+                <button class="close" type="button" aria-label="Dismiss notification">&times;</button></div>
+              <div class="body">Seal wants four dry days. Schedule flexes to Monday; hold the trim line either way.</div>
+              <span class="time">8m ago</span>
+              <div class="actions"><button type="button">Open schedule</button></div>
+            </article>
+            <article class="el-notification ok">
+              <span class="icon"><span class="el-icon">&#10003;</span></span>
+              <div class="head"><span class="title">West face signed off</span><span class="app">sketch-ledger</span>
+                <button class="close" type="button" aria-label="Dismiss notification">&times;</button></div>
+              <div class="body">Charcoal underpainting 100% — bucket spent, entry noted, brush count three</div>
+              <span class="time">yesterday</span>
+            </article>
+          </div>
+
+          <div class="el-toast-region" role="status" aria-live="polite">
+            <div class="el-toast ok"><span>Study approved same day — ledger entry 112-F</span><span class="close" aria-label="Dismiss">&times;</span></div>
+            <div class="el-toast warn"><span>Bucket of brass still taped shut</span><span class="close" aria-label="Dismiss">&times;</span></div>
+          </div>
+
+          <div class="el-assistant-panel" aria-label="Field assistant">
+            <div class="el-assistant-head">Field notes assistant</div>
+            <div class="el-assistant-log">
+              <div class="el-msg el-msg--assistant">
+                The wall is at 62% and the green bucket is on its second half. The only open risk is Friday's weather gate on the seal. Keep the fig shadow line as drawn — it is the one thing the client named. <span class="el-cite-inline">[1][3]</span>
+              </div>
+              <div class="el-msg el-msg--user">Split the week: green pass now, trim after the gate.</div>
+              <div class="el-msg el-msg--assistant is-streaming">Drafting the split week…<span class="el-cite-inline">[1]</span></div>
+              <div class="el-plan">
+                <div class="el-plan-title">Plan &middot; split the week</div>
+                <div class="el-ladder-step is-done"><span class="el-ladder-idx">1</span><span class="el-ladder-label">Hold brass trim</span><span class="el-ladder-meta">queued</span></div>
+                <div class="el-ladder-step is-running"><span class="el-ladder-idx">2</span><span class="el-ladder-label">Finish green pass</span><span class="el-ladder-meta">waiting your OK</span></div>
+              </div>
+            </div>
+            <div class="el-assistant-foot">
+              <span class="el-hint" style="margin:0;">cited from the ledger &middot; no sources = it says so</span>
+              <button class="el-assistant-stop" type="button">Stop</button>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </main>
+
+</div>
+
+<dialog class="el-dialog" id="new-log-dialog">
+  <div class="el-dialog-head">
+    <h3 class="el-dialog-title">Open a new ledger entry</h3>
+    <button class="el-dialog-close" type="button" aria-label="Close" data-dialog-close>&times;</button>
+  </div>
+  <form class="el-dialog-body" method="dialog">
+    <p style="margin-top:0;">Entries start as drafts until the first photo lands. Walls get their own entry; studies join the folio they belong to.</p>
+    <label class="el-field">
+      <span class="el-label">What's being drawn?</span>
+      <input class="el-input" type="text" placeholder="a wall, a study, a bakery window…">
+      <span class="el-hint">The study's light note goes in the same field — the ledger remembers where you stood.</span>
+    </label>
+  </form>
+  <div class="el-dialog-foot">
+    <button class="el-btn el-btn--ghost" type="button" data-dialog-close>Not yet</button>
+    <button class="el-btn" type="button" data-toast="Draft entry opened — first photo locks it" data-toast-variant="ok" data-dialog-close>Open draft entry</button>
+  </div>
+</dialog>
+
+<aside class="el-drawer right" id="ledger-drawer-app" aria-label="Entry dossier" data-scrim="ledger-scrim">
+  <div class="el-drawer-head"><strong>Entry 112-F &middot; dossier</strong></div>
+  <div class="el-drawer-body">
+    <p style="margin-top:0;">The winter wall. One truck study, zero revisions, and the fig shadow line kept as drawn.</p>
+    <div class="el-fact-grid stat-3up">
+      <div class="el-fact"><span class="k">study</span><span class="v">8&times;24</span></div>
+      <div class="el-fact"><span class="k">painted</span><span class="v">62%</span></div>
+      <div class="el-fact is-hot"><span class="k">revisions</span><span class="v">0</span></div>
+    </div>
+  </div>
+  <div class="el-drawer-foot">
+    <button class="el-btn el-btn--ghost" type="button" data-drawer-close="ledger-drawer-app">Close</button>
+    <button class="el-btn" type="button" data-toast="Paint logged for tonight's pass" data-toast-variant="ok">Log tonight's paint</button>
+  </div>
+</aside>
+<div class="el-scrim" id="ledger-scrim" data-dialog-scrim></div>
+
+<div class="el-command" id="ledger-cmd-app" role="dialog" aria-label="Command bar">
+  <div class="el-command-panel">
+    <input class="el-command-input" type="text" placeholder="Type a command… (log, extend, hold)" aria-label="Command input">
+    <div class="el-command-results">
+      <div class="el-command-group">Site</div>
+      <button class="el-command-row sel" type="button">Log tonight's paint — entry 112-F <span class="el-command-hint">L</span></button>
+      <button class="el-command-row" type="button">Extend the lift week <span class="el-command-hint">E</span></button>
+      <div class="el-command-group">Ledger</div>
+      <button class="el-command-row" type="button">Open entry 112-F dossier <span class="el-command-hint">F</span></button>
+      <div class="el-command-empty">No command by that name — the buckets don't answer either.</div>
+    </div>
+    <div class="el-command-foot">arrows to move &middot; enter to run &middot; esc to close</div>
+  </div>
+</div>
+
+</body>
+</html>

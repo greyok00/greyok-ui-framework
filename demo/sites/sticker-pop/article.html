@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en" data-theme="sticker-pop">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How an episode is made — Wiggleworks</title>
+<link rel="stylesheet" href="../../../base.css">
+<link rel="stylesheet" href="../../../fonts.css">
+<link rel="stylesheet" href="../../../tokens.css">
+<link rel="stylesheet" href="../../../elements-display.css">
+<link rel="stylesheet" href="../../../elements-structure.css">
+<link rel="stylesheet" href="../../../elements-lists.css">
+<link rel="stylesheet" href="../../../elements-app.css">
+<link rel="stylesheet" href="../../../elements-containers.css">
+<link rel="stylesheet" href="../../../elements-controls.css">
+<link rel="stylesheet" href="../../../elements-inputs.css">
+<link rel="stylesheet" href="../../../elements-dataviz.css">
+<link rel="stylesheet" href="../../../elements-overlay.css">
+<link rel="stylesheet" href="../../../elements-interactions.css">
+<link rel="stylesheet" href="../../../elements-misc.css">
+<link rel="stylesheet" href="../../../elements-size.css">
+<link rel="stylesheet" href="../../../elements-workflow.css">
+<link rel="stylesheet" href="../../../elements-inspector.css">
+<link rel="stylesheet" href="../../../elements-reader.css">
+<link rel="stylesheet" href="../../../elements-assistant.css">
+<link rel="stylesheet" href="../../../themes/src/illustration.css">
+<script src="../../../elements.js" defer></script>
+<script src="../../../charts.js" defer></script>
+</head>
+<body>
+<div class="el-page">
+
+  <nav class="el-navbar el-navbar--top" aria-label="Primary">
+    <a class="brand" href="index.html">Wiggleworks</a>
+    <ul class="links">
+      <li><a href="index.html">Studio</a></li>
+      <li><a href="catalog.html">Sticker library</a></li>
+      <li><a href="article.html" aria-current="page">How we make it</a></li>
+      <li><a href="account.html">Club</a></li>
+      <li><a href="app.html">Sticker Board</a></li>
+    </ul>
+    <div class="actions">
+      <button class="el-btn el-btn--ghost" type="button" data-toast="Episode list exported as PDF" data-toast-variant="info">Episode list</button>
+      <button class="el-btn" type="button" data-dialog-open="screening-dialog">Book a screening</button>
+    </div>
+  </nav>
+
+  <header class="el-hero el-hero--poster">
+    <div class="media">
+      <div class="fill" role="img" aria-label="Animatic storyboard wall: 12 panels of Bomble arriving late, pinned crooked"></div>
+    </div>
+    <div>
+      <span class="el-eyebrow">production notes &middot; no 7</span>
+      <h1>How an episode is made, in nine rooms and one porch</h1>
+      <p>From a napkin at the Belmont coffee shop to a mailed sticker sheet: the whole route a Bumblefluff short walks before anyone's kid sees it.</p>
+    </div>
+  </header>
+
+  <div class="anchor-page">
+    <nav class="el-anchor-nav anchor-rail" aria-label="On this page">
+      <a href="#board">1 &middot; The board</a>
+      <a href="#rooms">2 &middot; Nine rooms</a>
+      <a href="#numbers">3 &middot; The numbers</a>
+      <a href="#sources">4 &middot; Sources</a>
+    </nav>
+
+    <div class="el-reader" style="max-width:var(--el-measure);">
+      <p class="lead">Every Wiggleworks episode is six minutes, nine rooms, and one porch. The porch never moves. Here is the path a short takes, with the numbers from "The Peach Protocol," which aired as the season three opener.</p>
+
+      <h2 id="board">1 &middot; The board</h2>
+      <p>It starts with the storyboard wall. Twelve panels, pinned crooked on purpose — we rotate one at random each pitch meeting so nobody gets precious. A panel earns its spot if a five-year-old at the test table laughs before the beat is even animated. "The Peach Protocol" killed its original panel 5 because the test table voted, 6 kids to 0, that Bomble should be late differently<code class="cite-in-reader">[1]</code>.</p>
+      <blockquote>Panel 5 died so that Bomble could arrive via the flower box instead of the door. Best edit of the season.</blockquote>
+      <p>Dialogue passes in the same room on Thursday. Actors record standing up, because sitting voices are, in our director's words, "grocery-store voices." The mix desk is ancient and held together with a sticker from episode 12.</p>
+
+      <h2 id="rooms">2 &middot; Nine rooms</h2>
+      <p>The studio is a converted tile shop on Belmont, so the rooms have names like "the grout room" and "the showroom." Each episode passes through nine of them. The pipeline is tracked in Sticker Board and the run of the whole season currently looks like this — press the keys to jump a room in the shot list:</p>
+      <div class="el-code-block" role="table" aria-label="shot list keyboard reference">
+        <code><span class="el-comment"># shot list keys — Sticker Board</span>
+<span class="el-keyword">bind</span> <span class="el-string">"g"</span>      <span class="el-number">-&gt;</span> grout room   <span class="el-comment"># pencil test</span>
+<span class="el-keyword">bind</span> <span class="el-string">"shift+g"</span> <span class="el-number">-&gt;</span> showroom    <span class="el-comment"># color pass</span>
+<span class="el-keyword">bind</span> <span class="el-string">"b"</span>      <span class="el-number">-&gt;</span> the porch    <span class="el-comment"># set lock, never moved</span></code>
+      </div>
+      <p>Most of the animators work with a shared shortcut deck, the kind that sticks to the desk:
+      <span class="el-kbd">space</span> <span class="el-kbd">shift</span>+<span class="el-kbd">G</span> <span class="el-kbd">B</span> <span class="el-kbd">&#8679;</span>+<span class="el-kbd">&#8593;</span> — flip between pencil test and color of the same frame without touching the mouse. The sticker on the space key has been there since 2019.</p>
+
+      <h2 id="numbers">3 &middot; The numbers</h2>
+      <p>As of Thursday, "The Peach Protocol" is 82% rendered. The mix meter below is the honest one — the sound room keeps a 10-point mix and we do not inflate it. Rendering the remaining 18% is the only step still on the clock:</p>
+      <div class="el-progress" data-animate-to="82" style="margin:var(--el-space-2) 0 4px;"><div class="fill" style="width:82%;"></div></div>
+      <span class="el-meter-label">season 3 render queue &middot; 82% &middot; 61 of 74 shots done</span>
+      <div class="el-meter" data-ticks="10" style="--el-meter-value:70%;margin-top:var(--el-space-3);"><div class="fill"></div></div>
+      <span class="el-meter-label">mix desk, ep 2 &middot; 7 of 10 &middot; bass slightly too joyful</span>
+      <div class="el-inline-alert warn" style="margin-top:var(--el-space-3);">
+        <span class="el-icon" aria-hidden="true">&#9834;</span>
+        <div><strong>Licensing note.</strong> The lake song's kazoo track is a real kazoo played by the guy who runs the print shop. He must be credited in full, per his one condition.</div>
+      </div>
+
+      <h2 id="sources">4 &middot; Where the numbers come from</h2>
+      <p>Every claim above traces to the production ledger — Sticker Board writes to it nightly, and the ledger is the only source both the studio and the print plant read. Source numbers for this page, exactly as logged:</p>
+
+      <div class="el-citation-rail">
+        <span class="el-cite"><span class="n">1</span><a href="#sources">Storyboard vote sheet, "The Peach Protocol," Mar 3 2026 &middot; tally log room 4</a></span>
+        <span class="el-cite"><span class="n">2</span><a href="#sources">Sticker Board render ledger &middot; season 3 &middot; checked Thu 09:12 PT</a></span>
+        <span class="el-cite"><span class="n">3</span><a href="#sources">Press plant run sheet &middot; plate 4 color proof &middot; Mar 20 2026</a></span>
+      </div>
+
+      <div class="el-source-card"><span class="src">SB &middot; ledger</span><span class="ttl">Sticker Board render ledger, season 3</span><span class="snip">61/74 shots rendered at pass 2; mix 7.0/10 on the room desk; lake set signed off</span></div>
+      <div class="el-source-card"><span class="src">PP &middot; press</span><span class="ttl">Fall pack run sheet, plate 4</span><span class="snip">18,204 sheets on press; coral plate passes; sunflower plate queued Thursday</span></div>
+
+      <span class="el-status-dot live" role="img" aria-label="ledger is live"></span>
+      <span style="font-size:var(--el-fs-sm);color:var(--el-mute);"> Ledger is live — this page's numbers refresh with the nightly sync.</span>
+
+      <h2>4a &middot; How a short walks the nine rooms</h2>
+      <ul class="el-timeline" style="margin-top:var(--el-space-3);">
+        <li class="ok"><span class="when">WK 1</span><span class="what">Storyboard wall &middot; 12 panels voted through the test table</span></li>
+        <li class="ok"><span class="when">WK 2</span><span class="what">Pencil test in the grout room &middot; timing locked at 6:04</span></li>
+        <li class="running"><span class="when">WK 3</span><span class="what">Color pass in the showroom &middot; coral plate approved, sunflower queued</span></li>
+        <li class="warn"><span class="when">WK 4</span><span class="what">Kazoo overdub awaits the print-shop credit line</span></li>
+        <li><span class="when">WK 5</span><span class="what">Delivery: broadcast master, club mail sheet, Sticker Board sync</span></li>
+      </ul>
+      <p>And the sticker route, which is the part everybody at the library actually sees: once the color pass locks, the frame becomes a plate, a plate becomes a sheet, a sheet becomes 8 little Bumbles, and 8 little Bumbles become somebody's fridge by Thursday.</p>
+    </div>
+  </div>
+
+  <section class="el-section">
+    <div class="el-media-band">
+      <div class="media">
+        <div class="fill el-skeleton" role="img" aria-label="Photograph of the Belmont tile-showroom studio during the color pass"></div>
+        <figcaption>the showroom &middot; color pass, ep 2 &middot; 11:12 AM Thursday</figcaption>
+      </div>
+      <div class="body">
+        <span class="el-eyebrow">the rooms</span>
+        <h2>Nine rooms, one porch, one tile shop</h2>
+        <p>The grout room has better light. The showroom has the big table. The porch is drawn and never moves, which is why Mrs. Peach never has to renegotiate her lease.</p>
+        <div class="actions">
+          <a class="el-btn" href="catalog.html">Browse the sticker library</a>
+          <button class="el-btn el-btn--ghost" type="button" data-toast="Tour request noted — we run them first Friday monthly" data-toast-variant="info">Ask about a studio tour</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="el-footer el-footer--plain">
+    <p class="colophon">Wiggleworks production notes, no. 7 &middot; written in the grout room &middot; numbers from the Sticker Board ledger (source 2)</p>
+  </footer>
+
+</div>
+
+<dialog class="el-dialog" id="screening-dialog">
+  <div class="el-dialog-head">
+    <h3 class="el-dialog-title">Book a library screening</h3>
+    <button class="el-dialog-close" type="button" aria-label="Close" data-dialog-close>&times;</button>
+  </div>
+  <form class="el-dialog-body" method="dialog">
+    <p style="margin-top:0;">We bring the projector, the shorts, and a giant bee hand puppet. You bring the chairs.</p>
+    <label class="el-field">
+      <span class="el-label">Your library or school</span>
+      <input class="el-input" type="text" placeholder="Belmont Library, Portland OR">
+    </label>
+  </form>
+  <div class="el-dialog-foot">
+    <button class="el-btn el-btn--ghost" type="button" data-dialog-close>Later</button>
+    <button class="el-btn" type="button" data-toast="Screening request sent — check your library inbox" data-toast-variant="ok" data-dialog-close>Send request</button>
+  </div>
+</dialog>
+
+</body>
+</html>

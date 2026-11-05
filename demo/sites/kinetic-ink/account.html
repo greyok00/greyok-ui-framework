@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="en" data-theme="kinetic-ink"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Client space — Kinetika</title>
+<link rel="stylesheet" href="../../../base.css"><link rel="stylesheet" href="../../../fonts.css">
+<link rel="stylesheet" href="../../../tokens.css">
+<link rel="stylesheet" href="../../../elements-display.css">
+<link rel="stylesheet" href="../../../elements-structure.css">
+<link rel="stylesheet" href="../../../elements-lists.css">
+<link rel="stylesheet" href="../../../elements-app.css">
+<link rel="stylesheet" href="../../../elements-containers.css">
+<link rel="stylesheet" href="../../../elements-controls.css">
+<link rel="stylesheet" href="../../../elements-inputs.css">
+<link rel="stylesheet" href="../../../elements-dataviz.css">
+<link rel="stylesheet" href="../../../elements-overlay.css">
+<link rel="stylesheet" href="../../../elements-interactions.css">
+<link rel="stylesheet" href="../../../elements-misc.css">
+<link rel="stylesheet" href="../../../elements-size.css">
+<link rel="stylesheet" href="../../../elements-workflow.css">
+<link rel="stylesheet" href="../../../elements-inspector.css">
+<link rel="stylesheet" href="../../../elements-reader.css">
+<link rel="stylesheet" href="../../../elements-assistant.css">
+<link rel="stylesheet" href="../../../themes/src/motion-brand.css">
+<script src="../../../elements.js" defer></script><script src="../../../charts.js" defer></script>
+<style>
+  .kin-frame { display:grid; grid-template-columns:236px 1fr; gap:28px; align-items:start; }
+  @media (max-width:900px){
+    .kin-frame{ grid-template-columns:1fr; }
+    /* v0.4.0 mobile pass: the sheet's sticky rail must go static when the frame
+       stacks — pinned inside the stack it paints under the flowing sections */
+    .kin-frame > .el-sidebar { position:static; max-height:none; }
+  }
+  .kin-form-2 { display:grid; grid-template-columns:1fr 1fr; gap:0 18px; }
+  @media (max-width:680px){ .kin-form-2{ grid-template-columns:1fr; } }
+  .kin-sk-row { display:grid; grid-template-columns:44px 1fr 84px; gap:12px; align-items:center; }
+  /* v0.4.0 mobile pass: the archival pairing drops to one column on the phone rung;
+     the sidebar inherits its width from the frame column instead of an inline pin */
+  .kin-duo-2 { display:grid; grid-template-columns:1.2fr 1fr; gap:14px; }
+  @media (max-width:680px){ .kin-duo-2 { grid-template-columns:1fr; } }
+  /* v0.4.0 mobile pass: phone column plan for the invoice table, and the action
+     rows wrap instead of holding a 502px min-content that widens the section */
+  @media (max-width:430px){
+    .el-table colgroup > col:nth-child(1){ width:22% }
+    .el-table colgroup > col:nth-child(2){ width:17% }
+    .el-table colgroup > col:nth-child(3){ width:18% }
+    .el-table colgroup > col:nth-child(4){ width:14% }
+    .el-table colgroup > col:nth-child(5){ width:29% }
+  }
+  @media (max-width:380px){
+    .el-table colgroup > col:nth-child(1){ width:20% }
+    .el-table colgroup > col:nth-child(2){ width:15% }
+    .el-table colgroup > col:nth-child(3){ width:19% }
+    .el-table colgroup > col:nth-child(4){ width:18% }
+    .el-table colgroup > col:nth-child(5){ width:28% }
+  }
+</style>
+</head>
+<body>
+<main class="el-page">
+
+  <nav class="el-navbar el-navbar--top" aria-label="Primary">
+    <a class="brand" href="index.html"><span class="el-bar-mark" aria-hidden="true"></span>Kinetika</a>
+    <div class="links">
+      <a href="index.html">Showreel</a>
+      <a href="catalog.html">Work index</a>
+      <a href="article.html">Journal</a>
+      <a href="account.html" aria-current="page">Client space</a>
+      <a href="app.html">Review desk</a>
+    </div>
+    <div class="actions">
+      <span class="el-avatar" title="Mara Ruiz" style="width:30px;height:30px;font-size:.66em">MR</span>
+    </div>
+  </nav>
+
+  <div class="el-banner el-banner--info" role="status" style="margin:18px 0 0">
+    <span class="glyph"><svg class="el-icon" viewBox="0 0 24 24"><path d="M4 12a8 8 0 1 0 16 0A8 8 0 0 0 4 12zm8-4v8m-3-3 3 3 3-3" fill="none"/></svg></span>
+    <span class="copy"><b>Desk maintenance Friday 22:00–23:00 CT.</b><span class="detail">Renders keep running; the review desk will be read-only for the hour.</span></span>
+    <button class="close" aria-label="Dismiss" onclick="this.closest('.el-banner').classList.add('is-dismissed')">✕</button>
+  </div>
+
+  <div class="kin-frame" style="margin-top:26px">
+    <aside class="el-sidebar">
+      <div class="head"><span class="brand" style="font-size:1rem">Client space</span></div>
+      <nav class="grp" aria-label="Account">
+        <span class="label">Workspace</span>
+        <a href="#profile" aria-current="page">Profile &amp; studio agreement</a>
+        <a href="#brief">Motion brief preferences</a>
+        <a href="#review">Review preferences</a>
+        <a href="#invoices">Invoices</a>
+      </nav>
+      <div class="grp" aria-label="Admin">
+        <details class="grp">
+          <summary>Seat management <span class="chev" aria-hidden="true"></span></summary>
+          <a href="#seats">Team seats (4 of 6)</a>
+          <a href="#desk">Desk notifications</a>
+        </details>
+      </div>
+      <div class="grp" aria-label="Storage">
+        <span class="label">Archival storage</span>
+        <div class="el-meter" role="meter" aria-valuenow="62" style="--el-meter-value:62%"><span class="fill"></span></div>
+        <span class="end">6.2 / 10 TB</span>
+        <div class="el-bar" style="margin-top:6px"><i style="width:62%"></i></div>
+      </div>
+    </aside>
+
+    <div style="display:grid;gap:22px">
+      <section class="el-section" id="profile" style="padding-block:0">
+        <p class="el-eyebrow">Workspace — Night Signal</p>
+        <h2 style="font-family:var(--el-font-display);font-weight:var(--el-head-weight);letter-spacing:var(--el-head-tracking)">Profile &amp; studio agreement</h2>
+
+        <div class="el-inline-alert warn" style="margin:10px 0 16px">
+          <svg class="el-icon" viewBox="0 0 24 24"><path d="M12 5 2 20h20z" fill="none"/></svg>
+          <span><span class="title">One signature is missing from the studio agreement.</span>
+          <span class="body">The renewal term needs your counter-signature before January renders can be reserved.</span></span>
+          <button class="close" aria-label="Dismiss">✕</button>
+        </div>
+
+        <div class="el-card el-card--raised">
+          <div class="el-form kin-form-2">
+            <label class="el-field">
+              <span class="el-label">Client name</span>
+              <input class="el-input" value="Mara Ruiz" autocomplete="name">
+              <span class="el-hint" style="color:var(--el-mute);font-size:.78rem">Shown on invoices and the review desk header.</span>
+            </label>
+            <label class="el-field">
+              <span class="el-label">Billing contact</span>
+              <input class="el-input" placeholder="accounts@..." value="accounts@nightsignal.tv">
+              <span class="el-error" style="color:var(--el-warn);font-size:.78rem">This address bounced once this month.</span>
+            </label>
+          </div>
+          <label class="el-field">
+            <span class="el-label">Workspace note</span>
+            <textarea class="el-textarea" rows="3" placeholder="Anything the desk should read before every brief…">The network is sensitive about end-crawl type; always keep the legal line width constant.</textarea>
+          </label>
+          <div class="el-sep" style="height:1px;background:var(--el-line-2);margin:16px 0"></div>
+          <div class="el-form kin-form-2">
+            <label class="el-field">
+              <span class="el-label">Studio agreement</span>
+              <span class="el-select"><select>
+                <option>Sequence campaign — annual, renews Jan 12</option>
+                <option>One-liner — per sequence</option>
+                <option>Resident — monthly seat</option>
+              </select></span>
+            </label>
+            <label class="el-field">
+              <span class="el-label">Find a cut</span>
+              <span class="el-search-field"><input class="el-search" type="search" placeholder="Search your deliverables…"></span>
+            </label>
+          </div>
+          <div class="actions" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+            <span class="el-btn-group">
+              <button class="el-btn" data-toast="Profile saved — desk header updated." data-toast-variant="ok">Save profile</button>
+              <button class="el-btn ghost" data-toast="Profile reverted to the last save." data-toast-variant="warn">Revert</button>
+            </span>
+            <span class="el-spinner sm" role="status" aria-label="Syncing"></span>
+            <span class="el-mute-body el-fs-sm">synced 2 min ago</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="el-section" id="brief" style="padding-block:0">
+        <h2 style="font-family:var(--el-font-display);font-weight:var(--el-head-weight)">Motion brief preferences</h2>
+        <div class="kin-form-2">
+          <label class="el-field">
+            <span class="el-label">Default aspect</span>
+            <span class="el-segmented" role="radiogroup" aria-label="Aspect" style="display:inline-flex">
+              <button class="on">16:9</button><button>2.39:1</button><button>9:16</button><button>1:1</button>
+            </span>
+          </label>
+          <label class="el-field">
+            <span class="el-label">Motion intensity</span>
+            <input class="el-slider" type="range" min="0" max="100" value="62" aria-label="Motion intensity">
+            <span class="el-hint" style="color:var(--el-mute);font-size:.78rem">62% — brand bar sits at 55%</span>
+          </label>
+          <div class="el-field">
+            <span class="el-label">Codec masters</span>
+            <div style="display:grid;gap:8px;margin-top:4px">
+              <label class="el-radio"><input type="radio" name="kin-codec" checked><span class="dot"></span><span>ProRes 4444 (grade master)</span></label>
+              <label class="el-radio"><input type="radio" name="kin-codec"><span class="dot"></span><span>DNxHR HQX (editorial pass)</span></label>
+              <label class="el-radio"><input type="radio" name="kin-codec" disabled><span class="dot" style="opacity:.45"></span><span>RAW delivery — not on your plan</span></label>
+            </div>
+          </div>
+          <div class="el-field">
+            <span class="el-label">Desk conveniences</span>
+            <div style="display:grid;gap:10px;margin-top:10px">
+              <label style="display:flex;gap:10px;align-items:center"><span class="el-switch on" role="switch" aria-checked="true" tabindex="0"></span><span class="el-body" style="font-size:.9em">Frame-accurate note pins <span class="el-chip" style="padding:1px 8px;font-size:.72rem">default</span></span></label>
+              <label style="display:flex;gap:10px;align-items:center"><span class="el-switch on" role="switch" aria-checked="true" tabindex="0"></span><span class="el-body" style="font-size:.9em">Same-day note SLA timer</span></label>
+              <label style="display:flex;gap:10px;align-items:center;opacity:.55"><span class="el-switch" role="switch" aria-checked="false" tabindex="0"></span><span class="el-body" style="font-size:.9em">Raw render logs in exports</span></label>
+            </div>
+          </div>
+        </div>
+        <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+          <button class="el-btn" data-toast="Brief preferences applied to all new briefs." data-toast-variant="ok">Apply to new briefs</button>
+          <span class="el-popover"><button class="el-btn ghost">What counts as a brief?</button>
+            <div class="el-pop"><h4>Brief anatomy</h4><p>Runtime, aspect, tone, and one reference link. That is all the desk needs to board.</p></div>
+          </span>
+          <button class="el-btn ghost" data-dialog-open="kin-invoice-dialog">Invoice preview</button>
+        </div>
+      </section>
+
+      <section class="el-section" id="review" style="padding-block:0">
+        <h2 style="font-family:var(--el-font-display);font-weight:var(--el-head-weight)">Review preferences</h2>
+        <div class="kin-form-2">
+          <div class="el-field">
+            <span class="el-label">Who signs off</span>
+            <div style="display:grid;gap:8px;margin-top:4px">
+              <label style="display:flex;gap:10px;align-items:center"><span class="el-check"><input type="checkbox" checked></span><span class="el-body" style="font-size:.9em">Mara Ruiz — supervising producer</span></label>
+              <label style="display:flex;gap:10px;align-items:center"><span class="el-check"><input type="checkbox"></span> <span class="el-body" style="font-size:.9em">Legal — end-crawl only</span></label>
+              <label style="display:flex;gap:10px;align-items:center;opacity:.55"><span class="el-check indeterminate"><input type="checkbox" disabled></span><span class="el-body" style="font-size:.9em">Agency partner — invited per project</span></label>
+            </div>
+          </div>
+          <label class="el-field">
+            <span class="el-label">Note delivery window</span>
+            <input class="el-slider" type="range" min="0" max="24" value="17" aria-label="Delivery window hour">
+            <span class="el-hint" style="color:var(--el-mute);font-size:.78rem">Notes due by 17:00 CT to keep the same-day SLA.</span>
+          </label>
+        </div>
+      </section>
+
+      <section class="el-section el-section--dense" id="invoices" style="padding-block:0">
+        <h2 style="font-family:var(--el-font-display);font-weight:var(--el-head-weight)">Studio onboarding</h2>
+        <ul class="el-stepper">
+          <li class="done"><span class="num">1</span>Workspace created</li>
+          <li class="done"><span class="num">2</span>Seats assigned</li>
+          <li class="active"><span class="num">3</span>Agreement countersign</li>
+          <li><span class="num">4</span>First brief loaded</li>
+        </ul>
+        <div style="display:flex;gap:10px;align-items:center;margin-top:12px;flex-wrap:wrap">
+          <button class="el-btn disabled" aria-disabled="true" disabled>Back</button>
+          <button class="el-btn" data-toast="Agreement sent for counter-signature." data-toast-variant="ok">Send for signature</button>
+          <span class="el-pill ghost">step 3 of 4</span>
+        </div>
+      </section>
+
+      <section class="el-section el-section--dense" style="padding-block:0">
+        <h2 style="font-family:var(--el-font-display);font-weight:var(--el-head-weight)">Invoices</h2>
+        <table class="el-table el-table--zebra">
+          <colgroup><col style="width:22%"><col style="width:26%"><col style="width:17%"><col style="width:17%"><col style="width:18%"></colgroup>
+          <thead><tr><th>Invoice</th><th>Scope</th><th class="num">Amount</th><th>Issued</th><th>State</th></tr></thead>
+          <tbody>
+            <tr><td class="el-mono">K-2231</td><td>Night Signal — final gate</td><td class="num el-mono">$9,800</td><td>Nov 04</td><td><span class="el-status-pill queued">awaiting</span></td></tr>
+            <tr><td class="el-mono">K-2218</td><td>Animatic lock payment</td><td class="num el-mono">$4,800</td><td>Oct 22</td><td><span class="el-status-pill ok">paid</span></td></tr>
+            <tr><td class="el-mono">K-2201</td><td>Airbilled grade passes</td><td class="num el-mono">$1,240</td><td>Oct 09</td><td><span class="el-status-pill ok">paid</span></td></tr>
+          </tbody>
+        </table>
+        <nav class="el-pagination" aria-label="Invoice pages" style="margin-top:14px">
+          <button class="page" aria-label="Previous">‹</button>
+          <button class="page on">1</button>
+          <button class="page">2</button>
+          <button class="page">Next ›</button>
+        </nav>
+      </section>
+
+      <section class="el-section el-section--dense" style="padding-block:0">
+        <h2 style="font-family:var(--el-font-display);font-weight:var(--el-head-weight)">Archival retrieval</h2>
+        <div class="kin-duo-2">
+          <div class="eld el-card el-card--flat" style="padding:16px">
+            <div class="kin-sk-row"><span class="el-skeleton circle" style="width:36px;height:36px"></span><span class="el-skeleton" style="height:12px"></span><span class="el-skeleton" style="height:10px"></span></div>
+            <div class="kin-sk-row" style="margin-top:10px"><span class="el-skeleton circle" style="width:36px;height:36px"></span><span class="el-skeleton" style="height:12px;width:70%"></span><span class="el-skeleton" style="height:10px"></span></div>
+            <p class="el-mute-body el-fs-sm" style="margin-top:10px">Deep archive is thawing — masters come back from glacier storage in ~4 h.</p>
+            <div class="el-progress" role="progressbar" aria-valuenow="41"><span class="fill" style="width:41%"></span></div>
+          </div>
+          <div class="el-card el-card--flat" style="padding:16px;display:grid;gap:8px;align-content:center">
+            <span class="el-label">Archive health</span>
+            <div class="el-meter ok" role="meter" aria-valuenow="96" style="--el-meter-value:96%"><span class="fill"></span></div>
+            <span class="el-meter-label"><span>checksum pass</span><span>96%</span></span>
+            <button class="el-btn ghost" data-drawer-open="kin-archive-drawer">Open archive ledger</button>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <footer class="el-footer el-footer--plain" style="border-top:1px solid var(--el-line-2);padding-top:20px;margin-top:40px">
+    <div class="small"><span>© 2026 Kinetika LLC · client space</span><span><a href="app.html" style="color:var(--el-accent)">open the review desk</a></span></div>
+  </footer>
+
+  <dialog id="kin-invoice-dialog" class="el-dialog el-dialog--narrow">
+    <div class="el-dialog-head"><h3 class="el-dialog-title">Invoice preview — K-2231</h3>
+      <button class="el-dialog-close" data-dialog-close aria-label="Close">✕</button></div>
+    <div class="el-dialog-body">
+      Night Signal — final gate. Net-15 from issue date. Late renders, if any, are our cost, never yours.
+      <div class="el-progress-truth" style="margin-top:10px"><span class="el-pt-chunk on"></span><span class="el-pt-chunk on"></span><span class="el-pt-chunk on"></span><span class="el-pt-label"><span class="el-pt-count">3 / 3</span> gates delivered</span></div>
+    </div>
+    <div class="el-dialog-foot">
+      <button class="el-btn ghost" data-dialog-close>Close</button>
+      <button class="el-btn" data-dialog-close data-toast="Invoice K-2231 sent to accounts@nightsignal.tv." data-toast-variant="ok">Send invoice</button>
+    </div>
+  </dialog>
+
+  <div id="kin-archive-drawer" class="el-drawer right" role="dialog" aria-label="Archive ledger">
+    <div class="el-drawer-head">Archive ledger<button data-drawer-close style="background:none;border:0;color:inherit;cursor:pointer;font-size:1em" aria-label="Close">✕</button></div>
+    <div class="el-drawer-body">
+      <ul class="el-timeline" style="margin:0">
+        <li class="ok"><span class="when">NOV 02</span><span class="what">Checksum pass 96% — 4 strays re-queued</span></li>
+        <li class="running"><span class="when">NOV 02</span><span class="what">Masters thawing — 2 of 12 restores returned</span></li>
+        <li><span class="when">OCT 28</span><span class="what">Night Signal master sealed + archived</span></li>
+      </ul>
+    </div>
+    <div class="el-drawer-foot"><button class="el-btn ghost" data-drawer-close>Close</button></div>
+  </div>
+
+  <div class="el-toast-region">
+    <div class="el-toast info" role="status"><span>Autosave on — the desk keeps your place.</span><span class="close" aria-label="Dismiss">✕</span></div>
+  </div>
+
+</main>
+</body></html>

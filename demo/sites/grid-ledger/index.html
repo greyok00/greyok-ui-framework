@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en" data-theme="grid-ledger">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fernbank Ledger — the bookkeeping desk for real money</title>
+<link rel="stylesheet" href="../../../base.css">
+<link rel="stylesheet" href="../../../fonts.css">
+<link rel="stylesheet" href="../../../tokens.css">
+<link rel="stylesheet" href="../../../tokens-v2.css">
+<link rel="stylesheet" href="../../../elements-display.css">
+<link rel="stylesheet" href="../../../elements-structure.css">
+<link rel="stylesheet" href="../../../elements-lists.css">
+<link rel="stylesheet" href="../../../elements-app.css">
+<link rel="stylesheet" href="../../../elements-containers.css">
+<link rel="stylesheet" href="../../../elements-controls.css">
+<link rel="stylesheet" href="../../../elements-inputs.css">
+<link rel="stylesheet" href="../../../elements-dataviz.css">
+<link rel="stylesheet" href="../../../elements-overlay.css">
+<link rel="stylesheet" href="../../../elements-interactions.css">
+<link rel="stylesheet" href="../../../elements-misc.css">
+<link rel="stylesheet" href="../../../elements-size.css">
+<link rel="stylesheet" href="../../../elements-workflow.css">
+<link rel="stylesheet" href="../../../elements-inspector.css">
+<link rel="stylesheet" href="../../../elements-reader.css">
+<link rel="stylesheet" href="../../../elements-assistant.css">
+<link rel="stylesheet" href="../../../themes/src/dashboard-light.css">
+<script src="../../../elements.js" defer></script>
+<script src="../../../charts.js" defer></script>
+</head>
+<body class="el-reset">
+<div class="site-shell">
+
+  <nav class="el-navbar el-navbar--rail" aria-label="Fernbank Ledger">
+    <a class="brand" href="index.html">
+      <span class="brand-mark" aria-hidden="true">F</span>
+      <span class="brand-label">Fernbank Ledger</span>
+    </a>
+    <div class="links">
+      <a href="index.html" aria-current="page"><span class="rail-idx">01</span>Overview</a>
+      <a href="catalog.html"><span class="rail-idx">02</span>Billing packages</a>
+      <a href="article.html"><span class="rail-idx">03</span>The close</a>
+      <a href="account.html"><span class="rail-idx">04</span>Books office</a>
+      <a href="app.html"><span class="rail-idx">05</span>Ledger desk</a>
+    </div>
+    <div class="actions">
+      <button class="el-btn" data-toast="Statement queued for export (PDF + CSV)">Export today</button>
+    </div>
+    <div class="rail-note">
+      <span>FYE 2026 · accrual</span>
+      <span>ledger balanced</span>
+    </div>
+  </nav>
+
+  <div class="site-main">
+    <main class="el-page">
+      <div class="el-banner el-banner--live" role="status">
+        <span class="glyph" aria-hidden="true"><svg class="el-icon"><use href="../../../assets/icons.svg#el-i-check"/></svg></span>
+        <span class="copy"><strong>October closes on time.</strong><span class="detail">4,182 entries posted, 0 out of balance, bank reconciled to the penny as of Oct 31.</span></span>
+        <button class="action" data-toast="Signed off: October books certified by R. Whitfield, CPA">Sign it off</button>
+      </div>
+
+      <header class="el-hero el-hero--left">
+        <p class="el-eyebrow">Bookkeeping for businesses that pay taxes</p>
+        <h1>Every dollar in, matched, and put to bed.</h1>
+        <p>Fernbank Ledger is a double-entry bookkeeping desk built for owner-operators: broadsheet journals, bank feeds that reconcile themselves, and a close that takes five days, not five weeks.</p>
+        <div class="actions">
+          <button class="el-btn" data-toast="Sandbox ledger created — 90 days of sample books loaded" data-toast-variant="ok">Open a sandbox ledger</button>
+          <a class="el-btn el-btn--outline" href="app.html">See the ledger desk <svg class="el-icon"><use href="../../../assets/icons.svg#el-i-arrow-right"/></svg></a>
+          <span class="el-pill">SOC 1 Type II · daily backups · 11 years running</span>
+        </div>
+      </header>
+
+      <section class="el-section el-section--dense">
+        <div class="el-section-head">
+          <div>
+            <p class="el-eyebrow">October, closed</p>
+            <h2>The month in five numbers</h2>
+          </div>
+          <div class="actions"><span class="el-pill">accrual basis · USD</span></div>
+        </div>
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(190px, 1fr)); gap:10px;">
+          <div class="el-stat"><span class="el-stat-label">Revenue booked</span><span class="el-stat-value">$184,220</span><div class="el-stat-row"><span class="el-stat-delta up">+6.1%</span><span class="el-stat-note">vs Sep</span></div></div>
+          <div class="el-stat"><span class="el-stat-label">Cost of goods</span><span class="el-stat-value">$97,180</span><div class="el-stat-row"><span class="el-stat-delta down">+2.9%</span><span class="el-stat-note">spot freight rates</span></div></div>
+          <div class="el-stat"><span class="el-stat-label">AR over 45 days</span><span class="el-stat-value">$3,940</span><div class="el-meter warn" data-ticks="5"><span class="fill" style="--el-meter-value: 18%"></span></div></div>
+          <div class="el-stat is-live"><span class="el-stat-label">Bank feed sync</span><span class="el-stat-value">14:02</span><span class="el-stat-note">3 accounts · reconciled</span></div>
+        </div>
+      </section>
+
+      <section class="el-section">
+        <div class="el-section-head">
+          <div>
+            <p class="el-eyebrow">Why owner-operators switch</p>
+            <h2>The books do their own homework.</h2>
+          </div>
+        </div>
+        <div class="el-bento">
+          <div class="tile span-6"><span class="lbl">journals</span><h3>Broadsheet first, screens second</h3><p>Every entry prints to a journal you could take to a bank meeting. Debits left, credits right, totals double-ruled — because your accountant will print this exact page.</p></div>
+          <div class="tile span-3"><span class="lbl">feeds</span><h3>Bank feeds that match</h3><p>94% of transactions match a rule or duplicate on arrival. The rest queue for you with a suggestion attached.</p></div>
+          <div class="tile span-3"><span class="lbl">close</span><h3>A five-day close</h3><p>Day 1 reconcile, day 2 accruals, day 3 review, day 4 sign, day 5 file. The checklist writes itself from your own ledger.</p></div>
+        </div>
+      </section>
+
+      <div class="el-media-band el-media-band--flip">
+        <div class="media">
+          <span data-chart="bar" data-values="41,38,44,47,45,52,49,58,61,58,64,68" data-width="620" data-height="230" data-color="#087449" style="width:100%;height:230px;display:block;"></span>
+          <figcaption>fig. 01 — close duration in hours, Fernbank client base, monthly since Nov 2025</figcaption>
+        </div>
+        <div class="body">
+          <span class="lbl">the close, measured</span>
+          <h2>Twelve months of closes, getting shorter.</h2>
+          <p>Median close at Fernbank fell from 41 hours to 27 in twelve months — not because anyone worked faster, but because the checklist stops repeating itself: recurring accruals post themselves, and variance review only opens what moved.</p>
+          <div class="actions"><a class="el-btn" href="article.html">Walk the five-day close <svg class="el-icon"><use href="../../../assets/icons.svg#el-i-arrow-right"/></svg></a></div>
+        </div>
+      </div>
+
+      <section class="el-section">
+        <div class="el-section-head">
+          <div>
+            <p class="el-eyebrow">In the ledger's own words</p>
+            <h2>Statements as evidence</h2>
+          </div>
+        </div>
+        <blockquote class="el-testimonial">
+          <p class="q">My accountant billed me fourteen hours every October to clean up imports. She now bills two, and she spends them asking about margins instead of fixing commas. Last year she asked to see the tool. That's when I knew it was real.</p>
+          <div class="attrib">
+            <div class="who">
+              <span class="el-avatar" aria-hidden="true">DH</span>
+              <div><span class="name">Dana Herrera</span><span class="role">owner, Herrera Metalworks, Tempe AZ</span></div>
+            </div>
+          </div>
+        </blockquote>
+      </section>
+
+      <section class="el-section el-section--dense">
+        <div class="el-section-head">
+          <div>
+            <p class="el-eyebrow">The state of the books</p>
+            <h2>Facts, not vibes</h2>
+          </div>
+        </div>
+        <div class="el-fact-grid">
+          <div class="el-fact"><span class="k">entries this year</span><span class="v">46,110</span></div>
+          <div class="el-fact"><span class="k">reconciled feeds</span><span class="v">3,088</span></div>
+          <div class="el-fact is-hot"><span class="k">clients balanced</span><span class="v">100%</span></div>
+          <div class="el-fact"><span class="k">median close</span><span class="v">27 h</span></div>
+          <div class="el-fact"><span class="k">CPAs on record</span><span class="v">612</span></div>
+        </div>
+      </section>
+
+      <section class="el-section">
+        <div class="el-section-head">
+          <div>
+            <p class="el-eyebrow">Plans</p>
+            <h2>Priced per ledger. Yours and your accountant's.</h2>
+          </div>
+        </div>
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(250px, 1fr)); gap:var(--el-space-3);">
+          <div class="el-pricing">
+            <span class="name">Sole</span>
+            <div class="price">$29<span class="per">/month</span></div>
+            <ul class="feats">
+              <li>2 ledgers, 200 entries/mo</li>
+              <li>1 bank feed</li>
+              <li>Quarterly close checklist</li>
+              <li class="off">Accountant portal</li>
+            </ul>
+            <div class="cta"><button class="el-btn el-btn--outline" data-toast="Sole plan trial started (60 days, no card)">Try Sole</button></div>
+            <p class="note">One business, one owner, one shoebox of receipts.</p>
+          </div>
+          <div class="el-pricing el-pricing--featured">
+            <span class="name">Desk <span class="el-badge">most ledgers</span></span>
+            <div class="price">$79<span class="per">/month</span></div>
+            <ul class="feats">
+              <li>Unlimited ledgers + entries</li>
+              <li>10 bank feeds, auto-reconcile</li>
+              <li>Five-day close checklist</li>
+              <li>Accountant portal seat</li>
+            </ul>
+            <div class="cta"><button class="el-btn" data-toast="Desk plan trial started (60 days, no card)">Try Desk</button></div>
+            <p class="note">The working desk for an owner-operator with a bookkeeper part-time.</p>
+          </div>
+          <div class="el-pricing">
+            <span class="name">Firm</span>
+            <div class="price">$229<span class="per">/month</span></div>
+            <ul class="feats">
+              <li>40 client ledgers</li>
+              <li>Consolidated trial balances</li>
+              <li>Workpaper exports to CPA</li>
+              <li>Audit trail on every cell</li>
+            </ul>
+            <div class="cta"><button class="el-btn el-btn--outline" data-toast="Firm: we follow up within one business day">Talk to us</button></div>
+            <p class="note">For bookkeeping firms running 20+ books a month.</p>
+          </div>
+        </div>
+      </section>
+
+      <footer class="el-footer">
+        <div class="cols">
+          <div class="col"><span class="label">Ledger</span><a href="app.html">The desk</a><a href="catalog.html">Billing packages</a></div>
+          <div class="col"><span class="label">Read</span><a href="article.html">The five-day close</a><a href="article.html">Why debits go left</a></div>
+          <div class="col"><span class="label">Books office</span><a href="account.html">Settings</a><a href="account.html">Feeds</a></div>
+          <div class="col"><span class="label">Fine print</span><a href="#">Security</a><a href="#">SOC 1 report</a><a href="#">Terms</a></div>
+        </div>
+        <div class="small">© 2026 Fernbank Ledger Co. · Phoenix AZ · books audited annually</div>
+        <div class="colophon">"Debit on the left. Everything else follows."</div>
+      </footer>
+    </main>
+  </div>
+</div>
+
+<script>
+window.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('[data-banner-close]').forEach(b =>
+    b.addEventListener('click', () => b.closest('.el-banner')?.classList.add('is-dismissed')));
+});
+</script>
+</body>
+</html>

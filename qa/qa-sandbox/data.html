@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="en" data-theme="neutral">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>qa · data layer — tables · stats · meters · timeline · notifications · feedback</title>
+<link rel="stylesheet" href="../../base.css">
+<link rel="stylesheet" href="../../fonts.css">
+<link rel="stylesheet" href="../../tokens.css">
+<link rel="stylesheet" href="../../tokens-v2.css">
+<link rel="stylesheet" href="../../elements-structure.css">
+<link rel="stylesheet" href="../../elements-display.css">
+<link rel="stylesheet" href="../../elements-lists.css">
+<link rel="stylesheet" href="../../elements-dataviz.css">
+<link rel="stylesheet" href="../../elements-containers.css">
+<link rel="stylesheet" href="../../elements-interactions.css">
+<link rel="stylesheet" href="../../elements-inputs.css">
+<link rel="stylesheet" href="../../elements-controls.css">
+<link rel="stylesheet" href="../../elements-overlay.css">
+<link rel="stylesheet" href="../../elements-misc.css">
+<link rel="stylesheet" href="../../elements-app.css">
+<link rel="stylesheet" href="../../themes.css">
+<script>
+(function () {
+  var t = new URLSearchParams(location.search).get("theme");
+  if (t) document.documentElement.setAttribute("data-theme", t);
+  var probe = new URLSearchParams(location.search).get("probe");
+  window.addEventListener("load", function () {
+    if (probe === "states") {
+      document.querySelectorAll("[data-probe-selected]").forEach(function (n) { n.classList.add("is-selected"); });
+      document.querySelectorAll("[data-probe-disabled]").forEach(function (n) { n.setAttribute("aria-disabled", "true"); });
+      document.querySelectorAll("[data-probe-unread]").forEach(function (n) { n.classList.add("is-unread"); });
+    }
+    if (probe === "focus") {
+      var el = document.querySelector("[data-probe-focus]");
+      if (el) el.focus({ preventScroll: false });
+    }
+  });
+})();
+</script>
+</head>
+<body>
+<main class="el-page">
+
+  <div class="el-demo-bar">
+    <h1>qa · data layer <small>group 3 + group 6 (+ Group 2 primitives)</small></h1>
+    <span class="el-cluster"><span class="el-pill">v0.4.0</span><span class="el-badge ok">sandbox</span></span>
+  </div>
+
+  <!-- ── stat tiles ─────────────────────────────────────────────────────── -->
+  <h2 style="font-size:var(--el-fs-lg);margin:var(--el-space-4) 0 var(--el-space-2)">Stat tiles (el-stat)</h2>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:var(--el-space-3)">
+    <div class="el-stat">
+      <span class="el-stat-label">Throughput</span>
+      <span class="el-stat-row"><span class="el-stat-value">48,210</span><span class="el-stat-delta up">12.4%</span></span>
+      <span class="el-stat-note">trailing 30 days</span>
+    </div>
+    <div class="el-stat is-live">
+      <span class="el-stat-label">Ingest rate</span>
+      <span class="el-stat-row"><span class="el-stat-value">1.48<small> MiB/s</small></span><span class="el-stat-delta flat">steady</span></span>
+      <span class="el-stat-note">live feed · 4 shards</span>
+    </div>
+    <div class="el-stat">
+      <span class="el-stat-label">Error budget</span>
+      <span class="el-stat-row"><span class="el-stat-value">73<small> %</small></span><span class="el-stat-delta down">6.1%</span></span>
+      <span class="el-stat-note">rolling window</span>
+    </div>
+    <div class="el-stat" data-probe-selected>
+      <span class="el-stat-label">Queued</span>
+      <span class="el-stat-row"><span class="el-stat-value">312</span><span class="el-stat-note">selected tile</span></span>
+      <span class="el-stat-note">picked tile holds a ring</span>
+    </div>
+  </div>
+
+  <!-- ── meters ─────────────────────────────────────────────────────────── -->
+  <h2 style="font-size:var(--el-fs-lg);margin:var(--el-space-4) 0 var(--el-space-2)">Meters (el-meter, GTK level bar)</h2>
+  <div class="el-stack">
+    <div>
+      <span class="el-meter-label"><span>Disk pool A</span><span>64%</span></span>
+      <div class="el-meter ok" data-ticks="10"><span class="fill" style="width:64%"></span></div>
+    </div>
+    <div>
+      <span class="el-meter-label"><span>Disk pool B</span><span>81%</span></span>
+      <div class="el-meter warn"><span class="fill" style="width:81%"></span></div>
+    </div>
+    <div>
+      <span class="el-meter-label"><span>Retry queue</span><span>96%</span></span>
+      <div class="el-meter fail" data-ticks="4"><span class="fill" style="width:96%"></span></div>
+    </div>
+    <div>
+      <span class="el-meter-label"><span>Cache warm</span><span>37%</span></span>
+      <div class="el-meter"><span class="fill" style="width:37%"></span></div>
+    </div>
+  </div>
+
+  <!-- ── tables: base + four treatments ─────────────────────────────────── -->
+  <h2 id="tables" style="font-size:var(--el-fs-lg);margin:var(--el-space-4) 0 var(--el-space-2)">Tables (el-table + ruled / zebra / bank / broadsheet)</h2>
+  <div style="display:grid;gap:var(--el-space-4)">
+
+    <table class="el-table">
+      <caption style="caption-side:top;text-align:left;font-size:var(--el-fs-xs);color:var(--el-mute);padding:0 0 6px">base · sortable head · selected + hover rows</caption>
+      <thead><tr><th data-sort-dir="asc">Service</th><th>Region</th><th class="num">p99</th><th>&nbsp;</th></tr></thead>
+      <tbody>
+        <tr><td>ingest-gateway</td><td>us-east</td><td class="num">12 ms</td><td><span class="el-status-dot ok" aria-label="ok"></span></td></tr>
+        <tr class="is-selected"><td>render-farm</td><td>eu-west</td><td class="num">48 ms</td><td><span class="el-status-dot running" aria-label="running"></span></td></tr>
+        <tr data-probe-focus tabindex="0"><td>auth-proxy</td><td>us-west</td><td class="num">21 ms</td><td><span class="el-status-dot warn" aria-label="warn"></span></td></tr>
+        <tr aria-disabled="true"><td>legacy-sync</td><td>—</td><td class="num">—</td><td><span class="el-status-dot idle" aria-label="idle"></span></td></tr>
+      </tbody>
+    </table>
+
+    <table class="el-table el-table--ruled">
+      <thead><tr><th>Ruled</th><th class="num">Rows</th><th class="num">Δ</th></tr></thead>
+      <tbody>
+        <tr><td>grid treatment</td><td class="num">1,204</td><td class="num">+3</td></tr>
+        <tr><td>every cell hairline</td><td class="num">880</td><td class="num">−12</td></tr>
+      </tbody>
+    </table>
+
+    <table class="el-table el-table--zebra">
+      <thead><tr><th>Zebra</th><th class="num">Rows</th><th>State</th></tr></thead>
+      <tbody>
+        <tr><td>even-row oklab tint</td><td class="num">612</td><td><span class="el-status-pill ok">ok</span></td></tr>
+        <tr><td>hover lifts the tint</td><td class="num">471</td><td><span class="el-status-pill running">running</span></td></tr>
+      </tbody>
+    </table>
+
+    <table class="el-table el-table--bank">
+      <thead><tr><th>Bank</th><th>Date</th><th class="num">Amount</th></tr></thead>
+      <tbody>
+        <tr><td>Card · grocery</td><td>2026-11-02</td><td class="num">$128.40</td></tr>
+        <tr><td>Card · fuel</td><td>2026-11-01</td><td class="num">$52.90</td></tr>
+        <tr><td>Refund · tools</td><td>2026-10-30</td><td class="num">$18.73</td></tr>
+      </tbody>
+    </table>
+
+    <table class="el-table el-table--broadsheet">
+      <thead><tr><th>Broadsheet</th><th>Column</th><th>Column</th></tr></thead>
+      <tbody>
+        <tr><td>Open headline row with generous measure and a settled vertical rhythm</td><td>Supporting column copy set at reading size</td><td>Third</td></tr>
+        <tr><td>Second ledger row</td><td>Rule under the foot</td><td>End</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ── timeline: canonical + legacy ─────────────────────────────────── -->
+  <h2 style="font-size:var(--el-fs-lg);margin:var(--el-space-4) 0 var(--el-space-2)">Timeline (el-timeline + legacy h/v)</h2>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--el-space-4)">
+    <ul class="el-timeline">
+      <li class="running"><span class="when">09:04:11</span><span class="what">Import started · <span class="src">runs/2026-11-02</span></span></li>
+      <li class="ok"><span class="when">09:04:38</span><span class="what">27 sources parsed</span></li>
+      <li><span class="when">09:05:02</span><span class="what">Queue drained</span></li>
+      <li class="warn"><span class="when">09:05:19</span><span class="what">2 retries backoff</span></li>
+      <li class="fail"><span class="when">09:05:44</span><span class="what">1 failed fetch</span></li>
+      <li><span class="when">now</span><span class="what">Idle · rail resumes on next run</span></li>
+    </ul>
+    <div class="el-stack">
+      <div class="el-timeline-h">
+        <div class="ev CRIT"><span class="t">09:05:44</span><span class="rule">CRIT</span><span class="txt">fetch timeout</span></div>
+        <div class="ev HIGH"><span class="t">09:05:19</span><span class="rule">HIGH</span><span class="txt">backoff retry</span></div>
+        <div class="ev OK"><span class="t">09:04:38</span><span class="rule">OK</span><span class="txt">27 sources</span></div>
+      </div>
+      <div class="el-timeline-v">
+        <div class="ev CRIT"><span class="t">09:05:44</span><span class="lvl">CRIT</span><span class="rule">fetch</span><span class="txt">timeout</span></div>
+        <div class="ev OK sel"><span class="t">09:04:38</span><span class="lvl">OK</span><span class="rule">parse</span><span class="txt">27 sources</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── notification stack ────────────────────────────────────────────── -->
+  <h2 id="notifications" style="font-size:var(--el-fs-lg);margin:var(--el-space-4) 0 var(--el-space-2)">Notification stack (el-notification)</h2>
+  <div class="el-notification-stack">
+    <div class="el-notification ok is-unread" data-probe-unread>
+      <span class="icon"><svg class="el-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg></span>
+      <span class="head"><span class="title">Backup verified</span><span class="app">sys-daemon · 2m</span></span>
+      <button class="close" aria-label="dismiss">✕</button>
+      <span class="body">Nightly snapshot finished with checksum match across all 4 shards.</span>
+      <span class="actions"><button>View log</button><button>Acknowledge</button></span>
+    </div>
+    <div class="el-notification warn">
+      <span class="icon"><svg class="el-icon" viewBox="0 0 24 24"><path d="M12 3l10 18H2z"/><path d="M12 10v5"/><circle cx="12" cy="18" r=".5"/></svg></span>
+      <span class="head"><span class="title">Disk pool B at 81%</span><span class="app">scheduler · 14m</span></span>
+      <button class="close" aria-label="dismiss">✕</button>
+      <span class="body">Scratch volume is above the warn line; prune plan is ready.</span>
+      <span class="actions"><button>Open prune plan</button><button>Snooze</button></span>
+    </div>
+    <div class="el-notification fail">
+      <span class="icon"><svg class="el-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg></span>
+      <span class="head"><span class="title">Import failed at 09:05</span><span class="app">runner · 1m</span></span>
+      <button class="close" aria-label="dismiss">✕</button>
+      <span class="body">fetch timeout after 3 attempts on source 28.</span>
+      <span class="actions"><button>Retry</button></span>
+    </div>
+  </div>
+
+  <!-- ── feedback: spinner · inline alerts · skeletons · status ─────────── -->
+  <h2 id="feedback" style="font-size:var(--el-fs-lg);margin:var(--el-space-4) 0 var(--el-space-2)">Feedback (Group 6)</h2>
+  <div class="el-stack" style="gap:var(--el-space-3)">
+    <div class="el-cluster">
+      <span class="el-spinner" role="status" aria-label="loading"></span>
+      <span class="el-spinner sm"></span>
+      <span class="el-spinner lg"></span>
+      <span class="el-mono" style="color:var(--el-mute)">spinners sm / md / lg</span>
+    </div>
+    <div class="el-inline-alert info">
+      <svg class="el-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 10v6"/><circle cx="12" cy="7.5" r=".5"/></svg>
+      <span><span class="title">Index rebuilt</span><span class="body">Search index refreshed in 12s; next refresh scheduled 04:00.</span></span>
+      <button class="close" aria-label="dismiss">✕</button>
+    </div>
+    <div class="el-inline-alert warn">
+      <svg class="el-icon" viewBox="0 0 24 24"><path d="M12 3l10 18H2z"/><path d="M12 10v5"/></svg>
+      <span><span class="title">Stale snapshot</span><span class="body">Last verified run is 9 days old.</span></span>
+      <button class="close" aria-label="dismiss">✕</button>
+    </div>
+    <div class="el-inline-alert fail">
+      <svg class="el-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg>
+      <span><span class="title">Signature missing</span><span class="body">Source 28 returned an unverified manifest.</span></span>
+      <button class="close" aria-label="dismiss">✕</button>
+    </div>
+    <div class="el-inline-alert ok">
+      <svg class="el-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg>
+      <span><span class="title">Checks green</span><span class="body">30 verify checks + 40 pytest passed.</span></span>
+      <button class="close" aria-label="dismiss">✕</button>
+    </div>
+    <div class="el-cluster">
+      <span class="el-mono" style="color:var(--el-mute)">dots:</span>
+      <span class="el-status-dot idle"></span>
+      <span class="el-status-dot"></span>
+      <span class="el-status-dot running"></span>
+      <span class="el-status-dot ok"></span>
+      <span class="el-status-dot warn"></span>
+      <span class="el-status-dot fail"></span>
+      <span class="el-status-dot live"></span>
+      <span class="el-mono" style="color:var(--el-mute)">pills:</span>
+      <span class="el-status-pill queued">queued</span>
+      <span class="el-status-pill running">running</span>
+      <span class="el-status-pill ok">ok</span>
+      <span class="el-status-pill stale">stale</span>
+      <span class="el-status-pill live">live</span>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--el-space-4)">
+      <div class="el-panel" style="display:flex;flex-direction:column;gap:8px">
+        <div class="el-skeleton title"></div>
+        <div class="el-skeleton"></div>
+        <div class="el-skeleton text" style="width:80%"></div>
+        <div class="el-skeleton text" style="width:64%"></div>
+        <div class="el-cluster" style="margin-top:6px"><span class="el-skeleton circle" style="width:28px;height:28px"></span><span class="el-skeleton lg" style="flex:1"></span></div>
+        <div class="el-skeleton block"></div>
+      </div>
+      <div class="el-panel">
+        <span class="el-panel-head">skeleton → loaded contract</span>
+        <div class="el-skeleton" data-loaded style="margin-bottom:8px"></div>
+        <p class="el-body">A skeleton carrying <span class="el-mono">data-loaded</span> fades and lifts out, leaving its content slot free.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Group 2 primitives on a data page ─────────────────────────────── -->
+  <h2 id="surfaces" style="font-size:var(--el-fs-lg);margin:var(--el-space-4) 0 var(--el-space-2)">Surfaces (Group 2)</h2>
+  <div class="el-stack" style="gap:var(--el-space-3)">
+    <div class="el-cluster">
+      <button class="el-chip" data-probe-focus tabindex="0">All (24)</button>
+      <button class="el-chip is-selected">Running (3)</button>
+      <button class="el-chip added">Pinned</button>
+      <span class="el-chip ok">ok</span>
+      <span class="el-chip warn">warn</span>
+      <span class="el-chip fail">failed</span>
+      <span class="el-chip live">live</span>
+      <span class="el-chip el-chip--sm">sm</span>
+      <span class="el-chip el-chip--lg">large chip</span>
+      <button class="el-chip" aria-disabled="true">disabled</button>
+    </div>
+    <div class="el-cluster">
+      <span class="el-badge">alpha</span>
+      <span class="el-badge ok">stable</span>
+      <span class="el-badge warn">beta</span>
+      <span class="el-badge fail">failed</span>
+      <span class="el-badge live">live</span>
+      <span class="el-badge" style="font-variant-numeric:tabular-nums">1,402</span>
+    </div>
+    <div class="el-cluster">
+      <span class="el-pill">Nav pill</span>
+      <span class="el-pill ok">OK</span>
+      <span class="el-pill ghost">ghost</span>
+      <span class="el-avatar">GB</span>
+      <span class="el-avatar sq">SQ</span>
+      <span class="el-avatar"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAAAAAAALAAAAAABAAEAAAIBRAA"/></span>
+      <span class="el-kbd">⌘ K</span>
+      <span class="el-kbd">Shift</span>
+      <span class="el-swatch" style="color:#4ec5b9"></span>
+      <span class="el-swatch rounded" style="color:#ffb000"></span>
+      <span class="el-swatch xs" style="color:#ff5a52"></span>
+    </div>
+  </div>
+
+  <hr class="el-divider">
+  <p class="el-spec">probe matrix: append <b>?probe=states</b> (selected + disabled + unread) · <b>?probe=focus</b> (focus ring) · <b>?theme=&lt;slug&gt;</b> (any of the 20)</p>
+
+</main>
+</body>
+</html>

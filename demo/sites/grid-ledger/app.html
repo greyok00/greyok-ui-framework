@@ -1,0 +1,488 @@
+<!doctype html>
+<html lang="en" data-theme="grid-ledger">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ledger desk — Fernbank Ledger</title>
+<link rel="stylesheet" href="../../../base.css">
+<link rel="stylesheet" href="../../../fonts.css">
+<link rel="stylesheet" href="../../../tokens.css">
+<link rel="stylesheet" href="../../../tokens-v2.css">
+<link rel="stylesheet" href="../../../elements-display.css">
+<link rel="stylesheet" href="../../../elements-structure.css">
+<link rel="stylesheet" href="../../../elements-lists.css">
+<link rel="stylesheet" href="../../../elements-app.css">
+<link rel="stylesheet" href="../../../elements-containers.css">
+<link rel="stylesheet" href="../../../elements-controls.css">
+<link rel="stylesheet" href="../../../elements-inputs.css">
+<link rel="stylesheet" href="../../../elements-dataviz.css">
+<link rel="stylesheet" href="../../../elements-overlay.css">
+<link rel="stylesheet" href="../../../elements-interactions.css">
+<link rel="stylesheet" href="../../../elements-misc.css">
+<link rel="stylesheet" href="../../../elements-size.css">
+<link rel="stylesheet" href="../../../elements-workflow.css">
+<link rel="stylesheet" href="../../../elements-inspector.css">
+<link rel="stylesheet" href="../../../elements-reader.css">
+<link rel="stylesheet" href="../../../elements-assistant.css">
+<link rel="stylesheet" href="../../../themes/src/dashboard-light.css">
+<script src="../../../elements.js" defer></script>
+<script src="../../../charts.js" defer></script>
+</head>
+<body class="el-reset">
+<div class="site-shell">
+
+  <nav class="el-navbar el-navbar--rail" aria-label="Fernbank Ledger">
+    <a class="brand" href="index.html">
+      <span class="brand-mark" aria-hidden="true">F</span>
+      <span class="brand-label">Fernbank Ledger</span>
+    </a>
+    <div class="links">
+      <a href="index.html"><span class="rail-idx">01</span>Overview</a>
+      <a href="catalog.html"><span class="rail-idx">02</span>Billing packages</a>
+      <a href="article.html"><span class="rail-idx">03</span>The close</a>
+      <a href="account.html"><span class="rail-idx">04</span>Books office</a>
+      <a href="app.html" aria-current="page"><span class="rail-idx">05</span>Ledger desk</a>
+    </div>
+    <div class="actions">
+      <button class="el-btn" data-command="cmd-desk">Quick find</button>
+      <span class="el-pill"><span class="el-status-dot ok" data-state="ok"></span>balanced</span>
+    </div>
+    <div class="rail-note">
+      <span>Whitfield Bookkeeping PLLC</span>
+      <span>Herrera Metalworks · October 2026</span>
+    </div>
+  </nav>
+
+  <div class="site-main">
+    <main class="el-page">
+
+      <section class="el-section el-section--flush" style="padding: 0;">
+        <div class="el-appwin">
+          <div class="el-titlebar">
+            <span class="lead"><span class="el-avatar" aria-hidden="true" style="width: 22px; height: 22px; font-size: 11px;">F</span></span>
+            <span class="el-app-title">Fernbank desk<small>Herrera Metalworks · October 2026</small></span>
+            <span class="winbtns">
+              <button class="el-winbtn" data-tip="Minimize the desk" aria-label="Minimize"><span class="el-winbtn-ico"></span></button>
+              <button class="el-winbtn" data-tip="Maximize" aria-label="Maximize"><span class="el-winbtn-ico"></span></button>
+              <button class="el-winbtn" data-tip="Close (the books stay open)" aria-label="Close"><span class="el-winbtn-ico"></span></button>
+            </span>
+          </div>
+          <div class="el-menubar" role="menubar">
+            <div class="el-menu-anchor">
+              <button class="el-menubar-item" data-menu="menu-file" aria-haspopup="true">File</button>
+              <div class="el-menu" id="menu-file" role="menu" aria-label="File menu">
+                <div class="el-menu-label">File</div>
+                <button class="el-menu-item" data-toast="Journal exported to workpapers (PDF)">Export print journal</button>
+                <button class="el-menu-item" data-toast="Audit log exported (CSV, 1,284 rows)">Export audit log <span class="hint">CSV</span></button>
+                <div class="el-menu-sep" role="separator"></div>
+                <button class="el-menu-item is-danger" data-toast="Nothing was closed; certification untouched">Close October early…</button>
+              </div>
+            </div>
+            <div class="el-menu-anchor">
+              <button class="el-menubar-item" data-menu="menu-view" aria-haspopup="true">View</button>
+              <div class="el-menu" id="menu-view" role="menu" aria-label="View menu">
+                <button class="el-menu-item" data-toast="View: debits only">Debits only</button>
+                <button class="el-menu-item" data-toast="View: uncleared legs">Uncleared legs <span class="hint">12</span></button>
+                <button class="el-menu-item" data-toast="Tabular figures stay on">Tabular figures</button>
+              </div>
+            </div>
+            <div class="el-menu-anchor">
+              <button class="el-menubar-item" data-menu="menu-journal" aria-haspopup="true">Journal</button>
+              <div class="el-menu el-menu--end" id="menu-journal" role="menu" aria-label="Journal menu">
+                <button class="el-menu-item" data-toast="Journal copied (8 lines)">Copy entry</button>
+                <button class="el-menu-item" data-toast="Recurring rule saved for this split">Save as recurring <span class="hint">Nov 6</span></button>
+                <div class="el-menu-sep" role="separator"></div>
+                <button class="el-menu-item is-danger" data-toast="Nothing was voided; the journal is untouched">Void entry…</button>
+              </div>
+            </div>
+            <span class="el-menubar-sep" role="separator"></span>
+            <span class="el-popover">
+              <button class="el-menubar-item" aria-haspopup="true">Help</button>
+              <span class="el-pop">
+                <div class="el-panel-head">why paper?</div>
+                <p style="margin:0; font-size: var(--el-fs-sm); color: var(--el-ink-soft); max-width: 30ch;">A ledger reads like a bank statement on purpose: ruled columns, tabular figures, square corners. Everything else stays quiet.</p>
+              </span>
+            </span>
+            <span class="el-menubar-spring" style="flex:1;"></span>
+            <button class="el-menubar-item" data-command="cmd-desk"><kbd class="el-kbd">⌘K</kbd> find an entry</button>
+          </div>
+          <div class="el-headerbar">
+            <span class="el-headerbar-label">October</span>
+            <span class="el-headerbar-title-block">
+              <span class="el-headerbar-title">Working journal</span>
+              <span class="el-headerbar-subtitle">1,284 entries · balanced · close Day 3 of 5</span>
+            </span>
+            <span class="spring" style="flex:1;"></span>
+            <span class="end" style="display:flex; gap:8px; align-items:center;">
+              <span class="el-search-field" style="width: 230px;"><input class="el-search" aria-label="Search the journal" placeholder="Find an entry, amount…" /></span>
+              <button class="el-btn" data-dialog-open="dlg-entry"><svg class="el-icon"><use href="../../../assets/icons.svg#el-i-plus"/></svg>New entry</button>
+              <button class="el-btn el-btn--ghost" data-toast="Desk pinned to your workspace">Pin</button>
+            </span>
+          </div>
+
+          <div class="win-body" style="display:grid; grid-template-columns: 208px minmax(0,1fr) 300px; min-height: 640px;">
+
+            <!-- left rail: accounts -->
+            <aside class="el-sidebar" aria-label="Chart of accounts" style="border-radius:0;">
+              <div class="head">Chart of accounts</div>
+              <div class="grp">
+                <span class="label">Assets</span>
+                <a href="#" class="is-selected">Cash operating <span style="margin-left:auto;" class="count">41,206</span></a>
+                <a href="#">Savings · Az ST CU <span style="margin-left:auto;" class="count">9,880</span></a>
+                <a href="#">Accounts receivable <span style="margin-left:auto;" class="count">18,440</span></a>
+              </div>
+              <div class="grp">
+                <span class="label">Liabilities</span>
+                <a href="#">Payroll clearing <span style="margin-left:auto;" class="count">0</span></a>
+                <a href="#">Sales tax payable <span style="margin-left:auto;" class="count">4,120</span></a>
+              </div>
+              <div class="grp">
+                <span class="label">Income</span>
+                <a href="#">Sales revenue <span style="margin-left:auto;" class="count">92,220</span></a>
+                <a href="#">Service revenue <span style="margin-left:auto;" class="count">6,400</span></a>
+              </div>
+              <div class="grp">
+                <span class="label">Saved views</span>
+                <a href="#">October close</a>
+                <a href="#">Herrera retainer</a>
+              </div>
+            </aside>
+
+            <!-- center: the journal workbench -->
+            <div style="display:flex; flex-direction:column; min-width:0;">
+              <div class="el-actionbar">
+                <span class="lead"><strong>Working journal</strong> · October 1 – 31</span>
+                <span class="actions" style="display:flex; gap:8px;">
+                  <button class="el-btn el-btn--outline" data-toast="Filter: uncleared only (12 lines)">Uncleared 12</button>
+                  <button class="el-btn el-btn--outline" data-toast="Printed journal exported to workpapers"><svg class="el-icon"><use href="../../../assets/icons.svg#el-i-download"/></svg>Print</button>
+                  <button class="el-btn" data-toast="October journal certified as a draft" data-toast-variant="ok"><svg class="el-icon"><use href="../../../assets/icons.svg#el-i-check"/></svg>Post all</button>
+                </span>
+              </div>
+
+              <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(158px, 1fr)); gap:10px; padding: 12px 14px 4px;">
+                <div class="el-stat is-live"><span class="el-stat-label">cash on hand</span><span class="el-stat-value">41,206</span><span class="el-sparkline" data-chart="sparkline" data-values="38,900,39,420,39,110,40,020,39,860,41,206,40,780,41,206" data-width="220" data-height="30" data-color="#087449"></span></div>
+                <div class="el-stat"><span class="el-stat-label">receivable</span><span class="el-stat-value">18,440</span><small style="font-family: var(--el-font-mono);">31 d avg</small><span class="el-meter warn" data-ticks="4"><span class="fill" style="--el-meter-value: 18%"></span></span></div>
+                <div class="el-stat"><span class="el-stat-label">net margin</span><span class="el-stat-value">22.4<small style="font-family: var(--el-font-mono);">%</small></span><span class="el-sparkline" data-chart="sparkline" data-values="19.2,20.1,19.8,21.0,20.6,22.1,21.9,22.4" data-width="220" data-height="30" data-color="#087449"></span></div>
+                <div class="el-stat"><span class="el-stat-label">close progress</span><span class="el-stat-value">3/5</span><span class="el-meter" data-ticks="5"><span class="fill" style="--el-meter-value: 60%"></span></span></div>
+              </div>
+
+              <div style="padding: 10px 14px 4px;">
+                <div class="el-progress-truth" role="status" aria-label="Close progress in stages and counts">
+                  <span class="el-pt-chunk is-done">matched 1,268</span>
+                  <span class="el-pt-chunk is-done">posted 947</span>
+                  <span class="el-pt-chunk is-running">2 awaiting review</span>
+                  <span class="el-pt-chunk is-stale">reviewer initials</span>
+                  <span class="el-pt-count">1,268 of 1,284 lines posted</span>
+                </div>
+              </div>
+
+              <div style="padding: 10px 14px;">
+                <div class="el-panel-head">working journal · Herrera Metalworks</div>
+                <div class="table-scroll">
+                  <table class="el-table el-table--bank">
+                    <caption class="el-sr-only">October journal, debits and credits</caption>
+                    <thead><tr><th scope="col">Date</th><th scope="col">Entry</th><th scope="col">Account</th><th scope="col" class="num">Debit</th><th scope="col" class="num">Credit</th><th scope="col">Status</th></tr></thead>
+                    <tbody>
+                      <tr>
+                        <td>10-02</td><td>JE-4012</td><td>Accounts receivable</td>
+                        <td class="num">46,120.00</td><td class="num">—</td>
+                        <td><span class="el-status-pill ok" data-state="ok">posted</span></td>
+                      </tr>
+                      <tr>
+                        <td>10-02</td><td>JE-4012</td><td>Sales revenue · steel</td>
+                        <td class="num">—</td><td class="num">46,120.00</td>
+                        <td><span class="el-status-pill ok" data-state="ok">posted</span></td>
+                      </tr>
+                      <tr>
+                        <td>10-06</td><td>JE-4013</td><td>Payroll expense</td>
+                        <td class="num">12,900.00</td><td class="num">—</td>
+                        <td><span class="el-status-pill warn" data-state="warn">uncleared</span></td>
+                      </tr>
+                      <tr>
+                        <td>10-06</td><td>JE-4013</td><td>Payroll clearing</td>
+                        <td class="num">—</td><td class="num">12,900.00</td>
+                        <td><span class="el-status-pill warn" data-state="warn">uncleared</span></td>
+                      </tr>
+                      <tr>
+                        <td>10-09</td><td>JE-4014</td><td>Cost of goods · raw steel</td>
+                        <td class="num">31,340.00</td><td class="num">—</td>
+                        <td><span class="el-status-pill ok" data-state="ok">posted</span></td>
+                      </tr>
+                      <tr>
+                        <td>10-09</td><td>JE-4014</td><td>Cash operating</td>
+                        <td class="num">—</td><td class="num">31,340.00</td>
+                        <td><span class="el-status-pill ok" data-state="ok">posted</span></td>
+                      </tr>
+                      <tr>
+                        <td>10-28</td><td>JE-4017</td><td>Sales tax expense</td>
+                        <td class="num">4,120.00</td><td class="num">—</td>
+                        <td><span class="el-status-pill queued">queued</span></td>
+                      </tr>
+                      <tr>
+                        <td>10-28</td><td>JE-4017</td><td>Sales tax payable</td>
+                        <td class="num">—</td><td class="num">4,120.00</td>
+                        <td><span class="el-status-pill queued">queued</span></td>
+                      </tr>
+                    </tbody>
+                    <tfoot>
+                      <tr>
+                        <td colspan="3">Totals · October to date</td>
+                        <td class="num">94,480.00</td>
+                        <td class="num">94,480.00</td>
+                        <td><span class="el-status-pill ok" data-state="ok">balanced</span></td>
+                      </tr>
+                    </tfoot>
+                  </table>
+                </div>
+                <p class="foot-note" style="margin: 8px 0 0; font-size: var(--el-fs-sm); color: var(--el-ink-soft);">Four of October's 1,284 entries shown. Unclear legs settle when the bank feed lands — payroll run 20 clears Nov 1.</p>
+              </div>
+
+              <div style="padding: 4px 14px;">
+                <div class="el-ladder" aria-label="October close run">
+                  <div class="el-ladder-step is-done"><span class="el-ladder-idx">01</span><span class="el-ladder-label">Day 1 · reconcile feeds</span><span class="el-ladder-meta">Nov 1 · 112 feeds, 0 breaks</span></div>
+                  <div class="el-ladder-step is-done"><span class="el-ladder-idx">02</span><span class="el-ladder-label">Day 2 · post accruals</span><span class="el-ladder-meta">Nov 2 · 18 adjusting lines</span></div>
+                  <div class="el-ladder-step is-running"><span class="el-ladder-idx">03</span><span class="el-ladder-label">Day 3 · variance review</span><span class="el-ladder-meta">2 band moves</span></div>
+                  <div class="el-ladder-step"><span class="el-ladder-idx">04</span><span class="el-ladder-label">Day 4 · reviewer initials</span><span class="el-ladder-meta">queued</span></div>
+                  <div class="el-ladder-step is-queued"><span class="el-ladder-idx">05</span><span class="el-ladder-label">Day 5 · certify + invoice</span><span class="el-ladder-meta">Nov 5</span></div>
+                </div>
+              </div>
+
+              <div style="padding: 6px 14px 14px; margin-top: auto;">
+                <div class="el-tabbar" role="tablist" aria-label="Journal views">
+                  <button class="el-tabbar-item is-active" role="tab" aria-selected="true">All lines<span class="count">1,284</span></button>
+                  <button class="el-tabbar-item" role="tab">Adjusting<span class="count">18</span></button>
+                  <button class="el-tabbar-item" role="tab">Recurring<span class="count">41</span></button>
+                </div>
+              </div>
+            </div>
+
+            <!-- right rail: notices, copilot, inspector -->
+            <div style="display:flex; flex-direction:column; gap:12px; padding: 12px 12px 12px 0; min-width:0;">
+              <div class="el-notification-stack">
+                <div class="el-notification is-unread">
+                  <span class="icon"><svg class="el-icon"><use href="../../../assets/icons.svg#el-i-info"/></svg></span>
+                  <div class="head"><span class="title">Feed matched a suggestion</span><span class="app">fedmatch</span><span class="time">14:02</span></div>
+                  <div class="body">Sonoran Coffee $1,190.00 looks like the steel restock fee. Rule wants your initials.</div>
+                </div>
+                <div class="el-notification">
+                  <span class="icon"><svg class="el-icon"><use href="../../../assets/icons.svg#el-i-check"/></svg></span>
+                  <div class="head"><span class="title">October books balanced</span><span class="app">desk</span><span class="time">09:14</span></div>
+                  <div class="body">Debits 94,480.00 equal credits 94,480.00 to date. Nothing is pending certification yet.</div>
+                </div>
+              </div>
+
+              <div class="el-assistant-panel">
+                <div class="el-assistant-head">Balance Copilot</div>
+                <div class="el-assistant-log">
+                  <div class="el-msg el-msg--assistant is-streaming">The $1,190.00 feed row fits JE-4014's freight band — inside 2%/$500. Post it against freight-in?<div class="el-plan"><div class="el-plan-title">Proposed: post against freight-in, JE-4014</div>One action, reversible from the audit log.</div></div>
+                  <div class="el-msg el-msg--user">Yes — note it was a suggestion in the memo.</div>
+                  <div class="el-msg el-msg--assistant">Posted and memo'd. <span class="el-cite-inline">source: field note #9</span> Day 4 initials still belong to a human.</div>
+                </div>
+                <div class="el-assistant-foot">
+                  <span class="el-search-field" style="flex:1;"><input class="el-search" aria-label="Ask the Balance Copilot" placeholder="Ask about any entry…" /></span>
+                  <button class="el-assistant-stop" data-toast="Copilot replied: no posting ran" data-toast-variant="ok">Stop</button>
+                </div>
+              </div>
+
+              <div class="el-inspector is-docked">
+                <div class="el-inspector-header">Inspector · JE-4013 <span style="flex:1;"></span><button class="insp-actions" data-toast="Inspector JSON copied to the clipboard" aria-label="Inspector tools">…</button></div>
+                <div class="el-inspector-body">
+                  <div style="display:grid; gap:8px;">
+                    <div style="display:flex; align-items:center; gap:8px; font-size: var(--el-fs-sm); color: var(--el-ink-soft);">
+                      <span class="el-spinner sm" role="status" aria-label="Fetching bank match"></span>checking bank feed match…
+                    </div>
+                    <div class="el-fact-grid" style="grid-template-columns:1fr 1fr;">
+                      <div class="el-fact"><span class="k">legs</span><span class="v">2</span></div>
+                      <div class="el-fact"><span class="k">amount</span><span class="v">12,900</span></div>
+                      <div class="el-fact"><span class="k">clears</span><span class="v">Nov 1</span></div>
+                      <div class="el-fact"><span class="k">state</span><span class="v">uncleared</span></div>
+                    </div>
+                    <div class="el-listbox" role="listbox" aria-label="Linked documents">
+                      <div class="el-listbox-header">linked documents</div>
+                      <button class="el-listbox-row" role="option" aria-selected="true">
+                        <span class="icon"><svg class="el-icon"><use href="../../../assets/icons.svg#el-i-calendar"/></svg></span>
+                        <span class="label">Timesheet batch 20 <span class="sub">signed by E. Sato</span></span>
+                        <span class="count">PDF</span>
+                      </button>
+                      <button class="el-listbox-row" role="option">
+                        <span class="icon"><svg class="el-icon"><use href="../../../assets/icons.svg#el-i-download"/></svg></span>
+                        <span class="label">Bank CSV · sweep 10-06 <span class="sub">2 rows</span></span>
+                        <span class="count">CSV</span>
+                      </button>
+                      <button class="el-listbox-row" role="option" aria-disabled="true">
+                        <span class="icon"><svg class="el-icon"><use href="../../../assets/icons.svg#el-i-user"/></svg></span>
+                        <span class="label">Reviewer initials <span class="sub">waits for Day 4</span></span>
+                        <span class="action">—</span>
+                      </button>
+                    </div>
+                    <div class="el-empty el-empty--compact" style="padding: 14px;">
+                      <svg class="el-icon"><use href="../../../assets/icons.svg#el-i-search"/></svg>
+                      <div class="el-msg">No variance note yet</div>
+                      <div class="el-hint">Payroll variance is inside 0.7% of plan — no note required.</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="el-section el-section--dense">
+        <div class="el-section-head">
+          <div><p class="el-eyebrow">Try the overlays</p><h2>Everything here is interactive; the books keep their balance.</h2></div>
+          <div class="actions"><span class="el-pill">demo bindings, no ledger touched</span></div>
+        </div>
+        <div class="demo-row" style="display:flex; flex-wrap:wrap; gap:10px; align-items:center;">
+          <button class="el-btn" data-dialog-open="dlg-entry">Open journal entry dialog</button>
+          <span class="el-tooltip" data-tip="Entries stay open behind this drawer">
+            <button class="el-btn el-btn--outline" data-drawer-open="drw-entry">Open entry drawer</button>
+          </span>
+          <button class="el-btn el-btn--outline" data-command="cmd-desk">Quick find <kbd class="el-kbd">⌘K</kbd></button>
+          <button class="el-btn el-btn--ghost" data-toast="JE-4013 marked for Day 4 review">Push a toast</button>
+          <button class="el-btn el-btn--ghost" data-toast="Freight fee posted against JE-4014" data-toast-variant="ok">Posted toast</button>
+          <button class="el-btn el-btn--ghost" data-toast="Bank feed sweep failed — retry at 14:10" data-toast-variant="fail">Feed failure toast</button>
+          <span class="el-popover">
+            <button class="el-btn el-btn--outline" aria-haspopup="true"><svg class="el-icon"><use href="../../../assets/icons.svg#el-i-settings"/></svg>Desk options</button>
+            <span class="el-pop">
+              <div class="el-panel-head">desk options</div>
+              <p style="margin:0; font-size: var(--el-fs-sm); color: var(--el-ink-soft); max-width: 30ch;">Ruled rows and tabular figures stay on by default. Statement date can pin to month-end.</p>
+              <div style="display:flex; gap:6px; margin-top:8px;"><button class="el-btn el-btn--outline" data-toast="Statement date pinned to month-end">Pin to month-end</button></div>
+            </span>
+          </span>
+        </div>
+        <div class="toast-specimens" style="display:grid; gap:8px; max-width: 360px; margin-top: var(--el-space-3);">
+          <div class="el-toast" role="status"><span>JE-4019 · AR receipt posted, 2 legs</span><span class="close" data-toast-demo aria-label="Dismiss">×</span></div>
+          <div class="el-toast ok" role="status"><span>October journal balanced to the penny</span><span class="close" data-toast-demo aria-label="Dismiss">×</span></div>
+          <div class="el-toast fail" role="status"><span>Feed sweep failed — retry at 14:10</span><span class="close" data-toast-demo aria-label="Dismiss">×</span></div>
+        </div>
+      </section>
+
+      <footer class="el-footer">
+        <div class="cols">
+          <div class="col"><span class="label">Desk</span><a href="app.html">Working journal</a><a href="app.html">Close run</a></div>
+          <div class="col"><span class="label">Product</span><a href="index.html">Overview</a><a href="catalog.html">Billing packages</a></div>
+          <div class="col"><span class="label">Read</span><a href="article.html">The five-day close</a></div>
+          <div class="col"><span class="label">Fine print</span><a href="#">Security</a><a href="#">SOC 1 report</a></div>
+        </div>
+        <div class="small">Desk v4.12 · session R. Whitfield · books: Herrera Metalworks, October</div>
+      </footer>
+    </main>
+  </div>
+</div>
+
+<!-- journal entry dialog -->
+<dialog class="el-dialog" id="dlg-entry" aria-label="New journal entry">
+  <div class="el-dialog-head">
+    <h3 class="el-dialog-title">New journal entry</h3>
+    <button class="el-dialog-close" data-dialog-close aria-label="Close"><svg class="el-icon"><use href="../../../assets/icons.svg#el-i-x"/></svg></button>
+  </div>
+  <div class="el-dialog-body">
+    <div style="display:grid; grid-template-columns: 1fr 1fr; gap: var(--el-space-3);">
+      <div class="el-field">
+        <label class="el-label" for="je-date">Date</label>
+        <input class="el-input" id="je-date" value="2026-10-31" />
+      </div>
+      <div class="el-field">
+        <label class="el-label" for="je-kind">Entry kind</label>
+        <select class="el-select" id="je-kind"><option selected>Adjusting</option><option>Standard</option><option>Recurring</option></select>
+      </div>
+      <div class="el-field">
+        <label class="el-label" for="je-debit">Debit</label>
+        <div class="el-dropdown" tabindex="0">Accounts receivable <svg class="el-icon"><use href="../../../assets/icons.svg#el-i-chevron-down"/></svg></div>
+        <input class="el-input" id="je-debit" inputmode="decimal" value="1,190.00" />
+      </div>
+      <div class="el-field" data-invalid="true">
+        <label class="el-label" for="je-credit">Credit</label>
+        <input class="el-input" id="je-credit" inputmode="decimal" value="1,190" />
+        <span class="el-error">Carries no cents; a two-cent drift would unbalance October.</span>
+      </div>
+      <div class="el-field el-field--wide" style="grid-column: 1 / -1;">
+        <label class="el-label" for="je-memo">Memo</label>
+        <textarea class="el-textarea" id="je-memo" rows="3">Bank-feed suggestion; reviewed by hand. Posted against freight band per field note #9.</textarea>
+      </div>
+    </div>
+    <div class="el-inline-alert el-inline-alert--info">
+      <div><div class="title">Draft posts to the working journal</div><div class="body">Nothing writes to the certified journal until Day 5. Every action here is reversible from the audit log.</div></div>
+    </div>
+  </div>
+  <div class="el-dialog-foot">
+    <button class="el-btn el-btn--ghost" data-dialog-close>Cancel</button>
+    <button class="el-btn" data-toast="JE-4020 drafted · 2 legs, balanced" data-toast-variant="ok" data-dialog-close>Post draft</button>
+  </div>
+</dialog>
+
+<!-- entry drawer -->
+<div class="el-drawer right" id="drw-entry" aria-label="Entry detail">
+  <div class="el-drawer-head">
+    <strong>JE-4013 · payroll run 20</strong>
+    <button class="el-drawer-close" data-drawer-close aria-label="Close drawer"><svg class="el-icon"><use href="../../../assets/icons.svg#el-i-x"/></svg></button>
+  </div>
+  <div class="el-drawer-body">
+    <span class="el-tooltip" data-tip="Recheck the feed before initials">
+      <span class="el-status-pill warn" data-state="warn" tabindex="0">uncleared</span>
+    </span>
+    <div class="el-stage-rail" aria-label="Entry pipeline">
+      <div class="el-stage is-done"><span class="el-stage-dot"></span><span class="el-stage-name">feed matched</span><span class="el-dur">2 min</span></div>
+      <div class="el-stage is-done"><span class="el-stage-dot"></span><span class="el-stage-name">rule matched</span><span class="el-dur">instant</span></div>
+      <div class="el-stage is-active"><span class="el-stage-dot"></span><span class="el-stage-name">drafted on desk</span><span class="el-stage-count">1 of 1</span></div>
+      <div class="el-stage is-queued"><span class="el-stage-dot"></span><span class="el-stage-name">reviewer initials</span><span class="el-stage-count">Day 4</span></div>
+      <div class="el-stage"><span class="el-stage-dot"></span><span class="el-stage-name">october certificate</span></div>
+    </div>
+    <div class="el-fact-grid" style="grid-template-columns:1fr 1fr;">
+      <div class="el-fact"><span class="k">gross</span><span class="v">12,900</span></div>
+      <div class="el-fact"><span class="k">net out</span><span class="v">12,900</span></div>
+      <div class="el-fact"><span class="k">batch</span><span class="v">20 signed</span></div>
+      <div class="el-fact is-hot"><span class="k">clears</span><span class="v">Nov 1</span></div>
+    </div>
+    <div class="el-table-scroll table-scroll" style="margin-top: 10px;">
+      <table class="el-table el-table--bank el-table--broadsheet">
+        <thead><tr><th>Account</th><th class="num">Debit</th><th class="num">Credit</th></tr></thead>
+        <tbody>
+          <tr><td>Payroll expense</td><td class="num">12,900.00</td><td class="num">—</td></tr>
+          <tr><td>Payroll clearing</td><td class="num">—</td><td class="num">12,900.00</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="el-drawer-foot">
+    <button class="el-btn el-btn--ghost" data-drawer-close>Close</button>
+    <button class="el-btn" data-toast="Suggested posting copied to the desk" data-toast-variant="ok">Copy suggestion</button>
+  </div>
+</div>
+
+
+<!-- quick palette for the desk -->
+<div class="el-command" id="cmd-desk" role="dialog" aria-label="Quick find">
+  <div class="el-command-panel">
+    <input class="el-command-input" placeholder="Find entries, accounts, actions…" autocomplete="off" />
+    <div class="el-command-results">
+      <div class="el-command-group">Entries</div>
+      <button class="el-command-row sel" data-value="4012"><span>JE-4012 · steel sales <span class="hint">Herrera</span></span><span class="key">46,120.00</span></button>
+      <button class="el-command-row" data-value="4013"><span>JE-4013 · payroll run 20</span><span class="key">12,900.00</span></button>
+      <button class="el-command-row" data-value="4017"><span>JE-4017 · sales tax accrual</span><span class="key">4,120.00</span></button>
+      <div class="el-command-group">Actions</div>
+      <button class="el-command-row" data-value="new-je"><span>New journal entry</span><span class="key">N</span></button>
+      <div class="el-command-empty">No entry matches — try "freight" or "4,120".</div>
+    </div>
+    <div class="el-command-foot"><span><kbd class="el-kbd">↑↓</kbd> move</span><span><kbd class="el-kbd">↵</kbd> open</span><span><kbd class="el-kbd">esc</kbd> close</span></div>
+  </div>
+</div>
+
+<script>
+window.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('[data-banner-close]').forEach(b =>
+    b.addEventListener('click', () => b.closest('.el-banner')?.classList.add('is-dismissed')));
+  document.querySelectorAll('[data-toast-demo]').forEach(b =>
+    b.addEventListener('click', () => b.closest('.el-toast')?.remove()));
+  const q = new URLSearchParams(location.search).get('open');
+  if (q && window.Elements) {
+    const t = document.getElementById(q);
+    if (t && window.Elements.openDialog) window.Elements.openDialog(t);
+    if (t && window.Elements.openDrawer) window.Elements.openDrawer(t);
+    if (t && window.Elements.openCommand) window.Elements.openCommand(t);
+  }
+});
+</script>
+</body>
+</html>

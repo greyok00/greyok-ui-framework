@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="en" data-theme="mono-console">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ridge console — Ridgeline Systems app mock</title>
+<link rel="stylesheet" href="../../../base.css">
+<link rel="stylesheet" href="../../../fonts.css">
+<link rel="stylesheet" href="../../../tokens.css">
+<link rel="stylesheet" href="../../../elements-display.css">
+<link rel="stylesheet" href="../../../elements-structure.css">
+<link rel="stylesheet" href="../../../elements-lists.css">
+<link rel="stylesheet" href="../../../elements-app.css">
+<link rel="stylesheet" href="../../../elements-containers.css">
+<link rel="stylesheet" href="../../../elements-controls.css">
+<link rel="stylesheet" href="../../../elements-inputs.css">
+<link rel="stylesheet" href="../../../elements-dataviz.css">
+<link rel="stylesheet" href="../../../elements-overlay.css">
+<link rel="stylesheet" href="../../../elements-interactions.css">
+<link rel="stylesheet" href="../../../elements-misc.css">
+<link rel="stylesheet" href="../../../elements-size.css">
+<link rel="stylesheet" href="../../../elements-workflow.css">
+<link rel="stylesheet" href="../../../elements-inspector.css">
+<link rel="stylesheet" href="../../../elements-reader.css">
+<link rel="stylesheet" href="../../../elements-assistant.css">
+<link rel="stylesheet" href="../../../themes/src/tech-mono.css">
+<script src="../../../elements.js" defer></script>
+<script src="../../../charts.js" defer></script>
+</head>
+<body style="padding:16px;background:#050505;">
+<div class="el-page">
+
+  <main>
+    <div class="el-appwin">
+      <div class="el-titlebar">
+        <span class="lead"><span class="el-status-dot live" aria-hidden="true"></span><span class="el-hint" style="margin:0;">fleet 412 &middot; island portland-2</span></span>
+        <div class="el-app-title">Ridge console <small>cartwheel-freight</small></div>
+        <div class="winbtns">
+          <button class="el-winbtn min" type="button" aria-label="Minimize"></button>
+          <button class="el-winbtn max" type="button" aria-label="Maximize"></button>
+          <button class="el-winbtn close" type="button" aria-label="Close"></button>
+        </div>
+      </div>
+
+      <div class="el-menubar" role="menubar">
+        <div class="el-menu-anchor">
+          <button class="el-menubar-item" data-menu="fleet-menu" aria-expanded="false">Fleet</button>
+          <div class="el-menu" id="fleet-menu" role="menu">
+            <div class="el-menu-label">Islands</div>
+            <button class="el-menu-item" type="button">Portland-2 <span class="hint">warm</span></button>
+            <button class="el-menu-item" type="button">Denver-1 <span class="hint">warm</span></button>
+            <button class="el-menu-item" type="button">Dublin-1 <span class="hint">rollback</span></button>
+            <div class="el-menu-sep" role="separator"></div>
+            <button class="el-menu-item is-danger" type="button" data-toast="Drain cancelled — lanes stayed reserved" data-toast-variant="fail">Drain island…</button>
+          </div>
+        </div>
+        <button class="el-menubar-item" type="button">Builds</button>
+        <button class="el-menubar-item" type="button" data-command="console-cmd">Commands</button>
+        <div class="el-menubar-sep" role="separator"></div>
+        <div class="el-menubar-spring"></div>
+        <span class="el-status-pill running" style="margin-right:8px;">3 running</span>
+      </div>
+
+      <div class="el-headerbar">
+        <span class="el-headerbar-label">Builds &middot; last 24h</span>
+        <span class="spring"></span>
+        <div class="el-popover">
+          <button class="el-btn el-btn--outline" type="button" aria-expanded="false">Filter</button>
+          <div class="el-pop">
+            <h4>Filter builds</h4>
+            <span class="el-check on" style="display:inline-block;margin-bottom:8px;"><input type="checkbox" checked aria-label="only failed"></span>
+            <span style="font-size:var(--el-fs-sm);vertical-align:middle;">failed only</span>
+          </div>
+        </div>
+        <label class="el-search-field">
+          <input class="el-search" type="search" placeholder="Search builds" aria-label="Search builds">
+        </label>
+        <span class="el-tooltip" data-tip="Cancel a queued or running build" tabindex="0">
+          <button class="el-btn el-btn--danger" type="button" data-dialog-open="kill-build">Kill build</button>
+        </span>
+      </div>
+
+      <div class="el-appwin-body" style="display:grid;grid-template-columns:var(--el-rail-w, 248px) 1fr 300px;gap:0;min-height:640px;">
+        <aside class="el-sidebar" style="border-right:1px solid var(--el-line);border-radius:0;">
+          <div class="head">
+            <span class="brand">cartwheel-freight</span>
+            <button class="toggle" type="button" aria-label="Collapse sidebar"><span class="chev">&#8964;</span></button>
+          </div>
+          <div class="grp">
+            <span class="label">Console</span>
+            <button type="button" aria-current="page">Timeline</button>
+            <button type="button">Pipelines</button>
+            <button type="button">Cache ledger</button>
+          </div>
+          <div class="grp">
+            <span class="label">Fleet</span>
+            <button type="button">Runners <span class="el-badge" style="margin-left:auto;">412</span></button>
+            <button type="button">Islands</button>
+          </div>
+          <div class="end">
+            <span class="el-hint" style="margin:0;">ridge-4.0.1</span>
+          </div>
+        </aside>
+
+        <div style="display:grid;gap:var(--el-space-3);padding:var(--el-space-3);align-content:start;">
+          <div class="el-stat-row" style="display:grid;grid-template-columns:repeat(3,1fr);gap:var(--el-space-2);">
+            <div class="el-stat">
+              <span class="el-stat-label">p99 build</span>
+              <span class="el-stat-value">4:12<small> m</small></span>
+              <span class="el-stat-delta down">38s</span>
+              <span class="el-sparkline el-chart" data-chart="sparkline" data-values="6.1,5.8,5.9,5.2,4.9,4.6,4.4,4.2" data-width="110" data-height="26" data-color="var(--el-accent)"></span>
+              <span class="el-stat-note">rolling 7d</span>
+            </div>
+            <div class="el-stat">
+              <span class="el-stat-label">hit rate</span>
+              <span class="el-stat-value">92.4<small>%</small></span>
+              <span class="el-stat-delta up">3.1pt</span>
+              <span class="el-chart" data-chart="line" data-values="84,86,85,88,89,90,91,92" data-width="110" data-height="26" data-color="var(--el-accent)" data-label="hit rate"></span>
+            </div>
+            <div class="el-stat is-live">
+              <span class="el-stat-label">queue depth</span>
+              <span class="el-stat-value">27</span>
+              <span class="el-stat-note">p99 wait 18s</span>
+            </div>
+          </div>
+
+          <div class="el-progress-truth" aria-label="pipeline progress">
+            <span class="el-pt-chunk is-done">warm <span class="el-pt-count">412/412</span></span>
+            <span class="el-pt-chunk is-running">compile <span class="el-pt-count">96/412</span></span>
+            <span class="el-pt-chunk is-stale">test <span class="el-pt-count">31/412 stale</span></span>
+            <span class="el-pt-chunk">sign <span class="el-pt-count">0/412</span></span>
+            <span class="el-pt-chunk">ship <span class="el-pt-count">0/412</span></span>
+          </div>
+
+          <div class="el-stage-rail">
+            <div class="el-stage is-done"><span class="el-stage-dot"></span><span class="el-stage-name">Fetch + warm</span><span class="el-dur">3.4s</span></div>
+            <div class="el-stage is-running"><span class="el-stage-dot"></span><span class="el-stage-name">Compile cartwheel-core</span><span class="el-stage-count">96/412</span></div>
+            <div class="el-stage is-queued"><span class="el-stage-dot"></span><span class="el-stage-name">Test matrix (shards 4)</span><span class="el-stage-count">0/412</span></div>
+            <div class="el-stage is-stale"><span class="el-stage-dot"></span><span class="el-stage-name">Sign + attestation</span><span class="el-stage-count">stale key</span></div>
+          </div>
+
+          <table class="el-table el-table--ruled">
+            <thead><tr><th scope="col">Build</th><th scope="col">Lane</th><th scope="col">Stage</th><th scope="col">State</th><th scope="col" class="num">Wall clock</th></tr></thead>
+            <tbody>
+              <tr><td class="num">b-92441</td><td>RL-192</td><td>compile</td><td><span class="el-status-dot running" aria-hidden="true"></span> <span class="el-status-pill running">compile</span></td><td class="num">2:41</td></tr>
+              <tr class="is-selected"><td class="num">b-92438</td><td>RL-128</td><td>warm</td><td><span class="el-badge live">live</span></td><td class="num">0:52</td></tr>
+              <tr><td class="num">b-92436</td><td>RL-256</td><td>test</td><td><span class="el-badge fail">failed 2</span></td><td class="num">11:03</td></tr>
+              <tr><td class="num">b-92421</td><td>RL-64</td><td>sign</td><td><span class="el-badge ok">green</span></td><td class="num">6:19</td></tr>
+              <tr><td class="num">b-92419</td><td>RL-96</td><td>archive</td><td><span class="el-badge warn">slow p95</span></td><td class="num">9:47</td></tr>
+            </tbody>
+          </table>
+
+          <div class="el-cluster" style="display:grid;grid-template-columns:1fr 1fr;gap:var(--el-space-3);">
+            <div class="el-panel" style="padding:var(--el-space-3);">
+              <h3 style="margin:0 0 10px;font-size:var(--el-fs-md);">Island capacity</h3>
+              <div class="el-meter" style="--el-meter-value:64%;"><div class="fill"></div></div>
+              <span class="el-meter-label">portland-2 &middot; 64% &middot; ok</span>
+              <div class="el-meter ok" style="--el-meter-value:88%;margin-top:10px;"><div class="fill"></div></div>
+              <span class="el-meter-label">denver-1 &middot; 88% &middot; ok</span>
+              <div class="el-meter warn" style="--el-meter-value:96%;margin-top:10px;"><div class="fill"></div></div>
+              <span class="el-meter-label">dublin-1 &middot; 96% &middot; rollover</span>
+              <div class="el-progress" data-animate-to="0" style="margin-top:12px;"><div class="fill" style="width:38%;"></div></div>
+              <span class="el-meter-label">cache warmup &middot; 38% of 800 GB</span>
+            </div>
+            <div class="el-panel" style="padding:var(--el-space-3);">
+              <h3 style="margin:0 0 10px;font-size:var(--el-fs-md);">Run ladder &middot; b-92438</h3>
+              <div class="el-ladder" style="min-width:0;">
+                <div class="el-ladder-step is-done"><span class="el-ladder-idx">01</span><span class="el-ladder-label">Fetch sources</span><span class="el-ladder-meta">1.2s</span></div>
+                <div class="el-ladder-step is-done"><span class="el-ladder-idx">02</span><span class="el-ladder-label">Warm cache</span><span class="el-ladder-meta">3.4s</span></div>
+                <div class="el-ladder-step is-running"><span class="el-ladder-idx">03</span><span class="el-ladder-label">Compile core</span><span class="el-ladder-meta">2m ago</span></div>
+                <div class="el-ladder-step"><span class="el-ladder-idx">04</span><span class="el-ladder-label">Test matrix</span><span class="el-ladder-meta">queued</span></div>
+                <div class="el-ladder-step is-stale"><span class="el-ladder-idx">05</span><span class="el-ladder-label">Sign + attest</span><span class="el-ladder-meta">key stale</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="el-actionbar">
+            <span class="lead"><span class="el-hint" style="margin:0;">b-92438 &middot; cartwheel-core &middot; lane rl-128</span></span>
+            <div class="actions">
+              <button class="el-btn el-btn--ghost" type="button" data-drawer-open="build-drawer">Inspect lane</button>
+              <button class="el-btn el-btn--outline" type="button" data-toast="Re-run queued for b-92438" data-toast-variant="info">Re-run</button>
+              <button class="el-btn" type="button" data-toast="b-92438 promoted to canary" data-toast-variant="ok">Promote</button>
+            </div>
+          </div>
+
+          <div class="el-tabbar" role="tablist">
+            <button class="el-tabbar-item is-active" role="tab" aria-selected="true" type="button"><span class="el-icon">&#9638;</span>Timeline</button>
+            <button class="el-tabbar-item" role="tab" type="button"><span class="el-icon">&#9638;</span>Lanes</button>
+            <button class="el-tabbar-item" role="tab" type="button"><span class="el-icon">&#9638;</span>Cache&nbsp;<span class="count">27</span></button>
+            <button class="el-tabbar-item" role="tab" aria-disabled="true" type="button"><span class="el-icon">&#9638;</span>Ledger</button>
+          </div>
+        </div>
+
+        <aside style="display:grid;gap:var(--el-space-3);padding:var(--el-space-3);border-left:1px solid var(--el-line);align-content:start;">
+          <div class="el-listbox" role="listbox" aria-label="Lanes">
+            <div class="el-listbox-header">Lanes &middot; portland-2</div>
+            <button class="el-listbox-row" role="option" aria-selected="false" type="button"><svg viewBox="0 0 16 16" width="14" height="14" fill="currentColor" aria-hidden="true"><rect x="2" y="2" width="12" height="12"/></svg><span>RL-128 &middot; arm64</span><span class="count">41s</span></button>
+            <button class="el-listbox-row" role="option" aria-selected="true" type="button"><svg viewBox="0 0 16 16" width="14" height="14" fill="currentColor" aria-hidden="true"><rect x="2" y="2" width="12" height="12"/></svg><span>RL-192 &middot; x86</span><span class="count">52s</span></button>
+            <button class="el-listbox-row" role="option" aria-selected="false" type="button"><span>R</span><span>RL-256 &middot; nvme</span><span class="count">1:04</span></button>
+            <button class="el-listbox-row" role="option" aria-selected="false" type="button" aria-disabled="true"><span>P</span><span>RL-96 &middot; edge</span><span class="count">provisioning</span></button>
+            <button class="el-listbox-row" role="option" aria-selected="false" type="button"><span class="el-skeleton" style="width:64px;height:8px;display:inline-block;"></span><span class="el-skeleton" style="width:90px;height:8px;display:inline-block;margin-left:auto;"></span></button>
+          </div>
+
+          <div class="el-inspector el-inspector--docked is-docked" aria-label="Lane inspector">
+            <div class="el-inspector-header"><span>Lane inspector</span><button class="el-inspector-close" type="button" aria-label="Hide inspector">&times;</button></div>
+            <div class="el-inspector-body">
+              <p style="margin-top:0;font-size:var(--el-fs-sm);color:var(--el-ink-soft);">RL-128 is the rust lane. Cache island portland-2, regional read/write.</p>
+              <div class="el-fact-grid">
+                <div class="el-fact"><span class="k">p99 warm</span><span class="v">41s</span></div>
+                <div class="el-fact is-hot"><span class="k">hit rate</span><span class="v">93.8%</span></div>
+              </div>
+              <label class="el-field" style="margin-top:var(--el-space-3);">
+                <span class="el-label">Reserved until</span>
+                <select class="el-select" style="padding:8px 12px;border:1px solid var(--el-line);background:var(--el-panel-2);color:var(--el-ink);border-radius:2px;font-family:var(--el-font-mono);font-size:var(--el-fs-sm);">
+                  <option>2 hours</option><option>1 day</option>
+                </select>
+              </label>
+            </div>
+          </div>
+
+          <div class="el-notification-stack" aria-label="Notifications">
+            <article class="el-notification running">
+              <span class="icon"><span class="el-icon">&#9654;</span></span>
+              <div class="head"><span class="title">Compile stalled?</span><span class="app">ridge-console</span>
+                <button class="close" type="button" aria-label="Dismiss notification">&times;</button></div>
+              <div class="body">b-92441 has been in compile for 2m over plan. Consider a re-run before paging.</div>
+              <span class="time">2m ago</span>
+              <div class="actions"><button type="button" data-toast="Re-run queued for b-92441" data-toast-variant="info">Re-run</button><button type="button">Dismiss</button></div>
+            </article>
+            <article class="el-notification fail">
+              <span class="icon"><span class="el-icon">&#215;</span></span>
+              <div class="head"><span class="title">2 test shards failed</span><span class="app">ridge-console</span>
+                <button class="close" type="button" aria-label="Dismiss notification">&times;</button></div>
+              <div class="body">matrix shard 3 flaked on denver-1; shard 7 is a real regression in cartwheel-core</div>
+              <span class="time">8m ago</span>
+              <div class="actions"><button type="button">View diff</button></div>
+            </article>
+            <article class="el-notification ok">
+              <span class="icon"><span class="el-icon">&#10003;</span></span>
+              <div class="head"><span class="title">Attestation re-keyed</span><span class="app">ridge-secrets</span>
+                <button class="close" type="button" aria-label="Dismiss notification">&times;</button></div>
+              <div class="body">signing key rotated; stale stages will clear on next build</div>
+              <span class="time">31m ago</span>
+            </article>
+          </div>
+
+          <div class="el-toast-region" role="status" aria-live="polite">
+            <div class="el-toast ok"><span>Relogin not required — token renewed</span><span class="close" aria-label="Dismiss">&times;</span></div>
+            <div class="el-toast warn"><span>dublin-1 in rollover until 02:00 UTC</span><span class="close" aria-label="Dismiss">&times;</span></div>
+          </div>
+
+          <div class="el-assistant-panel" aria-label="Ridge assistant">
+            <div class="el-assistant-head">Ridge assistant</div>
+            <div class="el-assistant-log">
+              <div class="el-msg el-msg--assistant">
+                Fleet p99 is 4:12, down 38s week over week. The remaining latency is test shard 3 on denver-1. Want the re-run on RL-128 instead? <span class="el-cite-inline">[1][2]</span>
+              </div>
+              <div class="el-msg el-msg--user">Plan the re-run, keep the lane warm.</div>
+              <div class="el-msg el-msg--assistant is-streaming">Drafting…<span class="el-cite-inline">[1]</span></div>
+              <div class="el-plan">
+                <div class="el-plan-title">Plan &middot; rerun b-92438</div>
+                <div class="el-ladder-step is-done"><span class="el-ladder-idx">1</span><span class="el-ladder-label">Pin lane rl-128</span><span class="el-ladder-meta">ready</span></div>
+                <div class="el-ladder-step is-running"><span class="el-ladder-idx">2</span><span class="el-ladder-label">Queue re-run</span><span class="el-ladder-meta">waiting your OK</span></div>
+              </div>
+            </div>
+            <div class="el-assistant-foot">
+              <span class="el-hint" style="margin:0;">cited from ledger &middot; no sources = it says so</span>
+              <button class="el-assistant-stop" type="button">Stop</button>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </main>
+
+</div>
+
+<dialog class="el-dialog" id="kill-build">
+  <div class="el-dialog-head">
+    <h3 class="el-dialog-title">Kill b-92438?</h3>
+    <button class="el-dialog-close" type="button" aria-label="Close" data-dialog-close>&times;</button>
+  </div>
+  <form class="el-dialog-body" method="dialog">
+    <p style="margin-top:0;">The lane stays reserved and warm. Artifacts from this run are discarded; the ledger keeps the attempt.</p>
+    <label class="el-field">
+      <span class="el-label">Reason (goes to the failure email)</span>
+      <span class="el-search-bar" style="display:flex;">
+        <input class="el-search" type="search" placeholder="flaky shard, wrong key, wedged lane…" aria-label="Kill reason">
+      </span>
+      <span class="el-hint">Freeform is fine. The timeline is attached automatically.</span>
+    </label>
+  </form>
+  <div class="el-dialog-foot">
+    <button class="el-btn el-btn--ghost" type="button" data-dialog-close>Let it finish</button>
+    <button class="el-btn el-btn--danger" type="button" data-toast="b-92438 killed" data-toast-variant="fail" data-dialog-close>Kill build</button>
+  </div>
+</dialog>
+
+<aside class="el-drawer right" id="build-drawer" aria-label="Lane inspector" data-scrim="app-scrim">
+  <div class="el-drawer-head"><strong>RL-128 &middot; lane inspector</strong></div>
+  <div class="el-drawer-body">
+    <p style="margin-top:0;">Warm cache is regional. The lane is currently idle between runs.</p>
+    <div class="el-fact-grid" style="grid-template-columns:repeat(3,1fr);">
+      <div class="el-fact"><span class="k">warm</span><span class="v">41s</span></div>
+      <div class="el-fact"><span class="k">jobs</span><span class="v">8,406</span></div>
+      <div class="el-fact is-hot"><span class="k">hit</span><span class="v">93.8%</span></div>
+    </div>
+  </div>
+  <div class="el-drawer-foot">
+    <button class="el-btn el-btn--ghost" type="button" data-drawer-close="build-drawer">Close</button>
+    <button class="el-btn" type="button" data-toast="Lane held warm for 2h" data-toast-variant="ok">Hold warm</button>
+  </div>
+</aside>
+<div class="el-scrim" id="app-scrim" data-dialog-scrim></div>
+
+<div class="el-command" id="console-cmd" role="dialog" aria-label="Command bar">
+  <div class="el-command-panel">
+    <input class="el-command-input" type="text" placeholder="Type a command… (re-run, promote, drain)" aria-label="Command input">
+    <div class="el-command-results">
+      <div class="el-command-group">Builds</div>
+      <button class="el-command-row sel" type="button">Re-run b-92438 on rl-128 <span class="el-command-hint">R</span></button>
+      <button class="el-command-row" type="button">Kill build <span class="el-command-hint">K</span></button>
+      <div class="el-command-group">Fleet</div>
+      <button class="el-command-row" type="button">Drain dublin-1 <span class="el-command-hint">F D</span></button>
+      <button class="el-command-row" type="button">Export ledger <span class="el-command-hint">E</span></button>
+    </div>
+    <div class="el-command-foot"><span class="el-hint">arrows to move &middot; enter to run &middot; esc to close</span></div>
+  </div>
+</div>
+
+</body>
+</html>

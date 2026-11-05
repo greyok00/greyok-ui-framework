@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en" data-theme="solar-halo">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aurelia Journal — how the ring rises</title>
+<link rel="stylesheet" href="../../../base.css">
+<link rel="stylesheet" href="../../../fonts.css">
+<link rel="stylesheet" href="../../../tokens.css">
+<link rel="stylesheet" href="../../../elements-display.css">
+<link rel="stylesheet" href="../../../elements-structure.css">
+<link rel="stylesheet" href="../../../elements-lists.css">
+<link rel="stylesheet" href="../../../elements-app.css">
+<link rel="stylesheet" href="../../../elements-containers.css">
+<link rel="stylesheet" href="../../../elements-controls.css">
+<link rel="stylesheet" href="../../../elements-inputs.css">
+<link rel="stylesheet" href="../../../elements-dataviz.css">
+<link rel="stylesheet" href="../../../elements-overlay.css">
+<link rel="stylesheet" href="../../../elements-interactions.css">
+<link rel="stylesheet" href="../../../elements-misc.css">
+<link rel="stylesheet" href="../../../elements-size.css">
+<link rel="stylesheet" href="../../../elements-workflow.css">
+<link rel="stylesheet" href="../../../elements-inspector.css">
+<link rel="stylesheet" href="../../../elements-reader.css">
+<link rel="stylesheet" href="../../../elements-assistant.css">
+<link rel="stylesheet" href="../../../themes/src/webgl-immersive.css">
+<script src="../../../elements.js" defer></script>
+<script src="../../../charts.js" defer></script>
+</head>
+<body>
+<main class="el-page">
+<nav class="el-navbar el-navbar--top">
+  <a class="brand" href="index.html">AURELIA DOME</a>
+  <div class="links"><a href="index.html">Now Playing</a><a href="catalog.html">Exhibits</a><a href="article.html" aria-current="page">Journal</a><a href="account.html">Tickets</a><a href="observe.html">Backstage</a><a href="app.html">Dome Console</a></div>
+  <div class="actions">
+<span class="el-chip live el-chip--sm">Doors 19:00</span>
+<button class="el-btn el-btn--ghost" data-toast="Program guide sent to your inbox">Program</button>
+<button class="el-btn" data-dialog-open="dlg-tickets">Book seats</button></div>
+</nav>
+<header class="el-hero el-hero--left">
+
+<div class="el-eyebrow">JOURNAL · ENTRY 12</div>
+<h1>How the ring rises</h1>
+<p>Eighteen meters of dome, one live pipe organ, and a cue sheet written for the person pulling the lever.</p>
+<div class="actions"><span class="el-badge">Reading time 7 min</span></div>
+
+</header>
+<section class="el-section">
+<div class="el-reader">
+<p class="lead">The trick of a planetarium is that nothing should look like a machine. The ring of fire that opens "Ring of Fire" is drawn by eleven projector pairs and timed by a person breathing.</p>
+<p>The operator warms the manual starball bulb at 18:45, forty-five minutes before the first ticket scans. <p>Operator path: <span class="el-kbd">Ctrl</span>+<span class="el-kbd">Alt</span>+<span class="el-kbd">L</span> locks the lamp, <span class="el-kbd">Space</span> walks the cue list.</p></p>
+<div class="el-code-block" role="figure" aria-label="Starball cue sheet"><span class="line"><span class="el-comment"># house-to-starball handoff, act II</span></span><span class="line"><span class="el-keyword">cue</span> <span class="el-number">18</span>: dim house <span class="el-number">2.4</span>s, hold <span class="el-number">1.2</span>s</span><span class="line"><span class="el-fn">starball.warm</span>(<span class="el-string">"manual bulb"</span>, lamp=<span class="el-number">0.72</span>)</span><span class="line"><span class="el-keyword">wait</span> house.quiet  <span class="el-comment"># usually 40 s</span></span></div>
+<h2>The three beats</h2>
+<ol><li><b>The warm-up.</b> Lamps run at 72% until the house settles; the dome should feel like dusk, not noon.</li>
+<li><b>The handoff.</b> Between acts, the operator dim-bounces from projector grid to starball without a visible seam.</li>
+<li><b>The exhale.</b> After the finale, house lights come up at 2.4 seconds — slow enough to keep the sky in your eyes.</li></ol>
+<blockquote>"We rehearse the dark." — Cue sheet margin, undated, in pencil</blockquote>
+<ol class="el-timeline"><li class="done"><span class="when">18:45</span><div class="what">Bulb test on projector B; lamp hours read 72% <span class="src">Console</span></div></li><li class="done"><span class="when">19:00</span><div class="what">Doors; lobby lanterns lit, host on the floor</div></li><li class="active"><span class="when">19:30</span><div class="what">Act I — the corona ring rises on the dome <span class="src">Console</span></div></li><li class="done"><span class="when">20:05</span><div class="what">Pipe score reaches Act II; dome captions on</div></li><li class="stale"><span class="when">20:20</span><div class="what">House lights, atrium exhibit opens <span class="src">Atrium</span></div></li></ol>
+<h2>The dome in numbers</h2>
+<div class="el-fact-grid">
+<div class="el-fact"><span class="k">Dome diameter</span><span class="v">18 m</span></div>
+<div class="el-fact"><span class="k">Projectors</span><span class="v">8K stereo</span></div>
+<div class="el-fact"><span class="k">Seats</span><span class="v">340</span></div>
+<div class="el-fact is-hot"><span class="k">Lamp hours</span><span class="v">4,821 h</span></div>
+<div class="el-fact"><span class="k">Brightness</span><span class="v">72% rated</span></div>
+<div class="el-fact"><span class="k">Failsafe shutter</span><span class="v">1.2 s close</span></div>
+</div>
+<div class="el-cluster" style="margin-top:14px">
+<label><span class="el-label">Dome fill tonight</span><span class="el-meter ok" data-ticks="10" style="width:280px"><span class="fill" style="--el-meter-value:92%"></span></span></label>
+<label><span class="el-label">Season build</span><span class="el-progress" style="width:280px"><span class="fill" style="width:71%"></span></span></label>
+<div class="el-progress-truth"><span>season buildout</span><span class="el-pt-chunk is-done">✓ Ring of Fire</span><span class="el-pt-chunk is-done">✓ Grand Tour</span><span class="el-pt-chunk is-running">◍ Weather Below 71%</span><span class="el-pt-chunk is-stale">✕ Mare Frigoris late</span><span class="el-pt-chunk">◌ Solstice terrace</span><span class="el-pt-count">3 of 5 staged</span></div>
+</div>
+<h2>Where this comes from</h2>
+<div class="el-cluster" style="margin-bottom:14px"><article class="el-source-card is-cited"><span class="src">Aurelia Dome operations</span><span class="ttl">Why the bulb is manual</span><span class="snip">The 1974 starball keeps its original lamp; modernizing it would…</span></article><article class="el-source-card is-cited"><span class="src">Dome acoustics study</span><span class="ttl">Sound at the 18 m waist</span><span class="snip">Live pipe scores reach every seat within 40 ms…</span></article><article class="el-source-card is-cited"><span class="src">Renewal fund report</span><span class="ttl">Lamps and donors</span><span class="snip">Every new bulb has a named evening…</span></article></div>
+<div class="el-citation-rail"><span class="el-cite"><span class="n">1</span> <a href="#">Dome renewal ledger, lamp A/B log</a></span><span class="el-cite"><span class="n">2</span> <a href="#">Aurelia operations handbook, cue sheet 6</a></span><span class="el-cite"><span class="n">3</span> <a href="#">Pipe organ restoration notes, 2019</a></span><span class="el-cite"><span class="n">4</span> <a href="#">Relaxed-showing pilot report, spring</a></span><span class="el-cite"><span class="n">5</span> <a href="#">8K stereo calibration card, north dome</a></span></div>
+</div>
+</section>
+<section class="el-section">
+<div class="el-section-head"><div><div class="el-eyebrow">Plate</div><h2>Figure 2 · lamp curve</h2></div></div>
+<figure class="el-media-band">
+<div class="media"><svg viewBox="0 0 900 380" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Lamp curve">
+<rect width="900" height="380" fill="#1a1109"/>
+<polyline points="20,193 50,206 80,112 110,266 140,267 170,226 200,138 230,85 260,171 290,160 320,244 350,173 380,233 410,262 440,182 470,255 500,122 530,197 560,145 590,237 620,88 650,144 680,179 710,130" fill="none" stroke="#ffb347" stroke-opacity="0.75" stroke-width="2.5"/>
+<circle cx="20" cy="193" r="2.6" fill="#ffd28a" opacity="0.8"/><circle cx="80" cy="112" r="2.6" fill="#ffd28a" opacity="0.8"/><circle cx="140" cy="267" r="2.6" fill="#ffd28a" opacity="0.8"/><circle cx="200" cy="138" r="2.6" fill="#ffd28a" opacity="0.8"/><circle cx="260" cy="171" r="2.6" fill="#ffd28a" opacity="0.8"/><circle cx="320" cy="244" r="2.6" fill="#ffd28a" opacity="0.8"/><circle cx="380" cy="233" r="2.6" fill="#ffd28a" opacity="0.8"/><circle cx="440" cy="182" r="2.6" fill="#ffd28a" opacity="0.8"/><circle cx="500" cy="122" r="2.6" fill="#ffd28a" opacity="0.8"/><circle cx="560" cy="145" r="2.6" fill="#ffd28a" opacity="0.8"/><circle cx="620" cy="88" r="2.6" fill="#ffd28a" opacity="0.8"/><circle cx="680" cy="179" r="2.6" fill="#ffd28a" opacity="0.8"/>
+<line x1="0" y1="366" x2="900" y2="366" stroke="#ffb347" stroke-opacity="0.3"/>
+</svg><div class="fill"><figcaption>lamp A · rated 4.9 kh · now 4.821</figcaption></div></div>
+<div class="body"><div class="label">AURELIA CONSOLE</div><h2>Lamp brightness across an evening</h2><p>The dip at 21:30 is dim-bounce to starball, not a fault — the cue sheet calls it “the breath”.</p></div>
+</figure>
+</section>
+<footer class="el-footer"><div class="cols"><div class="col"><span class="label">Visit</span><ul><li><a href="#">Plan your evening</a></li><li><a href="#">Accessibility</a></li><li><a href="#">School field trips</a></li><li><a href="#">Getting here</a></li></ul></div><div class="col"><span class="label">Programs</span><ul><li><a href="#">Fulldome features</a></li><li><a href="#">Starball classics</a></li><li><a href="#">After Dark (21+)</a></li><li><a href="#">Members' nights</a></li></ul></div><div class="col"><span class="label">Support</span><ul><li><a href="#">Adopt a star</a></li><li><a href="#">Dome renewal fund</a></li><li><a href="#">Volunteer guild</a></li><li><a href="#">Corporate evenings</a></li></ul></div></div><p class="small"><span>Aurelia Dome · 18-meter dome, 8K stereo projection, and 340 warm seats since 1994</span><span>Tonight: doors 19:00 · first show 19:30</span></p></footer>
+</main>
+</body>
+</html>

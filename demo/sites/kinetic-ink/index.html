@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="en" data-theme="kinetic-ink"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kinetika — motion design studio</title>
+<link rel="stylesheet" href="../../../base.css"><link rel="stylesheet" href="../../../fonts.css">
+<link rel="stylesheet" href="../../../tokens.css">
+<link rel="stylesheet" href="../../../elements-display.css">
+<link rel="stylesheet" href="../../../elements-structure.css">
+<link rel="stylesheet" href="../../../elements-lists.css">
+<link rel="stylesheet" href="../../../elements-app.css">
+<link rel="stylesheet" href="../../../elements-containers.css">
+<link rel="stylesheet" href="../../../elements-controls.css">
+<link rel="stylesheet" href="../../../elements-inputs.css">
+<link rel="stylesheet" href="../../../elements-dataviz.css">
+<link rel="stylesheet" href="../../../elements-overlay.css">
+<link rel="stylesheet" href="../../../elements-interactions.css">
+<link rel="stylesheet" href="../../../elements-misc.css">
+<link rel="stylesheet" href="../../../elements-size.css">
+<link rel="stylesheet" href="../../../elements-workflow.css">
+<link rel="stylesheet" href="../../../elements-inspector.css">
+<link rel="stylesheet" href="../../../elements-reader.css">
+<link rel="stylesheet" href="../../../elements-assistant.css">
+<link rel="stylesheet" href="../../../themes/src/motion-brand.css">
+<script src="../../../elements.js" defer></script><script src="../../../charts.js" defer></script>
+<style>
+  .kin-duo { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+  .kin-duo-2 { display:grid; grid-template-columns:1.2fr 1fr; gap:14px; align-items:stretch; }
+  .kin-stats { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
+  .kin-plans { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+  .kin-reel-plate { position:relative; }
+  .kin-frame-note { position:absolute; right:12px; bottom:12px; z-index:2; display:flex; gap:8px; align-items:center; }
+  @media (max-width:1000px){ .kin-duo,.kin-stats,.kin-plans{ grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:700px){ .kin-duo,.kin-stats,.kin-plans,.kin-duo-2{ grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<main class="el-page">
+
+  <span class="el-banner el-banner--live" role="status" style="margin-bottom:18px">
+    <span class="glyph"><svg class="el-icon" viewBox="0 0 24 24"><path d="M12 2l9 18H3z" fill="none"/></svg></span>
+    <span class="copy"><b>Winter reel window is open</b><span class="detail">Kinetika books three title-sequence slots per quarter — two remain for January.</span></span>
+    <a class="action" href="catalog.html">See open slots</a>
+    <button class="close" aria-label="Dismiss" onclick="this.closest('.el-banner').classList.add('is-dismissed')">✕</button>
+  </span>
+
+  <nav class="el-navbar el-navbar--top" aria-label="Primary">
+    <a class="brand" href="index.html"><span class="el-bar-mark" aria-hidden="true"></span>Kinetika</a>
+    <div class="links">
+      <a href="index.html" aria-current="page">Showreel</a>
+      <a href="catalog.html">Work index</a>
+      <a href="article.html">Journal</a>
+      <a href="account.html">Client space</a>
+      <a href="app.html">Review desk</a>
+    </div>
+    <div class="actions">
+      <button class="el-btn ghost" data-command="kin-cmd">Commands <span class="el-kbd">⌘K</span></button>
+      <button class="el-btn" data-toast="Brief received — we read every brief before noon CT." data-toast-variant="ok">Start a project</button>
+    </div>
+  </nav>
+
+  <header class="el-hero el-hero--split">
+    <div class="copy">
+      <p class="el-eyebrow">Motion studio — Chicago, since 2019</p>
+      <h1 class="el-title-xl">Titles that move at the speed of the edit.</h1>
+      <p class="el-body">Kinetika designs opening sequences, product animation, and broadcast packages
+      for teams that cut every week. We deliver in reviewable frames, not promises —
+      every cut lands on your desk marked, timed, and ready for notes.</p>
+      <div class="actions">
+        <button class="el-btn" style="min-height:var(--el-ctl-min-h)">Watch the reel ’26</button>
+        <button class="el-btn ghost">Rate card</button>
+        <span class="el-pill ghost"><span data-state="live" class="el-status-dot live" style="margin-right:2px"></span>3 slots open</span>
+      </div>
+    </div>
+    <div class="media kin-reel-plate">
+      <div class="frame">
+        <svg viewBox="0 0 640 400" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Reel frame">
+          <defs>
+            <linearGradient id="kg1" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#181619"/><stop offset="1" stop-color="#0c0b0d"/>
+            </linearGradient>
+          </defs>
+          <rect width="640" height="400" fill="url(#kg1)"/>
+          <g fill="#ff3d7f">
+            <rect x="30"  y="196" width="10" height="72" rx="2"/>
+            <rect x="48"  y="176" width="10" height="112" rx="2" opacity=".85"/>
+            <rect x="66"  y="158" width="10" height="150" rx="2" opacity=".7"/>
+            <rect x="84"  y="182" width="10" height="100" rx="2" opacity=".9"/>
+            <rect x="102" y="132" width="10" height="196" rx="2" opacity=".6"/>
+            <rect x="120" y="150" width="10" height="160" rx="2" opacity=".8"/>
+            <rect x="138" y="112" width="10" height="234" rx="2" opacity=".55"/>
+            <rect x="156" y="168" width="10" height="122" rx="2" opacity=".88"/>
+            <rect x="174" y="148" width="10" height="162" rx="2" opacity=".72"/>
+            <rect x="192" y="124" width="10" height="212" rx="2" opacity=".62"/>
+            <rect x="228" y="188" width="10" height="84" rx="2" opacity=".8"/>
+            <rect x="246" y="206" width="10" height="48" rx="2" opacity=".9"/>
+            <rect x="264" y="170" width="10" height="120" rx="2" opacity=".7"/>
+          </g>
+          <g fill="#3a3a44">
+            <rect x="20" y="60" width="600" height="1"/>
+            <rect x="20" y="340" width="600" height="1"/>
+          </g>
+          <text x="100" y="52" fill="#8a8a96" font-family="Inter Tight, monospace" font-size="15" letter-spacing="4">TC 00:41:12:08</text>
+          <text x="455" y="52" fill="#ff3d7f" font-family="Inter Tight, monospace" font-size="15" letter-spacing="4">REEL 26</text>
+          <text x="100" y="368" fill="#8a8a96" font-family="Inter Tight, monospace" font-size="13" letter-spacing="3">24 FPS · DCI P3 · 4K SCOPE</text>
+        </svg>
+      </div>
+      <div class="kin-frame-note">
+        <span class="el-chip live">rendering · shot 14</span>
+      </div>
+    </div>
+  </header>
+
+  <section class="el-section">
+    <p class="el-eyebrow">The studio in numbers</p>
+    <h2>Frames delivered, measured honestly</h2>
+    <div class="kin-stats">
+      <div class="el-stat el-stat--raised">
+        <span class="el-stat-label">Frames out · Q4</span>
+        <span class="el-stat-row"><span class="el-stat-value">148,204</span><span class="el-stat-delta up">8.1%</span></span>
+        <span class="el-note el-stat-note">vs Q3 across 11 productions</span>
+        <span class="el-sparkline" data-chart="sparkline" data-values="62,71,66,84,79,94,88" data-width="150" data-height="42"></span>
+      </div>
+      <div class="el-stat">
+        <span class="el-stat-label">Review turnaround · p50</span>
+        <span class="el-stat-row"><span class="el-stat-value">3.4</span><span class="el-stat-delta up">−0.6 h</span></span>
+        <span class="el-note el-stat-note">note sent → first frame back</span>
+        <span class="el-sparkline" data-chart="bar" data-values="9,7,6,5,4,3,3" data-width="150" data-height="42"></span>
+      </div>
+      <div class="el-stat">
+        <span class="el-stat-label">Cuts in review</span>
+        <span class="el-stat-row"><span class="el-stat-value">17</span><span class="el-stat-delta flat">steady</span></span>
+        <span class="el-note el-stat-note">across 6 client reviews</span>
+        <span class="el-sparkline" data-chart="line" data-values="12,14,11,17,15,17,17" data-width="150" data-height="42"></span>
+      </div>
+      <div class="el-stat is-live">
+        <span class="el-stat-label">Render-farm load</span>
+        <span class="el-stat-row"><span class="el-stat-value">74<small>%</small></span><span class="el-stat-delta up">+6</span></span>
+        <span class="el-note el-stat-note">42 GPU nodes pooled</span>
+        <div class="el-meter" role="meter" aria-valuenow="74" aria-valuemin="0" aria-valuemax="100" style="--el-meter-value:74%"><span class="fill"></span></div>
+        <span class="el-meter-label"><span>node pool</span><span>42 / 56</span></span>
+      </div>
+    </div>
+  </section>
+
+  <section class="el-section">
+    <p class="el-eyebrow">What we make</p>
+    <h2>Three disciplines, one delivery bar</h2>
+    <div class="kin-duo">
+      <article class="el-card el-card--raised">
+        <div class="el-card-media" style="height:120px"><span class="kin-mini-plate" style="display:block;height:120px;background:linear-gradient(120deg,#1b1719,#2a1420 60%,#3a1225)"></span></div>
+        <h3>Title sequences</h3>
+        <p class="sub">Openings and end crawls designed against the edit, not beside it. Type, plates, and sound handled as one pass.</p>
+        <div class="actions">
+          <button class="el-btn ghost">See 14 titles</button>
+          <span class="el-popover"><button class="el-btn ghost">Approach</button>
+            <div class="el-pop"><h4>How a title passes</h4><p>Boards → animatic → type pass → plate grade. You sign off at animatic, not after render.</p></div>
+          </span>
+        </div>
+      </article>
+      <article class="el-card el-card--raised">
+        <div class="el-card-media" style="height:120px"><span style="display:block;height:120px;background:linear-gradient(120deg,#12101a,#1c1030 55%,#2b1038)"></span></div>
+        <h3>Product animation</h3>
+        <p class="sub">Hardware and software films rendered from real builds — CAD turns, UI motion, and macro passes composited in one frame.</p>
+        <div class="actions">
+          <button class="el-btn ghost">See 22 films</button>
+          <span class="el-popover"><button class="el-btn ghost">Pipeline</button>
+            <div class="el-pop"><h4>From build to macro</h4><p>CAD turns, screen captures, and macro passes composite in one scene linearly.</p></div>
+          </span>
+        </div>
+      </article>
+      <article class="el-card el-card--raised">
+        <div class="el-card-media" style="height:120px"><span style="display:block;height:120px;background:linear-gradient(120deg,#0f1216,#0e1f22 55%,#123032)"></span></div>
+        <h3>Broadcast packages</h3>
+        <p class="sub">Network toolkits that survive a re-skin: transitions, lower thirds, and scoreboard wraps templated for overnight editors.</p>
+        <div class="actions">
+          <button class="el-btn ghost">See 9 kits</button>
+          <span class="el-popover"><button class="el-btn ghost">Templates</button>
+            <div class="el-pop"><h4>Overnight editing</h4><p>Every lower third is an editable comp — color-safe, font-safe, and name-safe.</p></div>
+          </span>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="el-section el-section--dense">
+    <div class="el-media-band">
+      <div class="media">
+        <div class="frame"><svg viewBox="0 0 560 320" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Case plate">
+          <rect width="560" height="320" fill="#121014"/>
+          <g fill="#ff3d7f"><circle cx="150" cy="120" r="56" fill="none" stroke="#ff3d7f" stroke-width="2" opacity=".8"/><circle cx="150" cy="120" r="28" fill="none" stroke="#ff8fb8" stroke-width="1.5" opacity=".6"/></g>
+          <g stroke="#2e2e36" stroke-width="1"><path d="M0 212 H560"/><path d="M0 234 H560"/></g>
+          <text x="24" y="200" fill="#f5f5f7" font-family="Clash Display, Inter" font-size="30" letter-spacing="-.5">NIGHT SIGNAL</text>
+          <text x="24" y="252" fill="#7f7f8c" font-family="Inter Tight, monospace" font-size="13" letter-spacing="3">OPENING SEQUENCE · 62S · DELIVERED IN 9 DAYS</text>
+        </svg></div>
+        <figcaption>night_signal_open_v07 — graded · approved 2026-10-28</figcaption>
+      </div>
+      <div class="body">
+        <span class="label">Case — opening sequence</span>
+        <h3>Night Signal: 62 seconds for a late-hour news rebrand</h3>
+        <p class="el-body">One sequence, nine days, 214 reviewable frames. The client’s overnight team
+        inherited the toolkit the morning after approval — nothing re-delivered.</p>
+        <div class="actions">
+          <button class="el-btn" data-drawer-open="kin-case-drawer">Open the case file</button>
+          <button class="el-btn ghost">All cases</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="el-section">
+    <p class="el-eyebrow">How we price</p>
+    <h2>Slot pricing, visible before you email</h2>
+    <div class="kin-plans">
+      <div class="el-pricing">
+        <span class="name">One-liner</span>
+        <div class="price">$4,800<span class="per">/ sequence</span></div>
+        <ul class="feats">
+          <li>One hero sequence, up to 45s</li>
+          <li>Two review rounds</li>
+          <li>Masters: 4K ProRes + H.264</li>
+          <li class="off">Dedicated farm time</li>
+        </ul>
+        <div class="cta"><button class="el-btn ghost">Ask for the slot</button><span class="el-note el-pricing-note el-fs-xs">next window Jan 12</span></div>
+      </div>
+      <div class="el-pricing el-pricing--featured">
+        <span class="flag">booked most</span>
+        <span class="name">Sequence</span>
+        <div class="price">$17,400<span class="per">/ campaign</span></div>
+        <ul class="feats">
+          <li>Full title package, up to 4 cues</li>
+          <li>Unlimited review rounds on the desk</li>
+          <li>Sound design pass included</li>
+          <li>Editorial toolkit + template kit</li>
+        </ul>
+        <div class="cta"><button class="el-btn">Book the campaign slot</button><span class="el-note el-fs-xs">starts with a paid 3-day lookdev</span></div>
+      </div>
+      <div class="el-pricing">
+        <span class="name">Resident</span>
+        <div class="price">$11,000<span class="per">/ month</span></div>
+        <ul class="feats">
+          <li>Two animators embedded in your standup</li>
+          <li>Shared review desk seat</li>
+          <li>Weekly motion system audit</li>
+          <li>Same-day turnaround on notes</li>
+        </ul>
+        <div class="cta"><button class="el-btn ghost">Meet the residents</button><span class="el-note el-fs-xs">one seat open for Q1</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="el-section el-section--dense">
+    <div class="kin-duo-2">
+      <figure class="el-testimonial">
+        <blockquote class="q">Kinetika’s review desk is the only place where our notes and their
+        frames meet in the same day. The sequence locked a week early and the
+        toolkit never asked our editors to learn a new thing.</blockquote>
+        <figcaption class="attrib">
+          <span class="el-avatar" aria-hidden="true">MR</span>
+          <span class="who"><span class="name">Mara Ruiz</span><span class="role">Supervising producer · Night Signal</span></span>
+        </figcaption>
+      </figure>
+      <div class="el-card el-card--press" style="display:grid;align-content:center;gap:10px">
+        <span class="el-label">Studio desk</span>
+        <h3 class="el-display-specimen" style="font-size:1.2em;margin:0">Frame your next sequence with us</h3>
+        <p class="el-mute-body el-fs-sm">Bring a cut, a brief, or a single stubborn shot. We answer with a storyboard pass and a slot date.</p>
+        <div class="actions">
+          <button class="el-btn" data-toast="Storyboard desk notified — expect a pass within one studio day.">Request a storyboard pass</button>
+          <span class="el-popover"><button class="el-btn ghost">Why a pass?</button>
+            <div class="el-pop"><h4>The pass is the contract</h4><p>One storyboard pass settles scope before the first frame — it is why our slots hold.</p></div>
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="el-footer">
+    <div class="cols">
+      <div class="col">
+        <a class="brand" href="index.html" style="font-family:var(--el-font-display);font-size:1.1rem;color:var(--el-ink);text-decoration:none"><span class="el-bar-mark" aria-hidden="true" style="display:inline-block;width:16px;height:16px;border-radius:3px;background:linear-gradient(135deg,#ff3d7f,#ff8fb8);clip-path:polygon(0 0,100% 0,100% 62%,62% 100%,0 100%)"></span> Kinetika</a>
+        <p class="el-mute-body el-fs-sm">A motion-design studio on the Fulton Market side of Chicago.<br>Frames marked, timed, and reviewable since 2019.</p>
+      </div>
+      <div class="col"><span class="label">Studio</span>
+        <ul><li><a href="catalog.html">Work index</a></li><li><a href="article.html">Journal</a></li><li><a href="account.html">Client space</a></li></ul>
+      </div>
+      <div class="col"><span class="label">Deliver</span>
+        <ul><li><a href="app.html">Review desk</a></li><li><a href="app.html">Cut log</a></li><li><a href="catalog.html">Rate card</a></li></ul>
+      </div>
+      <div class="col"><span class="label">Reach</span>
+        <ul><li><a href="#top">desk@kinetika.studio</a></li><li><a href="#top">+1 312 555 0184</a></li><li><a href="#top">312 N Green St, floor 4</a></li></ul>
+      </div>
+    </div>
+    <div class="small"><span>© 2026 Kinetika LLC · every frame is a deliverable</span><span>set in Clash Display &amp; Inter</span></div>
+    <p class="colophon">“Titles that move at the speed of the edit.” — the studio bar, painted on the door.</p>
+  </footer>
+
+  <div id="kin-case-drawer" class="el-drawer right" role="dialog" aria-label="Case file">
+    <div class="el-drawer-head">Case file — night signal<button data-drawer-close style="background:none;border:0;color:inherit;cursor:pointer;font-size:1em" aria-label="Close">✕</button></div>
+    <div class="el-drawer-body">
+      <p class="el-body" style="font-size:.95em">Nine production days from boards to locked master. The sequence went
+      through 14 review rounds on the desk — every note landed as a frame annotation.</p>
+      <div class="el-fact-grid" style="margin:14px 0">
+        <div class="el-card el-card--flat"><span class="el-label">Runtime</span><span class="el-big-num" style="font-size:1.5em">62s</span></div>
+        <div class="el-card el-card--flat"><span class="el-label">Shots</span><span class="el-big-num" style="font-size:1.5em">31</span></div>
+        <div class="el-card el-card--flat"><span class="el-label">Review rounds</span><span class="el-big-num" style="font-size:1.5em">14</span></div>
+        <div class="el-card el-card--flat"><span class="el-label">Days</span><span class="el-big-num" style="font-size:1.5em">9</span></div>
+      </div>
+      <div class="el-progress-truth"><span class="el-pt-chunk on"></span><span class="el-pt-chunk on"></span><span class="el-pt-chunk on"></span><span class="el-pt-chunk"></span><span class="el-pt-label">boards · animatic · final · delivered</span></div>
+    </div>
+    <div class="el-drawer-foot">
+      <button class="el-btn ghost" data-drawer-close>Close</button>
+      <button class="el-btn" data-toast="Case file opened in the public archive.">Open in archive</button>
+    </div>
+  </div>
+
+  <div id="kin-cmd" class="el-command" role="dialog" aria-label="Studio commands">
+    <div class="el-command-panel">
+      <input class="el-command-input" placeholder="Type a studio command…" aria-label="Command">
+      <div class="el-command-results">
+        <div class="el-command-group">Studio</div>
+        <button class="el-command-row sel" data-value="watch reel">Watch the reel ’26<span class="key">R</span></button>
+        <button class="el-command-row" data-value="book slot">Book a winter slot<span class="key">B</span></button>
+        <button class="el-command-row" data-value="open work">Open the work index<span class="key">W</span></button>
+        <div class="el-command-group">Client space</div>
+        <button class="el-command-row" data-value="review desk">Open the review desk<span class="key">D</span></button>
+        <button class="el-command-row" data-value="account">Client account<span class="key">A</span></button>
+      </div>
+      <div class="el-command-empty" hidden>No command matches.</div>
+      <div class="el-command-foot"><kbd>↑↓</kbd> navigate <kbd>↵</kbd> run <kbd>esc</kbd> close</div>
+    </div>
+  </div>
+
+</main>
+</body></html>

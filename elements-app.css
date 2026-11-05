@@ -1,0 +1,352 @@
+@layer el-elements {
+
+/* elements-app.css — v0.4.0 Group 7 app chrome (GTK 6 grade; the app-mockup layer).
+   Owns: .el-appwin (window frame + .el-titlebar + .el-winbtn circles + .el-menubar),
+   .el-headerbar (window-attached toolbar), .el-actionbar (bottom bar),
+   .el-tabbar (app tab bar). Body slot: .el-appwin-body.
+
+   The chrome that makes a mockup read as a real window:
+   - window radius + raise + a true 1px edge; content clipped by the frame.
+   - titlebar is a distinct tone from the content (libadwaita headerbar idiom).
+   - window buttons are 12px circles at rest, glyph appears on hover,
+     close tints to the failure accent; focus rings never disappear.
+   Chromium-height tokens: --el-titlebar-h 42 · --el-menubar-h 34 ·
+   --el-toolbar-h 40 · --el-tabbar-h 48 (see tokens.css v0.4 additive block). */
+
+.el-appwin {
+  display: flex;
+  flex-direction: column;
+  background: var(--el-panel);
+  border: var(--el-bw) solid color-mix(in oklab, var(--el-line-strong) 85%, var(--el-line));
+  border-radius: var(--el-r-lg);
+  box-shadow: var(--el-raise-3), var(--el-hairline);
+  /* clip, not hidden: hidden would make the frame a scroll container and break
+     sticky rails inside the window body */
+  overflow: clip;
+  color: var(--el-ink);
+  min-height: 120px;
+}
+
+/* the scrolled content of the window */
+.el-appwin-body {
+  flex: 1 1 auto;
+  min-height: 0;
+  padding: var(--el-space-4);
+  overflow: auto;
+}
+
+/* unfocused window: title + controls drop back, hairline stays crisp */
+.el-appwin.is-dim .el-app-title { color: var(--el-ink-soft); }
+.el-appwin.is-dim .el-menubar-item,
+.el-appwin.is-dim .el-winbtn { color: var(--el-mute); }
+
+/* ── titlebar ─────────────────────────────────────────────────────────────── */
+
+.el-titlebar {
+  flex: none;
+  display: grid;
+  grid-template-columns: 1fr minmax(0, auto) 1fr;
+  align-items: center;
+  gap: var(--el-space-2);
+  min-height: var(--el-titlebar-h, 42px);
+  padding: var(--el-space-1) var(--el-space-2) var(--el-space-1) var(--el-space-3);
+  background: linear-gradient(180deg,
+    color-mix(in oklab, var(--el-panel-2) 80%, var(--el-panel)),
+    var(--el-panel) 100%);
+  border-bottom: var(--el-bw) solid color-mix(in oklab, var(--el-line) 72%, transparent);
+}
+.el-titlebar .lead {
+  justify-self: start;
+  display: flex;
+  align-items: center;
+  gap: var(--el-space-1);
+}
+.el-titlebar .el-app-title {
+  justify-self: center;
+  max-width: 100%;
+  font-family: var(--el-font-display);
+  font-weight: var(--el-head-weight);
+  font-size: var(--el-fs-md);
+  letter-spacing: 0.01em;
+  color: var(--el-ink);
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.el-titlebar .el-app-title small {
+  display: block;
+  font-size: var(--el-fs-xs);
+  font-weight: 500;
+  color: var(--el-mute);
+  letter-spacing: var(--el-label-tracking);
+  text-transform: var(--el-label-case);
+}
+.el-titlebar .winbtns {
+  justify-self: end;
+  display: flex;
+  align-items: center;
+  gap: var(--el-space-1);
+  padding-right: var(--el-space-1);
+}
+
+/* window buttons — 12px circles; the glyph appears on hover, GTK style */
+.el-winbtn {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  border-radius: var(--el-r-pill);
+  color: var(--el-ink-soft);
+  cursor: pointer;
+  position: relative;
+  transition: background var(--el-dur-fast) var(--el-ease), color var(--el-dur-fast) var(--el-ease);
+}
+/* resting circle */
+.el-winbtn::before {
+  content: "";
+  width: 12px;
+  height: 12px;
+  border-radius: var(--el-r-pill);
+  background: color-mix(in oklab, var(--el-ink-soft) 42%, transparent);
+  transition: background var(--el-dur-fast) var(--el-ease), transform var(--el-dur-fast) var(--el-ease);
+}
+/* glyph rides above the circle; hidden at rest, shown on hover — GTK style */
+.el-winbtn::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--el-fs-xs); /* 9px sub-floors the badge glyphs */
+  font-weight: 700;
+  line-height: 1;
+  color: var(--el-on-accent);
+  opacity: 0;
+  transition: opacity var(--el-dur-fast) var(--el-ease);
+}
+.el-winbtn.min::after { content: "\2013"; }
+.el-winbtn.max::after { content: "\25A1"; font-weight: 400; }
+.el-winbtn.close::after { content: "\2715"; }
+.el-winbtn:hover::before { transform: scale(1.5); background: color-mix(in oklab, var(--el-ink-soft) 72%, transparent); }
+.el-winbtn:hover::after { opacity: 1; }
+.el-winbtn:active::before { transform: scale(1.2); }
+.el-winbtn:focus-visible { outline: 2px solid var(--el-focus-ring); outline-offset: 1px; }
+.el-winbtn.close:hover::before { background: var(--el-fail); }
+.el-winbtn.close:hover { color: color-mix(in oklab, var(--el-fail) 80%, transparent); }
+.el-winbtn[aria-disabled="true"] { opacity: 0.5; cursor: not-allowed; }
+
+.el-titlebar .el-btn {
+  min-height: 28px;
+  padding: 2px 9px;
+}
+
+/* ── menubar — top-attached menu strip under the titlebar ────────────────── */
+
+.el-menubar {
+  flex: none;
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  min-height: var(--el-menubar-h, 34px);
+  padding: 0 var(--el-space-1);
+  background: color-mix(in oklab, var(--el-panel-2) 55%, var(--el-panel));
+  border-bottom: var(--el-bw) solid color-mix(in oklab, var(--el-line) 55%, transparent);
+  font-size: var(--el-fs-md);
+}
+.el-menubar-item {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 var(--el-space-3);
+  margin: 2px 0;
+  background: transparent;
+  border: 0;
+  border-radius: var(--el-r-sm);
+  color: var(--el-ink-soft);
+  font-family: inherit;
+  font-size: inherit;
+  cursor: pointer;
+  transition: color var(--el-dur-fast) var(--el-ease), background var(--el-dur-fast) var(--el-ease);
+}
+.el-menubar-item:hover {
+  background: color-mix(in oklab, var(--el-ink) 7%, transparent);
+  color: var(--el-ink);
+}
+.el-menubar-item:focus-visible {
+  outline: 2px solid var(--el-focus-ring);
+  outline-offset: -2px;
+}
+.el-menubar-item[aria-expanded="true"],
+.el-menubar-item.is-open {
+  background: var(--el-accent-soft);
+  color: var(--el-accent-ink); /* text on the accent wash — use the text-grade */
+}
+.el-menubar-item[aria-disabled="true"] {
+  opacity: 0.45;
+  cursor: not-allowed;
+  background: transparent;
+  color: var(--el-mute);
+}
+.el-menubar-sep {
+  width: 1px;
+  margin: var(--el-space-2) var(--el-space-1);
+  background: color-mix(in oklab, var(--el-line) 65%, transparent);
+}
+.el-menubar-spring { flex: 1; }
+.el-appwin.is-dim .el-menubar-item.is-open,
+.el-appwin.is-dim .el-menubar-item[aria-expanded="true"] { color: var(--el-accent-ink); }
+
+/* ── headerbar — window-attached toolbar (persona nav slot) ──────────────── */
+
+.el-headerbar {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: var(--el-space-2);
+  padding: var(--el-space-1) var(--el-space-3);
+  background: color-mix(in oklab, var(--el-panel-2) 60%, var(--el-panel));
+  border-bottom: var(--el-bw) solid color-mix(in oklab, var(--el-line) 60%, transparent);
+}
+.el-headerbar .el-headerbar-label {
+  font-size: var(--el-fs-sm);
+  font-weight: var(--el-label-weight);
+  letter-spacing: var(--el-label-tracking);
+  text-transform: var(--el-label-case);
+  color: var(--el-ink-soft);
+}
+.el-headerbar .spring { flex: 1; }
+/* persona slot: keep any inline navbar/form inside measured height */
+.el-headerbar > .el-search,
+.el-headerbar .el-search-bar { width: min(320px, 42%); }
+
+/* ── actionbar — bottom bar: lead hint + primary/secondary actions ───────── */
+
+.el-actionbar {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: var(--el-space-3);
+  padding: var(--el-space-2) var(--el-space-3);
+  background: color-mix(in oklab, var(--el-panel-2) 70%, var(--el-panel));
+  border-top: var(--el-bw) solid color-mix(in oklab, var(--el-line) 68%, transparent);
+}
+.el-actionbar .lead {
+  display: flex;
+  align-items: center;
+  gap: var(--el-space-2);
+  color: var(--el-ink-soft);
+  font-size: var(--el-fs-sm);
+  min-width: 0;
+}
+.el-actionbar .actions {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: var(--el-space-2);
+}
+
+/* ── tabbar — bottom / app tab bar ───────────────────────────────────────── */
+
+.el-tabbar {
+  flex: none;
+  display: flex;
+  align-items: stretch;
+  gap: var(--el-space-1);
+  padding: var(--el-space-1) var(--el-space-2) var(--el-space-2);
+  background: color-mix(in oklab, var(--el-panel-2) 65%, var(--el-panel));
+  border-top: var(--el-bw) solid color-mix(in oklab, var(--el-line) 68%, transparent);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.el-tabbar::-webkit-scrollbar { display: none; }
+.el-tabbar-item {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: var(--el-space-1) var(--el-space-3);
+  background: transparent;
+  border: 0;
+  border-radius: var(--el-r-md);
+  color: var(--el-ink-soft);
+  font-family: inherit;
+  font-size: var(--el-fs-xs);
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color var(--el-dur-fast) var(--el-ease), background var(--el-dur-fast) var(--el-ease);
+}
+.el-tabbar-item .el-icon { width: 18px; height: 18px; }
+.el-tabbar-item:hover {
+  background: color-mix(in oklab, var(--el-ink) 7%, transparent);
+  color: var(--el-ink);
+}
+.el-tabbar-item:focus-visible {
+  outline: 2px solid var(--el-focus-ring);
+  outline-offset: 2px;
+}
+.el-tabbar-item.is-active {
+  background: var(--el-accent-soft);
+  color: var(--el-accent-ink); /* text on the accent wash — use the text-grade */
+}
+.el-tabbar-item[aria-disabled="true"] {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+.el-tabbar-item .count {
+  position: static;
+  margin-left: var(--el-space-1);
+  font-size: var(--el-fs-xs);
+  font-weight: 700;
+  padding: 0 4px;
+  border-radius: var(--el-r-pill);
+  background: var(--el-accent);
+  color: var(--el-on-accent);
+}
+
+/* ── motion law ───────────────────────────────────────────────────────────── */
+
+/* ── v0.4.0 mobile pass (routed from family reports) ──────────────────────── */
+
+@media (max-width: 900px) {
+  /* nowrap chrome strips ran past the appwin's overflow:clip and vanished
+     (brutal route: "Custody cam" entirely hidden at 768), and the actionbar
+     self-overlapped as far up as tablet lanes (webgl route) — they wrap */
+  .el-menubar,
+  .el-headerbar,
+  .el-actionbar { flex-wrap: wrap; }
+}
+
+@media (max-width: 430px) {
+  /* window buttons keep the 12px circle visual; the hit lane reaches 44 */
+  .el-winbtn { width: 44px; height: 44px; }
+  .el-menubar-item { min-height: 44px; }
+  .el-tabbar-item { min-height: 48px; }
+  /* the titlebar lead is status furniture (chips/badges/labels — validated
+     across persona sites): on a phone the centered window title is the
+     load-bearing element and the lead's max-content box escapes its grid
+     track and paints over it (illustration route, proven) — it hides */
+  .el-titlebar .lead { display: none; }
+  .el-actionbar .lead { min-width: 0; }
+  /* a 42%-wide search starves on a wrapped bar — take the line */
+  .el-headerbar > .el-search,
+  .el-headerbar .el-search-bar { width: 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .el-winbtn::before,
+  .el-menubar-item,
+  .el-tabbar-item,
+  .el-listbox-row,
+  .el-notification,
+  .el-actionbar .actions .el-btn { transition: none; }
+}
+
+}

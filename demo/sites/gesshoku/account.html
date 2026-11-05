@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en" data-theme="gesshoku">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Your practice · Gesshoku</title>
+<link rel="stylesheet" href="../../../base.css">
+<link rel="stylesheet" href="../../../fonts.css">
+<link rel="stylesheet" href="../../../tokens.css">
+<link rel="stylesheet" href="../../../elements-display.css">
+<link rel="stylesheet" href="../../../elements-structure.css">
+<link rel="stylesheet" href="../../../elements-lists.css">
+<link rel="stylesheet" href="../../../elements-app.css">
+<link rel="stylesheet" href="../../../elements-containers.css">
+<link rel="stylesheet" href="../../../elements-controls.css">
+<link rel="stylesheet" href="../../../elements-inputs.css">
+<link rel="stylesheet" href="../../../elements-dataviz.css">
+<link rel="stylesheet" href="../../../elements-overlay.css">
+<link rel="stylesheet" href="../../../elements-interactions.css">
+<link rel="stylesheet" href="../../../elements-misc.css">
+<link rel="stylesheet" href="../../../elements-size.css">
+<link rel="stylesheet" href="../../../elements-workflow.css">
+<link rel="stylesheet" href="../../../themes/src/quiet-minimal.css">
+<script src="../../../elements.js" defer></script>
+<script src="../../../charts.js" defer></script>
+<script src="../../../elements-workflow.js" defer></script>
+<style>
+  .two-cols { display: grid; grid-template-columns: 1.4fr 1fr; gap: var(--el-space-5); align-items: start; }
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--el-space-4); }
+  .form-grid .wide { grid-column: 1 / -1; }
+  .pref-rows { display: grid; gap: var(--el-space-3); }
+  .pref-row { display: flex; align-items: center; gap: var(--el-space-3); padding: var(--el-space-2) 0; border-bottom: 1px solid color-mix(in oklab, var(--el-ink) 5%, transparent); }
+  .pref-row .el-switch, .pref-row .el-check { margin-left: auto; }
+  .pref-row.is-column { flex-direction: column; align-items: flex-start; gap: var(--el-space-2); border-bottom: 0; }
+  .state-rows { display: grid; gap: var(--el-space-3); }
+  .saving-row { display: flex; align-items: center; gap: var(--el-space-3); }
+  .toast-strip { display: flex; gap: var(--el-space-3); align-items: center; }
+  @media (max-width: 940px) { .two-cols, .form-grid { grid-template-columns: 1fr; } }
+  /* v0.4.0 mobile pass: checkbox labels carry the 44px touch floor */
+  @media (max-width: 430px) {
+    .pref-row label { min-height: 44px; display: inline-flex; align-items: center; }
+  }
+</style>
+</head>
+<body>
+<main class="el-page">
+
+  <nav class="el-navbar el-navbar--headerbar">
+    <div class="lead">
+      <button class="el-winbtn min" aria-label="Minimize"></button>
+      <button class="el-winbtn max" aria-label="Maximize"></button>
+      <button class="el-winbtn close" aria-label="Close"></button>
+    </div>
+    <div class="title-block">
+      <span class="title">Gesshoku</span>
+      <span class="subtitle">your practice</span>
+    </div>
+    <div class="end">
+      <div class="links">
+        <a href="index.html">Room</a>
+        <a href="catalog.html">Practice</a>
+        <a href="app.html">Sessions</a>
+        <a href="article.html">Journal</a>
+        <a href="account.html" aria-current="page">Settings</a>
+      </div>
+      <button class="el-btn el-btn--ghost el-btn--small" data-dialog-open="signout">Sign out</button>
+    </div>
+  </nav>
+
+  <div class="el-banner el-banner--info" role="status">
+    <span class="glyph">i</span>
+    <div class="copy"><strong>The autumn room opens 1 November.</strong>
+      <span class="detail">Sittings are confirmed by hand, one working day.</span></div>
+    <button class="el-btn el-btn--ghost action" data-toast="The autumn dates will reach you by bell.">Remind me</button>
+    <button class="close" aria-label="Dismiss">×</button>
+  </div>
+
+  <header class="el-hero el-hero--left">
+    <span class="el-eyebrow">Your account</span>
+    <h1>Matsuda Reiko</h1>
+    <p>Evening bench · keeper since the ninth year · room key RM-0122.</p>
+  </header>
+
+  <ul class="el-stepper" role="list">
+    <li class="done"><span class="num">1</span> Posture</li>
+    <li class="done"><span class="num">2</span> Breath pattern</li>
+    <li class="active"><span class="num">3</span> Bells</li>
+    <li><span class="num">4</span> Dark hour</li>
+    <li><span class="num">5</span> Review</li>
+  </ul>
+
+  <section class="el-section el-section--dense">
+    <div class="two-cols">
+      <form class="el-panel" novalidate>
+        <h2>Standing details</h2>
+        <div class="form-grid">
+          <div class="el-field">
+            <label class="el-label" for="a-name">Name on the room key</label>
+            <input class="el-input" id="a-name" value="Reiko Matsuda">
+            <span class="el-hint">As the ledger addresses you.</span>
+          </div>
+          <div class="el-field">
+            <label class="el-label" for="a-mail">Bell messages</label>
+            <input class="el-input" id="a-mail" type="email" value="reiko@riverbank.example">
+            <span class="el-hint">Bells go out once a week.</span>
+          </div>
+          <div class="el-field wide" data-invalid="true">
+            <label class="el-label" for="a-bench">Bench address</label>
+            <input class="el-input" id="a-bench" aria-invalid="true" value="north of the river, room 1, ">
+            <span class="el-error">The bench ends with the lamp number — add it.</span>
+          </div>
+          <div class="el-field">
+            <label class="el-label" for="a-note">Note to the keeper</label>
+            <textarea class="el-textarea" id="a-note" rows="3">Keep the lamp low; the six-out bell is enough of an ending.</textarea>
+          </div>
+          <div class="el-field">
+            <label class="el-label" for="a-find">Who kept you here</label>
+            <input class="el-search" id="a-find" type="search" placeholder="Search keepers by name…">
+            <span class="el-hint">Optional. It is written in the margin anyway.</span>
+          </div>
+          <div class="el-field">
+            <label class="el-label" for="a-tone">Bell tone</label>
+            <select class="el-select" id="a-tone"><option>Ledger bronze</option><option selected>Six-out</option><option>Low moon</option></select>
+            <span class="el-hint">Changes sound from the next sitting.</span>
+          </div>
+          <div class="el-field wide">
+            <span class="el-label">Silence kept in the hour</span>
+            <div class="el-range">
+              <input class="el-slider" type="range" min="0" max="100" value="30" aria-label="Silence percent">
+              <span class="val">30%</span>
+            </div>
+            <span class="el-hint">A louder slider is possible; the room prefers thirty.</span>
+          </div>
+        </div>
+        <div class="el-inline-alert warn">
+          <span class="el-icon"><svg viewBox="0 0 24 24"><path d="M12 3l10 18H2z"/><path d="M12 10v5"/><circle cx="12" cy="18" r="0.5"/></svg></span>
+          <div><div class="title">Two sittings wait your close</div>
+          <div class="body">The eclipsed-pause record needs a return note before the dark hour banked it.</div></div>
+          <button class="close" aria-label="Dismiss">×</button>
+        </div>
+        <div class="el-btn-group">
+          <button class="el-btn" type="button" data-toast="Kept — the ledger takes your details as written.">Keep details</button>
+          <button class="el-btn el-btn--ghost-outline" type="button">Keep as draft</button>
+          <button class="el-btn el-btn--ghost" type="button">Leave it</button>
+        </div>
+      </form>
+
+      <div class="pref-stack" style="display:grid;gap:var(--el-space-5)">
+        <div class="el-panel">
+          <h2>Kept preferences</h2>
+          <div class="pref-rows">
+            <div class="pref-row"><strong>Bell at the return</strong>
+              <span><span class="el-switch on" role="switch" aria-checked="true" tabindex="0"></span></span></div>
+            <div class="pref-row"><strong>Counter in the margin</strong>
+              <span><span class="el-switch" role="switch" aria-checked="false" tabindex="0"></span></span></div>
+            <div class="pref-row is-column"><strong>Rooms you follow</strong>
+              <label><span class="el-check on"><input type="checkbox" checked hidden></span> Evening bench</label>
+              <label><span class="el-check on"><input type="checkbox" checked hidden></span> First-saturday silence</label>
+              <label><span class="el-check"><input type="checkbox" hidden></span> Work-hour lamp</label>
+              <label><span class="el-check on"><input type="checkbox" checked hidden></span> Ledger margin</label>
+            </div>
+            <div class="pref-row"><span class="el-pill">RM-0122</span>
+              <span class="el-badge">key kept</span></div>
+            <div class="pref-row is-column"><strong>Lamp at the hour's end</strong>
+              <div class="el-segmented" role="tablist">
+                <button type="button">Bank it</button>
+                <button class="on" type="button">Hold 40%</button>
+                <button type="button">Keep burning</button>
+              </div>
+            </div>
+            <div class="pref-row"><span class="el-kbd">return</span>
+              <button class="el-btn el-btn--ghost" data-dialog-open="signout">End the session</button></div>
+          </div>
+        </div>
+
+        <div class="el-panel">
+          <h2>Keeping, as the ledger does it</h2>
+          <span class="el-label" style="display:block;margin-bottom:var(--el-space-2)">A demonstration of the room's quiet states.</span>
+          <div class="state-rows">
+            <div class="el-skeleton title"></div>
+            <div class="el-skeleton text"></div>
+            <div class="el-skeleton block"></div>
+            <div class="saving-row"><span class="el-spinner sm" role="status" aria-label="Loading"></span>
+              <span>Blanking the proof sheet… <span class="el-tooltip" data-tip="The room banks nothing without a note.">why</span></span></div>
+            <div class="el-inline-alert ok">
+              <span class="el-icon"><svg viewBox="0 0 24 24"><path d="M4 12l6 6L20 6"/></svg></span>
+              <div><div class="title">Kept 21:02</div>
+              <div class="body">The record RM-0122 stands as written.</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="toast-strip" style="margin-top:var(--el-space-5)">
+    <div class="el-toast info"><p>Your draft sits in the margin, waiting for the bell.</p>
+      <button class="close" aria-label="Dismiss">×</button></div>
+  </div>
+
+  <nav class="el-pagination" aria-label="Ledger pages">
+    <button class="page on" type="button">1</button>
+    <button class="page" type="button">2</button>
+    <button class="page" type="button">3</button>
+    <span class="el-hint">Leaves 1–3 of 41</span>
+  </nav>
+
+  <footer class="el-footer">
+    <div class="cols">
+      <div class="col">
+        <div class="label">Gesshoku</div>
+        <p class="small">Room 1 · north of the river · lamp down at 21:00.</p>
+      </div>
+      <div class="col"><div class="label">Practice</div><p class="small">Catalog · sessions · fieldnotes</p></div>
+      <div class="col"><div class="label">Write</div><p class="small">room@gesshoku.example</p></div>
+    </div>
+    <p class="colophon">Gesshoku · account · set in Inter and Sentient on dark umber paper.</p>
+  </footer>
+
+  <dialog id="signout" class="el-dialog el-dialog--narrow">
+    <div class="el-dialog-head"><h2>End the session</h2>
+      <button class="el-dialog-close" data-dialog-close="signout" aria-label="Close">×</button></div>
+    <div class="el-dialog-body"><p>The lamp banks with you. The margin, the keys
+       and the counter stay as you leave them.</p></div>
+    <div class="el-dialog-foot"><button class="el-btn" data-dialog-close="signout">Bank the lamp</button></div>
+  </dialog>
+
+</main>
+</body>
+</html>

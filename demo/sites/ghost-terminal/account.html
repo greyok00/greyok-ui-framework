@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en" data-theme="ghost-terminal">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Panes and account — WAXLAMP</title>
+<link rel="stylesheet" href="../../../base.css">
+<link rel="stylesheet" href="../../../fonts.css">
+<link rel="stylesheet" href="../../../tokens.css">
+<link rel="stylesheet" href="../../../elements-display.css">
+<link rel="stylesheet" href="../../../elements-structure.css">
+<link rel="stylesheet" href="../../../elements-lists.css">
+<link rel="stylesheet" href="../../../elements-app.css">
+<link rel="stylesheet" href="../../../elements-containers.css">
+<link rel="stylesheet" href="../../../elements-controls.css">
+<link rel="stylesheet" href="../../../elements-inputs.css">
+<link rel="stylesheet" href="../../../elements-dataviz.css">
+<link rel="stylesheet" href="../../../elements-overlay.css">
+<link rel="stylesheet" href="../../../elements-interactions.css">
+<link rel="stylesheet" href="../../../elements-misc.css">
+<link rel="stylesheet" href="../../../elements-size.css">
+<link rel="stylesheet" href="../../../elements-workflow.css">
+<link rel="stylesheet" href="../../../elements-inspector.css">
+<link rel="stylesheet" href="../../../elements-reader.css">
+<link rel="stylesheet" href="../../../elements-assistant.css">
+<link rel="stylesheet" href="../../../themes/src/tech-mono.css">
+<script src="../../../elements.js" defer></script>
+<script src="../../../charts.js" defer></script>
+</head>
+<body>
+<div class="el-page">
+
+  <nav class="el-navbar el-navbar--top" aria-label="Primary">
+    <a class="brand" href="index.html">WAXLAMP</a>
+    <ul class="links">
+      <li><a href="index.html">Lamp</a></li>
+      <li><a href="catalog.html">Registry</a></li>
+      <li><a href="article.html">Journal</a></li>
+      <li><a href="account.html" aria-current="page">Account</a></li>
+      <li><a href="app.html">Dash</a></li>
+    </ul>
+    <div class="actions"><span class="el-avatar" aria-hidden="true">RW</span></div>
+  </nav>
+
+  <main>
+    <section class="el-section el-section--flush">
+      <div class="el-banner el-banner--warn">
+        <span class="glyph">[!]</span>
+        <div class="copy"><strong>Store migration window tonight.</strong> Tubes restart once between 02:00 and 02:20 UTC — scrollback is safe, commit windows are not.</div>
+        <button class="action el-btn el-btn--outline" type="button" data-toast="Migration lamp checked — green" data-toast-variant="ok">Check lamp</button>
+      </div>
+    </section>
+
+    <section class="el-section">
+      <h1 style="margin-top:0;">[ panes and account ]</h1>
+      <p class="el-hint">Changes write to ~/.waxlamp/account.toml tonight at 02:00, then replay everywhere.</p>
+
+      <div class="el-stepper" role="list" aria-label="Waxlamp setup steps">
+        <li class="done" role="listitem"><span class="num">1</span> Shell installed</li>
+        <li class="done" role="listitem"><span class="num">2</span> Lamp chosen</li>
+        <li class="active" role="listitem"><span class="num">3</span> Persistence rules</li>
+        <li role="listitem"><span class="num">4</span> Fleet lamps</li>
+      </div>
+    </section>
+
+    <section class="el-section el-section--dense">
+      <div class="el-cluster" style="display:grid;grid-template-columns:3fr 2fr;gap:var(--el-space-4);align-items:start;">
+        <form class="el-panel" style="padding:var(--el-space-4);display:grid;gap:var(--el-space-3);">
+          <h2 style="margin:0;font-size:var(--el-fs-lg);">[ identity ]</h2>
+          <label class="el-field">
+            <span class="el-label">Handle</span>
+            <input class="el-input" type="text" value="wicker@kettleroom" required>
+            <span class="el-hint">Your handle is the registry identity; lamps pull with it.</span>
+          </label>
+          <label class="el-field">
+            <span class="el-label">Prompt line template</span>
+            <textarea class="el-textarea" rows="4">$ [{host}] {cwd} &middot; {lamp} &middot; {drift}</textarea>
+            <span class="el-hint">Rendered verbatim; {drift} prints the config drift count.</span>
+          </label>
+          <div class="el-field">
+            <span class="el-label">Default lamp</span>
+            <select class="el-select" style="padding:9px 12px;border:1px dashed var(--el-line-strong);background:var(--el-panel-2);color:var(--el-ink);border-radius:2px;font-family:var(--el-font-mono);font-size:var(--el-fs-sm);">
+              <option>amber-63 (reference)</option><option>paper-noir</option><option>green-signal</option>
+            </select>
+            <span class="el-hint">Tubes override with wl: re-tube at any time.</span>
+          </div>
+          <label class="el-field">
+            <span class="el-label">Search the account doc</span>
+            <span class="el-search-bar" style="display:inline-flex;flex:1;">
+              <input class="el-search" type="search" placeholder="[ search: drift, lamp, bell ]" aria-label="Search settings">
+            </span>
+          </label>
+
+          <h2 style="margin:var(--el-space-2) 0 0;font-size:var(--el-fs-lg);">[ persistence rules ]</h2>
+          <div class="el-field">
+            <span class="el-label">Commit scope</span>
+            <div class="el-segmented" role="group" aria-label="commit scope">
+              <button class="on" type="button">every frame</button>
+              <button type="button">marks only</button>
+              <button type="button">off</button>
+            </div>
+            <span class="el-hint">Marks-only doubles frame budget; still 9 ms cold.</span>
+          </div>
+          <label class="el-field">
+            <span class="el-label">
+              <span class="el-switch on" role="switch" aria-checked="true" tabindex="0"><input type="checkbox" checked></span>
+              Replay marks on boot
+            </span>
+            <span class="el-hint">Marks are your saved positions in the scroll; cheap to keep.</span>
+          </label>
+          <div class="el-field">
+            <span class="el-label">What survives a reboot</span>
+            <div class="el-check-group" style="display:grid;gap:8px;grid-template-columns:auto 1fr;align-items:center;">
+              <span class="el-check on"><input type="checkbox" checked></span><span>Scrollback (full)</span>
+              <span class="el-check on"><input type="checkbox" checked></span><span>Marks and cursor</span>
+              <span class="el-check"><input type="checkbox"></span><span>Command stdout (off by choice)</span>
+            </div>
+          </div>
+          <div class="el-field">
+            <span class="el-label">Sync policy</span>
+            <div class="el-radio-group" style="display:grid;gap:8px;">
+              <span class="el-radio"><input type="radio" name="sync" checked><span class="dot"></span><span>Newest frame wins (default)</span></span>
+              <span class="el-radio"><input type="radio" name="sync"><span class="dot"></span><span>Ask on conflict</span></span>
+            </div>
+          </div>
+          <label class="el-field">
+            <span class="el-label">Commit window (ms)</span>
+            <input class="el-slider" type="range" min="100" max="1000" value="400" step="50">
+            <span class="el-hint">400 ms &middot; matches the persistence paper &middot; lower costs CPU</span>
+          </label>
+
+          <div class="el-inline-alert el-inline-alert--fail" style="display:flex;gap:10px;align-items:start;">
+            <span class="el-icon" aria-hidden="true">[x]</span>
+            <div><strong>marks path is read-only.</strong> The gc pin from issue 4412 holds; a config hand-edit re-pinned it. See the journal for why.</div>
+          </div>
+
+          <div class="el-field" data-invalid>
+            <span class="el-label">Store path</span>
+            <input class="el-input" aria-invalid="true" value="~/.waxlamp/store//">
+            <span class="el-error">Double slash — the replay would mount it twice.</span>
+          </div>
+
+          <div style="display:flex;gap:var(--el-space-2);align-items:center;">
+            <button class="el-btn" type="button" data-toast="account.toml written — 2 segments pending" data-toast-variant="ok">Save rules</button>
+            <div class="el-btn-group" role="group" aria-label="persistence presets">
+              <button class="el-btn el-btn--outline" type="button">Paranoid</button>
+              <button class="el-btn el-btn--outline" type="button">Reference</button>
+              <button class="el-btn el-btn--outline" type="button">Cheap</button>
+            </div>
+            <button class="el-btn el-btn--ghost" type="button">Discard</button>
+            <button class="el-btn el-btn--danger" type="button" data-dialog-open="wl-unlink" style="margin-left:auto;">Unlink machine</button>
+          </div>
+        </form>
+
+        <aside style="display:grid;gap:var(--el-space-3);">
+          <div class="el-panel" style="padding:var(--el-space-3);">
+            <h3 style="margin:0 0 8px;font-size:var(--el-fs-md);">[ one-command actions ]</h3>
+            <div style="display:grid;gap:8px;">
+              <button class="el-btn el-btn--squared" type="button" data-toast="Store verified: 1,284 segments green" data-toast-variant="ok">wl store verify</button>
+              <button class="el-btn el-btn--outline" type="button" data-command="wl-palette"><span class="el-kbd">^ K</span>&nbsp;palette</button>
+              <button class="el-btn el-btn--ghost" type="button" data-toast="Replay timed — 18 ms cold start" data-toast-variant="info">wl replay --dry <span class="el-spinner" aria-hidden="true"></span></button>
+            </div>
+          </div>
+          <div class="el-panel" style="padding:var(--el-space-3);">
+            <h3 style="margin:0 0 8px;font-size:var(--el-fs-md);">[ invoices ]</h3>
+            <p class="el-hint" style="margin:0 0 12px;">work tube &middot; 3 seats &middot; Nov 2026</p>
+            <table class="el-table el-table--ruled" style="width:100%;">
+              <thead><tr><th scope="col">Invoice</th><th scope="col" class="num">Amount</th></tr></thead>
+              <tbody>
+                <tr><td>WL-202611</td><td class="num">$42.00</td></tr>
+                <tr><td>WL-202610</td><td class="num">$42.00</td></tr>
+                <tr><td>WL-202609</td><td class="num">$28.00</td></tr>
+              </tbody>
+            </table>
+            <nav class="el-pagination" aria-label="invoice pages" style="margin-top:12px;">
+              <button class="page disabled" type="button" aria-label="Previous page">&lsaquo;</button>
+              <button class="page on" type="button">1</button>
+              <button class="page" type="button">2</button>
+              <span class="info">3 shown &middot; 29 total</span>
+              <button class="page" type="button" aria-label="Next page">&rsaquo;</button>
+            </nav>
+          </div>
+          <div class="panel-skeleton" aria-hidden="true">
+            <h3 style="margin:0 0 8px;font-size:var(--el-fs-md);">[ next invoice ]</h3>
+            <div class="el-skeleton" style="height:14px;width:72%;margin-bottom:8px;"></div>
+            <div class="el-skeleton" style="height:14px;width:50%;margin-bottom:8px;"></div>
+            <div class="el-skeleton" style="height:14px;width:60%;"></div>
+          </div>
+          <div class="el-panel" style="padding:var(--el-space-3);">
+            <h3 style="margin:0 0 8px;font-size:var(--el-fs-md);">[ pins ]</h3>
+            <span class="el-pill">store:~/.waxlamp/store</span>
+            <span class="el-badge live" style="margin-left:6px;">pinned</span>
+          </div>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer class="el-footer el-footer--plain">
+    <p class="colophon">WAXLAMP Werk — account.toml is the truth; this page renders it.</p>
+  </footer>
+
+</div>
+
+<dialog class="el-dialog" id="wl-unlink">
+  <div class="el-dialog-head">
+    <h3 class="el-dialog-title">[ unlink this machine? ]</h3>
+    <button class="el-dialog-close" type="button" aria-label="Close" data-dialog-close>&times;</button>
+  </div>
+  <form class="el-dialog-body" method="dialog">
+    <p style="margin-top:0;">The local store stays on disk; the account loses this host and its lamps. Scrollback here is not touched.</p>
+  </form>
+  <div class="el-dialog-foot">
+    <button class="el-btn el-btn--ghost" type="button" data-dialog-close>Keep linked</button>
+    <button class="el-btn el-btn--danger" type="button" data-toast="Machine unlinked — store kept locally" data-toast-variant="fail" data-dialog-close>Unlink</button>
+  </div>
+</dialog>
+
+<div class="el-command" id="wl-palette" role="dialog" aria-label="Palette">
+  <div class="el-command-panel">
+    <input class="el-command-input" type="text" placeholder="[ palette — type a command ]" aria-label="Palette input">
+    <div class="el-command-results">
+      <div class="el-command-group">store</div>
+      <button class="el-command-row sel" type="button">wl store verify <span class="el-command-hint">S V</span></button>
+      <button class="el-command-row" type="button">wl store gc --keep 30d <span class="el-command-hint">S G</span></button>
+      <div class="el-command-group">tubes</div>
+      <button class="el-command-row" type="button">tube: re-tube to paper-noir <span class="el-command-hint">T P</span></button>
+    </div>
+    <div class="el-command-foot"><span class="el-hint">enter to run &middot; esc to fade</span></div>
+  </div>
+</div>
+
+</body>
+</html>

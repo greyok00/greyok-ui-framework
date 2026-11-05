@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en" data-theme="ghost-terminal">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Registry — WAXLAMP</title>
+<link rel="stylesheet" href="../../../base.css">
+<link rel="stylesheet" href="../../../fonts.css">
+<link rel="stylesheet" href="../../../tokens.css">
+<link rel="stylesheet" href="../../../elements-display.css">
+<link rel="stylesheet" href="../../../elements-structure.css">
+<link rel="stylesheet" href="../../../elements-lists.css">
+<link rel="stylesheet" href="../../../elements-app.css">
+<link rel="stylesheet" href="../../../elements-containers.css">
+<link rel="stylesheet" href="../../../elements-controls.css">
+<link rel="stylesheet" href="../../../elements-inputs.css">
+<link rel="stylesheet" href="../../../elements-dataviz.css">
+<link rel="stylesheet" href="../../../elements-overlay.css">
+<link rel="stylesheet" href="../../../elements-interactions.css">
+<link rel="stylesheet" href="../../../elements-misc.css">
+<link rel="stylesheet" href="../../../elements-size.css">
+<link rel="stylesheet" href="../../../elements-workflow.css">
+<link rel="stylesheet" href="../../../elements-inspector.css">
+<link rel="stylesheet" href="../../../elements-reader.css">
+<link rel="stylesheet" href="../../../elements-assistant.css">
+<link rel="stylesheet" href="../../../themes/src/tech-mono.css">
+<script src="../../../elements.js" defer></script>
+<script src="../../../charts.js" defer></script>
+</head>
+<body>
+<div class="el-page">
+
+  <nav class="el-navbar el-navbar--top" aria-label="Primary">
+    <a class="brand" href="index.html">WAXLAMP</a>
+    <ul class="links">
+      <li><a href="index.html">Lamp</a></li>
+      <li><a href="catalog.html" aria-current="page">Registry</a></li>
+      <li><a href="article.html">Journal</a></li>
+      <li><a href="account.html">Account</a></li>
+      <li><a href="app.html">Dash</a></li>
+    </ul>
+    <div class="actions">
+      <span class="el-tooltip" data-tip="Registry lamps are checksummed on every pull" tabindex="0">
+        <button class="el-btn el-btn--ghost" type="button" data-toast="Registry integrity: 412/412 lamps verified" data-toast-variant="ok">Verify</button>
+      </span>
+    </div>
+  </nav>
+
+  <main>
+    <section class="el-section el-section--flush">
+      <div class="el-panel" style="display:flex;flex-wrap:wrap;align-items:end;gap:var(--el-space-3);padding:var(--el-space-3) var(--el-space-4);">
+        <div>
+          <h1 style="margin:0 0 4px;">[ registry ]</h1>
+          <p class="el-hint" style="margin:0;">412 lamps, every one a single TOML file. Pull, glance, swap — no rebuilds.</p>
+        </div>
+        <div style="margin-left:auto;display:flex;flex-wrap:wrap;gap:var(--el-space-3);align-items:end;">
+          <label class="el-search-field" style="min-width:240px;">
+            <input class="el-search" type="search" placeholder="Search: amber, split, warm" aria-label="Search the registry">
+          </label>
+          <div class="el-dropdown">
+            <select class="el-dropdown" style="all:unset;box-sizing:border-box;display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border:1px dashed var(--el-line-strong);border-radius:2px;min-height:36px;font-family:var(--el-font-mono);font-size:var(--el-fs-sm);color:var(--el-ink);">
+              <option>kind: any</option><option>kind: lamp</option><option>kind: pane</option><option>kind: bell</option>
+            </select>
+          </div>
+          <button class="el-btn" type="button" data-toast="Registry index pulled" data-toast-variant="ok">Pull index</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="el-section el-section--dense">
+      <div class="el-chip" role="group" aria-label="kind filters" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:var(--el-space-3);">
+        <button class="el-chip is-selected" type="button">all kinds</button>
+        <button class="el-chip" type="button">lamp</button>
+        <button class="el-chip" type="button">pane</button>
+        <button class="el-chip" type="button">bell</button>
+        <button class="el-chip" type="button">warm glass</button>
+        <button class="el-chip" type="button">rare &middot; 7 <span class="x" aria-label="clear rare">&times;</span></button>
+      </div>
+      <span class="el-badge">412 lamps indexed</span>
+      <span class="el-badge ok">checksums green</span>
+    </section>
+
+    <section class="el-section">
+      <div class="el-cluster" style="display:grid;grid-template-columns:repeat(3,1fr);gap:var(--el-space-3);">
+        <article class="el-card el-card--flat el-card--press">
+          <h3 class="el-card-title">amber-63</h3>
+          <p class="sub">The reference lamp. Warm amber phosphor on near-black glass, glow dialed to 12%.</p>
+          <div class="el-card-foot"><span class="el-avatar" aria-hidden="true">A3</span><button class="el-btn el-btn--ghost" type="button" data-drawer-open="lamp-drawer">Peek</button></div>
+        </article>
+        <article class="el-card el-card--flat el-card--press">
+          <h3 class="el-card-title">paper-noir</h3>
+          <p class="sub">No glow, warm paper panel, hairline rules. For daylight ops and people with headaches.</p>
+          <div class="el-card-foot"><span class="el-avatar" aria-hidden="true">PN</span><button class="el-btn el-btn--ghost" type="button" data-drawer-open="lamp-drawer">Peek</button></div>
+        </article>
+        <article class="el-card el-card--flat el-card--press">
+          <h3 class="el-card-title">green-signal</h3>
+          <p class="sub">Classic 1978 green phosphor with a soft persistence trail on scroll.</p>
+          <div class="el-card-foot"><span class="el-avatar" aria-hidden="true">GS</span><button class="el-btn el-btn--ghost" type="button" data-drawer-open="lamp-drawer">Peek</button></div>
+        </article>
+        <article class="el-card el-card--flat el-card--press">
+          <h3 class="el-card-title">split-pane drift</h3>
+          <p class="sub">A pane that shows config drift beside the live buffer, wired to the hook bus.</p>
+          <div class="el-card-foot"><span class="el-badge warn">pane</span><button class="el-btn el-btn--ghost" type="button" data-drawer-open="lamp-drawer">Peek</button></div>
+        </article>
+        <article class="el-card el-card--flat el-card--press">
+          <h3 class="el-card-title">key-bell dusk</h3>
+          <p class="sub">A bell that dims the tube once on error. One flash, no flicker loops.</p>
+          <div class="el-card-foot"><span class="el-badge">bell</span><button class="el-btn el-btn--ghost" type="button" data-drawer-open="lamp-drawer">Peek</button></div>
+        </article>
+        <article class="el-card el-card--flat el-card--press is-selected">
+          <h3 class="el-card-title">rare: amber-63/soft</h3>
+          <p class="sub">Variant lamp with a 4% glow cap. One of 7 rare pulls in the registry.</p>
+          <div class="el-card-foot"><span class="el-badge live">rare</span><button class="el-btn el-btn--ghost" type="button" data-drawer-open="lamp-drawer">Peek</button></div>
+        </article>
+      </div>
+
+      <div class="el-panel" style="margin-top:var(--el-space-4);">
+        <div class="el-empty">
+          <span class="el-icon" aria-hidden="true">&#9711;</span>
+          <p class="el-msg">[ nothing in the registry matches "magenta smoke" ]</p>
+          <p class="el-hint">Magenta phosphors faded from the index in 2024 — the pigment never survived the tube. Try warm glass instead.</p>
+          <div class="el-action"><button class="el-btn el-btn--outline" type="button" data-toast="Magenta search cleared — showing warm glass" data-toast-variant="info">Show warm glass</button>
+            <button class="el-btn el-btn--ghost" type="button">Clear filters</button></div>
+        </div>
+      </div>
+
+      <nav class="el-pagination" aria-label="registry pages" style="margin-top:var(--el-space-4);">
+        <button class="page disabled" type="button" aria-label="Previous page">&lsaquo;</button>
+        <button class="page on" type="button">1</button>
+        <button class="page" type="button">2</button>
+        <button class="page" type="button">3</button>
+        <span class="info">6 shown &middot; 412 indexed</span>
+        <button class="page" type="button" aria-label="Next page">&rsaquo;</button>
+      </nav>
+    </section>
+  </main>
+
+  <footer class="el-footer el-footer--plain">
+    <p class="colophon">WAXLAMP Werk — every lamp is one TOML file; checksums pinned in the ledger.</p>
+  </footer>
+
+</div>
+
+<aside class="el-drawer right" id="lamp-drawer" aria-label="Lamp details" data-scrim="lamp-scrim">
+  <div class="el-drawer-head"><strong>[ amber-63 — reference lamp ]</strong></div>
+  <div class="el-drawer-body">
+    <div class="el-media-band el-media-band--flat" style="margin-bottom:var(--el-space-3);">
+      <div class="media"><div class="fill" role="img" aria-label="amber-63 preview"></div></div>
+      <div class="body">
+        <h2 style="font-size:var(--el-fs-lg);margin:0 0 4px;">amber-63</h2>
+        <p style="margin:0;color:var(--el-ink-soft);">The lamp everyone copies. Ships with waxlamp since 2.0.</p>
+      </div>
+    </div>
+    <div class="el-fact-grid" style="grid-template-columns:repeat(3,1fr);">
+      <div class="el-fact"><span class="k">glow</span><span class="v">12%</span></div>
+      <div class="el-fact"><span class="k">persist</span><span class="v">400ms</span></div>
+      <div class="el-fact is-hot"><span class="k">pulls</span><span class="v">41k</span></div>
+    </div>
+    <label class="el-field" style="margin-top:var(--el-space-3);">
+      <span class="el-label">Install target</span>
+      <select class="el-select" style="padding:8px 12px;border:1px dashed var(--el-line-strong);background:var(--el-panel-2);color:var(--el-ink);border-radius:2px;font-family:var(--el-font-mono);">
+        <option>~/.waxlamp/theme.toml</option><option>~/.waxlamp/lamps/dusk.toml</option>
+      </select>
+    </label>
+  </div>
+  <div class="el-drawer-foot">
+    <button class="el-btn el-btn--ghost" type="button" data-drawer-close="lamp-drawer">Close</button>
+    <button class="el-btn" type="button" data-toast="amber-63 installed at theme.toml" data-toast-variant="ok">Install lamp</button>
+  </div>
+</aside>
+<div class="el-scrim" id="lamp-scrim" data-dialog-scrim></div>
+
+</body>
+</html>

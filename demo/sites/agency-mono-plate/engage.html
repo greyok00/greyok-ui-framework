@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="en" data-theme="agency-mono-plate">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Engage the office — Ashlar Partners</title>
+<link rel="stylesheet" href="../../../base.css">
+<link rel="stylesheet" href="../../../fonts.css">
+<link rel="stylesheet" href="../../../tokens.css">
+<link rel="stylesheet" href="../../../elements-display.css">
+<link rel="stylesheet" href="../../../elements-structure.css">
+<link rel="stylesheet" href="../../../elements-lists.css">
+<link rel="stylesheet" href="../../../elements-app.css">
+<link rel="stylesheet" href="../../../elements-containers.css">
+<link rel="stylesheet" href="../../../elements-controls.css">
+<link rel="stylesheet" href="../../../elements-inputs.css">
+<link rel="stylesheet" href="../../../elements-dataviz.css">
+<link rel="stylesheet" href="../../../elements-overlay.css">
+<link rel="stylesheet" href="../../../elements-interactions.css">
+<link rel="stylesheet" href="../../../elements-misc.css">
+<link rel="stylesheet" href="../../../elements-size.css">
+<link rel="stylesheet" href="../../../elements-workflow.css">
+<link rel="stylesheet" href="../../../elements-inspector.css">
+<link rel="stylesheet" href="../../../elements-reader.css">
+<link rel="stylesheet" href="../../../elements-assistant.css">
+<link rel="stylesheet" href="../../../themes/src/agency-classic.css">
+<script src="../../../elements.js" defer></script>
+<script src="../../../charts.js" defer></script>
+</head>
+<body>
+
+<nav class="el-navbar el-navbar--top">
+  <a class="brand" href="index.html">Ashlar<span style="color:var(--el-mute)">&nbsp;Partners</span></a>
+  <div class="links">
+    <a href="index.html">Office</a>
+    <a href="engagements.html">Engagements</a>
+    <a href="journal.html">Journal</a>
+    <a href="engage.html" aria-current="page">Engage</a>
+    <a href="ledger.html">Ledger</a>
+  </div>
+  <div class="actions">
+    <button class="el-btn el-btn--ghost" type="button" data-toast="The ledger is read-only for guests — ask your partner for a seat." data-toast-variant="info">Client sign-in</button>
+  </div>
+</nav>
+
+<main class="el-page">
+
+  <header class="el-section el-section--dense" style="padding-top:var(--el-space-5)">
+    <p class="el-eyebrow">Intake brief · confidential</p>
+    <h1 style="font-size:var(--el-fs-2xl);margin-bottom:var(--el-space-2)">Bring the brief. We'll bring the plates.</h1>
+    <p class="el-body" style="max-width:58ch">Three screens, about six minutes. A partner reads every brief the day it lands — the office has never routed one to a mailbox.</p>
+  </header>
+
+  <section class="el-section el-section--dense" aria-label="Intake status">
+    <div class="el-banner el-banner--info">
+      <span class="glyph" aria-hidden="true"><svg viewBox="0 0 16 16" width="14" height="14"><circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" stroke-width="1.5"></circle><path d="M8 4.5v4l2.5 1.8" fill="none" stroke="currentColor" stroke-width="1.5"></path></svg></span>
+      <span class="copy"><b>Spring block booking now</b> <span class="detail">three names will be cleared before Mar 6; the winter block is fully signed.</span></span>
+      <a class="action" href="engagements.html">See what's booked →</a>
+    </div>
+  </section>
+
+  <section class="el-section ag-split" aria-label="Intake form">
+
+    <div class="el-panel">
+      <ol class="el-stepper" aria-label="Brief progress">
+        <li class="done"><span class="num">1</span>Company</li>
+        <li class="active"><span class="num">2</span>Program</li>
+        <li><span class="num">3</span>People</li>
+      </ol>
+
+      <div style="display:flex;align-items:center;gap:var(--el-space-3);margin:var(--el-space-4) 0 var(--el-space-2);padding:var(--el-space-3);border:1px dashed var(--el-line);border-radius:var(--el-r-md)">
+        <span class="el-spinner sm" aria-hidden="true"></span>
+        <div class="el-stack" style="margin:0;gap:4px;flex:1">
+          <span class="el-skeleton title" data-loaded style="width:45%"></span>
+          <span class="el-skeleton line" data-loaded style="width:80%"></span>
+        </div>
+        <span style="font-size:var(--el-fs-xs);color:var(--el-mute)">pre-filling from the ledger…</span>
+      </div>
+
+      <form onsubmit="return false">
+
+        <div class="el-field">
+          <span class="el-label">Organization</span>
+          <input class="el-input" type="text" value="Orrin Market Group" aria-label="Organization">
+          <span class="el-hint">The legal entity that signs the plate — not the holding company.</span>
+        </div>
+
+        <div class="el-field">
+          <span class="el-label">What is this brand carrying?</span>
+          <textarea class="el-textarea" rows="4" aria-label="What is this brand carrying">Eleven retail doors, one wholesale label worth two-thirds of revenue, and a name the third generation fights over every winter.</textarea>
+          <span class="el-hint">Two sentences is plenty. We ask better questions anyway.</span>
+        </div>
+
+        <div class="el-field">
+          <span class="el-label">Existing readings on file <span class="el-badge ok">found</span></span>
+          <input class="el-search" type="search" placeholder="Domain on an earlier plate — e.g. orrinmarket.com" value="orrinmarket.com" aria-label="Domain search">
+          <span class="el-hint">We'll pull your 2024 reading sheet into gate 1 automatically.</span>
+        </div>
+
+        <div class="el-field">
+          <span class="el-label">Program</span>
+          <div class="el-dropdown-menu" style="width:100%">
+            <button class="el-dropdown trigger" type="button" style="width:100%">Naming program — $48k / 10 wks ▾</button>
+          </div>
+          <span class="el-hint">Switching later is fine; the method prices the gates, not the paperwork.</span>
+        </div>
+
+        <div class="el-field">
+          <span class="el-label">Kickoff window</span>
+          <div class="el-segmented" aria-label="Kickoff window">
+            <button type="button">This quarter</button>
+            <button class="on" type="button">March block</button>
+            <button type="button">June block</button>
+          </div>
+        </div>
+
+        <div class="el-field">
+          <span class="el-label">Names in the first bench <output style="font-family:var(--el-font-mono);font-size:var(--el-fs-md)">6</output></span>
+          <input class="el-slider" type="range" min="2" max="12" value="6" step="1" aria-label="Names in the first bench">
+          <span class="el-hint">Four is the office standard; six buys the founder a plate with their favorite on it.</span>
+        </div>
+
+        <fieldset class="el-field" style="border:0;padding:0;margin:0 0 var(--el-space-4)">
+          <span class="el-label">Program shape</span>
+          <label class="el-radio" style="display:flex;align-items:center;gap:var(--el-space-2);margin-bottom:var(--el-space-2)"><input type="radio" name="shape" checked><span class="dot"></span><span style="font-size:var(--el-fs-md)">Position plate first — decide the sentence before any drawing</span></label>
+          <label class="el-radio" style="display:flex;align-items:center;gap:var(--el-space-2);margin-bottom:var(--el-space-2)"><input type="radio" name="shape"><span class="dot"></span><span style="font-size:var(--el-fs-md)">Naming sprint — the name is the problem, we all know it</span></label>
+          <label class="el-radio" style="display:flex;align-items:center;gap:var(--el-space-2)"><input type="radio" name="shape"><span class="dot"></span><span style="font-size:var(--el-fs-md)">Drift audit — the set exists, we hold it to the plate</span></label>
+        </fieldset>
+
+        <fieldset class="el-field" style="border:0;padding:0;margin:0 0 var(--el-space-4)">
+          <span class="el-label">Include on the sheet</span>
+          <div class="ag-pair" style="gap:var(--el-space-2)">
+            <label class="ag-checkrow" style="display:flex;align-items:center;gap:var(--el-space-2)"><span class="el-check"><input type="checkbox" checked></span><span style="font-size:var(--el-fs-md)">Rejection record</span></label>
+            <label class="ag-checkrow" style="display:flex;align-items:center;gap:var(--el-space-2)"><span class="el-check"><input type="checkbox" checked></span><span style="font-size:var(--el-fs-md)">Recall transcripts</span></label>
+            <label class="ag-checkrow" style="display:flex;align-items:center;gap:var(--el-space-2)"><span class="el-check"><input type="checkbox" checked></span><span style="font-size:var(--el-fs-md)">Trademark bands</span></label>
+            <label class="ag-checkrow" style="display:flex;align-items:center;gap:var(--el-space-2)"><span class="el-check"><input type="checkbox"></span><span style="font-size:var(--el-fs-md)">Packaging load test</span></label>
+          </div>
+        </fieldset>
+
+        <div class="el-field">
+          <span class="el-label">Ledger preferences</span>
+          <div style="display:flex;flex-direction:column;gap:var(--el-space-2)">
+            <div style="display:flex;align-items:center;gap:var(--el-space-3)"><span class="el-switch on"></span><span style="font-size:var(--el-fs-md)">Seat two of our people on the ledger read-only</span></div>
+            <div style="display:flex;align-items:center;gap:var(--el-space-3)"><span class="el-switch"></span><span style="font-size:var(--el-fs-md)">Mail the weekly reading sheet (Fridays 16:00 PT)</span></div>
+          </div>
+        </div>
+
+        <div class="el-inline-alert warn" style="margin:var(--el-space-4) 0">
+          <span class="el-icon" aria-hidden="true"><svg viewBox="0 0 16 16" width="14" height="14"><path d="M8 2 1.5 13h13z" fill="none" stroke="currentColor" stroke-width="1.5"></path><path d="M8 6.5v3.2" stroke="currentColor" stroke-width="1.5"></path></svg></span>
+          <div>
+            <span class="title">Orrin Market Group is on hold at gate 2</span>
+            <span class="body">A March brief would open a second plate while the first is held. We recommend the April block so both plates read cleanly.</span>
+          </div>
+        </div>
+
+        <div class="el-inline-alert fail" style="margin-bottom:var(--el-space-4)">
+          <span class="el-icon" aria-hidden="true"><svg viewBox="0 0 16 16" width="14" height="14"><circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" stroke-width="1.5"></circle><path d="M5.5 5.5l5 5M10.5 5.5l-5 5" stroke="currentColor" stroke-width="1.5"></path></svg></span>
+          <div>
+            <span class="title">One field needs you before send</span>
+            <span class="body">“Board contact” is empty in screen 3 — office policy routes briefs to a named human, never a list.</span>
+          </div>
+        </div>
+
+        <div class="el-btn-group" style="margin-bottom:var(--el-space-3)">
+          <button class="el-btn" type="button">Save draft</button>
+          <button class="el-btn el-btn--outline" type="button" data-toast="Draft saved and visible to Ada on the bench now." data-toast-variant="ok">Notify your partner</button>
+        </div>
+        <div class="el-cluster" style="margin-bottom:var(--el-space-4)">
+          <button class="el-btn el-btn--ghost" type="button">Reset screen</button>
+          <button class="el-btn el-btn--outline" type="button">Preview as plate (PDF)</button>
+        </div>
+
+      </form>
+
+      <div class="el-actionbar">
+        <span class="lead"><span class="el-status-dot ok"></span> autosaved 09:41 · evidence week available</span>
+        <span class="actions">
+          <span class="el-tooltip" data-tip="Briefs are read by the partner on duty — usually Ada Halvorsen."><button class="el-btn el-btn--ghost" type="button">Who reads this?</button></span>
+          <button class="el-btn" type="button" data-dialog-open="confirm-send">Send the brief →</button>
+        </span>
+      </div>
+    </div>
+
+    <aside class="el-stack" aria-label="After you send">
+      <div class="el-panel">
+        <p class="el-eyebrow" style="margin:0 0 var(--el-space-3)">After you send</p>
+        <ol class="el-timeline" style="font-family:var(--el-font-body)">
+          <li class="running">
+            <span class="when">day 0</span>
+            <span class="what">A partner reads the brief and replies with two questions.</span>
+          </li>
+          <li>
+            <span class="when">day 2–4</span>
+            <span class="what">60-minute scoping call with your would-be partner.</span>
+          </li>
+          <li>
+            <span class="when">wk 1</span>
+            <span class="what">Evidence week opens — twelve interviews booked on the bench.</span>
+          </li>
+          <li class="ok">
+            <span class="when">wk 6</span>
+            <span class="what">First pressed plate in your hands, signed at the gate.</span>
+          </li>
+        </ol>
+      </div>
+
+      <div class="el-panel">
+        <p class="el-eyebrow" style="margin:0 0 var(--el-space-3)">Intake partners</p>
+        <div style="display:grid;gap:var(--el-space-3)">
+          <div style="display:flex;align-items:center;gap:var(--el-space-3)">
+            <span class="el-avatar" aria-hidden="true">AH</span>
+            <div><b>Ada Halvorsen</b><br><span style="color:var(--el-mute);font-size:var(--el-fs-sm)">partner · naming programs</span></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:var(--el-space-3)">
+            <span class="el-avatar" aria-hidden="true">LV</span>
+            <div><b>Linnea Voss</b><br><span style="color:var(--el-mute);font-size:var(--el-fs-sm)">partner · position and claims</span></div>
+          </div>
+        </div>
+        <div class="el-fact-grid" style="margin-top:var(--el-space-4)">
+          <div class="el-fact"><span class="k">brief → plate</span><span class="v">6 wks median</span></div>
+          <div class="el-fact"><span class="k">briefs answered</span><span class="v">within 1 bus. day</span></div>
+        </div>
+      </div>
+
+      <div class="el-panel">
+        <p class="el-eyebrow" style="margin:0 0 var(--el-space-3)">Portal feed · as toasts appear</p>
+        <div class="el-stack" style="margin:0;gap:var(--el-space-2)">
+          <div class="el-toast ok" style="position:static"><span><b>Reading sheet ready · SET·34</b> — Halstead Loom rev B drift sheet is in the ledger.</span><button class="close" type="button" aria-label="Dismiss">✕</button></div>
+          <div class="el-toast info" style="position:static"><span><b>Interview booked · GATE 1</b> — two wholesale accounts confirmed for Thursday.</span><button class="close" type="button" aria-label="Dismiss">✕</button></div>
+          <div class="el-toast warn" style="position:static"><span><b>Gate 2 hold signed · SET·37</b> — Orrin briefs reopen in the April block.</span><button class="close" type="button" aria-label="Dismiss">✕</button></div>
+        </div>
+      </div>
+
+      <div class="el-panel">
+        <span style="margin:0 0 10px;display:inline-block;font-size:var(--el-fs-sm);font-weight:var(--el-label-weight);letter-spacing:var(--el-label-tracking);text-transform:uppercase;color:var(--el-ink)">Revision history</span>
+        <nav class="el-pagination" aria-label="Draft revisions">
+          <button class="page on" type="button" aria-current="page">1</button>
+          <button class="page" type="button">2</button>
+          <button class="page" type="button">3</button>
+          <button class="page" type="button" aria-label="Next revision">→</button>
+        </nav>
+      </div>
+    </aside>
+
+  </section>
+
+</main>
+
+<dialog class="el-dialog" id="confirm-send">
+  <div class="el-dialog-head">Send the brief to the bench?
+    <button class="el-dialog-close" type="button" aria-label="Close" data-dialog-close>✕</button>
+  </div>
+  <div class="el-dialog-body">
+    <p style="margin:0 0 var(--el-space-3)">Ada Halvorsen reads this the day it lands. The plates start when the sentence is signed — the one that has to sit through twelve interviews without flinching.</p>
+    <div class="el-fact-grid">
+      <div class="el-fact"><span class="k">program</span><span class="v">naming · 10 wks</span></div>
+      <div class="el-fact"><span class="k">first bench</span><span class="v">6 names</span></div>
+      <div class="el-fact"><span class="k">kickoff</span><span class="v">March block</span></div>
+      <div class="el-fact"><span class="k">attachments</span><span class="v">evidence sheet</span></div>
+    </div>
+  </div>
+  <div class="el-dialog-foot">
+    <button class="el-btn el-btn--ghost" type="button" data-dialog-close>Keep drafting</button>
+    <button class="el-btn" type="button" data-dialog-close data-toast="Brief delivered — Ada replies within one business day." data-toast-variant="ok">Send to the bench</button>
+  </div>
+</dialog>
+
+<footer class="el-footer">
+  <div class="cols">
+    <div class="col" style="max-width:34ch">
+      <span class="el-eyebrow">Ashlar Partners</span>
+      <p class="el-mute-body">Briefs are confidential by default and are destroyed if we do not open a program. The office answers in one business day, in writing.</p>
+    </div>
+    <div class="col">
+      <span class="label">Office</span>
+      <a href="index.html">Method</a>
+      <a href="engagements.html">Engagements</a>
+      <a href="journal.html">Journal</a>
+    </div>
+    <div class="col">
+      <span class="label">Engage</span>
+      <a href="engage.html">Intake</a>
+      <a href="ledger.html">Ledger</a>
+      <a href="mailto:office@ashlar.partners">office@ashlar.partners</a>
+    </div>
+  </div>
+  <p class="colophon">© 2026 Ashlar Partners LLC · intake set on the plate, never the inbox</p>
+</footer>
+
+</body>
+</html>

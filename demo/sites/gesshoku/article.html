@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en" data-theme="gesshoku">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fieldnotes from the eclipsed hour · Gesshoku</title>
+<link rel="stylesheet" href="../../../base.css">
+<link rel="stylesheet" href="../../../fonts.css">
+<link rel="stylesheet" href="../../../tokens.css">
+<link rel="stylesheet" href="../../../elements-display.css">
+<link rel="stylesheet" href="../../../elements-structure.css">
+<link rel="stylesheet" href="../../../elements-lists.css">
+<link rel="stylesheet" href="../../../elements-app.css">
+<link rel="stylesheet" href="../../../elements-containers.css">
+<link rel="stylesheet" href="../../../elements-controls.css">
+<link rel="stylesheet" href="../../../elements-inputs.css">
+<link rel="stylesheet" href="../../../elements-dataviz.css">
+<link rel="stylesheet" href="../../../elements-overlay.css">
+<link rel="stylesheet" href="../../../elements-interactions.css">
+<link rel="stylesheet" href="../../../elements-misc.css">
+<link rel="stylesheet" href="../../../elements-size.css">
+<link rel="stylesheet" href="../../../elements-workflow.css">
+<link rel="stylesheet" href="../../../themes/src/quiet-minimal.css">
+<script src="../../../elements.js" defer></script>
+<script src="../../../charts.js" defer></script>
+<script src="../../../elements-workflow.js" defer></script>
+<style>
+  .reading-head { display: grid; gap: var(--el-space-3); padding-block: var(--el-space-5); }
+  .kbd-row { display: flex; gap: var(--el-space-2); align-items: center; flex-wrap: wrap; }
+  .stat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--el-space-4); align-items: stretch; }
+  @media (max-width: 940px) { .stat-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<main class="el-page el-page--reading">
+
+  <nav class="el-navbar el-navbar--headerbar">
+    <div class="lead">
+      <button class="el-winbtn min" aria-label="Minimize"></button>
+      <button class="el-winbtn max" aria-label="Maximize"></button>
+      <button class="el-winbtn close" aria-label="Close"></button>
+    </div>
+    <div class="title-block">
+      <span class="title">Gesshoku</span>
+      <span class="subtitle">fieldnotes · № 12</span>
+    </div>
+    <div class="end">
+      <div class="links">
+        <a href="index.html">Room</a>
+        <a href="catalog.html">Practice</a>
+        <a href="app.html">Sessions</a>
+        <a href="article.html" aria-current="page">Journal</a>
+        <a href="account.html">Settings</a>
+      </div>
+      <button class="el-btn el-btn--ghost el-btn--small" data-dialog-open="visit">Visit</button>
+    </div>
+  </nav>
+
+  <header class="reading-head">
+    <span class="el-eyebrow">The Gesshoku Journal · № 12</span>
+    <h1>Fieldnotes from the eclipsed hour</h1>
+    <p class="lede">What the room ledger taught us about ending on time —
+       transcribed from the keeper's talk, with citations attached.</p>
+    <span class="el-status-pill running" style="justify-self:start;width:fit-content">Transcribing · 2 of 3 sections</span>
+  </header>
+
+  <article class="el-reader">
+    <p class="lead">Ending is the hard half of a sitting. The room keeps one
+       rule against every temptation to continue: close the page while it
+       still reads well. The eclipsed hour — the dark strip between nine and
+       ten — is where that rule is practiced out loud.</p>
+    <p>Attention behaves like lamplight. Left on at full wick it burns the
+       room out; banked too early it leaves pages unread. The ledger shows
+       what actually happens when the wick is lowered on schedule: the note
+       written at 20:52 and the note written at 21:34 are the same length,
+       and only one of them was kept.</p>
+    <blockquote>The bell is not the end. The bell is the thing you agree to
+       in advance so you cannot argue with yourself later. — room ledger,
+       spring of the ninth year</blockquote>
+    <p>So the room runs on two lights. The bright hour for the work itself;
+       the dark one for nothing at all. Between them sits the pause we keep
+       in the margin, timed by the pattern on the page below.</p>
+
+    <h2>The room's keys</h2>
+    <p>Two keys are written beside the timer, both still obeyed — they are
+       what the bells are made of:</p>
+    <div class="kbd-row">
+      <span class="el-kbd">hold</span> after <span class="el-kbd">four in</span>
+      <span class="el-kbd">six out</span> <span class="el-kbd">twice</span>
+      <span class="el-kbd">return</span> once, late
+    </div>
+    <pre class="el-code-block">tonight.pattern
+  [in]     four counts, through the lamp light
+  [hold]   two, held in the margin
+  [out]    six, lamp lowers with each
+  [notes]  "the dark hour is not late work" — keeper, spring</pre>
+
+    <h2>How the hour is kept</h2>
+    <div class="el-stage-rail">
+      <div class="el-stage" data-state="done"><span class="el-stage-dot"></span><span class="el-stage-name">settle</span><span class="el-stage-count">lamp 40%</span></div>
+      <div class="el-stage" data-state="done"><span class="el-stage-dot"></span><span class="el-stage-name">breath</span><span class="el-stage-count">pattern 4·6</span></div>
+      <div class="el-stage" data-state="running"><span class="el-stage-dot"></span><span class="el-stage-name">count</span><span class="el-stage-count">2 breaths</span></div>
+      <div class="el-stage" data-state="queued"><span class="el-stage-dot"></span><span class="el-stage-name">return</span><span class="el-stage-count">—</span></div>
+      <div class="el-stage" data-state="queued"><span class="el-stage-dot"></span><span class="el-stage-name">log</span><span class="el-stage-count">—</span></div>
+    </div>
+    <div class="el-progress-truth" aria-live="polite">
+      <span class="el-pt-chunk" data-state="done">settle ✓ <span class="el-pt-count">18</span></span>
+      <span class="el-pt-chunk" data-state="done">breath ✓ <span class="el-pt-count">14</span></span>
+      <span class="el-pt-chunk is-running" data-state="running">count <span class="el-pt-count">2/18</span></span>
+      <span class="el-pt-chunk" data-state="queued">return —</span>
+    </div>
+    <div class="el-progress" data-value="44"><span class="fill" style="width:44%"></span></div>
+
+    <h2>The ledger's record of this hour</h2>
+    <ol class="el-timeline">
+      <li class="ok"><span class="when">20:52 · bright hour</span><span class="what">Note written and banked</span><span class="src">ledger · leaf 9</span></li>
+      <li><span class="when">20:58 · bell</span><span class="what">Six-out finished on count</span><span class="src">bell file</span></li>
+      <li class="warn"><span class="when">21:04 · dark hour</span><span class="what">Two visitors argued with the rule</span><span class="src">margin note</span></li>
+      <li class="live"><span class="when">Now · room 1</span><span class="what">Fieldnotes for the eclipsed hour open</span><span class="src">until 22:00</span></li>
+    </ol>
+
+    <figure class="el-media-band el-media-band--flat">
+      <div class="media">
+        <svg viewBox="0 0 720 300" role="img" aria-label="Two phases of the hour drawn as light and dark bands" preserveAspectRatio="xMidYMid slice">
+          <rect width="720" height="300" fill="#17130e"/>
+          <line x1="150" y1="200" x2="330" y2="200" stroke="#d9d4c8" stroke-width="2"/>
+          <line x1="390" y1="200" x2="570" y2="200" stroke="#9a7b4f" stroke-width="2"/>
+          <line x1="330" y1="200" x2="390" y2="200" stroke="#4a3e29" stroke-width="2"/>
+          <circle cx="360" cy="118" r="44" fill="#17130e" stroke="#9a7b4f" stroke-width="2"/>
+          <circle cx="336" cy="118" r="32" fill="#272013"/>
+        </svg>
+        <figcaption>Ledger plate · the hour in two phases · room 1</figcaption>
+      </div>
+      <div class="body">
+        <span class="label">Plate</span>
+        <h3>Bright hour, dark hour</h3>
+        <p>The ledger draws the hour as two bands. The second band is where
+           the fieldnotes are written — slowly, and only once.</p>
+      </div>
+    </figure>
+
+    <aside class="el-citation-rail">
+      <span class="el-cite"><span class="n">[1]</span> <a href="#">Room ledger, leaves 4–9, spring of the ninth year</a></span>
+      <span class="el-cite"><span class="n">[2]</span> <a href="#">Keeper's talk on bells, transcribed 2024</a></span>
+      <span class="el-cite"><span class="n">[3]</span> <a href="#">Bell archive · the six-out recordings</a></span>
+    </aside>
+    <div class="el-source-card is-cited"><span class="src">gesshoku-room · ledger · shelf 1</span><span class="ttl">Evening ledgers (41 leaves)</span><span class="snip">Primary record set for the eclipsed-hour rule.</span></div>
+    <div class="el-source-card"><span class="src">gesshoku-room · bell archive</span><span class="ttl">Six-out recordings, 2022–2024</span><span class="snip">Nineteen bells recorded at the hour's end.</span></div>
+
+    <div class="el-fact-grid">
+      <div class="el-fact"><span class="k">Bells kept</span><span class="v">19</span></div>
+      <div class="el-fact"><span class="k">Leaves read</span><span class="v">41</span></div>
+      <div class="el-fact is-hot"><span class="k">Rule of the room</span><span class="v">1</span></div>
+      <div class="el-fact"><span class="k">Dark hour</span><span class="v">60 min</span></div>
+    </div>
+  </article>
+
+  <section class="el-section el-section--dense">
+    <h2>Kept in the journal</h2>
+    <div class="stat-grid">
+      <div class="el-stat"><span class="el-stat-label">Journal numbers</span><span class="el-stat-value">12</span></div>
+      <div class="el-stat"><span class="el-stat-label">Fieldnotes banked</span><span class="el-stat-value">8,914</span></div>
+      <div class="el-stat"><span class="el-stat-label">Reading time</span><span class="el-stat-value">7 min</span></div>
+    </div>
+  </section>
+
+  <footer class="el-footer">
+    <div class="cols">
+      <div class="col">
+        <div class="label">Gesshoku</div>
+        <p class="small">Room 1 · north of the river · lamp down at 21:00.</p>
+      </div>
+      <div class="col"><div class="label">Practice</div><p class="small">Catalog · sessions · fieldnotes</p></div>
+      <div class="col"><div class="label">Write</div><p class="small">room@gesshoku.example</p></div>
+    </div>
+    <p class="colophon">Gesshoku · journal № 12 · set in Inter and Sentient on dark umber paper.</p>
+  </footer>
+
+  <dialog id="visit" class="el-dialog">
+    <div class="el-dialog-head"><h2>Join the evening room</h2>
+      <button class="el-dialog-close" data-dialog-close="visit" aria-label="Close">×</button></div>
+    <div class="el-dialog-body"><p>The room holds seven visitors a night. Write
+       and the keeper confirms by the next bell.</p></div>
+    <div class="el-dialog-foot"><button class="el-btn" data-dialog-close="visit">Understood</button></div>
+  </dialog>
+
+</main>
+</body>
+</html>

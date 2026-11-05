@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en" data-theme="agency-mono-plate">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Journal · “Naming is a measurement problem” — Ashlar Partners</title>
+<link rel="stylesheet" href="../../../base.css">
+<link rel="stylesheet" href="../../../fonts.css">
+<link rel="stylesheet" href="../../../tokens.css">
+<link rel="stylesheet" href="../../../elements-display.css">
+<link rel="stylesheet" href="../../../elements-structure.css">
+<link rel="stylesheet" href="../../../elements-lists.css">
+<link rel="stylesheet" href="../../../elements-app.css">
+<link rel="stylesheet" href="../../../elements-containers.css">
+<link rel="stylesheet" href="../../../elements-controls.css">
+<link rel="stylesheet" href="../../../elements-inputs.css">
+<link rel="stylesheet" href="../../../elements-dataviz.css">
+<link rel="stylesheet" href="../../../elements-overlay.css">
+<link rel="stylesheet" href="../../../elements-interactions.css">
+<link rel="stylesheet" href="../../../elements-misc.css">
+<link rel="stylesheet" href="../../../elements-size.css">
+<link rel="stylesheet" href="../../../elements-workflow.css">
+<link rel="stylesheet" href="../../../elements-inspector.css">
+<link rel="stylesheet" href="../../../elements-reader.css">
+<link rel="stylesheet" href="../../../elements-assistant.css">
+<link rel="stylesheet" href="../../../themes/src/agency-classic.css">
+<script src="../../../elements.js" defer></script>
+<script src="../../../charts.js" defer></script>
+<style>
+  /* one column, one edge: the sheet caps .el-reader to the measure and strands it
+     left; instead the article owns the band and lays a 1fr / measure / 1fr grid so
+     every text child — meta line, headline, body, meters — shares the same column.
+     Body plates stay on the column; the evidence shelf breaks out full-band because
+     a three-card shelf cannot breathe inside 66ch. */
+  main.el-page > article.el-reader {
+    display: grid;
+    grid-template-columns: 1fr minmax(0, var(--el-measure)) 1fr;
+    max-width: 100%;
+  }
+  main.el-page > article.el-reader > * {
+    grid-column: 2;
+  }
+  main.el-page > article.el-reader > .shelf {
+    grid-column: 1 / -1;
+  }
+</style>
+</head>
+<body>
+
+<nav class="el-navbar el-navbar--top">
+  <a class="brand" href="index.html">Ashlar<span style="color:var(--el-mute)">&nbsp;Partners</span></a>
+  <div class="links">
+    <a href="index.html">Office</a>
+    <a href="engagements.html">Engagements</a>
+    <a href="journal.html" aria-current="page">Journal</a>
+    <a href="engage.html">Engage</a>
+    <a href="ledger.html">Ledger</a>
+  </div>
+  <div class="actions">
+    <span style="font-family:var(--el-font-mono);font-size:var(--el-fs-sm);color:var(--el-mute)">PLATE INDEX · NOTES</span>
+  </div>
+</nav>
+
+<main class="el-page">
+
+  <article class="el-reader" style="margin:0 auto;padding-block:var(--el-space-6)">
+    <div class="el-reader-meta">
+      <span>Linnea Voss · partner</span>
+      <span>set 03 Nov 2026</span>
+      <span>14 min read</span>
+      <div class="el-reader-version-chips">
+        <button class="el-chip" type="button">v3.1 · 2024</button>
+        <button class="el-chip" type="button" aria-current="true">v4.0 · 2026 · reading</button>
+      </div>
+    </div>
+
+    <h1>Naming is a measurement problem.</h1>
+    <p class="lead">Most firms name things by taste. We name them by instrument: seventy-plus candidates on plates, screened through three thresholds anyone in the room can read, and the winner is the name that survives the most readings — not the one that won the meeting.</p>
+
+    <p>The industry treats naming as a creative event. It is not. It is a measurement problem wearing a creative costume, and the costume is where budgets die. A name is a claim about relevance, distinctiveness, and load — and all three can be held against tolerance, the way any machinist holds a part.</p>
+
+    <p>What follows is the office method, verbatim. It has been used on nine systems programs since 2023 and has never missed a trademark office without a plate to show for it.</p>
+
+    <p>Screening starts mechanical. Every candidate runs the same three reads — <span class="el-kbd">TM</span>, tone, and tongue — before anyone discusses whether they “like” it. Likes are recorded; they are not arguments.</p>
+
+    <p>The plate tool that produces the reading sheet is forty lines of Python and never leaves the office. Its output is deliberately plain, because the point of a reading sheet is that it cannot be argued with:</p>
+
+    <pre class="el-code-block"><code><span class="el-comment"># plate.py — press a name to the reading sheet</span>
+<span class="el-keyword">def</span> <span class="el-fn">screen</span>(candidates, corpus):
+    <span class="el-keyword">for</span> name <span class="el-keyword">in</span> candidates:
+        tm   = <span class="el-fn">tm_threshold</span>(name, corpus)
+        tone = <span class="el-fn">tone_threshold</span>(name, position)
+        load = <span class="el-fn">load_threshold</span>(name)
+        <span class="el-keyword">if</span> tm <span class="el-keyword">and</span> tone <span class="el-keyword">and</span> load:
+            <span class="el-keyword">yield</span> name, <span class="el-string">"pressed"</span>, {
+                <span class="el-string">"tm"</span>:   round(tm, <span class="el-number">2</span>),
+                <span class="el-string">"tone"</span>: round(tone, <span class="el-number">2</span>),
+                <span class="el-string">"load"</span>: round(load, <span class="el-number">2</span>),
+            }
+        <span class="el-keyword">else</span>:
+            <span class="el-keyword">yield</span> name, <span class="el-string">"rejected"</span>, <span class="el-fn">why</span>(tm, tone, load)</code></pre>
+
+    <p>Every rejected name keeps its <span class="el-kbd">why</span> string. The rejection record is the method's second product: boards learn that a verdict comes with evidence, which shortens every naming argument that follows. Press <span class="el-kbd">⌘ K</span> in the Ledger to reproduce any screen.</p>
+
+    <div class="el-media-band" style="margin:var(--el-space-5) 0">
+      <div class="media">
+        <svg viewBox="0 0 480 640" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Two name candidates pressed to plates on the bench, with a ruler and registration cross">
+          <rect width="480" height="640" fill="#e1e1dc"/>
+          <g fill="#d3d3cd">
+            <rect x="40" y="90" width="180" height="150"/>
+            <rect x="260" y="90" width="180" height="150"/>
+          </g>
+          <g fill="none" stroke="#bfbfb8"><path d="M0 76h480M0 270h480M0 560h480"/><path d="M130 76v494M350 76v494"/></g>
+          <g font-family="General Sans, Inter, sans-serif" font-weight="620" font-size="44" fill="#171715" text-anchor="middle">
+            <text x="130" y="180">Vernal</text>
+            <text x="350" y="180" opacity=".45">Gridwise</text>
+          </g>
+          <g font-family="IBM Plex Mono, monospace" font-size="14" fill="#4c4c46" text-anchor="middle">
+            <text x="130" y="212">pressed · rev B</text>
+            <text x="350" y="212">rejected · tone</text>
+          </g>
+          <g stroke="#171715" stroke-width="2">
+            <path d="M40 560h400M40 552v16M440 552v16"/>
+            <path d="M40 552v16M130 556v12M220 556v12M310 556v12M400 552v16"/>
+          </g>
+          <text x="40" y="600" font-family="IBM Plex Mono, monospace" font-size="14" letter-spacing="3" fill="#171715">PLATE BENCH · REV B</text>
+          <g stroke="#171715" stroke-width="2">
+            <path d="M340 610h70M375 595v30"/>
+          </g>
+        </svg>
+      </div>
+      <div class="body">
+        <span class="label">The bench · four plates, two survive</span>
+        <p>Plate benches are printed weekly during a naming program. A candidate only reaches a plate after clearing the mechanical screens — which is why the bench rarely carries more than four names. The client never sees a name in a vacuum; they see it at width, on the shelf, and beside the competitor.</p>
+      </div>
+    </div>
+
+    <h2>Gate 3 — the tongue threshold</h2>
+    <p>Recall testing is run on unaided plates: the candidate is read aloud by nine strangers, once, no context, and the transcript is scored. Anything below a strict passing band on the first read does not proceed — no matter how a room feels about it.</p>
+
+    <blockquote>The verdict that matters is written by a stranger with no stake in the room, once, and scored. Everything else in naming is commentary.</blockquote>
+
+    <p>The timeline below is a real program, drawn as it ran. Note week 9 — the board attempted to reopen a closed gate. The record held, which is what records are for.</p>
+
+    <ul class="el-timeline">
+      <li class="ok">
+        <span class="when">wk 04</span>
+        <span class="what">Mechanical screens complete — 80 candidates → 4 plates, TM bands clear</span>
+        <span class="src">plate.py output 8812</span>
+      </li>
+      <li>
+        <span class="when">wk 07</span>
+        <span class="what">Bench pressed, rev B — “Vernal” enters client vocabulary</span>
+        <span class="src">bench · fig 02</span>
+      </li>
+      <li class="running">
+        <span class="when">wk 09</span>
+        <span class="what">Board reopens gate 3; record produced, motion withdrawn — gate holds</span>
+        <span class="src">min 09:41 · signed</span>
+      </li>
+      <li class="warn">
+        <span class="when">wk 12</span>
+        <span class="what">Trademark opposition filed by a regional grower; band re-run, cleared</span>
+        <span class="src">TM office 2026-441</span>
+      </li>
+    </ul>
+
+    <h2>What the record is worth</h2>
+    <p>Two numbers survive the year and get printed on the first page of every program close:</p>
+
+    <div style="display:grid;gap:var(--el-space-3);margin:0 0 var(--el-space-4)">
+      <div>
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin:0 0 4px">
+          <span style="font-size:0.9375rem;color:var(--el-ink-soft)">first-read recall, v4 method</span>
+          <b class="el-mono" style="font-variant-numeric:tabular-nums">84%</b>
+        </div>
+        <div class="el-progress" data-value="84" data-animate-to="84" style="height:8px"><span class="fill" data-fill style="width:0%"></span></div>
+      </div>
+      <div>
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin:0 0 4px">
+          <span style="font-size:0.9375rem;color:var(--el-ink-soft)">naming cycles spent vs taste-led baseline</span>
+          <b class="el-mono" style="font-variant-numeric:tabular-nums">−41%</b>
+        </div>
+        <div class="el-progress" data-value="41" data-animate-to="41" style="height:8px"><span class="fill" data-fill style="width:0%"></span></div>
+      </div>
+      <div>
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin:0 0 4px">
+          <span style="font-size:0.9375rem;color:var(--el-ink-soft)">plate drift across year one (tolerance 3%)</span>
+          <b class="el-mono" style="font-variant-numeric:tabular-nums">2.0%</b>
+        </div>
+        <div class="el-meter" data-value="67" style="height:8px"><span class="fill" data-fill style="width:67%"></span></div>
+        <span style="font-size:var(--el-fs-sm);color:var(--el-mute)">meter · 67% of tolerance consumed across 38 sets</span>
+      </div>
+    </div>
+
+    <div class="el-panel" style="padding:var(--el-space-4);margin:var(--el-space-5) 0">
+      <span style="margin:0 0 8px;font-size:var(--el-fs-sm);font-weight:var(--el-label-weight);letter-spacing:var(--el-label-tracking);text-transform:uppercase;color:var(--el-ink)">Reproduce this screen in the Ledger</span>
+      <div style="display:flex;gap:var(--el-space-2);flex-wrap:wrap">
+        <span class="el-pill">plate.py</span>
+        <span class="el-pill">tm_threshold</span>
+        <span class="el-pill">tone_threshold</span>
+        <span class="el-pill">load_threshold</span>
+        <span class="el-pill">bench rev</span>
+        <span class="el-pill">drift × 1yr</span>
+      </div>
+    </div>
+
+    <h2>Evidence shelf</h2>
+    <p>Drawn from the following filings and sheets; every claim above traces to one of these. The plate numbers are the archive's own.</p>
+
+    <div class="el-citation-rail">
+      <span class="el-cite"><span class="n">1</span><a href="#" onclick="return false">TM office filing 2026-441 · opposition withdrawn, band re-run</a></span>
+      <span class="el-cite"><span class="n">2</span><a href="#" onclick="return false">plate.py output 8812 · mechanical screen transcript</a></span>
+      <span class="el-cite"><span class="n">3</span><a href="#" onclick="return false">bench rev B reading sheet · four candidates at width</a></span>
+    </div>
+
+    <div class="shelf ag-grid-3" style="margin:var(--el-space-4) 0">
+      <aside class="el-source-card is-cited">
+        <span class="src">plate.py · output 8812</span>
+        <span class="ttl">Mechanical screen transcript — 80 to 4</span>
+        <span class="snip">Every rejected name with its why string; two candidates cleared by margin 0.9.</span>
+      </aside>
+      <aside class="el-source-card">
+        <span class="src">min 09:41 · signed</span>
+        <span class="ttl">Board minutes, the gate that held</span>
+        <span class="snip">Motion to reopen the naming gate withdrawn after the record was read aloud.</span>
+      </aside>
+      <aside class="el-source-card">
+        <span class="src">bench rev B</span>
+        <span class="ttl">Reading sheets, four plates at width</span>
+        <span class="snip">Shelf test against two competitors; the winner measured on packaging load.</span>
+      </aside>
+    </div>
+  </article>
+
+  <section class="el-section el-section--dense" style="display:flex;align-items:center;gap:var(--el-space-4);justify-content:space-between">
+    <span style="color:var(--el-ink-soft)">Journal · plate notes, kept weekly since 2019</span>
+    <nav class="el-pagination" aria-label="Journal pages">
+      <button class="page on" type="button" aria-current="page">1</button>
+      <button class="page" type="button">2</button>
+      <button class="page" type="button">3</button>
+      <button class="page" type="button" aria-label="Next page">→</button>
+    </nav>
+  </section>
+
+</main>
+
+<footer class="el-footer">
+  <div class="cols">
+    <div class="col" style="max-width:34ch">
+      <span class="el-eyebrow">Ashlar Partners</span>
+      <p class="el-mute-body">The journal reproduces the method so clients can hold us to it. Corrections are welcome and are set in the next revision, signed.</p>
+    </div>
+    <div class="col">
+      <span class="label">Office</span>
+      <a href="index.html">Method</a>
+      <a href="engagements.html">Engagements</a>
+      <a href="journal.html">Journal</a>
+    </div>
+    <div class="col">
+      <span class="label">Engage</span>
+      <a href="engage.html">Intake</a>
+      <a href="ledger.html">Ledger</a>
+      <a href="mailto:office@ashlar.partners">office@ashlar.partners</a>
+    </div>
+  </div>
+  <p class="colophon">© 2026 Ashlar Partners LLC · this note is plate-cited · corrections become rev +N</p>
+</footer>
+
+</body>
+</html>

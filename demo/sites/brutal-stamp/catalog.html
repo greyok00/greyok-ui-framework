@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en" data-theme="brutal-stamp">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Flat File — Megaphone Press</title>
+<link rel="stylesheet" href="../../../base.css">
+<link rel="stylesheet" href="../../../fonts.css">
+<link rel="stylesheet" href="../../../tokens.css">
+<link rel="stylesheet" href="../../../elements-display.css">
+<link rel="stylesheet" href="../../../elements-structure.css">
+<link rel="stylesheet" href="../../../elements-lists.css">
+<link rel="stylesheet" href="../../../elements-app.css">
+<link rel="stylesheet" href="../../../elements-containers.css">
+<link rel="stylesheet" href="../../../elements-controls.css">
+<link rel="stylesheet" href="../../../elements-inputs.css">
+<link rel="stylesheet" href="../../../elements-dataviz.css">
+<link rel="stylesheet" href="../../../elements-overlay.css">
+<link rel="stylesheet" href="../../../elements-interactions.css">
+<link rel="stylesheet" href="../../../elements-misc.css">
+<link rel="stylesheet" href="../../../elements-size.css">
+<link rel="stylesheet" href="../../../elements-workflow.css">
+<link rel="stylesheet" href="../../../elements-inspector.css">
+<link rel="stylesheet" href="../../../elements-reader.css">
+<link rel="stylesheet" href="../../../elements-assistant.css">
+<link rel="stylesheet" href="../../../themes/src/neo-brutalist.css">
+<script src="../../../elements.js" defer></script>
+<script src="../../../charts.js" defer></script>
+</head>
+<body class="el-reset">
+
+<nav class="el-navbar el-navbar--top" aria-label="Primary">
+  <a class="brand" href="index.html">MEGAPHONE PRESS</a>
+  <div class="links">
+    <a href="index.html">Shows</a>
+    <a href="catalog.html" aria-current="page">Flat file</a>
+    <a href="article.html">Press notes</a>
+    <a href="account.html">Back office</a>
+    <a href="app.html">Box office</a>
+  </div>
+  <div class="actions">
+    <button class="el-btn el-btn--squared" data-drawer-open="reserve-drawer">Reserve a pull</button>
+  </div>
+</nav>
+
+<main class="el-page">
+  <div class="el-banner el-banner--ok" style="margin-bottom:18px">
+    <span class="glyph" aria-hidden="true">
+      <svg viewBox="0 0 16 16" width="16" height="16"><path d="M2 9l4 4 8-9" fill="none" stroke="currentColor" stroke-width="2.5"/></svg>
+    </span>
+    <span class="copy"><b>Flat file restock landed.</b> <span class="detail">Editions 084–091 are back on
+      the wall — subscribers first, walk-in window opens 10am.</span></span>
+    <button class="close" aria-label="Dismiss restock notice"
+      onclick="this.closest('.el-banner').classList.add('is-dismissed')">✕</button>
+  </div>
+
+  <!-- HERO — centered lead into the flat file -->
+  <header class="el-hero el-hero--centered el-section--flush" style="min-height:0;padding:26px 24px 6px">
+    <p class="el-eyebrow">THE FLAT FILE · 91 EDITIONS SINCE 2019</p>
+    <h1 style="font-size:clamp(2.2rem,5.5vw,3.6rem)">EVERY SCREEN IN THE SHOP, ON THE WALL.</h1>
+  </header>
+
+  <!-- toolbar -->
+  <section class="el-section el-section--dense">
+    <div class="el-filterbar" style="display:grid;gap:14px;align-items:center">
+      <div class="el-search-field">
+        <input class="el-search" type="search" placeholder="Search the flat file — band, edition, year…" aria-label="Search the flat file">
+      </div>
+      <div class="el-select">
+        <select aria-label="Sort the flat file">
+          <option>Sort · newest pulls first</option>
+          <option>Sort · edition number</option>
+          <option>Sort · price, low to high</option>
+          <option>Sort · fewest copies left</option>
+        </select>
+      </div>
+    </div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:16px">
+      <span class="el-label">FILTER</span>
+      <button class="el-chip on">SHOW ALL</button>
+      <button class="el-chip">SCREENPRINT</button>
+      <button class="el-chip">RISO</button>
+      <button class="el-chip">LINO</button>
+      <button class="el-chip">SHOW ONLY</button>
+      <button class="el-chip ok">UNDER $25</button>
+      <button class="el-chip fail">LAST 10</button>
+    </div>
+  </section>
+
+  <!-- the grid -->
+  <section class="el-section el-section--dense">
+    <h2>Editions 084–091</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;margin-top:14px">
+      <a class="el-card el-card--flat" href="#edition-084" style="display:block;text-decoration:none;color:inherit;padding:14px">
+        <span class="lbl">084</span>
+        <svg style="display:block;width:100%;height:130px;border:3px solid #000;margin-top:10px" viewBox="0 0 300 180"><rect width="300" height="180" fill="#000"/><rect x="20" y="20" width="80" height="140" fill="#ff4d00"/><rect x="116" y="20" width="164" height="30" fill="#fff"/><rect x="116" y="60" width="120" height="30" fill="#fff"/><rect x="116" y="100" width="164" height="30" fill="#fff"/></svg>
+        <h3>Gravel Choir</h3>
+        <p class="el-mute-body" style="margin:6px 0 8px">3 screens · 2026 · $32</p>
+        <div style="display:flex;gap:8px;align-items:center"><span class="el-chip">screenprint</span><span class="el-badge">44 LEFT</span><span class="el-avatar">MK</span></div>
+      </a>
+      <a class="el-card el-card--flat" href="#edition-085" style="display:block;text-decoration:none;color:inherit;padding:14px">
+        <span class="lbl">085</span>
+        <svg style="display:block;width:100%;height:130px;border:3px solid #000;margin-top:10px" viewBox="0 0 300 180"><rect width="300" height="180" fill="#ff4d00"/><circle cx="150" cy="90" r="56" fill="#000"/><rect x="40" y="140" width="220" height="16" fill="#000"/></svg>
+        <h3>Sightless Coast</h3>
+        <p class="el-mute-body" style="margin:6px 0 8px">2 screens · 2026 · $28</p>
+        <div style="display:flex;gap:8px;align-items:center"><span class="el-chip">riso</span><span class="el-badge warn">12 LEFT</span><span class="el-avatar">JD</span></div>
+      </a>
+      <a class="el-card el-card--flat" href="#edition-086" style="display:block;text-decoration:none;color:inherit;padding:14px">
+        <span class="lbl">086</span>
+        <svg style="display:block;width:100%;height:130px;border:3px solid #000;margin-top:10px" viewBox="0 0 300 180"><rect width="300" height="180" fill="#fff"/><rect x="18" y="18" width="264" height="144" fill="none" stroke="#000" stroke-width="8"/><polygon points="60,150 150,30 240,150" fill="#000"/><circle cx="150" cy="94" r="16" fill="#ff4d00"/></svg>
+        <h3>Wren and the Sirens</h3>
+        <p class="el-mute-body" style="margin:6px 0 8px">2 screens · 2025 · $30</p>
+        <div style="display:flex;gap:8px;align-items:center"><span class="el-chip">lino</span><span class="el-badge ok">IN FLAT FILE</span><span class="el-avatar">RK</span></div>
+      </a>
+      <a class="el-card el-card--flat" href="#edition-087" style="display:block;text-decoration:none;color:inherit;padding:14px">
+        <span class="lbl">087</span>
+        <svg style="display:block;width:100%;height:130px;border:3px solid #000;margin-top:10px" viewBox="0 0 300 180"><rect width="300" height="180" fill="#000"/><rect x="30" y="30" width="240" height="16" fill="#ff4d00"/><rect x="30" y="64" width="180" height="16" fill="#ff4d00"/><rect x="30" y="98" width="240" height="16" fill="#ff4d00"/><rect x="30" y="132" width="120" height="16" fill="#ff4d00"/></svg>
+        <h3>Tape Hiss Era</h3>
+        <p class="el-mute-body" style="margin:6px 0 8px">1 screen · 2025 · $18</p>
+        <div style="display:flex;gap:8px;align-items:center"><span class="el-chip">riso</span><span class="el-badge">78 LEFT</span><span class="el-avatar">MK</span></div>
+      </a>
+      <a class="el-card el-card--flat" href="#edition-088" style="display:block;text-decoration:none;color:inherit;padding:14px">
+        <span class="lbl">088</span>
+        <svg style="display:block;width:100%;height:130px;border:3px solid #000;margin-top:10px" viewBox="0 0 300 180"><rect width="300" height="180" fill="#f4f4f2"/><circle cx="60" cy="60" r="26" fill="#c8102e"/><rect x="110" y="34" width="160" height="22" fill="#000"/><rect x="110" y="70" width="120" height="22" fill="#000"/><rect x="40" y="120" width="220" height="40" fill="#000"/><rect x="40" y="120" width="90" height="40" fill="#ff4d00"/></svg>
+        <h3>Cold Open City</h3>
+        <p class="el-mute-body" style="margin:6px 0 8px">2 screens · 2026 · $26</p>
+        <div style="display:flex;gap:8px;align-items:center"><span class="el-chip">screenprint</span><span class="el-chip live">DRYING</span><span class="el-avatar">RK</span></div>
+      </a>
+      <div class="el-card el-card--flat" style="padding:14px">
+        <div class="el-empty" style="padding:30px 10px">
+          <div class="el-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="22" height="22"><path d="M5 5h14v14H5z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M5 11h14M11 5v14" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+          </div>
+          <div class="el-title">EDITION 072 SOLD AWAY</div>
+          <div class="el-msg">The Bellweather lino cut is gone — all 250 gone through the desk.</div>
+          <div class="el-hint">Second-run votes carry over to the winter re-poll.</div>
+          <div class="el-action"><button class="el-btn el-btn--outline" data-drawer-open="reserve-drawer">Reserve a re-pull vote</button></div>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;margin-top:22px">
+      <div class="el-pagination" aria-label="Flat file pages">
+        <span class="page" data-action="prev">‹</span>
+        <span class="page on">1</span><span class="page">2</span><span class="page">3</span><span class="page">4</span>
+        <span class="page" data-action="next">›</span>
+        <span class="info">1 / 4</span>
+      </div>
+      <span class="el-mono" style="font-weight:700">91 EDITIONS · 12 IN THE DRYER</span>
+    </div>
+  </section>
+
+  <!-- featured edition detail -->
+  <section class="el-section" id="edition-084">
+    <h2>Edition 084 — detail</h2>
+    <div class="el-media-band" style="margin-top:14px">
+      <div class="media">
+        <svg style="position:absolute;inset:0;width:100%;height:100%" viewBox="0 0 600 420" preserveAspectRatio="none" role="img" aria-label="Gravel Choir poster plate, close">
+          <rect width="600" height="420" fill="#000"/>
+          <rect x="40" y="40" width="180" height="340" fill="#ff4d00"/>
+          <rect x="260" y="40" width="300" height="34" fill="#fff"/>
+          <rect x="260" y="90" width="240" height="34" fill="#fff"/>
+          <rect x="260" y="140" width="300" height="34" fill="#fff"/>
+          <rect x="260" y="260" width="180" height="120" fill="#f4f4f2"/>
+          <text x="278" y="330" font-family="Archivo Black, sans-serif" font-size="60" fill="#000">084</text>
+        </svg>
+        <figcaption>Gravel Choir · 3 screens · pulled Oct 12, 2026 · registration 0.02mm</figcaption>
+      </div>
+      <div class="body">
+        <span class="label">DETAIL PANEL</span>
+        <h3>Gravel Choir — the October three-screen</h3>
+        <p>The orange pass went down at 160 lpi, the black on top. Registration held inside
+           the T-2 jig spec on all 250 pulls, so the desk stamped the run sheet at 07:14.</p>
+        <div class="el-fact-grid">
+          <div class="el-fact"><span class="k">Screens</span><span class="v">3</span></div>
+          <div class="el-fact"><span class="k">Pulled</span><span class="v">250</span></div>
+          <div class="el-fact"><span class="k">Left</span><span class="v">44</span></div>
+          <div class="el-fact is-hot"><span class="k">Price</span><span class="v">$32</span></div>
+        </div>
+        <div class="actions">
+          <span class="el-tooltip" data-tip="Add edition 084 to a reserve hold">
+            <button class="el-btn" data-drawer-open="reserve-drawer">Reserve this pull</button>
+          </span>
+          <span class="el-tooltip" data-tip="Tell the desk to check the flat file">
+            <button class="el-btn el-btn--squared" data-toast="Desk notified — checking the rack for edition 084" data-toast-variant="info">Ask the desk</button>
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="el-footer">
+  <div class="cols">
+    <div class="col">
+      <span class="label">The shop</span>
+      <p class="el-body">1419 Foss Ave, South Spokane. The flat file hangs open Tue–Sat;
+         come count the racks yourself.</p>
+    </div>
+    <div class="col">
+      <span class="label">Pages</span>
+      <ul>
+        <li><a href="index.html">Shows</a></li>
+        <li><a href="article.html">Press notes</a></li>
+        <li><a href="account.html">Back office</a></li>
+        <li><a href="app.html">Box office</a></li>
+      </ul>
+    </div>
+    <div class="col">
+      <span class="label">Desk</span>
+      <ul>
+        <li><a href="account.html">Reserve lines</a></li>
+        <li><a href="account.html">Trade refs</a></li>
+        <li><a href="index.html">Ink nights</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="small"><span>© 2026 MEGAPHONE PRESS</span><span>EDITIONS LOGGED NIGHTLY</span></div>
+</footer>
+
+<!-- reserve drawer -->
+<div class="el-scrim" id="page-scrim" data-dialog-scrim aria-hidden="true"></div>
+<section class="el-drawer right" id="reserve-drawer" role="dialog" aria-label="Reserve a pull" data-scrim="page-scrim">
+  <div class="el-drawer-head">Reserve a pull <button class="close" data-drawer-close aria-label="Close reserve drawer">✕</button></div>
+  <div class="el-drawer-body">
+    <div class="el-field">
+      <label class="el-label" for="res-name">YOUR NAME</label>
+      <input class="el-input" id="res-name" placeholder="Who is the hold under?">
+      <span class="el-hint">The desk writes holds in pencil on the run sheet.</span>
+    </div>
+    <div class="el-field">
+      <label class="el-label" for="res-edition">EDITION</label>
+      <select class="el-dropdown" id="res-edition">
+        <option>084 · Gravel Choir — 44 left</option>
+        <option>087 · Tape Hiss Era — 78 left</option>
+        <option>090 · Static Bloom — flat file</option>
+      </select>
+    </div>
+    <div class="el-field">
+      <label class="el-label" for="res-copies">COPIES ON HOLD</label>
+      <input type="range" class="el-slider" id="res-copies" min="1" max="12" value="2">
+      <span class="el-hint">Holds cap at 12 so the case buyers don't eat the wall.</span>
+    </div>
+    <label class="el-radio"><input type="radio" name="res-pickup" checked><span class="dot"></span>Desk pickup</label>
+    <div style="margin-top:8px"><label class="el-check-wrapper" style="display:flex;gap:8px;align-items:center">
+      <span class="el-check"><input type="checkbox" checked></span>
+      <span style="font-size:var(--el-fs-sm)">Text me when the hold is stamped</span>
+    </label></div>
+  </div>
+  <div class="el-drawer-foot">
+    <button class="el-btn el-btn--ghost" data-drawer-close>Never mind</button>
+    <button class="el-btn" data-toast="Hold penciled in — the desk will text you" data-toast-variant="ok" data-drawer-close>Pencil it in</button>
+  </div>
+</section>
+
+</body>
+</html>

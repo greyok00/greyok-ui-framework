@@ -1,0 +1,174 @@
+<!doctype html><html lang="en" data-theme="maison-serif"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Care of the house silk — Maison Auberon · maison-serif</title>
+<link rel="stylesheet" href="../../../base.css"><link rel="stylesheet" href="../../../fonts.css">
+<link rel="stylesheet" href="../../../tokens.css">
+<link rel="stylesheet" href="../../../elements-display.css">
+<link rel="stylesheet" href="../../../elements-structure.css">
+<link rel="stylesheet" href="../../../elements-lists.css">
+<link rel="stylesheet" href="../../../elements-app.css">
+<link rel="stylesheet" href="../../../elements-containers.css">
+<link rel="stylesheet" href="../../../elements-controls.css">
+<link rel="stylesheet" href="../../../elements-inputs.css">
+<link rel="stylesheet" href="../../../elements-dataviz.css">
+<link rel="stylesheet" href="../../../elements-overlay.css">
+<link rel="stylesheet" href="../../../elements-interactions.css">
+<link rel="stylesheet" href="../../../elements-misc.css">
+<link rel="stylesheet" href="../../../elements-size.css">
+<link rel="stylesheet" href="../../../elements-workflow.css">
+<link rel="stylesheet" href="../../../elements-inspector.css">
+<link rel="stylesheet" href="../../../elements-reader.css">
+<link rel="stylesheet" href="../../../elements-assistant.css">
+<link rel="stylesheet" href="../../../themes/src/fashion-serif.css">
+<script src="../../../elements.js" defer></script><script src="../../../charts.js" defer></script>
+</head><body>
+<div class="el-page">
+
+  <nav class="el-navbar el-navbar--top" aria-label="Primary">
+    <a class="brand" href="index.html">Maison Auberon <small>Paris · 1911</small></a>
+    <div class="links">
+      <a href="index.html">Collection</a>
+      <a href="catalog.html">The Book</a>
+      <a href="article.html" aria-current="page">Journal</a>
+      <a href="account.html">Appointments</a>
+      <a href="app.html">Desk</a>
+    </div>
+    <div class="actions">
+      <button class="el-btn el-btn--ghost" data-toast="The journal page is copied to your letters.">Copy the citation</button>
+      <button class="el-btn" data-dialog-open="salon-dialog">Book a viewing</button>
+    </div>
+  </nav>
+
+  <main>
+    <section class="el-section">
+      <div class="el-reader" style="max-width:72ch;margin-inline:auto;">
+        <p class="el-eyebrow">Journal · care, cloth, provenance</p>
+        <h1 style="font-size:var(--el-fs-2xl);line-height:1.08;">Care of the house silk is a winter occupation</h1>
+        <p class="el-reader-meta">By Constance Auberon-Lenoir · the pattern room · 14 October 2026 · an eight-minute read</p>
+
+        <p>The silk that leaves rue de Sévigné is finished, but it is not inert. Twill that has
+           been hand-rolled, dyed against a 1911 recipe and rested on the bolt for a month still
+           wants air, dark, and time. The house asks clients to care for it the way the dye room
+           does: slowly, in the same order, with the same patience.</p>
+
+        <p class="el-body">Three rules hold for every piece in the current book, and they are
+           written on the card sewn into each hem:</p>
+
+        <ol>
+          <li><b>Rest after wear.</b> A scarf worn on Tuesday rests until Saturday, hung, never
+              folded. The twill recovers its hand within two days.</li>
+          <li><b>Dark and dry, never airtight.</b> The pattern room keeps bolts in unlined maple
+              cabinets; silk sealed in plastic loses its loft within a season.</li>
+          <li><b>No scent, ever.</b> The 1911 dye bath is still soluble — perfume reopens it, and
+              the colour walks.</li>
+        </ol>
+
+        <figure class="el-media-band el-media-band--flat" style="margin-inline:0;">
+          <div class="media"><svg viewBox="0 0 800 440" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Scarves resting on the maple rack" style="width:100%;height:100%;display:block">
+            <rect width="800" height="440" fill="#ddd3bd"/><rect y="300" width="800" height="140" fill="#a89a7a" opacity="0.4"/><rect x="80" y="90" width="90" height="290" fill="#d9c9a7"/><rect x="190" y="90" width="90" height="290" fill="#c2b795"/><rect x="300" y="90" width="90" height="290" fill="#e3dccb"/><rect x="410" y="90" width="90" height="290" fill="#9aa0a3"/></svg>
+            <figcaption>The maple rack, second floor — pieces rest here between hours</figcaption></div>
+        </figure>
+
+        <h2>Reading the hem card</h2>
+        <p>Every plate carries a woven label and a hem card. The card gives the recipe number,
+           the dye-bath season, and its care line. The numbers are typed against the archive
+           ledger, so a card from 1931 and a card from this autumn read the same way:</p>
+
+        <p class="el-mono" style="text-align:center;">REC 07-1931 · TWILL CHAMPAGNE · <kbd class="el-kbd">R</kbd> + <kbd class="el-kbd">S</kbd> = rest two days, no fold</p>
+
+        <p>For the desk&rsquo;s ledger software, the same line is encoded in the binding table the
+           archivist keeps; the format has not changed since the first computerisation in 1994:</p>
+
+        <div class="el-code-block" role="figure" aria-label="Ledger binding example">
+<span class="el-comment"># ledgers/recipe-binding — kept format since 1994</span>
+<span class="el-keyword">piece</span>  = (<span class="el-string">"No. 7"</span>, <span class="el-string">"champagne twill"</span>, REC=07, BATH=1931)
+<span class="el-keyword">care</span>   = <span class="el-keyword">if</span> worn: <span class="el-fn">rest</span>(days=<span class="el-number">2</span>, fold=<span class="el-keyword">False</span>)
+<span class="el-keyword">shelve</span> = maple, unlined, dark &amp; dry</div>
+
+        <div class="el-inline-alert warn"><span class="el-icon" aria-hidden="true">!</span>
+            <div><span class="title">Moths are the only true emergency</span><span class="body">If a hem card shows pinholes, bring the piece to the house — never
+          treat it at home; the dye bath is still soluble.</span></div>
+          <button class="close" aria-label="Dismiss">×</button></div>
+
+        <h2>The repair bench, measured</h2>
+        <p>The repair bench holds a visible queue so that no one waits without knowing why.
+           This autumn&rsquo;s bench is running light:</p>
+
+        <div class="el-progress" role="progressbar" aria-label="Bench load" aria-valuemin="0" aria-valuemax="100" aria-valuenow="34" style="--el-progress-value:34%;"><span class="fill" style="width:34%"></span></div>
+        <p class="el-mute-body" style="margin:6px 0 0;">Bench load — 34% of the autumn capacity, oldest job first.</p>
+
+        <div class="el-fact-grid" style="margin-top:var(--el-space-4);">
+          <div class="el-fact"><span class="k">Average repair</span><span class="v">9 days</span></div>
+          <div class="el-fact"><span class="k">Hand-rolled edges per scarf</span><span class="v">1,440</span></div>
+          <div class="el-fact is-hot"><span class="k">Pieces refused by the bench</span><span class="v">0</span></div>
+        </div>
+
+        <h2>How the house keeps what it weaves</h2>
+        <p>Provenance at Maison Auberon is a set of physical records, not a database claim. Each
+           assertion below is backed by a paper in the archive and can be read during any
+           archive consult:</p>
+
+        <ol class="el-timeline">
+          <li><span class="when">1911</span><span class="what"><b>Étiennette Auberon opens the house</b><span class="src"> — first bolt woven at Lyon, recipe REC-01.</span></span></li>
+          <li><span class="when">1931</span><span class="what"><b>Recipe book bound</b><span class="src"> — the champagne twill enters the kept book as Plate 07.</span></span></li>
+          <li><span class="when">1968</span><span class="what"><b>Bordeaux faille recipe</b><span class="src"> — written for the opera coats of the Rive Gauche years.</span></span></li>
+          <li><span class="when">1994</span><span class="what"><b>Ledger computerisation</b><span class="src"> — the binding format above is adopted; the paper book continues.</span></span></li>
+          <li><span class="when">2019</span><span class="what"><b>Mill race bought outright</b><span class="src"> — the last weaving dependency leaves the house&rsquo;s books.</span></span></li>
+          <li class="running"><span class="when">2026</span><span class="what"><b>Autumn Salon, the 115th year</b><span class="src"> — running at 34% bench load; the desk still writes by hand.</span></span></li>
+        </ol>
+
+        <aside class="el-citation-rail" style="margin:var(--el-space-5) 0;">
+          <p class="el-eyebrow" style="margin-bottom:14px;">Read this against the archive</p>
+          <article class="el-source-card is-cited" style="margin-bottom:12px;">
+            <span class="src">Auberon recipe book · bound 1931</span>
+            <span class="ttl">The kept book, Vol. I</span>
+            <p class="snip">Champagne twill entered as Plate 07 with the hand-rolled edge noted in Étiennette&rsquo;s hand.</p>
+          </article>
+          <article class="el-source-card" style="margin-bottom:12px;">
+            <span class="src">Dye room ledger · 1968–1974</span>
+            <span class="ttl">Bordeaux faille, the opera years</span>
+            <p class="snip">Twelve baths recorded for the Rive Gauche opera coats; colour drift under 0.4%.</p>
+          </article>
+          <article class="el-source-card">
+            <span class="src">Journal de la Maison · 14 October 2026</span>
+            <span class="ttl">This document</span>
+            <p class="snip">Constance Auberon-Lenoir on the care rules sewn into every hem card.</p>
+          </article>
+        </aside>
+
+        <div class="el-meter" style="margin-top:var(--el-space-4);--el-meter-value:33%;" role="meter" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100" aria-label="Autumn Salon season progress">
+          <span class="fill"></span>
+        </div>
+        <p class="el-mute-body" style="margin:6px 0 0;">Season progress: 12 of 36 salon days passed.</p>
+      </div>
+
+      <nav class="el-pagination" aria-label="Journal pages" style="margin-top:var(--el-space-6);">
+        <button class="page" disabled aria-label="Previous page">‹</button>
+        <button class="page">1</button>
+        <button class="page on" aria-current="page">2</button>
+        <button class="page">3</button>
+        <button class="page" aria-label="Next page">›</button>
+        <span class="info">Journal · autumn 2026</span>
+      </nav>
+    </section>
+  </main>
+
+  <footer class="el-footer">
+    <div class="cols">
+      <div class="col"><p class="label">The house</p><a href="index.html">Collection</a><a href="catalog.html">The book</a><a href="app.html">Desk</a></div>
+      <div class="col"><p class="label">Journal</p><a href="article.html">Care of the house silk</a><a href="article.html">Provenance</a></div>
+      <div class="col"><p class="label">Visit</p><a href="account.html">Appointments</a><p class="small">Desk hours: Tuesday to Saturday, 11–18h</p></div>
+    </div>
+    <p class="colophon">© 1911–2026 Maison Auberon, Paris · the journal is set each fortnight from the pattern room.</p>
+  </footer>
+
+  <dialog id="salon-dialog" class="el-dialog" aria-labelledby="salon-title">
+    <div class="el-dialog-head"><h2 id="salon-title">Reserve the salon</h2>
+      <button class="el-dialog-close" data-dialog-close aria-label="Close">×</button></div>
+    <div class="el-dialog-body"><p>The desk will hold a viewing hour and write to confirm.</p></div>
+    <div class="el-dialog-foot"><button class="el-btn el-btn--ghost" data-dialog-close>Not now</button>
+      <button class="el-btn" data-dialog-close data-toast="The desk has your request; a letter will follow.">Reserve the hour</button></div>
+  </dialog>
+
+</div>
+</body></html>

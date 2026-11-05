@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en" data-theme="mono-console">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Runner catalog — Ridgeline Systems</title>
+<link rel="stylesheet" href="../../../base.css">
+<link rel="stylesheet" href="../../../fonts.css">
+<link rel="stylesheet" href="../../../tokens.css">
+<link rel="stylesheet" href="../../../elements-display.css">
+<link rel="stylesheet" href="../../../elements-structure.css">
+<link rel="stylesheet" href="../../../elements-lists.css">
+<link rel="stylesheet" href="../../../elements-app.css">
+<link rel="stylesheet" href="../../../elements-containers.css">
+<link rel="stylesheet" href="../../../elements-controls.css">
+<link rel="stylesheet" href="../../../elements-inputs.css">
+<link rel="stylesheet" href="../../../elements-dataviz.css">
+<link rel="stylesheet" href="../../../elements-overlay.css">
+<link rel="stylesheet" href="../../../elements-interactions.css">
+<link rel="stylesheet" href="../../../elements-misc.css">
+<link rel="stylesheet" href="../../../elements-size.css">
+<link rel="stylesheet" href="../../../elements-workflow.css">
+<link rel="stylesheet" href="../../../elements-inspector.css">
+<link rel="stylesheet" href="../../../elements-reader.css">
+<link rel="stylesheet" href="../../../elements-assistant.css">
+<link rel="stylesheet" href="../../../themes/src/tech-mono.css">
+<script src="../../../elements.js" defer></script>
+<script src="../../../charts.js" defer></script>
+</head>
+<body>
+<div class="el-page">
+
+  <nav class="el-navbar el-navbar--top" aria-label="Primary">
+    <a class="brand" href="index.html">Ridgeline</a>
+    <ul class="links">
+      <li><a href="index.html">Console</a></li>
+      <li><a href="catalog.html" aria-current="page">Runners</a></li>
+      <li><a href="article.html">Docs</a></li>
+      <li><a href="account.html">Account</a></li>
+      <li><a href="app.html">App</a></li>
+    </ul>
+    <div class="actions">
+      <span class="el-tooltip" data-tip="Ask the on-call engineer" tabindex="0">
+        <button class="el-btn el-btn--ghost" type="button" data-toast="On-call paged — expect a reply in 4 minutes" data-toast-variant="info">On-call</button>
+      </span>
+    </div>
+  </nav>
+
+  <main>
+    <section class="el-section el-section--flush">
+      <div class="el-panel" style="display:flex;flex-wrap:wrap;align-items:end;gap:var(--el-space-3);padding:var(--el-space-3) var(--el-space-4);">
+        <div>
+          <h1 style="margin:0 0 4px;font-size:var(--el-fs-2xl);">Runner catalog</h1>
+          <p class="el-hint" style="margin:0;">412 machines across 6 islands. Pick a lane; provisioning is a one-click form away.</p>
+        </div>
+        <div style="margin-left:auto;display:flex;flex-wrap:wrap;gap:var(--el-space-3);align-items:end;">
+          <label class="el-search-field" style="min-width:240px;">
+            <input class="el-search" type="search" placeholder="Search: arm64, nvme, portland" aria-label="Search runners">
+          </label>
+          <div class="el-dropdown" aria-label="arch filter">
+            <select class="el-dropdown" style="all:unset;box-sizing:border-box;display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border:1px solid var(--el-line);border-radius:2px;min-height:34px;font-family:var(--el-font-mono);font-size:var(--el-fs-sm);color:var(--el-ink);">
+              <option>arch: any</option><option>arch: x86</option><option>arch: arm64</option>
+            </select>
+          </div>
+          <button class="el-btn" type="button" data-toast="Spec sheet for the fleet exported" data-toast-variant="ok">Export list</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="el-section el-section--dense">
+      <div class="el-chip" role="group" aria-label="filters" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:var(--el-space-3);">
+        <button class="el-chip is-selected" type="button">all lanes</button>
+        <button class="el-chip" type="button">x86</button>
+        <button class="el-chip" type="button">arm64</button>
+        <button class="el-chip" type="button">big-nvme</button>
+        <button class="el-chip" type="button">gpu-attach</button>
+        <button class="el-chip" type="button">risc-v <span class="x" aria-label="remove filter">&times;</span></button>
+      </div>
+      <span class="el-badge">412 results</span>
+      <span class="el-badge live">6 lanes provisioning</span>
+    </section>
+
+    <section class="el-section">
+      <div class="el-cluster" style="display:grid;grid-template-columns:repeat(3,1fr);gap:var(--el-space-3);">
+        <article class="el-card el-card--flat el-card--press">
+          <h3 class="el-card-title">RL-128 / arm64</h3>
+          <p class="sub">Portland-2 rack. Best warm-cache times in the fleet; home of the rust lane.</p>
+          <div class="el-card-media"><div class="fill" role="img" aria-label="topology preview"></div></div>
+          <div class="el-card-foot">
+            <span class="el-avatar" aria-hidden="true">128</span>
+            <button class="el-btn el-btn--ghost" type="button" data-drawer-open="lane-drawer">Open lane</button>
+          </div>
+        </article>
+        <article class="el-card el-card--flat el-card--press">
+          <h3 class="el-card-title">RL-192 / x86</h3>
+          <p class="sub">Denver-1. 3.8 GHz sustained, the monorepo workhorse.</p>
+          <div class="el-card-foot">
+            <span class="el-avatar" aria-hidden="true">192</span>
+            <button class="el-btn el-btn--ghost" type="button" data-drawer-open="lane-drawer">Open lane</button>
+          </div>
+        </article>
+        <article class="el-card el-card--flat el-card--press">
+          <h3 class="el-card-title">RL-256 / x86 big-nvme</h3>
+          <p class="sub">Ashburn-4. 6.4 TB NVMe for kernel-sized checkouts and video tests.</p>
+          <div class="el-card-foot">
+            <span class="el-avatar" aria-hidden="true">256</span>
+            <button class="el-btn el-btn--ghost" type="button" data-drawer-open="lane-drawer">Open lane</button>
+          </div>
+        </article>
+        <article class="el-card el-card--flat el-card--press">
+          <h3 class="el-card-title">RL-64 / gpu-attach</h3>
+          <p class="sub">San Jose-2. A100 lane for on-device builds and CUDA smoke tests.</p>
+          <div class="el-card-foot">
+            <span class="el-avatar" aria-hidden="true">64</span>
+            <button class="el-btn el-btn--ghost" type="button" data-drawer-open="lane-drawer">Open lane</button>
+          </div>
+        </article>
+        <article class="el-card el-card--flat el-card--press">
+          <h3 class="el-card-title">RL-96 / arm64 edge</h3>
+          <p class="sub">Dublin-1. For EU repos; data stays in-region, logs hashed at rest.</p>
+          <div class="el-card-foot">
+            <span class="el-avatar" aria-hidden="true">96</span>
+            <button class="el-btn el-btn--ghost" type="button" data-drawer-open="lane-drawer">Open lane</button>
+          </div>
+        </article>
+        <article class="el-card el-card--flat el-card--press is-selected">
+          <h3 class="el-card-title">RL-160 / x86 preview</h3>
+          <p class="sub">Portland-2. Early-access Zen5 lane; pricing 20% under steady-state.</p>
+          <div class="el-card-foot">
+            <span class="el-avatar" aria-hidden="true">160</span>
+            <button class="el-btn el-btn--ghost" type="button" data-drawer-open="lane-drawer">Join preview</button>
+          </div>
+        </article>
+      </div>
+
+      <div class="el-panel" style="margin-top:var(--el-space-4);">
+        <div class="el-empty">
+          <span class="el-icon" aria-hidden="true">&#9633;</span>
+          <p class="el-msg">No lane matches risc-v + gpu-attach.</p>
+          <p class="el-hint">We are building one — join the preview list and we ping you when RL-4096 lands.</p>
+          <div class="el-action"><button class="el-btn el-btn--outline" type="button" data-toast="Joined the risc-v preview list" data-toast-variant="ok">Join preview list</button>
+            <button class="el-btn el-btn--ghost" type="button">Clear filters</button></div>
+        </div>
+      </div>
+
+      <nav class="el-pagination" aria-label="catalog pages" style="margin-top:var(--el-space-4);">
+        <button class="page disabled" type="button" aria-label="Previous page">&lsaquo;</button>
+        <button class="page on" type="button">1</button>
+        <button class="page" type="button">2</button>
+        <button class="page" type="button">3</button>
+        <span class="info">1–6 of 412 lanes</span>
+        <button class="page" type="button" aria-label="Next page">&rsaquo;</button>
+      </nav>
+    </section>
+  </main>
+
+  <footer class="el-footer el-footer--plain">
+    <p class="colophon">Ridgeline Systems, Inc. — machine specs are contractually stable; the fleet page is the source of truth.</p>
+  </footer>
+
+</div>
+
+<aside class="el-drawer right" id="lane-drawer" aria-label="Lane details" data-scrim="drawer-scrim">
+  <div class="el-drawer-head"><strong>RL-128 — arm64, 128 cores</strong></div>
+  <div class="el-drawer-body">
+    <div class="el-media-band el-media-band--flat" style="margin-bottom:var(--el-space-3);">
+      <div class="media"><div class="fill" role="img" aria-label="lane topology"></div></div>
+      <div class="body">
+        <h2 style="font-size:var(--el-fs-lg);margin:0 0 4px;">Portland-2 island</h2>
+        <p style="margin:0;color:var(--el-ink-soft);">Dedicated ARM rack wiped between tenants.</p>
+      </div>
+    </div>
+    <div class="el-fact-grid" style="grid-template-columns:repeat(3,1fr);">
+      <div class="el-fact"><span class="k">cpu</span><span class="v">128</span></div>
+      <div class="el-fact"><span class="k">ram</span><span class="v">512G</span></div>
+      <div class="el-fact is-hot"><span class="k">p99 warm</span><span class="v">41s</span></div>
+    </div>
+    <label class="el-field" style="margin-top:var(--el-space-3);">
+      <span class="el-label">Reservation window</span>
+      <select class="el-select" style="padding:8px 12px;border:1px solid var(--el-line);background:var(--el-panel-2);color:var(--el-ink);border-radius:2px;font-family:var(--el-font-mono);">
+        <option>2 hours · free</option><option>1 day · $40</option><option>1 week · $240</option>
+      </select>
+    </label>
+  </div>
+  <div class="el-drawer-foot">
+    <button class="el-btn el-btn--ghost" type="button" data-drawer-close="lane-drawer">Close</button>
+    <button class="el-btn" type="button" data-toast="RL-128 reserved for 2 hours" data-toast-variant="ok">Reserve</button>
+  </div>
+</aside>
+<div class="el-scrim" id="drawer-scrim" data-dialog-scrim></div>
+
+</body>
+</html>

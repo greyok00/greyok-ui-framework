@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="en" data-theme="mono-console">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ridgeline Systems — the build cloud for p99 teams</title>
+<link rel="stylesheet" href="../../../base.css">
+<link rel="stylesheet" href="../../../fonts.css">
+<link rel="stylesheet" href="../../../tokens.css">
+<link rel="stylesheet" href="../../../elements-display.css">
+<link rel="stylesheet" href="../../../elements-structure.css">
+<link rel="stylesheet" href="../../../elements-lists.css">
+<link rel="stylesheet" href="../../../elements-app.css">
+<link rel="stylesheet" href="../../../elements-containers.css">
+<link rel="stylesheet" href="../../../elements-controls.css">
+<link rel="stylesheet" href="../../../elements-inputs.css">
+<link rel="stylesheet" href="../../../elements-dataviz.css">
+<link rel="stylesheet" href="../../../elements-overlay.css">
+<link rel="stylesheet" href="../../../elements-interactions.css">
+<link rel="stylesheet" href="../../../elements-misc.css">
+<link rel="stylesheet" href="../../../elements-size.css">
+<link rel="stylesheet" href="../../../elements-workflow.css">
+<link rel="stylesheet" href="../../../elements-inspector.css">
+<link rel="stylesheet" href="../../../elements-reader.css">
+<link rel="stylesheet" href="../../../elements-assistant.css">
+<link rel="stylesheet" href="../../../themes/src/tech-mono.css">
+<script src="../../../elements.js" defer></script>
+<script src="../../../charts.js" defer></script>
+</head>
+<body>
+<div class="el-page">
+
+  <nav class="el-navbar el-navbar--top" aria-label="Primary">
+    <a class="brand" href="index.html">Ridgeline</a>
+    <ul class="links">
+      <li><a href="index.html" aria-current="page">Console</a></li>
+      <li><a href="catalog.html">Runners</a></li>
+      <li><a href="article.html">Docs</a></li>
+      <li><a href="account.html">Account</a></li>
+      <li><a href="app.html">App</a></li>
+    </ul>
+    <div class="actions">
+      <span class="el-tooltip" data-tip="Search runners, docs and jobs" tabindex="0">
+        <button class="el-btn el-btn--ghost" type="button">Search</button>
+      </span>
+      <div class="el-popover">
+        <button class="el-btn el-btn--outline" type="button" aria-expanded="false">Share site</button>
+        <div class="el-pop">
+          <h4>Invite teammates</h4>
+          <p style="margin:0 0 8px;font-size:var(--el-fs-sm);color:var(--el-ink-soft);">Workspaces start at 5 seats.</p>
+          <button class="el-btn" type="button" data-toast="Invite link copied to clipboard" data-toast-variant="ok">Copy invite link</button>
+        </div>
+      </div>
+      <button class="el-btn" type="button" data-command="ridgeline-cmd">Open console</button>
+    </div>
+  </nav>
+
+  <header class="el-hero el-hero--left">
+    <span class="el-eyebrow">ridge-4 &middot; build cloud</span>
+    <h1>Your build farm, finally honest.</h1>
+    <p>Ridgeline compiles, tests and ships your monorepo on dedicated runners with a p99 you can put in a board deck. No queue roulette, no shared metal, no vibes.</p>
+    <div class="actions">
+      <button class="el-btn" type="button" data-dialog-open="trial-dialog">Start 30-day trial</button>
+      <a class="el-btn el-btn--ghost" href="article.html">Read the caching docs</a>
+      <span class="el-kbd" aria-label="press the slash key to open the command bar">/</span>
+    </div>
+    <div class="media"><div class="fill" role="img" aria-label="Build log panel showing a cache hit streak"></div></div>
+  </header>
+
+  <main>
+    <section class="el-section el-section--dense">
+      <h2 style="font-size:var(--el-fs-xs);letter-spacing:.22em;text-transform:uppercase;color:var(--el-mute);margin:0;">Last 30 days, fleet-wide</h2>
+      <div class="el-stat-row">
+        <div class="el-stat">
+          <span class="el-stat-label">p99 build</span>
+          <span class="el-stat-value">4:12<small>&nbsp;min</small></span>
+          <span class="el-stat-delta down">38s</span>
+          <span class="el-sparkline el-chart" data-chart="sparkline" data-values="6.1,5.8,5.9,5.2,4.9,4.6,4.4,4.2" data-width="120" data-height="30" data-color="var(--el-accent)"></span>
+        </div>
+        <div class="el-stat">
+          <span class="el-stat-label">Cache hit rate</span>
+          <span class="el-stat-value">92.4<small>%</small></span>
+          <span class="el-stat-delta up">3.1pt</span>
+          <span class="el-sparkline el-chart" data-chart="sparkline" data-values="84,86,85,88,89,90,91,92" data-width="120" data-height="30" data-color="var(--el-accent)"></span>
+        </div>
+        <div class="el-stat">
+          <span class="el-stat-label">Jobs / day</span>
+          <span class="el-stat-value">1.19<small>&nbsp;M</small></span>
+          <span class="el-stat-delta flat">&plusmn;0.0</span>
+          <span class="el-chart" data-chart="bar" data-values="9,11,8,13,15,12,17,14" data-width="120" data-height="30" data-color="var(--el-accent)"></span>
+        </div>
+        <div class="el-stat is-live">
+          <span class="el-stat-label">Runner uptime</span>
+          <span class="el-stat-value">99.98<small>%</small></span>
+          <span class="el-stat-note">rolling 7d, 412 machines</span>
+          <span class="el-chart" data-chart="donut" data-values="99.98,0.02" data-width="44" data-height="44" data-color="var(--el-accent)"></span>
+        </div>
+      </div>
+    </section>
+
+    <section class="el-section">
+      <h2>Built like a terminal, priced like a spreadsheet</h2>
+      <p>Ridgeline sells the parts of a build farm that actually cost you money, cut into flat cards you can bill a team for. Start with one runner; the meter follows usage, not seats.</p>
+      <div class="el-chip" role="group" aria-label="quick filters" style="display:flex;gap:8px;flex-wrap:wrap;margin:0 0 var(--el-space-4);">
+        <button class="el-chip" type="button">rust</button>
+        <button class="el-chip is-selected" type="button">go</button>
+        <button class="el-chip" type="button">c++</button>
+        <button class="el-chip" type="button">node</button>
+        <button class="el-chip" type="button">python</button>
+      </div>
+      <div class="el-cluster" style="display:grid;grid-template-columns:repeat(3,1fr);gap:var(--el-space-3);">
+        <article class="el-card el-card--flat el-card--press">
+          <h3 class="el-card-title">Dedicated runners</h3>
+          <p class="sub">Bare-metal x86 and arm64 lanes, 32 to 256 cores, wiped between tenants. Your cache, your kernel, your cgroup.</p>
+          <div class="el-card-foot"><span class="el-badge">edge</span><button class="el-btn el-btn--ghost" type="button" data-drawer-open="runner-drawer">Specs</button></div>
+        </article>
+        <article class="el-card el-card--flat el-card--press">
+          <h3 class="el-card-title">Cache compiler</h3>
+          <p class="sub">Content-addressed artifacts shared across branch boundaries. A 92% hit rate means a 92% discount on wall clock.</p>
+          <div class="el-card-foot"><span class="el-badge ok">hot</span><button class="el-btn el-btn--ghost" type="button" data-drawer-open="runner-drawer">How it works</button></div>
+        </article>
+        <article class="el-card el-card--flat el-card--press">
+          <h3 class="el-card-title">Deploy bridge</h3>
+          <p class="sub">Green build to running service in one lane: sign, canary, promote. Rollbacks are a re-run, not an incident call.</p>
+          <div class="el-card-foot"><span class="el-badge warn">beta</span><button class="el-btn el-btn--ghost" type="button" data-drawer-open="runner-drawer">Details</button></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="el-section">
+      <div class="el-media-band">
+        <div class="media">
+          <div class="fill" role="img" aria-label="Ridgeline console timeline view on a build farm"></div>
+          <figcaption>ridge-4 console, timeline view, fleet 412</figcaption>
+        </div>
+        <div class="body">
+          <span class="el-eyebrow">the console</span>
+          <h2>P99 latency for builds, not just APIs</h2>
+          <p>Every job emits a timeline: queue, warm, compile, test, sign, archive. The console graphs the slow step you keep ignoring and tells you exactly which module regressed and after which commit.</p>
+          <div class="actions">
+            <button class="el-btn" type="button" data-toast="Timeline export queued">Export timeline</button>
+            <span class="el-tooltip" data-tip="Opens live view in a new tab" tabindex="0"><button class="el-btn el-btn--outline" type="button">Live view</button></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="el-section">
+      <h2>Plans</h2>
+      <p>Flat base, metered overage, zero seat tax. Cancel from the console — no retention call, ever.</p>
+      <div class="el-cluster" style="display:grid;grid-template-columns:repeat(3,1fr);gap:var(--el-space-3);margin-top:var(--el-space-4);">
+        <article class="el-pricing">
+          <span class="name">Solo lane</span>
+          <span class="price">$120 <span class="per">/ mo</span></span>
+          <ul class="feats">
+            <li>1 dedicated runner, 32 cores</li>
+            <li>500 GB cache</li>
+            <li>7-day log retention</li>
+            <li class="off">Deploy bridge</li>
+            <li class="off">SSO</li>
+          </ul>
+          <button class="el-btn el-btn--outline" type="button" style="justify-self:start;">Start solo</button>
+          <p class="note">billed monthly, cancel anytime</p>
+        </article>
+        <article class="el-pricing el-pricing--featured">
+          <span class="flag">most teams</span>
+          <span class="name">Fleet</span>
+          <span class="price">$1,900 <span class="per">/ mo</span></span>
+          <ul class="feats">
+            <li>12 dedicated runners</li>
+            <li>6 TB cache, cross-region</li>
+            <li>90-day log retention</li>
+            <li>Deploy bridge + canary</li>
+            <li class="off">SSO</li>
+          </ul>
+          <button class="el-btn" type="button" data-dialog-open="trial-dialog" style="justify-self:start;">Try fleet free</button>
+          <p class="note">overage at $0.012 compute-min</p>
+        </article>
+        <article class="el-pricing">
+          <span class="name">Monorepo</span>
+          <span class="price">custom <span class="per">annual</span></span>
+          <ul class="feats">
+            <li>Unlimited runners</li>
+            <li>Dedicated cache island</li>
+            <li>SSO + SCIM, audit ledger</li>
+            <li>Deploy bridge with attestation</li>
+            <li>Named on-call engineer</li>
+          </ul>
+          <button class="el-btn el-btn--outline" type="button" data-toast="We will reply within one working day" data-toast-variant="info" style="justify-self:start;">Book intake</button>
+          <p class="note">4-week onboarding window</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="el-section">
+      <h2>The record so far</h2>
+      <div class="el-fact-grid" style="margin:var(--el-space-4) 0;">
+        <div class="el-fact"><span class="k">jobs built</span><span class="v">212.4M</span></div>
+        <div class="el-fact is-hot"><span class="k">median cache saving</span><span class="v">71%</span></div>
+        <div class="el-fact"><span class="k">teams on fleet</span><span class="v">1,388</span></div>
+        <div class="el-fact"><span class="k">cache islands</span><span class="v">6</span></div>
+      </div>
+      <figure class="el-testimonial">
+        <blockquote class="quote">
+          <p class="q">We pointed CI at Ridgeline on a Tuesday. By Thursday the p99 was 4 minutes — our old farm could not go below 19 on a good day. The console reads like dmesg for people who bill their time.</p>
+        </blockquote>
+        <figcaption class="attrib"><span class="who"><span class="el-avatar" aria-hidden="true">MO</span></span><span><strong>Maia Okafor</strong> — platform lead, Cartwheel Freight</span></figcaption>
+      </figure>
+    </section>
+
+    <section class="el-section el-section--dense">
+      <div class="el-banner el-banner--ok">
+        <span class="glyph">%</span>
+        <div class="copy"><strong>First month free</strong> on annual plans taken before Jan 1. <span aria-hidden="true">&middot;</span> includes the cache island you were going to ask about.</div>
+        <button class="action el-btn el-btn--outline" type="button" data-dialog-open="trial-dialog">Claim</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="el-footer">
+    <div class="cols">
+      <div class="col"><span class="label">Console</span><ul><li><a href="app.html">Live console</a></li><li><a href="catalog.html">Runners</a></li><li><a href="account.html">Workspaces</a></li></ul></div>
+      <div class="col"><span class="label">Engineering</span><ul><li><a href="article.html">Caching guide</a></li><li><a href="article.html">Run-lane anatomy</a></li><li><a href="catalog.html">Machine specs</a></li></ul></div>
+      <div class="col"><span class="label">Company</span><ul><li><a href="index.html">About</a></li><li><a href="index.html">Postmortems</a></li><li><a href="index.html">Careers</a></li></ul></div>
+      <div class="col"><span class="label">Status</span><ul><li><a href="app.html">Fleet status</a></li><li><a href="app.html">Changelog</a></li></ul></div>
+    </div>
+    <p class="colophon">Ridgeline Systems, Inc. — 220 Basalt Road, suite 410, Portland OR. Boring on purpose since 2019.</p>
+  </footer>
+
+</div>
+
+<aside class="el-drawer right" id="runner-drawer" aria-label="Runner details" data-scrim="drawer-scrim">
+  <div class="el-drawer-head">
+    <strong>Runner 2104 — arm64, 128 cores</strong>
+  </div>
+  <div class="el-drawer-body">
+    <p style="margin-top:0;">Dedicated ARM rack in Portland-2. Wiped and re-imaged between tenants; cache island is regional.</p>
+    <div class="el-fact-grid" style="grid-template-columns:1fr 1fr;">
+      <div class="el-fact"><span class="k">cpu</span><span class="v">128</span></div>
+      <div class="el-fact"><span class="k">ram</span><span class="v">512G</span></div>
+      <div class="el-fact"><span class="k">nvme</span><span class="v">6.4T</span></div>
+      <div class="el-fact is-hot"><span class="k">p99 warm</span><span class="v">41s</span></div>
+    </div>
+  </div>
+  <div class="el-drawer-foot">
+    <button class="el-btn el-btn--ghost" type="button" data-drawer-close="runner-drawer">Close</button>
+    <button class="el-btn" type="button" data-toast="Runner reserved for evaluation" data-toast-variant="ok">Reserve this lane</button>
+  </div>
+</aside>
+<div class="el-scrim" id="drawer-scrim" data-dialog-scrim></div>
+
+<dialog class="el-dialog" id="trial-dialog">
+  <div class="el-dialog-head">
+    <h3 class="el-dialog-title">Start the 30-day trial</h3>
+    <button class="el-dialog-close" type="button" aria-label="Close" data-dialog-close>&times;</button>
+  </div>
+  <form class="el-dialog-body" method="dialog">
+    <p style="margin-top:0;">Two fields, no credit card. We stand up a private lane and hand you a token.</p>
+    <label class="el-field"><span class="el-label">Work email</span>
+      <input class="el-input" type="email" placeholder="you@company.com" required>
+      <span class="el-hint">Work address only — trial lanes never touch shared queues.</span>
+    </label>
+    <label class="el-field"><span class="el-label">Repo count</span>
+      <input class="el-input" type="number" min="1" max="60" value="3">
+    </label>
+  </form>
+  <div class="el-dialog-foot">
+    <button class="el-btn el-btn--ghost" type="button" data-dialog-close>Cancel</button>
+    <button class="el-btn" type="button" data-toast="Trial lane provisioning — check your inbox" data-toast-variant="ok" data-dialog-close>Provision lane</button>
+  </div>
+</dialog>
+
+<div class="el-command" id="ridgeline-cmd" role="dialog" aria-label="Command bar">
+  <div class="el-command-panel">
+    <input class="el-command-input" type="text" placeholder="Type a command… (rebuilds, plans, runners)" aria-label="Command input">
+    <div class="el-command-results">
+      <div class="el-command-group">Console</div>
+      <button class="el-command-row sel" type="button">Open fleet timeline <span class="el-command-hint">G T</span></button>
+      <button class="el-command-row" type="button">Rebuild last failed job <span class="el-command-hint">R F</span></button>
+      <button class="el-command-row" type="button">Switch workspace <span class="el-command-hint">W</span></button>
+      <div class="el-command-group">Plans</div>
+      <button class="el-command-row" type="button">Upgrade to fleet <span class="el-command-hint">P U</span></button>
+      <button class="el-command-row" type="button">Open usage export <span class="el-command-hint">E</span></button>
+      <div class="el-command-empty" hidden>No command matches.</div>
+    </div>
+    <div class="el-command-foot"><span class="el-hint">arrows to move &middot; enter to run &middot; esc to close</span></div>
+  </div>
+</div>
+
+</body>
+</html>

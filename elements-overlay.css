@@ -1,0 +1,691 @@
+@layer el-elements {
+
+/* ════════════════════════════════════════════════════════════════════════════
+   elements-overlay.css — Group 5 (Overlays): dialog, drawer, popover, tooltip,
+   toast stack, command palette, menu. Unlayered sheet; tokens only.
+   Scrim = var(--el-overlay). Panels pop with fade + 0.97 scale (never raw);
+   drawers slide. 180–260ms, --el-ease-out; reduced-motion = opacity only.
+   A11y contract: role=dialog/tooltip/menu/listbox in markup; elements.js
+   toggles .is-open (+ legacy .open) and mirrors aria-expanded on triggers;
+   focus returns to the opener on close.
+   ════════════════════════════════════════════════════════════════════════════ */
+
+
+
+/* ── scrim: shared lightbox for div-mode dialog / drawer ──────────────────── */
+
+.el-scrim {
+  position: fixed;
+  inset: 0;
+  background: var(--el-overlay);
+  border: 0;
+  opacity: 0;
+  pointer-events: none;
+  z-index: var(--el-z-scrim);
+  transition: opacity var(--el-dur-base) var(--el-ease-out);
+}
+
+.el-scrim.is-open, .el-scrim.open { opacity: 1; pointer-events: auto; }
+
+
+/* ── dialog: centered modal panel + scrim ────────────────────────────────────
+   Markup A (native, preferred):  <dialog class="el-dialog" id="x"> …
+     scrim = ::backdrop; Esc + form[method=dialog] close natively.
+   Markup B (div): .el-dialog panel + sibling .el-scrim[data-dialog-scrim];       JS wires both. States: [open] (native) or .is-open (+ .open legacy).    */
+
+.el-dialog {
+  --el-dialog-max-w: 560px;
+  box-sizing: border-box;
+  padding: var(--el-card-pad);
+  background: linear-gradient(180deg, color-mix(in oklab, var(--el-ink) 2%, var(--el-panel)), var(--el-panel));
+  color: var(--el-ink);
+  font-family: var(--el-font-body);
+  font-size: var(--el-fs-md);
+  border: var(--el-bw) solid var(--el-edge);
+  border-radius: var(--el-r-lg);
+  box-shadow: var(--el-raise-3), var(--el-hairline);
+  max-inline-size: min(var(--el-dialog-max-w), calc(100vw - var(--el-space-6)));
+}
+
+/* centered in both modes; native dialogs carry a UA reset (inset:0 + margin:auto)
+   so right/bottom/margin are neutralized or the box re-centers into the quadrant */
+dialog.el-dialog {
+  position: fixed;
+  top: 50%;
+  right: auto;
+  bottom: auto;
+  left: 50%;
+  margin: 0;
+  max-height: calc(100vh - var(--el-space-6));
+  overflow: auto;
+  transform: translate(-50%, -50%) translateY(8px) scale(0.97);
+  z-index: var(--el-z-overlay);
+  opacity: 0;
+  transition:
+    opacity var(--el-dur-base) var(--el-ease-out),
+    transform var(--el-dur-base) var(--el-ease-out),
+    overlay var(--el-dur-base) allow-discrete,
+    display var(--el-dur-base) allow-discrete;
+}
+
+dialog.el-dialog[open] { opacity: 1; transform: translate(-50%, -50%); }
+
+@starting-style {
+  dialog.el-dialog[open] { opacity: 0; transform: translate(-50%, -50%) translateY(8px) scale(0.97); }
+}
+
+dialog.el-dialog::backdrop {
+  background: var(--el-overlay);
+  opacity: 0;
+  transition: opacity var(--el-dur-base) var(--el-ease-out) allow-discrete;
+}
+
+dialog.el-dialog[open]::backdrop { opacity: 1; }
+
+@starting-style {
+  dialog.el-dialog[open]::backdrop { opacity: 0; }
+}
+
+/* div-mode dialog: fixed panel; pair it with .el-scrim */
+.el-dialog:not(dialog) {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) translateY(8px) scale(0.97);
+  z-index: var(--el-z-overlay);
+  margin: 0;
+  opacity: 0;
+  display: none;
+  pointer-events: auto;
+  transition: opacity var(--el-dur-base) var(--el-ease-out), transform var(--el-dur-base) var(--el-ease-out), display var(--el-dur-base) allow-discrete;
+}
+
+.el-dialog:not(dialog).is-open, .el-dialog:not(dialog).open { display: block; opacity: 1; transform: translate(-50%, -50%); }
+
+@starting-style {
+  .el-dialog:not(dialog).is-open { opacity: 0; transform: translate(-50%, -50%) translateY(8px) scale(0.97); }
+}
+
+/* ── dialog anatomy + size voices ─────────────────────────────────────────── */
+
+.el-dialog-head {
+  display: flex;
+  align-items: baseline;
+  gap: var(--el-space-3);
+  padding-block-end: var(--el-space-3);
+  margin-block-end: var(--el-space-3);
+  border-block-end: var(--el-bw) solid var(--el-line);
+}
+
+.el-dialog-head h2, .el-dialog-head h3, .el-dialog-head .el-dialog-title {
+  margin: 0;
+  font-family: var(--el-font-display);
+  font-size: var(--el-fs-lg);
+  font-weight: var(--el-head-weight);
+  letter-spacing: var(--el-head-tracking);
+  color: var(--el-ink);
+}
+
+.el-dialog-close {
+  margin-inline-start: auto;
+  inline-size: 28px;
+  block-size: 28px;
+  display: inline-grid;
+  place-items: center;
+  background: transparent;
+  color: var(--el-mute);
+  border: var(--el-bw) solid transparent;
+  border-radius: var(--el-r-sm);
+  cursor: pointer;
+  font-size: var(--el-fs-md);
+  line-height: 1;
+  transition: color var(--el-dur-fast) var(--el-ease), background var(--el-dur-fast) var(--el-ease), border-color var(--el-dur-fast) var(--el-ease);
+}
+
+.el-dialog-close:hover { color: var(--el-ink); background: var(--el-panel-2); border-color: var(--el-edge); }
+
+.el-dialog-close:focus-visible {
+  outline: 2px solid var(--el-focus-ring);
+  outline-offset: 1px;
+}
+
+.el-dialog-body { color: var(--el-ink-soft); line-height: 1.6; }
+
+.el-dialog-foot {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--el-space-2);
+  margin-block-start: var(--el-space-4);
+  padding-block-start: var(--el-space-3);
+  border-block-start: var(--el-bw) solid var(--el-line);
+}
+
+.el-dialog--wide { --el-dialog-max-w: 720px; }
+.el-dialog--narrow { --el-dialog-max-w: 420px; }
+.el-dialog--flush { padding: 0; overflow: hidden; }
+
+
+/* ── drawer: side sheet, slides from its edge ─────────────────────────────── */
+
+.el-drawer {
+  position: fixed;
+  top: 0;
+  background: linear-gradient(180deg, var(--el-panel) 0%, color-mix(in oklab, var(--el-panel) 88%, var(--el-bg)) 100%);
+  border-left: var(--el-bw) solid var(--el-edge);
+  border-radius: var(--el-r-lg) 0 0 var(--el-r-lg);
+  box-shadow: var(--el-raise-3);
+  z-index: var(--el-z-overlay);
+  display: flex;
+  flex-direction: column;
+  transform: translateX(calc(100% + 8px));
+  visibility: hidden; /* closed drawers were tab-focusable offscreen (agency route) — hidden parks them from the tab order */
+  transition: transform var(--el-dur-base) var(--el-ease-out),
+              visibility 0s linear var(--el-dur-base); /* hide only after the slide-out plays */
+}
+
+.el-drawer.right { right: 0; width: 360px; max-width: calc(100vw - var(--el-space-6)); height: 100vh; }
+.el-drawer.left  { left: 0; width: 360px; max-width: calc(100vw - var(--el-space-6)); height: 100vh; transform: translateX(calc(-100% - 8px)); border-inline-end: var(--el-bw) solid var(--el-edge); border-left: 0; border-radius: 0 var(--el-r-lg) var(--el-r-lg) 0; }
+.el-drawer.bottom { left: 0; right: 0; top: auto; bottom: 0; height: 260px; transform: translateY(calc(100% + 8px)); border-left: 0; border-top: var(--el-bw) solid var(--el-edge); border-radius: var(--el-r-lg) var(--el-r-lg) 0 0; }
+.el-drawer.top { left: 0; right: 0; bottom: auto; height: 220px; transform: translateY(calc(-100% - 8px)); border-left: 0; border-bottom: var(--el-bw) solid var(--el-edge); border-radius: 0 0 var(--el-r-lg) var(--el-r-lg); }
+
+.el-drawer.is-open, .el-drawer.open { transform: translate(0, 0); visibility: visible; transition: transform var(--el-dur-base) var(--el-ease-out), visibility 0s; }
+
+.el-drawer > .el-drawer-head {
+  padding: var(--el-space-3) var(--el-space-4);
+  border-bottom: var(--el-bw) solid color-mix(in oklab, var(--el-line) 60%, transparent);
+  font-family: var(--el-font-body);
+  font-weight: var(--el-label-weight);
+  font-size: var(--el-fs-sm);
+  letter-spacing: var(--el-label-tracking);
+  text-transform: var(--el-label-case);
+  color: var(--el-accent-ink); /* label text sits on the panel — the fill accent can fail as small text */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--el-space-2);
+}
+
+/* the head's close fell back to the UA gray disc (neo-brutalist route) —
+   same quiet reset the toast close got; markup uses .close and [data-drawer-close] */
+.el-drawer > .el-drawer-head > .close,
+.el-drawer > .el-drawer-head > [data-drawer-close] {
+  margin-left: auto;
+  cursor: pointer;
+  color: var(--el-ink-soft);
+  background: transparent;
+  border: 0;
+  line-height: 1;
+  padding: 2px 6px;
+  border-radius: var(--el-r-sm);
+}
+.el-drawer > .el-drawer-head > .close:hover,
+.el-drawer > .el-drawer-head > [data-drawer-close]:hover { color: var(--el-ink); }
+
+.el-drawer > .el-drawer-body { flex: 1; padding: var(--el-space-3) var(--el-space-4); overflow-y: auto; font-family: var(--el-font-body); }
+.el-drawer > .el-drawer-foot {
+  padding: var(--el-space-3) var(--el-space-4);
+  border-top: var(--el-bw) solid color-mix(in oklab, var(--el-line) 60%, transparent);
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--el-space-2);
+}
+
+
+/* ── popover: anchored surface over a trigger ─────────────────────────────── */
+
+.el-popover {
+  position: relative;
+  display: inline-block;
+}
+
+.el-popover .el-pop {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  min-width: 200px;
+  background: color-mix(in oklab, var(--el-panel) 96%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: var(--el-bw) solid var(--el-edge);
+  border-radius: var(--el-r-md);
+  box-shadow: var(--el-raise-3), var(--el-hairline);
+  padding: var(--el-space-3);
+  font-family: var(--el-font-body);
+  font-size: var(--el-fs-sm);
+  color: var(--el-ink);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-6px) scale(0.97);
+  transform-origin: top left;
+  transition: opacity var(--el-dur-base) var(--el-ease-out), transform var(--el-dur-base) var(--el-ease-out),
+              display var(--el-dur-base) allow-discrete;
+  z-index: var(--el-z-pop);
+}
+
+.el-popover.open .el-pop, .el-popover.is-open .el-pop {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+}
+
+/* closed pop rest-state (brutal route): the JS toggles .is-open on the
+   wrapper — without it the pop is dead markup that held layout invisibly and
+   panned the page; gate it and enter through the discrete-display recipe */
+.el-popover:not(.is-open):not(.open) .el-pop { display: none; }
+@starting-style {
+  .el-popover.open .el-pop, .el-popover.is-open .el-pop { opacity: 0; transform: translateY(-6px) scale(0.97); }
+  .el-popover--above.open .el-pop, .el-popover--above.is-open .el-pop { transform: translateY(6px) scale(0.97); }
+}
+
+.el-popover .el-pop > h4 { margin: 0 0 var(--el-space-1); font-size: var(--el-fs-sm); color: var(--el-ink); font-family: var(--el-font-body); font-weight: 600; letter-spacing: -0.005em; text-transform: none; }
+
+/* placement voices */
+.el-popover--start .el-pop { left: auto; right: 0; transform-origin: top right; }
+.el-popover--end .el-pop { left: 0; right: auto; transform-origin: top left; }
+.el-popover--above .el-pop { top: auto; bottom: calc(100% + 4px); transform: translateY(6px) scale(0.97); transform-origin: bottom left; }
+.el-popover--above.open .el-pop, .el-popover--above.is-open .el-pop { transform: translateY(0) scale(1); }
+
+
+/* ── menu list: canonical GTK-9 dropdown surface ──────────────────────────── */
+
+.el-menu {
+  background: color-mix(in oklab, var(--el-panel) 96%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: var(--el-bw) solid var(--el-edge);
+  border-radius: var(--el-r-md);
+  box-shadow: var(--el-raise-3), var(--el-hairline);
+  padding: var(--el-space-1);
+  min-inline-size: 200px;
+  font-family: var(--el-font-body);
+  font-size: var(--el-fs-md);
+  color: var(--el-ink);
+}
+
+/* anchored dropdown mode: trigger wrapper keeps the sheet stable */
+.el-menu-anchor { position: relative; display: inline-flex; }
+
+.el-menu-anchor > .el-menu {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  z-index: var(--el-z-menu);
+  opacity: 0;
+  transform: translateY(-6px) scale(0.97);
+  transform-origin: top left;
+  pointer-events: none;
+  transition: opacity var(--el-dur-base) var(--el-ease-out), transform var(--el-dur-base) var(--el-ease-out);
+}
+
+.el-menu-anchor > .el-menu.is-open {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+.el-menu-anchor.el-menu--end > .el-menu { left: auto; right: 0; transform-origin: top right; }
+.el-menu-anchor.el-menu--above > .el-menu { top: auto; bottom: calc(100% + 4px); transform-origin: bottom left; }
+
+/* closed rest-state (brutal route): panels receive .is-open from [data-menu]
+   wiring on the panel id — without a class they are dead markup that held
+   layout (unanchored: always-visible cards; anchored: phantom tab stops).
+   display-gated; the enter fade rides the discrete-display recipe */
+.el-menu:not(.is-open):not(.open) { display: none; }
+.el-menu.is-open, .el-menu.open { display: block; }
+.el-menu-anchor > .el-menu {
+  transition: opacity var(--el-dur-base) var(--el-ease-out), transform var(--el-dur-base) var(--el-ease-out),
+              display var(--el-dur-base) allow-discrete;
+}
+@starting-style {
+  .el-menu-anchor > .el-menu.is-open { opacity: 0; transform: translateY(-6px) scale(0.97); }
+}
+
+.el-menu .el-menu-item {
+  display: flex;
+  align-items: center;
+  gap: var(--el-space-2);
+  width: 100%;
+  padding: calc(var(--el-ctl-pad-y) - 3px) var(--el-space-3);
+  background: transparent;
+  border: 0;
+  color: var(--el-ink-soft);
+  font-family: var(--el-font-body);
+  font-size: var(--el-fs-md);
+  font-weight: 500;
+  text-align: start;
+  border-radius: var(--el-r-sm);
+  cursor: pointer;
+  outline: none;
+  transition: background var(--el-dur-fast) var(--el-ease), color var(--el-dur-fast) var(--el-ease);
+}
+
+.el-menu .el-menu-item:hover, .el-menu .el-menu-item.on { background: var(--el-panel-3); color: var(--el-ink); }
+.el-menu .el-menu-item:focus-visible { outline: 2px solid var(--el-focus-ring); outline-offset: -2px; color: var(--el-ink); }
+.el-menu .el-menu-item:active { transform: var(--el-press); }
+.el-menu .el-menu-item.is-danger { color: var(--el-fail); }
+.el-menu .el-menu-item.is-danger:hover { background: color-mix(in oklab, var(--el-fail) 10%, transparent); color: var(--el-fail); }
+.el-menu .el-menu-item:disabled, .el-menu .el-menu-item[aria-disabled="true"] { opacity: 0.45; cursor: not-allowed; }
+.el-menu .el-menu-item .hint { margin-inline-start: auto; color: var(--el-mute); font-size: var(--el-fs-xs); font-family: var(--el-font-mono); }
+.el-menu .el-menu-item.is-danger .hint { color: color-mix(in oklab, var(--el-fail) 60%, var(--el-mute)); }
+
+.el-menu .el-menu-sep { height: var(--el-bw); background: var(--el-line); margin: var(--el-space-1) var(--el-space-2); }
+
+.el-menu .el-menu-label {
+  padding: var(--el-space-2) var(--el-space-3) var(--el-space-1);
+  font-size: var(--el-fs-xs);
+  font-weight: var(--el-label-weight);
+  letter-spacing: var(--el-label-tracking);
+  text-transform: var(--el-label-case);
+  color: var(--el-mute);
+}
+
+.el-menu .el-menu-item > svg { color: var(--el-mute); }
+.el-menu .el-menu-item:hover > svg, .el-menu .el-menu-item.on > svg { color: var(--el-accent); }
+
+
+/* ── tooltip: CSS-only hover/focus voice ───────────────────────────────────── */
+
+.el-tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.el-tooltip::after {
+  content: attr(data-tip);
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%) translateY(3px);
+  background: color-mix(in oklab, var(--el-bg) 92%, var(--el-panel));
+  border: var(--el-bw) solid var(--el-edge);
+  padding: var(--el-space-1) var(--el-space-2);
+  border-radius: var(--el-r-sm);
+  font-family: var(--el-font-body);
+  font-size: var(--el-fs-sm);
+  font-weight: 500;
+  white-space: nowrap;
+  color: var(--el-ink);
+  opacity: 0;
+  pointer-events: none;
+  box-shadow: var(--el-raise-2), var(--el-hairline);
+  display: none; /* parked bubbles held nowrap layout at opacity 0 and panned the page at every rung (brutal route) */
+  transition: opacity var(--el-dur-fast) var(--el-ease-out), transform var(--el-dur-fast) var(--el-ease-out),
+              display var(--el-dur-fast) allow-discrete;
+  z-index: var(--el-z-tip);
+}
+
+.el-tooltip:hover::after,
+.el-tooltip:focus-within::after,
+.el-tooltip:has(:focus-visible)::after { display: block; opacity: 1; transform: translateX(-50%) translateY(0); }
+
+@starting-style {
+  .el-tooltip:hover::after,
+  .el-tooltip:focus-within::after,
+  .el-tooltip:has(:focus-visible)::after { opacity: 0; transform: translateX(-50%) translateY(3px); }
+}
+
+.el-tooltip--below::after { bottom: auto; top: calc(100% + 6px); transform: translateX(-50%) translateY(-3px); }
+.el-tooltip--below:hover::after, .el-tooltip--below:focus-within::after, .el-tooltip--below:has(:focus-visible)::after { transform: translateX(-50%) translateY(0); }
+
+
+/* ── toast stack: region hosts toasts; entrance + leaving voices ───────────── */
+
+.el-toast-region {
+  position: fixed;
+  inset-block-end: var(--el-space-4);
+  inset-inline-end: var(--el-space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--el-space-2);
+  width: min(340px, calc(100vw - var(--el-space-6)));
+  max-height: calc(100vh - var(--el-space-6));
+  overflow: hidden;
+  z-index: var(--el-z-toast);
+  pointer-events: none;
+}
+
+.el-toast-region--top-left { inset-block-end: auto; inset-inline-end: auto; inset-block-start: var(--el-space-4); inset-inline-start: var(--el-space-4); flex-direction: column; }
+.el-toast-region--top-right { inset-block-end: auto; inset-block-start: var(--el-space-4); }
+.el-toast-region--top-center { inset-block-end: auto; inset-inline-start: 50%; inset-inline-end: auto; inset-block-start: var(--el-space-4); transform: translateX(-50%); }
+.el-toast-region--bottom-left { inset-inline-end: auto; inset-inline-start: var(--el-space-4); }
+.el-toast-region--bottom-center { inset-inline-start: 50%; inset-inline-end: auto; transform: translateX(-50%); }
+
+.el-toast {
+  display: flex;
+  align-items: center;
+  gap: var(--el-space-2);
+  padding: var(--el-space-2) var(--el-space-3);
+  border: var(--el-bw) solid var(--el-edge);
+  border-inline-start: var(--el-bw-2) solid var(--el-line-strong);
+  border-radius: var(--el-r-md);
+  background: color-mix(in oklab, var(--el-panel) 96%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: var(--el-ink);
+  font-family: var(--el-font-body);
+  font-size: var(--el-fs-sm);
+  font-weight: 500;
+  box-shadow: var(--el-raise-2), var(--el-hairline);
+  pointer-events: auto;
+  animation: el-toast-in var(--el-dur-base) var(--el-ease-spring);
+}
+
+.el-toast > span:first-child { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+
+.el-toast.ok   { border-inline-start-color: var(--el-ok); }
+.el-toast.warn { border-inline-start-color: var(--el-warn); }
+.el-toast.fail { border-inline-start-color: var(--el-fail); }
+.el-toast.info { border-inline-start-color: var(--el-info); }
+
+.el-toast > .close {
+  margin-left: auto;
+  cursor: pointer;
+  color: var(--el-ink); /* mute was 1.46:1 on its own chip — fails AA as an interactive control */
+  line-height: 1;
+  padding: 2px 4px;
+  border-radius: var(--el-r-sm);
+  background: transparent; /* UA button defaults put a gray disc under the ✕ (quiet route) */
+  border: 0;
+  transition: color var(--el-dur-fast) var(--el-ease), transform var(--el-dur-fast) var(--el-ease);
+  box-shadow: none;
+}
+
+.el-toast > .close:hover { color: var(--el-ink); background: var(--el-panel-2); transform: scale(1.15); }
+
+.el-toast.is-leaving {
+  animation: el-toast-out var(--el-dur-fast) var(--el-ease) forwards;
+  pointer-events: none; /* fill-mode:forwards freezes it at opacity 0 — it must stop taking clicks (webgl route) */
+}
+
+@keyframes el-toast-in {
+  from { opacity: 0; transform: translateY(10px) scale(0.97); }
+}
+@keyframes el-toast-out {
+  to { opacity: 0; transform: translateY(6px) scale(0.97); }
+}
+
+
+/* ── command palette: centered type-to-run surface ─────────────────────────── */
+
+.el-command {
+  position: fixed;
+  inset: 0;
+  display: none;
+  z-index: var(--el-z-overlay);
+  font-family: var(--el-font-body);
+}
+
+.el-command::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--el-overlay);
+  opacity: 0;
+  transition: opacity var(--el-dur-base) var(--el-ease-out);
+}
+
+.el-command.is-open, .el-command.open { display: grid; place-content: start center; }
+.el-command.is-open::before, .el-command.open::before { opacity: 1; }
+
+.el-command-panel {
+  position: relative;
+  width: min(560px, calc(100vw - var(--el-space-6)));
+  margin-block-start: 12vh;
+  background: color-mix(in oklab, var(--el-panel) 97%, transparent);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: var(--el-bw) solid var(--el-edge);
+  border-radius: var(--el-r-lg);
+  box-shadow: var(--el-raise-3), var(--el-hairline);
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(-10px) scale(0.97);
+  transform-origin: top center;
+  transition: opacity var(--el-dur-base) var(--el-ease-out), transform var(--el-dur-base) var(--el-ease-out);
+}
+
+.el-command.is-open .el-command-panel, .el-command.open .el-command-panel { opacity: 1; transform: translateY(0) scale(1); }
+
+.el-command-input {
+  width: 100%;
+  padding: var(--el-space-3) var(--el-space-4);
+  background: transparent;
+  border: 0;
+  border-block-end: var(--el-bw) solid var(--el-line);
+  color: var(--el-ink);
+  font-family: var(--el-font-body);
+  font-size: var(--el-fs-lg);
+  font-weight: 500;
+  outline: none;
+}
+
+.el-command-input::placeholder { color: var(--el-mute); font-weight: 400; }
+
+.el-command-results {
+  max-height: 46vh;
+  overflow-y: auto;
+  padding: var(--el-space-1);
+  overscroll-behavior: contain;
+}
+
+.el-command-row {
+  display: flex;
+  align-items: center;
+  gap: var(--el-space-3);
+  width: 100%;
+  padding: var(--el-space-2) var(--el-space-3);
+  background: transparent;
+  border: 0;
+  border-radius: var(--el-r-sm);
+  color: var(--el-ink-soft);
+  font-family: var(--el-font-body);
+  font-size: var(--el-fs-md);
+  text-align: start;
+  cursor: pointer;
+  outline: none;
+  transition: background var(--el-dur-fast) var(--el-ease), color var(--el-dur-fast) var(--el-ease);
+}
+
+.el-command-row:hover { background: var(--el-panel-2); }
+.el-command-row.sel {
+  background: var(--el-accent-soft);
+  color: var(--el-ink);
+  box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--el-accent) 30%, transparent);
+}
+.el-command-row .el-command-hint, .el-command-row .key {
+  margin-inline-start: auto;
+  color: var(--el-mute);
+  font-family: var(--el-font-mono);
+  font-size: var(--el-fs-xs);
+  font-variant-numeric: tabular-nums;
+}
+.el-command-row.sel .el-command-hint, .el-command-row.sel .key { color: var(--el-accent); }
+.el-command-row > svg { color: var(--el-mute); }
+.el-command-row.sel > svg { color: var(--el-accent); }
+
+.el-command-group {
+  padding: var(--el-space-2) var(--el-space-3) var(--el-space-1);
+  font-size: var(--el-fs-xs);
+  font-weight: var(--el-label-weight);
+  letter-spacing: var(--el-label-tracking);
+  text-transform: var(--el-label-case);
+  color: var(--el-mute);
+}
+
+.el-command-empty {
+  padding: var(--el-space-4);
+  color: var(--el-mute);
+  font-size: var(--el-fs-sm);
+  text-align: center;
+}
+
+.el-command-foot {
+  display: flex;
+  gap: var(--el-space-3);
+  padding: var(--el-space-2) var(--el-space-3);
+  border-block-start: var(--el-bw) solid var(--el-line);
+  color: var(--el-mute);
+  font-size: var(--el-fs-xs);
+}
+
+.el-command-foot kbd {
+  padding: 1px 5px;
+  border: var(--el-bw) solid var(--el-line-strong);
+  border-block-end-width: var(--el-bw-2);
+  border-radius: var(--el-r-sm);
+  background: var(--el-panel-2);
+  color: var(--el-ink-soft);
+  font-family: var(--el-font-mono);
+  font-size: var(--el-fs-xs);
+  box-shadow: none;
+}
+
+
+/* ── v0.4.0 mobile pass (routed from fan-out agents) ────────────────────────
+   The structural hooks above already park parked-menu ghosts; the touch rung
+   adds what stays layout-bearing at the phone break (drawers translated out of
+   frame inside layout-containment appwins) and the 44px lanes. Everything
+   above stays desktop-stable; no rule here changes a ≥769px view */
+
+@media (max-width: 430px) {
+  .el-drawer:not(.is-open):not(.open) { display: none; }
+  /* nowrap tips flung past the viewport edge when shown; unwrap to the band */
+  .el-tooltip::after { white-space: normal; max-width: calc(100vw - 32px); }
+  /* pinned pop cards flung off-edge at 360 (agent-verified): fixed band */
+  .el-popover .el-pop {
+    position: fixed;
+    left: var(--el-space-3);
+    right: var(--el-space-3);
+    top: auto;
+    bottom: var(--el-space-3);
+    min-width: 0;
+    max-width: none;
+    transform-origin: bottom center;
+  }
+  .el-menu .el-menu-item,
+  .el-command-row { min-height: 44px; }
+  .el-dialog-close,
+  .el-drawer > .el-drawer-head > .close,
+  .el-drawer > .el-drawer-head > [data-drawer-close],
+  .el-toast > .close { min-width: 44px; min-height: 44px; box-sizing: border-box; }
+}
+
+/* reduced motion: overlays fade only — opacity still signals the transition,
+   transforms and delays are dropped rather than re-timed */
+@media (prefers-reduced-motion: reduce) {
+  .el-scrim,
+  dialog.el-dialog, dialog.el-dialog::backdrop,
+  .el-dialog:not(dialog),
+  .el-drawer,
+  .el-popover .el-pop,
+  .el-tooltip::after,
+  .el-menu-anchor > .el-menu,
+  .el-toast, .el-toast > .close,
+  .el-command, .el-command::before, .el-command-panel,
+  .el-menu .el-menu-item, .el-dialog-close, .el-command-row, .el-command-panel {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+}

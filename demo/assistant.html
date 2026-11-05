@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en" data-theme="paper-press">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Assistant · el-framework</title>
+  <link rel="stylesheet" href="../fonts.css">
+  <link rel="stylesheet" href="../tokens.css">
+  <link rel="stylesheet" href="../tokens-v2.css">
+  <link rel="stylesheet" href="../themes.css">
+  <link rel="stylesheet" href="../base.css">
+  <link rel="stylesheet" href="../elements-assistant.css">
+  <link rel="stylesheet" href="../elements-workflow.css">
+  <link rel="stylesheet" href="../elements-controls.css">
+  <link rel="stylesheet" href="../elements-size.css">
+</head>
+<body class="el-reset" style="display:flex;justify-content:center">
+  <header class="el-demo-bar" style="position:fixed;top:0;left:0;right:0">
+    <strong>Assistant</strong>
+    <div id="el-theme-strip" data-theme-strip></div>
+    <a href="index.html">← index</a>
+  </header>
+
+  <main style="margin-top:72px;margin-bottom:64px">
+    <h1>Assistant panel — plan first, cited, stoppable</h1>
+    <div class="el-assistant-panel">
+      <div class="el-assistant-head">Run assistant</div>
+      <div class="el-assistant-log">
+        <div class="el-msg el-msg--user">Deepen the workspace section with stage-transparency patterns.</div>
+        <div class="el-msg el-msg--assistant">
+          <div class="el-plan">
+            <div class="el-plan-title">Proposed refine plan</div>
+            <div class="el-stage-rail el-stage-rail--strip">
+              <div class="el-stage" data-state="done"><span class="el-stage-dot"></span><span class="el-stage-name">2 lanes picked</span></div>
+              <div class="el-stage" data-state="queued"><span class="el-stage-dot"></span><span class="el-stage-name">3 pages scraped</span></div>
+              <div class="el-stage" data-state="queued"><span class="el-stage-dot"></span><span class="el-stage-name">section rewritten</span></div>
+            </div>
+          </div>
+          Plan above — start it, trim it, or cancel.
+        </div>
+        <div class="el-msg el-msg--assistant is-streaming">Compiling the answer with sources<span class="el-cite-inline">[1][2]</span>…</div>
+        <div class="el-msg el-msg--assistant is-unsourced">No sources compiled for that yet — nothing invented to fill the gap.</div>
+      </div>
+      <div class="el-assistant-foot">
+        <button class="el-assistant-stop" data-el-assistant-stop>Stop</button>
+      </div>
+    </div>
+    <p style="max-width:420px;color:var(--el-ink-soft);font-size:0.8rem;margin-top:16px">
+      The streaming cadence is the panel's one generative motion; reduced-motion users get the same
+      message without the pulse.
+    </p>
+  </main>
+
+  <script src="../elements.js"></script>
+  <script src="../elements-workflow.js"></script>
+  <script src="../theme-switcher.js"></script>
+</body>
+</html>

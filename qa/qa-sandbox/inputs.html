@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en" data-theme="neutral">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Input sandbox · el-framework</title>
+<link rel="stylesheet" href="../../fonts.css">
+<link rel="stylesheet" href="../../tokens.css">
+<link rel="stylesheet" href="../../tokens-v2.css">
+<link rel="stylesheet" href="../../base.css">
+<link rel="stylesheet" href="../../elements-structure.css">
+<link rel="stylesheet" href="../../elements-display.css">
+<link rel="stylesheet" href="../../elements-inputs.css">
+<link rel="stylesheet" href="../../elements-controls.css">
+<link rel="stylesheet" href="../../elements-overlay.css">
+</head>
+<body class="el-reset">
+
+<header class="el-demo-bar">
+  <strong>Input sandbox</strong>
+  <span>Group 4 — field anatomy, search, textarea, controls, button variants</span>
+</header>
+
+<main class="el-page">
+
+  <section class="el-section" id="sec-fields">
+    <h2>Field anatomy — .el-field + label / hint / error voice</h2>
+    <div class="el-stack" style="max-width:420px">
+      <label class="el-field">
+        <span class="el-label">Rule path</span>
+        <input class="el-input" id="focus-field" value="auth.login.failed.admin">
+        <span class="el-hint">Dotted path as seen in the last scan</span>
+      </label>
+      <div class="el-field" data-invalid>
+        <span class="el-label">Retention</span>
+        <input class="el-input" value="−1" aria-invalid="true">
+        <span class="el-error">Retention must be a positive count of runs.</span>
+      </div>
+      <div class="el-field">
+        <span class="el-label">Notes</span>
+        <textarea class="el-textarea" placeholder="Multi-line notes…">Observed 4× between 14:02 and 14:05 UTC.</textarea>
+      </div>
+      <textarea class="el-prompt" placeholder="Ask the agent…"></textarea>
+    </div>
+  </section>
+
+  <section class="el-section" id="sec-search">
+    <h2>Search — bare voice, icon voice, bar voice</h2>
+    <div class="el-stack" style="max-width:480px">
+      <div class="el-field">
+        <span class="el-label">Search</span>
+        <span class="el-search-field" id="focus-search">
+          <input class="el-search" placeholder="Search across all sources…" data-autofocus-target>
+        </span>
+      </div>
+      <div class="el-search-bar">
+        <input class="el-search" placeholder="Search findings…">
+        <select class="el-dropdown"><option>All</option><option>SIEM</option></select>
+        <button class="el-btn">Go</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="el-section" id="sec-buttons">
+    <h2>Buttons — variants, states, group</h2>
+    <div class="el-cluster">
+      <button class="el-btn" id="focus-btn">Primary</button>
+      <button class="el-btn">Hover</button>
+      <button class="el-btn" disabled>Disabled</button>
+      <button class="el-btn loading">Loading</button>
+    </div>
+    <div class="el-cluster">
+      <button class="el-btn--ghost el-btn">Ghost</button>
+      <button class="el-btn--outline el-btn" id="focus-outline">Outline</button>
+      <button class="el-btn--squared el-btn">Squared</button>
+      <button class="el-btn--danger el-btn">Danger</button>
+      <button class="el-btn--danger el-btn" disabled>Disabled danger</button>
+    </div>
+    <div class="el-cluster">
+      <div class="el-btn-group">
+        <button class="el-btn">Day</button>
+        <button class="el-btn">Week</button>
+        <button class="el-btn">Month</button>
+      </div>
+      <div class="el-btn-group">
+        <button class="el-btn--ghost el-btn">Aa</button>
+        <button class="el-btn--ghost el-btn bold">Ag</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="el-section" id="sec-selectable">
+    <h2>Selectable — check, radio, switch, toggle, segmented, slider</h2>
+    <div class="el-cluster">
+      <span class="el-check on" role="checkbox" aria-checked="true" tabindex="0"></span>
+      <span class="el-check" role="checkbox" tabindex="0"></span>
+      <span class="el-check indeterminate on" role="checkbox" aria-checked="mixed" tabindex="0"></span>
+      <span class="el-check disabled"></span>
+      <label class="el-check-row" style="display:inline-flex;gap:8px;align-items:center">
+        <span class="el-check"><input type="checkbox" checked></span><span style="font-size:var(--el-fs-sm);font-family:var(--el-font-body)">native pairing</span>
+      </label>
+    </div>
+    <div class="el-cluster">
+      <label class="el-radio"><input type="radio" name="r1" checked><span class="dot"></span>Live</label>
+      <label class="el-radio"><input type="radio" name="r1"><span class="dot"></span>Paused</label>
+      <label class="el-radio"><input type="radio" name="r1" disabled><span class="dot"></span>Stopped (off)</label>
+    </div>
+    <div class="el-cluster">
+      <span class="el-switch on" role="switch" aria-checked="true" tabindex="0"></span>
+      <span class="el-switch" role="switch" tabindex="0"></span>
+      <span class="el-switch disabled"></span>
+      <span class="el-toggle on"></span>
+      <span class="el-toggle"></span>
+    </div>
+    <div class="el-cluster">
+      <div class="el-segmented" role="radiogroup" aria-label="Window">
+        <button class="on">Live</button>
+        <button>1h</button>
+        <button>24h</button>
+        <button disabled>7d</button>
+      </div>
+    </div>
+    <div class="el-range" style="max-width:320px">
+      <input type="range" class="el-slider" min="0" max="100" value="66" style="--el-fill:66%">
+      <span class="val">66</span>
+    </div>
+    <div class="el-cluster" style="max-width:320px">
+      <input type="range" class="el-slider" min="0" max="100" value="42" style="--el-fill:42%">
+    </div>
+  </section>
+
+  <section class="el-section" id="sec-menus">
+    <h2>Menus — native select, dropdown-menu, palette, combobox, multi-select</h2>
+    <div class="el-cluster">
+      <select class="el-dropdown"><option>Option 1</option><option>Option 2</option><option>Option 3</option></select>
+      <select class="el-dropdown" disabled><option>Disabled select</option></select>
+      <div class="el-dropdown-menu open">
+        <span class="trigger" aria-expanded="true" tabIndex="0" id="focus-trigger">Actions ▾</span>
+        <div class="menu" role="menu">
+          <div class="item">Run playbook</div>
+          <div class="item">Acknowledge</div>
+          <div class="sep"></div>
+          <div class="item">Suppress</div>
+          <div class="item">Delete</div>
+        </div>
+      </div>
+    </div>
+    <div class="el-stack" style="max-width:340px">
+      <div class="el-palette">
+        <input class="input" placeholder="Type a command…">
+        <div class="results">
+          <div class="row"><span class="key">/find</span><span>Open findings</span><span>⌘F</span></div>
+          <div class="row sel"><span class="key">/theme</span><span>Switch theme</span><span>⌘T</span></div>
+          <div class="row"><span class="key">/help</span><span>Show help</span><span>⌘?</span></div>
+        </div>
+      </div>
+      <div class="el-multi-select">
+        <span class="pill">siem <span class="x">×</span></span>
+        <span class="pill">honeypot <span class="x">×</span></span>
+        <input placeholder="add source…">
+      </div>
+      <div class="el-combobox open">
+        <input placeholder="Pick a source…">
+        <div class="menu">
+          <div class="opt sel">SearXNG</div>
+          <div class="opt">Cortex</div>
+          <div class="opt">Honeypot</div>
+        </div>
+      </div>
+      <div style="height:120px"></div>
+    </div>
+  </section>
+
+  <section class="el-section" id="sec-shapes">
+    <h2>Input-shaped primitives — upload, swatch, signature, waveform, kbd, code, skeleton</h2>
+    <div class="el-cluster">
+      <label class="el-file-upload" style="width:260px">
+        <span class="icon">⬆</span>
+        <strong>Drop files here</strong>
+        <span class="hint">or click to browse</span>
+      </label>
+      <div class="el-cluster" style="flex-direction:column;align-items:flex-start">
+        <input type="color" class="el-swatch-input" value="#0e7c86">
+        <input class="el-kbd-input" id="focus-kbd" value="⌘K">
+        <canvas class="el-signature-pad" width="240" height="90"></canvas>
+      </div>
+      <div class="el-audio-waveform" style="width:280px">
+        <span class="bar played" style="height:30%"></span>
+        <span class="bar played" style="height:60%"></span>
+        <span class="bar played" style="height:40%"></span>
+        <span class="bar" style="height:50%"></span>
+        <span class="bar" style="height:80%"></span>
+        <span class="bar played" style="height:55%"></span>
+        <span class="bar" style="height:75%"></span>
+      </div>
+    </div>
+    <pre class="el-code-block"><span class="el-comment">// theme-switcher.js</span>
+<span class="el-keyword">function</span> <span class="el-fn">apply</span>(slug) {
+  document.documentElement.dataset.theme = slug;
+}</pre>
+    <span class="el-input-skeleton" style="width:320px"></span>
+  </section>
+
+</main>
+
+<script src="../../elements.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const q = new URLSearchParams(location.search);
+  const focusId = q.get('focus');
+  if (focusId) {
+    const el = document.getElementById(focusId);
+    if (el) el.focus();
+  }
+  if (q.has('focus-search-input')) {
+    const s = document.querySelector('.el-search-field .el-search');
+    if (s) s.focus();
+  }
+});
+</script>
+</body>
+</html>
