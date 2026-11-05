@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="en" data-theme="kinetic-ink"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Review desk — Kinetika</title>
+<link rel="stylesheet" href="../../../base.css"><link rel="stylesheet" href="../../../fonts.css">
+<link rel="stylesheet" href="../../../tokens.css">
+<link rel="stylesheet" href="../../../elements-display.css">
+<link rel="stylesheet" href="../../../elements-structure.css">
+<link rel="stylesheet" href="../../../elements-lists.css">
+<link rel="stylesheet" href="../../../elements-app.css">
+<link rel="stylesheet" href="../../../elements-containers.css">
+<link rel="stylesheet" href="../../../elements-controls.css">
+<link rel="stylesheet" href="../../../elements-inputs.css">
+<link rel="stylesheet" href="../../../elements-dataviz.css">
+<link rel="stylesheet" href="../../../elements-overlay.css">
+<link rel="stylesheet" href="../../../elements-interactions.css">
+<link rel="stylesheet" href="../../../elements-misc.css">
+<link rel="stylesheet" href="../../../elements-size.css">
+<link rel="stylesheet" href="../../../elements-workflow.css">
+<link rel="stylesheet" href="../../../elements-inspector.css">
+<link rel="stylesheet" href="../../../elements-reader.css">
+<link rel="stylesheet" href="../../../elements-assistant.css">
+<link rel="stylesheet" href="../../../themes/src/motion-brand.css">
+<script src="../../../elements.js" defer></script><script src="../../../charts.js" defer></script>
+<style>
+  .kin-desk { display:grid; grid-template-columns:minmax(210px,250px) 1fr 290px; gap:16px; align-items:start; }
+  .kin-desk-main { display:grid; gap:16px; min-width:0; }
+  .kin-side { display:grid; gap:16px; }
+  .kin-appwin { width:100%; }
+  .kin-appwin .el-appwin-body { display:grid; gap:0; }
+  .kin-cols { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  .kin-list { max-height:330px; overflow-y:auto; }
+  .kin-stats { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+  @media (max-width:1180px){ .kin-desk{ grid-template-columns:minmax(210px,250px) 1fr; } .kin-side{ grid-column:1 / -1; grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:820px){ .kin-desk{ grid-template-columns:1fr; } .kin-stats{ grid-template-columns:1fr 1fr; } .kin-cols{ grid-template-columns:1fr; } }
+  /* v0.4.0 mobile pass: desk columns un-pin from the inline grid placement so the
+     1180/820 breakpoints can stack the desk one-handed; below the stack point the
+     shot table swipes in its own rail (auto layout so cells size to their
+     content), while the desktop appwin keeps the family's fixed columns */
+  @media (max-width:1180px){
+    .kin-desk > .kin-desk-main, .kin-desk > .kin-side { grid-column:auto !important; grid-row:auto !important; }
+    .kin-scroll { overflow-x:auto; scrollbar-width:none; }
+    .kin-scroll::-webkit-scrollbar { display:none; }
+    .kin-scroll > .el-table { table-layout:auto !important; width:max-content; min-width:100%; }
+    .kin-scroll td, .kin-scroll th { white-space:nowrap; }
+  }
+  @media (max-width:820px){ .kin-side { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<main class="el-page">
+
+  <nav class="el-navbar el-navbar--top" aria-label="Primary">
+    <a class="brand" href="index.html"><span class="el-bar-mark" aria-hidden="true"></span>Kinetika</a>
+    <div class="links">
+      <a href="index.html">Showreel</a>
+      <a href="catalog.html">Work index</a>
+      <a href="article.html">Journal</a>
+      <a href="account.html">Client space</a>
+      <a href="app.html" aria-current="page">Review desk</a>
+    </div>
+    <div class="actions">
+      <button class="el-btn" data-command-open="#kin-cmd">Commands <span class="el-kbd">⌘K</span></button>
+    </div>
+  </nav>
+
+  <header class="el-hero el-hero--left" style="padding:30px 0 12px;min-height:0">
+    <p class="el-eyebrow">Review desk — loaded workspace</p>
+    <h1 class="el-title-xl" style="font-size:clamp(1.7em,3vw,2.3em)">Night Signal · review round 4</h1>
+    <p class="el-body" style="max-width:70ch">The desk the clients see. Every note is pinned to a frame, every render has a slot,
+    and nothing is approved by mood. Keys <span class="el-kbd">space</span> play, <span class="el-kbd">⌥</span>+click pins, <span class="el-kbd">⌘K</span> opens the palette.</p>
+  </header>
+
+  <div class="kin-appwin el-appwin" id="kin-desk-win">
+    <div class="el-titlebar">
+      <span class="lead"><span class="el-app-title">Kinetika desk <small>— night-signal/round-4</small></span></span>
+      <span class="el-chip live" style="font-size:.72rem;padding:2px 8px">render farm 6B · 3 slots</span>
+      <span class="winbtns">
+        <button class="el-winbtn min" aria-label="Minimize desk"></button>
+        <button class="el-winbtn max" aria-label="Maximize desk"></button>
+        <button class="el-winbtn close" aria-label="Close desk"></button>
+      </span>
+    </div>
+    <nav class="el-menubar">
+      <span class="el-menu-anchor">
+        <button class="el-menubar-item" data-menu="kin-menu-desk" aria-haspopup="true" aria-expanded="false">Desk</button>
+        <div class="el-menu" id="kin-menu-desk">
+          <button class="el-menu-item">Load a cut…</button>
+          <button class="el-menu-item">New review round</button>
+          <button class="el-menu-item" aria-disabled="true">Close desk</button>
+          <button class="el-menu-item" data-menu-keep-open data-toast="Desk shortcut sheet copied to clipboard." data-toast-variant="info">Shortcut sheet</button>
+        </div>
+      </span>
+      <span class="el-menu-anchor">
+        <button class="el-menubar-item" data-menu="kin-menu-cuts" aria-haspopup="true" aria-expanded="false">Cuts</button>
+        <div class="el-menu" id="kin-menu-cuts">
+          <button class="el-menu-item" data-menu-keep-open data-toast="Switched to night-signal v07." data-toast-variant="ok">night-signal v07</button>
+          <button class="el-menu-item" data-menu-keep-open data-toast="Switched to scoreboard state 2." data-toast-variant="ok">scoreboard state 2</button>
+          <button class="el-menu-item" aria-disabled="true">westbound v11 (locked)</button>
+        </div>
+      </span>
+      <span class="el-menu-anchor">
+        <button class="el-menubar-item" data-menu="kin-menu-farm" aria-haspopup="true" aria-expanded="false">Render</button>
+        <div class="el-menu" id="kin-menu-farm">
+          <button class="el-menu-item" data-menu-keep-open data-toast="Farm 6B — 3 of 6 slots busy, eta 41 min." data-toast-variant="info">Farm status</button>
+          <button class="el-menu-item" data-menu-keep-open data-toast="Re-render queued behind pass 2." data-toast-variant="ok">Re-render held shot</button>
+          <button class="el-menu-item" data-menu-keep-open data-toast="Cost report exported for round 4." data-toast-variant="ok">Cost report</button>
+        </div>
+      </span>
+      <span class="el-menubar-sep"></span>
+      <button class="el-menubar-item" data-toast="Desk preferences live in the client space." data-toast-variant="info">Preferences</button>
+      <span class="el-menubar-spring"></span>
+      <span class="el-status-dot live" aria-label="Desk live"></span>
+      <span class="el-mono" style="color:var(--el-ink-soft);font-size:.78rem">TC 00:00:22:04</span>
+    </nav>
+
+    <div class="el-headerbar">
+      <span class="el-headerbar-label">workspace</span>
+      <input class="el-search" type="search" placeholder="Find a shot, pin, or export…" aria-label="Search the desk">
+      <span class="spring"></span>
+      <span class="el-tooltip" data-tip="Pins, resolves, and holds — one row each"><button class="el-btn ghost" data-toast="Night Signal round 4 — 7 pins, 6 resolves, 1 hold." data-toast-variant="info">Round summary</button></span>
+    </div>
+
+    <div class="el-appwin-body" style="padding:16px 16px 18px">
+      <div class="kin-desk">
+
+        <div class="kin-side" style="grid-column:1;grid-row:1">
+          <section class="el-panel">
+            <div class="el-panel-head">Round inbox</div>
+            <div class="el-listbox kin-list" role="listbox" aria-label="Cuts in round 4">
+              <div class="el-listbox-header">awaiting client</div>
+              <button class="el-listbox-row" role="option" aria-selected="true">
+                <span class="icon"><svg class="el-icon" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="2" fill="none"/></svg></span>
+                <span class="label">night-signal v07 · open<b class="sub">Channel Nyn · 1:02 · 3 pins</b></span>
+                <span class="count">R4</span>
+              </button>
+              <button class="el-listbox-row" role="option">
+                <span class="icon"><svg class="el-icon" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="2" fill="none"/></svg></span>
+                <span class="label">scoreboard state 2 <b class="sub">Channel Nyn · 0:06 · 1 pin</b></span>
+                <span class="count">R2</span>
+              </button>
+              <div class="el-listbox-header">reviewing</div>
+              <button class="el-listbox-row" role="option">
+                <span class="icon"><svg class="el-icon" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="2" fill="none"/></svg></span>
+                <span class="label">macro-season reel 04<b class="sub">Fovea Optics · 0:15</b></span>
+                <span class="count">R1</span>
+              </button>
+              <button class="el-listbox-row" role="option" aria-disabled="true">
+                <span class="icon"><svg class="el-icon" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="2" fill="none"/></svg></span>
+                <span class="label">westbound v11 archival<b class="sub">locked · ledger #1204</b></span>
+                <span class="action">🔒</span>
+              </button>
+            </div>
+          </section>
+
+          <ul class="el-ladder">
+            <li class="el-ladder-step is-done"><span class="el-ladder-idx">01</span><span class="el-ladder-label">Boards</span><span class="el-ladder-meta">46 panels</span></li>
+            <li class="el-ladder-step is-done"><span class="el-ladder-idx">02</span><span class="el-ladder-label">Animatic</span><span class="el-ladder-meta">38s locked</span></li>
+            <li class="el-ladder-step is-running"><span class="el-ladder-idx">03</span><span class="el-ladder-label">Plate grade</span><span class="el-ladder-meta">shots 22–31</span></li>
+            <li class="el-ladder-step is-queued"><span class="el-ladder-idx">04</span><span class="el-ladder-label">Masters out</span><span class="el-ladder-meta">Fri 10:00</span></li>
+          </ul>
+        </div>
+
+        <div class="kin-desk-main" style="grid-column:2;grid-row:1">
+
+          <div class="kin-stats">
+            <div class="el-stat">
+              <span class="el-stat-label">Shots approved</span>
+              <span class="el-stat-value">31<span class="unit">/45</span></span>
+              <span class="data-chart" data-chart="sparkline" data-values="12,18,24,27,29,31" data-width="120" data-height="34" data-color="#ff3d7f"></span>
+              <span class="el-stat-sub">+2 this round</span>
+            </div>
+            <div class="el-stat">
+              <span class="el-stat-label">Note pins</span>
+              <span class="el-stat-value">7</span>
+              <span class="data-chart" data-chart="bar" data-values="3,1,4,2,5,7" data-width="120" data-height="34" data-color="#46d8c8"></span>
+              <span class="el-stat-sub">round 4 · 6 resolved</span>
+            </div>
+            <div class="el-stat is-live">
+              <span class="el-stat-label">Farm slots busy</span>
+              <span class="el-stat-value">3<span class="unit">/6</span></span>
+              <div class="el-meter" role="meter" aria-valuenow="50" style="--el-meter-value:50%"><span class="fill"></span></div>
+              <span class="el-stat-sub">eta 41 min · 6B farm</span>
+            </div>
+          </div>
+
+          <div class="el-tabbar" role="tablist" aria-label="Desk views">
+            <button class="el-tabbar-item is-active" role="tab" aria-selected="true">
+              <svg class="el-icon" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="2" fill="none"/></svg>Cut <span class="count">1</span></button>
+            <button class="el-tabbar-item" role="tab"><svg class="el-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="none"/></svg>Pins <span class="count">7</span></button>
+            <button class="el-tabbar-item" role="tab"><svg class="el-icon" viewBox="0 0 24 24"><path d="M4 16v-6h5v6zm8 0V6h5v10z" fill="none"/></svg>Layers <span class="count">12</span></button>
+            <button class="el-tabbar-item" role="tab"><svg class="el-icon" viewBox="0 0 24 24"><path d="M6 4h12v16H6z" fill="none"/></svg>Exports <span class="count">4</span></button>
+          </div>
+
+          <div class="el-actionbar">
+            <span class="lead">
+              <span class="el-headerbar-label">night-signal_v07</span>
+              <span class="el-status-pill running">render slot A</span>
+            </span>
+            <span class="actions">
+              <button class="el-btn ghost" data-toast="Frame pinned at 00:00:22:04 for round 4." data-toast-variant="ok">Pin frame</button>
+              <span class="el-btn-group">
+                <button class="el-btn ghost" data-toast="Round 4 notes compiled — 7 pins, 2 carries." data-toast-variant="info">Send notes</button>
+                <button class="el-btn" data-dialog-open="kin-approval-dialog">Approve cut</button>
+              </span>
+            </span>
+          </div>
+
+          <div class="kin-scroll">
+          <table class="el-table el-table--zebra">
+            <thead><tr><th>Shot</th><th>State</th><th class="num">Render</th><th>Slot</th><th>Pin</th><th></th></tr></thead>
+            <tbody>
+              <tr><td class="el-mono">NS-022 skyline</td><td><span class="el-status-dot ok" aria-label="done"></span>graded</td><td class="num el-mono">00:07</td><td class="el-mono">A</td><td class="el-mono">22:04</td><td><span class="el-tooltip" data-tip="Open the shot in the viewer"><button class="el-btn ghost" style="min-height:28px;padding:2px 10px" data-drawer-open="kin-shot-drawer">view</button></span></td></tr>
+              <tr><td class="el-mono">NS-023 subway bloom</td><td><span class="el-status-dot running" aria-label="rendering"></span>rendering</td><td class="num el-mono">00:34</td><td class="el-mono">A</td><td>—</td><td><span class="el-tooltip" data-tip="Open the shot in the viewer"><button class="el-btn ghost" style="min-height:28px;padding:2px 10px" data-drawer-open="kin-shot-drawer">view</button></span></td></tr>
+              <tr><td class="el-mono">NS-024 signal wipe</td><td><span class="el-status-dot running" aria-label="rendering"></span>rendering</td><td class="num el-mono">01:12</td><td class="el-mono">B</td><td class="el-mono">22:14</td><td><span class="el-tooltip" data-tip="Open the shot in the viewer"><button class="el-btn ghost" style="min-height:28px;padding:2px 10px" data-drawer-open="kin-shot-drawer">view</button></span></td></tr>
+              <tr><td class="el-mono">NS-025 ticker bed</td><td><span class="el-status-dot warn" aria-label="held"></span>typo hold</td><td class="num el-mono">—</td><td class="el-mono">—</td><td class="el-mono">22:22</td><td><span class="el-tooltip" data-tip="Open the shot in the viewer"><button class="el-btn ghost" style="min-height:28px;padding:2px 10px" data-drawer-open="kin-shot-drawer">view</button></span></td></tr>
+            </tbody>
+          </table>
+          </div>
+
+          <div class="kin-cols">
+            <section class="el-panel">
+              <div class="el-panel-head">Farm feed</div>
+              <div class="el-notification-stack">
+                <div class="el-notification">
+                  <span class="icon"><svg class="el-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="none"/></svg></span>
+                  <div><div class="head"><span class="el-mono">slot A</span><span class="when">2m</span></div>
+                  <p class="body">NS-023 subway bloom — pass 2 of 4 tiles.</p></div>
+                </div>
+                <div class="el-notification info">
+                  <span class="icon"><svg class="el-icon" viewBox="0 0 24 24"><path d="M12 3 2 20h20z" fill="none"/></svg></span>
+                  <div><div class="head"><span class="label">typo hold</span><span class="when">14m</span></div>
+                  <p class="body">NS-025 held — kerning fix requested on pin 22:22.</p></div>
+                </div>
+                <div class="el-notification">
+                  <span class="icon"><svg class="el-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="none"/></svg></span>
+                  <div><div class="head"><span class="el-mono">slot B</span><span class="when">just now</span></div>
+                  <p class="body">NS-024 signal wipe started — 112 frames.</p></div>
+                </div>
+              </div>
+              <div class="el-progress-truth" style="margin-top:12px">
+                <span class="el-pt-chunk on"></span><span class="el-pt-chunk on"></span><span class="el-pt-chunk is-running"></span><span class="el-pt-chunk"></span>
+                <span class="el-pt-label"><span class="el-pt-count">2 / 4</span> gates · final rendering</span>
+              </div>
+            </section>
+
+            <section class="el-panel">
+              <div class="el-panel-head">Desk assistant</div>
+              <div class="el-assistant-panel" style="max-width:100%;min-width:0">
+                <div class="el-assistant-head">kin-desk · ask the cut</div>
+                <div class="el-assistant-log">
+                  <div class="el-msg el-msg--assistant">Round 4 has 7 pins. Six resolve this cut; the kerning hold on NS-025 needs type tomorrow morning.</div>
+                  <div class="el-msg el-msg--user">Would Friday hold for masters?</div>
+                  <div class="el-msg el-msg--assistant is-streaming">Yes — farm 6B clears at 16:40, masters out Friday 10:00 as scheduled.</div>
+                </div>
+                <div class="el-assistant-foot">
+                  <input class="el-input" style="flex:1;min-height:32px" placeholder="Ask about frames, slots, pins…">
+                  <button class="el-btn ghost" style="min-height:32px;padding:2px 10px" data-toast="Assistant answers cite the ledger; frames point at the source." data-toast-variant="info">Ask</button>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+
+        <div class="kin-side" style="grid-column:3;grid-row:1">
+          <section class="el-inspector is-docked" aria-label="Shot facts">
+            <div class="el-inspector-header">Shot facts — NS-022 <button class="el-inspector-close" data-drawer-open="kin-shot-drawer" aria-label="Open in viewer">×</button></div>
+            <div class="el-inspector-body" style="display:grid;gap:10px">
+              <span class="el-label">Frame range</span>
+              <span class="el-mono">00:00:21–00:00:26</span>
+              <span class="el-label">Grade</span>
+              <span class="el-body">P3, 0–100 nits · reference strip attached</span>
+              <span class="el-label">Render cost</span>
+              <div class="el-progress" role="progressbar" aria-valuenow="68"><span class="fill" style="width:68%"></span></div>
+              <span class="el-hint" style="color:var(--el-mute);font-size:.8rem">68% of the round budget rendered.</span>
+              <div style="display:flex;gap:8px;flex-wrap:wrap">
+                <button class="el-btn ghost" data-toast="NS-022 re-render queued behind pass 2." data-toast-variant="info">Re-render</button>
+                <button class="el-btn ghost" data-toast="Snapshot downloaded — 3840×2160 PNG." data-toast-variant="ok">Snapshot</button>
+              </div>
+            </div>
+          </section>
+
+          <section class="el-panel">
+            <div class="el-panel-head">Desk clock</div>
+            <div class="el-chart-bar" style="display:block"><span class="data-chart" data-chart="area" data-values="8,10,9,12,14,12,15,13,16,15,17,16" data-width="240" data-height="70" data-color="#ff3d7f"></span></div>
+            <div class="el-meter-label"><span>desk hours used</span><span>round 4</span></div>
+          </section>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="el-actionbar">
+      <span class="lead"><span class="el-headerbar-label">desk status</span> <span class="el-status-pill queued">2 queued</span></span>
+      <span class="actions">
+        <span class="el-tooltip" data-tip="Keyboard: P"><button class="el-btn ghost">Play</button></span>
+        <span class="el-popover"><button class="el-btn ghost">More</button>
+          <div class="el-pop"><h4>Desk actions</h4>
+            <button class="el-btn ghost" style="display:block;width:100%;justify-content:flex-start" data-toast="Round archived to the work index." data-toast-variant="ok">Archive round</button>
+            <button class="el-btn ghost" style="display:block;width:100%;justify-content:flex-start" data-toast="Deck PDF queued — 12 pages." data-toast-variant="info">Export deck</button></div>
+        </span>
+        <button class="el-btn" data-toast="Desk state shared with Mara at Channel Nyn." data-toast-variant="ok">Share desk</button>
+      </span>
+    </div>
+  </div>
+
+  <footer class="el-footer el-footer--plain" style="border-top:1px solid var(--el-line-2);padding-top:20px;margin-top:30px">
+    <div class="small"><span>© 2026 Kinetika LLC · review desk build 2.4.1</span><span><a href="account.html" style="color:var(--el-accent)">desk preferences in the client space</a></span></div>
+  </footer>
+
+  <dialog id="kin-approval-dialog" class="el-dialog el-dialog--narrow">
+    <div class="el-dialog-head"><h3 class="el-dialog-title">Approve night-signal v07</h3>
+      <button class="el-dialog-close" data-dialog-close aria-label="Close">✕</button></div>
+    <div class="el-dialog-body">
+      <label class="el-field"><span class="el-label">Sign off as</span>
+        <input class="el-input" value="Mara Ruiz — supervising producer"></label>
+      <span class="el-check" style="margin-top:10px"><input type="checkbox" checked></span>
+      <span class="el-body" style="font-size:.9em">I have reviewed all 7 pins and accept 6 resolutions.</span>
+      <p class="el-mute-body el-fs-sm" style="margin-top:8px">Approval releases slot A and B to the Masters out gate.</p>
+    </div>
+    <div class="el-dialog-foot">
+      <button class="el-btn ghost" data-dialog-close>Not yet</button>
+      <button class="el-btn" data-dialog-close data-toast="v07 approved — masters gate unlocked." data-toast-variant="ok">Approve</button>
+    </div>
+  </dialog>
+
+  <div id="kin-shot-drawer" class="el-drawer right" role="dialog" aria-label="Shot viewer">
+    <div class="el-drawer-head">Shot viewer — NS-022 skyline<button data-drawer-close style="background:none;border:0;color:inherit;cursor:pointer;font-size:1em" aria-label="Close">✕</button></div>
+    <div class="el-drawer-body">
+      <div class="el-skeleton" style="height:16px;width:64%"></div>
+      <div class="el-skeleton" style="height:16px;width:92%;margin-top:8px"></div>
+      <p class="el-body" style="margin-top:12px;font-size:.92em">Viewer pre-loads the proxy; the graded plate streams in behind it.</p>
+      <div class="el-spinner sm" role="status" aria-label="Loading plate"></div>
+      <p class="el-mute-body el-fs-sm" style="margin-top:6px">plate loading · slot A</p>
+      <div style="display:flex;gap:8px;margin-top:14px;flex-wrap:wrap">
+        <button class="el-btn ghost" data-toast="Frame pinned at 00:00:22:04." data-toast-variant="ok">Pin this frame</button>
+        <button class="el-btn ghost" data-toast="Shot flagged for the next farm window." data-toast-variant="warn">Flag shot</button>
+      </div>
+    </div>
+    <div class="el-drawer-foot"><button class="el-btn ghost" data-drawer-close>Close</button></div>
+  </div>
+
+  <div id="kin-cmd" class="el-command" hidden>
+    <div class="el-command-head"><span class="el-command-icon">⌘</span>
+      <input class="el-command-input" placeholder="Run a desk command…"></div>
+    <div class="el-command-results">
+      <div class="el-command-group">Cut</div>
+      <button class="el-command-row sel"><span>Pin frame at playhead</span><span class="key">⌥click</span></button>
+      <button class="el-command-row"><span>Approve current cut</span><span class="key">⇧A</span></button>
+      <button class="el-command-row"><span>Compile round notes</span><span class="key">⇧N</span></button>
+      <div class="el-command-group">Farm</div>
+      <button class="el-command-row"><span>Re-render NS-025 typo hold</span><span class="key">R</span></button>
+      <button class="el-command-row"><span>Open farm 6B status</span><span class="key">F</span></button>
+      <div class="el-command-group">Desk</div>
+      <button class="el-command-row"><span>Share desk with client</span><span class="key">S</span></button>
+      <button class="el-command-row"><span>Toggle dark plates</span><span class="key">D</span></button>
+    </div>
+    <div class="el-command-empty">No desk command matches.</div>
+    <div class="el-command-foot"><span><span class="el-kbd">↑</span><span class="el-kbd">↓</span> move</span><span><span class="el-kbd">↵</span> run</span><span><span class="el-kbd">esc</span> close</span></div>
+  </div>
+
+  <div class="el-toast-region">
+    <div class="el-toast ok" role="status"><span>Desk synced — 4 windows mirrored to Channel Nyn.</span><span class="close" aria-label="Dismiss">✕</span></div>
+  </div>
+
+</main>
+<script>
+  (function(){
+    document.addEventListener('click', function(e){
+      var t = e.target.closest('.el-menubar-item');
+      if (!t) return;
+      var bar = t.closest('.el-menubar');
+      bar.querySelectorAll('.el-menubar-item').forEach(function(m){ m.setAttribute('aria-expanded','false'); });
+      t.setAttribute('aria-expanded', t.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');
+    });
+    document.addEventListener('click', function(e){
+      var t = e.target.closest('.el-switch');
+      if (!t) return;
+      var on = t.classList.toggle('on');
+      t.setAttribute('aria-checked', on ? 'true' : 'false');
+    });
+  })();
+</script>
+</body></html>

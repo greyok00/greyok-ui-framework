@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en" data-theme="console-light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Postmortem: the 41-minute brownout — Lodestone</title>
+<link rel="stylesheet" href="../../../base.css">
+<link rel="stylesheet" href="../../../fonts.css">
+<link rel="stylesheet" href="../../../tokens.css">
+<link rel="stylesheet" href="../../../tokens-v2.css">
+<link rel="stylesheet" href="../../../elements-display.css">
+<link rel="stylesheet" href="../../../elements-structure.css">
+<link rel="stylesheet" href="../../../elements-lists.css">
+<link rel="stylesheet" href="../../../elements-app.css">
+<link rel="stylesheet" href="../../../elements-containers.css">
+<link rel="stylesheet" href="../../../elements-controls.css">
+<link rel="stylesheet" href="../../../elements-inputs.css">
+<link rel="stylesheet" href="../../../elements-dataviz.css">
+<link rel="stylesheet" href="../../../elements-overlay.css">
+<link rel="stylesheet" href="../../../elements-interactions.css">
+<link rel="stylesheet" href="../../../elements-misc.css">
+<link rel="stylesheet" href="../../../elements-size.css">
+<link rel="stylesheet" href="../../../elements-workflow.css">
+<link rel="stylesheet" href="../../../elements-inspector.css">
+<link rel="stylesheet" href="../../../elements-reader.css">
+<link rel="stylesheet" href="../../../elements-assistant.css">
+<link rel="stylesheet" href="../../../themes/src/dashboard-light.css">
+<script src="../../../elements.js" defer></script>
+<script src="../../../charts.js" defer></script>
+</head>
+<body class="el-reset">
+<div class="site-shell">
+
+  <nav class="el-navbar el-navbar--rail" aria-label="Lodestone">
+    <a class="brand" href="index.html">
+      <span class="brand-mark" aria-hidden="true">L</span>
+      <span class="brand-label">Lodestone</span>
+    </a>
+    <div class="links">
+      <a href="index.html"><svg class="el-icon"><use href="../../../assets/icons.svg#el-i-search"/></svg>Monitor</a>
+      <a href="catalog.html"><svg class="el-icon"><use href="../../../assets/icons.svg#el-i-heart"/></svg>Collectors</a>
+      <a href="article.html" aria-current="page"><svg class="el-icon"><use href="../../../assets/icons.svg#el-i-edit"/></svg>Postmortems</a>
+      <a href="account.html"><svg class="el-icon"><use href="../../../assets/icons.svg#el-i-user"/></svg>Workspace</a>
+      <a href="app.html"><svg class="el-icon"><use href="../../../assets/icons.svg#el-i-external"/></svg>Console</a>
+    </div>
+    <div class="actions">
+      <button class="el-btn" data-toast="Subscribed — postmortems land in your inbox, roughly monthly" data-toast-variant="ok">Subscribe</button>
+    </div>
+    <div class="rail-note">
+      <span>engineer blog · 11 posts</span>
+      <span>no marketing, just graphs</span>
+    </div>
+  </nav>
+
+  <div class="site-main">
+    <main class="el-page">
+      <div class="el-banner el-banner--info" role="note">
+        <span class="glyph" aria-hidden="true"><svg class="el-icon"><use href="../../../assets/icons.svg#el-i-info"/></svg></span>
+        <span class="copy"><strong>Incident 2026-10-17</strong><span class="detail">customer impact: 41 minutes of slow pages, 0 data loss. Published as required by our incident rule #1.</span></span>
+        <button class="close" data-banner-close aria-label="Dismiss"><svg class="el-icon"><use href="../../../assets/icons.svg#el-i-close"/></svg></button>
+      </div>
+
+      <article class="el-reader">
+        <p class="el-eyebrow">Postmortem · published 2026-10-19 · authored by T. Väisänen</p>
+        <h1 style="font-size: clamp(1.9rem, 3vw, 2.6rem);">The 41-minute brownout</h1>
+        <div class="el-reader-meta">Severity SEV-2 · 61% of pdx-1 readers affected · no data loss · resolved 14:52 PT</div>
+
+        <p style="font-size: var(--el-fs-lg); color: var(--el-ink-soft);">A DNS change nobody approved — a <em>preview</em> environment's nameservers leaking into production — sent 61% of our US reader traffic on a 3-second detour through Singapore. This is how it happened, what it cost, and the three changes that make it not happen again.</p>
+
+        <h2>What readers saw</h2>
+        <p>From <strong>14:11 to 14:52 PT</strong>, page weight felt normal but every first byte took 2.9–3.4&nbsp;seconds. Dashboards looked healthy the whole time — p99 latency rose 18×, but CPU, memory and error counts didn't move, so every threshold-based alert stayed dark. Our own anomaly detector caught it in 6 minutes; a human confirmed it in 4 more.</p>
+
+        <div class="el-media-band">
+          <div class="media">
+            <span data-chart="area" data-values="180,190,175,188,182,560,1900,3050,3180,3100,2980,1400,520,240,205,190" data-width="620" data-height="230" data-color="#da1e28" style="width:100%;height:230px;display:block;"></span>
+            <figcaption>fig. 01 — p99 first-byte latency, pdx-1 edge, 14:00–15:30 PT. The red band is the brownout.</figcaption>
+          </div>
+          <div class="body">
+            <span class="lbl">the tell</span>
+            <h2>TCP was fine. DNS was not.</h2>
+            <p>Latency tripled while error rate stayed at 0.04%. That signature — fast TCP, slow names — is exactly what the anomaly detector now watches for, because a threshold on any single metric here would have stayed silent.</p>
+            <div class="actions">
+              <span class="el-progress" data-animate-to="92" style="flex: 1; max-width: 320px;"><span class="fill" style="width: 18%;"></span></span>
+              <span class="el-stat-delta up">92% of the fix is verified</span>
+            </div>
+          </div>
+        </div>
+
+        <h2>Timeline, in the times that matter</h2>
+        <ul class="el-timeline">
+          <li><span class="when">14:09:40</span><span class="what">A preview-nameserver change ships alongside a feature flag, unreviewed. <span class="el-badge">caused by</span></span></li>
+          <li><span class="when">14:11:03</span><span class="what">TTL of 300s expires. Readers on resolvers that obey TTL begin the Singapore detour.</span></li>
+          <li><span class="when">14:16:12</span><span class="what">Anomaly detector flags p99/first-byte divergence. Human ack at 14:19. <span class="el-badge">detected</span></span></li>
+          <li><span class="when">14:24:44</span><span class="what">Mitigation attempted: flag rollback — does not propagate due to TTL pinning.</span></li>
+          <li><span class="when">14:39:02</span><span class="what">Correct fix: pin pdx-1 resolvers to the prod nameservers. Effective ~2 min.</span></li>
+          <li><span class="when">14:52:00</span><span class="what">p99 back under 200 ms for all readers. Incident closed at SEV-3 (downgrade). <span class="el-badge">resolved</span></span></li>
+        </ul>
+
+        <h2>The part we got wrong by design</h2>
+        <p>Our review tooling let a change in the <code class="el-inline-code">dns.zone</code> file ride along with an application feature flag because the diff line count was small. Review fatigue is real: median review size that week was 4 lines. Small diffs get shallow review, so zone files now require a second, structural review regardless of diff size.</p>
+        <p>The mitigation playbook now pins nameservers per region, and the preview/prod boundary moved into infrastructure: nameserver sets are declared once, and the deployer literally cannot mint a new set outside the staging namespace. The <code class="el-inline-code">TTL</code> on prod NS records dropped from 300s to 60s — the brownout class of incident now self-resolves in minutes, without a human.</p>
+
+        <h3>What changed, permanently</h3>
+        <div class="el-fact-grid" style="grid-template-columns: repeat(auto-fit, minmax(128px, 1fr)); gap: var(--el-space-3);">
+          <div class="el-fact"><span class="k">review rule</span><span class="v">2nd struct. review</span></div>
+          <div class="el-fact is-hot"><span class="k">prod NS TTL</span><span class="v">60s</span></div>
+          <div class="el-fact"><span class="k">new alert</span><span class="v">DNS drift</span></div>
+          <div class="el-fact"><span class="k">runbooks updated</span><span class="v">3</span></div>
+        </div>
+
+        <h2>Progress against the fixes</h2>
+        <div style="display:grid; gap: var(--el-space-3); margin-top: var(--el-space-3);">
+          <div>
+            <div class="el-stat-row"><span>Structural boundary: nameserver sets declared once</span><span class="el-status-pill ok" data-state="ok">shipped</span></div>
+            <div class="el-progress" data-animate-to="100"><span class="fill" style="width: 100%;"></span></div>
+          </div>
+          <div>
+            <div class="el-stat-row"><span>DNS-drift detector in all regions</span><span class="el-status-pill running" data-state="running">rolling out</span></div>
+            <div class="el-progress" data-animate-to="72"><span class="fill" style="width: 72%;"></span></div>
+          </div>
+          <div>
+            <div class="el-stat-row"><span>TTL drop verified at every resolver class</span><span class="el-status-pill queued" data-state="idle">queued</span></div>
+            <div class="el-progress" data-animate-to="35"><span class="fill" style="width: 35%;"></span></div>
+          </div>
+        </div>
+
+        <h2>Sources and receipts</h2>
+        <div class="el-citation-rail">
+          <div class="el-cite"><span class="n">1</span><a href="#">Change-request CR-88412: "preview nameservers for EU load tests" (merged 13:21 PT)</a></div>
+          <div class="el-cite"><span class="n">2</span><a href="#">Anomaly event #20-4471 — p99/first-byte divergence, pdx-1, opened 14:16:12</a></div>
+          <div class="el-cite"><span class="n">3</span><a href="#">Customer reports: 31 tickets timed to the window; all closed with a 41-minute SLA statement</a></div>
+        </div>
+        <div class="source-cards-row" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: var(--el-space-3); margin-top: var(--el-space-3);">
+          <a class="el-source-card" href="#"><span class="src">incident log</span><span class="ttl">Full chat transcript, sanitized</span><span class="snip">18 messages; includes the 14:31 moment mitigation was ruled out.</span></a>
+          <a class="el-source-card" href="#"><span class="src">graph pack</span><span class="ttl">p99 by resolver class</span><span class="snip">Shows resolver classes that obeyed TTL vs ignored it.</span></a>
+          <a class="el-source-card is-cited" href="#"><span class="src">policy</span><span class="ttl">Incident rule #1</span><span class="snip">Every SEV-2 publishes a postmortem within 72 hours. No exceptions.</span></a>
+        </div>
+
+        <div class="el-panel" style="margin-top: var(--el-space-5);">
+          <div class="el-panel-head">the one-line version</div>
+          <p style="margin: 0; max-width: var(--el-measure, 62ch);">DNS previews are load-bearing now. They get structural review, a pinned prod set, and a 60-second TTL so the worst case is minutes, not 41. Meanwhile the fleet kept reporting — 3,214 collectors, zero lost points, which is the only part of this page we're proud of.</p>
+        </div>
+      </article>
+
+      <footer class="el-footer">
+        <div class="cols">
+          <div class="col"><span class="label">Product</span><a href="index.html">Monitor</a><a href="catalog.html">Signals</a><a href="app.html">Console</a></div>
+          <div class="col"><span class="label">Read</span><a href="article.html">Postmortems</a><a href="article.html">Data stories</a></div>
+          <div class="col"><span class="label">Fleet</span><a href="account.html">Workspace settings</a><a href="account.html">Billing</a></div>
+          <div class="col"><span class="label">Fine print</span><a href="#">Status</a><a href="#">Security</a></div>
+        </div>
+        <div class="small">© 2026 Lodestone Instruments Inc. · postmortem #PM-1042 · next review 2027-01-17</div>
+        <div class="colophon">"Observe kindly."</div>
+      </footer>
+    </main>
+  </div>
+</div>
+
+<script>
+window.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('[data-banner-close]').forEach(b =>
+    b.addEventListener('click', () => b.closest('.el-banner')?.classList.add('is-dismissed')));
+});
+</script>
+</body>
+</html>

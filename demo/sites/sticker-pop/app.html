@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="en" data-theme="sticker-pop">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sticker Board — Wiggleworks app</title>
+<link rel="stylesheet" href="../../../base.css">
+<link rel="stylesheet" href="../../../fonts.css">
+<link rel="stylesheet" href="../../../tokens.css">
+<link rel="stylesheet" href="../../../elements-display.css">
+<link rel="stylesheet" href="../../../elements-structure.css">
+<link rel="stylesheet" href="../../../elements-lists.css">
+<link rel="stylesheet" href="../../../elements-app.css">
+<link rel="stylesheet" href="../../../elements-containers.css">
+<link rel="stylesheet" href="../../../elements-controls.css">
+<link rel="stylesheet" href="../../../elements-inputs.css">
+<link rel="stylesheet" href="../../../elements-dataviz.css">
+<link rel="stylesheet" href="../../../elements-overlay.css">
+<link rel="stylesheet" href="../../../elements-interactions.css">
+<link rel="stylesheet" href="../../../elements-misc.css">
+<link rel="stylesheet" href="../../../elements-size.css">
+<link rel="stylesheet" href="../../../elements-workflow.css">
+<link rel="stylesheet" href="../../../elements-inspector.css">
+<link rel="stylesheet" href="../../../elements-reader.css">
+<link rel="stylesheet" href="../../../elements-assistant.css">
+<link rel="stylesheet" href="../../../themes/src/illustration.css">
+<script src="../../../elements.js" defer></script>
+<script src="../../../charts.js" defer></script>
+</head>
+<body style="padding:12px;">
+<div class="el-page el-page--flush">
+
+  <main>
+    <div class="el-appwin">
+      <div class="el-titlebar">
+        <span class="lead"><span class="el-status-dot live" aria-hidden="true"></span><span class="el-hint" style="margin:0;">sticker library &middot; belmont print plant</span></span>
+        <div class="el-app-title">Sticker Board <small>the bumblefluffs</small></div>
+        <div class="winbtns">
+          <span class="el-tooltip" data-tip="Minimize the board" tabindex="0">
+            <button class="el-winbtn min" type="button" aria-label="Minimize"></button>
+          </span>
+          <button class="el-winbtn max" type="button" aria-label="Maximize"></button>
+          <button class="el-winbtn close" type="button" aria-label="Close"></button>
+        </div>
+      </div>
+
+      <div class="el-menubar" role="menubar">
+        <div class="el-menu-anchor" style="position:relative;">
+          <button class="el-menubar-item" data-menu="cast-menu" aria-expanded="false">Cast</button>
+          <div class="el-menu" id="cast-menu" role="menu">
+            <div class="el-menu-label">Beasts</div>
+            <button class="el-menu-item" type="button">Bomble <span class="hint">11 reprints</span></button>
+            <button class="el-menu-item" type="button">Mrs. Peach <span class="hint">sold out 2&times;</span></button>
+            <button class="el-menu-item" type="button">Zumbly <span class="hint">2D</span></button>
+            <div class="el-menu-sep" role="separator"></div>
+            <button class="el-menu-item is-danger" type="button" data-toast="Retirement draft saved — Query stays a proof sheet" data-toast-variant="fail">Retire a beast…</button>
+          </div>
+        </div>
+        <button class="el-menubar-item" type="button">Sheets</button>
+        <button class="el-menubar-item" type="button" data-command="board-cmd">Commands</button>
+        <div class="el-menubar-sep" role="separator"></div>
+        <div class="el-menubar-spring"></div>
+        <span class="el-status-pill running" style="margin-right:8px;">2 sheets in press</span>
+      </div>
+
+      <div class="el-headerbar">
+        <span class="el-headerbar-label">Sheet press &middot; this week</span>
+        <span class="spring"></span>
+        <div class="el-popover">
+          <button class="el-btn el-btn--outline" type="button" aria-expanded="false">Filter</button>
+          <div class="el-pop">
+            <h4>Filter the press list</h4>
+            <label class="check-row" style="display:inline-flex;align-items:center;gap:8px;"><span class="el-check on"><input type="checkbox" checked aria-label="only coral plates"></span>
+            <span style="font-size:var(--el-fs-sm);">coral plates only</span></label>
+          </div>
+        </div>
+        <label class="el-search-field">
+          <input class="el-search" type="search" placeholder="Search sheets" aria-label="Search sheets">
+        </label>
+        <span class="el-tooltip" data-tip="Open the beast in the sticker library" tabindex="0">
+          <button class="el-btn" type="button">Open library</button>
+        </span>
+      </div>
+
+      <div class="el-appwin-body pane-split">
+        <aside class="el-sidebar pane-rail">
+          <div class="head">
+            <span class="brand">The Bumblefluffs</span>
+            <button class="toggle" type="button" aria-label="Collapse sidebar"><span class="chev">&#8964;</span></button>
+          </div>
+          <div class="grp">
+            <span class="label">Library</span>
+            <button type="button" aria-current="page">Sheets</button>
+            <button type="button">Beasts</button>
+            <button type="button">Proof room</button>
+          </div>
+          <div class="grp">
+            <span class="label">Press</span>
+            <button type="button">Plates <span class="el-badge" style="margin-left:auto;">4</span></button>
+            <button type="button">Mail runs</button>
+          </div>
+          <div class="end"><span class="el-hint" style="margin:0;">press day thursday</span></div>
+        </aside>
+
+        <div class="pane-main">
+          <div class="el-stat-row stat-3up">
+            <div class="el-stat">
+              <span class="el-stat-label">sheets at press</span>
+              <span class="el-stat-value">18,204<small>&nbsp;packs</small></span>
+              <span class="el-stat-delta up">12%</span>
+              <span class="el-sparkline el-chart" data-chart="sparkline" data-values="900,1100,1200,1300,1500,1600,1700,1900" data-width="110" data-height="26" data-color="var(--el-accent-ink)"></span>
+            </div>
+            <div class="el-stat">
+              <span class="el-stat-label">coral plate pass rate</span>
+              <span class="el-stat-value">91.6<small>%</small></span>
+              <span class="el-stat-delta up">2.2pt</span>
+              <span class="el-chart" data-chart="line" data-values="84,86,88,87,89,90,91,92" data-width="110" data-height="26" data-color="var(--el-accent-ink)" data-label="pass rate"></span>
+            </div>
+            <div class="el-stat is-live">
+              <span class="el-stat-label">proof room</span>
+              <span class="el-stat-value">2</span>
+              <span class="el-stat-note">plate 4 &middot; sunflower queued thursday</span>
+            </div>
+          </div>
+
+          <div class="el-progress-truth" aria-label="season pipeline">
+            <span class="el-pt-chunk is-done">board &#10003; <span class="el-pt-count">12/12</span></span>
+            <span class="el-pt-chunk is-done">pencil &#10003; <span class="el-pt-count">74/74</span></span>
+            <span class="el-pt-chunk is-running">color <span class="el-pt-count">61/74</span></span>
+            <span class="el-pt-chunk is-stale">mix <span class="el-pt-count">8/74 stale</span></span>
+            <span class="el-pt-chunk">press <span class="el-pt-count">0/74</span></span>
+          </div>
+
+          <div class="el-stage-rail">
+            <div class="el-stage is-done"><span class="el-stage-dot"></span><span class="el-stage-name">Storyboard wall</span><span class="el-dur">12 panels</span></div>
+            <div class="el-stage is-running"><span class="el-stage-dot"></span><span class="el-stage-name">Color pass &middot; showroom</span><span class="el-stage-count">61/74</span></div>
+            <div class="el-stage is-queued"><span class="el-stage-dot"></span><span class="el-stage-name">Press &middot; plate 5</span><span class="el-stage-count">thu</span></div>
+            <div class="el-stage is-stale"><span class="el-stage-dot"></span><span class="el-stage-name">Mix &middot; kazoo credit</span><span class="el-stage-count">credit line missing</span></div>
+          </div>
+
+          <table class="el-table el-table--zebra">
+            <thead><tr><th scope="col">Sheet</th><th scope="col">Beast</th><th scope="col">Press state</th><th scope="col" class="num">Packs</th><th scope="col">&#9654; 12wk</th></tr></thead>
+            <tbody>
+              <tr class="is-selected"><td class="num">B-01</td><td>Bomble</td><td><span class="el-status-dot running" aria-hidden="true"></span> <span class="el-status-pill running">on press</span></td><td class="num">4,118</td><td><span class="el-sparkline el-chart" data-chart="sparkline" data-values="300,340,380,410,450,470,500,510" data-width="90" data-height="22" data-color="var(--el-accent-ink)"></span></td></tr>
+              <tr><td class="num">P-02</td><td>Mrs. Peach</td><td><span class="el-badge ok">printed</span></td><td class="num">3,206</td><td><span class="el-chart" data-chart="bar" data-values="260,300,320,260,280,310,330,360" data-width="90" data-height="22" data-color="var(--el-accent-ink)"></span></td></tr>
+              <tr><td class="num">Z-03</td><td>Zumbly</td><td><span class="el-badge warn">proofing</span></td><td class="num">1,844</td><td><span class="el-chart" data-chart="line" data-values="150,180,190,210,200,220,240,230" data-width="90" data-height="22" data-color="var(--el-accent-ink)" data-label="packs"></span></td></tr>
+              <tr><td class="num">G-04</td><td>Grumble</td><td><span class="el-badge ok">printed</span></td><td class="num">2,910</td><td><span class="el-chart" data-chart="donut" data-values="74,26" data-width="22" data-height="22" data-color="var(--el-accent-ink)"></span></td></tr>
+              <tr><td class="num">W-05</td><td>Wrinkle</td><td><span class="el-badge">queued</span></td><td class="num">2,244</td><td><span class="el-sparkline el-chart" data-chart="sparkline" data-values="220,240,230,250,270,260,280,290" data-width="90" data-height="22" data-color="var(--el-accent-ink)"></span></td></tr>
+              <tr><td class="num">Q-06</td><td>Query</td><td><span class="el-status-dot warn" aria-hidden="true"></span> <span class="el-status-pill warn">name pending</span></td><td class="num">—</td><td><span style="display:inline-flex;gap:4px;"><span class="el-skeleton" style="width:34px;height:14px;"></span><span class="el-skeleton" style="width:22px;height:14px;"></span></span></td></tr>
+            </tbody>
+          </table>
+
+          <div class="el-cluster panel-duo">
+            <div class="el-panel" style="padding:var(--el-space-3);">
+              <h3 style="margin:0 0 10px;font-size:var(--el-fs-md);">Plate pressure</h3>
+              <div class="el-meter" style="--el-meter-value:64%;"><div class="fill"></div></div>
+              <span class="el-meter-label">coral plate &middot; 64% &middot; ok</span>
+              <div class="el-meter ok" style="--el-meter-value:88%;margin-top:10px;"><div class="fill"></div></div>
+              <span class="el-meter-label">leaf plate &middot; 88% &middot; ok</span>
+              <div class="el-meter warn" style="--el-meter-value:96%;margin-top:10px;"><div class="fill"></div></div>
+              <span class="el-meter-label">sunflower plate &middot; 96% &middot; thursday rollover</span>
+              <div class="el-progress" data-animate-to="0" style="margin-top:12px;"><div class="fill" style="width:82%;"></div></div>
+              <span class="el-meter-label">season color pass &middot; 82% of 74 shots</span>
+            </div>
+            <div class="el-panel" style="padding:var(--el-space-3);">
+              <h3 style="margin:0 0 10px;font-size:var(--el-fs-md);">Print run ladder &middot; sheet B-01</h3>
+              <div class="el-ladder" style="min-width:0;">
+                <div class="el-ladder-step is-done"><span class="el-ladder-idx">01</span><span class="el-ladder-label">Coral plate</span><span class="el-ladder-meta">passed</span></div>
+                <div class="el-ladder-step is-done"><span class="el-ladder-idx">02</span><span class="el-ladder-label">Leaf plate</span><span class="el-ladder-meta">passed</span></div>
+                <div class="el-ladder-step is-running"><span class="el-ladder-idx">03</span><span class="el-ladder-label">Sunflower plate</span><span class="el-ladder-meta">2m ago</span></div>
+                <div class="el-ladder-step"><span class="el-ladder-idx">04</span><span class="el-ladder-label">Die-cut + kiss liner</span><span class="el-ladder-meta">queued</span></div>
+                <div class="el-ladder-step is-stale"><span class="el-ladder-idx">05</span><span class="el-ladder-label">Pack &amp; label B-01</span><span class="el-ladder-meta">label draft</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="el-actionbar">
+            <span class="lead"><span class="el-hint" style="margin:0;">sheet B-01 &middot; bomble &middot; plate 4 of 5</span></span>
+            <div class="el-menu-anchor" style="position:relative;">
+              <button class="el-btn el-btn--outline" type="button" data-menu="row-menu" aria-expanded="false">Row actions &#9662;</button>
+              <div class="el-menu" id="row-menu" role="menu">
+                <button class="el-menu-item on" type="button">Hold at plate 4</button>
+                <button class="el-menu-item" type="button" data-toast="Reprint authorized for B-01" data-toast-variant="info">Authorize reprint</button>
+                <div class="el-menu-sep" role="separator"></div>
+                <button class="el-menu-item is-danger" type="button" data-toast="Plate halted — 8 sheets of stock saved" data-toast-variant="fail">Stop the press</button>
+              </div>
+            </div>
+            <div class="actions">
+              <button class="el-btn el-btn--ghost" type="button" data-drawer-open="cast-drawer-app">Open dossier</button>
+              <button class="el-btn el-btn--outline" type="button" data-toast="Proof queued for the showroom table" data-toast-variant="info">Queue proof</button>
+              <button class="el-btn" type="button" data-toast="18,204 packs scheduled for Thursday mail" data-toast-variant="ok">Schedule mail run</button>
+            </div>
+          </div>
+
+          <div class="el-tabbar" role="tablist" style="margin-top:auto;">
+            <button class="el-tabbar-item is-active" role="tab" aria-selected="true" type="button"><span class="el-icon">&#9638;</span>Sheets</button>
+            <button class="el-tabbar-item" role="tab" type="button"><span class="el-icon">&#9638;</span>Beasts</button>
+            <button class="el-tabbar-item" role="tab" type="button"><span class="el-icon">&#9638;</span>Press&nbsp;<span class="count">2</span></button>
+            <button class="el-tabbar-item" role="tab" aria-disabled="true" type="button"><span class="el-icon">&#9638;</span>Proof room</button>
+          </div>
+        </div>
+
+        <aside class="pane-aside">
+          <div class="el-listbox" role="listbox" aria-label="Press queue">
+            <div class="el-listbox-header">Press queue &middot; plate 4</div>
+            <button class="el-listbox-row" role="option" aria-selected="false" type="button"><svg viewBox="0 0 16 16" width="14" height="14" fill="currentColor" aria-hidden="true"><rect x="2" y="2" width="12" height="12"/></svg><span>B-01 &middot; coral</span><span class="count">41s</span></button>
+            <button class="el-listbox-row" role="option" aria-selected="true" type="button"><svg viewBox="0 0 16 16" width="14" height="14" fill="currentColor" aria-hidden="true"><rect x="2" y="2" width="12" height="12"/></svg><span>P-02 &middot; leaf</span><span class="count">52s</span></button>
+            <button class="el-listbox-row" role="option" aria-selected="false" type="button"><span>Z</span><span>Z-03 &middot; coral</span><span class="count">1:04</span></button>
+            <button class="el-listbox-row" role="option" aria-selected="false" type="button" aria-disabled="true"><span>Q</span><span>Q-06 &middot; proof only</span><span class="count">legal</span></button>
+            <button class="el-listbox-row" role="option" aria-selected="false" type="button"><span class="el-skeleton" style="width:56px;height:8px;display:inline-block;"></span><span class="el-skeleton" style="width:80px;height:8px;display:inline-block;margin-left:auto;"></span></button>
+          </div>
+
+          <div class="el-inspector el-inspector--docked is-docked" aria-label="Sheet inspector">
+            <div class="el-inspector-header"><span>Sheet inspector</span><button class="el-inspector-close" type="button" aria-label="Hide inspector">&times;</button></div>
+            <div class="el-inspector-body">
+              <p style="margin-top:0;font-size:var(--el-fs-sm);color:var(--el-ink-soft);">B-01 is the flagship sheet. Three ink plates, die-cut, and the hum note is part of the spec.</p>
+              <div class="el-fact-grid facts-2">
+                <div class="el-fact"><span class="k">reprints</span><span class="v">11</span></div>
+                <div class="el-fact is-hot"><span class="k">packs wk</span><span class="v">4,118</span></div>
+              </div>
+              <label class="el-field" style="margin-top:var(--el-space-3);">
+                <span class="el-label">Hold until</span>
+                <select class="el-select" style="padding:8px 12px;border-radius:var(--el-r-md);font-size:var(--el-fs-sm);">
+                  <option>Thursday press</option><option>Next pack</option>
+                </select>
+              </label>
+            </div>
+          </div>
+
+          <div class="el-notification-stack" aria-label="Press notifications">
+            <article class="el-notification running">
+              <span class="icon"><span class="el-icon">&#9654;</span></span>
+              <div class="head"><span class="title">Sunflower plate slow</span><span class="app">sticker-board</span>
+                <button class="close" type="button" aria-label="Dismiss notification">&times;</button></div>
+              <div class="body">Z-03 sunflower plate is 2m over plan. Thursday mail still holds unless it slips twice more.</div>
+              <span class="time">2m ago</span>
+              <div class="actions"><button type="button" data-toast="Proof re-queued for Z-03" data-toast-variant="info">Re-queue proof</button><button type="button">View plate</button></div>
+            </article>
+            <article class="el-notification fail">
+              <span class="icon"><span class="el-icon">&#215;</span></span>
+              <div class="head"><span class="title">Kazoo credit still missing</span><span class="app">sticker-board</span>
+                <button class="close" type="button" aria-label="Dismiss notification">&times;</button></div>
+              <div class="body">The print shop requires the full name on every lake-song press sheet. Mix stays warm until it lands.</div>
+              <span class="time">8m ago</span>
+              <div class="actions"><button type="button">Open mix desk</button></div>
+            </article>
+            <article class="el-notification ok">
+              <span class="icon"><span class="el-icon">&#10003;</span></span>
+              <div class="head"><span class="title">Coral plate passed</span><span class="app">sticker-board</span>
+                <button class="close" type="button" aria-label="Dismiss notification">&times;</button></div>
+              <div class="body">Proof 4 signed at the showroom table; 61 of 74 shots through color</div>
+              <span class="time">31m ago</span>
+            </article>
+          </div>
+
+          <div class="el-toast-region" role="status" aria-live="polite">
+            <div class="el-toast ok"><span>Thursday mail holds — plate 4 back on plan</span><span class="close" aria-label="Dismiss">&times;</span></div>
+            <div class="el-toast warn"><span>Q-06 name check with legal until Friday</span><span class="close" aria-label="Dismiss">&times;</span></div>
+          </div>
+
+          <div class="el-assistant-panel" aria-label="Bumblebot assistant">
+            <div class="el-assistant-head">Bumblebot</div>
+            <div class="el-assistant-log">
+              <div class="el-msg el-msg--assistant">
+                Coral plate is back on plan and Thursday mail holds. The one open risk is the kazoo credit on the lake song — mix stays warm until the print shop's name is on the sheet. <span class="el-cite-inline">[1][2]</span>
+              </div>
+              <div class="el-msg el-msg--user">Draft the mail run without the Z-03 sunflower pack.</div>
+              <div class="el-msg el-msg--assistant is-streaming">Drafting the split run…<span class="el-cite-inline">[1]</span></div>
+              <div class="el-plan">
+                <div class="el-plan-title">Plan &middot; split Thursday mail</div>
+                <div class="el-ladder-step is-done"><span class="el-ladder-idx">1</span><span class="el-ladder-label">Hold Z-03 at proof</span><span class="el-ladder-meta">ready</span></div>
+                <div class="el-ladder-step is-running"><span class="el-ladder-idx">2</span><span class="el-ladder-label">Ship B-01 through P-02</span><span class="el-ladder-meta">waiting your OK</span></div>
+              </div>
+            </div>
+            <div class="el-assistant-foot">
+              <span class="el-hint" style="margin:0;">cited from the press ledger &middot; no sources = it says so</span>
+              <button class="el-assistant-stop" type="button">Stop</button>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </main>
+
+</div>
+
+<dialog class="el-dialog" id="new-cast-dialog">
+  <div class="el-dialog-head">
+    <h3 class="el-dialog-title">Add a beast to the press</h3>
+    <button class="el-dialog-close" type="button" aria-label="Close" data-dialog-close>&times;</button>
+  </div>
+  <form class="el-dialog-body" method="dialog">
+    <p style="margin-top:0;">New beasts start as proof sheets. Legal sees the name first; the porch sees them never.</p>
+    <label class="el-field">
+      <span class="el-label">Beast name (working title is fine)</span>
+      <input class="el-input" type="text" placeholder="e.g. Query">
+      <span class="el-hint">Q-06 got its name from a coffee order. It did not stick.</span>
+    </label>
+  </form>
+  <div class="el-dialog-foot">
+    <button class="el-btn el-btn--ghost" type="button" data-dialog-close>Not yet</button>
+    <button class="el-btn" type="button" data-toast="Beast added as a proof sheet — legal notified" data-toast-variant="ok" data-dialog-close>Add as proof sheet</button>
+  </div>
+</dialog>
+
+<aside class="el-drawer right" id="cast-drawer-app" aria-label="Sheet dossier" data-scrim="board-scrim">
+  <div class="el-drawer-head"><strong>Sheet B-01 &middot; dossier</strong></div>
+  <div class="el-drawer-body">
+    <p style="margin-top:0;">The flagship. Three ink plates, die-cut, and the hum note printed in E flat on the liner.</p>
+    <div class="el-fact-grid stat-3up">
+      <div class="el-fact"><span class="k">plates</span><span class="v">3</span></div>
+      <div class="el-fact"><span class="k">packs</span><span class="v">4,118</span></div>
+      <div class="el-fact is-hot"><span class="k">reprints</span><span class="v">11</span></div>
+    </div>
+  </div>
+  <div class="el-drawer-foot">
+    <button class="el-btn el-btn--ghost" type="button" data-drawer-close="cast-drawer-app">Close</button>
+    <button class="el-btn" type="button" data-toast="Mail run scheduled for sheet B-01" data-toast-variant="ok">Schedule mail</button>
+  </div>
+</aside>
+<div class="el-scrim" id="board-scrim" data-dialog-scrim></div>
+
+<div class="el-command" id="board-cmd" role="dialog" aria-label="Command bar">
+  <div class="el-command-panel">
+    <input class="el-command-input" type="text" placeholder="Type a command… (proof, reprint, mail)" aria-label="Command input">
+    <div class="el-command-results">
+      <div class="el-command-group">Press</div>
+      <button class="el-command-row sel" type="button">Queue proof for Z-03 <span class="el-command-hint">P</span></button>
+      <button class="el-command-row" type="button">Schedule Thursday mail <span class="el-command-hint">M</span></button>
+      <div class="el-command-group">Library</div>
+      <button class="el-command-row" type="button">Open sheet B-01 dossier <span class="el-command-hint">B</span></button>
+      <div class="el-command-empty">No command by that name — the porch has plenty.</div>
+    </div>
+    <div class="el-command-foot">arrows to move &middot; enter to run &middot; esc to close</div>
+  </div>
+</div>
+
+</body>
+</html>

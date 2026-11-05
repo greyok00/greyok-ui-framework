@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="en" data-theme="gesshoku">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gesshoku · a quiet room for work</title>
+<link rel="stylesheet" href="../../../base.css">
+<link rel="stylesheet" href="../../../fonts.css">
+<link rel="stylesheet" href="../../../tokens.css">
+<link rel="stylesheet" href="../../../elements-display.css">
+<link rel="stylesheet" href="../../../elements-structure.css">
+<link rel="stylesheet" href="../../../elements-lists.css">
+<link rel="stylesheet" href="../../../elements-app.css">
+<link rel="stylesheet" href="../../../elements-containers.css">
+<link rel="stylesheet" href="../../../elements-controls.css">
+<link rel="stylesheet" href="../../../elements-inputs.css">
+<link rel="stylesheet" href="../../../elements-dataviz.css">
+<link rel="stylesheet" href="../../../elements-overlay.css">
+<link rel="stylesheet" href="../../../elements-interactions.css">
+<link rel="stylesheet" href="../../../elements-misc.css">
+<link rel="stylesheet" href="../../../elements-size.css">
+<link rel="stylesheet" href="../../../elements-workflow.css">
+<link rel="stylesheet" href="../../../themes/src/quiet-minimal.css">
+<script src="../../../elements.js" defer></script>
+<script src="../../../charts.js" defer></script>
+<script src="../../../elements-workflow.js" defer></script>
+<style>
+  .stat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--el-space-4); align-items: stretch; }
+  .three { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--el-space-4); align-items: stretch; }
+  .plans { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--el-space-4); align-items: stretch; }
+  @media (max-width: 940px) { .stat-grid, .three, .plans { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<main class="el-page">
+
+  <nav class="el-navbar el-navbar--headerbar">
+    <div class="lead">
+      <button class="el-winbtn min" aria-label="Minimize"></button>
+      <button class="el-winbtn max" aria-label="Maximize"></button>
+      <button class="el-winbtn close" aria-label="Close"></button>
+    </div>
+    <div class="title-block">
+      <span class="title">Gesshoku</span>
+      <span class="subtitle">a quiet room · v2.3</span>
+    </div>
+    <div class="end">
+      <div class="links">
+        <a href="index.html" aria-current="page">Room</a>
+        <a href="catalog.html">Practice</a>
+        <a href="app.html">Sessions</a>
+        <a href="article.html">Journal</a>
+        <a href="account.html">Settings</a>
+      </div>
+      <button class="el-btn el-btn--ghost el-btn--small" data-dialog-open="begin">Begin</button>
+    </div>
+  </nav>
+
+  <header class="el-hero el-hero--left">
+    <span class="el-eyebrow">Sitting · twenty-one forty · moon 94%</span>
+    <h1>Sit. Note. Return.</h1>
+    <p>Gesshoku is one timed room for one breath-length of work. Nothing to
+       configure before tonight's session — press begin and the lamp lowers.</p>
+    <div class="actions">
+      <a class="el-btn" href="app.html">Enter the workspace</a>
+      <a class="el-btn el-btn--ghost-outline" href="article.html">Read the fieldnotes</a>
+      <span class="el-tooltip" data-tip="The room holds seven visitors; the light is yours.">room rules</span>
+    </div>
+  </header>
+
+  <section class="el-panel" aria-label="Tonight">
+    <div class="el-panel-head"><span class="el-title">Tonight, in the room</span>
+      <span class="el-badge live">lamp low</span></div>
+    <p style="margin:var(--el-space-3) 0"><span class="el-status-dot live"></span>
+       The evening room is open — <span class="el-tooltip" data-tip="Breath count kept by the room timer.">breath</span>
+       is kept for anyone who arrives between now and midnight.</p>
+  </section>
+
+  <section class="el-section el-section--dense">
+    <h2>Three motions of a sitting</h2>
+    <div class="three">
+      <article class="el-card el-card--flat">
+        <span class="el-chip">one</span>
+        <h3>Sit</h3>
+        <p>Take the seat as it is. The timer starts with the first slow breath,
+           not with the first keystroke.</p>
+      </article>
+      <article class="el-card el-card--flat">
+        <span class="el-chip">two</span>
+        <h3>Note</h3>
+        <p>Write what the sitting showed. Plain words; the fieldnotes prefer
+           them to plans.</p>
+      </article>
+      <article class="el-card el-card--flat">
+        <span class="el-chip">three</span>
+        <h3>Return</h3>
+        <p>Close the page while it still reads well. The room banks the lamp
+           and the counter resets itself.</p>
+      </article>
+    </div>
+  </section>
+
+  <figure class="el-media-band">
+    <div class="media">
+      <svg viewBox="0 0 720 300" role="img" aria-label="Thin gold eclipse ring over a dark horizon" preserveAspectRatio="xMidYMid slice">
+        <rect width="720" height="300" fill="#17130e"/>
+        <line x1="0" y1="252" x2="720" y2="252" stroke="#31281a" stroke-width="1"/>
+        <circle cx="360" cy="140" r="64" fill="#17130e" stroke="#9a7b4f" stroke-width="2"/>
+        <circle cx="360" cy="140" r="46" fill="#272013"/>
+        <line x1="120" y1="252" x2="220" y2="252" stroke="#4a3e29" stroke-width="1"/>
+        <line x1="500" y1="252" x2="640" y2="252" stroke="#4a3e29" stroke-width="1"/>
+      </svg>
+      <figcaption>Breath plate · held every sitting · room 1</figcaption>
+    </div>
+    <div class="body">
+      <span class="label">Plate</span>
+      <h3>The eclipsed hour</h3>
+      <p>Between the day and the next day there is a strip of quiet. The
+         workspace keeps it dark on purpose.</p>
+      <div class="actions">
+        <a class="el-btn el-btn--ghost" href="catalog.html">See the practices</a>
+      </div>
+    </div>
+  </figure>
+
+  <section class="el-section el-section--dense">
+    <h2>The room, in numbers</h2>
+    <div class="stat-grid">
+      <div class="el-stat"><span class="el-stat-label">Minutes tonight</span><span class="el-stat-value">42</span><span class="el-stat-note">of a 50-min hour</span></div>
+      <div class="el-stat"><span class="el-stat-label">Streak</span><span class="el-stat-value">12 days</span><span class="el-stat-delta">+1</span></div>
+      <div class="el-stat"><span class="el-stat-label">Breath pattern</span><span class="el-stat-value">4 · 6</span>
+        <span class="el-sparkline"><svg width="86" height="24" viewBox="0 0 86 24"><polyline points="0,20 14,14 28,16 42,9 56,12 70,5 86,7" fill="none" stroke="var(--el-accent)" stroke-width="1.5"/></svg></span></div>
+      <div class="el-stat"><span class="el-stat-label">Bell load</span>
+        <span class="el-meter" role="meter" aria-valuenow="62" aria-valuemin="0" aria-valuemax="100"><span class="fill" style="width:62%"></span></span><span class="el-stat-note">62% of the hour is silent</span></div>
+    </div>
+  </section>
+
+  <section class="el-section el-section--dense">
+    <h2>Keep the room</h2>
+    <div class="plans">
+      <div class="el-pricing">
+        <span class="el-chip">ember</span>
+        <div class="price">0 <span class="per">/ always</span></div>
+        <ul class="feats">
+          <li>One timed room</li>
+          <li>Fieldnotes kept 30 days</li>
+          <li>Bell at the return</li>
+        </ul>
+        <button class="el-btn el-btn--ghost-outline" data-toast="The ember room needs nothing to join.">Sit free</button>
+      </div>
+      <div class="el-pricing el-pricing--featured el-pricing--select is-on">
+        <span class="el-chip">eclipse · kept</span>
+        <div class="price">6 <span class="per">/ month</span></div>
+        <ul class="feats">
+          <li>All five rooms</li>
+          <li>Fieldnotes kept for good</li>
+          <li>Breath pattern memory</li>
+          <li>Docent in the margin</li>
+        </ul>
+        <button class="el-btn" data-toast="Welcome — the lamp lowers with you tonight.">Keep the eclipse</button>
+      </div>
+      <div class="el-pricing">
+        <span class="el-chip">monastery</span>
+        <div class="price">40 <span class="per">/ year</span></div>
+        <ul class="feats">
+          <li>Two rooms for friends</li>
+          <li>Printed moon calendar</li>
+          <li>Sessions without counters</li>
+        </ul>
+        <button class="el-btn el-btn--ghost-outline" data-toast="The monastery plan is filled by hand, once a year.">Ask by letter</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="el-section el-section--dense">
+    <blockquote class="el-testimonial">
+      <span class="q">The lamp goes down and the notebook opens by itself. I have kept
+        more fieldnotes in a month here than in a year of louder software.</span>
+      <footer><span class="who">— Reiko Matsuda, translation bench</span>
+        <span class="el-avatar">RM</span></footer>
+    </blockquote>
+  </section>
+
+  <div class="el-fact-grid">
+    <div class="el-fact"><span class="k">Founded</span><span class="v">2022</span></div>
+    <div class="el-fact"><span class="k">Rooms</span><span class="v">5</span></div>
+    <div class="el-fact"><span class="k">Fieldnotes</span><span class="v">8,914</span></div>
+    <div class="el-fact is-hot"><span class="k">Silence kept</span><span class="v">62%</span></div>
+  </div>
+
+  <footer class="el-footer">
+    <div class="cols">
+      <div class="col">
+        <div class="label">Gesshoku</div>
+        <p class="small">Room 1 · north of the river · lamp down at 21:00.</p>
+      </div>
+      <div class="col"><div class="label">Practice</div><p class="small">Catalog · sessions · fieldnotes</p></div>
+      <div class="col"><div class="label">Write</div><p class="small">room@gesshoku.example</p></div>
+    </div>
+    <p class="colophon">Gesshoku · set in Inter and Sentient on dark umber paper.</p>
+  </footer>
+
+  <dialog id="begin" class="el-dialog el-dialog--narrow">
+    <div class="el-dialog-head"><h2>Begin a sitting</h2>
+      <button class="el-dialog-close" data-dialog-close="begin" aria-label="Close">×</button></div>
+    <div class="el-dialog-body"><p>The room opens with your next breath. Choose a
+      length in the workspace — the default is fifty minutes, the lamp follows.</p></div>
+    <div class="el-dialog-foot">
+      <a class="el-btn" href="app.html">Open the workspace</a>
+      <button class="el-btn el-btn--ghost" data-dialog-close="begin">Not yet</button>
+    </div>
+  </dialog>
+
+</main>
+</body>
+</html>

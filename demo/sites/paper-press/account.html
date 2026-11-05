@@ -1,0 +1,225 @@
+<!doctype html><html lang="en" data-theme="paper-press"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>My Courier — subscriber account · The Copper County Courier</title>
+<link rel="stylesheet" href="../../../base.css"><link rel="stylesheet" href="../../../fonts.css">
+<link rel="stylesheet" href="../../../tokens.css">
+<link rel="stylesheet" href="../../../elements-display.css">
+<link rel="stylesheet" href="../../../elements-structure.css">
+<link rel="stylesheet" href="../../../elements-lists.css">
+<link rel="stylesheet" href="../../../elements-app.css">
+<link rel="stylesheet" href="../../../elements-containers.css">
+<link rel="stylesheet" href="../../../elements-controls.css">
+<link rel="stylesheet" href="../../../elements-inputs.css">
+<link rel="stylesheet" href="../../../elements-dataviz.css">
+<link rel="stylesheet" href="../../../elements-overlay.css">
+<link rel="stylesheet" href="../../../elements-interactions.css">
+<link rel="stylesheet" href="../../../elements-misc.css">
+<link rel="stylesheet" href="../../../elements-size.css">
+<link rel="stylesheet" href="../../../elements-workflow.css">
+<link rel="stylesheet" href="../../../elements-inspector.css">
+<link rel="stylesheet" href="../../../elements-reader.css">
+<link rel="stylesheet" href="../../../elements-assistant.css">
+<link rel="stylesheet" href="../../../themes/src/editorial.css">
+<script src="../../../elements.js" defer></script><script src="../../../charts.js" defer></script>
+</head>
+<body>
+
+<nav class="el-navbar el-navbar--top">
+  <a class="brand" href="index.html">The Copper County Courier <small class="el-badge" style="font-variant-caps:normal">EST. 1912</small></a>
+  <div class="links">
+    <a href="index.html">Front</a>
+    <a href="archive.html">The Morgue</a>
+    <a href="article.html">Long Report</a>
+    <a href="account.html" aria-current="page">My Courier</a>
+    <a href="app.html">The Archive Room</a>
+  </div>
+  <div class="actions">
+    <span class="el-status-pill ok">Subscriber · since 1998</span>
+    <a class="el-btn" data-dialog-open="renew" href="#">Subscribe</a>
+  </div>
+</nav>
+
+<main class="el-page">
+  <div class="el-banner el-banner--info" style="margin-bottom:24px">
+    <span class="glyph"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg></span>
+    <span class="copy"><span class="title">Your carrier route changes Friday</span>
+    <span class="body">Route 6 folds into route 9; the paper lands before 6 a.m. either way. Tell us if it lands late — we print the route board weekly.</span></span>
+    <span class="detail">Route 6 &rarr; 9 · Standpipe Rd</span>
+    <button class="el-btn" data-toast-variant="warn" data-toast="The route board will hear from you.">Report late drop</button>
+    <button class="close" aria-label="Dismiss">✕</button>
+  </div>
+
+  <header style="margin:0 0 24px">
+    <p class="el-eyebrow">SUBSCRIBER No 4331 · HARLAN BEEKS · SUNNYSLOPE</p>
+    <h1 style="font-family:var(--el-font-display);font-weight:900;font-size:clamp(2rem,4vw,3rem);margin:0">My Courier</h1>
+    <p class="el-sub">The paper, the morgue, the ledger — everything the county knows about you.</p>
+  </header>
+
+  <ul class="el-stepper" style="margin-bottom:32px">
+    <li class="done"><span class="num">1</span> Route 6 · current</li>
+    <li class="done"><span class="num">2</span> Paid through June 30</li>
+    <li class="active"><span class="num">3</span> Edition C delivered</li>
+    <li><span class="num">4</span> Friday&rsquo;s edition</li>
+  </ul>
+
+  <section class="el-section">
+    <div class="el-section-head">
+      <p class="el-eyebrow">Part one</p>
+      <h2>The account card</h2>
+      <span class="rule"></span>
+    </div>
+    <form style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px 26px;max-width:880px">
+      <label class="el-field">
+        <span class="el-label">Name on the card</span>
+        <input class="el-input" value="HARLAN BEEKS" style="text-transform:uppercase">
+        <span class="el-hint">Set once; the carrier knows you anyway.</span>
+      </label>
+      <label class="el-field" data-invalid>
+        <span class="el-label">Route + mailbox</span>
+        <input class="el-input" value="Route 6 · 12">
+        <span class="el-error">The standpipe carrier needs the metal-box number, not the fence box.</span>
+      </label>
+      <label class="el-field">
+        <span class="el-label">Edition</span>
+        <span class="el-select"><select>
+          <option>Both days — Tuesday and Friday</option>
+          <option>Tuesday only</option>
+          <option>Friday only, after church</option>
+        </select></span>
+        <span class="el-hint">Print is first here; the app follows the paper.</span>
+      </label>
+      <label class="el-field">
+        <span class="el-label">Morgue plan</span>
+        <select class="el-dropdown">
+          <option>All Access — unlimited lookups</option>
+          <option>Weekly Post — 5 a month</option>
+          <option>Press Club — library tier</option>
+        </select>
+      </label>
+      <label class="el-field" style="grid-column:1/-1">
+        <span class="el-label">Note on the carrier&rsquo;s board</span>
+        <textarea class="el-textarea" rows="3" placeholder="Wind, dogs, or the gate latch…">Gate latches if it rains; paper goes on the porch chair, not the tin roof.</textarea>
+      </label>
+      <div class="el-field">
+        <span class="el-label">Search the morgue</span>
+        <span class="el-search-field"><input class="el-search" type="search" placeholder="Any name, any year…"></span>
+        <span class="el-hint">Prints the lookup card if the answer goes in the paper.</span>
+      </div>
+    </form>
+  </section>
+
+  <section class="el-section">
+    <div class="el-section-head">
+      <p class="el-eyebrow">Part two</p>
+      <h2>How the paper arrives</h2>
+      <span class="rule"></span>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:22px 30px;max-width:920px;align-items:start">
+      <div style="display:grid;gap:16px">
+        <div class="el-field">
+          <span class="el-label">Delivery</span>
+          <div class="el-segmented" role="group">
+            <button type="button" class="on">In the box</button>
+            <button type="button">On the porch</button>
+            <button type="button">In the standpipe shed</button>
+          </div>
+        </div>
+        <div style="display:grid;gap:12px">
+          <label class="el-row" style="width:100%;padding:4px 0"><span class="el-switch on"><input type="checkbox" checked></span>
+            <span style="font-size:var(--el-fs-md)">Ring the bell for the fire-line edition</span></label>
+          <label class="el-row" style="width:100%;padding:4px 0"><span class="el-switch"><input type="checkbox"></span>
+            <span style="font-size:var(--el-fs-md)">Hold the paper when we&rsquo;re on the road</span></label>
+          <label class="el-row" style="width:100%;padding:4px 0"><span class="el-check"><input type="checkbox" checked></span>
+            <span style="font-size:var(--el-fs-md)">Save every standpipe mention to my morgue file</span></label>
+        </div>
+        <fieldset style="display:grid;gap:10px;border:0;padding:0;margin:0">
+          <span class="el-label" style="padding:0">Reading voice</span>
+          <label class="el-radio"><input type="radio" name="voice"><span class="dot"></span> I read at breakfast, alone</label>
+          <label class="el-radio"><input type="radio" name="voice" checked><span class="dot"></span> I read it aloud to Mother, who corrects the grammar</label>
+        </fieldset>
+        <div class="el-field">
+          <span class="el-label">Paper weight — how far the throw lands from the porch</span>
+          <span class="el-range">
+            <input type="range" class="el-slider" min="0" max="100" value="24" style="--el-fill:24%">
+            <span class="val">24</span>
+          </span>
+          <span class="el-hint">Lower keeps the rubber band tight.</span>
+        </div>
+      </div>
+      <div style="display:grid;gap:16px">
+        <div class="el-inline-alert" data-variant="ok">
+          <span class="el-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="m5 13 4 4L19 7"/></svg></span>
+          <span><span class="title">Morgue file growing</span>
+          <span class="body">61 standpipe clippings saved; the rubber band is on you.</span></span>
+        </div>
+        <div style="display:flex;gap:12px;align-items:center">
+          <span class="el-spinner"></span>
+          <span style="font-size:var(--el-fs-md);color:var(--el-ink-soft)">Microfilm index rebuilding — 1938 is slow…</span>
+        </div>
+        <div class="el-listbox">
+          <span class="el-skeleton title"></span>
+          <span class="el-skeleton text"></span>
+          <span class="el-skeleton text" style="width:64%"></span>
+        </div>
+        <div class="el-btn-group">
+          <button class="el-btn" type="button">Save account</button>
+          <button class="el-btn el-btn--ghost" type="button" data-toast-variant="info" data-toast="Draft kept off the front page.">Keep as draft</button>
+          <button class="el-btn el-btn--outline" type="button" data-toast-variant="warn" data-toast="Cancel goes by postcard, like it says.">Cancel route</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="el-section">
+    <div class="el-section-head">
+      <p class="el-eyebrow">Part three · ledger</p>
+      <h2>Your bill, bound</h2>
+      <span class="rule"></span>
+    </div>
+    <table class="el-table el-table--broadsheet">
+      <thead><tr><th>Bill</th><th>Covers</th><th class="r">Amount</th><th>Status</th></tr></thead>
+      <tbody id="inv">
+        <tr><td class="num">2026-1147</td><td>June · both days</td><td class="num r">$9.00</td><td><span class="el-badge" style="font-variant-caps:normal">PRINTING</span></td></tr>
+        <tr><td class="num">2026-1105</td><td>May · both days</td><td class="num r">$9.00</td><td><span class="el-ok-label">Paid</span></td></tr>
+        <tr><td class="num">2026-1061</td><td>April · both days</td><td class="num r">$9.00</td><td><span class="el-ok-label">Paid</span></td></tr>
+        <tr><td class="num">2026-1018</td><td>March · Tuesday only</td><td class="num r">$1.00</td><td><span class="el-ok-label">Paid</span></td></tr>
+        <tr><td class="num">2025-0944</td><td>Press Club gift · rodeo page</td><td class="num r">$180.00</td><td><span class="el-ok-label">Paid</span></td></tr>
+        <tr><td class="num">2025-0911</td><td>May · both days</td><td class="num r">$9.00</td><td><span class="el-warn-label">Refunded — flood week</span></td></tr>
+      </tbody>
+      <tfoot><tr><td colspan="2">Bound total, four years</td><td class="num r">$477.00</td><td><span class="el-mono">/ 416 papers</span></td></tr></tfoot>
+    </table>
+    <nav class="el-pagination" data-page-source="#inv" data-page-size="3">
+      <button class="page" data-action="first">«</button>
+      <button class="page" data-action="prev">‹</button>
+      <button class="page on">1</button><button class="page">2</button>
+      <button class="page" data-action="next">›</button><button class="page" data-action="last">»</button>
+      <span class="info">1 / 2</span>
+    </nav>
+  </section>
+</main>
+
+<dialog class="el-dialog" id="renew" aria-label="Subscribe">
+  <div class="el-dialog-head"><h2>Take the Courier home</h2>
+  <button class="el-dialog-close" data-dialog-close aria-label="Close">✕</button></div>
+  <div class="el-dialog-body">
+    <p><strong>All Access</strong> — every edition print and app, unlimited Morgue lookups, The Archive Room on your desk.</p>
+    <p class="el-mute-body" style="margin-top:8px">$9 a month · cancel by postcard · route updates print weekly.</p>
+    <div class="el-inline-alert" data-variant="info" style="margin-top:12px">
+      <span class="el-icon"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg></span>
+      <span><span class="title">This is a mock — no card is charged</span>
+      <span class="body">The carrier takes notes.</span></span>
+    </div>
+  </div>
+  <div class="el-dialog-foot">
+    <button class="el-btn el-btn--ghost" data-dialog-close>Not now</button>
+    <button class="el-btn" data-dialog-close data-toast-variant="ok" data-toast="All Access — see you Tuesday.">Subscribe</button>
+  </div>
+</dialog>
+
+<footer class="el-footer">
+  <p class="el-eyebrow">The Copper County Courier — My Courier</p>
+  <p class="el-mute-body">Subscriber desk · Copper Center, Arizona · printed since 1912</p>
+</footer>
+
+<div class="el-toast-region" aria-live="polite"></div>
+</body></html>

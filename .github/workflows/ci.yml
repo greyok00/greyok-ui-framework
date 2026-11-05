@@ -1,0 +1,15 @@
+name: ci
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: Run release checks (css structure, token freeze, theme constitution, manifest)
+        run: bash bin/verify.sh

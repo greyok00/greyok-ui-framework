@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="en" data-theme="agency-quartz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>H&amp;B Grid — Halstead &amp; Byrne delivery tracker</title>
+<link rel="stylesheet" href="../../../base.css">
+<link rel="stylesheet" href="../../../fonts.css">
+<link rel="stylesheet" href="../../../tokens.css">
+<link rel="stylesheet" href="../../../elements-display.css">
+<link rel="stylesheet" href="../../../elements-structure.css">
+<link rel="stylesheet" href="../../../elements-lists.css">
+<link rel="stylesheet" href="../../../elements-app.css">
+<link rel="stylesheet" href="../../../elements-containers.css">
+<link rel="stylesheet" href="../../../elements-controls.css">
+<link rel="stylesheet" href="../../../elements-inputs.css">
+<link rel="stylesheet" href="../../../elements-dataviz.css">
+<link rel="stylesheet" href="../../../elements-overlay.css">
+<link rel="stylesheet" href="../../../elements-interactions.css">
+<link rel="stylesheet" href="../../../elements-misc.css">
+<link rel="stylesheet" href="../../../elements-size.css">
+<link rel="stylesheet" href="../../../elements-workflow.css">
+<link rel="stylesheet" href="../../../elements-inspector.css">
+<link rel="stylesheet" href="../../../elements-reader.css">
+<link rel="stylesheet" href="../../../elements-assistant.css">
+<link rel="stylesheet" href="../../../themes/src/agency-classic.css">
+<script src="../../../elements.js" defer></script>
+<script src="../../../charts.js" defer></script>
+</head>
+<body style="background:var(--el-bg)">
+
+<nav class="el-navbar el-navbar--top">
+  <div class="ag-topbar">
+    <a class="brand" href="index.html">Halstead &amp; Byrne</a>
+    <div class="links">
+      <a href="work.html">Work</a>
+      <a href="method.html">Method</a>
+      <a href="contact.html">Contact</a>
+      <a href="tracker.html" aria-current="page">Tracker</a>
+    </div>
+    <div class="actions">
+      <span class="el-tooltip" data-tip="Grid runs read-only for guests — ask your partner for a seat."><button class="el-btn el-btn--ghost" type="button">Client sign-in</button></span>
+      <a class="el-btn" href="contact.html">Start an engagement</a>
+    </div>
+  </div>
+</nav>
+
+<main class="el-page" style="padding-bottom:var(--el-space-5)">
+
+  <div class="el-appwin">
+    <div class="el-titlebar">
+      <span class="lead"><span class="el-status-dot live" aria-hidden="true"></span><span class="el-hint" style="margin:0">grid cluster · portland-2</span></span>
+      <div class="el-app-title">H&amp;B Grid <small>halstead-byrne · delivery</small></div>
+      <div class="winbtns">
+        <button class="el-winbtn min" type="button" aria-label="Minimize"></button>
+        <button class="el-winbtn max" type="button" aria-label="Maximize"></button>
+        <button class="el-winbtn close" type="button" aria-label="Close"></button>
+      </div>
+    </div>
+
+    <div class="el-menubar" role="menubar">
+      <div class="el-menu-anchor">
+        <button class="el-menubar-item" data-menu="engagements-menu" aria-expanded="false">Engagements</button>
+        <div class="el-menu" id="engagements-menu" role="menu">
+          <div class="el-menu-label">Active engagements</div>
+          <button class="el-menu-item" type="button">Meridian Health · gate 4</button>
+          <button class="el-menu-item" type="button">Orrin Market · gate 2</button>
+          <div class="el-menu-sep" role="separator"></div>
+          <button class="el-menu-item" type="button">Archive (29)…</button>
+        </div>
+      </div>
+      <div class="el-menu-anchor">
+        <button class="el-menubar-item" data-menu="gates-menu" aria-expanded="false">Gates</button>
+        <div class="el-menu" id="gates-menu" role="menu">
+          <div class="el-menu-label">Gate actions</div>
+          <button class="el-menu-item" type="button" data-dialog-open="sign-gate">Sign gate 4…</button>
+          <button class="el-menu-item" type="button">Schedule gate 5…</button>
+          <div class="el-menu-sep" role="separator"></div>
+          <button class="el-menu-item is-danger" type="button" data-toast="Escalation logged — Thomas pinged at 09:44." data-toast-variant="fail">Escalate slip…</button>
+        </div>
+      </div>
+      <button class="el-menubar-item" type="button">Ledger</button>
+      <button class="el-menubar-item" type="button" data-command="grid-cmd">Commands</button>
+      <div class="el-menubar-sep" role="separator"></div>
+      <div class="el-menubar-spring"></div>
+      <span class="el-status-pill running">3 gates open</span>
+      <span class="el-avatar soft" title="Ada Halvorsen" style="margin-left:var(--el-space-2)">AH</span>
+    </div>
+
+    <div class="el-headerbar">
+      <span class="el-headerbar-label">Meridian Health · week 44</span>
+      <span class="spring"></span>
+      <div class="el-popover">
+        <button class="el-btn el-btn--outline" type="button" aria-expanded="false">Filter</button>
+        <div class="el-pop">
+          <h4>Filter gates</h4>
+          <span class="el-check on" style="display:inline-block;margin-bottom:8px"><input type="checkbox" checked aria-label="Open gates only"></span>
+          <span style="font-size:var(--el-fs-sm);vertical-align:middle">open gates only</span>
+          <p style="font-size:var(--el-fs-xs);color:var(--el-mute);margin:10px 0 0">Rubric 4.2 · 68 checks</p>
+        </div>
+      </div>
+      <label class="el-search-field">
+        <input class="el-search" type="search" placeholder="Search engagements, gates, artifacts…" aria-label="Search grid">
+      </label>
+      <span class="el-tooltip" data-tip="Open gates are signed by the client's review board, not by us." tabindex="0">
+        <button class="el-btn" type="button" data-dialog-open="sign-gate">Sign gate 4</button>
+      </span>
+    </div>
+
+    <div class="el-appwin-body ag-app-cols" style="min-height:720px">
+
+      <aside class="el-sidebar ag-app-side">
+        <div class="head">
+          <span class="brand">hb-grid · delivery</span>
+          <button class="toggle" type="button" aria-label="Collapse sidebar"><span class="chev">&#8964;</span></button>
+        </div>
+        <div class="grp">
+          <span class="label">Engagements</span>
+          <button type="button" aria-current="page">Board</button>
+          <button type="button">Ladder</button>
+          <button type="button">Ledger</button>
+        </div>
+        <div class="grp">
+          <span class="label">Gates</span>
+          <button type="button">Signed <span class="el-badge" style="margin-left:auto">26</span></button>
+          <button type="button">Open <span class="el-badge warn" style="margin-left:auto">3</span></button>
+          <button type="button">Overdue <span class="el-badge fail" style="margin-left:auto">1</span></button>
+        </div>
+        <div class="grp">
+          <span class="label">Exports</span>
+          <button type="button">Rubric pack</button>
+          <button type="button">Nightly CSV</button>
+        </div>
+        <div class="end"><span class="el-hint" style="margin:0">grid-4.2.1 · rubric 4.2</span></div>
+      </aside>
+
+      <div class="ag-pane" style="display:grid;gap:var(--el-space-3);padding:var(--el-space-3);align-content:start;overflow-x:auto">
+        <div class="ag-grid-4" style="gap:var(--el-space-3)">
+          <div class="el-stat">
+            <span class="el-stat-label">Component reuse</span>
+            <span class="el-stat-value">74%</span>
+            <span class="el-stat-delta up" data-state="ok">▲ +6 pts</span>
+            <span class="el-sparkline" data-chart="sparkline" data-values="52,55,58,61,64,70,72,74" data-width="132" data-height="34" style="color:var(--el-accent)"></span>
+            <span class="el-stat-note">target at gate 5: 60%</span>
+          </div>
+          <div class="el-stat">
+            <span class="el-stat-label">Gates signed</span>
+            <span class="el-big-num">26 <span class="total">of 44</span></span>
+            <span class="el-stat-delta up" data-state="ok">▲ 1 this wk</span>
+            <span class="el-sparkline" data-chart="bar" data-values="3,4,3,5,4,3,2,4" data-width="132" data-height="34" style="color:var(--el-accent)"></span>
+            <span class="el-stat-note">median 11 wk kickoff → release</span>
+          </div>
+          <div class="el-stat">
+            <span class="el-stat-label">Drift vs main</span>
+            <span class="el-stat-value">2.1%</span>
+            <span class="el-stat-delta down" data-state="ok">▼ 0.4 pts</span>
+            <div class="el-meter" style="margin-top:var(--el-space-2)" role="img" aria-label="Drift meter 2 percent"><span class="fill" style="width:2%"></span></div>
+            <span class="el-stat-note">recomputed nightly · ok</span>
+          </div>
+          <div class="el-stat">
+            <span class="el-stat-label">Adoption</span>
+            <span class="el-stat-value">61%</span>
+            <span class="el-stat-delta up" data-state="ok">▲ 9 pts</span>
+            <span class="el-sparkline" data-chart="donut" data-values="61,39" data-width="64" data-height="64" data-label="61%" style="color:var(--el-teal)"></span>
+            <span class="el-stat-note">3 of 6 product lines riding</span>
+          </div>
+        </div>
+
+        <div class="el-stage-rail" aria-label="Gate positions">
+          <div class="el-stage is-done"><span class="el-stage-dot"></span><span class="el-stage-name">Gate 1 · tokens</span><span class="el-dur">signed jun 04</span></div>
+          <div class="el-stage is-done"><span class="el-stage-dot"></span><span class="el-stage-name">Gate 2 · library</span><span class="el-dur">signed jul 29</span></div>
+          <div class="el-stage is-running"><span class="el-stage-dot"></span><span class="el-stage-name">Gate 4 · qa</span><span class="el-stage-count">1,912 checks</span></div>
+          <div class="el-stage is-queued"><span class="el-stage-dot"></span><span class="el-stage-name">Gate 5 · adoption</span><span class="el-stage-count">readout nov 21</span></div>
+          <div class="el-stage is-stale"><span class="el-stage-dot"></span><span class="el-stage-name">Gate 3 · rails</span><span class="el-stage-count">rider: orrin freeze</span></div>
+          <div class="el-stage"><span class="el-stage-dot"></span><span class="el-stage-name">Gate 6 · handover</span><span class="el-stage-count">wk 22</span></div>
+        </div>
+
+        <div class="ag-pair" style="gap:var(--el-space-3)">
+          <ul class="el-ladder" aria-label="Rails ladder">
+            <li class="el-ladder-step is-done"><span class="el-ladder-idx">01</span><span class="el-ladder-label">Identity intake</span><span class="el-ladder-meta">41 hospitals</span></li>
+            <li class="el-ladder-step is-done"><span class="el-ladder-idx">02</span><span class="el-ladder-label">Eligibility</span><span class="el-ladder-meta">rails 12 of 12</span></li>
+            <li class="el-ladder-step is-running"><span class="el-ladder-idx">03</span><span class="el-ladder-label">Referral routing</span><span class="el-ladder-meta">shard 3 / 4</span></li>
+            <li class="el-ladder-step is-queued"><span class="el-ladder-idx">04</span><span class="el-ladder-label">Board readout</span><span class="el-ladder-meta">nov 21</span></li>
+          </ul>
+          <div>
+            <div class="el-progress-truth" aria-label="QA progress">
+              <span class="el-pt-chunk on"></span><span class="el-pt-chunk on"></span><span class="el-pt-chunk is-running"></span><span class="el-pt-chunk"></span>
+              <span class="el-pt-count">2 / 4</span>
+              <span class="el-pt-label">qa shards · final readout</span>
+            </div>
+            <table class="el-table el-table--ruled" style="margin-top:var(--el-space-3)">
+              <thead><tr><th scope="col">Engagement</th><th scope="col">Line</th><th scope="col">State</th><th scope="col">Reuse</th></tr></thead>
+              <tbody>
+                <tr><td>Meridian intake</td><td>clinical</td><td><span class="el-status-dot running"></span> <span class="el-status-pill running">gate 4</span></td><td>64%</td></tr>
+                <tr class="is-selected"><td>Meridian eligibility</td><td>rails</td><td><span class="el-badge ok">green</span></td><td class="is-selected-cell">71%</td></tr>
+                <tr><td>Orrin price-ops</td><td>retail</td><td><span class="el-badge warn">hold</span></td><td>38%</td></tr>
+                <tr><td>Nimbus freight</td><td>dispatch</td><td><span class="el-badge ok">shipped</span></td><td>81%</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div style="display:flex;gap:var(--el-space-2);align-items:center">
+          <span class="el-status-pill queued">gate 2 · orrin</span>
+          <span class="el-status-pill ok">green × 2</span>
+          <span class="el-status-pill running" style="margin-inline-start:auto">telemetry live</span>
+        </div>
+      </div>
+
+      <aside class="ag-app-rail">
+        <div class="el-inspector el-inspector--docked is-docked" aria-label="Engagement inspector">
+          <div class="el-inspector-header"><span>Engagement inspector</span><button class="el-inspector-close" type="button" aria-label="Hide inspector">&times;</button></div>
+          <div class="el-inspector-body">
+            <p style="margin-top:0;font-size:var(--el-fs-sm);color:var(--el-ink-soft)">Meridian runs rails at gate 4. The review board seats nine; sign-off needs six.</p>
+            <div class="el-fact-grid">
+              <div class="el-fact"><span class="k">Hospitals</span><span class="v">41</span></div>
+              <div class="el-fact is-hot"><span class="k">reuse</span><span class="v">64%</span></div>
+            </div>
+            <label class="el-field" style="margin-top:var(--el-space-3)">
+              <span class="el-label">Rubric pack</span>
+              <select class="el-select" style="padding:8px 12px;font-family:var(--el-font-mono);font-size:var(--el-fs-sm)">
+                <option>rubric-4.2 · current</option>
+                <option>rubric-4.1 · archived</option>
+              </select>
+            </label>
+          </div>
+        </div>
+
+        <div class="el-inspector el-inspector--docked is-docked" aria-label="Grid docent">
+          <div class="el-inspector-header"><span>Grid docent</span><button class="el-inspector-close" type="button" aria-label="Close docent">&times;</button></div>
+          <div class="el-inspector-body">
+            <div class="el-assistant-panel">
+              <div class="el-assistant-head">H&amp;B DOCENT · local</div>
+              <div class="el-assistant-log">
+                <div class="el-msg el-msg--assistant">Gate 4 needs two more signed shards. Referral routing is at shard 3 of 4.</div>
+                <div class="el-msg el-msg--user">What's the risk if we hold?</div>
+                <div class="el-msg el-msg--assistant">The Nov 21 readout slips one week. <span class="el-cite-inline">[tracker nightly 09:41]</span></div>
+              </div>
+              <div class="el-assistant-foot"><input class="el-input" placeholder="Ask the docent…" aria-label="Ask the docent"></div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="el-listbox" role="listbox" aria-label="Product lines riding">
+            <div class="el-listbox-header">Lines · meridian</div>
+            <button class="el-listbox-row" role="option" aria-selected="true" type="button"><svg viewBox="0 0 16 16" width="14" height="14" fill="currentColor" aria-hidden="true"><rect x="2" y="2" width="12" height="12" rx="1"/></svg><span>Intake · clinical</span><span class="count">gate 4</span></button>
+            <button class="el-listbox-row" role="option" aria-selected="false" type="button"><svg viewBox="0 0 16 16" width="14" height="14" fill="currentColor" aria-hidden="true"><rect x="2" y="2" width="12" height="12" rx="1"/></svg><span>Eligibility · rails</span><span class="count">71%</span></button>
+            <button class="el-listbox-row" role="option" aria-selected="false" type="button"><svg viewBox="0 0 16 16" width="14" height="14" fill="currentColor" aria-hidden="true"><rect x="2" y="2" width="12" height="12" rx="1"/></svg><span>Referral · routing</span><span class="count">shard 3</span></button>
+          </div>
+        </div>
+
+        <div>
+          <p class="el-eyebrow" style="margin:0 0 var(--el-space-2)">Notifications · 2 unread</p>
+          <div class="el-notification-stack">
+            <div class="el-notification ok is-unread">
+              <span class="icon"><svg class="el-icon" viewBox="0 0 24 24"><path d="M4 12.5 9.5 18 20 6" fill="none"/></svg></span>
+              <div><div class="head"><span class="title">Gate 3 rider cleared</span><span class="app">rubric</span></div>
+              <p class="body">Orrin confirmed the Dec 2 freeze — your kickoff lands clean in January.</p></div>
+              <button class="close" type="button" aria-label="Dismiss">✕</button>
+              <span class="time">09:12</span>
+            </div>
+            <div class="el-notification ok is-unread">
+              <span class="icon"><svg class="el-icon" viewBox="0 0 24 24"><path d="M4 12.5 9.5 18 20 6" fill="none"/></svg></span>
+              <div><div class="head"><span class="title">Shard 3 signed</span><span class="app">meridian</span></div>
+              <p class="body">Referral routing shard 3 signed by R. Delgado · 1,622 checks green.</p></div>
+              <button class="close" type="button" aria-label="Dismiss">✕</button>
+              <span class="time">08:47</span>
+            </div>
+            <div class="el-notification warn">
+              <span class="icon"><svg class="el-icon" viewBox="0 0 24 24"><path d="M12 3 2 20h20z" fill="none"/></svg></span>
+              <div><div class="head"><span class="title">Drift ticked up</span><span class="app">nightly</span></div>
+              <p class="body">One component drifted 0.4 pts above budget. Fix queued for tomorrow's train.</p>
+              <div class="actions"><button type="button" data-toast="Drift fix queued — rides tomorrow's release train." data-toast-variant="ok">Queue fix</button></div></div>
+              <button class="close" type="button" aria-label="Dismiss">✕</button>
+              <span class="time">yesterday</span>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <p class="el-eyebrow" style="margin:0 0 var(--el-space-2)">Fired this hour</p>
+          <div class="el-stack" style="gap:var(--el-space-2)">
+            <div class="el-toast ok"><span>Gate-1 pack unlocked — 214 values, 0 undocumented.</span><button class="close" type="button" aria-label="Dismiss">✕</button></div>
+            <div class="el-toast info"><span>Nimbus audit sheet pulled into gate 1.</span><button class="close" type="button" aria-label="Dismiss">✕</button></div>
+          </div>
+        </div>
+      </aside>
+
+    </div>
+
+    <div class="el-tabbar" role="tablist">
+      <button class="el-tabbar-item is-active" role="tab" aria-selected="true" type="button"><span class="el-icon">&#9638;</span>Board</button>
+      <button class="el-tabbar-item" role="tab" type="button"><span class="el-icon">&#9638;</span>Ladder</button>
+      <button class="el-tabbar-item" role="tab" type="button"><span class="el-icon">&#9638;</span>Ledger&nbsp;<span class="count">38</span></button>
+      <button class="el-tabbar-item" role="tab" type="button"><span class="el-icon">&#9638;</span>Gates</button>
+      <button class="el-tabbar-item" role="tab" type="button"><span class="el-icon">&#9638;</span>Exports&nbsp;<span class="count">41</span></button>
+    </div>
+
+    <div class="el-actionbar">
+      <span class="lead"><span class="el-status-dot ok"></span> synced 09:41 · rubric 4.2 · six engagements riding</span>
+      <span class="actions">
+        <span class="el-tooltip" data-tip="Every export is replayable against the nightly snapshot." tabindex="0"><button class="el-btn el-btn--ghost" type="button">Export board</button></span>
+        <button class="el-btn" type="button" data-dialog-open="sign-gate">Sign gate 4</button>
+      </span>
+    </div>
+  </div>
+
+  <section class="el-section el-section--dense" style="max-width:var(--el-page-max);margin:var(--el-space-4) auto 0" aria-label="Tracker notes">
+    <p class="el-body" style="margin:0;color:var(--el-ink-soft)">Grid is the live tracker our clients ride — the board above runs read-only in this demo. Request a seat and your brief, rubric pack, and gate calendar all land here. <a href="contact.html">Ask a partner →</a></p>
+  </section>
+
+</main>
+
+<div class="el-scrim" id="grid-scrim" data-dialog-scrim></div>
+
+<dialog class="el-dialog" id="sign-gate">
+  <div class="el-dialog-head"><h3 style="margin:0;font-size:var(--el-fs-lg)">Sign gate 4 — QA</h3><button class="el-dialog-close" type="button" data-dialog-close aria-label="Close">✕</button></div>
+  <div class="el-dialog-body">
+    <p class="el-body" style="margin:0">Signing takes every artifact hash in the rubric pack and pins it to your name in the ledger. It is not undoable, which is the point.</p>
+    <div class="el-fact-grid" style="margin-top:var(--el-space-3)">
+      <div class="el-fact"><span class="k">Checks</span><span class="v">1,912</span></div>
+      <div class="el-fact"><span class="k">Shards signed</span><span class="v">3 of 4</span></div>
+      <div class="el-fact"><span class="k">Signs as</span><span class="v">R. Delgado</span></div>
+      <div class="el-fact is-hot"><span class="k">Gate</span><span class="v">4 · qa</span></div>
+    </div>
+  </div>
+  <div class="el-dialog-foot">
+    <button class="el-btn el-btn--ghost" type="button" data-dialog-close>Not yet</button>
+    <button class="el-btn" type="button" data-dialog-close data-toast="Gate 4 signed — the board reads it at the Nov 21 review." data-toast-variant="ok">Sign and pin rubric</button>
+  </div>
+</dialog>
+
+<div class="el-command" id="grid-cmd" role="dialog" aria-label="Grid command bar">
+  <div class="el-command-panel">
+    <input class="el-command-input" type="text" placeholder="Type a command… (sign, promote, escalate, export)" aria-label="Command input">
+    <div class="el-command-results">
+      <div class="el-command-group">Gates</div>
+      <button class="el-command-row sel" type="button">Sign gate 4 — meridian <span class="el-command-hint">G4</span></button>
+      <button class="el-command-row" type="button">Schedule gate 5 readout — nov 21 <span class="el-command-hint">G5</span></button>
+      <div class="el-command-group">Engagements</div>
+      <button class="el-command-row" type="button">Open board — meridian intake <span class="el-command-hint">B M</span></button>
+      <button class="el-command-row" type="button">Export ledger — nightly CSV <span class="el-command-hint">E</span></button>
+    </div>
+    <div class="el-command-foot"><span class="el-hint">arrows to move · enter to run · esc to close</span></div>
+  </div>
+</div>
+
+</body>
+</html>

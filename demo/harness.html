@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en" data-theme="neutral">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Theme harness</title>
+<link rel="stylesheet" href="../base.css">
+<link rel="stylesheet" href="../fonts.css">
+<link rel="stylesheet" href="../tokens.css">
+<link rel="stylesheet" href="../elements-display.css">
+<link rel="stylesheet" href="../elements-structure.css">
+<link rel="stylesheet" href="../elements-lists.css">
+<link rel="stylesheet" href="../elements-controls.css">
+<link rel="stylesheet" href="../elements-inputs.css">
+<link rel="stylesheet" href="../elements-dataviz.css">
+<link rel="stylesheet" href="../elements-containers.css">
+<link rel="stylesheet" href="../elements-interactions.css">
+<link rel="stylesheet" href="../elements-misc.css">
+<link rel="stylesheet" href="../elements-size.css">
+<link rel="stylesheet" href="../elements-workflow.css">
+<link rel="stylesheet" href="../elements-inspector.css">
+<link rel="stylesheet" href="../elements-reader.css">
+<script>
+const src = new URLSearchParams(location.search).get("src");
+if (src) document.write('<link rel="stylesheet" href="../themes/src/' + src + '.css">');
+else document.write('<link rel="stylesheet" href="../themes.css">');
+</script>
+</head>
+<body>
+<main class="el-page">
+
+  <nav style="display:flex;gap:16px;align-items:center;padding:14px 24px;border-bottom:1px solid var(--el-line)">
+    <strong class="el-display-specimen" style="font-size:1em;font-weight:var(--el-head-weight)">Wordmark</strong>
+    <span class="el-pill">Product</span>
+    <span class="el-pill">Pricing</span>
+    <span class="el-pill">Docs</span>
+    <span style="flex:1"></span>
+    <button class="el-btn">Sign in</button>
+  </nav>
+
+  <header class="el-hero" style="padding:var(--el-hero-pad) 24px;min-height:var(--el-hero-min)">
+    <p class="el-eyebrow">Eyebrow label</p>
+    <h1 class="el-title-xl" style="font-size:3.2em;font-weight:var(--el-head-weight)">Display headline over two lines</h1>
+    <p class="el-body" style="max-width:520px;color:var(--el-ink-soft)">Supporting paragraph that explains the value proposition in two quiet sentences before the action.</p>
+    <div style="display:flex;gap:10px;margin-top:18px">
+      <button class="el-btn" style="min-height:var(--el-ctl-min-h)">Primary action</button>
+      <button class="el-btn">Secondary</button>
+      <button class="el-btn ghost">Ghost</button>
+    </div>
+  </header>
+
+  <section style="padding:24px">
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px">
+      <div class="el-card" style="padding:var(--el-card-pad)">
+        <span class="el-eyebrow">Signature card</span>
+        <h3 class="el-display-specimen" style="font-size:1.1em">Card title</h3>
+        <p class="el-body">Card body copy sitting inside a panel with the theme's raise and radius voice.</p>
+        <button class="el-btn" style="margin-top:10px">Open</button>
+      </div>
+      <div class="el-card" style="padding:var(--el-card-pad)">
+        <span class="el-big-num">87.4%</span>
+        <p class="el-label">Conversion</p>
+        <div class="el-bar"><i style="width:74%"></i></div>
+        <p class="el-mute-body el-fs-sm">+4.2 vs last week</p>
+      </div>
+      <div class="el-card" style="padding:var(--el-card-pad)">
+        <table class="el-table">
+          <thead><tr><th>Metric</th><th>Value</th><th>Δ</th></tr></thead>
+          <tbody>
+            <tr><td>Signups</td><td class="el-mono">1,204</td><td class="el-ink-ok">+12</td></tr>
+            <tr><td>Churn</td><td class="el-mono">0.8%</td><td class="el-ink-fail">-1</td></tr>
+            <tr><td>NPS</td><td class="el-mono">61</td><td class="el-ink-ok">+3</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:24px;display:grid;grid-template-columns:1fr 1fr;gap:14px">
+    <div class="el-card" style="padding:var(--el-card-pad)">
+      <p class="el-label">Form voice</p>
+      <label class="el-field">
+        <span class="el-label">Email</span>
+        <input class="el-input" placeholder="you@studio.com">
+      </label>
+      <label class="el-field">
+        <span class="el-label">Message</span>
+        <textarea class="el-input" rows="3"></textarea>
+      </label>
+      <div style="display:flex;gap:8px;align-items:center">
+        <span class="el-switch"><i class="on"></i></span>
+        <span class="el-body">Enable motion</span>
+        <span class="el-chip">new</span>
+        <span class="el-chip live">live</span>
+      </div>
+      <div style="display:flex;gap:6px;margin-top:8px">
+        <span class="el-dot ok"></span><span class="el-dot warn"></span><span class="el-dot fail"></span><span class="el-dot live"></span>
+      </div>
+    </div>
+    <div class="el-card" style="padding:var(--el-card-pad)">
+      <p class="el-label">Workflow rail</p>
+      <div class="el-stage-rail">
+        <div class="el-stage done"><span class="el-stage-dot"></span>Research</div>
+        <div class="el-stage run"><span class="el-stage-dot"></span>Extract</div>
+        <div class="el-stage"><span class="el-stage-dot"></span>Analyze</div>
+      </div>
+      <div class="el-progress-truth"><span class="el-pt-chunk on"></span><span class="el-pt-chunk on"></span><span class="el-pt-chunk"></span><span class="el-pt-label">2 / 3 stages</span></div>
+      <article class="el-source-card"><span class="el-publisher">publisher.com</span><h4 class="el-md">Source headline</h4><p class="el-body">Two-line source summary with the citation voice.</p></article>
+    </div>
+  </section>
+
+  <section style="padding:24px">
+    <p class="el-label">Type specimen</p>
+    <p class="el-display-specimen" style="font-family:var(--el-font-display);font-size:2.6em;font-weight:var(--el-head-weight)">Display AaBbCc 0123 — quick brown fox</p>
+    <p style="font-family:var(--el-font-body);font-size:1.05em;max-width:640px">Body voice for reading: the quick brown fox jumps over the lazy dog while setting a comfortable measure for long paragraphs.</p>
+    <p class="el-mono" style="font-family:var(--el-font-mono)">Mono: 0123456789 :: token=value</p>
+    <hr class="el-rule" style="margin:16px 0;border:0;border-top:1px solid var(--el-line)">
+    <div class="el-footer" style="padding:20px 0;border-top:1px solid var(--el-line)">
+      <span class="el-eyebrow">Footer voice</span>
+      <p class="el-mute-body el-fs-sm">© 2026 Wordmark — built with the v3 theme system</p>
+    </div>
+  </section>
+
+</main>
+<script>document.documentElement.dataset.theme = new URLSearchParams(location.search).get("theme") || "neutral";</script>
+</body>
+</html>

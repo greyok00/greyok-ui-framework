@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en" data-theme="neutral">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Theme demo sites — 20 persona site galleries</title>
+<link rel="stylesheet" href="../../base.css">
+<link rel="stylesheet" href="../../fonts.css">
+<link rel="stylesheet" href="../../tokens.css">
+<link rel="stylesheet" href="../../elements-display.css">
+<link rel="stylesheet" href="../../elements-structure.css">
+<link rel="stylesheet" href="../../elements-misc.css">
+<style>
+.wrap { max-width: 1240px; margin: 0 auto; padding: 32px 24px 64px; }
+.hero { padding: 34px 0 26px; }
+.hero h1 { font-family: var(--el-font-display); font-weight: var(--el-head-weight);
+  font-size: clamp(1.9em, 4vw, 2.9em); margin: 0 0 10px; letter-spacing: var(--el-head-tracking, normal); }
+.hero p { color: var(--el-mute); max-width: 60ch; margin: 0; line-height: 1.55; }
+.fam { margin: 34px 0 10px; }
+.fam > .tag { font-size: 11px; letter-spacing: .18em; text-transform: uppercase;
+  color: var(--el-mute); font-weight: 700; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 14px; margin-top: 12px; }
+a.card { display: block; text-decoration: none; color: inherit;
+  border: 1px solid var(--el-line); border-radius: var(--el-r-md, 10px);
+  background: var(--el-panel); padding: 16px 18px; position: relative; overflow: hidden; }
+a.card .sw { display: flex; gap: 6px; margin-bottom: 12px; }
+a.card .sw i { width: 18px; height: 18px; border-radius: 4px; border: 1px solid rgba(0,0,0,.12);
+  background: var(--el-panel-3, var(--el-panel)); }
+a.card .sw i.a { background: color-mix(in oklab, var(--el-accent) 78%, var(--el-panel)); }
+a.card b { display: block; font-family: var(--el-font-display); font-weight: var(--el-head-weight); font-size: 1.12em; margin-bottom: 4px; }
+a.card span { color: var(--el-mute); font-size: .88em; line-height: 1.45; }
+a.card em { position: absolute; right: 14px; top: 12px; font-style: normal; font-size: 11px;
+  font-family: var(--el-font-mono); color: var(--el-mute); }
+a.card:hover { border-color: var(--el-accent); }
+.foot { margin-top: 48px; padding-top: 18px; border-top: 1px solid var(--el-line);
+  color: var(--el-mute); font-size: 12px; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+</style>
+</head>
+<body>
+<main class="wrap">
+  <header class="hero">
+    <p class="el-eyebrow">v0.4.0 · demo sites</p>
+    <h1>Twenty themes, twenty real websites</h1>
+    <p>Each theme is a persona — a different nav anatomy, hero, card treatment, and table style,
+    worked through a full site: home, catalog, article, account, and an app-styles mockup.
+    Every inventory element shows up somewhere on every site. Pick any card and the theme
+    carries the whole thing.</p>
+  </header>
+  <div id="fams"></div>
+  <div class="foot">
+    <span>greyok-ui-framework — built from the wave-1 research corpus</span>
+    <span><a href="/demo/themes.html" style="color:var(--el-accent)">single-page theme harness</a> · <a href="/" style="color:var(--el-accent)">repo root</a></span>
+  </div>
+</main>
+<script>
+const FAMS = [
+  ["tech-mono", ["mono-console", "ghost-terminal"], "Developer-infra terminal voice: phosphor plates, mono display, ruled tables."],
+  ["editorial", ["cream-journal", "paper-press"], "Print-shop publishing: cream paper, broadsheet rules, letterpress cards."],
+  ["neo-brutalist", ["brutal-stamp", "brutal-index"], "Raw type on harsh fields: stamped blocks, index rails, hard borders."],
+  ["webgl-immersive", ["orbit-deep", "solar-halo"], "Deep-space instrument glass: orbital darks, halos, glow accents."],
+  ["agency-classic", ["agency-quartz", "agency-mono-plate"], "Agency confidence: quartz precision and mono plate composition."],
+  ["fashion-serif", ["maison-serif", "noir-couture"], "Editorial couture: high-contrast serifs, gallery spacing, noir black."],
+  ["illustration", ["sticker-pop", "sketchbook"], "Drawn personality: pop sticker edges and warm sketchbook grain."],
+  ["dashboard-light", ["console-light", "grid-ledger"], "Working console: light chrome, data density, ledger precision."],
+  ["motion-brand", ["kinetic-ink", "aperture-motion"], "Brand in motion: ink sweeps, shutter frames, kinetic underlines."],
+  ["quiet-minimal", ["ma-quiet", "gesshoku"], "Restraint as voice: ma spacing, hairline calm, composed applets."],
+];
+const BLURB = {
+  "mono-console": ["mono-console", "Developer-infra landing + console docs"],
+  "ghost-terminal": ["ghost-terminal", "Terminal tooling site + ops dashboard"],
+  "cream-journal": ["cream-journal", "Literary journal + subscriber portal"],
+  "paper-press": ["paper-press", "Newspaper masthead + archive"],
+  "brutal-stamp": ["brutal-stamp", "Poster/event studio + ticketing"],
+  "brutal-index": ["brutal-index", "Index/archive service + records app"],
+  "orbit-deep": ["orbit-deep", "Space-visualization studio + telemetry"],
+  "solar-halo": ["solar-halo", "Planetarium platform + exhibit control"],
+  "agency-quartz": ["agency-quartz", "Design agency + project tracking"],
+  "agency-mono-plate": ["agency-mono-plate", "Brand consultancy + engagement kit"],
+  "maison-serif": ["maison-serif", "Maison collection + boutique booking"],
+  "noir-couture": ["noir-couture", "Couture runway label + lookbook"],
+  "sticker-pop": ["sticker-pop", "Kids-media studio + character library"],
+  "sketchbook": ["sketchbook", "Illustrator portfolio + commissions"],
+  "console-light": ["console-light", "Hosting SaaS console shell"],
+  "grid-ledger": ["grid-ledger", "Accounting ledger product"],
+  "kinetic-ink": ["kinetic-ink", "Motion-design studio + review app"],
+  "aperture-motion": ["aperture-motion", "Film production house + shoot log"],
+  "ma-quiet": ["ma-quiet", "Design gallery archive + collection app"],
+  "gesshoku": ["gesshoku", "Zen focus software — app shell body"],
+};
+document.getElementById("fams").innerHTML = FAMS.map(([fam, slugs, blurb]) => `
+  <section class="fam">
+    <div class="tag">${fam.replace("-", " ")}</div>
+    <div class="grid">` + slugs.map(s => {
+      const b = BLURB[s] || [s, ""];
+      return `<a class="card" href="/demo/sites/${s}/index.html">
+        <em>${s}</em><span class="sw"><i class="a"></i><i class="b"></i><i class="c"></i></span>
+        <b>${s.replace("-", " ")}</b><span>${b[1]}</span></a>`;
+    }).join("") + `</div>
+    <p style="color:var(--el-mute);font-size:.9em;margin:6px 2px 0;max-width:70ch">${blurb}</p>
+  </section>`).join("");
+document.querySelectorAll("a.card").forEach(c => {
+  const slug = c.querySelector("em").textContent;
+  fetch(`/demo/sites/${slug}/index.html`).then(r => {
+    if (!r.ok) { c.style.opacity = ".45"; c.title = "still building"; }
+  }).catch(() => { c.style.opacity = ".45"; c.title = "still building"; });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,166 @@
+@layer el-elements {
+
+
+
+
+
+/* v0.4: pill/badge/kbd/avatar/skeleton/spinner/swatch -> elements-misc.css */
+
+.el-dot {
+  display: inline-block;
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--el-mute);
+  flex-shrink: 0;
+  box-shadow: 0 0 0 2px color-mix(in oklab, currentColor 25%, transparent);
+}
+.el-dot.ok    { background: var(--el-ok);   color: var(--el-ok);   box-shadow: 0 0 0 2px color-mix(in oklab, var(--el-ok)   25%, transparent), 0 0 8px color-mix(in oklab, var(--el-ok)   55%, transparent); }
+.el-dot.warn  { background: var(--el-warn); color: var(--el-warn); box-shadow: 0 0 0 2px color-mix(in oklab, var(--el-warn) 25%, transparent), 0 0 8px color-mix(in oklab, var(--el-warn) 55%, transparent); }
+.el-dot.fail  { background: var(--el-fail); color: var(--el-fail); box-shadow: 0 0 0 2px color-mix(in oklab, var(--el-fail) 25%, transparent), 0 0 8px color-mix(in oklab, var(--el-fail) 55%, transparent); }
+.el-dot.live  { background: var(--el-live); color: var(--el-live); box-shadow: 0 0 0 2px color-mix(in oklab, var(--el-live) 30%, transparent), 0 0 10px color-mix(in oklab, var(--el-live) 65%, transparent); animation: el-pulse 1.6s var(--el-ease) infinite; }
+.el-dot.info  { background: var(--el-info); color: var(--el-info); }
+@keyframes el-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%      { opacity: 0.55; transform: scale(0.88); }
+}
+
+
+.el-big-num {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--el-space-1);
+  font-family: var(--el-font-display);
+  font-size: var(--el-fs-2xl);
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  color: var(--el-ink);
+  font-feature-settings: "tnum" 1;
+  line-height: 1;
+  background: linear-gradient(135deg, currentColor 0%, color-mix(in oklab, currentColor 65%, var(--el-ink-soft)) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.el-big-num .total { color: var(--el-ink-soft); font-size: 0.6em; font-weight: 400; -webkit-text-fill-color: var(--el-ink-soft); }
+.el-big-num .lbl   { color: var(--el-ink-soft); font-size: var(--el-fs-sm); font-weight: 500; margin-left: var(--el-space-2); -webkit-text-fill-color: var(--el-ink-soft); letter-spacing: 0.02em; }
+.el-big-num.fail   { color: var(--el-fail); }
+.el-big-num.warn   { color: var(--el-warn); }
+.el-big-num.ok     { color: var(--el-ok); }
+
+
+.el-gauge {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--el-space-1);
+  width: 72px; min-height: 84px;
+  padding: var(--el-space-3) var(--el-space-2) var(--el-space-2);
+  border: var(--el-bw) solid var(--el-edge);
+  border-radius: var(--el-r-md);
+  background: linear-gradient(180deg, color-mix(in oklab, var(--el-panel-2) 55%, var(--el-panel)) 0%, var(--el-panel) 100%);
+  font-family: var(--el-font-mono);
+  font-size: var(--el-fs-xs);
+  color: var(--el-ink-soft);
+  box-shadow: var(--el-raise-1), var(--el-hairline);
+  position: relative;
+  overflow: hidden;
+  transition: transform var(--el-dur-fast) var(--el-ease), box-shadow var(--el-dur-fast) var(--el-ease);
+}
+.el-gauge:hover { transform: translateY(-2px); box-shadow: var(--el-raise-2); }
+.el-gauge .name { letter-spacing: var(--el-label-tracking); text-transform: uppercase; font-weight: var(--el-label-weight); opacity: 0.85; }
+.el-gauge .val  { font-family: var(--el-font-display); font-size: var(--el-fs-xl); font-weight: 350; letter-spacing: var(--el-head-tracking); color: var(--el-ink); line-height: 1; }
+.el-gauge.ok    { color: var(--el-ok); }
+.el-gauge.ok    .val { color: var(--el-ok); }
+.el-gauge.warn  { color: var(--el-warn); }
+.el-gauge.warn  .val { color: var(--el-warn); }
+.el-gauge.fail  { color: var(--el-fail); }
+.el-gauge.fail  .val { color: var(--el-fail); }
+.el-gauge.radial { background: linear-gradient(180deg, color-mix(in oklab, var(--el-panel) 95%, var(--el-bg)) 0%, var(--el-panel) 100%); }
+
+
+.el-sparkline { display: inline-flex; vertical-align: middle; }
+.el-sparkline svg { display: block; }
+
+
+.el-barograph {
+  display: flex;
+  align-items: flex-end;
+  gap: 1px;
+  height: 40px;
+  padding: var(--el-space-1);
+  background: var(--el-panel);
+  border: var(--el-bw) solid var(--el-line);
+}
+.el-barograph .bar {
+  flex: 1;
+  min-height: 2px;
+  background: var(--el-accent);
+  opacity: 0.7;
+  border-radius: 1px 1px 0 0;
+}
+.el-barograph .bar.warn { background: var(--el-warn); opacity: 0.85; }
+.el-barograph .bar.fail { background: var(--el-fail); opacity: 0.9; }
+
+
+/* v0.4.0 note: .el-pill / .el-badge / .el-kbd / .el-avatar / .el-skeleton /
+   .el-spinner / .el-swatch moved to elements-misc.css (Group 2 + Group 6 rows).
+   This sheet keeps the dot/big-number/gauge/progress/sparkline/display family. */
+
+.el-progress {
+  width: 100%;
+  height: 8px;
+  background: color-mix(in oklab, var(--el-panel-2) 70%, transparent);
+  border-radius: var(--el-r-pill);
+  overflow: hidden;
+  position: relative;
+  box-shadow: inset 0 1px 2px color-mix(in oklab, var(--el-overlay) 40%, transparent);
+}
+.el-progress > .fill {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, color-mix(in oklab, var(--el-accent) 80%, var(--el-info)) 0%, var(--el-accent) 100%);
+  border-radius: var(--el-r-pill);
+  transition: width var(--el-dur-base) var(--el-ease);
+  box-shadow: 0 0 8px color-mix(in oklab, var(--el-accent) 40%, transparent), inset 0 1px 0 color-mix(in oklab, var(--el-on-accent) 25%, transparent);
+}
+.el-progress.warn > .fill { background: linear-gradient(90deg, color-mix(in oklab, var(--el-warn) 80%, var(--el-fail)) 0%, var(--el-warn) 100%); box-shadow: 0 0 8px color-mix(in oklab, var(--el-warn) 40%, transparent); }
+.el-progress.fail > .fill { background: linear-gradient(90deg, color-mix(in oklab, var(--el-fail) 80%, currentColor) 0%, var(--el-fail) 100%); box-shadow: 0 0 8px color-mix(in oklab, var(--el-fail) 40%, transparent); }
+.el-progress.ok   > .fill { background: linear-gradient(90deg, color-mix(in oklab, var(--el-ok) 80%, var(--el-live)) 0%, var(--el-ok) 100%); box-shadow: 0 0 8px color-mix(in oklab, var(--el-ok) 40%, transparent); }
+
+
+.el-progress.circular {
+  width: 48px; height: 48px;
+  background: transparent;
+  border: none;
+}
+.el-progress.circular svg { transform: rotate(-90deg); }
+
+
+.el-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--el-space-2);
+  padding: var(--el-space-6);
+  text-align: center;
+  color: var(--el-ink-soft);
+  font-family: var(--el-font-body);
+}
+/* gap is the sole spacing source — UA heading margins were doubling it */
+.el-empty h2, .el-empty h3, .el-empty h4, .el-empty .el-title { margin: 0; }
+.el-empty .el-icon { font-size: var(--el-fs-xl); color: var(--el-mute); }
+.el-empty .el-msg  { font-size: var(--el-fs-md); color: var(--el-ink-soft); }
+.el-empty .el-hint { font-size: var(--el-fs-sm); color: var(--el-mute); }
+
+
+.el-rating {
+  display: inline-flex;
+  gap: 2px;
+  color: var(--el-mute);
+}
+.el-rating .star { font-size: var(--el-fs-md); }
+.el-rating .star.on { color: var(--el-warn); }
+
+}

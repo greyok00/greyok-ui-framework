@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="en" data-theme="grid-ledger">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Billing packages — Fernbank Ledger</title>
+<link rel="stylesheet" href="../../../base.css">
+<link rel="stylesheet" href="../../../fonts.css">
+<link rel="stylesheet" href="../../../tokens.css">
+<link rel="stylesheet" href="../../../tokens-v2.css">
+<link rel="stylesheet" href="../../../elements-display.css">
+<link rel="stylesheet" href="../../../elements-structure.css">
+<link rel="stylesheet" href="../../../elements-lists.css">
+<link rel="stylesheet" href="../../../elements-app.css">
+<link rel="stylesheet" href="../../../elements-containers.css">
+<link rel="stylesheet" href="../../../elements-controls.css">
+<link rel="stylesheet" href="../../../elements-inputs.css">
+<link rel="stylesheet" href="../../../elements-dataviz.css">
+<link rel="stylesheet" href="../../../elements-overlay.css">
+<link rel="stylesheet" href="../../../elements-interactions.css">
+<link rel="stylesheet" href="../../../elements-misc.css">
+<link rel="stylesheet" href="../../../elements-size.css">
+<link rel="stylesheet" href="../../../elements-workflow.css">
+<link rel="stylesheet" href="../../../elements-inspector.css">
+<link rel="stylesheet" href="../../../elements-reader.css">
+<link rel="stylesheet" href="../../../elements-assistant.css">
+<link rel="stylesheet" href="../../../themes/src/dashboard-light.css">
+<script src="../../../elements.js" defer></script>
+<script src="../../../charts.js" defer></script>
+</head>
+<body class="el-reset">
+<div class="site-shell">
+
+  <nav class="el-navbar el-navbar--rail" aria-label="Fernbank Ledger">
+    <a class="brand" href="index.html">
+      <span class="brand-mark" aria-hidden="true">F</span>
+      <span class="brand-label">Fernbank Ledger</span>
+    </a>
+    <div class="links">
+      <a href="index.html"><span class="rail-idx">01</span>Overview</a>
+      <a href="catalog.html" aria-current="page"><span class="rail-idx">02</span>Billing packages</a>
+      <a href="article.html"><span class="rail-idx">03</span>The close</a>
+      <a href="account.html"><span class="rail-idx">04</span>Books office</a>
+      <a href="app.html"><span class="rail-idx">05</span>Ledger desk</a>
+    </div>
+    <div class="actions">
+      <button class="el-btn" data-drawer-open="drw-quote"><svg class="el-icon"><use href="../../../assets/icons.svg#el-i-plus"/></svg>New package</button>
+    </div>
+    <div class="rail-note">
+      <span>18 packages · 6 clients</span>
+      <span>October invoices 100% sent</span>
+    </div>
+  </nav>
+
+  <div class="site-main">
+    <main class="el-page">
+
+      <section class="el-section">
+        <p class="el-eyebrow">Billing packages</p>
+        <h1 style="font-size: var(--el-fs-2xl); margin: 0 0 8px;">What each client is billed, and why.</h1>
+        <p style="color: var(--el-ink-soft); max-width: 66ch; margin-top: 0;">A package is the rate card you hold a client to: hours or flat, monthly retainer or close-work. Every line here prints on an invoice you can defend in an audit.</p>
+        <div class="actions" style="margin-top: var(--el-space-4); display:flex; flex-wrap:wrap; gap:10px; align-items:center;">
+          <span class="el-search-field" style="max-width: 300px;">
+            <input class="el-search" type="search" placeholder="Search packages, clients…" aria-label="Search packages" />
+          </span>
+          <button class="el-chip is-selected" aria-pressed="true">all (18)</button>
+          <button class="el-chip" aria-pressed="false">retainer (9)</button>
+          <button class="el-chip" aria-pressed="false">close-work (5)</button>
+          <button class="el-chip" aria-pressed="false">catch-up (3)</button>
+          <button class="el-chip" aria-pressed="false">payroll (1)</button>
+        </div>
+      </section>
+
+      <section class="el-section el-section--dense">
+        <div class="el-section-head">
+          <div>
+            <p class="el-eyebrow">Renewing this month</p>
+            <h2>Current retainers</h2>
+          </div>
+          <div class="actions"><span class="el-pill"><span class="el-status-dot ok" data-state="ok"></span>all 6 invoiced</span></div>
+        </div>
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(270px, 1fr)); gap:var(--el-space-3);">
+          <article class="el-card el-card--raised is-interactive">
+            <div class="el-card-foot" style="margin:0; padding:0; border:0; justify-content:space-between;">
+              <span class="el-avatar" aria-hidden="true">HM</span>
+              <span class="el-badge">desk</span>
+            </div>
+            <h3 style="margin-top: var(--el-space-3);">Herrera Metalworks</h3>
+            <p class="sub">Full desk: 2 bank feeds, weekly AP run, five-day close. $620/mo retainer.</p>
+            <div class="el-stat-row" style="align-items:center;">
+              <span class="el-status-dot ok" data-state="ok"></span><span style="font-size: var(--el-fs-sm); color: var(--el-ink-soft);">renewed Oct 28 · 6th term</span>
+            </div>
+            <div class="el-card-foot">
+              <button class="el-btn" data-toast="Invoice for Nov scheduled (Dec 1, 00:05)" data-toast-variant="ok">Bill now</button>
+              <button class="el-btn el-btn--ghost" data-drawer-open="drw-hm">Ledger facts</button>
+            </div>
+          </article>
+          <article class="el-card el-card--raised is-interactive">
+            <div class="el-card-foot" style="margin:0; padding:0; border:0; justify-content:space-between;">
+              <span class="el-avatar" aria-hidden="true">SC</span>
+              <span class="el-badge">desk +</span>
+            </div>
+            <h3 style="margin-top: var(--el-space-3);">Sonoran Coffee Roasters</h3>
+            <p class="sub">Desk plus payroll through ADP; monthly inventory COGS review. $840/mo.</p>
+            <div class="el-stat-row" style="align-items:center;">
+              <span class="el-status-dot warn" data-state="warn"></span><span style="font-size: var(--el-fs-sm); color: var(--el-ink-soft);">review: 3 unresolved feed matches</span>
+            </div>
+            <div class="el-card-foot">
+              <button class="el-btn" data-toast="3 ambiguous matches queued in the desk" data-toast-variant="warn">Open matches</button>
+              <button class="el-btn el-btn--ghost" data-drawer-open="drw-hm">Ledger facts</button>
+            </div>
+          </article>
+          <article class="el-card el-card--raised is-interactive">
+            <div class="el-card-foot" style="margin:0; padding:0; border:0; justify-content:space-between;">
+              <span class="el-avatar" aria-hidden="true">PB</span>
+              <span class="el-badge"><svg class="el-icon"><use href="../../../assets/icons.svg#el-i-clock"/></svg>catch-up</span>
+            </div>
+            <h3 style="margin-top: var(--el-space-3);">Papago Bike Co.</h3>
+            <p class="sub">Jan–Sep catch-up: reconstructing 9 months from bank statements. Fixed $2,400.</p>
+            <div class="el-stat-row" style="align-items:center;">
+              <span class="el-status-dot running" data-state="running"></span><span style="font-size: var(--el-fs-sm); color: var(--el-ink-soft);">month 6 of 9 · on schedule</span>
+            </div>
+            <div class="el-card-foot">
+              <button class="el-btn" data-toast="September batch posted: 214 entries, balanced" data-toast-variant="ok">Post batch</button>
+              <button class="el-btn el-btn--ghost" data-drawer-open="drw-hm">Ledger facts</button>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="el-section">
+        <div class="el-section-head">
+          <div>
+            <p class="el-eyebrow">The rate card</p>
+            <h2>Every package, tabulated</h2>
+          </div>
+          <div class="actions"><span class="el-pill">sorted by client name</span></div>
+        </div>
+        <div class="table-scroll">
+          <table class="el-table el-table--bank" data-page-source="#rate-rows" data-page-size="7">
+            <thead><tr><th>Client</th><th>Package</th><th>Basis</th><th class="num">Monthly</th><th>Renewal</th><th>Status</th></tr></thead>
+            <tbody id="rate-rows">
+              <tr><td>Bright Star Dental</td><td>retainer · sole</td><td>flat</td><td class="num">$310</td><td style="font-family: var(--el-font-mono); font-size: var(--el-fs-xs);">Dec 1</td><td><span class="el-status-pill ok" data-state="ok">invoiced</span></td></tr>
+              <tr><td>Herrera Metalworks</td><td>retainer · desk</td><td>flat</td><td class="num">$620</td><td style="font-family: var(--el-font-mono); font-size: var(--el-fs-xs);">Nov 28</td><td><span class="el-status-pill ok" data-state="ok">invoiced</span></td></tr>
+              <tr><td>Ironwood Physical Therapy</td><td>retainer · sole</td><td>flat</td><td class="num">$295</td><td style="font-family: var(--el-font-mono); font-size: var(--el-fs-xs);">Nov 30</td><td><span class="el-status-pill queued" data-state="idle">queued</span></td></tr>
+              <tr><td>Papago Bike Co.</td><td>catch-up</td><td>fixed</td><td class="num">$2,400</td><td style="font-family: var(--el-font-mono); font-size: var(--el-fs-xs);">Jan 15</td><td><span class="el-status-pill running" data-state="running">in progress</span></td></tr>
+              <tr><td>Rincon Print Shop</td><td>close-work</td><td>hourly</td><td class="num">$95</td><td style="font-family: var(--el-font-mono); font-size: var(--el-fs-xs);">per close</td><td><span class="el-status-pill stale" data-state="stale">awaiting PO</span></td></tr>
+              <tr><td>Sonoran Coffee Roasters</td><td>retainer · desk+</td><td>flat</td><td class="num">$840</td><td style="font-family: var(--el-font-mono); font-size: var(--el-fs-xs);">Nov 28</td><td><span class="el-status-pill warn" data-state="warn">review</span></td></tr>
+              <tr><td>Thimbleweed Quilts</td><td>retainer · sole</td><td>flat</td><td class="num">$280</td><td style="font-family: var(--el-font-mono); font-size: var(--el-fs-xs);">Dec 5</td><td><span class="el-status-pill queued" data-state="idle">queued</span></td></tr>
+              <tr hidden><td>Cactus Wren Landscaping</td><td>close-work</td><td>hourly</td><td class="num">$85</td><td style="font-family: var(--el-font-mono); font-size: var(--el-fs-xs);">per close</td><td><span class="el-status-pill ok" data-state="ok">scheduled</span></td></tr>
+              <tr hidden><td>Dusk Trail RV Park</td><td>retainer · solo</td><td>flat</td><td class="num">$340</td><td style="font-family: var(--el-font-mono); font-size: var(--el-fs-xs);">Dec 1</td><td><span class="el-status-pill ok" data-state="ok">invoiced</span></td></tr>
+              <tr hidden><td>Estrella Bakery</td><td>payroll</td><td>per run</td><td class="num">$120</td><td style="font-family: var(--el-font-mono); font-size: var(--el-fs-xs);">biweekly</td><td><span class="el-status-pill ok" data-state="ok">current</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="el-pagination" data-page-source="#rate-rows" data-page-size="7" style="margin-top: var(--el-space-3);">
+          <button class="page" data-action="first" aria-label="First page">«</button>
+          <button class="page" data-action="prev" aria-label="Previous page">‹</button>
+          <button class="page on" data-action="next">1</button>
+          <button class="page" data-action="next">2</button>
+          <button class="page" data-action="next" aria-label="Next page">›</button>
+          <button class="page" data-action="last" aria-label="Last page">»</button>
+          <span class="info">1 / 2</span>
+        </div>
+      </section>
+
+      <section class="el-section el-section--dense">
+        <div class="el-empty" style="max-width: 470px;">
+          <svg class="el-icon"><use href="../../../assets/icons.svg#el-i-search"/></svg>
+          <div class="el-msg">No packages for "notary" clients</div>
+          <div class="el-hint">You haven't taken a notary client yet. When you do, this card becomes their rate card — flat, hourly, or escrow-based.</div>
+          <div class="actions">
+            <button class="el-btn" data-drawer-open="drw-quote">Create a package</button>
+          </div>
+        </div>
+      </section>
+
+      <footer class="el-footer">
+        <div class="cols">
+          <div class="col"><span class="label">Ledger</span><a href="app.html">The desk</a><a href="catalog.html">Billing packages</a></div>
+          <div class="col"><span class="label">Read</span><a href="article.html">The five-day close</a></div>
+          <div class="col"><span class="label">Books office</span><a href="account.html">Settings</a><a href="account.html">Feeds</a></div>
+          <div class="col"><span class="label">Fine print</span><a href="#">Security</a><a href="#">SOC 1 report</a></div>
+        </div>
+        <div class="small">© 2026 Fernbank Ledger Co. · 18 packages · 6 clients · $2,765 MRR billed monthly</div>
+      </footer>
+    </main>
+  </div>
+</div>
+
+<!-- drawer: ledger facts -->
+<aside class="el-drawer right" id="drw-hm" aria-label="Ledger facts">
+  <header class="el-drawer-head">
+    <span>LEDGER FACTS · HERRERA METALWORKS</span>
+    <button class="el-drawer-close" data-drawer-close aria-label="Close"><svg class="el-icon"><use href="../../../assets/icons.svg#el-i-close"/></svg></button>
+  </header>
+  <div class="el-drawer-body">
+    <div class="el-fact-grid">
+      <div class="el-fact"><span class="k">entries / mo</span><span class="v">412</span></div>
+      <div class="el-fact"><span class="k">bank feeds</span><span class="v">2</span></div>
+      <div class="el-fact is-hot"><span class="k">close time</span><span class="v">22 h</span></div>
+      <div class="el-fact"><span class="k">unmatched</span><span class="v">0.4%</span></div>
+    </div>
+    <table class="el-table el-table--bank">
+      <thead><tr><th>Account</th><th class="num">Balance</th><th>Feed</th></tr></thead>
+      <tbody>
+        <tr><td>101 · Operating (Chase)</td><td class="num">$48,220.14</td><td><span class="el-status-dot ok" data-state="ok"></span></td></tr>
+        <tr><td>105 · Payroll (Wells)</td><td class="num">$9,880.00</td><td><span class="el-status-dot ok" data-state="ok"></span></td></tr>
+        <tr><td>120 · AR</td><td class="num">$12,400.00</td><td>manual</td></tr>
+        <tr><td>201 · AP</td><td class="num">$4,110.55</td><td>manual</td></tr>
+      </tbody>
+    </table>
+    <div class="el-inline-alert el-inline-alert--ok">
+      <div><div class="title">October balance</div><div class="body">Assets minus liabilities plus equity: $0.00 difference. Books balanced.</div></div>
+    </div>
+  </div>
+  <footer class="el-drawer-foot">
+    <button class="el-btn" data-toast="Statement printed to workpapers (PDF)" data-toast-variant="ok">Print statement</button>
+    <button class="el-btn el-btn--outline" data-drawer-close>Close</button>
+  </footer>
+</aside>
+
+<!-- drawer: new package -->
+<aside class="el-drawer right" id="drw-quote" aria-label="New billing package">
+  <header class="el-drawer-head">
+    <span>NEW PACKAGE</span>
+    <button class="el-drawer-close" data-drawer-close aria-label="Close"><svg class="el-icon"><use href="../../../assets/icons.svg#el-i-close"/></svg></button>
+  </header>
+  <div class="el-drawer-body">
+    <div class="el-field">
+      <label class="el-label" for="pkg-client">Client</label>
+      <input class="el-input" id="pkg-client" placeholder="Catalina Bookcases LLC" />
+    </div>
+    <div class="el-field">
+      <label class="el-label" for="pkg-kind">Package kind</label>
+      <select class="el-select" id="pkg-kind"><option>Retainer · monthly</option><option>Close-work · per close</option><option>Catch-up · fixed</option><option>Payroll · per run</option></select>
+    </div>
+    <div class="el-field">
+      <label class="el-label" for="pkg-rate">Rate</label>
+      <div class="ctl-with-val" style="display:flex; align-items:center; gap:12px;">
+        <input class="el-slider" id="pkg-rate" type="range" min="200" max="1500" step="5" value="300" style="flex:1;" aria-label="Monthly retainer in dollars" />
+        <span class="el-slider-val"><span class="val">$300</span> /mo</span>
+      </div>
+      <span class="el-hint">Rate bands: sole $250–400 · desk $500–900 · firm $1,200+.</span>
+    </div>
+    <div class="el-field">
+      <label class="el-label" for="pkg-terms">Terms</label>
+      <div class="el-dropdown" tabindex="0">Net 15 <svg class="el-icon"><use href="../../../assets/icons.svg#el-i-chevron-down"/></svg></div>
+    </div>
+  </div>
+  <footer class="el-drawer-foot">
+    <button class="el-btn" data-toast="Package saved as draft (nothing billed yet)" data-toast-variant="ok">Save package</button>
+    <button class="el-btn el-btn--ghost" data-drawer-close>Cancel</button>
+  </footer>
+</aside>
+
+<script>
+window.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('[data-banner-close]').forEach(b =>
+    b.addEventListener('click', () => b.closest('.el-banner')?.classList.add('is-dismissed')));
+  const q = new URLSearchParams(location.search).get('open');
+  if (q && window.Elements) {
+    const t = document.getElementById(q);
+    if (t && t.classList.contains('el-drawer') && window.Elements.openDrawer) window.Elements.openDrawer(t);
+  }
+});
+</script>
+</body>
+</html>

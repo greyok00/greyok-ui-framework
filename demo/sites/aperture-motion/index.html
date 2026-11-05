@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="en" data-theme="aperture-motion"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Halide Motion Pictures — film productions</title>
+<link rel="stylesheet" href="../../../base.css"><link rel="stylesheet" href="../../../fonts.css">
+<link rel="stylesheet" href="../../../tokens.css">
+<link rel="stylesheet" href="../../../elements-display.css">
+<link rel="stylesheet" href="../../../elements-structure.css">
+<link rel="stylesheet" href="../../../elements-lists.css">
+<link rel="stylesheet" href="../../../elements-app.css">
+<link rel="stylesheet" href="../../../elements-containers.css">
+<link rel="stylesheet" href="../../../elements-controls.css">
+<link rel="stylesheet" href="../../../elements-inputs.css">
+<link rel="stylesheet" href="../../../elements-dataviz.css">
+<link rel="stylesheet" href="../../../elements-overlay.css">
+<link rel="stylesheet" href="../../../elements-interactions.css">
+<link rel="stylesheet" href="../../../elements-misc.css">
+<link rel="stylesheet" href="../../../elements-size.css">
+<link rel="stylesheet" href="../../../elements-workflow.css">
+<link rel="stylesheet" href="../../../elements-inspector.css">
+<link rel="stylesheet" href="../../../elements-reader.css">
+<link rel="stylesheet" href="../../../elements-assistant.css">
+<link rel="stylesheet" href="../../../themes/src/motion-brand.css">
+<script src="../../../elements.js" defer></script><script src="../../../charts.js" defer></script>
+<style>
+  .ap-cards { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+  .ap-stats { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; }
+  @media (max-width:1000px){ .ap-cards{ grid-template-columns:repeat(2,1fr); } .ap-stats{ grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:680px){ .ap-cards, .ap-stats{ grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<main class="el-page">
+
+  <div class="el-banner el-banner--live" style="margin:16px 0 18px">
+    <span class="glyph"><span class="el-status-dot live" aria-hidden="true"></span></span>
+    <span class="copy"><b>Stage 3 is shooting.</b><span class="detail">Permit window 06:00–19:00 MST — call sheet #41 posted at 04:58.</span></span>
+    <button class="close" aria-label="Dismiss">✕</button>
+  </div>
+
+  <nav class="el-navbar el-navbar--top" aria-label="Primary">
+    <a class="brand" href="index.html">Halide<span class="el-bar-mark" aria-hidden="true"></span></a>
+    <div class="links">
+      <a href="index.html" aria-current="page">Productions</a>
+      <a href="catalog.html">Filmography</a>
+      <a href="article.html">Notes from set</a>
+      <a href="account.html">Producer portal</a>
+      <a href="app.html">Shoot log</a>
+    </div>
+    <div class="actions">
+      <button class="el-btn" data-command-open="#ap-cmd">Logbook <span class="el-kbd">⌘L</span></button>
+    </div>
+  </nav>
+
+  <header class="el-hero el-hero--poster" style="margin:18px 0 0">
+    <div class="media"><div class="frame">
+      <svg viewBox="0 0 1200 620" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Sonoran night shoot plate">
+        <defs>
+          <linearGradient id="ap-sky" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#170d08"/><stop offset=".55" stop-color="#241209"/><stop offset="1" stop-color="#0c0705"/>
+          </linearGradient>
+          <radialGradient id="ap-sun" cx=".72" cy=".36" r=".34">
+            <stop offset="0" stop-color="#ffb26b"/><stop offset=".4" stop-color="#ff7a1a" stop-opacity=".85"/><stop offset="1" stop-color="#ff7a1a" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <rect width="1200" height="620" fill="url(#ap-sky)"/>
+        <rect width="1200" height="620" fill="url(#ap-sun)"/>
+        <g stroke="#0d0906" stroke-width="10" opacity=".9">
+          <path d="M0 470 L340 380 L520 430 L760 350 L1000 420 L1200 360 L1200 620 L0 620 Z" fill="#120a06"/>
+          <path d="M0 520 L420 450 L700 500 L980 440 L1200 500 L1200 620 L0 620 Z" fill="#0d0805"/>
+        </g>
+        <g fill="#efe4d4" opacity=".52"><text x="64" y="104" font-family="Inter Tight, monospace" font-size="15" letter-spacing="7">SCENE 14 · TAKE 3 · STAGE 3</text></g>
+        <g fill="#ff7a1a" opacity=".9"><rect x="1046" y="58" width="86" height="60" rx="4"/><rect x="1046" y="126" width="86" height="60" rx="4" opacity=".45"/><rect x="1046" y="194" width="86" height="60" rx="4" opacity=".2"/></g>
+      </svg>
+    </div></div>
+    <p class="el-eyebrow">tucson · est. 2014 · 41 productions delivered</p>
+    <h1 class="el-title-xl" style="max-width:16ch">Pictures that keep<br>the desert light honest.</h1>
+    <p class="el-body" style="max-width:56ch">Halide Motion Pictures stages, shoots, and finishes independent film
+    on real Sonoran locations. Permits, sunsets, and a shoot log the producers read on their phone at breakfast.</p>
+    <div class="actions">
+      <button class="el-btn" data-drawer-open="ap-log-drawer">Watch last week's log</button>
+      <button class="el-btn ghost" data-toast="Treatment pack downloads land in your producer portal." data-toast-variant="info">Treatment pack</button>
+      <span class="el-status-pill live" style="align-self:center">stage 3 · rolling</span>
+    </div>
+  </header>
+
+  <hr class="el-rule">
+
+  <section class="el-section" style="padding-block:26px">
+    <div class="ap-stats">
+      <div class="el-stat">
+        <span class="el-stat-label">Feature finishes</span>
+        <span class="el-stat-value">17</span>
+        <span class="el-sparkline" data-chart="sparkline" data-values="2,4,5,8,11,17" data-width="120" data-height="34" data-color="#ff7a1a"></span>
+        <span class="el-stat-sub">since 2014</span>
+      </div>
+      <div class="el-stat">
+        <span class="el-stat-label">Shoot days logged 2026</span>
+        <span class="el-stat-value">214</span>
+        <span class="data-chart" data-chart="line" data-values="4,7,6,9,12,10,14,13" data-width="120" data-height="34" data-color="#e8b98a"></span>
+        <span class="el-budget"><span class="el-progress" role="progressbar" aria-valuenow="71"><span class="fill" style="width:71%"></span></span><span class="label">71% of the 300-day slate</span></span>
+      </div>
+      <div class="el-stat">
+        <span class="el-stat-label">Permit days on time</span>
+        <span class="el-stat-value">96%</span>
+        <div class="el-meter ok" role="meter" aria-valuenow="96" style="margin-top:6px;--el-meter-value:96%"><span class="fill"></span></div>
+        <span class="el-stat-sub">city + county + park service</span>
+      </div>
+      <div class="el-stat is-live">
+        <span class="el-stat-label">Rolling now</span>
+        <span class="el-stat-value">2</span>
+        <span class="data-chart" data-chart="bar" data-values="1,0,2,1,1,0,2" data-width="120" data-height="34" data-color="#ff7a1a"></span>
+        <span class="el-stat-sub">stage 3 · unit B on location</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="el-section">
+    <p class="el-eyebrow">In production and in can</p>
+    <h2>Three pictures on the slate</h2>
+    <div class="ap-cards" style="margin-top:14px">
+      <article class="el-card el-card--raised is-interactive">
+        <div class="el-card-media" style="height:150px"><span style="display:block;height:150px;background:linear-gradient(100deg,#2a170b,#120b06 72%)"></span></div>
+        <span class="lbl">FEATURE · SHOOTING · STAGE 3</span>
+        <h3>Sonora Red</h3>
+        <p class="sub">A border-town radio operator hears a rescue that has not happened yet. Shot on Sonoran locations, 32 days, two stages.</p>
+        <div class="actions">
+          <span class="el-badge live">day 19 of 32</span>
+          <button class="el-btn ghost" style="min-height:30px;padding:2px 10px" data-drawer-open="ap-log-drawer">Day log</button>
+          <span class="el-popover"><button class="el-btn ghost" style="min-height:30px;padding:2px 10px" aria-label="More">⋯</button>
+            <div class="el-pop"><h4>Sonora Red</h4><p>1.85:1 · anamorphic primes · grade in Tucson · score by Mara Vela.</p></div>
+          </span>
+        </div>
+      </article>
+      <article class="el-card el-card--raised is-interactive">
+        <div class="el-card-media" style="height:150px"><span style="display:block;height:150px;background:linear-gradient(100deg,#26200e,#100d06 72%)"></span></div>
+        <span class="lbl">FEATURE · PICTURE LOCK</span>
+        <h3>The Salt Ledger</h3>
+        <p class="sub">Two brothers audit a vanishing salt flat. Delivered to the festival cut on a 4:02:1 final, 118 minutes.</p>
+        <div class="actions">
+          <span class="el-badge ok">locked</span>
+          <button class="el-btn ghost" style="min-height:30px;padding:2px 10px" data-drawer-open="ap-log-drawer">Day log</button>
+          <span class="el-popover"><button class="el-btn ghost" style="min-height:30px;padding:2px 10px" aria-label="More">⋯</button>
+            <div class="el-pop"><h4>The Salt Ledger</h4><p>2.39:1 · single-camera 16 mm + 4K b-cam · festival premiere submitted September.</p></div>
+          </span>
+        </div>
+      </article>
+      <article class="el-card el-card--raised is-interactive">
+        <div class="el-card-media" style="height:150px"><span style="display:block;height:150px;background:linear-gradient(100deg,#1e140c,#0f0d0c 72%)"></span></div>
+        <span class="lbl">SHORTS BLOCK · DIRECTION SEALED</span>
+        <h3>Four Sunsets</h3>
+        <p class="sub">A four-director anthology, one sunset each. The same 19 minutes of golden hour, four ways.</p>
+        <div class="actions">
+          <span class="el-badge">boarded</span>
+          <button class="el-btn ghost" style="min-height:30px;padding:2px 10px" data-drawer-open="ap-log-drawer">Day log</button>
+          <span class="el-popover"><button class="el-btn ghost" style="min-height:30px;padding:2px 10px" aria-label="More">⋯</button>
+            <div class="el-pop"><h4>Four Sunsets</h4><p>Each director gets 11 camera-days and the same dailies editor. Nothing else is shared.</p></div>
+          </span>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <figure class="el-media-band" style="margin-block:10px">
+    <div class="media">
+      <div class="frame">
+        <svg viewBox="0 0 520 300" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Night-glass lighting test">
+          <rect width="520" height="300" fill="#150c07"/>
+          <g fill="#ff7a1a" opacity=".85"><circle cx="300" cy="150" r="76"/></g>
+          <g fill="#170e09"><rect x="60" y="180" width="180" height="120" rx="6" transform="rotate(-8 60 180)"/></g>
+          <text x="64" y="66" fill="#8c7a68" font-family="Inter Tight, monospace" font-size="13" letter-spacing="3">NIGHT-GLASS TEST · T2.8 · 500 ASA</text>
+        </svg>
+      </div>
+      <figcaption>night-glass lighting test, stage 3 · call sheet #41</figcaption>
+    </div>
+    <div class="body">
+      <span class="label">tonight · 19:40 MST</span>
+      <h3 style="margin:0 0 8px;font-family:var(--el-font-display)">The test we shot before the permit clock ran out.</h3>
+      <p class="el-body">Three setups, one roll, and 41 minutes of usable night glass. The producers saw it at breakfast
+      because the shoot log closes at 02:10, every night.</p>
+      <div class="actions"><button class="el-btn" data-drawer-open="ap-log-drawer">Read the full log</button>
+      <button class="el-btn ghost" data-toast="Stage 3 feed opens in the shoot log." data-toast-variant="info">Open live feed</button></div>
+    </div>
+  </figure>
+
+  <section class="el-section">
+    <p class="el-eyebrow">Ways to shoot with Halide</p>
+    <h2>Production plans</h2>
+    <div class="ap-cards" style="margin-top:14px">
+      <div class="el-pricing">
+        <div class="name">unit support</div>
+        <div class="price">$12,500<span class="per">/week</span></div>
+        <p class="note">Your director and a Halide unit. Locations, permits, and the shoot log included.</p>
+        <ul class="feats"><li>2 camera days per week</li><li>city permit desk</li><li>night call sheets</li></ul>
+        <button class="el-btn ghost" data-toast="Unit support brief opened in the producer portal." data-toast-variant="ok">Start a brief</button>
+      </div>
+      <div class="el-pricing --featured">
+        <div class="flag">booked through Q3 2027</div>
+        <div class="name">full production</div>
+        <div class="price">$210,000<span class="per">/picture</span></div>
+        <p class="note">Halide runs the whole picture: development tables, unit, editorial, and festival deliverables.</p>
+        <ul class="feats"><li>director-of-record pipeline</li><li>sound stage days</li><li>post + grading + deliverable set</li><li>producers' shoot log seat</li></ul>
+        <button class="el-btn" data-toast="Production slot request sent — the slate desk answers in two days." data-toast-variant="ok">Request a slot</button>
+      </div>
+      <div class="el-pricing">
+        <div class="name">plate + stage</div>
+        <div class="price">$3,900<span class="per">/day</span></div>
+        <p class="note">Stage 3 with the night-glass kit. You bring the crew; we bring 40,000 sq ft of dark.</p>
+        <ul class="feats"><li>stage 3 + backlot</li><li>night lighting package</li><li>same-day dailies</li></ul>
+        <button class="el-btn ghost" data-toast="Stage day booked pending the permit desk." data-toast-variant="ok">Book a day</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="el-section el-section--dense">
+    <figure class="el-testimonial">
+      <div class="el-avatar" style="width:44px;height:44px">JV</div>
+      <blockquote>“Halide shot 214 permit days last year and never lost a call sheet. Their log is the only
+      production doc I read at breakfast.”</blockquote>
+      <figcaption>June Valdez — line producer, <a href="catalog.html">The Salt Ledger</a></figcaption>
+    </figure>
+    <div class="el-card el-card--press" style="margin-top:16px">
+      <span class="el-label">press quote</span>
+      <p class="el-body">“The desert shoot everyone said could not be scheduled.” — <em>Sonoran Film Review, no. 61</em></p>
+    </div>
+  </section>
+
+  <footer class="el-footer">
+    <div class="brand">Halide<span class="el-bar-mark" aria-hidden="true"></span> <span class="small">motion pictures</span></div>
+    <div class="cols">
+      <div class="col">
+        <span class="label">Studio</span>
+        <a href="catalog.html">Filmography</a>
+        <a href="article.html">Notes from set</a>
+      </div>
+      <div class="col">
+        <span class="label">Producers</span>
+        <a href="account.html">Producer portal</a>
+        <a href="app.html">Shoot log</a>
+      </div>
+      <div class="col small">
+        <span>410 W Speedway Blvd, Tucson AZ</span>
+        <span>stage line · (520) 555-0141</span>
+      </div>
+    </div>
+    <div class="colophon">© 2026 Halide Motion Pictures LLC · slates, permits, and logs are house records.</div>
+  </footer>
+
+  <div id="ap-log-drawer" class="el-drawer right" role="dialog" aria-label="Shoot log">
+    <div class="el-drawer-head">Shoot log — week 41<button data-drawer-close style="background:none;border:0;color:inherit;cursor:pointer;font-size:1em" aria-label="Close">✕</button></div>
+    <div class="el-drawer-body">
+      <ul class="el-timeline">
+        <li class="ok"><span class="when">TUE</span><span class="what">Scene 14 · takes 1–3 · 41 min of night glass kept</span></li>
+        <li class="ok"><span class="when">WED</span><span class="what">Backlot sunset plate — golden-hour window honored to the minute</span></li>
+        <li class="running"><span class="when">THU</span><span class="what">Stage 3 night-glass setups — rolling now</span></li>
+        <li class="warn"><span class="when">FRI</span><span class="what">Permit renewal for the county road due before call 1</span></li>
+        <li><span class="when">SAT</span><span class="what">Unit B — location scout, ironwood forest permit check</span></li>
+      </ul>
+    </div>
+    <div class="el-drawer-foot"><button class="el-btn ghost" data-drawer-close>Close</button></div>
+  </div>
+
+  <div id="ap-cmd" class="el-command" hidden>
+    <div class="el-command-head"><span class="el-command-icon">⌘</span>
+      <input class="el-command-input" placeholder="Search the logbook…"></div>
+    <div class="el-command-results">
+      <div class="el-command-group">Log</div>
+      <button class="el-command-row sel"><span>Open today's call sheet</span><span class="key">#41</span></button>
+      <button class="el-command-row"><span>Permit desk status</span><span class="key">P</span></button>
+      <button class="el-command-row"><span>Golden-hour window tonight</span><span class="key">G</span></button>
+      <div class="el-command-group">Productions</div>
+      <button class="el-command-row"><span>Sonora Red day 19 summary</span><span class="key">S</span></button>
+      <button class="el-command-row"><span>The Salt Ledger festival cut</span><span class="key">L</span></button>
+      <button class="el-command-row"><span>Four Sunsets board deck</span><span class="key">B</span></button>
+    </div>
+    <div class="el-command-empty">Nothing in the logbook matches.</div>
+    <div class="el-command-foot"><span><span class="el-kbd">↑</span><span class="el-kbd">↓</span> move</span><span><span class="el-kbd">↵</span> open</span><span><span class="el-kbd">esc</span> close</span></div>
+  </div>
+
+  <div class="el-toast-region">
+    <div class="el-toast info" role="status"><span>Logbook syncs at 02:10 — the log you see is the log the unit chief signed.</span><span class="close" aria-label="Dismiss">✕</span></div>
+  </div>
+
+</main>
+</body></html>

@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="en" data-theme="ghost-terminal">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WAXLAMP — the phosphor shell for tired eyes</title>
+<link rel="stylesheet" href="../../../base.css">
+<link rel="stylesheet" href="../../../fonts.css">
+<link rel="stylesheet" href="../../../tokens.css">
+<link rel="stylesheet" href="../../../elements-display.css">
+<link rel="stylesheet" href="../../../elements-structure.css">
+<link rel="stylesheet" href="../../../elements-lists.css">
+<link rel="stylesheet" href="../../../elements-app.css">
+<link rel="stylesheet" href="../../../elements-containers.css">
+<link rel="stylesheet" href="../../../elements-controls.css">
+<link rel="stylesheet" href="../../../elements-inputs.css">
+<link rel="stylesheet" href="../../../elements-dataviz.css">
+<link rel="stylesheet" href="../../../elements-overlay.css">
+<link rel="stylesheet" href="../../../elements-interactions.css">
+<link rel="stylesheet" href="../../../elements-misc.css">
+<link rel="stylesheet" href="../../../elements-size.css">
+<link rel="stylesheet" href="../../../elements-workflow.css">
+<link rel="stylesheet" href="../../../elements-inspector.css">
+<link rel="stylesheet" href="../../../elements-reader.css">
+<link rel="stylesheet" href="../../../elements-assistant.css">
+<link rel="stylesheet" href="../../../themes/src/tech-mono.css">
+<script src="../../../elements.js" defer></script>
+<script src="../../../charts.js" defer></script>
+</head>
+<body>
+<div class="el-page">
+
+  <nav class="el-navbar el-navbar--top" aria-label="Primary">
+    <a class="brand" href="index.html">WAXLAMP</a>
+    <ul class="links">
+      <li><a href="index.html" aria-current="page">Lamp</a></li>
+      <li><a href="catalog.html">Registry</a></li>
+      <li><a href="article.html">Journal</a></li>
+      <li><a href="account.html">Account</a></li>
+      <li><a href="app.html">Dash</a></li>
+    </ul>
+    <div class="actions">
+      <span class="el-tooltip" data-tip="Show the palette — every command is two keys away" tabindex="0">
+        <button class="el-btn el-btn--ghost" type="button" data-command="wl-palette">Palette</button>
+      </span>
+      <button class="el-btn" type="button" data-dialog-open="wl-install">Get waxlamp</button>
+    </div>
+  </nav>
+
+  <header class="el-hero el-hero--split">
+    <div class="copy">
+      <span class="el-eyebrow">waxlamp 3.0 &middot; persistence inside</span>
+      <h1>A terminal that remembers.</h1>
+      <p>Waxlamp is a phosphor shell and TUI kit. Scrollback survives reboots, themes are one file, and the whole thing fits in 4 MB. The glow is not decoration — it is the read on your eye strain.</p>
+      <div class="actions">
+        <button class="el-btn" type="button" data-dialog-open="wl-install">Install</button>
+        <a class="el-btn el-btn--ghost" href="article.html">Read the persistence paper</a>
+        <span class="el-kbd" aria-label="keyboard open shortcut">Ctrl ^ K</span>
+      </div>
+    </div>
+    <div class="media"><div class="fill" role="img" aria-label="Waxlamp tube showing a phosphor scrollback"></div></div>
+  </header>
+
+  <main>
+    <section class="el-section el-section--dense">
+      <h2 style="margin:0;letter-spacing:.24em;">[ the lamp at a glance ]</h2>
+      <div class="el-stat-row">
+        <div class="el-stat">
+          <span class="el-stat-label">Cold start</span>
+          <span class="el-stat-value">18<small>&nbsp;ms</small></span>
+          <span class="el-stat-delta up">-6ms</span>
+          <span class="el-sparkline el-chart" data-chart="sparkline" data-values="31,29,27,24,22,20,18,18" data-width="120" data-height="30" data-color="var(--el-accent)"></span>
+        </div>
+        <div class="el-stat">
+          <span class="el-stat-label">Resident set</span>
+          <span class="el-stat-value">4.1<small>&nbsp;MB</small></span>
+          <span class="el-stat-delta flat">&plusmn;0.1</span>
+          <span class="el-chart" data-chart="bar" data-values="7,7,6,6,5,5,4,4" data-width="120" data-height="30" data-color="var(--el-accent)"></span>
+        </div>
+        <div class="el-stat">
+          <span class="el-stat-label">Scrollback kept</span>
+          <span class="el-stat-value">∞</span>
+          <span class="el-stat-note">persisted to disk every 400 ms</span>
+        </div>
+        <div class="el-stat is-live">
+          <span class="el-stat-label">Shells in the wild</span>
+          <span class="el-stat-value">86,404</span>
+          <span class="el-chart" data-chart="donut" data-values="86,14" data-width="44" data-height="44" data-color="var(--el-accent)"></span>
+        </div>
+      </div>
+    </section>
+
+    <section class="el-section">
+      <h2>[ three reasons to switch tubes ]</h2>
+      <div class="el-cluster" style="display:grid;grid-template-columns:repeat(3,1fr);gap:var(--el-space-3);">
+        <article class="el-card el-card--flat el-card--press">
+          <h3 class="el-card-title">Persistence engine</h3>
+          <p class="sub">Buffer, marks and cursor state live in a log-structured store. Reboot a laptop mid-ssh and the scroll is still there.</p>
+          <div class="el-card-foot"><span class="el-badge live">new</span><button class="el-btn el-btn--ghost" type="button" data-drawer-open="wl-drawer">Read specs</button></div>
+        </article>
+        <article class="el-card el-card--flat el-card--press">
+          <h3 class="el-card-title">Theme furnace</h3>
+          <p class="sub">One file declares phosphor, colors and glow. Hot-swap between amber, green and paper without touching the shell.</p>
+          <div class="el-card-foot"><span class="el-badge ok">120 themes</span><button class="el-btn el-btn--ghost" type="button" data-drawer-open="wl-drawer">Browse</button></div>
+        </article>
+        <article class="el-card el-card--flat el-card--press">
+          <h3 class="el-card-title">Hook bus</h3>
+          <p class="sub">Every keypress, prompt and job passes one bus. Bind what you want; nothing else moves.</p>
+          <div class="el-card-foot"><span class="el-badge warn">2.9 compat</span><button class="el-btn el-btn--ghost" type="button" data-drawer-open="wl-drawer">See the bus</button></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="el-section">
+      <div class="el-media-band">
+        <div class="media">
+          <div class="fill" role="img" aria-label="Waxlamp dashboard with amber meters"></div>
+          <figcaption>wl-dash, 3.0.0-rc4 — the ops panel that ships with the shell</figcaption>
+        </div>
+        <div class="body">
+          <span class="el-eyebrow">[ wl-dash ]</span>
+          <h2>Your ops panel lives where your work does</h2>
+          <p>Wl-dash is a TUI-style panel that rides inside the app window: jobs, lamps, drift and history. It is the same runtime the shell uses, so what the dash shows is what the shell knows.</p>
+          <div class="actions">
+            <button class="el-btn" type="button" data-toast="Dash session launched in a new tube" data-toast-variant="ok">Launch dash</button>
+            <span class="el-tooltip" data-tip="Opens dash without history" tabindex="0"><button class="el-btn el-btn--outline" type="button">Fresh session</button></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="el-section">
+      <h2>[ pricing ]</h2>
+      <div class="el-cluster" style="display:grid;grid-template-columns:repeat(3,1fr);gap:var(--el-space-3);margin-top:var(--el-space-4);">
+        <article class="el-pricing">
+          <span class="name">home tube</span>
+          <span class="price">$0 <span class="per">/ forever</span></span>
+          <ul class="feats">
+            <li>Full shell + persistence</li>
+            <li>120 factory themes</li>
+            <li>Community registry access</li>
+            <li class="off">Fleet lamps</li>
+            <li class="off">Drift digest</li>
+          </ul>
+          <button class="el-btn el-btn--outline" type="button" data-dialog-open="wl-install" style="justify-self:start;">Take it</button>
+          <p class="note">free is a real product, not a trial</p>
+        </article>
+        <article class="el-pricing el-pricing--featured">
+          <span class="flag">ops favorite</span>
+          <span class="name">work tube</span>
+          <span class="price">$14 <span class="per">/ mo</span></span>
+          <ul class="feats">
+            <li>Everything in home</li>
+            <li>Drift digest every morning</li>
+            <li>Lamp fleet for 10 hosts</li>
+            <li>Private theme shelf</li>
+            <li class="off">On-call relay</li>
+          </ul>
+          <button class="el-btn" type="button" data-dialog-open="wl-install" style="justify-self:start;">Light this one</button>
+          <p class="note">per seat, cancel in one command</p>
+        </article>
+        <article class="el-pricing">
+          <span class="name">farm tube</span>
+          <span class="price">$89 <span class="per">/ mo</span></span>
+          <ul class="feats">
+            <li>Everything in work</li>
+            <li>Fleet lamps unlimited hosts</li>
+            <li>On-call relay</li>
+            <li>Audit-grade history export</li>
+            <li>Direct lane to the maintainer</li>
+          </ul>
+          <button class="el-btn el-btn--outline" type="button" data-toast="Farm intake form sent" data-toast-variant="info" style="justify-self:start;">Start farm</button>
+          <p class="note">billed annually, no meter surprises</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="el-section">
+      <h2>[ the record ]</h2>
+      <div class="el-fact-grid" style="margin:var(--el-space-4) 0;">
+        <div class="el-fact"><span class="k">shells in the wild</span><span class="v">86,404</span></div>
+        <div class="el-fact is-hot"><span class="k">themes shipped</span><span class="v">120</span></div>
+        <div class="el-fact"><span class="k">registry lamps</span><span class="v">412</span></div>
+        <div class="el-fact"><span class="k">first light</span><span class="v">2021</span></div>
+      </div>
+      <figure class="el-testimonial">
+        <blockquote class="quote">
+          <p class="q">I stopped opening tmux in tmux. Waxlamp kept my scrollback through a kernel panic on Friday, and the drift digest caught a config hand-edit I had already forgotten making. It is the only tool on my laptop that glows and I trust it.</p>
+        </blockquote>
+        <figcaption class="attrib"><span class="who"><span class="el-avatar" aria-hidden="true">JS</span></span><span><strong>Jae Sandoval</strong> — SRE, Kettleroom Systems</span></figcaption>
+      </figure>
+    </section>
+
+    <section class="el-section el-section--dense">
+      <div class="el-banner el-banner--info">
+        <span class="glyph">[!]</span>
+        <div class="copy"><strong>3.0-rc4 is out.</strong> Persistence engine on by default; 2.x configs import clean. Report cold-start numbers, we keep the chart honest.</div>
+        <button class="action el-btn el-btn--outline" type="button" data-dialog-open="wl-install">Get 3.0-rc4</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="el-footer">
+    <div class="cols">
+      <div class="col"><span class="label">Tube</span><ul><li><a href="index.html">Shell</a></li><li><a href="article.html">Persistence</a></li><li><a href="catalog.html">Themes</a></li></ul></div>
+      <div class="col"><span class="label">Registry</span><ul><li><a href="catalog.html">Lamps</a></li><li><a href="catalog.html">Panes</a></li><li><a href="catalog.html">Bells</a></li></ul></div>
+      <div class="col"><span class="label">Werk</span><ul><li><a href="article.html">Journal</a></li><li><a href="app.html">wl-dash</a></li><li><a href="account.html">Account</a></li></ul></div>
+      <div class="col"><span class="label">Signal</span><ul><li><a href="app.html">Status lamp</a></li><li><a href="index.html">Roadmap</a></li></ul></div>
+    </div>
+    <p class="colophon">WAXLAMP Werk — phosphor on purpose, hand-made in Salem, OR. This page burns 0.4 kWh/mo.</p>
+  </footer>
+
+</div>
+
+<aside class="el-drawer right" id="wl-drawer" aria-label="Specs drawer" data-scrim="wl-scrim">
+  <div class="el-drawer-head"><strong>[ wl-dash 3.0 spec ]</strong></div>
+  <div class="el-drawer-body">
+    <p style="margin-top:0;">The dash rides in the shell process. No daemon, no webview — the panel is drawn with the same character grid renderer as the shell.</p>
+    <div class="el-fact-grid" style="grid-template-columns:1fr 1fr;">
+      <div class="el-fact"><span class="k">frame budget</span><span class="v">1ms</span></div>
+      <div class="el-fact is-hot"><span class="k">refresh</span><span class="v">60hz</span></div>
+      <div class="el-fact"><span class="k">memory</span><span class="v">4.1MB</span></div>
+      <div class="el-fact"><span class="k">deps</span><span class="v">1</span></div>
+    </div>
+  </div>
+  <div class="el-drawer-foot">
+    <button class="el-btn el-btn--ghost" type="button" data-drawer-close="wl-drawer">Close</button>
+    <button class="el-btn" type="button" data-toast="wl-dash spec sheet saved to ~/docs" data-toast-variant="ok">Save spec</button>
+  </div>
+</aside>
+<div class="el-scrim" id="wl-scrim" data-dialog-scrim></div>
+
+<dialog class="el-dialog" id="wl-install">
+  <div class="el-dialog-head">
+    <h3 class="el-dialog-title">[ install waxlamp ]</h3>
+    <button class="el-dialog-close" type="button" aria-label="Close" data-dialog-close>&times;</button>
+  </div>
+  <form class="el-dialog-body" method="dialog">
+    <p style="margin-top:0;">Pick your phosphor. The theme file lives at ~/.waxlamp/theme.toml and accepts edits live.</p>
+    <label class="el-field"><span class="el-label">Phosphor</span>
+      <select class="el-select" style="padding:8px 12px;border:1px dashed var(--el-line-strong);background:var(--el-panel-2);color:var(--el-ink);border-radius:2px;font-family:var(--el-font-mono);">
+        <option>amber #ffb000</option><option>green-phosphor</option><option>paper (no glow)</option>
+      </select>
+      <span class="el-hint">You can re-tube to any theme later; nothing is baked in.</span>
+    </label>
+    <label class="el-field">
+      <span class="el-label">Import 2.x config?</span>
+      <span class="el-switch on" role="switch" aria-checked="true" tabindex="0"><input type="checkbox" checked></span>
+    </label>
+  </form>
+  <div class="el-dialog-foot">
+    <button class="el-btn el-btn--ghost" type="button" data-dialog-close>Later</button>
+    <button class="el-btn" type="button" data-toast="waxlamp 3.0 queued — 4.2 MB" data-toast-variant="ok" data-dialog-close>Download</button>
+  </div>
+</dialog>
+
+<div class="el-command" id="wl-palette" role="dialog" aria-label="Palette">
+  <div class="el-command-panel">
+    <input class="el-command-input" type="text" placeholder="[ palette — type a command ]" aria-label="Palette input">
+    <div class="el-command-results">
+      <div class="el-command-group">tube</div>
+      <button class="el-command-row sel" type="button">tube: re-tube to paper <span class="el-command-hint">T P</span></button>
+      <button class="el-command-row" type="button">tube: import 2.x config <span class="el-command-hint">T I</span></button>
+      <div class="el-command-group">persistence</div>
+      <button class="el-command-row" type="button">scrollback: replay last boot <span class="el-command-hint">S R</span></button>
+      <button class="el-command-row" type="button">digest: send drift digest now <span class="el-command-hint">D</span></button>
+      <div class="el-command-empty" hidden>[ no command matches ]</div>
+    </div>
+    <div class="el-command-foot"><span class="el-hint">arrows to move &middot; enter to run &middot; esc to fade</span></div>
+  </div>
+</div>
+
+</body>
+</html>

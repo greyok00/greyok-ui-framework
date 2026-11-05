@@ -1,0 +1,2577 @@
+/* ═══ Motion Brand (GSAP-first) — wave2 polish · family 9 · BRIEFS §9 ═══
+   One motion model — split-text stagggers, kinetic sweeps, scroll-feel entrances —
+   carried by two radically different visual identities:
+
+   kinetic-ink      electric magenta on ink-black, Clash Display, underline-slide controls.
+                    ONE 2040 instrument: a scroll-timeline progress filament on the hero
+                    sill (scroll() when supported; silent at rest and without support).
+   aperture-motion  burnt orange on graphite, Unbounded caps, angular aperture-cut controls.
+                    ONE 2040 instrument: the shutter "period" blinks open in 3 hard
+                    registered frames on load; settled state is the static notch.
+
+   wave2 polish bar: 4K-crisp hairlines (true 1px, no fractional borders), layered
+   color-mix(in oklab) gradient stops to kill banding, @property-registered gradients
+   and clip cuts, linear() sweeps with cubic-bezier fallback, full GTK-9 state machine
+   (rest/hover/focus-visible/active/disabled on every control), themed selection,
+   scrollbar and accent-color, entrance choreography tuned to settle <640ms. */
+
+/* registered animatable surfaces — gradients and clip cuts that interpolate */
+@property --kin-btn-glow {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 7%;
+}
+@property --ap-plate-hi {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: #ff7a1a;
+}
+@property --ap-cut {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 11px;
+}
+
+/* ───────────────────────── 9A · kinetic-ink ───────────────────────── */
+
+[data-theme="kinetic-ink"] {
+  color-scheme: dark;
+  accent-color: var(--el-accent);
+  scrollbar-color: var(--el-line-strong) transparent;
+
+  --el-bg:          #0e0e10;
+  --el-panel:       #16161a;
+  --el-panel-2:     #1d1d23;
+  --el-panel-3:     #27272f;
+  --el-line:        #2b2b34;
+  --el-line-2:      #222228;
+  --el-line-strong: #41414d;
+  --el-ink:         #f5f5f7;
+  --el-ink-soft:    #a8a8b6;
+  --el-mute:        #8f8f9d;
+  --el-on-accent:   #0e0e10;
+  --el-accent:      #ff3d7f;
+  --el-accent-hover: #ff6798;
+  --el-accent-soft:  color-mix(in oklab, var(--el-accent) 14%, transparent);
+  --el-ok:   #3ddc97;
+  --el-warn: #ffc247;
+  --el-fail: #ff4d5e;
+  --el-info: #7d9bff;
+  --el-live: #ff3d7f;
+  --el-teal: #46d8c8;
+  --el-focus-ring: color-mix(in oklab, var(--el-accent) 62%, transparent);
+  --el-overlay:    rgba(8, 8, 10, 0.66);
+  --el-font-body:    'Inter', system-ui, -apple-system, sans-serif;
+  --el-font-display: 'Clash Display', 'Inter', system-ui, sans-serif;
+  --el-font-mono:    'Inter Tight', 'SF Mono', Menlo, Consolas, monospace;
+  --el-head-weight:   600;
+  --el-head-tracking: -0.02em;
+  --el-head-case:     none;
+  --el-label-tracking: 0.24em;
+  --el-label-case:     uppercase;
+  --el-body-weight:   500;
+  --el-r-sm: 4px;
+  --el-r-md: 7px;
+  --el-r-lg: 10px;
+  --el-r-xl: 14px;
+  --el-raise-1: 0 1px 2px rgba(0, 0, 0, 0.45);
+  --el-raise-2: 0 2px 6px rgba(0, 0, 0, 0.5),
+                0 14px 34px -14px color-mix(in oklab, var(--el-accent) 12%, transparent),
+                0 12px 28px -12px rgba(0, 0, 0, 0.6);
+  --el-raise-3: 0 4px 12px rgba(0, 0, 0, 0.5),
+                0 30px 64px -16px color-mix(in oklab, var(--el-accent) 16%, transparent),
+                0 28px 60px -20px rgba(0, 0, 0, 0.7);
+  --el-hairline: inset 0 1px 0 color-mix(in oklab, var(--el-ink) 7%, transparent);
+  --el-bar-h: 5px;
+  --el-ctl-pad-y: 10px;
+  --el-ctl-pad-x: 18px;
+  --el-ctl-min-h: 40px;
+  --el-card-pad: 22px;
+  --el-dur-fast: 140ms;
+  --el-dur-base: 280ms;
+  --el-dur-slow: 560ms;
+  --el-ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --el-ornament: grain;
+  --el-rule-style: solid;
+  --el-hero-pad: 76px;
+  --el-hero-min: 440px;
+  /* run-state tokens the workflows read (was referenced-undefined pre-wave2) */
+  --el-stage-done:    var(--el-ok);
+  --el-stage-running: var(--el-accent);
+  --el-stage-active:  var(--el-accent);
+  --el-stage-stale:   var(--el-mute);
+  /* kinetic glints — local, referenced by signatures below */
+  --kin-glow:       color-mix(in oklab, var(--el-accent) 55%, transparent);
+  --kin-glow-soft:  color-mix(in oklab, var(--el-accent) 18%, transparent);
+  --kin-blush:      #ff8fb8;
+  --kin-sweep-ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* sweep easing upgrades to linear() where the engine parses it (Chromium 130+);
+   the cubic-bezier fallback above stays live in every other engine */
+@supports (transition-timing-function: linear(0, 1)) {
+  [data-theme="kinetic-ink"] {
+    --kin-sweep-ease: linear(0,
+      0.018 3.2%, 0.074 8.6%, 0.157 14.9%, 0.262 21.6%,
+      0.385 28.6%, 0.517 35.8%, 0.648 43.3%, 0.768 51.1%,
+      0.866 59.4%, 0.94 68.2%, 1 77.6%, 1.028 82.4%,
+      1.016 87.6%, 1 93.2%, 1 100%);
+  }
+}
+
+/* ground — the theme paints its own stage (harness + integrations without a reset) */
+[data-theme="kinetic-ink"] body {
+  margin: 0;
+  /* layered oklab stops: each radial steps in 3-4% deltas so no band survives dpr2 */
+  background:
+    radial-gradient(1200px 620px at 12% -14%,
+      color-mix(in oklab, var(--el-accent) 13%, transparent) 0%,
+      color-mix(in oklab, var(--el-accent) 8%, transparent) 30%,
+      color-mix(in oklab, var(--el-accent) 3.5%, transparent) 47%,
+      transparent 65%),
+    radial-gradient(920px 520px at 108% 114%,
+      color-mix(in oklab, var(--el-accent) 9%, transparent) 0%,
+      color-mix(in oklab, var(--el-accent) 4.5%, transparent) 48%,
+      transparent 68%),
+    var(--el-bg);
+  color: var(--el-ink);
+  font-family: var(--el-font-body);
+  font-weight: var(--el-body-weight);
+  font-feature-settings: var(--el-font-feat, "tnum" 1);
+  font-optical-sizing: auto;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* type voice — display + labels + reading text carry the brand face */
+[data-theme="kinetic-ink"] .el-display-specimen {
+  font-family: var(--el-font-display);
+  letter-spacing: var(--el-head-tracking);
+  text-transform: var(--el-head-case);
+  text-wrap: balance;
+}
+[data-theme="kinetic-ink"] .el-title-xl {
+  font-family: var(--el-font-display);
+  line-height: 1.04;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+  color: var(--el-ink);
+}
+[data-theme="kinetic-ink"] .el-hero .el-title-xl {
+  width: fit-content;
+  max-width: 100%;
+  /* blush ink-tail: 5 oklab-hinted stops — the tail never steps, only eases */
+  background: linear-gradient(94deg,
+    var(--el-ink) 0%,
+    var(--el-ink) 52%,
+    color-mix(in oklab, var(--el-ink) 58%, var(--kin-blush)) 74%,
+    color-mix(in oklab, var(--el-ink) 26%, var(--kin-blush)) 88%,
+    var(--kin-blush) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+[data-theme="kinetic-ink"] .el-hero .el-title-xl::selection {
+  background: var(--el-accent);
+  color: var(--el-bg);
+  -webkit-text-fill-color: var(--el-bg);
+}
+[data-theme="kinetic-ink"] .el-body {
+  font-family: var(--el-font-body);
+  font-weight: var(--el-body-weight);
+  font-size: 1.02em;
+  line-height: 1.65;
+  color: var(--el-ink-soft);
+  text-wrap: pretty;
+}
+[data-theme="kinetic-ink"] .el-mute-body {
+  color: var(--el-mute);
+  font-family: var(--el-font-body);
+  font-size: 0.92em;
+}
+[data-theme="kinetic-ink"] .el-label {
+  font-family: var(--el-font-body);
+  font-size: var(--el-fs-xs);
+  font-weight: 600;
+  letter-spacing: var(--el-label-tracking);
+  text-transform: var(--el-label-case);
+  color: var(--el-mute);
+}
+[data-theme="kinetic-ink"] .el-mono {
+  font-family: var(--el-font-mono);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.01em;
+  color: var(--el-ink);
+}
+[data-theme="kinetic-ink"] .el-big-num {
+  font-family: var(--el-font-display);
+  font-weight: var(--el-head-weight);
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+[data-theme="kinetic-ink"] .el-ink-ok   { color: var(--el-ok); }
+[data-theme="kinetic-ink"] .el-ink-fail { color: var(--el-fail); }
+[data-theme="kinetic-ink"] .el-publisher {
+  font-family: var(--el-font-mono);
+  font-size: var(--el-fs-xs);
+  letter-spacing: var(--el-label-tracking);
+  text-transform: var(--el-label-case);
+  color: var(--el-accent);
+}
+[data-theme="kinetic-ink"] ::selection {
+  background: var(--el-accent);
+  color: var(--el-bg);
+}
+
+/* hero — split-text stagger entrance (lines rise through a mask on load) */
+[data-theme="kinetic-ink"] .el-hero {
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid var(--el-line-2);
+}
+[data-theme="kinetic-ink"] .el-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(640px 320px at 88% 0%,
+      color-mix(in oklab, var(--el-accent) 15%, transparent) 0%,
+      color-mix(in oklab, var(--el-accent) 8%, transparent) 38%,
+      transparent 64%),
+    radial-gradient(480px 260px at 2% 100%,
+      color-mix(in oklab, var(--el-accent) 7%, transparent) 0%,
+      transparent 74%);
+  pointer-events: none;
+}
+
+/* eyebrow — marquee-style track: tick + wide letterspaced label + fading rail */
+[data-theme="kinetic-ink"] .el-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--el-font-body);
+  font-size: var(--el-fs-xs);
+  font-weight: 600;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--el-ink-soft);
+}
+[data-theme="kinetic-ink"] .el-eyebrow::before {
+  content: "";
+  width: 18px;
+  height: 2px;
+  transform-origin: left center;
+  background: linear-gradient(90deg,
+    var(--el-accent) 0%,
+    color-mix(in oklab, var(--el-accent) 52%, var(--kin-blush)) 100%);
+  box-shadow: 0 0 10px var(--kin-glow);
+}
+[data-theme="kinetic-ink"] .el-eyebrow::after {
+  content: "";
+  width: 64px;
+  height: 1px;
+  background: linear-gradient(90deg,
+    var(--el-line-strong) 0%,
+    color-mix(in oklab, var(--el-line-strong) 42%, transparent) 58%,
+    transparent 100%);
+}
+/* the marquee rack is a standalone-label design — an eyebrow flowing inside
+   reader prose (article four-gates line) prints tick + 64px rail before the
+   next word, a false gap ahead of the clause's comma — prose keeps the label,
+   drops the rack */
+[data-theme="kinetic-ink"] .el-reader p .el-eyebrow {
+  display: inline;
+}
+[data-theme="kinetic-ink"] .el-reader p .el-eyebrow::before,
+[data-theme="kinetic-ink"] .el-reader p .el-eyebrow::after {
+  content: none;
+}
+
+/* button — kinetic underline-slide control: a magenta tick that sweeps the baseline.
+   The wash above the plate is a registered <percentage>, so the gradient itself
+   interpolates on hover instead of crossfading between two paints. */
+[data-theme="kinetic-ink"] .el-btn {
+  --kin-btn-glow: 7%;
+  background:
+    linear-gradient(180deg,
+      color-mix(in oklab, var(--el-accent) var(--kin-btn-glow, 7%), transparent) 0%,
+      transparent 52%),
+    linear-gradient(180deg, var(--el-panel-2) 0%, color-mix(in oklab, var(--el-panel-2) 72%, var(--el-bg)) 100%);
+  color: var(--el-ink);
+  border: 1px solid var(--el-line-strong);
+  border-radius: var(--el-r-md);
+  box-shadow: var(--el-hairline);
+}
+[data-theme="kinetic-ink"] .el-btn::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  border-radius: 0 0 calc(var(--el-r-md) - 1px) calc(var(--el-r-md) - 1px);
+  transform: scaleX(0.2);
+  transform-origin: left center;
+  background: linear-gradient(90deg,
+    var(--el-accent) 0%,
+    color-mix(in oklab, var(--el-accent) 60%, var(--kin-blush)) 64%,
+    var(--kin-blush) 100%);
+  box-shadow: 0 0 8px var(--kin-glow-soft);
+}
+[data-theme="kinetic-ink"] .el-btn:hover {
+  --kin-btn-glow: 13%;
+  border-color: color-mix(in oklab, var(--el-accent) 45%, var(--el-line));
+  color: var(--el-ink);
+}
+[data-theme="kinetic-ink"] .el-btn:hover::after {
+  transform: scaleX(1);
+  box-shadow: 0 0 12px var(--kin-glow);
+}
+[data-theme="kinetic-ink"] .el-btn:active {
+  transform: var(--el-press);
+  box-shadow: none;
+  --kin-btn-glow: 11%;
+}
+[data-theme="kinetic-ink"] .el-btn:focus-visible {
+  outline: 2px solid color-mix(in oklab, var(--el-accent) 80%, transparent);
+  outline-offset: 2px;
+}
+[data-theme="kinetic-ink"] .el-btn:disabled,
+[data-theme="kinetic-ink"] .el-btn[aria-disabled="true"] {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+  border-color: var(--el-line);
+}
+[data-theme="kinetic-ink"] .el-btn:disabled::after,
+[data-theme="kinetic-ink"] .el-btn[aria-disabled="true"]::after {
+  transform: scaleX(0.2);
+  box-shadow: none;
+  opacity: 0.28;
+}
+[data-theme="kinetic-ink"] .el-btn.ghost,
+[data-theme="kinetic-ink"] .el-btn--ghost,
+[data-theme="kinetic-ink"] .el-btn--outline {
+  background: transparent;
+  border-color: var(--el-line);
+  color: var(--el-ink-soft);
+  box-shadow: none;
+}
+[data-theme="kinetic-ink"] .el-btn.ghost:hover,
+[data-theme="kinetic-ink"] .el-btn--ghost:hover,
+[data-theme="kinetic-ink"] .el-btn--outline:hover {
+  color: var(--el-ink);
+  background: var(--el-accent-soft);
+  border-color: color-mix(in oklab, var(--el-accent) 40%, transparent);
+}
+[data-theme="kinetic-ink"] .el-btn.ghost:active,
+[data-theme="kinetic-ink"] .el-btn--ghost:active,
+[data-theme="kinetic-ink"] .el-btn--outline:active {
+  transform: var(--el-press);
+  box-shadow: none;
+}
+
+/* input — quiet field, magenta caret, themed selection, ring that never drops */
+[data-theme="kinetic-ink"] .el-input {
+  background: var(--el-panel-2);
+  border-color: color-mix(in oklab, var(--el-line-strong) 72%, var(--el-line));
+  caret-color: var(--el-accent);
+  border-radius: var(--el-r-md);
+}
+[data-theme="kinetic-ink"] .el-input::placeholder {
+  color: var(--el-mute);
+  font-weight: 400;
+}
+[data-theme="kinetic-ink"] .el-input:focus {
+  border-color: color-mix(in oklab, var(--el-accent) 55%, var(--el-line-strong));
+  box-shadow: var(--el-ring), var(--el-inset-field);
+}
+[data-theme="kinetic-ink"] .el-input:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* paired form rows: the sheet keeps .el-select as an inline-block while
+   .el-search-field is block, so a select half shrink-wraps beside a filled
+   search half (sheet gap, routed). Stretch the paired-row halves back into
+   one aligned gutter. */
+[data-theme="kinetic-ink"] .kin-form-2 > .el-field > .el-select { display: block; }
+
+/* switch — glowing on-track, ink knob, full consent states */
+[data-theme="kinetic-ink"] .el-switch {
+  border-radius: var(--el-r-sm);
+}
+[data-theme="kinetic-ink"] .el-switch.on {
+  background: linear-gradient(180deg, color-mix(in oklab, var(--el-accent-hover) 34%, var(--el-accent)), var(--el-accent));
+  border-color: color-mix(in oklab, var(--el-accent) 72%, transparent);
+  box-shadow: 0 0 12px var(--kin-glow-soft);
+}
+[data-theme="kinetic-ink"] .el-switch.on::after {
+  background: linear-gradient(180deg,
+    var(--el-ink) 0%,
+    color-mix(in oklab, var(--el-ink) 78%, var(--el-ink-soft)) 100%);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.55);
+}
+[data-theme="kinetic-ink"] .el-switch:focus-visible {
+  outline: 2px solid var(--el-focus-ring);
+  outline-offset: 2px;
+}
+[data-theme="kinetic-ink"] .el-switch[aria-disabled="true"] {
+  opacity: 0.45;
+}
+
+/* chip — the live chip carries a glowing round dot; labels quiet */
+[data-theme="kinetic-ink"] .el-chip {
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--el-ink-soft);
+  border-color: color-mix(in oklab, var(--el-ink-soft) 24%, transparent);
+  background: color-mix(in oklab, var(--el-ink) 4%, var(--el-panel));
+}
+[data-theme="kinetic-ink"] .el-chip.live {
+  color: var(--el-accent);
+  border-color: color-mix(in oklab, var(--el-accent) 45%, transparent);
+  background: var(--el-accent-soft);
+}
+[data-theme="kinetic-ink"] .el-chip.live::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background: var(--el-accent);
+  box-shadow: 0 0 8px var(--kin-glow);
+}
+[data-theme="kinetic-ink"] .el-chip:active {
+  transform: translateY(1px);
+}
+[data-theme="kinetic-ink"] .el-chip[aria-disabled="true"] {
+  opacity: 0.45;
+}
+
+/* pill — nav voice: wide-tracked caps over a quiet plate */
+[data-theme="kinetic-ink"] .el-pill {
+  font-size: var(--el-fs-xs);
+  letter-spacing: 0.12em;
+  text-transform: var(--el-label-case);
+  color: var(--el-ink-soft);
+  background: color-mix(in oklab, var(--el-ink) 4%, var(--el-panel));
+  border-color: color-mix(in oklab, var(--el-ink-soft) 20%, transparent);
+  box-shadow: none;
+}
+[data-theme="kinetic-ink"] .el-pill:hover {
+  color: var(--el-ink);
+  background: var(--el-accent-soft);
+  border-color: color-mix(in oklab, var(--el-accent) 40%, transparent);
+}
+[data-theme="kinetic-ink"] .el-pill:active {
+  transform: translateY(1px);
+}
+[data-theme="kinetic-ink"] .el-pill:focus-visible {
+  outline: 2px solid var(--el-focus-ring);
+  outline-offset: 2px;
+}
+
+/* card — ink panel with a magenta left tick bar */
+[data-theme="kinetic-ink"] .el-card {
+  background: linear-gradient(160deg, var(--el-panel) 0%, color-mix(in oklab, var(--el-panel) 82%, var(--el-bg)) 100%);
+  border: 1px solid var(--el-line);
+  border-radius: var(--el-r-lg);
+  box-shadow: var(--el-raise-1);
+}
+[data-theme="kinetic-ink"] .el-card:hover {
+  border-color: color-mix(in oklab, var(--el-accent) 22%, var(--el-line));
+}
+[data-theme="kinetic-ink"] .el-card::before {
+  inset: 0 auto 0 0;
+  width: 3px;
+  height: 100%;
+  border-radius: calc(var(--el-r-lg) - 1px) 0 0 calc(var(--el-r-lg) - 1px); /* never pokes the corner curve */
+  background: linear-gradient(180deg,
+    var(--el-accent) 0%,
+    color-mix(in oklab, var(--el-accent) 84%, transparent) 18%,
+    color-mix(in oklab, var(--el-accent) 34%, transparent) 56%,
+    color-mix(in oklab, var(--el-accent) 8%, transparent) 84%,
+    transparent 100%);
+  box-shadow: 0 0 10px var(--kin-glow-soft);
+}
+[data-theme="kinetic-ink"] .el-card:hover::before {
+  width: 5px;
+  box-shadow: 0 0 14px var(--kin-glow);
+}
+[data-theme="kinetic-ink"] .el-card:focus-within {
+  border-color: color-mix(in oklab, var(--el-accent) 45%, var(--el-line));
+}
+
+/* table — ticked rows on hairline rails */
+[data-theme="kinetic-ink"] .el-table {
+  width: 100%;
+  table-layout: fixed; /* narrow cards keep every column on the plate */
+  background: color-mix(in oklab, var(--el-panel) 55%, transparent);
+  border: 1px solid var(--el-line);
+  border-radius: var(--el-r-md);
+  border-collapse: separate;
+  border-spacing: 0;
+}
+[data-theme="kinetic-ink"] .el-table thead th {
+  font-family: var(--el-font-body);
+  font-size: var(--el-fs-xs);
+  font-weight: 600;
+  letter-spacing: var(--el-label-tracking);
+  text-transform: var(--el-label-case);
+  color: var(--el-mute);
+  border-bottom: 1px solid var(--el-line);
+}
+[data-theme="kinetic-ink"] .el-table tbody tr {
+  transition: background-color var(--el-dur-fast) var(--el-ease);
+}
+[data-theme="kinetic-ink"] .el-table tbody tr:hover,
+[data-theme="kinetic-ink"] .el-table tbody tr:focus-within {
+  background: color-mix(in oklab, var(--el-accent) 7%, transparent);
+}
+[data-theme="kinetic-ink"] .el-table tbody tr:hover td:first-child,
+[data-theme="kinetic-ink"] .el-table tbody tr:focus-within td:first-child {
+  box-shadow: inset 2px 0 0 var(--el-accent);
+}
+
+/* stage — run-state tokens now resolve; the dot carries its own consent states */
+[data-theme="kinetic-ink"] .el-stage {
+  border-radius: var(--el-r-md);
+}
+[data-theme="kinetic-ink"] .el-stage:focus-visible {
+  outline: 2px solid var(--el-focus-ring);
+  outline-offset: 2px;
+}
+[data-theme="kinetic-ink"] .el-stage.done .el-stage-dot  { background: var(--el-stage-done); }
+[data-theme="kinetic-ink"] .el-stage.run .el-stage-dot   { background: var(--el-stage-running); box-shadow: 0 0 10px var(--kin-glow-soft); }
+[data-theme="kinetic-ink"] .el-pt-chunk.on               { border-color: var(--el-stage-done); color: var(--el-stage-done); }
+
+/* bar — kinetic gradient fill, token-height, layered oklab stops */
+[data-theme="kinetic-ink"] .el-bar {
+  position: relative;
+  height: var(--el-bar-h);
+  overflow: hidden;
+  background: color-mix(in oklab, var(--el-line-2) 82%, var(--el-panel-2));
+  border-radius: var(--el-r-pill);
+}
+[data-theme="kinetic-ink"] .el-bar i {
+  display: block;
+  position: relative;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg,
+    color-mix(in oklab, var(--el-accent) 62%, var(--kin-blush)) 0%,
+    var(--el-accent) 58%,
+    color-mix(in oklab, var(--kin-blush) 42%, var(--el-accent)) 100%);
+  box-shadow: 0 0 12px var(--kin-glow-soft);
+}
+[data-theme="kinetic-ink"] .el-bar i::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-110%);
+  background: linear-gradient(90deg,
+    transparent 0%,
+    color-mix(in oklab, var(--el-ink) 22%, transparent) 44%,
+    color-mix(in oklab, var(--el-ink) 52%, transparent) 50%,
+    color-mix(in oklab, var(--el-ink) 22%, transparent) 56%,
+    transparent 100%);
+}
+[data-theme="kinetic-ink"] .el-rule {
+  border: 0 !important; /* outranks the harness inline reset */
+  height: 1px;
+  margin: 20px 0;
+  background: linear-gradient(90deg,
+    transparent,
+    var(--el-line-strong) 14%,
+    var(--el-accent) 48%,
+    color-mix(in oklab, var(--el-accent) 30%, transparent) 62%,
+    transparent 94%);
+  transform-origin: left center;
+}
+
+/* ── motion (verified off-switch): entrance, sweep, sheen, pulses ── */
+@media (prefers-reduced-motion: no-preference) {
+  /* interactive feedback transitions — motion-consent users only */
+  [data-theme="kinetic-ink"] .el-btn {
+    transition:
+      --kin-btn-glow var(--el-dur-base) var(--kin-sweep-ease),
+      background-color var(--el-dur-fast) var(--el-ease),
+      border-color var(--el-dur-fast) var(--el-ease),
+      color var(--el-dur-fast) var(--el-ease),
+      transform 60ms var(--el-ease),
+      box-shadow var(--el-dur-fast) var(--el-ease);
+  }
+  [data-theme="kinetic-ink"] .el-btn::after {
+    transition: transform var(--el-dur-base) var(--kin-sweep-ease),
+                box-shadow var(--el-dur-base) var(--el-ease);
+  }
+  [data-theme="kinetic-ink"] .el-card,
+  [data-theme="kinetic-ink"] .el-card::before {
+    transition: border-color var(--el-dur-fast) var(--el-ease),
+                width var(--el-dur-base) var(--kin-sweep-ease),
+                box-shadow var(--el-dur-base) var(--el-ease);
+  }
+  [data-theme="kinetic-ink"] .el-input {
+    transition: border-color var(--el-dur-fast) var(--el-ease),
+                box-shadow var(--el-dur-fast) var(--el-ease);
+  }
+  [data-theme="kinetic-ink"] .el-switch {
+    transition: background var(--el-dur-fast) var(--el-ease),
+                border-color var(--el-dur-fast) var(--el-ease),
+                box-shadow var(--el-dur-fast) var(--el-ease);
+  }
+  [data-theme="kinetic-ink"] .el-chip,
+  [data-theme="kinetic-ink"] .el-pill {
+    transition: background var(--el-dur-fast) var(--el-ease),
+                border-color var(--el-dur-fast) var(--el-ease),
+                color var(--el-dur-fast) var(--el-ease);
+  }
+  /* entrance — every line settles by 580ms so captures always land on the end state */
+  [data-theme="kinetic-ink"] .el-hero > * {
+    animation: el-kin-rise 380ms var(--el-ease) both;
+  }
+  [data-theme="kinetic-ink"] .el-hero > :nth-child(2) { animation-delay: 60ms; }
+  [data-theme="kinetic-ink"] .el-hero > :nth-child(3) { animation-delay: 120ms; }
+  [data-theme="kinetic-ink"] .el-hero > :nth-child(4) { animation-delay: 170ms; }
+  [data-theme="kinetic-ink"] .el-hero > :nth-child(n+5) { animation-delay: 200ms; }
+  [data-theme="kinetic-ink"] .el-rule {
+    animation: el-kin-sweep 560ms var(--kin-sweep-ease) both;
+  }
+  /* sheen starts late; pre-start is the invisible off-canvas state, so captures match */
+  [data-theme="kinetic-ink"] .el-bar i::after {
+    animation: el-kin-sheen 3.2s linear 2.2s infinite both;
+  }
+  [data-theme="kinetic-ink"] .el-eyebrow::after {
+    animation: el-kin-tick 3.2s var(--el-ease) 1.2s infinite;
+  }
+  [data-theme="kinetic-ink"] .el-chip.live::before {
+    animation: el-kin-pulse 1.6s var(--el-ease) 1s infinite;
+  }
+  [data-theme="kinetic-ink"] .el-stage.run .el-stage-dot {
+    animation: el-kin-pulse 1.6s var(--el-ease) 1s infinite;
+  }
+}
+@keyframes el-kin-rise {
+  from { opacity: 0; transform: translateY(0.6em); clip-path: inset(0 0 100% 0); }
+  55%  { opacity: 1; }
+  to   { opacity: 1; transform: none; clip-path: inset(0 0 -20% 0); }
+}
+@keyframes el-kin-sweep {
+  from { transform: scaleX(0); opacity: 0.2; }
+  to   { transform: scaleX(1); opacity: 1; }
+}
+@keyframes el-kin-sheen {
+  from { transform: translateX(-110%); }
+  to   { transform: translateX(110%); }
+}
+@keyframes el-kin-tick {
+  0%, 100% { opacity: 0.35; }
+  50%      { opacity: 1; }
+}
+@keyframes el-kin-pulse {
+  0%, 100% { background: var(--el-accent); box-shadow: 0 0 0 2px var(--kin-glow-soft); }
+  50%      { background: var(--el-accent-hover); box-shadow: 0 0 0 2px var(--kin-glow); }
+}
+/* THE 2040 instrument (kinetic-ink, one per theme): a scroll-timeline progress
+   filament along the hero sill. At scroll offset 0 it is fully retracted (captures
+   match the static layout), it sweeps with scroll(root), and in engines without
+   scroll timelines it simply stays hidden — graceful by construction. */
+@supports (animation-timeline: scroll()) {
+  @media (prefers-reduced-motion: no-preference) {
+    [data-theme="kinetic-ink"] .el-hero::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 2px;
+      transform-origin: left center;
+      background: linear-gradient(90deg,
+        var(--el-accent) 0%,
+        color-mix(in oklab, var(--el-accent) 55%, var(--kin-blush)) 100%);
+      box-shadow: 0 0 10px var(--kin-glow);
+      pointer-events: none;
+      z-index: 1;
+      /* retracted by default: an INACTIVE scroll timeline (nothing to scroll) applies
+         no animation, so the resting box must already be the hidden state */
+      transform: scaleX(0);
+      opacity: 0;
+      animation: el-kin-ticker linear both;
+      animation-timeline: scroll(root);
+    }
+  }
+}
+@keyframes el-kin-ticker {
+  from { transform: scaleX(0); opacity: 0; }
+  2%   { opacity: 1; }
+  to   { transform: scaleX(1); opacity: 1; }
+}
+
+/* workflow text voices inherit the brand faces (no fallback serifs) */
+[data-theme="kinetic-ink"] .el-stage,
+[data-theme="kinetic-ink"] .el-stage .el-stage-name {
+  font-family: var(--el-font-body);
+  font-size: var(--el-fs-md);
+}
+[data-theme="kinetic-ink"] .el-progress-truth { font-family: var(--el-font-mono); }
+[data-theme="kinetic-ink"] .el-pt-label {
+  font-family: var(--el-font-mono);
+  font-size: var(--el-fs-xs);
+  letter-spacing: 0.02em;
+  color: var(--el-mute);
+}
+[data-theme="kinetic-ink"] .el-source-card { font-family: var(--el-font-body); }
+
+/* narrow-card action rows — the element sheet now owns the narrow stack
+   (@container max-width:320px on .el-card .actions/.el-cluster); the theme
+   ladder below was retired when that threshold moved off 360px. */
+
+/* ── wave3 site voices — kinetic-ink, structured slots (nav --top, hero --split,
+   raised cards, zebra tables, tight density) ─────────────────────────────── */
+
+/* navbar --top — the studio bar: sticky ink glass, underline-draw links */
+[data-theme="kinetic-ink"] .el-navbar {
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--el-panel-2) 82%, transparent), color-mix(in oklab, var(--el-panel) 90%, transparent));
+  -webkit-backdrop-filter: blur(14px) saturate(1.15);
+  backdrop-filter: blur(14px) saturate(1.15);
+  border-bottom: 1px solid var(--el-line-2);
+  box-shadow: 0 6px 24px -18px rgba(0, 0, 0, 0.8);
+  padding-inline: clamp(18px, 4vw, 34px);
+}
+[data-theme="kinetic-ink"] .el-navbar .brand {
+  font-family: var(--el-font-display);
+  font-size: 1.16rem;
+  letter-spacing: -0.01em;
+}
+[data-theme="kinetic-ink"] .el-navbar .brand .el-bar-mark {
+  width: 20px; height: 20px; flex: 0 0 auto;
+  border-radius: 3px;
+  background:
+    linear-gradient(135deg, var(--el-accent) 0%, color-mix(in oklab, var(--el-accent) 40%, var(--kin-blush)) 100%);
+  box-shadow: 0 0 12px var(--kin-glow-soft);
+  clip-path: polygon(0 0, 100% 0, 100% 62%, 62% 100%, 0 100%);
+}
+[data-theme="kinetic-ink"] .el-navbar .links a,
+[data-theme="kinetic-ink"] .el-navbar .links button {
+  background: transparent;
+  border-radius: var(--el-r-sm);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  position: relative;
+}
+/* underline-draw: the magenta tick sweeps the baseline on hover, rests on current */
+[data-theme="kinetic-ink"] .el-navbar .links a::after,
+[data-theme="kinetic-ink"] .el-navbar .links button::after {
+  content: "";
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  bottom: 4px;
+  height: 2px;
+  border-radius: 2px;
+  transform: scaleX(0);
+  transform-origin: left center;
+  background: linear-gradient(90deg, var(--el-accent), var(--kin-blush) 100%);
+  box-shadow: 0 0 8px var(--kin-glow-soft);
+  transition: transform 220ms var(--kin-sweep-ease);
+}
+[data-theme="kinetic-ink"] .el-navbar .links a:hover::after,
+[data-theme="kinetic-ink"] .el-navbar .links button:hover::after,
+[data-theme="kinetic-ink"] .el-navbar .links [aria-current="page"]::after {
+  transform: scaleX(1);
+}
+[data-theme="kinetic-ink"] .el-navbar .links [aria-current="page"] {
+  background: transparent;
+  box-shadow: inset 0 0 0 1px transparent;
+}
+@media (prefers-reduced-motion: no-preference) {
+  [data-theme="kinetic-ink"] .el-navbar .links a::after,
+  [data-theme="kinetic-ink"] .el-navbar .links button::after {
+    transition: transform 220ms var(--kin-sweep-ease);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-theme="kinetic-ink"] .el-navbar .links a::after,
+  [data-theme="kinetic-ink"] .el-navbar .links button::after {
+    transition: none;
+  }
+}
+
+/* hero --split — copy cell left, reel plate right; the plate gets a glint corner */
+[data-theme="kinetic-ink"] .el-hero--split {
+  grid-template-columns: minmax(0, 1.14fr) minmax(0, 1fr);
+  padding: 58px clamp(18px, 4vw, 34px);
+}
+[data-theme="kinetic-ink"] .el-hero--split .media {
+  border: 1px solid var(--el-line);
+  border-radius: var(--el-r-xl);
+  box-shadow: var(--el-raise-3);
+}
+[data-theme="kinetic-ink"] .el-hero--split .media .frame {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(115deg, transparent 0 42%, color-mix(in oklab, var(--el-accent) 14%, transparent) 62%, color-mix(in oklab, var(--el-accent) 30%, transparent) 86%),
+    linear-gradient(220deg, #17171c 0%, #101014 48%, #0b0b0e 100%);
+}
+[data-theme="kinetic-ink"] .el-hero--split .media .frame svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+[data-theme="kinetic-ink"] .el-hero--split .el-title-xl { font-size: clamp(2.05em, 4.6vw, 3.1em); }
+[data-theme="kinetic-ink"] .el-hero--split .actions .el-btn { min-height: var(--el-ctl-min-h); }
+
+/* section — tight density: eyebrow tick, display heading, quiet measure */
+[data-theme="kinetic-ink"] .el-section { padding-block: 44px; }
+[data-theme="kinetic-ink"] .el-section > h1,
+[data-theme="kinetic-ink"] .el-section > h2,
+[data-theme="kinetic-ink"] .el-section > h3,
+[data-theme="kinetic-ink"] .el-section > .el-section-head {
+  font-family: var(--el-font-display);
+  font-weight: var(--el-head-weight);
+  letter-spacing: var(--el-head-tracking);
+  font-size: clamp(1.5em, 2.4vw, 2em);
+  line-height: 1.12;
+}
+[data-theme="kinetic-ink"] .el-section--dense { padding-block: 26px; }
+/* the density band must not clobber the flush contract — tool/plate sections that
+   hug their neighbors hand the rhythm back to the page (catalog filter band) */
+[data-theme="kinetic-ink"] .el-section--flush { padding-block: 0; }
+/* UA <figure> margins are zeroed at base.css level now (controller batch 2) —
+   the theme-level reset this replaced is retired, not duplicated here */
+[data-theme="kinetic-ink"] .el-rule { height: 1px !important; border: 0 !important; }
+
+/* footer — ink plinth with a swept top rule */
+[data-theme="kinetic-ink"] .el-footer {
+  padding: 44px clamp(18px, 4vw, 34px) 26px;
+  border-top: 1px solid var(--el-line);
+  background:
+    radial-gradient(720px 300px at 8% 0%, color-mix(in oklab, var(--el-accent) 6%, transparent), transparent 70%),
+    var(--el-bg);
+}
+[data-theme="kinetic-ink"] .el-footer .col > .label {
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  color: var(--el-mute);
+}
+[data-theme="kinetic-ink"] .el-footer a { text-decoration: none; }
+[data-theme="kinetic-ink"] .el-footer a:hover { color: var(--el-accent); }
+[data-theme="kinetic-ink"] .el-footer .colophon { font-family: var(--el-font-body); font-style: normal; }
+
+/* media-band — the reel case: magenta caption rail, corner glint */
+[data-theme="kinetic-ink"] .el-media-band { border-radius: var(--el-r-xl); }
+[data-theme="kinetic-ink"] .el-media-band > .media .frame {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(420px 240px at 78% 18%, color-mix(in oklab, var(--el-accent) 16%, transparent), transparent 72%),
+    linear-gradient(205deg, #18181d 0%, #0f0f13 55%, #0b0b0e 100%);
+}
+[data-theme="kinetic-ink"] .el-media-band > .media .frame svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+[data-theme="kinetic-ink"] .el-media-band > .media > figcaption {
+  border-top: 1px solid color-mix(in oklab, var(--el-accent) 34%, transparent);
+  background: linear-gradient(180deg, transparent, color-mix(in oklab, var(--el-bg) 82%, transparent));
+  color: var(--el-ink-soft);
+  font-family: var(--el-font-mono);
+}
+
+/* pricing — plan plate with a magenta head-rail on featured */
+[data-theme="kinetic-ink"] .el-pricing {
+  background: linear-gradient(165deg, var(--el-panel) 0%, color-mix(in oklab, var(--el-panel) 78%, var(--el-bg)) 100%);
+  border-radius: var(--el-r-xl);
+  padding: 26px 22px 22px;
+}
+[data-theme="kinetic-ink"] .el-pricing .price { font-size: 2.2em; }
+[data-theme="kinetic-ink"] .el-pricing .feats li::before {
+  content: "\2714";
+  color: var(--el-accent);
+}
+[data-theme="kinetic-ink"] .el-pricing--featured::before {
+  background: linear-gradient(90deg, var(--el-accent), var(--kin-blush) 70%, transparent);
+  box-shadow: 0 0 14px var(--kin-glow-soft);
+}
+[data-theme="kinetic-ink"] .el-pricing .flag {
+  border-radius: 0 0 var(--el-r-sm) var(--el-r-sm);
+}
+
+/* testimonial — quiet ink card, magenta quote mark, avatar attribution */
+[data-theme="kinetic-ink"] .el-testimonial {
+  background:
+    radial-gradient(480px 240px at 100% 0%, color-mix(in oklab, var(--el-accent) 7%, transparent), transparent 68%),
+    linear-gradient(165deg, var(--el-panel) 0%, color-mix(in oklab, var(--el-panel) 80%, var(--el-bg)) 100%);
+  border-radius: var(--el-r-xl);
+}
+[data-theme="kinetic-ink"] .el-testimonial .q,
+[data-theme="kinetic-ink"] .el-testimonial .quote {
+  font-family: var(--el-font-body);
+  font-size: 1.3em;
+  font-weight: 550;
+  line-height: 1.5;
+  text-wrap: balance;
+}
+[data-theme="kinetic-ink"] .el-testimonial .who .name { font-weight: 600; }
+[data-theme="kinetic-ink"] .el-testimonial .who .role { letter-spacing: 0.04em; }
+
+/* stat tiles — display numerals; table zebra tint */
+[data-theme="kinetic-ink"] .el-stat { border-radius: var(--el-r-lg); }
+[data-theme="kinetic-ink"] .el-stat .el-stat-value { font-family: var(--el-font-display); font-weight: var(--el-head-weight); letter-spacing: -0.02em; }
+[data-theme="kinetic-ink"] .el-stat .el-chart-svg { color: var(--el-accent); }
+[data-theme="kinetic-ink"] .el-meter { height: 8px; }
+[data-theme="kinetic-ink"] .el-meter > .fill {
+  background: linear-gradient(90deg, color-mix(in oklab, var(--el-accent) 62%, var(--kin-blush)), var(--el-accent) 70%, var(--el-accent-hover));
+  box-shadow: 0 0 10px var(--kin-glow-soft);
+}
+[data-theme="kinetic-ink"] .el-progress > .fill {
+  background: linear-gradient(90deg, color-mix(in oklab, var(--el-accent) 60%, var(--kin-blush)), var(--el-accent));
+  box-shadow: 0 0 8px var(--kin-glow-soft);
+}
+[data-theme="kinetic-ink"] .el-table--zebra { background: transparent; border-color: var(--el-line-2); }
+[data-theme="kinetic-ink"] .el-table--zebra tbody tr:nth-child(even) {
+  background: color-mix(in oklab, var(--el-ink) 3.5%, transparent);
+}
+
+/* timeline + fact grid + pagination + stepper — studio rails */
+[data-theme="kinetic-ink"] .el-timeline::before {
+  background: linear-gradient(180deg, color-mix(in oklab, var(--el-accent) 34%, transparent), var(--el-line) 85%);
+}
+[data-theme="kinetic-ink"] .el-timeline > li::before {
+  border-color: var(--el-line-strong);
+  box-shadow: 0 0 0 0 var(--kin-glow-soft);
+}
+[data-theme="kinetic-ink"] .el-timeline > li.ok::before,
+[data-theme="kinetic-ink"] .el-timeline > li.running::before,
+[data-theme="kinetic-ink"] .el-timeline > li.live::before { box-shadow: 0 0 9px var(--kin-glow-soft); }
+[data-theme="kinetic-ink"] .el-timeline .when { font-family: var(--el-font-mono); }
+[data-theme="kinetic-ink"] .el-fact-grid > .el-card--flat { border-radius: var(--el-r-md); }
+/* fact tiles — .el-card has no display rule of its own, so the sourced-fact
+   spans run inline and the number eats the caption ("214shoot days");
+   block the big number and give it air above the caption */
+[data-theme="kinetic-ink"] .el-fact-grid > .el-card--flat > .el-big-num { display: block; margin-block-end: 6px; }
+/* sheet defect (batch 3): the card bottom-anchor at line 36 is dead — the later
+   anatomy rule (.el-card-foot, .el-card .actions) resets margin-top to
+   --el-space-3 at equal specificity, so one-line-caption cards float their
+   action row 14px high of the row baseline; re-assert the anchor at theme level
+   and route the sheet rule to the controller */
+[data-theme="kinetic-ink"] .el-card > .actions { margin-top: auto; }
+[data-theme="kinetic-ink"] .el-fact-grid dt,
+[data-theme="kinetic-ink"] .el-fact-grid .n { font-family: var(--el-font-mono); }
+[data-theme="kinetic-ink"] .el-pagination .page.on {
+  border-radius: var(--el-r-sm);
+}
+[data-theme="kinetic-ink"] .el-stepper li.active { background: var(--el-accent-soft); }
+[data-theme="kinetic-ink"] .el-ladder-step { border-radius: var(--el-r-sm); }
+
+/* appwin — the review desk: ink chrome, magenta seams, squared glass */
+[data-theme="kinetic-ink"] .el-appwin {
+  background: var(--el-panel);
+  border-color: var(--el-line-strong);
+  border-radius: var(--el-r-xl);
+}
+[data-theme="kinetic-ink"] .el-appwin .el-titlebar {
+  background: linear-gradient(180deg, var(--el-panel-2), color-mix(in oklab, var(--el-panel-2) 70%, var(--el-panel)));
+  border-bottom: 1px solid var(--el-line);
+}
+[data-theme="kinetic-ink"] .el-appwin .el-app-title { font-family: var(--el-font-display); letter-spacing: 0; }
+[data-theme="kinetic-ink"] .el-appwin .el-app-title small { font-family: var(--el-font-mono); letter-spacing: 0.18em; text-transform: uppercase; }
+[data-theme="kinetic-ink"] .el-appwin .el-menubar {
+  background: color-mix(in oklab, var(--el-panel-2) 34%, var(--el-panel));
+}
+[data-theme="kinetic-ink"] .el-appwin .el-menubar-item[aria-expanded="true"],
+[data-theme="kinetic-ink"] .el-appwin .el-menubar-item.is-open {
+  background: var(--el-accent-soft);
+  color: var(--el-accent);
+  box-shadow: inset 0 -2px 0 var(--el-accent);
+}
+[data-theme="kinetic-ink"] .el-winbtn::before { border-radius: var(--el-r-pill); }
+[data-theme="kinetic-ink"] .el-headerbar {
+  background: color-mix(in oklab, var(--el-panel-2) 42%, var(--el-panel));
+  border-bottom: 1px solid var(--el-line);
+}
+[data-theme="kinetic-ink"] .el-headerbar .el-headerbar-label {
+  font-family: var(--el-font-mono);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--el-mute);
+}
+[data-theme="kinetic-ink"] .el-actionbar {
+  background: color-mix(in oklab, var(--el-panel-2) 52%, var(--el-panel));
+  border-top: 1px solid var(--el-line);
+}
+[data-theme="kinetic-ink"] .el-tabbar { border-top: 1px solid var(--el-line); }
+[data-theme="kinetic-ink"] .el-tabbar-item.is-active {
+  background: var(--el-accent-soft);
+  box-shadow: inset 0 2px 0 var(--el-accent);
+}
+[data-theme="kinetic-ink"] .el-listbox {
+  background: color-mix(in oklab, var(--el-bg) 45%, var(--el-panel));
+  border-radius: var(--el-r-md);
+}
+[data-theme="kinetic-ink"] .el-listbox .el-listbox-row.is-selected,
+[data-theme="kinetic-ink"] .el-listbox .el-listbox-row[aria-selected="true"] {
+  background: var(--el-accent-soft);
+  box-shadow: inset 2px 0 0 var(--el-accent);
+}
+[data-theme="kinetic-ink"] .el-listbox .el-listbox-row.is-selected .el-listbox-label,
+[data-theme="kinetic-ink"] .el-listbox .el-listbox-row.is-selected .label { color: var(--el-ink); }
+
+/* overlays — ink glass, magenta seams */
+[data-theme="kinetic-ink"] .el-dialog {
+  background: linear-gradient(175deg, var(--el-panel-2) 0%, var(--el-panel) 46%, color-mix(in oklab, var(--el-panel) 92%, var(--el-bg)) 100%);
+  border: 1px solid var(--el-line-strong);
+  border-radius: var(--el-r-xl);
+  box-shadow: var(--el-raise-3), 0 0 0 1px color-mix(in oklab, var(--el-accent) 12%, transparent);
+}
+[data-theme="kinetic-ink"] .el-dialog .el-dialog-title,
+[data-theme="kinetic-ink"] .el-dialog .el-dialog-head h2,
+[data-theme="kinetic-ink"] .el-dialog .el-dialog-head h3 {
+  font-family: var(--el-font-display);
+}
+[data-theme="kinetic-ink"] .el-drawer {
+  background: linear-gradient(180deg, var(--el-panel-2), color-mix(in oklab, var(--el-panel-2) 62%, var(--el-panel)));
+  border-left: 1px solid var(--el-line-strong);
+  border-radius: var(--el-r-xl) 0 0 var(--el-r-xl);
+}
+[data-theme="kinetic-ink"] .el-drawer > .el-drawer-head {
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-family: var(--el-font-mono);
+}
+[data-theme="kinetic-ink"] .el-popover .el-pop,
+[data-theme="kinetic-ink"] .el-menu,
+[data-theme="kinetic-ink"] .el-toast,
+[data-theme="kinetic-ink"] .el-command-panel {
+  background: color-mix(in oklab, var(--el-panel) 94%, transparent);
+  border-color: var(--el-line-strong);
+  border-radius: var(--el-r-lg);
+}
+[data-theme="kinetic-ink"] .el-popover .el-pop > h4,
+[data-theme="kinetic-ink"] .el-dialog .el-dialog-title { letter-spacing: 0; }
+[data-theme="kinetic-ink"] .el-toast { box-shadow: var(--el-raise-2); }
+[data-theme="kinetic-ink"] .el-toast.ok { border-inline-start-color: var(--el-ok); }
+[data-theme="kinetic-ink"] .el-toast .close:hover { color: var(--el-accent); }
+[data-theme="kinetic-ink"] .el-menu .el-menu-item:hover,
+[data-theme="kinetic-ink"] .el-menu .el-menu-item.on { background: var(--el-panel-3); }
+[data-theme="kinetic-ink"] .el-menu .el-menu-item.on { color: var(--el-accent); }
+[data-theme="kinetic-ink"] .el-command-row.sel {
+  box-shadow: inset 2px 0 0 var(--el-accent);
+  border-radius: var(--el-r-sm);
+}
+[data-theme="kinetic-ink"] .el-notification {
+  border-radius: var(--el-r-lg);
+}
+[data-theme="kinetic-ink"] .el-notification::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 3px;
+  background: linear-gradient(180deg, var(--el-accent), transparent 88%);
+  box-shadow: 0 0 8px var(--kin-glow-soft);
+}
+[data-theme="kinetic-ink"] .el-inspector {
+  background: linear-gradient(180deg, var(--el-panel-2), var(--el-panel));
+  border-left: 1px solid var(--el-line-strong);
+}
+[data-theme="kinetic-ink"] .el-inspector-header {
+  background: color-mix(in oklab, var(--el-panel-2) 52%, var(--el-panel));
+  border-bottom: 1px solid var(--el-line);
+}
+[data-theme="kinetic-ink"] .el-inspector-header .el-inspector-close:hover { color: var(--el-accent); }
+
+/* reader + assistant — editorial furniture in the studio voice */
+[data-theme="kinetic-ink"] .el-reader { font-family: var(--el-font-body); }
+[data-theme="kinetic-ink"] .el-reader h1,
+[data-theme="kinetic-ink"] .el-reader h2,
+[data-theme="kinetic-ink"] .el-reader h3 {
+  font-family: var(--el-font-display);
+  font-weight: var(--el-head-weight);
+  letter-spacing: var(--el-head-tracking);
+}
+[data-theme="kinetic-ink"] .el-reader blockquote {
+  border-left: 2px solid var(--el-accent);
+  background: linear-gradient(90deg, var(--el-accent-soft), transparent 55%);
+  padding: 10px 18px;
+  font-size: 1.1em;
+}
+[data-theme="kinetic-ink"] .el-reader pre {
+  background: color-mix(in oklab, var(--el-bg) 78%, var(--el-panel));
+  border: 1px solid var(--el-line-2);
+  border-radius: var(--el-r-md);
+}
+[data-theme="kinetic-ink"] .el-reader code { color: var(--el-teal); }
+[data-theme="kinetic-ink"] .el-citation-rail .el-cite .n {
+  font-family: var(--el-font-mono);
+  background: var(--el-accent-soft);
+  color: var(--el-accent);
+  border-radius: var(--el-r-sm);
+}
+[data-theme="kinetic-ink"] .el-assistant-panel {
+  background: linear-gradient(180deg, color-mix(in oklab, var(--el-accent) 5%, var(--el-panel)), var(--el-panel));
+  border-color: color-mix(in oklab, var(--el-accent) 24%, var(--el-line));
+}
+[data-theme="kinetic-ink"] .el-kbd {
+  background: linear-gradient(180deg, var(--el-panel-2), var(--el-panel-3));
+  border-color: var(--el-line-strong);
+  color: var(--el-ink);
+}
+[data-theme="kinetic-ink"] .el-empty .el-title {
+  font-family: var(--el-font-display);
+}
+[data-theme="kinetic-ink"] .el-banner {
+  border-radius: var(--el-r-md);
+}
+[data-theme="kinetic-ink"] .el-banner--live { --el-banner-tint: var(--el-accent); }
+[data-theme="kinetic-ink"] .el-avatar {
+  border-radius: 50%;
+  background: linear-gradient(135deg, color-mix(in oklab, var(--el-accent) 82%, var(--kin-blush)), #341024);
+}
+[data-theme="kinetic-ink"] .el-badge.live,
+[data-theme="kinetic-ink"] .el-status-pill.live { border-color: color-mix(in oklab, var(--el-accent) 44%, transparent); }
+[data-theme="kinetic-ink"] .el-skeleton {
+  background: color-mix(in oklab, var(--el-ink) 5%, var(--el-panel-2));
+}
+[data-theme="kinetic-ink"] .el-segmented {
+  background: var(--el-panel-2);
+  border-radius: var(--el-r-md);
+}
+[data-theme="kinetic-ink"] .el-segmented button.on {
+  background: linear-gradient(180deg, color-mix(in oklab, var(--el-accent) 20%, var(--el-panel-3)), var(--el-panel-3));
+  color: var(--el-accent);
+}
+[data-theme="kinetic-ink"] .el-slider { border-radius: var(--el-r-pill); }
+
+/* ───────────────────────── 9B · aperture-motion ───────────────────────── */
+
+[data-theme="aperture-motion"] {
+  color-scheme: dark;
+  accent-color: var(--el-accent);
+  scrollbar-color: var(--el-line-strong) transparent;
+
+  --el-bg:          #131313;
+  --el-panel:       #1a1a1a;
+  --el-panel-2:     #212121;
+  --el-panel-3:     #2b2b2b;
+  --el-line:        #2c2c2c;
+  --el-line-2:      #242424;
+  --el-line-strong: #404040;
+  --el-ink:         #f4f1eb;
+  --el-ink-soft:    #aba49a;
+  --el-mute:        #948b7d;
+  --el-on-accent:   #131313;
+  --el-accent:      #ff7a1a;
+  --el-accent-hover: #ff9a45;
+  --el-accent-soft:  color-mix(in oklab, var(--el-accent) 13%, transparent);
+  --el-ok:   #4fd083;
+  --el-warn: #ffc53d;
+  --el-fail: #ff4a33;
+  --el-info: #7aa2ff;
+  --el-live: #ff7a1a;
+  --el-teal: #48c5ac;
+  --el-focus-ring: color-mix(in oklab, var(--el-accent) 62%, transparent);
+  --el-overlay:    rgba(10, 9, 8, 0.7);
+  --el-font-body:    'Inter', system-ui, -apple-system, sans-serif;
+  --el-font-display: 'Unbounded', 'Inter', system-ui, sans-serif;
+  --el-font-mono:    'Inter Tight', 'SF Mono', Menlo, Consolas, monospace;
+  /* wide techno face: 700 resolves to the 800 master for display type */
+  --el-head-weight:   700;
+  --el-head-tracking: 0em;
+  --el-head-case:     uppercase;
+  --el-label-tracking: 0.16em;
+  --el-label-case:     lowercase;
+  --el-body-weight:   500;
+  --el-r-sm: 2px;
+  --el-r-md: 3px;
+  --el-r-lg: 4px;
+  --el-r-xl: 6px;
+  --el-raise-1: 0 1px 2px rgba(0, 0, 0, 0.5);
+  --el-raise-2: 0 2px 8px rgba(0, 0, 0, 0.55),
+                0 12px 30px -12px color-mix(in oklab, var(--el-accent) 8%, transparent),
+                0 10px 26px -10px rgba(0, 0, 0, 0.65);
+  --el-raise-3: 0 6px 16px rgba(0, 0, 0, 0.55),
+                0 28px 64px -16px color-mix(in oklab, var(--el-accent) 10%, transparent),
+                0 26px 60px -18px rgba(0, 0, 0, 0.75);
+  --el-hairline: inset 0 1px 0 color-mix(in oklab, var(--el-ink) 6%, transparent);
+  --el-bar-h: 3px;
+  --el-ctl-pad-y: 9px;
+  --el-ctl-pad-x: 16px;
+  --el-ctl-min-h: 40px;
+  --el-card-pad: 20px;
+  --el-dur-fast: 110ms;
+  --el-dur-base: 220ms;
+  --el-dur-slow: 480ms;
+  --el-ease: cubic-bezier(0.76, 0, 0.24, 1);
+  --el-ornament: grid;
+  --el-rule-style: double;
+  --el-hero-pad: 72px;
+  --el-hero-min: 440px;
+  /* run-state tokens the workflows read (was referenced-undefined pre-wave2) */
+  --el-stage-done:    var(--el-ok);
+  --el-stage-running: var(--el-accent);
+  --el-stage-active:  var(--el-accent);
+  --el-stage-stale:   var(--el-mute);
+  /* aperture chrome — local, referenced by signatures below */
+  --ap-ember:      color-mix(in oklab, var(--el-accent) 55%, transparent);
+  --ap-ember-soft: color-mix(in oklab, var(--el-accent) 16%, transparent);
+  --ap-cut: 11px;
+}
+
+/* ground — the theme paints its own stage (harness + integrations without a reset) */
+[data-theme="aperture-motion"] body {
+  margin: 0;
+  /* layered oklab stops on both embers: no band survives dpr2 */
+  background:
+    radial-gradient(1200px 620px at 12% -14%,
+      color-mix(in oklab, var(--el-accent) 12%, transparent) 0%,
+      color-mix(in oklab, var(--el-accent) 7%, transparent) 28%,
+      color-mix(in oklab, var(--el-accent) 3%, transparent) 45%,
+      transparent 63%),
+    radial-gradient(920px 520px at 110% 114%,
+      color-mix(in oklab, var(--el-accent) 8%, transparent) 0%,
+      color-mix(in oklab, var(--el-accent) 4%, transparent) 48%,
+      transparent 66%),
+    var(--el-bg);
+  color: var(--el-ink);
+  font-family: var(--el-font-body);
+  font-weight: var(--el-body-weight);
+  font-feature-settings: var(--el-font-feat, "tnum" 1);
+  font-optical-sizing: auto;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* type voice — Unbounded caps lead; labels go lowercase against them */
+[data-theme="aperture-motion"] .el-display-specimen {
+  font-family: var(--el-font-display);
+  letter-spacing: var(--el-head-tracking);
+  text-transform: var(--el-head-case);
+  text-wrap: balance;
+}
+[data-theme="aperture-motion"] .el-title-xl {
+  font-family: var(--el-font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: 0.98;
+  letter-spacing: 0.01em;
+  text-wrap: balance;
+  color: var(--el-ink);
+}
+[data-theme="aperture-motion"] .el-body {
+  font-family: var(--el-font-body);
+  font-weight: var(--el-body-weight);
+  font-size: 1em;
+  line-height: 1.62;
+  color: var(--el-ink-soft);
+  text-wrap: pretty;
+}
+[data-theme="aperture-motion"] .el-mute-body {
+  color: var(--el-mute);
+  font-family: var(--el-font-body);
+  font-size: 0.92em;
+}
+[data-theme="aperture-motion"] .el-label {
+  font-family: var(--el-font-mono);
+  font-size: var(--el-fs-xs);
+  font-weight: 600;
+  letter-spacing: var(--el-label-tracking);
+  text-transform: var(--el-label-case);
+  color: var(--el-mute);
+}
+[data-theme="aperture-motion"] .el-mono {
+  font-family: var(--el-font-mono);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.01em;
+  color: var(--el-ink);
+}
+[data-theme="aperture-motion"] .el-big-num {
+  font-family: var(--el-font-display);
+  font-weight: var(--el-head-weight);
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
+}
+[data-theme="aperture-motion"] .el-ink-ok   { color: var(--el-ok); }
+[data-theme="aperture-motion"] .el-ink-fail { color: var(--el-fail); }
+[data-theme="aperture-motion"] .el-publisher {
+  font-family: var(--el-font-mono);
+  font-size: var(--el-fs-xs);
+  letter-spacing: var(--el-label-tracking);
+  text-transform: var(--el-label-case);
+  color: var(--el-accent);
+}
+[data-theme="aperture-motion"] ::selection {
+  background: var(--el-accent);
+  color: var(--el-bg);
+}
+
+/* hero — staggered oversized Unbounded caps; the grid is ink-mix so it stays subliminal */
+[data-theme="aperture-motion"] .el-hero {
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid var(--el-line);
+}
+[data-theme="aperture-motion"] .el-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(560px 300px at 92% 4%,
+      color-mix(in oklab, var(--el-accent) 12%, transparent) 0%,
+      color-mix(in oklab, var(--el-accent) 6%, transparent) 42%,
+      transparent 66%),
+    repeating-linear-gradient(90deg,
+      color-mix(in oklab, var(--el-ink) 3.5%, transparent) 0 1px,
+      transparent 1px 72px),
+    repeating-linear-gradient(0deg,
+      color-mix(in oklab, var(--el-ink) 3.5%, transparent) 0 1px,
+      transparent 1px 72px);
+  pointer-events: none;
+}
+/* shutter stopper: an orange block "seal" apart from the headline's own period */
+[data-theme="aperture-motion"] .el-hero .el-title-xl::after {
+  content: "";
+  display: inline-block;
+  width: 0.2em;
+  height: 0.2em;
+  margin-left: 0.3em;
+  background: var(--el-accent);
+  clip-path: polygon(0 0, 100% 0, 100% 62%, 62% 100%, 0 100%);
+}
+
+/* eyebrow — lowercase rail with an angular aperture tick */
+[data-theme="aperture-motion"] .el-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-family: var(--el-font-mono);
+  font-size: var(--el-fs-xs);
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: lowercase;
+  color: var(--el-ink-soft);
+}
+[data-theme="aperture-motion"] .el-eyebrow::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border: 1px solid var(--el-accent);
+  border-radius: var(--el-r-sm);
+}
+
+/* button — the aperture cut lives on a ::before plate, never on the control itself,
+   so clip-path cannot swallow the focus ring; the cut is a registered <length> and
+   the plate head colour a registered <color>, both of which interpolate on hover. */
+[data-theme="aperture-motion"] .el-btn {
+  position: relative;
+  z-index: 0;
+  background: transparent;
+  color: var(--el-on-accent);
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+[data-theme="aperture-motion"] .el-btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  --ap-plate-hi: var(--el-accent);
+  --ap-cut: 11px;
+  background: linear-gradient(135deg,
+    var(--ap-plate-hi, var(--el-accent)) 0%,
+    color-mix(in oklab, var(--el-accent) 86%, #ff4d00) 48%,
+    color-mix(in oklab, var(--el-accent) 72%, #ff4d00) 100%);
+  clip-path: polygon(
+    0 0,
+    calc(100% - var(--ap-cut, 11px)) 0,
+    100% var(--ap-cut, 11px),
+    100% 100%,
+    var(--ap-cut, 11px) 100%,
+    0 calc(100% - var(--ap-cut, 11px)));
+}
+[data-theme="aperture-motion"] .el-btn:hover {
+  color: var(--el-on-accent);
+}
+[data-theme="aperture-motion"] .el-btn:hover::before {
+  --ap-plate-hi: var(--el-accent-hover);
+  --ap-cut: 16px;
+}
+[data-theme="aperture-motion"] .el-btn:active {
+  transform: var(--el-press);
+  box-shadow: none;
+}
+[data-theme="aperture-motion"] .el-btn:active::before {
+  --ap-cut: 13px;
+}
+[data-theme="aperture-motion"] .el-btn:focus-visible {
+  outline: 2px solid color-mix(in oklab, var(--el-accent) 80%, transparent);
+  outline-offset: 3px; /* frames the plate like a viewfinder — never clipped by the cut */
+}
+[data-theme="aperture-motion"] .el-btn:disabled,
+[data-theme="aperture-motion"] .el-btn[aria-disabled="true"] {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+  color: color-mix(in oklab, var(--el-ink) 80%, var(--el-accent));
+}
+[data-theme="aperture-motion"] .el-btn:disabled::before,
+[data-theme="aperture-motion"] .el-btn[aria-disabled="true"]::before {
+  --ap-plate-hi: color-mix(in oklab, var(--el-accent) 42%, var(--el-panel-3));
+  --ap-cut: 11px;
+  background: var(--el-panel-3);
+}
+[data-theme="aperture-motion"] .el-btn.ghost,
+[data-theme="aperture-motion"] .el-btn--ghost,
+[data-theme="aperture-motion"] .el-btn--outline {
+  background: transparent;
+  color: var(--el-ink-soft);
+  border: 1px solid var(--el-line-strong);
+}
+[data-theme="aperture-motion"] .el-btn.ghost::before,
+[data-theme="aperture-motion"] .el-btn--ghost::before,
+[data-theme="aperture-motion"] .el-btn--outline::before {
+  content: none;
+}
+[data-theme="aperture-motion"] .el-btn.ghost:hover,
+[data-theme="aperture-motion"] .el-btn--ghost:hover,
+[data-theme="aperture-motion"] .el-btn--outline:hover {
+  color: var(--el-ink);
+  background: var(--el-accent-soft);
+  border-color: color-mix(in oklab, var(--el-accent) 45%, transparent);
+}
+[data-theme="aperture-motion"] .el-btn.ghost:active,
+[data-theme="aperture-motion"] .el-btn--ghost:active,
+[data-theme="aperture-motion"] .el-btn--outline:active {
+  transform: var(--el-press);
+}
+
+/* input — squared field, orange caret, themed selection via the shared rule */
+[data-theme="aperture-motion"] .el-input {
+  background: var(--el-panel-2);
+  border-color: color-mix(in oklab, var(--el-line-strong) 72%, var(--el-line));
+  border-radius: var(--el-r-md);
+  caret-color: var(--el-accent);
+}
+[data-theme="aperture-motion"] .el-input::placeholder {
+  color: var(--el-mute);
+  font-weight: 400;
+}
+[data-theme="aperture-motion"] .el-input:focus {
+  border-color: color-mix(in oklab, var(--el-accent) 55%, var(--el-line-strong));
+  box-shadow: var(--el-ring), var(--el-inset-field);
+}
+[data-theme="aperture-motion"] .el-input:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* paired form rows: the sheet keeps .el-select as an inline-block while
+   .el-search-field is block, so a select half shrink-wraps beside a filled
+   search half (sheet gap, routed). Stretch the paired-row halves back into
+   one aligned gutter. */
+[data-theme="aperture-motion"] .ap-form-2 > .el-field > .el-select { display: block; }
+
+/* switch — squared track, angulated knob states */
+[data-theme="aperture-motion"] .el-switch {
+  border-radius: var(--el-r-sm);
+}
+[data-theme="aperture-motion"] .el-switch.on {
+  background: linear-gradient(180deg, color-mix(in oklab, var(--el-accent-hover) 30%, var(--el-accent)), var(--el-accent));
+  border-color: color-mix(in oklab, var(--el-accent) 72%, transparent);
+  box-shadow: 0 0 12px var(--ap-ember-soft);
+}
+[data-theme="aperture-motion"] .el-switch.on::after {
+  background: linear-gradient(180deg,
+    color-mix(in oklab, var(--el-ink) 12%, var(--el-on-accent)) 0%,
+    var(--el-on-accent) 100%);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.55);
+}
+[data-theme="aperture-motion"] .el-switch:focus-visible {
+  outline: 2px solid var(--el-focus-ring);
+  outline-offset: 2px;
+}
+[data-theme="aperture-motion"] .el-switch[aria-disabled="true"] {
+  opacity: 0.45;
+}
+
+/* chip — aperture-ring dot; live chips breathe only with motion consent */
+[data-theme="aperture-motion"] .el-chip {
+  border-radius: var(--el-r-md);
+  letter-spacing: 0.08em;
+  text-transform: var(--el-label-case);
+  color: var(--el-ink-soft);
+  border-color: color-mix(in oklab, var(--el-ink-soft) 24%, transparent);
+  background: color-mix(in oklab, var(--el-ink) 3%, var(--el-panel));
+}
+[data-theme="aperture-motion"] .el-chip::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border: 1px solid var(--el-accent);
+  border-radius: 50%;
+  flex: 0 0 auto;
+}
+[data-theme="aperture-motion"] .el-chip:hover {
+  color: var(--el-ink);
+  border-color: color-mix(in oklab, var(--el-accent) 40%, transparent);
+}
+[data-theme="aperture-motion"] .el-chip.live {
+  color: var(--el-accent);
+  border-color: color-mix(in oklab, var(--el-accent) 45%, transparent);
+  background: var(--el-accent-soft);
+}
+[data-theme="aperture-motion"] .el-chip.live::before {
+  background: color-mix(in oklab, var(--el-accent) 30%, transparent);
+}
+[data-theme="aperture-motion"] .el-chip:active {
+  transform: translateY(1px);
+}
+[data-theme="aperture-motion"] .el-chip[aria-disabled="true"] {
+  opacity: 0.45;
+}
+
+/* pill — lowercase mono voice on a graphite plate */
+[data-theme="aperture-motion"] .el-pill {
+  font-family: var(--el-font-mono);
+  font-size: var(--el-fs-xs);
+  letter-spacing: 0.14em;
+  text-transform: var(--el-label-case);
+  color: var(--el-ink-soft);
+  border-radius: var(--el-r-sm);
+  background: color-mix(in oklab, var(--el-ink) 3%, var(--el-panel));
+  box-shadow: none;
+}
+[data-theme="aperture-motion"] .el-pill:hover {
+  color: var(--el-ink);
+  background: var(--el-accent-soft);
+  border-color: color-mix(in oklab, var(--el-accent) 45%, transparent);
+}
+[data-theme="aperture-motion"] .el-pill:active {
+  transform: translateY(1px);
+}
+[data-theme="aperture-motion"] .el-pill:focus-visible {
+  outline: 2px solid var(--el-focus-ring);
+  outline-offset: 2px;
+}
+
+/* card — dark plate with an inset gradient corner wedge (4 oklab stops, no banding) */
+[data-theme="aperture-motion"] .el-card {
+  background: var(--el-panel);
+  border: 1px solid var(--el-line);
+  border-radius: var(--el-r-md);
+  box-shadow: var(--el-raise-1);
+}
+[data-theme="aperture-motion"] .el-card:hover {
+  border-color: color-mix(in oklab, var(--el-accent) 26%, var(--el-line));
+}
+[data-theme="aperture-motion"] .el-card::before {
+  inset: 0 0 auto auto;
+  width: 32px;
+  height: 32px;
+  background: linear-gradient(135deg,
+    var(--el-accent) 0%,
+    color-mix(in oklab, var(--el-accent) 52%, transparent) 36%,
+    color-mix(in oklab, var(--el-accent) 20%, transparent) 56%,
+    transparent 74%);
+  clip-path: polygon(0 0, 100% 0, 100% 100%);
+}
+[data-theme="aperture-motion"] .el-card:hover::before {
+  width: 40px;
+  height: 40px;
+}
+[data-theme="aperture-motion"] .el-card:focus-within {
+  border-color: color-mix(in oklab, var(--el-accent) 45%, var(--el-line));
+}
+[data-theme="aperture-motion"] .el-card h3 {
+  text-transform: var(--el-head-case);
+  letter-spacing: 0.04em;
+}
+[data-theme="aperture-motion"] .el-card .lbl,
+[data-theme="aperture-motion"] .el-card .sub {
+  text-transform: var(--el-label-case);
+}
+
+/* table — orange focus/hover row with an inset rail (blur-free, true 2px) */
+[data-theme="aperture-motion"] .el-table {
+  width: 100%;
+  table-layout: fixed; /* narrow cards keep every column on the plate */
+  background: var(--el-panel);
+  border: 1px solid var(--el-line);
+  border-radius: var(--el-r-md);
+  border-collapse: separate;
+  border-spacing: 0;
+}
+[data-theme="aperture-motion"] .el-table thead th {
+  font-family: var(--el-font-mono);
+  font-size: var(--el-fs-xs);
+  font-weight: 600;
+  letter-spacing: var(--el-label-tracking);
+  text-transform: var(--el-label-case);
+  color: var(--el-mute);
+  border-bottom: 1px solid var(--el-line);
+}
+[data-theme="aperture-motion"] .el-table tbody tr {
+  transition: background-color var(--el-dur-fast) var(--el-ease);
+}
+[data-theme="aperture-motion"] .el-table tbody tr:hover,
+[data-theme="aperture-motion"] .el-table tbody tr:focus-within {
+  background: color-mix(in oklab, var(--el-accent) 9%, transparent);
+}
+[data-theme="aperture-motion"] .el-table tbody tr:hover td:first-child,
+[data-theme="aperture-motion"] .el-table tbody tr:focus-within td:first-child {
+  box-shadow: inset 3px 0 0 var(--el-accent);
+}
+
+/* bar + rule — angular baseline voices; the double rule outranks the inline reset */
+[data-theme="aperture-motion"] .el-bar {
+  position: relative;
+  height: var(--el-bar-h);
+  overflow: hidden;
+  background: var(--el-panel-2);
+  border-radius: var(--el-r-sm);
+}
+[data-theme="aperture-motion"] .el-bar i {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg,
+    color-mix(in oklab, var(--el-accent) 86%, #ff4d00) 0%,
+    var(--el-accent) 58%,
+    var(--el-accent-hover) 100%);
+}
+[data-theme="aperture-motion"] .el-rule {
+  border: 0 !important; /* outranks the harness inline reset */
+  height: 3px;
+  margin: 18px 0;
+  border-top: 1px solid var(--el-line-strong) !important;
+  border-bottom: 1px solid var(--el-line-2) !important;
+  background: none;
+}
+
+/* stage states — tokens now resolve; pulse delayed past the capture window */
+[data-theme="aperture-motion"] .el-stage:focus-visible {
+  outline: 2px solid var(--el-focus-ring);
+  outline-offset: 2px;
+}
+[data-theme="aperture-motion"] .el-stage.done .el-stage-dot { background: var(--el-stage-done); }
+[data-theme="aperture-motion"] .el-stage.run .el-stage-dot  { background: var(--el-stage-running); }
+[data-theme="aperture-motion"] .el-pt-chunk.on              { border-color: var(--el-stage-done); color: var(--el-stage-done); }
+
+/* ── motion (verified off-switch): rise + tracking settle + shutter blink ── */
+@media (prefers-reduced-motion: no-preference) {
+  [data-theme="aperture-motion"] .el-btn {
+    transition: background-color var(--el-dur-fast) var(--el-ease),
+                color var(--el-dur-fast) var(--el-ease),
+                transform 60ms var(--el-ease),
+                box-shadow var(--el-dur-fast) var(--el-ease);
+  }
+  [data-theme="aperture-motion"] .el-btn::before {
+    transition: --ap-cut var(--el-dur-base) var(--el-ease),
+                --ap-plate-hi var(--el-dur-fast) linear;
+  }
+  [data-theme="aperture-motion"] .el-card::before {
+    transition: width var(--el-dur-base) var(--el-ease),
+                height var(--el-dur-base) var(--el-ease);
+  }
+  [data-theme="aperture-motion"] .el-card,
+  [data-theme="aperture-motion"] .el-table tbody tr,
+  [data-theme="aperture-motion"] .el-input,
+  [data-theme="aperture-motion"] .el-switch,
+  [data-theme="aperture-motion"] .el-chip,
+  [data-theme="aperture-motion"] .el-pill {
+    transition: background-color var(--el-dur-fast) var(--el-ease),
+                background var(--el-dur-fast) var(--el-ease),
+                border-color var(--el-dur-fast) var(--el-ease),
+                color var(--el-dur-fast) var(--el-ease);
+  }
+  /* entrance — settles by 580ms; shutter finishes its 3 frames by 600ms */
+  [data-theme="aperture-motion"] .el-hero > * {
+    animation: el-ap-rise 380ms var(--el-ease) both;
+  }
+  [data-theme="aperture-motion"] .el-hero > :nth-child(2) { animation-delay: 60ms; }
+  [data-theme="aperture-motion"] .el-hero > :nth-child(3) { animation-delay: 120ms; }
+  [data-theme="aperture-motion"] .el-hero > :nth-child(4) { animation-delay: 170ms; }
+  [data-theme="aperture-motion"] .el-hero > :nth-child(n+5) { animation-delay: 200ms; }
+  [data-theme="aperture-motion"] .el-hero .el-title-xl {
+    animation: el-ap-track 440ms var(--el-ease) 60ms backwards;
+  }
+  [data-theme="aperture-motion"] .el-hero .el-title-xl {
+    transition: letter-spacing var(--el-dur-base) var(--el-ease);
+  }
+  [data-theme="aperture-motion"] .el-hero .el-title-xl:hover {
+    letter-spacing: 0.07em;
+  }
+  /* THE 2040 instrument (aperture-motion): the shutter period blinks open in three
+     hard frames — closed blade, half aperture, settled notch. fill both; every frame
+     is a duplicate-stop hold, so no interpolation can be caught mid-frame. */
+  [data-theme="aperture-motion"] .el-hero .el-title-xl::after {
+    animation: el-ap-shutter 420ms linear 180ms both;
+  }
+  [data-theme="aperture-motion"] .el-chip.live::before {
+    animation: el-ap-blink 1.6s var(--el-ease) 1s infinite;
+  }
+  [data-theme="aperture-motion"] .el-stage.run .el-stage-dot {
+    animation: el-ap-blink 1.6s var(--el-ease) 1s infinite;
+  }
+}
+@keyframes el-ap-rise {
+  from { opacity: 0; transform: translateY(0.7em); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes el-ap-track {
+  from { letter-spacing: 0.16em; }
+  to   { letter-spacing: 0.01em; }
+}
+@keyframes el-ap-shutter {
+  0%, 30%   { opacity: 0; }
+  31%, 58%  { opacity: 1; clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
+  59%, 86%  { opacity: 1; clip-path: polygon(0 0, 100% 0, 100% 38%, 0 38%); }
+  87%, 100% { opacity: 1; clip-path: polygon(0 0, 100% 0, 100% 62%, 62% 100%, 0 100%); }
+}
+@keyframes el-ap-blink {
+  0%, 100% { opacity: 0.35; }
+  50%      { opacity: 1; }
+}
+
+/* workflow text voices inherit the brand faces (no fallback serifs) */
+[data-theme="aperture-motion"] .el-stage,
+[data-theme="aperture-motion"] .el-stage .el-stage-name {
+  font-family: var(--el-font-body);
+  font-size: var(--el-fs-md);
+}
+[data-theme="aperture-motion"] .el-progress-truth { font-family: var(--el-font-mono); }
+[data-theme="aperture-motion"] .el-pt-label {
+  font-family: var(--el-font-mono);
+  font-size: var(--el-fs-xs);
+  letter-spacing: 0.02em;
+  color: var(--el-mute);
+}
+[data-theme="aperture-motion"] .el-source-card { font-family: var(--el-font-body); }
+
+/* ── wave3 site voices — aperture-motion, structured slots (nav --top,
+   hero --poster, raised cards, zebra tables, tight density) ──────────────── */
+
+/* navbar --top — the slate bar: graphite glass, lowercase mono links */
+[data-theme="aperture-motion"] .el-navbar {
+  background: linear-gradient(180deg,
+    color-mix(in oklab, var(--el-panel-2) 88%, transparent),
+    color-mix(in oklab, var(--el-panel) 92%, transparent));
+  -webkit-backdrop-filter: blur(12px) saturate(1.05);
+  backdrop-filter: blur(12px) saturate(1.05);
+  border-bottom: 1px solid var(--el-line);
+  box-shadow: 0 8px 26px -20px rgba(0, 0, 0, 0.9);
+  padding-inline: clamp(18px, 4vw, 34px);
+}
+[data-theme="aperture-motion"] .el-navbar .brand {
+  font-family: var(--el-font-display);
+  text-transform: uppercase;
+  font-size: 1.02rem;
+  letter-spacing: 0.06em;
+}
+[data-theme="aperture-motion"] .el-navbar .brand .el-bar-mark {
+  width: 18px; height: 18px; flex: 0 0 auto;
+  background: var(--el-accent);
+  clip-path: polygon(0 0, 100% 0, 100% 62%, 62% 100%, 0 100%);
+}
+[data-theme="aperture-motion"] .el-navbar .links a,
+[data-theme="aperture-motion"] .el-navbar .links button {
+  border-radius: var(--el-r-sm);
+  font-family: var(--el-font-mono);
+  font-size: var(--el-fs-sm);
+  letter-spacing: 0.14em;
+  text-transform: lowercase;
+  background: transparent;
+  position: relative;
+}
+/* aperture underbar: a hard registered block that steps in on hover */
+[data-theme="aperture-motion"] .el-navbar .links a::after,
+[data-theme="aperture-motion"] .el-navbar .links button::after {
+  content: "";
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 2px;
+  height: 3px;
+  background: var(--el-accent);
+  clip-path: polygon(0 0, 100% 0, 100% 62%, 62% 100%, 0 100%);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 180ms var(--el-ease);
+}
+[data-theme="aperture-motion"] .el-navbar .links a:hover::after,
+[data-theme="aperture-motion"] .el-navbar .links button:hover::after,
+[data-theme="aperture-motion"] .el-navbar .links [aria-current="page"]::after {
+  transform: scaleX(1);
+}
+[data-theme="aperture-motion"] .el-navbar .links [aria-current="page"] {
+  background: transparent;
+  box-shadow: inset 0 0 0 1px transparent;
+  color: var(--el-ink);
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-theme="aperture-motion"] .el-navbar .links a::after,
+  [data-theme="aperture-motion"] .el-navbar .links button::after { transition: none; }
+}
+
+/* hero --poster — full-bleed plate over the graphite, ember scrim */
+[data-theme="aperture-motion"] .el-hero--poster {
+  min-height: calc(var(--el-hero-min) * 1.5);
+  align-content: end;
+  padding-bottom: 64px;
+}
+[data-theme="aperture-motion"] .el-hero--poster .media .frame {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(900px 420px at 78% 12%, color-mix(in oklab, var(--el-accent) 13%, transparent), transparent 66%),
+    linear-gradient(215deg, #20140c 0%, #161310 44%, #121110 100%);
+}
+[data-theme="aperture-motion"] .el-hero--poster .media .frame svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+[data-theme="aperture-motion"] .el-hero--poster .el-title-xl { font-size: clamp(2em, 4.4vw, 3.05em); }
+[data-theme="aperture-motion"] .el-hero--poster .actions .el-btn { min-height: var(--el-ctl-min-h); }
+
+/* section — tight density, caps display, double-rule furniture */
+[data-theme="aperture-motion"] .el-section { padding-block: 42px; }
+[data-theme="aperture-motion"] .el-section > h1,
+[data-theme="aperture-motion"] .el-section > h2,
+[data-theme="aperture-motion"] .el-section > h3,
+[data-theme="aperture-motion"] .el-section > .el-section-head {
+  font-family: var(--el-font-display);
+  font-weight: var(--el-head-weight);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  font-size: clamp(1.3em, 2.2vw, 1.8em);
+  line-height: 1.14;
+}
+[data-theme="aperture-motion"] .el-section--dense { padding-block: 24px; }
+/* flush contract (same as kinetic — the density band must not clobber it) */
+[data-theme="aperture-motion"] .el-section--flush { padding-block: 0; }
+/* figure margins owned by base.css (controller batch 2) — nothing to restate */
+
+/* footer — graphite plinth, ember colophon */
+[data-theme="aperture-motion"] .el-footer {
+  padding: 42px clamp(18px, 4vw, 34px) 26px;
+  border-top: 1px solid var(--el-line-strong);
+  background:
+    radial-gradient(700px 280px at 100% 0%, color-mix(in oklab, var(--el-accent) 5%, transparent), transparent 70%),
+    var(--el-bg);
+}
+[data-theme="aperture-motion"] .el-footer .col > .label {
+  font-family: var(--el-font-mono);
+  letter-spacing: 0.2em;
+  color: var(--el-mute);
+}
+[data-theme="aperture-motion"] .el-footer a { text-decoration: none; }
+[data-theme="aperture-motion"] .el-footer a:hover { color: var(--el-accent); }
+[data-theme="aperture-motion"] .el-footer .colophon {
+  font-family: var(--el-font-body);
+  font-style: normal;
+  color: color-mix(in oklab, var(--el-accent) 34%, var(--el-mute));
+}
+
+/* media-band — the slate plate: film caption, ember tick */
+[data-theme="aperture-motion"] .el-media-band { border-radius: var(--el-r-md); }
+[data-theme="aperture-motion"] .el-media-band > .media .frame {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(520px 280px at 80% 20%, color-mix(in oklab, var(--el-accent) 12%, transparent), transparent 70%),
+    linear-gradient(205deg, #221511 0%, #171512 48%, #131211 100%);
+}
+[data-theme="aperture-motion"] .el-media-band > .media .frame svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+[data-theme="aperture-motion"] .el-media-band > .media > figcaption {
+  border-top: 1px solid var(--el-line-strong);
+  background: linear-gradient(180deg, transparent, color-mix(in oklab, var(--el-bg) 86%, transparent));
+  font-family: var(--el-font-mono);
+  color: var(--el-ink-soft);
+}
+
+/* pricing — angled plan plates; featured carries the ember head-rail */
+[data-theme="aperture-motion"] .el-pricing {
+  background: linear-gradient(180deg, var(--el-panel-2), var(--el-panel));
+  border-radius: var(--el-r-md);
+  padding: 26px 22px 22px;
+}
+[data-theme="aperture-motion"] .el-pricing .name {
+  font-family: var(--el-font-mono);
+  letter-spacing: 0.18em;
+  color: var(--el-mute);
+}
+[data-theme="aperture-motion"] .el-pricing .price { font-size: 2em; letter-spacing: 0; }
+[data-theme="aperture-motion"] .el-pricing .feats li::before {
+  content: "\25B8";
+  color: var(--el-accent);
+  font-size: var(--el-fs-sm);
+}
+[data-theme="aperture-motion"] .el-pricing--featured {
+  border-color: color-mix(in oklab, var(--el-accent) 55%, var(--el-edge));
+}
+[data-theme="aperture-motion"] .el-pricing--featured::before {
+  background: linear-gradient(90deg, var(--el-accent), color-mix(in oklab, var(--el-accent) 30%, transparent) 70%);
+}
+
+/* testimonial — graphite card, ember mark, mono attribution */
+[data-theme="aperture-motion"] .el-testimonial {
+  background:
+    radial-gradient(520px 260px at 0% 0%, color-mix(in oklab, var(--el-accent) 6%, transparent), transparent 66%),
+    var(--el-panel);
+  border-radius: var(--el-r-md);
+}
+[data-theme="aperture-motion"] .el-testimonial .q,
+[data-theme="aperture-motion"] .el-testimonial .quote {
+  font-family: var(--el-font-body);
+  font-size: 1.28em;
+  font-weight: 500;
+  line-height: 1.5;
+  text-wrap: balance;
+}
+[data-theme="aperture-motion"] .el-testimonial .who .name {
+  font-family: var(--el-font-mono);
+  text-transform: lowercase;
+  letter-spacing: 0.06em;
+}
+
+/* stat tiles + meters + zebra — production telemetry */
+[data-theme="aperture-motion"] .el-stat { border-radius: var(--el-r-md); }
+[data-theme="aperture-motion"] .el-stat .el-stat-value { letter-spacing: 0; }
+[data-theme="aperture-motion"] .el-stat .el-chart-svg { color: var(--el-accent); }
+[data-theme="aperture-motion"] .el-meter { height: 8px; border-radius: var(--el-r-sm); }
+[data-theme="aperture-motion"] .el-meter > .fill {
+  background: linear-gradient(90deg, color-mix(in oklab, var(--el-accent) 80%, #ff4d00), var(--el-accent) 70%, var(--el-accent-hover));
+}
+[data-theme="aperture-motion"] .el-progress > .fill {
+  background: linear-gradient(90deg, color-mix(in oklab, var(--el-accent) 78%, #ff4d00), var(--el-accent));
+}
+[data-theme="aperture-motion"] .el-table--zebra { background: var(--el-panel); border-color: var(--el-line-2); }
+[data-theme="aperture-motion"] .el-table--zebra tbody tr:nth-child(even) {
+  background: color-mix(in oklab, var(--el-accent) 5%, var(--el-panel));
+}
+[data-theme="aperture-motion"] .el-table--zebra tbody tr:nth-child(even) td { border-bottom-color: var(--el-line-2); }
+
+/* timeline + fact grid + pagination + stepper — production rails */
+[data-theme="aperture-motion"] .el-timeline::before {
+  background: linear-gradient(180deg, color-mix(in oklab, var(--el-accent) 30%, transparent), var(--el-line) 85%);
+  left: calc(var(--el-space-2) + 5px);
+}
+[data-theme="aperture-motion"] .el-timeline > li::before {
+  border-radius: var(--el-r-sm);
+  border-color: var(--el-line-strong);
+}
+[data-theme="aperture-motion"] .el-timeline .when { font-family: var(--el-font-mono); }
+[data-theme="aperture-motion"] .el-fact-grid > .el-card--flat { border-radius: var(--el-r-sm); }
+/* fact tiles — same inline run-on as kinetic; block the big number */
+[data-theme="aperture-motion"] .el-fact-grid > .el-card--flat > .el-big-num { display: block; margin-block-end: 6px; }
+/* same dead sheet anchor as kinetic — re-assert at theme level */
+[data-theme="aperture-motion"] .el-card > .actions { margin-top: auto; }
+[data-theme="aperture-motion"] .el-fact-grid dt,
+[data-theme="aperture-motion"] .el-fact-grid .n { font-family: var(--el-font-mono); }
+[data-theme="aperture-motion"] .el-pagination .page { border-radius: var(--el-r-sm); }
+[data-theme="aperture-motion"] .el-pagination .page.on { border-radius: var(--el-r-sm); }
+[data-theme="aperture-motion"] .el-stepper li { border-radius: var(--el-r-sm); }
+[data-theme="aperture-motion"] .el-ladder-step { border-radius: var(--el-r-sm); }
+[data-theme="aperture-motion"] .el-ladder-step.is-running .el-ladder-label::after {
+  background: var(--el-accent);
+}
+
+/* appwin — the shoot log: graphite chrome, ember seams, squared glass */
+[data-theme="aperture-motion"] .el-appwin {
+  background: var(--el-panel);
+  border-color: var(--el-line-strong);
+  border-radius: var(--el-r-md);
+}
+[data-theme="aperture-motion"] .el-appwin .el-titlebar {
+  background: linear-gradient(180deg, var(--el-panel-2), color-mix(in oklab, var(--el-panel-2) 66%, var(--el-panel)));
+  border-bottom: 1px solid var(--el-line);
+}
+[data-theme="aperture-motion"] .el-appwin .el-app-title {
+  font-family: var(--el-font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+[data-theme="aperture-motion"] .el-appwin .el-app-title small {
+  font-family: var(--el-font-mono);
+  letter-spacing: 0.16em;
+  text-transform: lowercase;
+}
+[data-theme="aperture-motion"] .el-appwin .el-menubar {
+  background: color-mix(in oklab, var(--el-panel-2) 30%, var(--el-panel));
+}
+[data-theme="aperture-motion"] .el-appwin .el-menubar-item {
+  font-family: var(--el-font-mono);
+  font-size: var(--el-fs-sm);
+  letter-spacing: 0.12em;
+  text-transform: lowercase;
+}
+[data-theme="aperture-motion"] .el-appwin .el-menubar-item[aria-expanded="true"],
+[data-theme="aperture-motion"] .el-appwin .el-menubar-item.is-open {
+  background: var(--el-accent-soft);
+  color: var(--el-accent);
+  box-shadow: inset 0 -2px 0 var(--el-accent);
+}
+[data-theme="aperture-motion"] .el-winbtn::before { border-radius: var(--el-r-sm); }
+[data-theme="aperture-motion"] .el-headerbar {
+  background: color-mix(in oklab, var(--el-panel-2) 40%, var(--el-panel));
+  border-bottom: 1px solid var(--el-line);
+}
+[data-theme="aperture-motion"] .el-headerbar .el-headerbar-label {
+  font-family: var(--el-font-mono);
+  letter-spacing: 0.18em;
+  text-transform: lowercase;
+  color: var(--el-mute);
+}
+[data-theme="aperture-motion"] .el-actionbar {
+  background: color-mix(in oklab, var(--el-panel-2) 48%, var(--el-panel));
+  border-top: 1px solid var(--el-line);
+}
+[data-theme="aperture-motion"] .el-tabbar { border-top: 1px solid var(--el-line); }
+[data-theme="aperture-motion"] .el-tabbar-item {
+  border-radius: var(--el-r-sm);
+}
+[data-theme="aperture-motion"] .el-tabbar-item.is-active {
+  background: var(--el-accent-soft);
+  box-shadow: inset 0 2px 0 var(--el-accent);
+}
+[data-theme="aperture-motion"] .el-listbox {
+  background: color-mix(in oklab, var(--el-bg) 42%, var(--el-panel));
+  border-radius: var(--el-r-sm);
+}
+[data-theme="aperture-motion"] .el-listbox .el-listbox-row.is-selected,
+[data-theme="aperture-motion"] .el-listbox .el-listbox-row[aria-selected="true"] {
+  background: var(--el-accent-soft);
+  box-shadow: inset 3px 0 0 var(--el-accent);
+}
+[data-theme="aperture-motion"] .el-listbox .el-listbox-row.is-selected .el-listbox-label,
+[data-theme="aperture-motion"] .el-listbox .el-listbox-row.is-selected .label { color: var(--el-ink); }
+
+/* overlays — graphite glass, ember seams, squared edges */
+[data-theme="aperture-motion"] .el-dialog {
+  background: linear-gradient(175deg, var(--el-panel-2) 0%, var(--el-panel) 50%);
+  border: 1px solid var(--el-line-strong);
+  border-radius: var(--el-r-md);
+}
+[data-theme="aperture-motion"] .el-dialog .el-dialog-title,
+[data-theme="aperture-motion"] .el-dialog .el-dialog-head h2,
+[data-theme="aperture-motion"] .el-dialog .el-dialog-head h3 {
+  font-family: var(--el-font-display);
+  text-transform: uppercase;
+  font-size: var(--el-fs-md);
+  letter-spacing: 0.05em;
+}
+[data-theme="aperture-motion"] .el-drawer {
+  background: linear-gradient(180deg, var(--el-panel-2), color-mix(in oklab, var(--el-panel-2) 58%, var(--el-panel)));
+  border-left: 1px solid var(--el-line-strong);
+  border-radius: var(--el-r-md) 0 0 var(--el-r-md);
+}
+[data-theme="aperture-motion"] .el-drawer > .el-drawer-head {
+  font-family: var(--el-font-mono);
+  text-transform: lowercase;
+  letter-spacing: 0.18em;
+}
+[data-theme="aperture-motion"] .el-popover .el-pop,
+[data-theme="aperture-motion"] .el-menu,
+[data-theme="aperture-motion"] .el-toast,
+[data-theme="aperture-motion"] .el-command-panel {
+  background: color-mix(in oklab, var(--el-panel) 95%, transparent);
+  border-color: var(--el-line-strong);
+  border-radius: var(--el-r-sm);
+}
+[data-theme="aperture-motion"] .el-menu .el-menu-item:hover,
+[data-theme="aperture-motion"] .el-menu .el-menu-item.on { background: var(--el-panel-3); }
+[data-theme="aperture-motion"] .el-menu .el-menu-item.on { color: var(--el-accent); }
+[data-theme="aperture-motion"] .el-command-row.sel {
+  box-shadow: inset 3px 0 0 var(--el-accent);
+  border-radius: var(--el-r-sm);
+}
+[data-theme="aperture-motion"] .el-notification { border-radius: var(--el-r-sm); }
+[data-theme="aperture-motion"] .el-notification::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 3px;
+  background: var(--el-accent);
+}
+[data-theme="aperture-motion"] .el-inspector {
+  background: linear-gradient(180deg, var(--el-panel-2), var(--el-panel));
+  border-left: 1px solid var(--el-line-strong);
+}
+[data-theme="aperture-motion"] .el-inspector-header {
+  background: color-mix(in oklab, var(--el-panel-2) 48%, var(--el-panel));
+  border-bottom: 1px solid var(--el-line);
+}
+[data-theme="aperture-motion"] .el-inspector-header .el-inspector-close:hover { color: var(--el-accent); }
+
+/* reader + assistant — journal furniture in the graphite voice */
+[data-theme="aperture-motion"] .el-reader { font-family: var(--el-font-body); }
+[data-theme="aperture-motion"] .el-reader h1,
+[data-theme="aperture-motion"] .el-reader h2,
+[data-theme="aperture-motion"] .el-reader h3 {
+  font-family: var(--el-font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+[data-theme="aperture-motion"] .el-reader blockquote {
+  border-left: 3px solid var(--el-accent);
+  background: linear-gradient(90deg, var(--el-accent-soft), transparent 55%);
+  padding: 10px 18px;
+}
+[data-theme="aperture-motion"] .el-reader pre {
+  background: var(--el-panel-2);
+  border: 1px solid var(--el-line);
+  border-radius: var(--el-r-sm);
+}
+[data-theme="aperture-motion"] .el-reader code { color: var(--el-teal); }
+[data-theme="aperture-motion"] .el-citation-rail .el-cite .n {
+  font-family: var(--el-font-mono);
+  background: var(--el-accent-soft);
+  color: var(--el-accent);
+  border-radius: var(--el-r-sm);
+}
+[data-theme="aperture-motion"] .el-assistant-panel {
+  background: linear-gradient(180deg, color-mix(in oklab, var(--el-accent) 4%, var(--el-panel)), var(--el-panel));
+  border-color: color-mix(in oklab, var(--el-accent) 22%, var(--el-line));
+}
+[data-theme="aperture-motion"] .el-kbd {
+  background: linear-gradient(180deg, var(--el-panel-2), var(--el-panel-3));
+  border-color: var(--el-line-strong);
+  color: var(--el-ink);
+}
+[data-theme="aperture-motion"] .el-empty .el-title {
+  font-family: var(--el-font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+[data-theme="aperture-motion"] .el-banner--live { --el-banner-tint: var(--el-accent); }
+[data-theme="aperture-motion"] .el-avatar {
+  border-radius: var(--el-r-sm);
+  background: linear-gradient(135deg, color-mix(in oklab, var(--el-accent) 84%, #ff4d00), #33200e);
+}
+[data-theme="aperture-motion"] .el-badge.live,
+[data-theme="aperture-motion"] .el-status-pill.live { border-color: color-mix(in oklab, var(--el-accent) 44%, transparent); }
+[data-theme="aperture-motion"] .el-skeleton {
+  background: color-mix(in oklab, var(--el-ink) 4%, var(--el-panel-2));
+}
+[data-theme="aperture-motion"] .el-segmented {
+  background: var(--el-panel-2);
+  border-radius: var(--el-r-sm);
+}
+[data-theme="aperture-motion"] .el-segmented button {
+  border-radius: var(--el-r-sm);
+}
+[data-theme="aperture-motion"] .el-segmented button.on {
+  background: linear-gradient(180deg, color-mix(in oklab, var(--el-accent) 18%, var(--el-panel-3)), var(--el-panel-3));
+  color: var(--el-accent);
+}
+[data-theme="aperture-motion"] .el-slider { border-radius: var(--el-r-pill); }
+[data-theme="aperture-motion"] .el-slider::-webkit-slider-thumb { border-radius: var(--el-r-sm); }
+/* narrow-card action rows — aperture-motion: same story, the sheet's 320px
+   stack rule replaced the old 360px one, so the theme ladder retires here. */
+
+
+/* ═════════════ v0.4.0 MOBILE PASS — 2026-11-03 · family motion-brand ═════════════
+   Ladder rungs probed at dpr2: 430×932 primary · 360×800 worst case (nothing may
+   h-scroll the document) · 768×1024 spot. Desktop rules above are untouched; every
+   rule below sits inside a narrow-viewport media query and reads tokens only.
+   Persona bar: the billboard headline lands at phone widths still at display
+   weight — punch comes from size-on-the-viewport, not from a desktop px value —
+   while the review desk / shoot log re-stack to one hand.
+
+   Two private touch tokens (theme-scoped, sheet never sees them):
+   --*n-touch  44px interactive minimum at the 430 rung (banner/nav/menu rows)
+   --*n-fs-display-floor  headline floor at phone widths. */
+
+/* ── shared narrow-rung tokens ────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  [data-theme="kinetic-ink"] {
+    --el-hero-pad: 44px;
+    --el-hero-min: 320px;
+    --el-card-pad: 16px;
+    --el-col-min: 148px;           /* footer + fact rails keep two columns on tabular widths */
+  }
+  [data-theme="aperture-motion"] {
+    --el-hero-pad: 44px;
+    --el-hero-min: 300px;
+    --el-card-pad: 16px;
+    --el-col-min: 148px;
+  }
+}
+@media (max-width: 430px) {
+  [data-theme="kinetic-ink"] { --el-row-h: 44px; --el-touch: 44px; --kin-fs-floor: 2.15em; }
+  [data-theme="aperture-motion"] { --el-row-h: 44px; --el-touch: 44px; --ap-fs-floor: 2.05em; }
+}
+
+/* ── 768 rung — the studio split collapses like the sheet's own narrow band,
+      except the desktop columns are pinned at theme specificity, so the theme
+      re-asserts the collapse itself ─────────────────────────────────────── */
+@media (max-width: 768px) {
+  [data-theme="kinetic-ink"] .el-hero--split,
+  [data-theme="aperture-motion"] .el-hero--split {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--el-space-5);
+    padding: 46px 16px 38px;
+  }
+  [data-theme="kinetic-ink"] .el-hero--split .media,
+  [data-theme="aperture-motion"] .el-hero--split .media {
+    min-height: var(--el-band-min);
+  }
+  [data-theme="kinetic-ink"] .el-section { padding-block: 32px; }
+  [data-theme="aperture-motion"] .el-section { padding-block: 32px; }
+  [data-theme="kinetic-ink"] .el-footer,
+  [data-theme="aperture-motion"] .el-footer { padding: 30px 16px 22px; }
+  /* the poster hero drops its 1.5× sky box — a phone reads one screen, not a runway */
+  [data-theme="aperture-motion"] .el-hero--poster { min-height: calc(var(--el-hero-min) * 1.18); }
+
+  /* the top bar's swipe row hides its scrollbar — and keyboard focus never
+     scrolls it, so the last link's ring lands off-viewport. Below the fit point
+     the links wrap instead; at widths where content fits this rule is inert. */
+  [data-theme="kinetic-ink"] .el-navbar .links,
+  [data-theme="aperture-motion"] .el-navbar .links {
+    flex-wrap: wrap;
+    overflow-x: visible;
+    row-gap: 2px;
+  }
+}
+
+/* ── 430 rung — one hand: headline, then controls ─────────────────────────── */
+@media (max-width: 430px) {
+  /* billboard headline: viewport-owned size, punch retained (Clash/Unbounded) */
+  [data-theme="kinetic-ink"] .el-hero--split .el-title-xl {
+    font-size: clamp(var(--kin-fs-floor), 10.2vw, 2.7em);
+  }
+  [data-theme="aperture-motion"] .el-hero--poster .el-title-xl {
+    font-size: clamp(var(--ap-fs-floor), 9.6vw, 2.45em);
+  }
+  [data-theme="kinetic-ink"] .el-hero .el-title-xl,
+  [data-theme="aperture-motion"] .el-hero .el-title-xl { line-height: 1.08; }
+
+  /* eyebrows: the tracked label stops fighting the edge — trailing rail drops,
+     the strip may wrap between tick and label, tracking eases one notch */
+  [data-theme="kinetic-ink"] .el-eyebrow,
+  [data-theme="aperture-motion"] .el-eyebrow {
+    flex-wrap: wrap;
+    row-gap: 5px;
+    letter-spacing: 0.18em;
+    max-width: 100%;
+  }
+  [data-theme="kinetic-ink"] .el-eyebrow::after { display: none; }
+
+  /* hero CTA pair splits the row — billboard actions stay reach-one-thumb */
+  [data-theme="kinetic-ink"] .el-hero .actions .el-btn,
+  [data-theme="aperture-motion"] .el-hero .actions .el-btn { flex: 1 1 auto; }
+
+  /* navbar: brand + links + actions keep one row each of 44px touch */
+  [data-theme="kinetic-ink"] .el-navbar,
+  [data-theme="aperture-motion"] .el-navbar { padding-inline: 14px; gap: var(--el-space-2); }
+  /* the wrapped bar spans ~2.5 viewport heights as a sticky rail — on the phone
+     it scrolls away with the page instead of pinning */
+  [data-theme="kinetic-ink"] .el-navbar--top,
+  [data-theme="aperture-motion"] .el-navbar--top { position: static; }
+  [data-theme="kinetic-ink"] .el-navbar .brand,
+  [data-theme="aperture-motion"] .el-navbar .brand { min-height: var(--el-touch, 44px); }
+  [data-theme="kinetic-ink"] .el-navbar .links a,
+  [data-theme="kinetic-ink"] .el-navbar .links button,
+  [data-theme="aperture-motion"] .el-navbar .links a,
+  [data-theme="aperture-motion"] .el-navbar .links button {
+    min-height: var(--el-touch, 44px);
+    padding-block: 8px;
+  }
+  [data-theme="kinetic-ink"] .el-navbar .links a::after,
+  [data-theme="kinetic-ink"] .el-navbar .links button::after { bottom: 7px; }
+
+  /* every page-authored control reaches the 44px bar; !important lifts the
+     compact inline min-heights (28/30/32px) the demo markup pins in style attrs */
+  [data-theme="kinetic-ink"] .el-btn,
+  [data-theme="aperture-motion"] .el-btn {
+    min-height: var(--el-touch, 44px) !important;
+  }
+
+  /* chips + pagination + segmented: same bar, content centred */
+  [data-theme="kinetic-ink"] .el-chip,
+  [data-theme="aperture-motion"] .el-chip {
+    min-height: var(--el-touch, 44px);
+    padding-block: 6px;
+  }
+  [data-theme="kinetic-ink"] .el-pagination .page,
+  [data-theme="aperture-motion"] .el-pagination .page {
+    width: 44px; height: 44px; padding: 0;
+  }
+  [data-theme="kinetic-ink"] .el-segmented button,
+  [data-theme="aperture-motion"] .el-segmented button {
+    min-height: var(--el-touch, 44px);
+    padding-block: 10px;
+  }
+
+  /* form fields: inputs the desk and the portal type into reach 44 */
+  [data-theme="kinetic-ink"] .el-input,
+  [data-theme="kinetic-ink"] .el-search,
+  [data-theme="aperture-motion"] .el-input,
+  [data-theme="aperture-motion"] .el-search {
+    min-height: 44px !important;
+  }
+
+  /* appwin chrome at phone width — title truncates, chrome breathes, body scrolls */
+  [data-theme="kinetic-ink"] .el-titlebar .el-chip,
+  [data-theme="aperture-motion"] .el-titlebar .el-chip { display: none; }
+  [data-theme="kinetic-ink"] .el-winbtn,
+  [data-theme="aperture-motion"] .el-winbtn { width: 44px; height: var(--el-touch, 44px); }
+  [data-theme="kinetic-ink"] .el-menubar,
+  [data-theme="aperture-motion"] .el-menubar {
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  [data-theme="aperture-motion"] .el-menubar::-webkit-scrollbar { display: none; }
+  [data-theme="kinetic-ink"] .el-menubar-item,
+  [data-theme="aperture-motion"] .el-menubar-item,
+  [data-theme="kinetic-ink"] .el-menu .el-menu-item,
+  [data-theme="aperture-motion"] .el-menu .el-menu-item { min-height: var(--el-touch, 44px); }
+  [data-theme="kinetic-ink"] .el-menubar .el-mono,
+  [data-theme="aperture-motion"] .el-menubar .el-mono {
+    display: inline-flex;
+    align-items: center;
+    max-width: 92px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  [data-theme="kinetic-ink"] .el-headerbar,
+  [data-theme="aperture-motion"] .el-headerbar {
+    flex-wrap: wrap;
+    row-gap: 8px;
+    padding: var(--el-space-2) 12px;
+  }
+  [data-theme="kinetic-ink"] .el-headerbar .el-search,
+  [data-theme="aperture-motion"] .el-headerbar .el-search {
+    width: auto;
+    flex: 1 1 220px;
+    min-width: 0;
+  }
+  [data-theme="kinetic-ink"] .el-headerbar .spring,
+  [data-theme="aperture-motion"] .el-headerbar .spring { display: none; }
+  [data-theme="kinetic-ink"] .el-actionbar,
+  [data-theme="aperture-motion"] .el-actionbar {
+    flex-wrap: wrap;
+    row-gap: 8px;
+    padding: var(--el-space-2) 12px;
+  }
+  [data-theme="kinetic-ink"] .el-actionbar .lead,
+  [data-theme="aperture-motion"] .el-actionbar .lead { flex: 1 1 100%; }
+  /* the action cluster wraps inside its own row too — the window edge clips
+     nothing mid-glyph ('Share with producer' lost its tail at the 360 rung) */
+  [data-theme="kinetic-ink"] .el-actionbar .actions,
+  [data-theme="aperture-motion"] .el-actionbar .actions {
+    flex-wrap: wrap;
+    row-gap: 8px;
+  }
+  [data-theme="kinetic-ink"] .el-tabbar-item,
+  [data-theme="aperture-motion"] .el-tabbar-item {
+    min-height: var(--el-touch, 44px);
+    padding-block: var(--el-space-2);
+  }
+  [data-theme="kinetic-ink"] .el-command-row,
+  [data-theme="aperture-motion"] .el-command-row,
+  [data-theme="kinetic-ink"] .el-banner .close,
+  [data-theme="aperture-motion"] .el-banner .close,
+  [data-theme="kinetic-ink"] .el-banner .action,
+  [data-theme="aperture-motion"] .el-banner .action,
+  [data-theme="kinetic-ink"] .el-inline-alert .close,
+  [data-theme="aperture-motion"] .el-inline-alert .close,
+  [data-theme="kinetic-ink"] .el-dialog-close,
+  [data-theme="aperture-motion"] .el-dialog-close,
+  [data-theme="kinetic-ink"] .el-inspector-close,
+  [data-theme="aperture-motion"] .el-inspector-close {
+    min-height: var(--el-touch, 44px);
+  }
+
+  /* page-body data tables: fixed template kills min-content push; values wrap or
+     ellipsize inside their column instead of widening the page. Desk tables keep
+     their own horizontal swipe (page-side scroll wrapper, see demo pages). */
+  [data-theme="kinetic-ink"] .el-section .el-table,
+  [data-theme="aperture-motion"] .el-section .el-table { table-layout: fixed; }
+  [data-theme="kinetic-ink"] .el-table thead th,
+  [data-theme="kinetic-ink"] .el-table tbody td,
+  [data-theme="aperture-motion"] .el-table thead th,
+  [data-theme="aperture-motion"] .el-table tbody td {
+    padding: var(--el-space-2) 10px;
+  }
+  [data-theme="kinetic-ink"] .el-table thead th,
+  [data-theme="aperture-motion"] .el-table thead th,
+  [data-theme="kinetic-ink"] .el-table tbody td:not(:last-child),
+  [data-theme="aperture-motion"] .el-table tbody td:not(:last-child) {
+    overflow-wrap: anywhere;
+  }
+  /* timecodes, prices, pills: single line, clipped at the column edge, never wide */
+  [data-theme="kinetic-ink"] .el-table td.num,
+  [data-theme="kinetic-ink"] .el-table td.el-mono,
+  [data-theme="aperture-motion"] .el-table td.num,
+  [data-theme="aperture-motion"] .el-table td.el-mono {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  [data-theme="kinetic-ink"] .el-table .el-status-pill,
+  [data-theme="aperture-motion"] .el-table .el-status-pill {
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    vertical-align: middle;
+  }
+  [data-theme="kinetic-ink"] .el-pricing,
+  [data-theme="aperture-motion"] .el-pricing {
+    padding: 20px 16px 16px;
+  }
+  [data-theme="kinetic-ink"] .el-pricing .price,
+  [data-theme="aperture-motion"] .el-pricing .price {
+    font-size: 2em;
+    overflow-wrap: anywhere;
+  }
+  [data-theme="kinetic-ink"] .el-mono,
+  [data-theme="aperture-motion"] .el-mono { overflow-wrap: anywhere; }
+
+  /* stepper walks 2×2 when four gates meet a phone column */
+  [data-theme="kinetic-ink"] .el-stepper,
+  [data-theme="aperture-motion"] .el-stepper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  /* footer plinth: link rows get breathing space so they tap like buttons —
+     the plain footer's inline link row and the testimonial credit are counted */
+  [data-theme="kinetic-ink"] .el-footer .col > a,
+  [data-theme="kinetic-ink"] .el-footer .col ul li a,
+  [data-theme="aperture-motion"] .el-footer .col > a,
+  [data-theme="aperture-motion"] .el-footer .col ul li a {
+    display: inline-block;
+    padding-block: 13px;
+  }
+  [data-theme="kinetic-ink"] .el-footer .small a,
+  [data-theme="aperture-motion"] .el-footer .small a,
+  [data-theme="kinetic-ink"] .el-testimonial figcaption a,
+  [data-theme="aperture-motion"] .el-testimonial figcaption a {
+    display: inline-block;
+    min-height: var(--el-touch, 44px);
+    box-sizing: border-box;
+    padding-block: var(--el-space-3, 10px);
+  }
+  [data-theme="kinetic-ink"] .el-footer .colophon,
+  [data-theme="aperture-motion"] .el-footer .colophon { display: block; }
+
+  /* sidebar nav + the details row fold in extra reach at the phone rung */
+  [data-theme="kinetic-ink"] .el-sidebar .grp a,
+  [data-theme="aperture-motion"] .el-sidebar .grp a,
+  [data-theme="kinetic-ink"] .el-sidebar summary,
+  [data-theme="aperture-motion"] .el-sidebar summary {
+    min-height: var(--el-touch, 44px);
+    box-sizing: border-box;
+  }
+
+  /* selects and the drawer's own close affordance join the 44 row */
+  [data-theme="kinetic-ink"] .el-select select,
+  [data-theme="aperture-motion"] .el-select select,
+  [data-theme="kinetic-ink"] .el-drawer-head button,
+  [data-theme="aperture-motion"] .el-drawer-head button {
+    min-height: var(--el-touch, 44px);
+  }
+  [data-theme="kinetic-ink"] .el-drawer-head button,
+  [data-theme="aperture-motion"] .el-drawer-head button {
+    min-width: var(--el-touch, 44px);
+    box-sizing: border-box;
+  }
+
+  /* citation-rail links in the reader measure — row-height reach, not line-height */
+  [data-theme="kinetic-ink"] .el-citation-rail .el-cite a,
+  [data-theme="aperture-motion"] .el-citation-rail .el-cite a {
+    min-height: var(--el-touch, 44px);
+    box-sizing: border-box;
+  }
+
+  /* range slider: the input box becomes the 44 hit area; the runnable track stays
+     sheet-owned (centered by the engine) — thumb alignment verified on renders */
+  [data-theme="kinetic-ink"] .el-slider,
+  [data-theme="aperture-motion"] .el-slider {
+    min-height: var(--el-touch, 44px);
+  }
+
+  /* reader: the column item un-pins its min-content so the code block scrolls
+     inside the article instead of pushing the page wide */
+  [data-theme="kinetic-ink"] .el-reader,
+  [data-theme="aperture-motion"] .el-reader { min-width: 0; }
+  [data-theme="kinetic-ink"] .el-reader pre,
+  [data-theme="aperture-motion"] .el-reader pre { max-width: 100%; }
+
+  /* table column plan at the phone rung: the state word stays whole — its pill
+     drops the dot and half the tracking instead of ellipsizing to "appro" */
+  [data-theme="kinetic-ink"] .el-section .el-table thead th:nth-child(1),
+  [data-theme="aperture-motion"] .el-section .el-table thead th:nth-child(1) { width: 26%; }
+  [data-theme="kinetic-ink"] .el-section .el-table thead th:nth-child(2),
+  [data-theme="aperture-motion"] .el-section .el-table thead th:nth-child(2) { width: 15%; }
+  [data-theme="kinetic-ink"] .el-section .el-table thead th:nth-child(3),
+  [data-theme="aperture-motion"] .el-section .el-table thead th:nth-child(3) { width: 18%; }
+  [data-theme="kinetic-ink"] .el-section .el-table thead th:nth-child(4),
+  [data-theme="aperture-motion"] .el-section .el-table thead th:nth-child(4) { width: 14%; }
+  [data-theme="kinetic-ink"] .el-section .el-table thead th:nth-child(5),
+  [data-theme="aperture-motion"] .el-section .el-table thead th:nth-child(5) { width: 27%; }
+  [data-theme="kinetic-ink"] .el-section .el-table .el-status-pill,
+  [data-theme="aperture-motion"] .el-section .el-table .el-status-pill {
+    padding: 2px 7px;
+    gap: 3px;
+    letter-spacing: 0.5px;
+  }
+  [data-theme="kinetic-ink"] .el-section .el-table .el-status-pill::before,
+  [data-theme="aperture-motion"] .el-section .el-table .el-status-pill::before { display: none; }
+
+  /* overlays usable on one hand — near-full-bleed drawer, sheet's max-width cap
+     is retuned from 100vw - 32 to 100vw - 16 so the pane covers the column */
+  [data-theme="kinetic-ink"] .el-drawer,
+  [data-theme="aperture-motion"] .el-drawer {
+    max-width: calc(100vw - var(--el-space-4));
+    border-radius: var(--el-r-xl) 0 0 var(--el-r-xl);
+  }
+  [data-theme="kinetic-ink"] .el-drawer > .el-drawer-head,
+  [data-theme="aperture-motion"] .el-drawer > .el-drawer-head {
+    letter-spacing: 0.12em;
+  }
+}
+
+/* ── 360 rung — the worst case settles ───────────────────────────────────── */
+@media (max-width: 380px) {
+  [data-theme="kinetic-ink"] .el-hero--split .el-title-xl {
+    font-size: clamp(1.95em, 10.2vw, 2.45em);
+  }
+  [data-theme="kinetic-ink"] .el-eyebrow,
+  [data-theme="aperture-motion"] .el-eyebrow { letter-spacing: 0.14em; }
+  [data-theme="aperture-motion"] .el-hero--poster .el-title-xl {
+    font-size: clamp(1.8em, 9.6vw, 2.2em);
+  }
+  [data-theme="kinetic-ink"] .el-footer,
+  [data-theme="aperture-motion"] .el-footer { padding-inline: 10px; }
+  [data-theme="kinetic-ink"] .el-navbar,
+  [data-theme="aperture-motion"] .el-navbar { padding-inline: 10px; }
+
+  /* the 360 worst case: tighter cell gutters and a leaner column plan keep
+     monos and state words whole at 328px of table */
+  [data-theme="kinetic-ink"] .el-table thead th,
+  [data-theme="kinetic-ink"] .el-table tbody td,
+  [data-theme="aperture-motion"] .el-table thead th,
+  [data-theme="aperture-motion"] .el-table tbody td {
+    padding: var(--el-space-2) 5px;
+  }
+  [data-theme="kinetic-ink"] .el-section .el-table thead th:nth-child(1),
+  [data-theme="aperture-motion"] .el-section .el-table thead th:nth-child(1) { width: 20%; }
+  [data-theme="kinetic-ink"] .el-section .el-table thead th:nth-child(2),
+  [data-theme="aperture-motion"] .el-section .el-table thead th:nth-child(2) { width: 15%; }
+  [data-theme="kinetic-ink"] .el-section .el-table thead th:nth-child(3),
+  [data-theme="aperture-motion"] .el-section .el-table thead th:nth-child(3) { width: 19%; }
+  [data-theme="kinetic-ink"] .el-section .el-table thead th:nth-child(4),
+  [data-theme="aperture-motion"] .el-section .el-table thead th:nth-child(4) { width: 18%; }
+  [data-theme="kinetic-ink"] .el-section .el-table thead th:nth-child(5),
+  [data-theme="aperture-motion"] .el-section .el-table thead th:nth-child(5) { width: 28%; }
+  [data-theme="kinetic-ink"] .el-section .el-table .el-status-pill,
+  [data-theme="aperture-motion"] .el-section .el-table .el-status-pill {
+    padding: 2px 6px;
+    gap: 2px;
+    letter-spacing: 0;
+  }
+}

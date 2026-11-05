@@ -1,0 +1,3191 @@
+/* ── Tech Mono family (evidence: uiux-master wave1 BRIEFS.md §1, TAXONOMY.md family 1) ──
+   A. mono-console   — dev-tool product console: #0a0a0a ground, 1px ink lines,
+                       one electric green accent, Geist / Inter Tight / JetBrains Mono.
+                       no glow, block caret, hairline-dither ground.
+   B. ghost-terminal — amber phosphor CRT: #0c0b08 warm black, amber-only palette,
+                       Geist Mono as display, dashed rules, brackets, 2px radii.
+                       bloom + lamp persistence, scanline ground.
+   v0.3.x polish: 4K-crisp 1px hairlines (no blur rings, no sub-pixel artifacts),
+   layered no-repeat color-mix(in oklab) grounds (kills tiled radial banding),
+   color-mix state tints throughout, full GTK-9 rest/hover/focus/active/disabled
+   machine, one 2040 instrument detail per theme — mono: @property-registered
+   block-caret blink; ghost: phosphor persistence ramp on the amber lamps.       */
+
+/* ── mechanisms: registered property + keyframes consumed only inside the blocks ── */
+@property --el-caret-blink {
+  syntax: "<integer>";
+  inherits: false;
+  initial-value: 1;
+}
+@keyframes el-mono-caret {
+  0%, 76%     { --el-caret-blink: 1; }
+  76.01%, 100% { --el-caret-blink: 0; }
+}
+@keyframes el-mono-type {
+  from { clip-path: inset(0 100% 0 0); }
+  to   { clip-path: inset(0 0 0 0); }
+}
+@keyframes el-ghost-persist {
+  0%   { box-shadow: 0 0 2px color-mix(in oklab, var(--el-accent) 42%, transparent), 0 0 0 1px color-mix(in oklab, var(--el-accent) 32%, transparent); opacity: 1; }
+  12%  { box-shadow: 0 0 15px color-mix(in oklab, var(--el-accent) 85%, transparent), 0 0 2px color-mix(in oklab, var(--el-accent) 80%, transparent); opacity: 1; }
+  38%  { box-shadow: 0 0 9px color-mix(in oklab, var(--el-accent) 58%, transparent), 0 0 1px color-mix(in oklab, var(--el-accent) 52%, transparent); opacity: .96; }
+  100% { box-shadow: 0 0 4px color-mix(in oklab, var(--el-accent) 34%, transparent), 0 0 0 1px color-mix(in oklab, var(--el-accent) 26%, transparent); opacity: .9; }
+}
+
+/* ═══════════════════════════════════──────────── mono-console ══════════════ */
+
+[data-theme="mono-console"] {
+  --el-bg:           #0a0a0a;
+  --el-panel:        #101010;
+  --el-panel-2:      #141414;
+  --el-panel-3:      #1b1b1b;
+
+  --el-line:         #262626;
+  --el-line-2:       #1a1a1a;
+  --el-line-strong:  #343434;
+
+  --el-ink:          #e8e8e8;
+  --el-ink-soft:     #9c9c9c;
+  /* v0.4.0 colortypo: #6f6f6f was 3.8:1 on panel (AA needs 4.5 at the 8-10px
+     voice this theme uses); #8a8a8a clears 4.5:1 on bg/panel/panel-2/panel-3
+     while staying behind ink-soft #9c9c9c */
+  --el-mute:         #8a8a8a;
+  --el-on-accent:    #04150b;
+
+  --el-accent:        #3ddc84;
+  --el-accent-hover:  #66ef9f;
+  --el-accent-soft:   color-mix(in oklab, var(--el-accent) 12%, transparent);
+
+  --el-ok:    #56d364;
+  --el-warn:  #e3b341;
+  --el-fail:  #f85149;
+  --el-info:  #5cc8ff;
+  --el-live:  #2ee6a6;
+  --el-teal:  #35c0ae;
+
+  --el-focus-ring: color-mix(in oklab, var(--el-accent) 55%, transparent);
+
+  --el-font-display:  'Geist', 'Inter Tight', system-ui, sans-serif;
+  --el-font-body:     'Inter Tight', system-ui, sans-serif;
+  --el-font-mono:     'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace;
+
+  /* identity: ink-line engineering console — flat, square, crisp, typed */
+  --el-r-sm:  2px;
+  --el-r-md:  3px;
+  --el-r-lg:  4px;
+  --el-r-xl:  6px;
+  --el-r-pill: 2px;
+
+  --el-raise-1: 0 1px 0 rgba(0, 0, 0, 0.55);
+  --el-raise-2: 0 0 0 1px color-mix(in oklab, var(--el-line-strong) 82%, var(--el-bg)), 0 10px 30px -14px rgba(0, 0, 0, 0.75);
+  --el-raise-3: 0 0 0 1px color-mix(in oklab, var(--el-line-strong) 88%, var(--el-bg)), 0 24px 64px -20px rgba(0, 0, 0, 0.85);
+
+  --el-bar-h: 2px;
+  --el-ctl-pad-y: 6px;
+  --el-ctl-pad-x: 12px;
+  --el-ctl-min-h: 34px;
+  --el-card-pad: 16px;
+
+  --el-head-weight: 700;
+  --el-head-tracking: -0.02em;
+  --el-head-case: uppercase;
+
+  --el-label-weight: 600;
+  --el-label-tracking: 0.16em;
+  --el-label-case: uppercase;
+
+  --el-body-weight: 500;
+
+  --el-dur-fast: 120ms;
+  --el-dur-base: 180ms;
+  --el-ease: cubic-bezier(.2, 0, .2, 1);
+
+  --el-ornament: repeating-linear-gradient(180deg, color-mix(in oklab, var(--el-accent) 3%, transparent) 0 1px, transparent 1px 4px);
+  --el-rule-style: solid;
+
+  --el-hero-pad: 48px;
+  --el-hero-min: 340px;
+
+  --el-stage-active:  var(--el-accent);
+  --el-stage-done:    var(--el-ok);
+  --el-stage-running: var(--el-accent);
+  --el-stage-stale:   var(--el-fail);
+
+  /* elevation + state vocabulary carried by the pack (no dependency on tokens-v2) */
+  --el-hairline:     inset 0 1px 0 color-mix(in oklab, var(--el-ink) 5%, transparent);
+  --el-edge:         var(--el-line);
+  --el-ring:         0 0 0 3px color-mix(in oklab, var(--el-accent) 18%, transparent);
+  --el-ring-strong:  0 0 0 3px color-mix(in oklab, var(--el-accent) 28%, transparent);
+  --el-inset-field:  inset 0 1px 2px rgba(0, 0, 0, 0.5);
+  --el-lift:         translateY(-1px);
+  --el-press:        scale(0.99);
+  --el-ease-out:     cubic-bezier(.22, 1, .36, 1);
+  --el-ease-quiet:   cubic-bezier(.32, .72, .36, 1);
+  --el-measure:      68ch;
+  --el-dur-surface:  240ms;
+  --el-dur-flow:     320ms;
+  --el-dur-progress: 480ms;
+
+  /* compact density (v0.4 persona wave): tighter lists + rows */
+  --el-row-h: 34px;
+
+  color-scheme: dark;
+  accent-color: var(--el-accent);
+  scrollbar-color: var(--el-line-strong) transparent;
+}
+
+/* ground: flat ink canvas, one no-repeat layered wash + in-voice scanline dither */
+[data-theme="mono-console"] body {
+  margin: 0;
+  background-color: var(--el-bg);
+  background-image:
+    radial-gradient(1200px 620px at 4% -6%,
+      color-mix(in oklab, var(--el-accent) 10%, transparent) 0%,
+      color-mix(in oklab, var(--el-accent) 6%, transparent) 26%,
+      color-mix(in oklab, var(--el-accent) 2.5%, transparent) 48%,
+      transparent 68%),
+    repeating-linear-gradient(180deg,
+      color-mix(in oklab, var(--el-accent) 2.4%, transparent) 0 1px,
+      transparent 1px 4px);
+  background-repeat: no-repeat, repeat;
+  background-size: 1200px 620px, auto;
+  color: var(--el-ink);
+  font-family: var(--el-font-body);
+  font-size: var(--el-fs-md);
+  font-weight: var(--el-body-weight);
+  line-height: 1.6;
+  font-optical-sizing: auto;
+  -webkit-font-smoothing: antialiased;
+}
+[data-theme="mono-console"] ::selection { background: var(--el-accent); color: var(--el-on-accent); }
+
+[data-theme="mono-console"] h1,
+[data-theme="mono-console"] h2,
+[data-theme="mono-console"] h3,
+[data-theme="mono-console"] h4 {
+  font-family: var(--el-font-display);
+  font-weight: var(--el-head-weight);
+  letter-spacing: var(--el-head-tracking);
+  text-transform: var(--el-head-case);
+  line-height: 1.16;
+  text-wrap: balance;
+  color: var(--el-ink);
+  margin: 0.35em 0;
+}
+
+/* ── text voice: engraved uppercase micro-labels, quiet mono metadata ─────── */
+
+[data-theme="mono-console"] .el-label,
+[data-theme="mono-console"] .el-eyebrow {
+  font-family: var(--el-font-mono);
+  font-size: var(--el-fs-xs);
+  font-weight: var(--el-label-weight);
+  letter-spacing: var(--el-label-tracking);
+  text-transform: var(--el-label-case);
+  color: var(--el-ink-soft);
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.9);
+}
+[data-theme="mono-console"] .el-eyebrow { color: var(--el-accent); }
+[data-theme="mono-console"] .el-eyebrow::before { content: "> "; }
+
+[data-theme="mono-console"] .el-body {
+  font-size: var(--el-fs-md);
+  font-weight: var(--el-body-weight);
+  color: var(--el-ink-soft);
+  line-height: 1.6;
+}
+[data-theme="mono-console"] .el-mute-body {
+  font-family: var(--el-font-mono);
+  font-size: var(--el-fs-sm);
+  color: var(--el-mute);
+}
+[data-theme="mono-console"] .el-mono {
+  font-family: var(--el-font-mono);
+  font-size: var(--el-fs-sm);
+  color: var(--el-ink-soft);
+  font-feature-settings: "tnum" 1;
+}
+[data-theme="mono-console"] .el-ink-ok    { font-family: var(--el-font-mono); color: var(--el-ok); }
+[data-theme="mono-console"] .el-ink-fail  { font-family: var(--el-font-mono); color: var(--el-fail); }
+
+[data-theme="mono-console"] .el-title-xl,
+[data-theme="mono-console"] .el-display-specimen {
+  font-family: var(--el-font-display);
+  font-weight: var(--el-head-weight);
+  letter-spacing: var(--el-head-tracking);
+  text-transform: var(--el-head-case);
+  text-wrap: balance;
+  color: var(--el-ink);
+}
+[data-theme="mono-console"] .el-title-xl {
+  line-height: 1.04;
+  animation: el-mono-type 520ms steps(20, end) 80ms both;
+}
+
+[data-theme="mono-console"] .el-field { display: block; margin-bottom: var(--el-space-3); }
+[data-theme="mono-console"] .el-field .el-label { display: block; margin-bottom: 6px; }
+
+/* ── hero: framed console panel with accent prompt spine + typed headline ─── */
+
+[data-theme="mono-console"] .el-hero {
+  position: relative;
+  box-sizing: border-box;
+  border: 1px solid var(--el-line);
+  border-left: 2px solid var(--el-accent);
+  border-radius: var(--el-r-lg);
+  background-color: color-mix(in oklab, var(--el-panel) 72%, var(--el-bg));
+  background-image: var(--el-ornament);
+  box-shadow: var(--el-raise-1), var(--el-hairline);
+}
+[data-theme="mono-console"] .el-hero .el-body { max-width: 560px; }
+
+/* block caret: @property-registered integer drives a hard 78/22 glow-free blink */
+[data-theme="mono-console"] .el-title-xl::after {
+  content: "";
+  display: inline-block;
+  width: 0.46em;
+  height: 0.82em;
+  margin-left: 0.16em;
+  transform: translateY(0.1em);
+  background: var(--el-accent);
+  opacity: var(--el-caret-blink);
+  animation: el-mono-caret 1.08s linear infinite;
+}
+
+/* ── buttons: flat keycaps, mono voice, accent only on hover ───────────────── */
+
+[data-theme="mono-console"] .el-btn {
+  font-family: var(--el-font-mono);
+  font-size: var(--el-fs-sm);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--el-ink);
+  background: var(--el-panel-3);
+  background-image: none;
+  border: 1px solid var(--el-line-strong);
+  border-radius: var(--el-r-sm);
+  box-shadow: none;
+  transition: color var(--el-dur-fast) var(--el-ease),
+              border-color var(--el-dur-fast) var(--el-ease),
+              background var(--el-dur-fast) var(--el-ease),
+              transform var(--el-dur-fast) var(--el-ease);
+}
+[data-theme="mono-console"] .el-btn:hover {
+  filter: none;
+  transform: none;
+  box-shadow: none;
+  color: var(--el-accent);
+  background: color-mix(in oklab, var(--el-accent) 10%, var(--el-panel-3));
+  border-color: color-mix(in oklab, var(--el-accent) 55%, var(--el-line-strong));
+}
+[data-theme="mono-console"] .el-btn:focus-visible {
+  outline: 2px solid var(--el-focus-ring);
+  outline-offset: 2px;
+}
+[data-theme="mono-console"] .el-btn:active {
+  transform: translateY(1px);
+  background: color-mix(in oklab, var(--el-accent) 14%, var(--el-panel-3));
+  box-shadow: none;
+  outline: none;
+}
+[data-theme="mono-console"] .el-btn:disabled,
+[data-theme="mono-console"] .el-btn[aria-disabled="true"] {
+  opacity: 0.45;
+  cursor: not-allowed;
+  color: var(--el-ink-soft);
+  background: var(--el-panel-2);
+  border-color: var(--el-line);
+  box-shadow: none;
+  transform: none;
+}
+[data-theme="mono-console"] .el-btn.ghost,
+[data-theme="mono-console"] .el-btn--ghost,
+[data-theme="mono-console"] .el-btn--outline {
+  background: transparent;
+  border-color: transparent;
+  color: var(--el-ink-soft);
+}
+[data-theme="mono-console"] .el-btn.ghost:hover,
+[data-theme="mono-console"] .el-btn--ghost:hover,
+[data-theme="mono-console"] .el-btn--outline:hover {
+  color: var(--el-accent);
+  border-color: var(--el-line-strong);
+  background: color-mix(in oklab, var(--el-accent) 6%, transparent);
+}
+[data-theme="mono-console"] .el-btn.ghost:active,
+[data-theme="mono-console"] .el-btn--ghost:active,
+[data-theme="mono-console"] .el-btn--outline:active {
+  transform: translateY(1px);
+  background: color-mix(in oklab, var(--el-accent) 12%, transparent);
+}
+[data-theme="mono-console"] .el-btn.ghost:disabled,
+[data-theme="mono-console"] .el-btn--ghost:disabled,
+[data-theme="mono-console"] .el-btn--outline:disabled {
+  background: transparent;
+  border-color: transparent;
+  color: var(--el-mute);
+}
+
+/* ── cards: ink-line panels, scanline ornament via --el-ornament ──────────── */
+
+[data-theme="mono-console"] .el-card {
+  background: var(--el-panel);
+  background-image: var(--el-ornament);
+  border: 1px solid var(--el-line);
+  border-radius: var(--el-r-lg);
+  box-shadow: var(--el-raise-1), var(--el-hairline);
+}
+[data-theme="mono-console"] .el-card::before {
+  height: var(--el-bar-h);
+  background: linear-gradient(90deg, var(--el-accent) 0 22px, var(--el-line) 22px);
+  opacity: 1;
+}
+[data-theme="mono-console"] .el-card:hover {
+  transform: none;
+  border-color: color-mix(in oklab, var(--el-accent) 38%, var(--el-line));
+  box-shadow: var(--el-raise-2), var(--el-hairline);
+}
+[data-theme="mono-console"] .el-card:focus-within { border-color: var(--el-accent); }
+
+[data-theme="mono-console"] .el-stage-rail {
+  background: color-mix(in oklab, var(--el-panel) 55%, var(--el-bg));
+  border-radius: var(--el-r-sm);
+}
+[data-theme="mono-console"] .el-source-card {
+  font-family: var(--el-font-mono);
+  background: var(--el-panel);
+  background-image: var(--el-ornament);
+  border-radius: var(--el-r-sm);
+}
+[data-theme="mono-console"] .el-publisher {
+  font-family: var(--el-font-mono);
+  font-size: var(--el-fs-xs);
+  font-weight: var(--el-label-weight);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--el-accent);
+}
+
+/* ── metric strip: tabular mono readouts + segmented data-tick bars ───────── */
+
+[data-theme="mono-console"] .el-big-num {
+  font-family: var(--el-font-mono);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+  color: var(--el-accent);
+  background-image: none;
+  -webkit-text-fill-color: currentColor;
+}
+[data-theme="mono-console"] .el-big-num .total,
+[data-theme="mono-console"] .el-big-num .lbl { -webkit-text-fill-color: var(--el-ink-soft); }
+
+[data-theme="mono-console"] .el-bar {
+  position: relative;
+  height: 6px;
+  margin: var(--el-space-2) 0;
+  background: var(--el-panel-3);
+  border: 1px solid var(--el-line);
+  overflow: hidden;
+}
+[data-theme="mono-console"] .el-bar i {
+  position: absolute;
+  inset: 0 auto 0 0;
+  display: block;
+  height: 100%;
+  background-color: var(--el-accent);
+  background-image: repeating-linear-gradient(90deg, transparent 0 4px, rgba(10, 10, 10, 0.75) 4px 5px);
+}
+
+/* ── table: terminal band selection, mono numerals, engraved head ─────────── */
+
+[data-theme="mono-console"] .el-table {
+  font-family: var(--el-font-mono);
+  font-size: var(--el-fs-sm);
+  background: var(--el-bg);
+  border: 1px solid var(--el-line);
+  border-radius: var(--el-r-sm);
+  box-shadow: none;
+}
+[data-theme="mono-console"] .el-table thead th {
+  background: var(--el-panel-2);
+  color: var(--el-mute);
+  font-family: var(--el-font-mono);
+  font-size: var(--el-fs-xs);
+  font-weight: var(--el-label-weight);
+  letter-spacing: var(--el-label-tracking);
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--el-line-strong);
+}
+[data-theme="mono-console"] .el-table tbody td {
+  padding: var(--el-space-2) var(--el-space-3);
+  border-bottom: 1px solid var(--el-line-2);
+  font-variant-numeric: tabular-nums;
+}
+[data-theme="mono-console"] .el-table tbody tr:hover {
+  background: color-mix(in oklab, var(--el-accent) 16%, var(--el-panel-2));
+}
+[data-theme="mono-console"] .el-table tbody tr:hover td { color: var(--el-ink); }
+[data-theme="mono-console"] .el-table tbody tr:hover td:first-child {
+  box-shadow: inset 2px 0 0 var(--el-accent);
+}
+[data-theme="mono-console"] .el-table tbody tr:active td:first-child {
+  box-shadow: inset 2px 0 0 color-mix(in oklab, var(--el-accent) 72%, var(--el-line-strong));
+}
+[data-theme="mono-console"] .el-table tbody tr:focus-visible {
+  outline: 2px solid var(--el-focus-ring);
+  outline-offset: -2px;
+  background: var(--el-panel-2);
+}
+[data-theme="mono-console"] .el-table tbody tr[aria-disabled="true"] { opacity: 0.45; }
+
+/* ── pills, chips, dots, switch: square tags, terminal lamps (no glow) ─────── */
+
+[data-theme="mono-console"] .el-pill {
+  font-family: var(--el-font-mono);
+  font-weight: var(--el-label-weight);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--el-ink-soft);
+  border-radius: var(--el-r-sm);
+}
+[data-theme="mono-console"] .el-pill:hover {
+  border-color: color-mix(in oklab, currentColor 48%, transparent);
+  background: color-mix(in oklab, currentColor 14%, var(--el-panel));
+}
+[data-theme="mono-console"] .el-pill:focus-visible {
+  outline: 2px solid var(--el-focus-ring);
+  outline-offset: 2px;
+}
+[data-theme="mono-console"] .el-pill:active { transform: translateY(1px); }
+[data-theme="mono-console"] .el-pill[aria-disabled="true"] { opacity: 0.45; }
+
+[data-theme="mono-console"] .el-chip {
+  font-family: var(--el-font-mono);
+  border-radius: var(--el-r-sm);
+  letter-spacing: 0.06em;
+}
+[data-theme="mono-console"] .el-chip.live {
+  color: var(--el-accent);
+  background: color-mix(in oklab, var(--el-accent) 12%, transparent);
+  border-color: color-mix(in oklab, var(--el-accent) 40%, transparent);
+}
+[data-theme="mono-console"] .el-chip:hover {
+  background: color-mix(in oklab, var(--el-accent) 10%, var(--el-panel-2));
+  border-color: color-mix(in oklab, var(--el-accent) 46%, var(--el-line));
+}
+[data-theme="mono-console"] .el-chip:focus-visible {
+  outline: 2px solid var(--el-focus-ring);
+  outline-offset: 2px;
+}
+[data-theme="mono-console"] .el-chip:active {
+  transform: translateY(1px);
+  background: color-mix(in oklab, var(--el-accent) 16%, var(--el-panel-2));
+}
+[data-theme="mono-console"] .el-chip[aria-disabled="true"] { opacity: 0.45; }
+
+[data-theme="mono-console"] .el-dot { border-radius: 1px; }
+[data-theme="mono-console"] .el-dot.ok,
+[data-theme="mono-console"] .el-dot.warn,
+[data-theme="mono-console"] .el-dot.fail,
+[data-theme="mono-console"] .el-dot.live {
+  box-shadow: 0 0 0 2px color-mix(in oklab, currentColor 22%, transparent);
+}
+
+[data-theme="mono-console"] .el-switch { border-radius: var(--el-r-sm); }
+[data-theme="mono-console"] .el-switch::after { border-radius: 1px; }
+[data-theme="mono-console"] .el-switch:hover {
+  border-color: color-mix(in oklab, var(--el-accent) 45%, var(--el-line-strong));
+}
+[data-theme="mono-console"] .el-switch:focus-visible {
+  outline: 2px solid var(--el-focus-ring);
+  outline-offset: 2px;
+}
+[data-theme="mono-console"] .el-switch:has(> .on),
+[data-theme="mono-console"] .el-switch.on {
+  background: color-mix(in oklab, var(--el-accent) 26%, var(--el-panel-3));
+  border-color: color-mix(in oklab, var(--el-accent) 70%, var(--el-line));
+}
+[data-theme="mono-console"] .el-switch:has(> .on)::after,
+[data-theme="mono-console"] .el-switch.on::after {
+  transform: translateX(22px);
+  background: var(--el-accent);
+  box-shadow: none;
+}
+[data-theme="mono-console"] .el-switch[aria-disabled="true"] { opacity: 0.45; }
+
+/* ── inputs: command palette — mono face, prompt caret, square corner ─────── */
+
+[data-theme="mono-console"] .el-input {
+  font-family: var(--el-font-mono);
+  font-size: var(--el-fs-sm);
+  padding-left: calc(var(--el-ctl-pad-x) + 10px);
+  color: var(--el-ink);
+  background-color: color-mix(in oklab, var(--el-bg) 55%, var(--el-panel));
+  background-image: linear-gradient(var(--el-accent), var(--el-accent));
+  background-size: 2px 12px;
+  background-position: 9px 50%;
+  background-repeat: no-repeat;
+  border: 1px solid var(--el-line);
+  border-radius: var(--el-r-sm);
+  caret-color: var(--el-accent);
+  caret-shape: block;
+}
+[data-theme="mono-console"] .el-input:hover {
+  border-color: var(--el-line-strong);
+  background-color: color-mix(in oklab, var(--el-bg) 42%, var(--el-panel));
+}
+[data-theme="mono-console"] .el-input:focus,
+[data-theme="mono-console"] .el-input:focus-visible {
+  background-color: var(--el-panel-2);
+  border-color: var(--el-accent);
+  box-shadow: var(--el-ring), inset 0 0 0 1px color-mix(in oklab, var(--el-accent) 45%, transparent);
+}
+[data-theme="mono-console"] .el-input:active {
+  background-color: color-mix(in oklab, var(--el-panel-2) 70%, var(--el-panel-3));
+}
+[data-theme="mono-console"] .el-input:disabled,
+[data-theme="mono-console"] .el-input[aria-disabled="true"] {
+  opacity: 0.45;
+  cursor: not-allowed;
+  background-image: none;
+  border-color: var(--el-line);
+  box-shadow: none;
+}
+[data-theme="mono-console"] .el-input::placeholder {
+  color: var(--el-mute);
+  font-weight: 400;
+}
+
+/* ── workflow voice: mono stage names, data-tick progress ──────────────────── */
+
+[data-theme="mono-console"] .el-stage {
+  font-family: var(--el-font-mono);
+  font-size: var(--el-fs-sm);
+  letter-spacing: 0.04em;
+}
+[data-theme="mono-console"] .el-stage:hover {
+  background: color-mix(in oklab, var(--el-accent) 10%, transparent);
+  color: var(--el-ink);
+}
+[data-theme="mono-console"] .el-stage:focus-visible {
+  outline: 2px solid var(--el-focus-ring);
+  outline-offset: 1px;
+}
+[data-theme="mono-console"] .el-stage:active { transform: translateY(1px); }
+[data-theme="mono-console"] .el-stage[aria-disabled="true"] { opacity: 0.45; }
+[data-theme="mono-console"] .el-stage-dot { border-radius: 1px; }
+[data-theme="mono-console"] .el-stage.done { color: var(--el-ink-soft); }
+[data-theme="mono-console"] .el-stage.done .el-stage-dot { background: var(--el-ok); }
+[data-theme="mono-console"] .el-stage.run { color: var(--el-accent); }
+[data-theme="mono-console"] .el-stage.run .el-stage-dot {
+  background: var(--el-accent);
+  box-shadow: none;
+  animation: el-mono-tick 900ms steps(2, jump-none) infinite;
+}
+@keyframes el-mono-tick { 50% { opacity: 0.35; } }
+
+[data-theme="mono-console"] .el-progress-truth {
+  font-family: var(--el-font-mono);
+  font-size: var(--el-fs-xs);
+  border: 1px solid var(--el-line);
+  border-radius: var(--el-r-sm);
+}
+[data-theme="mono-console"] .el-progress-truth .el-pt-chunk {
+  border-radius: 1px;
+}
+[data-theme="mono-console"] .el-progress-truth .el-pt-chunk.on {
+  border-color: var(--el-ok);
+  color: var(--el-ink);
+}
+[data-theme="mono-console"] .el-progress-truth .el-pt-label {
+  font-family: var(--el-font-mono);
+  font-size: var(--el-fs-xs);
+  color: var(--el-mute);
+}
+
+/* ── footer: status line ───────────────────────────────────────────────────── */
+
+[data-theme="mono-console"] .el-footer {
+  position: relative;
+  background: var(--el-panel);
+  background-image: var(--el-ornament);
+  border-bottom: 1px solid var(--el-line);
+  font-family: var(--el-font-mono);
+  padding-left: var(--el-space-3);
+  padding-right: var(--el-space-3);
+}
+[data-theme="mono-console"] .el-footer::after {
+  content: "";
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  width: 5px;
+  height: 9px;
+  transform: translateY(-50%);
+  background: var(--el-accent);
+  box-shadow: none;
+}
+[data-theme="mono-console"] .el-footer .el-eyebrow::before { content: "/ "; }
+
+/* motion discipline for the flat instrument */
+@media (prefers-reduced-motion: reduce) {
+  [data-theme="mono-console"] .el-title-xl { animation: none; clip-path: none; }
+  [data-theme="mono-console"] .el-title-xl::after { animation: none; opacity: 1; }
+  [data-theme="mono-console"] .el-stage.run .el-stage-dot { animation: none; opacity: 1; }
+  [data-theme="mono-console"] .el-btn,
+  [data-theme="mono-console"] .el-switch,
+  [data-theme="mono-console"] .el-chip,
+  [data-theme="mono-console"] .el-pill,
+  [data-theme="mono-console"] .el-stage { transition-duration: 1ms; }
+}
+
+/* ── v0.4 persona wave (mono-console slot map: nav --top, hero --left,
+   cards flat, tables --ruled, compact density) ── structural slots voiced
+   below; persona density is carried by the compact card/section paddings ── */
+
+[data-theme="mono-console"] .el-page { padding: 0 var(--el-space-4); }
+[data-theme="mono-console"] .el-section { padding-block: var(--el-space-5); }
+[data-theme="mono-console"] .el-section--dense { padding-block: var(--el-space-4); }
+
+/* prompt-block section index: every section heading carries a hard accent square */
+[data-theme="mono-console"] .el-section > h2::before,
+[data-theme="mono-console"] .el-section > h3::before {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin-right: 10px;
+  background: var(--el-accent);
+}
+
+[data-theme="mono-console"] .el-navbar {
+  background: color-mix(in oklab, var(--el-panel) 62%, var(--el-bg));
+  background-image: var(--el-ornament);
+  border-bottom: 1px solid var(--el-line);
+  box-shadow: none;
+}
+[data-theme="mono-console"] .el-navbar .brand {
+  font-family: var(--el-font-mono);
+  font-size: var(--el-fs-md);
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+[data-theme="mono-console"] .el-navbar .brand::before {
+  content: "";
+  width: 9px;
+  height: 9px;
+  background: var(--el-accent);
+  box-shadow: 3px 3px 0 color-mix(in oklab, var(--el-accent) 34%, transparent);
+}
+[data-theme="mono-console"] .el-navbar .links a,
+[data-theme="mono-console"] .el-navbar .links button {
+  font-family: var(--el-font-mono);
+  font-size: var(--el-fs-sm);
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  border-radius: var(--el-r-sm);
+  box-shadow: inset 0 0 0 1px transparent, inset 0 -2px 0 transparent;
+}
+[data-theme="mono-console"] .el-navbar .links [aria-current="page"] {
+  background: transparent;
+  color: var(--el-ink);
+  box-shadow: inset 0 0 0 1px transparent, inset 0 -2px 0 var(--el-accent);
+}
+[data-theme="mono-console"] .el-navbar .links [aria-current="page"]:hover {
+  background: color-mix(in oklab, var(--el-accent) 8%, transparent);
+  color: var(--el-ink);
+}
+[data-theme="mono-console"] .el-navbar .actions .el-btn { min-height: 30px; }
+
+[data-theme="mono-console"] .el-hero--left { justify-items: start; }
+[data-theme="mono-console"] .el-hero .actions { gap: var(--el-space-2); }
+[data-theme="mono-console"] .el-hero .media > .fill {
+  background-image:
+    repeating-linear-gradient(90deg, color-mix(in oklab, var(--el-accent) 12%, transparent) 0 1px, transparent 1px 22px),
+    repeating-linear-gradient(180deg, color-mix(in oklab, var(--el-accent) 10%, transparent) 0 1px, transparent 1px 22px),
+    radial-gradient(80% 62% at 50% 28%, color-mix(in oklab, var(--el-accent) 24%, transparent) 0%, transparent 60%),
+    linear-gradient(180deg, color-mix(in oklab, var(--el-accent) 5%, var(--el-panel-2)) 0%, color-mix(in oklab, var(--el-accent) 8%, var(--el-panel-3)) 100%);
+}
+/* --left hero: the filled media panel cannot size to an absolute-only child;
+   span it across the grid column instead of letting justify-items:start
+   shrink-wrap it to its border (round-3 QA fix) */
+[data-theme="mono-console"] .el-hero--left > .media,
+[data-theme="mono-console"] .el-hero--left .media {
+  grid-column: 1 / -1;
+  justify-self: stretch;
+  width: 100%;
+}
+/* stat strip: real columns, unwrappable values (round-1 QA fix) */
+[data-theme="mono-console"] .el-stat-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+[data-theme="mono-console"] .el-stat-value { white-space: nowrap; }
+
+[data-theme="mono-console"] .el-media-band { background: var(--el-panel); border-radius: var(--el-r-lg); }
+[data-theme="mono-console"] .el-media-band > .media { border-right: 1px solid var(--el-line); }
+[data-theme="mono-console"] .el-media-band > .media > .fill {
+  background-image:
+    repeating-linear-gradient(90deg, color-mix(in oklab, var(--el-accent) 7%, transparent) 0 1px, transparent 1px 18px),
+    repeating-linear-gradient(180deg, color-mix(in oklab, var(--el-accent) 7%, transparent) 0 1px, transparent 1px 18px),
+    linear-gradient(160deg, var(--el-panel-2), var(--el-panel-3));
+}
+[data-theme="mono-console"] .el-media-band > .media > figcaption { background: rgba(10, 10, 10, 0.86); }
+
+[data-theme="mono-console"] .el-pricing {
+  background: var(--el-panel);
+  border-radius: var(--el-r-lg);
+  box-shadow: var(--el-raise-1), var(--el-hairline);
+}
+[data-theme="mono-console"] .el-pricing .name { font-family: var(--el-font-mono); color: var(--el-mute); }
+[data-theme="mono-console"] .el-pricing .price { font-family: var(--el-font-mono); font-variant-numeric: tabular-nums; }
+[data-theme="mono-console"] .el-pricing .note { color: var(--el-mute); }
+
+[data-theme="mono-console"] .el-testimonial {
+  background: var(--el-panel);
+  background-image: var(--el-ornament);
+  border-left: 2px solid var(--el-accent);
+  border-radius: var(--el-r-lg);
+}
+/* colortypo fix: the "> " prompt lived on the figure, so it rendered as an
+   orphan line above the quote; it now leads the paragraph inline */
+[data-theme="mono-console"] .el-testimonial .q::before {
+  content: "> ";
+  margin: 0;
+  font-family: var(--el-font-mono);
+  font-size: var(--el-fs-md);
+  line-height: 1.4;
+  color: var(--el-accent);
+}
+[data-theme="mono-console"] .el-testimonial .q,
+[data-theme="mono-console"] .el-testimonial .quote {
+  font-family: var(--el-font-mono);
+  font-size: var(--el-fs-md);
+  line-height: 1.7;
+  color: var(--el-ink-soft);
+}
+[data-theme="mono-console"] .el-testimonial .who .name { font-family: var(--el-font-mono); font-size: var(--el-fs-sm); }
+
+[data-theme="mono-console"] .el-fact-grid { gap: var(--el-space-2); }
+[data-theme="mono-console"] .el-fact {
+  background: var(--el-panel);
+  border: 1px solid var(--el-line);
+  border-radius: var(--el-r-sm);
+  padding: var(--el-space-3);
+}
+[data-theme="mono-console"] .el-fact .k {
+  font-family: var(--el-font-mono);
+  font-size: var(--el-fs-xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--el-mute);
+}
+[data-theme="mono-console"] .el-fact .v {
+  font-family: var(--el-font-mono);
+  font-variant-numeric: tabular-nums;
+  color: var(--el-ink);
+}
+[data-theme="mono-console"] .el-fact.is-hot .v { color: var(--el-accent); }
+
+[data-theme="mono-console"] .el-timeline::before { width: 1px; left: 3px; }
+[data-theme="mono-console"] .el-timeline > li::before {
+  border-radius: 1px;
+  background: var(--el-bg);
+  border: 1px solid var(--el-line-strong);
+  box-shadow: none;
+}
+[data-theme="mono-console"] .el-timeline > li.ok::before { background: var(--el-ok); border-color: var(--el-ok); }
+[data-theme="mono-console"] .el-timeline > li.running::before,
+[data-theme="mono-console"] .el-timeline > li.live::before { background: var(--el-accent); border-color: var(--el-accent); }
+[data-theme="mono-console"] .el-timeline > li.warn::before { background: var(--el-warn); border-color: var(--el-warn); }
+[data-theme="mono-console"] .el-timeline > li.fail::before { background: var(--el-fail); border-color: var(--el-fail); }
+[data-theme="mono-console"] .el-timeline .when {
+  font-family: var(--el-font-mono);
+  font-size: var(--el-fs-xs);
+  color: var(--el-mute);
+  white-space: nowrap;
+}
+
+[data-theme="mono-console"] .el-citation-rail {
+  border-left: 1px solid var(--el-line);
+  padding-left: var(--el-space-3);
+}
+[data-theme="mono-console"] .el-citation-rail .el-cite { border-radius: var(--el-r-sm); }
+[data-theme="mono-console"] .el-citation-rail .el-cite .n { font-family: var(--el-font-mono); color: var(--el-accent); }
+[data-theme="mono-console"] .el-citation-rail .el-cite a { font-family: var(--el-font-mono); font-size: var(--el-fs-sm); }
+[data-theme="mono-console"] .el-citation-rail .el-cite a:hover { color: var(--el-accent); }
+[data-theme="mono-console"] .el-source-card .src {
+  font-family: var(--el-font-mono);
+  font-size: var(--el-fs-xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--el-accent);
+}
+[data-theme="mono-console"] .el-source-card .ttl { color: var(--el-ink); }
+[data-theme="mono-console"] .el-source-card .snip { color: var(--el-mute); }
+
+[data-theme="mono-console"] .el-empty .el-icon {
+  border-radius: var(--el-r-sm);
+  background: var(--el-panel-2);
+  box-shadow: inset 0 0 0 1px var(--el-line-strong);
+  color: var(--el-mute);
+}
+[data-theme="mono-console"] .el-empty .el-msg { font-family: var(--el-font-mono); color: var(--el-mute); }
+[data-theme="mono-console"] .el-empty .el-hint { font-family: var(--el-font-mono); color: var(--el-mute); }
+
+[data-theme="mono-console"] .el-kbd {
+  font-family: var(--el-font-mono);
+  color: var(--el-ink);
+  background: var(--el-panel-2);
+  border: 1px solid var(--el-line-strong);
+  border-bottom-width: 2px;
+  border-radius: var(--el-r-sm);
+  box-shadow: none;
+}
+
+[data-theme="mono-console"] .el-badge {
+  font-family: var(--el-font-mono);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border: 1px solid var(--el-line-strong);
+  border-radius: var(--el-r-sm);
+  background: var(--el-panel-2);
+  color: var(--el-ink-soft);
+}
+[data-theme="mono-console"] .el-badge.ok { color: var(--el-ok); border-color: color-mix(in oklab, var(--el-ok) 40%, transparent); background: color-mix(in oklab, var(--el-ok) 10%, transparent); }
+[data-theme="mono-console"] .el-badge.fail { color: var(--el-fail); border-color: color-mix(in oklab, var(--el-fail) 40%, transparent); background: color-mix(in oklab, var(--el-fail) 10%, transparent); }
+[data-theme="mono-console"] .el-badge.warn { color: var(--el-warn); border-color: color-mix(in oklab, var(--el-warn) 40%, transparent); background: color-mix(in oklab, var(--el-warn) 10%, transparent); }
+[data-theme="mono-console"] .el-badge.info { color: var(--el-info); border-color: color-mix(in oklab, var(--el-info) 40%, transparent); background: color-mix(in oklab, var(--el-info) 10%, transparent); }
+[data-theme="mono-console"] .el-badge.live { color: var(--el-live); border-color: color-mix(in oklab, var(--el-live) 40%, transparent); background: color-mix(in oklab, var(--el-live) 10%, transparent); }
+
+[data-theme="mono-console"] .el-avatar {
+  border-radius: var(--el-r-sm);
+  background: var(--el-panel-3);
+  border: 1px solid var(--el-line-strong);
+  color: var(--el-ink);
+  font-family: var(--el-font-mono);
+  font-weight: 600;
+}
+
+/* buttons: joined group seams read as one instrument key strip */
+[data-theme="mono-console"] .el-btn-group { gap: 0; }
+[data-theme="mono-console"] .el-btn-group .el-btn { border-radius: 0; }
+[data-theme="mono-console"] .el-btn-group .el-btn + .el-btn { margin-left: -1px; box-shadow: none; }
+[data-theme="mono-console"] .el-btn--danger {
+  color: var(--el-fail);
+  border-color: color-mix(in oklab, var(--el-fail) 45%, var(--el-line-strong));
+  background: color-mix(in oklab, var(--el-fail) 8%, var(--el-panel-3));
+}
+[data-theme="mono-console"] .el-btn--danger:hover {
+  color: var(--el-on-accent);
+  background: var(--el-fail);
+  border-color: var(--el-fail);
+  box-shadow: none;
+}
+[data-theme="mono-console"] .el-btn--danger:active { background: color-mix(in oklab, var(--el-fail) 86%, var(--el-bg)); }
+[data-theme="mono-console"] .el-btn--squared { border-radius: 0; }
+[data-theme="mono-console"] .el-btn.loading::after {
+  border-color: color-mix(in oklab, var(--el-accent) 30%, transparent);
+  border-top-color: var(--el-accent);
+}
+
+[data-theme="mono-console"] .el-textarea {
+  font-family: var(--el-font-mono);
+  font-size: var(--el-fs-sm);
+  color: var(--el-ink);
+  background-color: color-mix(in oklab, var(--el-bg) 55%, var(--el-panel));
+  border: 1px solid var(--el-line);
+  border-radius: var(--el-r-sm);
+  caret-color: var(--el-accent);
+  caret-shape: block;
+}
+[data-theme="mono-console"] .el-textarea:hover {
+  border-color: var(--el-line-strong);
+  background-color: color-mix(in oklab, var(--el-bg) 42%, var(--el-panel));
+}
+[data-theme="mono-console"] .el-textarea:focus {
+  outline: none;
+  background-color: var(--el-panel-2);
+  border-color: var(--el-accent);
+  box-shadow: var(--el-ring), inset 0 0 0 1px color-mix(in oklab, var(--el-accent) 45%, transparent);
+}
+[data-theme="mono-console"] .el-select select {
+  font-family: var(--el-font-mono);
+  font-size: var(--el-fs-sm);
+  color: var(--el-ink);
+  background-color: var(--el-panel-2);
+  border: 1px solid var(--el-line-strong);
+  border-radius: var(--el-r-sm);
+  box-shadow: var(--el-raise-1);
+}
+[data-theme="mono-console"] .el-select select:hover:not(:disabled) { border-color: color-mix(in oklab, var(--el-accent) 45%, var(--el-line-strong)); }
+[data-theme="mono-console"] .el-select select:focus { border-color: var(--el-accent); box-shadow: var(--el-ring); outline: none; }
+[data-theme="mono-console"] .el-select::after { color: var(--el-mute); }
+[data-theme="mono-console"] .el-search {
+  font-family: var(--el-font-mono);
+  font-size: var(--el-fs-sm);
+  color: var(--el-ink);
+  background-color: color-mix(in oklab, var(--el-bg) 55%, var(--el-panel));
+  border: 1px solid var(--el-line);
+  border-radius: var(--el-r-sm);
+  caret-color: var(--el-accent);
+}
+[data-theme="mono-console"] .el-search:focus {
+  outline: none;
+  background-color: var(--el-panel-2);
+  border-color: var(--el-accent);
+  box-shadow: var(--el-ring);
+}
+[data-theme="mono-console"] .el-search-field::before { color: var(--el-mute); }
+[data-theme="mono-console"] .el-hint { font-family: var(--el-font-mono); color: var(--el-mute); }
+[data-theme="mono-console"] .el-field .el-error { font-family: var(--el-font-mono); font-size: var(--el-fs-xs); color: var(--el-fail); }
+[data-theme="mono-console"] .el-field[data-invalid] .el-input,
+[data-theme="mono-console"] .el-field[data-invalid] .el-textarea {
+  border-color: var(--el-fail);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--el-fail) 16%, transparent);
+}
+
+[data-theme="mono-console"] .el-segmented {
+  gap: 2px;
+  padding: 2px;
+  background: var(--el-panel-2);
+  border: 1px solid var(--el-line);
+  border-radius: var(--el-r-sm);
+}
+[data-theme="mono-console"] .el-segmented button {
+  font-family: var(--el-font-mono);
+  font-size: var(--el-fs-sm);
+  letter-spacing: 0.08em;
+  border-radius: 1px;
+  color: var(--el-ink-soft);
+}
+[data-theme="mono-console"] .el-segmented button.on {
+  background: var(--el-panel-3);
+  color: var(--el-accent);
+  box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--el-accent) 35%, transparent);
+}
+[data-theme="mono-console"] .el-check {
+  border-radius: var(--el-r-sm);
+  border-color: var(--el-line-strong);
+  background: var(--el-panel-2);
+}
+[data-theme="mono-console"] .el-check::after { color: var(--el-on-accent); }
+[data-theme="mono-console"] .el-check.on,
+[data-theme="mono-console"] .el-check:has(input:checked) {
+  background: var(--el-accent);
+  border-color: var(--el-accent);
+  box-shadow: none;
+}
+[data-theme="mono-console"] .el-switch::after { box-shadow: none; }
+
+[data-theme="mono-console"] .el-stepper li .num {
+  font-family: var(--el-font-mono);
+  border-radius: var(--el-r-sm);
+  background: var(--el-panel-2);
+  border: 1px solid var(--el-line-strong);
+  color: var(--el-ink-soft);
+}
+[data-theme="mono-console"] .el-stepper li.done .num { background: var(--el-ok); border-color: var(--el-ok); color: var(--el-on-accent); }
+[data-theme="mono-console"] .el-stepper li.active .num { background: var(--el-accent); border-color: var(--el-accent); color: var(--el-on-accent); }
+[data-theme="mono-console"] .el-stepper li.active { color: var(--el-accent); }
+[data-theme="mono-console"] .el-ladder-step { border-radius: var(--el-r-sm); }
+[data-theme="mono-console"] .el-ladder-step .el-ladder-idx { font-family: var(--el-font-mono); border-radius: 1px; }
+[data-theme="mono-console"] .el-ladder-step.is-done .el-ladder-idx { background: var(--el-ok); border-color: var(--el-ok); color: var(--el-on-accent); }
+[data-theme="mono-console"] .el-ladder-step.is-running .el-ladder-label { color: var(--el-accent); }
+[data-theme="mono-console"] .el-ladder-step.is-stale .el-ladder-label { color: var(--el-fail); }
+[data-theme="mono-console"] .el-pagination .page { font-family: var(--el-font-mono); border-radius: var(--el-r-sm); min-width: 28px; }
+[data-theme="mono-console"] .el-pagination .page.on {
+  color: var(--el-accent);
+  background: var(--el-accent-soft);
+  border-color: color-mix(in oklab, var(--el-accent) 45%, var(--el-line));
+}
+[data-theme="mono-console"] .el-pagination .page:hover { color: var(--el-ink); border-color: var(--el-line-strong); }
+[data-theme="mono-console"] .el-pagination .info { font-family: var(--el-font-mono); color: var(--el-mute); }
+
+/* stats + meters: mono readouts, data-tick fills */
+[data-theme="mono-console"] .el-stat {
+  background: var(--el-panel);
+  background-image: var(--el-ornament);
+  border: 1px solid var(--el-line);
+  border-radius: var(--el-r-lg);
+  box-shadow: var(--el-raise-1), var(--el-hairline);
+  padding: var(--el-card-pad);
+}
+[data-theme="mono-console"] .el-stat-label {
+  font-family: var(--el-font-mono);
+  font-size: var(--el-fs-xs);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--el-mute);
+}
+[data-theme="mono-console"] .el-stat-value {
+  font-family: var(--el-font-mono);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+  color: var(--el-accent);
+}
+[data-theme="mono-console"] .el-stat-value small { color: var(--el-mute); }
+[data-theme="mono-console"] .el-stat-delta { font-family: var(--el-font-mono); font-size: var(--el-fs-xs); color: var(--el-ink-soft); }
+[data-theme="mono-console"] .el-stat-delta.up { color: var(--el-ok); }
+[data-theme="mono-console"] .el-stat-delta.down { color: var(--el-fail); }
+[data-theme="mono-console"] .el-stat-delta.flat { color: var(--el-mute); }
+[data-theme="mono-console"] .el-stat-note { font-family: var(--el-font-mono); font-size: var(--el-fs-xs); color: var(--el-mute); }
+[data-theme="mono-console"] .el-sparkline { color: var(--el-accent); }
+[data-theme="mono-console"] .el-progress { background: var(--el-panel-3); border: 1px solid var(--el-line); border-radius: var(--el-r-sm); }
+[data-theme="mono-console"] .el-progress > .fill {
+  background-color: var(--el-accent);
+  background-image: repeating-linear-gradient(90deg, transparent 0 4px, rgba(10, 10, 10, 0.75) 4px 5px);
+}
+[data-theme="mono-console"] .el-progress.ok > .fill { background-color: var(--el-ok); }
+[data-theme="mono-console"] .el-progress.warn > .fill { background-color: var(--el-warn); }
+[data-theme="mono-console"] .el-progress.fail > .fill { background-color: var(--el-fail); }
+[data-theme="mono-console"] .el-meter { background: var(--el-panel-3); border: 1px solid var(--el-line); border-radius: var(--el-r-sm); }
+[data-theme="mono-console"] .el-meter > .fill {
+  background: repeating-linear-gradient(90deg, var(--el-accent) 0 7px, color-mix(in oklab, var(--el-accent) 30%, transparent) 7px 8px);
+}
+[data-theme="mono-console"] .el-meter.ok > .fill { background: repeating-linear-gradient(90deg, var(--el-ok) 0 7px, color-mix(in oklab, var(--el-ok) 30%, transparent) 7px 8px); }
+[data-theme="mono-console"] .el-meter.warn > .fill { background: repeating-linear-gradient(90deg, var(--el-warn) 0 7px, color-mix(in oklab, var(--el-warn) 30%, transparent) 7px 8px); }
+[data-theme="mono-console"] .el-meter.fail > .fill { background: repeating-linear-gradient(90deg, var(--el-fail) 0 7px, color-mix(in oklab, var(--el-fail) 30%, transparent) 7px 8px); }
+[data-theme="mono-console"] .el-meter-label { font-family: var(--el-font-mono); font-size: var(--el-fs-xs); color: var(--el-mute); }
+
+/* chart text (donut center): the 44px hole is narrower than the label, so the
+   glyphs ride onto the bright ring — dark paint-order stroke keeps them legible */
+[data-theme="mono-console"] .el-chart-svg text {
+  paint-order: stroke;
+  stroke: var(--el-bg);
+  stroke-width: 3px;
+  stroke-linejoin: round;
+}
+
+/* colortypo fix: unchecked checkbox/radio/switch boundaries ride --el-line-strong
+   (#343434 ≈ 1.5:1 on panel — WCAG 1.4.11 wants 3:1 for a control's edge);
+   ink-mixed border restores the boundary without flattening the panel wash.
+   ROUTE: the sheets should carry a dedicated control-border token ≥3:1. */
+[data-theme="mono-console"] .el-check,
+[data-theme="mono-console"] .el-radio .dot,
+[data-theme="mono-console"] .el-switch {
+  border-color: color-mix(in oklab, var(--el-ink) 30%, var(--el-line-strong));
+}
+
+[data-theme="mono-console"] .el-status-dot {
+  border-radius: 1px;
+  box-shadow: 0 0 0 2px color-mix(in oklab, currentColor 22%, transparent);
+}
+[data-theme="mono-console"] .el-status-dot.ok { color: var(--el-ok); }
+[data-theme="mono-console"] .el-status-dot.idle { color: var(--el-mute); box-shadow: 0 0 0 2px color-mix(in oklab, var(--el-mute) 18%, transparent); }
+[data-theme="mono-console"] .el-status-dot.running { color: var(--el-accent); }
+[data-theme="mono-console"] .el-status-dot.warn { color: var(--el-warn); }
+[data-theme="mono-console"] .el-status-dot.fail { color: var(--el-fail); }
+[data-theme="mono-console"] .el-status-dot.live { color: var(--el-live); }
+[data-theme="mono-console"] .el-status-pill {
+  font-family: var(--el-font-mono);
+  font-size: var(--el-fs-xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  border-radius: var(--el-r-sm);
+}
+[data-theme="mono-console"] .el-status-pill::before { border-radius: 1px; }
+[data-theme="mono-console"] .el-status-pill.queued { color: var(--el-mute); }
+[data-theme="mono-console"] .el-status-pill.running { color: var(--el-accent); }
+[data-theme="mono-console"] .el-status-pill.stale { color: var(--el-fail); }
+[data-theme="mono-console"] .el-status-pill.ok { color: var(--el-ok); }
+[data-theme="mono-console"] .el-status-pill.live { color: var(--el-live); }
+
+/* app chrome: square window keys, hairline seams, mono chrome type */
+[data-theme="mono-console"] .el-appwin { border-radius: var(--el-r-md); }
+[data-theme="mono-console"] .el-titlebar { background: var(--el-panel-2); border-bottom-color: var(--el-line); }
+[data-theme="mono-console"] .el-titlebar .el-app-title,
+[data-theme="mono-console"] .el-titlebar .el-app-title small { font-family: var(--el-font-mono); }
+[data-theme="mono-console"] .el-winbtn { border-radius: var(--el-r-sm); }
+[data-theme="mono-console"] .el-winbtn:hover::before { transform: scale(1.18); }
+[data-theme="mono-console"] .el-menubar { background: color-mix(in oklab, var(--el-panel) 62%, var(--el-bg)); }
+[data-theme="mono-console"] .el-menubar-item {
+  font-family: var(--el-font-mono);
+  font-size: var(--el-fs-sm);
+  letter-spacing: 0.06em;
+  border-radius: var(--el-r-sm);
+}
+[data-theme="mono-console"] .el-menubar-item[aria-expanded="true"],
+[data-theme="mono-console"] .el-menubar-item.is-open {
+  color: var(--el-accent);
+  box-shadow: inset 0 -2px 0 var(--el-accent);
+}
+[data-theme="mono-console"] .el-headerbar { background: var(--el-panel-2); border-bottom-color: var(--el-line); }
+[data-theme="mono-console"] .el-headerbar .el-headerbar-label { font-family: var(--el-font-mono); }
+[data-theme="mono-console"] .el-listbox { background: var(--el-bg); border: 1px solid var(--el-line); border-radius: var(--el-r-sm); }
+[data-theme="mono-console"] .el-listbox-header {
+  font-family: var(--el-font-mono);
+  font-size: var(--el-fs-xs);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--el-mute);
+  border-bottom: 1px solid var(--el-line);
+}
+[data-theme="mono-console"] .el-listbox-row {
+  font-family: var(--el-font-mono);
+  font-size: var(--el-fs-sm);
+  border-radius: 0;
+  box-shadow: inset 0 -1px 0 var(--el-line-2);
+}
+[data-theme="mono-console"] .el-listbox-row:last-child { box-shadow: none; }
+[data-theme="mono-console"] .el-listbox-row .icon { color: var(--el-mute); }
+[data-theme="mono-console"] .el-listbox-row:hover { background: color-mix(in oklab, var(--el-accent) 9%, transparent); }
+[data-theme="mono-console"] .el-listbox-row.is-selected,
+[data-theme="mono-console"] .el-listbox-row[aria-selected="true"] {
+  background: color-mix(in oklab, var(--el-accent) 15%, var(--el-panel-2));
+  box-shadow: inset 2px 0 0 var(--el-accent);
+}
+[data-theme="mono-console"] .el-listbox-row .count { font-family: var(--el-font-mono); color: var(--el-mute); }
+[data-theme="mono-console"] .el-actionbar { background: var(--el-panel-2); border-top-color: var(--el-line); }
+[data-theme="mono-console"] .el-actionbar .lead {
+  font-family: var(--el-font-mono);
+  font-size: var(--el-fs-xs);
+  letter-spacing: 0.1em;
+  color: var(--el-mute);
+}
+[data-theme="mono-console"] .el-tabbar { background: var(--el-panel-2); border-top-color: var(--el-line); }
+[data-theme="mono-console"] .el-tabbar-item {
+  font-family: var(--el-font-mono);
+  font-size: var(--el-fs-xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border-radius: var(--el-r-sm);
+}
+[data-theme="mono-console"] .el-tabbar-item.is-active {
+  background: var(--el-accent-soft);
+  box-shadow: inset 0 2px 0 var(--el-accent);
+}
+[data-theme="mono-console"] .el-notification {
+  background: var(--el-panel);
+  border: 1px solid var(--el-line);
+  border-radius: var(--el-r-sm);
+  box-shadow: var(--el-raise-2), var(--el-hairline);
+}
+[data-theme="mono-console"] .el-notification > .icon {
+  border-radius: var(--el-r-sm);
+  background: var(--el-panel-2);
+  box-shadow: inset 0 0 0 1px var(--el-line);
+  color: var(--el-ink-soft);
+}
+[data-theme="mono-console"] .el-notification .app {
+  font-family: var(--el-font-mono);
+  font-size: var(--el-fs-xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--el-accent);
+}
+[data-theme="mono-console"] .el-notification .time { font-family: var(--el-font-mono); font-size: var(--el-fs-xs); color: var(--el-mute); }
+[data-theme="mono-console"] .el-notification.running > .icon { color: var(--el-accent); }
+[data-theme="mono-console"] .el-notification.ok > .icon { color: var(--el-ok); }
+[data-theme="mono-console"] .el-notification.warn > .icon { color: var(--el-warn); }
+[data-theme="mono-console"] .el-notification.fail > .icon { color: var(--el-fail); }
+[data-theme="mono-console"] .el-notification.info > .icon { color: var(--el-info); }
+[data-theme="mono-console"] .el-notification.live > .icon { color: var(--el-live); }
+
+/* overlays: flat hairline surfaces — the scrim is a black-out, not a blur */
+[data-theme="mono-console"] dialog.el-dialog,
+[data-theme="mono-console"] .el-dialog:not(dialog) {
+  background: var(--el-panel);
+  border: 1px solid var(--el-line-strong);
+  border-radius: var(--el-r-md);
+  box-shadow: var(--el-raise-3), var(--el-hairline);
+  color: var(--el-ink);
+}
+[data-theme="mono-console"] dialog.el-dialog::backdrop,
+[data-theme="mono-console"] .el-scrim { background: rgba(3, 5, 4, 0.82); }
+[data-theme="mono-console"] .el-dialog-head { border-bottom: 1px solid var(--el-line); }
+[data-theme="mono-console"] .el-dialog-head h2,
+[data-theme="mono-console"] .el-dialog-head h3,
+[data-theme="mono-console"] .el-dialog-head .el-dialog-title { font-family: var(--el-font-display); }
+[data-theme="mono-console"] .el-dialog-close { border-radius: var(--el-r-sm); color: var(--el-mute); }
+[data-theme="mono-console"] .el-dialog-close:hover { color: var(--el-ink); background: var(--el-panel-2); }
+[data-theme="mono-console"] .el-drawer { background: var(--el-panel); border-color: var(--el-line-strong); box-shadow: var(--el-raise-3); border-radius: 0; }
+[data-theme="mono-console"] .el-drawer .el-drawer-head { border-bottom: 1px solid var(--el-line); }
+[data-theme="mono-console"] .el-drawer .el-drawer-foot { border-top: 1px solid var(--el-line); }
+[data-theme="mono-console"] .el-popover .el-pop {
+  background: var(--el-panel);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-color: var(--el-line-strong);
+  border-radius: var(--el-r-sm);
+  box-shadow: var(--el-raise-3), var(--el-hairline);
+}
+[data-theme="mono-console"] .el-popover .el-pop > h4 { font-family: var(--el-font-mono); font-size: var(--el-fs-sm); letter-spacing: 0.02em; }
+[data-theme="mono-console"] .el-menu {
+  background: var(--el-panel);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-color: var(--el-line-strong);
+  border-radius: var(--el-r-sm);
+  box-shadow: var(--el-raise-3), var(--el-hairline);
+}
+[data-theme="mono-console"] .el-menu .el-menu-item {
+  font-family: var(--el-font-mono);
+  font-size: var(--el-fs-sm);
+  border-radius: var(--el-r-sm);
+}
+[data-theme="mono-console"] .el-menu .el-menu-item:hover,
+[data-theme="mono-console"] .el-menu .el-menu-item.on {
+  background: color-mix(in oklab, var(--el-accent) 12%, transparent);
+  color: var(--el-ink);
+  box-shadow: inset 2px 0 0 var(--el-accent);
+}
+[data-theme="mono-console"] .el-menu .el-menu-label { font-family: var(--el-font-mono); }
+[data-theme="mono-console"] .el-tooltip::after {
+  font-family: var(--el-font-mono);
+  font-size: var(--el-fs-xs);
+  background: var(--el-panel-3);
+  border-color: var(--el-line-strong);
+  border-radius: var(--el-r-sm);
+  color: var(--el-ink);
+}
+[data-theme="mono-console"] .el-toast {
+  font-family: var(--el-font-mono);
+  font-size: var(--el-fs-sm);
+  border-radius: var(--el-r-sm);
+  background: var(--el-panel);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  box-shadow: var(--el-raise-2), var(--el-hairline);
+}
+[data-theme="mono-console"] .el-toast > .close { border-radius: var(--el-r-sm); color: var(--el-mute); }
+[data-theme="mono-console"] .el-toast > .close:hover { transform: none; background: var(--el-panel-2); }
+[data-theme="mono-console"] .el-command-panel {
+  background: var(--el-panel);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-color: var(--el-line-strong);
+  border-radius: var(--el-r-md);
+  box-shadow: var(--el-raise-3), var(--el-hairline);
+}
+[data-theme="mono-console"] .el-command-input {
+  font-family: var(--el-font-mono);
+  border-block-end: 1px solid var(--el-line);
+}
+[data-theme="mono-console"] .el-command-input:focus { border-block-end-color: var(--el-accent); }
+[data-theme="mono-console"] .el-command-row { font-family: var(--el-font-mono); font-size: var(--el-fs-sm); border-radius: var(--el-r-sm); }
+[data-theme="mono-console"] .el-command-row.sel {
+  background: color-mix(in oklab, var(--el-accent) 14%, var(--el-panel-2));
+  color: var(--el-ink);
+  box-shadow: inset 2px 0 0 var(--el-accent);
+}
+[data-theme="mono-console"] .el-command-group { font-family: var(--el-font-mono); color: var(--el-mute); }
+[data-theme="mono-console"] .el-command-empty { font-family: var(--el-font-mono); color: var(--el-mute); }
+[data-theme="mono-console"] .el-command-foot { border-block-start: 1px solid var(--el-line); }
+
+/* reader / inspector / copilot: long-form surfaces stay quiet, mono metadata */
+[data-theme="mono-console"] .el-reader { color: var(--el-ink-soft); }
+[data-theme="mono-console"] .el-reader h1,
+[data-theme="mono-console"] .el-reader h2,
+[data-theme="mono-console"] .el-reader h3 { color: var(--el-ink); }
+[data-theme="mono-console"] .el-reader blockquote {
+  font-family: var(--el-font-mono);
+  border-left: 2px solid var(--el-accent);
+  background: var(--el-panel);
+  border-radius: 0 var(--el-r-sm) var(--el-r-sm) 0;
+}
+[data-theme="mono-console"] .el-reader code,
+[data-theme="mono-console"] .el-reader pre { background: var(--el-panel-2); border: 1px solid var(--el-line); border-radius: var(--el-r-sm); }
+[data-theme="mono-console"] .el-reader-meta { font-family: var(--el-font-mono); font-size: var(--el-fs-xs); color: var(--el-mute); }
+[data-theme="mono-console"] .el-reader-version-chips .chip { font-family: var(--el-font-mono); border-radius: var(--el-r-sm); }
+[data-theme="mono-console"] .el-code-block {
+  font-family: var(--el-font-mono);
+  background: var(--el-bg);
+  border: 1px solid var(--el-line);
+  border-radius: var(--el-r-sm);
+}
+[data-theme="mono-console"] .el-code-block .el-keyword { color: var(--el-accent); }
+[data-theme="mono-console"] .el-code-block .el-string { color: var(--el-info); }
+[data-theme="mono-console"] .el-code-block .el-number { color: var(--el-warn); }
+[data-theme="mono-console"] .el-code-block .el-comment { color: var(--el-mute); }
+[data-theme="mono-console"] .el-code-block .el-fn { color: var(--el-teal); }
+[data-theme="mono-console"] .el-inspector { background: var(--el-panel); border-color: var(--el-line); }
+[data-theme="mono-console"] .el-inspector-header {
+  font-family: var(--el-font-mono);
+  font-size: var(--el-fs-xs);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--el-ink-soft);
+  border-block-end: 1px solid var(--el-line);
+}
+[data-theme="mono-console"] .el-inspector-close { border-radius: var(--el-r-sm); }
+[data-theme="mono-console"] .el-inspector-scrim { background: rgba(3, 5, 4, 0.7); }
+[data-theme="mono-console"] .el-assistant-panel {
+  background: var(--el-panel);
+  border: 1px solid var(--el-line);
+  border-radius: var(--el-r-md);
+}
+[data-theme="mono-console"] .el-assistant-head {
+  font-family: var(--el-font-mono);
+  font-size: var(--el-fs-xs);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--el-accent);
+  border-block-end: 1px solid var(--el-line);
+}
+[data-theme="mono-console"] .el-msg--assistant { background: var(--el-panel-2); border: 1px solid var(--el-line); border-radius: var(--el-r-sm); }
+[data-theme="mono-console"] .el-msg--user { background: color-mix(in oklab, var(--el-accent) 10%, transparent); border: 1px solid color-mix(in oklab, var(--el-accent) 26%, transparent); border-radius: var(--el-r-sm); }
+[data-theme="mono-console"] .el-assistant-foot { border-block-start: 1px solid var(--el-line); }
+[data-theme="mono-console"] .el-assistant-stop { border-radius: var(--el-r-sm); }
+[data-theme="mono-console"] .el-plan .el-plan-title { font-family: var(--el-font-mono); }
+
+/* feedback: banner is a status band, spinner + skeleton stay hard-edged */
+[data-theme="mono-console"] .el-banner { border-radius: var(--el-r-sm); }
+[data-theme="mono-console"] .el-banner .action {
+  font-family: var(--el-font-mono);
+  font-size: var(--el-fs-sm);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+[data-theme="mono-console"] .el-banner > .glyph { border-radius: 0; }
+[data-theme="mono-console"] .el-spinner { border-radius: 1px; border-inline-start-color: var(--el-accent); }
+[data-theme="mono-console"] .el-skeleton {
+  border-radius: var(--el-r-sm);
+  background: var(--el-panel-3);
+  border-bottom: 1px solid var(--el-line);
+}
+[data-theme="mono-console"] .el-inline-alert {
+  border-radius: var(--el-r-sm);
+  background: var(--el-panel);
+}
+[data-theme="mono-console"] .el-inline-alert > .el-icon { border-radius: var(--el-r-sm); }
+[data-theme="mono-console"] .el-inline-alert .title { font-family: var(--el-font-mono); font-size: var(--el-fs-sm); letter-spacing: 0.04em; text-transform: uppercase; }
+
+/* ── v0.4.0 spacing pass (Ridgeline/WAXLAMP renders, 1440px): exact mono grid ──
+   1. --left hero: the lone auto track sized to the h1 (734px), so the spanning
+      media plate stopped 418px short of the plate edge — pin one 1fr track and
+      the media fills the full inner width edge-to-edge.
+   2. plans: shared sheet caps .el-pricing at 320px inside 1fr tracks → 100px
+      voids and a ragged right edge; let plans fill their tracks.
+   3. facts: shared auto-fill keeps empty 140px tracks, so the record band's
+      four tiles clustered left and left half the row empty; auto-fit collapses
+      them and the tiles run the full column.
+   4. head-plate control row: search 24px / select 58px / button 34px read as
+      three different keycap heights; pin controls on the shared 34px and strip
+      the accidental wrapper chrome (page marks both wrapper and select as
+      .el-dropdown, so the wrapper painted a second box around the select). */
+[data-theme="mono-console"] .el-hero--left { grid-template-columns: minmax(0, 1fr); }
+[data-theme="mono-console"] .el-pricing { max-width: none; }
+[data-theme="mono-console"] .el-fact-grid { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+[data-theme="mono-console"] .el-search-field .el-search { min-height: var(--el-ctl-min-h); }
+[data-theme="mono-console"] div.el-dropdown {
+  padding: 0;
+  border: 0;
+  background: none;
+  box-shadow: none;
+  min-height: 0;
+}
+
+/* ═══════════════════════════════════──────────── ghost-terminal ════════════ */
+
+[data-theme="ghost-terminal"] {
+  --el-bg:           #0c0b08;
+  --el-panel:        #141108;
+  --el-panel-2:      #1a1509;
+  --el-panel-3:      #231c0a;
+
+  --el-line:         #3a2e12;
+  --el-line-2:       #2a210e;
+  --el-line-strong:  #51400f;
+
+  --el-ink:          #ffc233;
+  --el-ink-soft:     #d99a2b;
+  --el-mute:         #9a7a2c;
+  --el-on-accent:    #1a1103;
+
+  --el-accent:        #ffb000;
+  --el-accent-hover:  #ffc94d;
+  --el-accent-soft:   color-mix(in oklab, var(--el-accent) 12%, transparent);
+
+  --el-ok:    #ffdf8a;
+  --el-warn:  #ffb000;
+  --el-fail:  #ff5525;
+  --el-info:  #ffd894;
+  --el-live:  #ff9e1b;
+  --el-teal:  #e8a13a;
+
+  --el-focus-ring: color-mix(in oklab, var(--el-accent) 55%, transparent);
+
+  --el-font-display:  'Geist Mono', 'JetBrains Mono', monospace;
+  --el-font-body:     'Archivo', system-ui, sans-serif;
+  --el-font-mono:     'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace;
+
+  /* identity: amber phosphor CRT — no corners, glow bleed, dashed rules */
+  --el-r-sm:  2px;
+  --el-r-md:  2px;
+  --el-r-lg:  2px;
+  --el-r-xl:  2px;
+  --el-r-pill: 2px;
+
+  --el-raise-1: 0 0 0 1px color-mix(in oklab, var(--el-accent) 10%, transparent);
+  --el-raise-2: 0 0 0 1px color-mix(in oklab, var(--el-accent) 18%, transparent), 0 0 24px color-mix(in oklab, var(--el-accent) 12%, transparent);
+  --el-raise-3: 0 0 0 1px color-mix(in oklab, var(--el-accent) 24%, transparent), 0 0 48px color-mix(in oklab, var(--el-accent) 18%, transparent);
+
+  --el-bar-h: 0;
+  --el-ctl-pad-y: 7px;
+  --el-ctl-pad-x: 13px;
+  --el-ctl-min-h: 36px;
+  --el-card-pad: 18px;
+
+  --el-head-weight: 700;
+  --el-head-tracking: 0.01em;
+  --el-head-case: uppercase;
+
+  --el-label-weight: 600;
+  --el-label-tracking: 0.2em;
+  --el-label-case: uppercase;
+
+  --el-body-weight: 500;
+
+  --el-dur-fast: 120ms;
+  --el-dur-base: 180ms;
+  --el-ease: cubic-bezier(.3, 0, .2, 1);
+
+  --el-ornament: repeating-linear-gradient(180deg, color-mix(in oklab, var(--el-accent) 5%, transparent) 0 1px, transparent 1px 3px);
+  --el-rule-style: dashed;
+
+  --el-hero-pad: 52px;
+  --el-hero-min: 360px;
+
+  --el-stage-active:  var(--el-accent);
+  --el-stage-done:    var(--el-ok);
+  --el-stage-running: var(--el-accent);
+  --el-stage-stale:   var(--el-fail);
+
+  /* elevation + state vocabulary carried by the pack (no dependency on tokens-v2) */
+  --el-hairline:     inset 0 1px 0 color-mix(in oklab, var(--el-ink) 6%, transparent);
+  --el-edge:         var(--el-line);
+  --el-ring:         0 0 0 3px color-mix(in oklab, var(--el-accent) 18%, transparent);
+  --el-ring-strong:  0 0 0 3px color-mix(in oklab, var(--el-accent) 28%, transparent);
+  --el-inset-field:  inset 0 1px 2px rgba(0, 0, 0, 0.55);
+  --el-lift:         translateY(-1px);
+  --el-press:        scale(0.99);
+  --el-ease-out:     cubic-bezier(.22, 1, .36, 1);
+  --el-ease-quiet:   cubic-bezier(.32, .72, .36, 1);
+  --el-measure:      68ch;
+  --el-dur-surface:  240ms;
+  --el-dur-flow:     340ms;
+  --el-dur-progress: 500ms;
+
+  /* compact density (v0.4 persona wave): tighter lists + rows */
+  --el-row-h: 34px;
+
+  color-scheme: dark;
+  accent-color: var(--el-accent);
+  scrollbar-color: var(--el-line-strong) transparent;
+}
+
+/* ground: warm black tube canvas, layered no-repeat afterglows + scanline dither */
+[data-theme="ghost-terminal"] body {
+  margin: 0;
+  background-color: var(--el-bg);
+  background-image:
+    radial-gradient(1100px 560px at 10% -8%,
+      color-mix(in oklab, var(--el-accent) 6.5%, transparent) 0%,
+      color-mix(in oklab, var(--el-accent) 4%, transparent) 30%,
+      color-mix(in oklab, var(--el-accent) 1.5%, transparent) 54%,
+      transparent 72%),
+    radial-gradient(920px 540px at 96% 106%,
+      color-mix(in oklab, var(--el-teal) 8%, transparent) 0%,
+      color-mix(in oklab, var(--el-teal) 4%, transparent) 32%,
+      color-mix(in oklab, var(--el-teal) 1.5%, transparent) 52%,
+      transparent 70%),
+    repeating-linear-gradient(180deg,
+      color-mix(in oklab, var(--el-accent) 2.6%, transparent) 0 1px,
+      transparent 1px 3px);
+  background-repeat: no-repeat, no-repeat, repeat;
+  background-size: 1100px 560px, 920px 540px, auto;
+  color: var(--el-ink);
+  font-family: var(--el-font-body);
+  font-size: var(--el-fs-md);
+  font-weight: var(--el-body-weight);
+  line-height: 1.6;
+  font-optical-sizing: auto;
+  -webkit-font-smoothing: antialiased;
+}
+[data-theme="ghost-terminal"] ::selection { background: var(--el-accent); color: var(--el-on-accent); }
+
+[data-theme="ghost-terminal"] h1,
+[data-theme="ghost-terminal"] h2,
+[data-theme="ghost-terminal"] h3,
+[data-theme="ghost-terminal"] h4 {
+  font-family: var(--el-font-display);
+  font-weight: var(--el-head-weight);
+  letter-spacing: var(--el-head-tracking);
+  text-transform: var(--el-head-case);
+  line-height: 1.2;
+  text-wrap: balance;
+  color: var(--el-ink);
+  margin: 0.45em 0;
+}
+
+/* ── phosphor glow on display type ─────────────────────────────────────────── */
+
+[data-theme="ghost-terminal"] .el-title-xl,
+[data-theme="ghost-terminal"] .el-display-specimen,
+[data-theme="ghost-terminal"] h1,
+[data-theme="ghost-terminal"] h2,
+[data-theme="ghost-terminal"] h3,
+[data-theme="ghost-terminal"] h4 {
+  text-shadow:
+    0 0 20px color-mix(in oklab, var(--el-accent) 28%, transparent),
+    0 0 2px color-mix(in oklab, var(--el-accent) 35%, transparent);
+}
+
+/* ── text voice: backlit instrument-panel labels ───────────────────────────── */
+
+[data-theme="ghost-terminal"] .el-label,
+[data-theme="ghost-terminal"] .el-eyebrow {
+  font-family: var(--el-font-mono);
+  font-size: var(--el-fs-xs);
+  font-weight: var(--el-label-weight);
+  letter-spacing: var(--el-label-tracking);
+  text-transform: uppercase;
+  color: var(--el-mute);
+}
+[data-theme="ghost-terminal"] .el-eyebrow {
+  color: var(--el-accent);
+  text-shadow: 0 0 12px color-mix(in oklab, var(--el-accent) 45%, transparent);
+}
+
+/* amber lamp: the persistence carrier — phosphor ramps up, decays slowly */
+[data-theme="ghost-terminal"] .el-eyebrow::before {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin-right: 9px;
+  background: var(--el-accent);
+  box-shadow: 0 0 10px color-mix(in oklab, var(--el-accent) 70%, transparent), 0 0 0 1px color-mix(in oklab, var(--el-accent) 40%, transparent);
+  animation: el-ghost-persist 2.8s linear infinite;
+}
+
+[data-theme="ghost-terminal"] .el-body {
+  font-size: var(--el-fs-md);
+  font-weight: var(--el-body-weight);
+  color: var(--el-ink-soft);
+  line-height: 1.6;
+}
+[data-theme="ghost-terminal"] .el-mute-body {
+  font-family: var(--el-font-mono);
+  font-size: var(--el-fs-sm);
+  color: var(--el-mute);
+}
+[data-theme="ghost-terminal"] .el-mono {
+  font-family: var(--el-font-mono);
+  font-size: var(--el-fs-sm);
+  color: var(--el-ink-soft);
+  font-feature-settings: "tnum" 1;
+}
+[data-theme="ghost-terminal"] .el-ink-ok    { font-family: var(--el-font-mono); color: var(--el-ok); }
+[data-theme="ghost-terminal"] .el-ink-fail  { font-family: var(--el-font-mono); color: var(--el-fail); }
+
+[data-theme="ghost-terminal"] .el-title-xl,
+[data-theme="ghost-terminal"] .el-display-specimen {
+  font-family: var(--el-font-display);
+  font-weight: var(--el-head-weight);
+  letter-spacing: var(--el-head-tracking);
+  text-transform: var(--el-head-case);
+  text-wrap: balance;
+  color: var(--el-ink);
+}
+[data-theme="ghost-terminal"] .el-title-xl { line-height: 1.08; }
+
+[data-theme="ghost-terminal"] .el-field { display: block; margin-bottom: var(--el-space-3); }
+[data-theme="ghost-terminal"] .el-field .el-label { display: block; margin-bottom: 7px; }
+
+/* ── hero: CRT tube — scanlines, layered bloom bloom, de-banded vignette ───── */
+
+[data-theme="ghost-terminal"] .el-hero {
+  position: relative;
+  z-index: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+  border: 1px solid var(--el-line-strong);
+  border-radius: 2px;
+  background-color: color-mix(in oklab, var(--el-panel) 66%, var(--el-bg));
+  background-image:
+    radial-gradient(120% 88% at 50% 0%,
+      color-mix(in oklab, var(--el-accent) 12%, transparent) 0%,
+      color-mix(in oklab, var(--el-accent) 6.5%, transparent) 30%,
+      color-mix(in oklab, var(--el-accent) 2%, transparent) 52%,
+      transparent 66%),
+    var(--el-ornament);
+}
+[data-theme="ghost-terminal"] .el-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(140% 118% at 50% 40%,
+    transparent 42%,
+    color-mix(in oklab, #060400 42%, transparent) 64%,
+    color-mix(in oklab, #060400 76%, transparent) 84%,
+    #060400 100%);
+  box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--el-accent) 10%, transparent);
+}
+[data-theme="ghost-terminal"] .el-hero .el-body { max-width: 580px; }
+
+/* ── buttons: bracketed [ command ] toggles ────────────────────────────────── */
+
+[data-theme="ghost-terminal"] .el-btn {
+  gap: 5px;
+  font-family: var(--el-font-mono);
+  font-size: var(--el-fs-sm);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--el-ink);
+  background: transparent;
+  background-image: none;
+  border: 1px solid var(--el-line-strong);
+  border-radius: 2px;
+  box-shadow: none;
+  transition: background var(--el-dur-fast) var(--el-ease),
+              border-color var(--el-dur-fast) var(--el-ease),
+              box-shadow var(--el-dur-fast) var(--el-ease),
+              color var(--el-dur-fast) var(--el-ease);
+}
+[data-theme="ghost-terminal"] .el-btn::before { content: "[ "; color: var(--el-mute); }
+[data-theme="ghost-terminal"] .el-btn::after  { content: " ]"; color: var(--el-mute); }
+[data-theme="ghost-terminal"] .el-btn:hover {
+  filter: none;
+  transform: none;
+  color: var(--el-on-accent);
+  background: var(--el-accent);
+  border-color: var(--el-accent);
+  box-shadow: 0 0 20px color-mix(in oklab, var(--el-accent) 35%, transparent);
+  text-shadow: none;
+}
+[data-theme="ghost-terminal"] .el-btn:hover::before,
+[data-theme="ghost-terminal"] .el-btn:hover::after { color: var(--el-on-accent); }
+[data-theme="ghost-terminal"] .el-btn:focus-visible {
+  outline: 2px solid var(--el-focus-ring);
+  outline-offset: 2px;
+}
+[data-theme="ghost-terminal"] .el-btn:active {
+  transform: translateY(1px);
+  background: color-mix(in oklab, var(--el-accent) 86%, var(--el-bg));
+  border-color: var(--el-accent);
+  box-shadow: none;
+  outline: none;
+}
+[data-theme="ghost-terminal"] .el-btn:disabled,
+[data-theme="ghost-terminal"] .el-btn[aria-disabled="true"] {
+  opacity: 0.45;
+  cursor: not-allowed;
+  color: var(--el-ink-soft);
+  background: transparent;
+  border-color: var(--el-line);
+  box-shadow: none;
+  transform: none;
+}
+[data-theme="ghost-terminal"] .el-btn.ghost,
+[data-theme="ghost-terminal"] .el-btn--ghost,
+[data-theme="ghost-terminal"] .el-btn--outline {
+  color: var(--el-ink-soft);
+  border-color: transparent;
+  background: transparent;
+}
+[data-theme="ghost-terminal"] .el-btn.ghost::before,
+[data-theme="ghost-terminal"] .el-btn.ghost::after,
+[data-theme="ghost-terminal"] .el-btn--ghost::before,
+[data-theme="ghost-terminal"] .el-btn--ghost::after,
+[data-theme="ghost-terminal"] .el-btn--outline::before,
+[data-theme="ghost-terminal"] .el-btn--outline::after { color: var(--el-mute); }
+[data-theme="ghost-terminal"] .el-btn.ghost:hover,
+[data-theme="ghost-terminal"] .el-btn--ghost:hover,
+[data-theme="ghost-terminal"] .el-btn--outline:hover {
+  color: var(--el-on-accent);
+  background: var(--el-accent);
+  border-color: var(--el-accent);
+}
+[data-theme="ghost-terminal"] .el-btn.ghost:active,
+[data-theme="ghost-terminal"] .el-btn--ghost:active,
+[data-theme="ghost-terminal"] .el-btn--outline:active { transform: translateY(1px); }
+[data-theme="ghost-terminal"] .el-btn.ghost:disabled,
+[data-theme="ghost-terminal"] .el-btn--ghost:disabled,
+[data-theme="ghost-terminal"] .el-btn--outline:disabled {
+  background: transparent;
+  border-color: transparent;
+  color: var(--el-mute);
+}
+
+/* ── cards: glass-dark tube panels, scanline ornament, dashed citations ────── */
+
+[data-theme="ghost-terminal"] .el-card {
+  background: var(--el-panel);
+  background-image: var(--el-ornament);
+  border: 1px solid var(--el-line-strong);
+  border-radius: 2px;
+  box-shadow: var(--el-raise-1), var(--el-hairline);
+}
+[data-theme="ghost-terminal"] .el-card:hover {
+  transform: none;
+  border-color: color-mix(in oklab, var(--el-accent) 45%, var(--el-line));
+  box-shadow: var(--el-raise-2), var(--el-hairline);
+}
+[data-theme="ghost-terminal"] .el-card:focus-within { border-color: var(--el-accent); }
+
+[data-theme="ghost-terminal"] .el-stage-rail {
+  background: color-mix(in oklab, var(--el-panel) 55%, var(--el-bg));
+  border: 1px dashed var(--el-line);
+  border-radius: 2px;
+}
+[data-theme="ghost-terminal"] .el-source-card {
+  font-family: var(--el-font-mono);
+  background: var(--el-panel);
+  background-image: var(--el-ornament);
+  border: 1px dashed var(--el-line-strong);
+  border-radius: 2px;
+}
+[data-theme="ghost-terminal"] .el-publisher {
+  font-family: var(--el-font-mono);
+  font-size: var(--el-fs-xs);
+  font-weight: var(--el-label-weight);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--el-accent);
+  text-shadow: 0 0 10px color-mix(in oklab, var(--el-accent) 40%, transparent);
+}
+
+/* ── metric strip: glowing tabular amber readouts + segmented tick bars ────── */
+
+[data-theme="ghost-terminal"] .el-big-num {
+  font-family: var(--el-font-mono);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+  color: var(--el-accent);
+  text-shadow: 0 0 18px color-mix(in oklab, var(--el-accent) 45%, transparent), 0 0 3px color-mix(in oklab, var(--el-accent) 50%, transparent);
+  background-image: none;
+  -webkit-text-fill-color: currentColor;
+}
+[data-theme="ghost-terminal"] .el-big-num .total,
+[data-theme="ghost-terminal"] .el-big-num .lbl {
+  -webkit-text-fill-color: var(--el-ink-soft);
+  text-shadow: none;
+}
+
+[data-theme="ghost-terminal"] .el-bar {
+  position: relative;
+  height: 6px;
+  margin: var(--el-space-2) 0;
+  background: color-mix(in oklab, var(--el-bg) 55%, var(--el-panel-3));
+  border: 1px solid var(--el-line);
+  overflow: hidden;
+}
+[data-theme="ghost-terminal"] .el-bar i {
+  position: absolute;
+  inset: 0 auto 0 0;
+  display: block;
+  height: 100%;
+  background-color: var(--el-accent);
+  background-image: repeating-linear-gradient(90deg, transparent 0 4px, rgba(12, 11, 8, 0.8) 4px 5px);
+  box-shadow: 0 0 10px color-mix(in oklab, var(--el-accent) 45%, transparent);
+}
+
+/* ── table: amber phosphor band selection, dashed head rule ────────────────── */
+
+[data-theme="ghost-terminal"] .el-table {
+  font-family: var(--el-font-mono);
+  font-size: var(--el-fs-sm);
+  background: color-mix(in oklab, var(--el-bg) 72%, var(--el-panel));
+  border: 1px solid var(--el-line-strong);
+  border-radius: 2px;
+  box-shadow: none;
+}
+[data-theme="ghost-terminal"] .el-table thead th {
+  background: color-mix(in oklab, var(--el-accent) 10%, transparent);
+  color: var(--el-accent);
+  font-family: var(--el-font-mono);
+  font-size: var(--el-fs-xs);
+  font-weight: var(--el-label-weight);
+  letter-spacing: var(--el-label-tracking);
+  text-transform: uppercase;
+  border-bottom: 1px dashed var(--el-line-strong);
+}
+[data-theme="ghost-terminal"] .el-table tbody td {
+  padding: var(--el-space-2) var(--el-space-3);
+  border-bottom: 1px dotted var(--el-line);
+  font-variant-numeric: tabular-nums;
+}
+[data-theme="ghost-terminal"] .el-table tbody tr:hover {
+  background: color-mix(in oklab, var(--el-accent) 16%, transparent);
+}
+[data-theme="ghost-terminal"] .el-table tbody tr:hover td {
+  color: var(--el-ink);
+  text-shadow: 0 0 12px color-mix(in oklab, var(--el-accent) 30%, transparent);
+}
+[data-theme="ghost-terminal"] .el-table tbody tr:hover td:first-child {
+  box-shadow: inset 2px 0 0 var(--el-accent);
+}
+[data-theme="ghost-terminal"] .el-table tbody tr:active td:first-child {
+  box-shadow: inset 2px 0 0 color-mix(in oklab, var(--el-accent) 72%, var(--el-line-strong));
+}
+[data-theme="ghost-terminal"] .el-table tbody tr:focus-visible {
+  outline: 2px solid var(--el-focus-ring);
+  outline-offset: -2px;
+  background: color-mix(in oklab, var(--el-accent) 10%, var(--el-panel-2));
+}
+[data-theme="ghost-terminal"] .el-table tbody tr[aria-disabled="true"] { opacity: 0.45; }
+
+/* ── pills, chips (blink cursor), dots, switch: phosphor widgets ───────────── */
+
+[data-theme="ghost-terminal"] .el-pill {
+  font-family: var(--el-font-mono);
+  font-weight: var(--el-label-weight);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--el-ink-soft);
+  border-radius: 2px;
+}
+[data-theme="ghost-terminal"] .el-pill:hover {
+  border-color: color-mix(in oklab, currentColor 48%, transparent);
+  background: color-mix(in oklab, currentColor 14%, var(--el-panel));
+}
+[data-theme="ghost-terminal"] .el-pill:focus-visible {
+  outline: 2px solid var(--el-focus-ring);
+  outline-offset: 2px;
+}
+[data-theme="ghost-terminal"] .el-pill:active { transform: translateY(1px); }
+[data-theme="ghost-terminal"] .el-pill[aria-disabled="true"] { opacity: 0.45; }
+
+[data-theme="ghost-terminal"] .el-chip {
+  font-family: var(--el-font-mono);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--el-ink);
+  background: color-mix(in oklab, var(--el-accent) 8%, var(--el-panel));
+  border: 1px dashed var(--el-line-strong);
+  border-radius: 2px;
+}
+[data-theme="ghost-terminal"] .el-chip:hover {
+  background: color-mix(in oklab, var(--el-accent) 16%, var(--el-panel));
+  border-color: color-mix(in oklab, var(--el-accent) 55%, transparent);
+}
+[data-theme="ghost-terminal"] .el-chip:focus-visible {
+  outline: 2px solid var(--el-focus-ring);
+  outline-offset: 2px;
+}
+[data-theme="ghost-terminal"] .el-chip:active {
+  transform: translateY(1px);
+  background: color-mix(in oklab, var(--el-accent) 22%, var(--el-panel));
+}
+[data-theme="ghost-terminal"] .el-chip[aria-disabled="true"] { opacity: 0.45; }
+[data-theme="ghost-terminal"] .el-chip.live {
+  color: var(--el-accent);
+  border-color: color-mix(in oklab, var(--el-accent) 50%, transparent);
+}
+/* colortypo fix: the block caret used to land on chip CONTAINERS too (the
+   filter group div also carries .el-chip), leaving a stray glowing caret
+   floating outside any chip — scope it to the interactive chips themselves */
+[data-theme="ghost-terminal"] button.el-chip::after,
+[data-theme="ghost-terminal"] a.el-chip::after {
+  content: "";
+  display: inline-block;
+  width: 7px;
+  height: 11px;
+  margin-left: 2px;
+  background: var(--el-accent);
+  box-shadow: 0 0 8px color-mix(in oklab, var(--el-accent) 55%, transparent);
+  animation: el-ghost-blink 1.2s steps(1, end) infinite;
+}
+@keyframes el-ghost-blink { 50% { opacity: 0.2; } }
+
+[data-theme="ghost-terminal"] .el-dot { border-radius: 1px; }
+[data-theme="ghost-terminal"] .el-dot.ok,
+[data-theme="ghost-terminal"] .el-dot.warn,
+[data-theme="ghost-terminal"] .el-dot.fail,
+[data-theme="ghost-terminal"] .el-dot.live {
+  box-shadow: 0 0 0 2px color-mix(in oklab, currentColor 30%, transparent), 0 0 12px color-mix(in oklab, currentColor 65%, transparent);
+}
+
+[data-theme="ghost-terminal"] .el-switch {
+  border-radius: 2px;
+  border-color: var(--el-line-strong);
+  background: color-mix(in oklab, var(--el-bg) 60%, var(--el-panel-3));
+}
+[data-theme="ghost-terminal"] .el-switch::after { border-radius: 1px; }
+[data-theme="ghost-terminal"] .el-switch:hover {
+  border-color: color-mix(in oklab, var(--el-accent) 55%, var(--el-line-strong));
+}
+[data-theme="ghost-terminal"] .el-switch:focus-visible {
+  outline: 2px solid var(--el-focus-ring);
+  outline-offset: 2px;
+}
+[data-theme="ghost-terminal"] .el-switch[aria-disabled="true"] { opacity: 0.45; }
+[data-theme="ghost-terminal"] .el-switch:has(> .on),
+[data-theme="ghost-terminal"] .el-switch.on {
+  background: var(--el-accent);
+  border-color: var(--el-accent);
+  box-shadow: 0 0 14px color-mix(in oklab, var(--el-accent) 40%, transparent);
+}
+[data-theme="ghost-terminal"] .el-switch:has(> .on)::after,
+[data-theme="ghost-terminal"] .el-switch.on::after {
+  transform: translateX(22px);
+  background: var(--el-on-accent);
+}
+
+/* ── inputs: terminal line — dashed underline, amber caret, no box ─────────── */
+
+[data-theme="ghost-terminal"] .el-input {
+  font-family: var(--el-font-mono);
+  font-size: var(--el-fs-sm);
+  padding-left: calc(var(--el-ctl-pad-x) + 10px);
+  color: var(--el-ink);
+  background-color: transparent;
+  background-image: linear-gradient(var(--el-accent), var(--el-accent));
+  background-size: 2px 12px;
+  background-position: 9px 50%;
+  background-repeat: no-repeat;
+  border: 0;
+  border-bottom: 1px dashed var(--el-line-strong);
+  border-radius: 2px;
+  caret-color: var(--el-accent);
+  caret-shape: block;
+}
+[data-theme="ghost-terminal"] .el-input:hover {
+  border-bottom-color: var(--el-mute);
+  background-color: color-mix(in oklab, var(--el-accent) 4%, transparent);
+}
+[data-theme="ghost-terminal"] .el-input:focus,
+[data-theme="ghost-terminal"] .el-input:focus-visible {
+  background-color: color-mix(in oklab, var(--el-accent) 6%, transparent);
+  border-bottom: 1px solid var(--el-accent);
+  box-shadow: var(--el-ring), 0 0 18px -4px color-mix(in oklab, var(--el-accent) 35%, transparent);
+}
+[data-theme="ghost-terminal"] .el-input:disabled,
+[data-theme="ghost-terminal"] .el-input[aria-disabled="true"] {
+  opacity: 0.45;
+  cursor: not-allowed;
+  background-image: none;
+  border-bottom-color: var(--el-line);
+  box-shadow: none;
+}
+[data-theme="ghost-terminal"] .el-input::placeholder {
+  color: var(--el-mute);
+  font-weight: 400;
+  text-shadow: 0 0 10px color-mix(in oklab, var(--el-accent) 25%, transparent);
+}
+
+/* ── workflow voice: mono stage names, dashed rail, running phosphor ───────── */
+
+[data-theme="ghost-terminal"] .el-stage {
+  font-family: var(--el-font-mono);
+  font-size: var(--el-fs-sm);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  border-bottom: 1px dashed var(--el-line-2);
+}
+[data-theme="ghost-terminal"] .el-stage:hover {
+  background: transparent;
+  border-bottom-color: var(--el-line-strong);
+  text-shadow: 0 0 10px color-mix(in oklab, var(--el-accent) 30%, transparent);
+}
+[data-theme="ghost-terminal"] .el-stage:focus-visible {
+  outline: 2px solid var(--el-focus-ring);
+  outline-offset: 1px;
+}
+[data-theme="ghost-terminal"] .el-stage:active { transform: translateY(1px); }
+[data-theme="ghost-terminal"] .el-stage[aria-disabled="true"] { opacity: 0.45; }
+[data-theme="ghost-terminal"] .el-stage-dot { border-radius: 1px; }
+[data-theme="ghost-terminal"] .el-stage.done { color: var(--el-ok); }
+[data-theme="ghost-terminal"] .el-stage.done .el-stage-dot {
+  background: var(--el-ok);
+  box-shadow: 0 0 8px color-mix(in oklab, var(--el-ok) 70%, transparent);
+}
+
+/* running stage lamp carries the phosphor persistence ramp */
+[data-theme="ghost-terminal"] .el-stage.run {
+  color: var(--el-accent);
+  text-shadow: 0 0 12px color-mix(in oklab, var(--el-accent) 40%, transparent);
+}
+[data-theme="ghost-terminal"] .el-stage.run .el-stage-dot {
+  background: var(--el-accent);
+  box-shadow: 0 0 10px color-mix(in oklab, var(--el-accent) 75%, transparent);
+  animation: el-ghost-persist 2.8s linear infinite;
+}
+
+[data-theme="ghost-terminal"] .el-progress-truth {
+  font-family: var(--el-font-mono);
+  font-size: var(--el-fs-xs);
+  border: 1px dashed var(--el-line);
+  border-radius: 2px;
+  color: var(--el-ink-soft);
+}
+[data-theme="ghost-terminal"] .el-progress-truth .el-pt-chunk {
+  border-radius: 1px;
+}
+[data-theme="ghost-terminal"] .el-progress-truth .el-pt-chunk.on {
+  border-color: var(--el-ok);
+  color: var(--el-ink);
+}
+[data-theme="ghost-terminal"] .el-progress-truth .el-pt-label {
+  font-family: var(--el-font-mono);
+  font-size: var(--el-fs-xs);
+  color: var(--el-mute);
+}
+
+/* ── footer: dashed status line, right-hand phosphor lamp ──────────────────── */
+
+[data-theme="ghost-terminal"] .el-footer {
+  position: relative;
+  background: var(--el-panel);
+  background-image: var(--el-ornament);
+  border-bottom: 1px dashed var(--el-line-strong);
+  font-family: var(--el-font-mono);
+  padding-left: var(--el-space-3);
+  padding-right: var(--el-space-3);
+}
+[data-theme="ghost-terminal"] .el-footer::after {
+  content: "";
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  width: 7px;
+  height: 7px;
+  transform: translateY(-50%);
+  background: var(--el-accent);
+  border-radius: 1px;
+  box-shadow: 0 0 12px color-mix(in oklab, var(--el-accent) 80%, transparent), 0 0 0 1px color-mix(in oklab, var(--el-accent) 40%, transparent);
+  animation: el-ghost-persist 2.8s linear infinite;
+}
+
+/* motion discipline for the tube */
+@media (prefers-reduced-motion: reduce) {
+  [data-theme="ghost-terminal"] .el-eyebrow::before,
+  [data-theme="ghost-terminal"] .el-stage.run .el-stage-dot,
+  [data-theme="ghost-terminal"] .el-footer::after,
+  [data-theme="ghost-terminal"] .el-chip::after { animation: none; opacity: 1; }
+  [data-theme="ghost-terminal"] .el-btn,
+  [data-theme="ghost-terminal"] .el-switch,
+  [data-theme="ghost-terminal"] .el-chip,
+  [data-theme="ghost-terminal"] .el-pill,
+  [data-theme="ghost-terminal"] .el-stage { transition-duration: 1ms; }
+}
+
+/* ── v0.4 persona wave (ghost-terminal slot map: nav --top, hero --split,
+   cards flat, tables --ruled, compact density) — CRT tube chrome: every
+   structural slot glows amber and rules go dashed ── */
+
+[data-theme="ghost-terminal"] .el-page { padding: 0 var(--el-space-4); }
+[data-theme="ghost-terminal"] .el-section { padding-block: var(--el-space-5); }
+[data-theme="ghost-terminal"] .el-section--dense { padding-block: var(--el-space-4); }
+
+/* section headings read as tube section lamps: leading amber block + glow */
+[data-theme="ghost-terminal"] .el-section > h2::before,
+[data-theme="ghost-terminal"] .el-section > h3::before {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin-right: 10px;
+  background: var(--el-accent);
+  box-shadow: 0 0 9px color-mix(in oklab, var(--el-accent) 65%, transparent);
+}
+
+[data-theme="ghost-terminal"] .el-navbar {
+  background: color-mix(in oklab, var(--el-panel) 52%, var(--el-bg));
+  background-image: var(--el-ornament);
+  border-bottom: 1px dashed var(--el-line-strong);
+  box-shadow: 0 0 22px -8px color-mix(in oklab, var(--el-accent) 26%, transparent);
+}
+[data-theme="ghost-terminal"] .el-navbar .brand {
+  font-family: var(--el-font-display);
+  font-size: var(--el-fs-md);
+  letter-spacing: 0.2em;
+  color: var(--el-ink);
+  text-shadow: 0 0 14px color-mix(in oklab, var(--el-accent) 34%, transparent);
+}
+[data-theme="ghost-terminal"] .el-navbar .brand::before {
+  content: "";
+  width: 9px;
+  height: 9px;
+  border-radius: 1px;
+  background: var(--el-accent);
+  box-shadow: 0 0 10px color-mix(in oklab, var(--el-accent) 80%, transparent), 0 0 0 1px color-mix(in oklab, var(--el-accent) 38%, transparent);
+  animation: el-ghost-persist 2.8s linear infinite;
+}
+[data-theme="ghost-terminal"] .el-navbar .links a,
+[data-theme="ghost-terminal"] .el-navbar .links button {
+  font-family: var(--el-font-mono);
+  font-size: var(--el-fs-sm);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-radius: 2px;
+}
+[data-theme="ghost-terminal"] .el-navbar .links [aria-current="page"] {
+  background: transparent;
+  color: var(--el-accent);
+  text-shadow: 0 0 12px color-mix(in oklab, var(--el-accent) 40%, transparent);
+  box-shadow: inset 0 -2px 0 var(--el-accent);
+}
+[data-theme="ghost-terminal"] .el-navbar .links [aria-current="page"]:hover { background: color-mix(in oklab, var(--el-accent) 10%, transparent); }
+[data-theme="ghost-terminal"] .el-navbar .actions .el-btn { min-height: 30px; }
+
+[data-theme="ghost-terminal"] .el-hero--split .copy { gap: var(--el-space-3); }
+[data-theme="ghost-terminal"] .el-hero .media {
+  border: 1px dashed var(--el-line-strong);
+  border-radius: 2px;
+  box-shadow: var(--el-raise-2), inset 0 0 60px -18px color-mix(in oklab, var(--el-accent) 34%, transparent);
+}
+[data-theme="ghost-terminal"] .el-hero .media > .fill {
+  background-image:
+    repeating-linear-gradient(90deg, color-mix(in oklab, var(--el-accent) 9%, transparent) 0 1px, transparent 1px 26px),
+    repeating-linear-gradient(180deg, color-mix(in oklab, var(--el-accent) 9%, transparent) 0 1px, transparent 1px 26px),
+    radial-gradient(90% 70% at 50% 26%, color-mix(in oklab, var(--el-accent) 16%, transparent) 0%, transparent 62%),
+    linear-gradient(180deg, var(--el-panel-2), var(--el-panel-3));
+}
+
+[data-theme="ghost-terminal"] .el-media-band {
+  background: var(--el-panel);
+  border: 1px dashed var(--el-line-strong);
+  border-radius: 2px;
+}
+[data-theme="ghost-terminal"] .el-media-band > .media { border-right: 1px dashed var(--el-line-strong); }
+[data-theme="ghost-terminal"] .el-media-band > .media > .fill {
+  background-image:
+    repeating-linear-gradient(90deg, color-mix(in oklab, var(--el-accent) 8%, transparent) 0 1px, transparent 1px 20px),
+    radial-gradient(88% 74% at 50% 34%, color-mix(in oklab, var(--el-accent) 14%, transparent) 0%, transparent 64%),
+    linear-gradient(180deg, var(--el-panel-2), var(--el-panel-3));
+}
+[data-theme="ghost-terminal"] .el-media-band > .media > figcaption { background: rgba(12, 11, 8, 0.88); color: var(--el-ink-soft); }
+
+[data-theme="ghost-terminal"] .el-pricing {
+  background: var(--el-panel);
+  border: 1px dashed var(--el-line-strong);
+  border-radius: 2px;
+  box-shadow: var(--el-raise-1), var(--el-hairline);
+}
+[data-theme="ghost-terminal"] .el-pricing .name { font-family: var(--el-font-mono); color: var(--el-mute); }
+[data-theme="ghost-terminal"] .el-pricing .price {
+  font-family: var(--el-font-mono);
+  font-variant-numeric: tabular-nums;
+  text-shadow: 0 0 16px color-mix(in oklab, var(--el-accent) 34%, transparent);
+}
+[data-theme="ghost-terminal"] .el-pricing .flag { border-radius: 0 0 1px 1px; }
+
+[data-theme="ghost-terminal"] .el-testimonial {
+  background: var(--el-panel);
+  background-image: var(--el-ornament);
+  border: 1px dashed var(--el-line-strong);
+  border-left: 2px solid var(--el-accent);
+  border-radius: 2px;
+}
+/* colortypo fix: the "[" lived on the figure as its own line above the quote
+   (orphans look like a markup bug); it now brackets the paragraph inline,
+"[ quote ]" like every other bracket voice on this theme */
+[data-theme="ghost-terminal"] .el-testimonial .q::before {
+  content: "[ ";
+  margin: 0;
+  font-family: var(--el-font-mono);
+  font-size: var(--el-fs-md);
+  line-height: 1.4;
+  color: var(--el-accent);
+  text-shadow: 0 0 12px color-mix(in oklab, var(--el-accent) 45%, transparent);
+}
+[data-theme="ghost-terminal"] .el-testimonial .q::after {
+  content: " ]";
+  margin: 0;
+  font-family: var(--el-font-mono);
+  font-size: var(--el-fs-md);
+  line-height: 1.4;
+  color: var(--el-accent);
+  text-shadow: 0 0 12px color-mix(in oklab, var(--el-accent) 45%, transparent);
+}
+[data-theme="ghost-terminal"] .el-testimonial .q,
+[data-theme="ghost-terminal"] .el-testimonial .quote {
+  font-family: var(--el-font-mono);
+  font-size: var(--el-fs-md);
+  line-height: 1.7;
+  color: var(--el-ink-soft);
+}
+[data-theme="ghost-terminal"] .el-testimonial .who .name { font-family: var(--el-font-mono); font-size: var(--el-fs-sm); color: var(--el-accent); }
+
+[data-theme="ghost-terminal"] .el-fact-grid { gap: var(--el-space-2); }
+[data-theme="ghost-terminal"] .el-fact {
+  background: var(--el-panel);
+  border: 1px dashed var(--el-line-strong);
+  border-radius: 2px;
+  padding: var(--el-space-3);
+}
+[data-theme="ghost-terminal"] .el-fact .k {
+  font-family: var(--el-font-mono);
+  font-size: var(--el-fs-xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--el-mute);
+}
+[data-theme="ghost-terminal"] .el-fact .v {
+  font-family: var(--el-font-mono);
+  font-variant-numeric: tabular-nums;
+  color: var(--el-ink);
+  text-shadow: 0 0 12px color-mix(in oklab, var(--el-accent) 22%, transparent);
+}
+[data-theme="ghost-terminal"] .el-fact.is-hot .v { color: var(--el-accent); text-shadow: 0 0 14px color-mix(in oklab, var(--el-accent) 45%, transparent); }
+
+[data-theme="ghost-terminal"] .el-timeline::before { width: 1px; left: 3px; background: var(--el-line); }
+[data-theme="ghost-terminal"] .el-timeline > li::before {
+  border-radius: 1px;
+  background: var(--el-bg);
+  border: 1px dashed var(--el-line-strong);
+}
+[data-theme="ghost-terminal"] .el-timeline > li.ok::before { background: var(--el-ok); border-color: var(--el-ok); box-shadow: 0 0 10px color-mix(in oklab, var(--el-ok) 65%, transparent); }
+[data-theme="ghost-terminal"] .el-timeline > li.running::before,
+[data-theme="ghost-terminal"] .el-timeline > li.live::before {
+  background: var(--el-accent);
+  border-color: var(--el-accent);
+  box-shadow: 0 0 10px color-mix(in oklab, var(--el-accent) 75%, transparent);
+  animation: el-ghost-persist 2.8s linear infinite;
+}
+[data-theme="ghost-terminal"] .el-timeline > li.warn::before { background: var(--el-warn); border-color: var(--el-warn); }
+[data-theme="ghost-terminal"] .el-timeline > li.fail::before { background: var(--el-fail); border-color: var(--el-fail); }
+[data-theme="ghost-terminal"] .el-timeline .when {
+  font-family: var(--el-font-mono);
+  font-size: var(--el-fs-xs);
+  color: var(--el-mute);
+  white-space: nowrap;
+}
+
+[data-theme="ghost-terminal"] .el-citation-rail { border-left: 1px dashed var(--el-line-strong); padding-left: var(--el-space-3); }
+[data-theme="ghost-terminal"] .el-citation-rail .el-cite { border-radius: 2px; }
+[data-theme="ghost-terminal"] .el-citation-rail .el-cite .n { font-family: var(--el-font-mono); color: var(--el-accent); text-shadow: 0 0 10px color-mix(in oklab, var(--el-accent) 40%, transparent); }
+[data-theme="ghost-terminal"] .el-citation-rail .el-cite a { font-family: var(--el-font-mono); font-size: var(--el-fs-sm); }
+[data-theme="ghost-terminal"] .el-citation-rail .el-cite a:hover { color: var(--el-accent); text-shadow: 0 0 10px color-mix(in oklab, var(--el-accent) 35%, transparent); }
+[data-theme="ghost-terminal"] .el-source-card .src {
+  font-family: var(--el-font-mono);
+  font-size: var(--el-fs-xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--el-accent);
+  text-shadow: 0 0 10px color-mix(in oklab, var(--el-accent) 35%, transparent);
+}
+[data-theme="ghost-terminal"] .el-source-card .ttl { color: var(--el-ink); }
+[data-theme="ghost-terminal"] .el-source-card .snip { color: var(--el-mute); }
+
+[data-theme="ghost-terminal"] .el-empty .el-icon {
+  border-radius: 2px;
+  background: color-mix(in oklab, var(--el-accent) 7%, transparent);
+  box-shadow: inset 0 0 0 1px var(--el-line-strong);
+  color: var(--el-ink-soft);
+}
+[data-theme="ghost-terminal"] .el-empty .el-msg { font-family: var(--el-font-mono); color: var(--el-mute); }
+[data-theme="ghost-terminal"] .el-empty .el-hint { font-family: var(--el-font-mono); color: var(--el-mute); }
+
+[data-theme="ghost-terminal"] .el-kbd {
+  font-family: var(--el-font-mono);
+  color: var(--el-accent);
+  background: color-mix(in oklab, var(--el-accent) 8%, var(--el-panel-2));
+  border: 1px solid var(--el-line-strong);
+  border-bottom-width: 2px;
+  border-radius: 2px;
+  text-shadow: 0 0 10px color-mix(in oklab, var(--el-accent) 40%, transparent);
+}
+
+[data-theme="ghost-terminal"] .el-badge {
+  font-family: var(--el-font-mono);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border: 1px dashed var(--el-line-strong);
+  border-radius: 2px;
+  background: color-mix(in oklab, var(--el-accent) 8%, var(--el-panel));
+  color: var(--el-ink-soft);
+}
+[data-theme="ghost-terminal"] .el-badge.ok { color: var(--el-ok); border-color: color-mix(in oklab, var(--el-ok) 45%, transparent); }
+[data-theme="ghost-terminal"] .el-badge.fail { color: var(--el-fail); border-color: color-mix(in oklab, var(--el-fail) 45%, transparent); }
+[data-theme="ghost-terminal"] .el-badge.warn { color: var(--el-warn); }
+[data-theme="ghost-terminal"] .el-badge.info { color: var(--el-info); }
+[data-theme="ghost-terminal"] .el-badge.live { color: var(--el-live); border-style: solid; }
+
+[data-theme="ghost-terminal"] .el-avatar {
+  border-radius: 2px;
+  background: color-mix(in oklab, var(--el-accent) 10%, var(--el-panel-2));
+  border: 1px solid var(--el-line-strong);
+  color: var(--el-accent);
+  font-family: var(--el-font-mono);
+  font-weight: 600;
+  text-shadow: 0 0 8px color-mix(in oklab, var(--el-accent) 40%, transparent);
+}
+
+[data-theme="ghost-terminal"] .el-btn-group { gap: 0; }
+[data-theme="ghost-terminal"] .el-btn-group .el-btn { border-radius: 0; }
+[data-theme="ghost-terminal"] .el-btn-group .el-btn + .el-btn { margin-left: -1px; box-shadow: none; }
+[data-theme="ghost-terminal"] .el-btn-group .el-btn:hover { box-shadow: 0 0 22px color-mix(in oklab, var(--el-accent) 40%, transparent); }
+[data-theme="ghost-terminal"] .el-btn--danger {
+  color: var(--el-fail);
+  border-color: color-mix(in oklab, var(--el-fail) 50%, var(--el-line-strong));
+}
+[data-theme="ghost-terminal"] .el-btn--danger::before,
+[data-theme="ghost-terminal"] .el-btn--danger::after { color: color-mix(in oklab, var(--el-fail) 70%, var(--el-mute)); }
+[data-theme="ghost-terminal"] .el-btn--danger:hover {
+  color: var(--el-bg);
+  background: var(--el-fail);
+  border-color: var(--el-fail);
+  box-shadow: 0 0 26px color-mix(in oklab, var(--el-fail) 48%, transparent);
+}
+[data-theme="ghost-terminal"] .el-btn--danger:hover::before,
+[data-theme="ghost-terminal"] .el-btn--danger:hover::after { color: var(--el-bg); }
+[data-theme="ghost-terminal"] .el-btn--squared { border-radius: 0; }
+[data-theme="ghost-terminal"] .el-btn.loading::after {
+  border-color: color-mix(in oklab, var(--el-accent) 30%, transparent);
+  border-top-color: var(--el-accent);
+}
+
+[data-theme="ghost-terminal"] .el-textarea {
+  font-family: var(--el-font-mono);
+  font-size: var(--el-fs-sm);
+  color: var(--el-ink);
+  background-color: transparent;
+  border: 0;
+  border-bottom: 1px dashed var(--el-line-strong);
+  border-radius: 2px;
+  caret-color: var(--el-accent);
+  caret-shape: block;
+}
+[data-theme="ghost-terminal"] .el-textarea:hover { border-bottom-style: solid; border-bottom-color: var(--el-mute); }
+[data-theme="ghost-terminal"] .el-textarea:focus {
+  outline: none;
+  border-bottom: 1px solid var(--el-accent);
+  box-shadow: var(--el-ring), 0 0 18px -4px color-mix(in oklab, var(--el-accent) 35%, transparent);
+}
+[data-theme="ghost-terminal"] .el-select select {
+  font-family: var(--el-font-mono);
+  font-size: var(--el-fs-sm);
+  color: var(--el-ink);
+  background-color: color-mix(in oklab, var(--el-accent) 6%, var(--el-panel-2));
+  border: 1px dashed var(--el-line-strong);
+  border-radius: 2px;
+}
+[data-theme="ghost-terminal"] .el-select select:hover:not(:disabled) { border-color: color-mix(in oklab, var(--el-accent) 55%, var(--el-line-strong)); }
+[data-theme="ghost-terminal"] .el-select select:focus { outline: none; border-color: var(--el-accent); box-shadow: var(--el-ring); }
+[data-theme="ghost-terminal"] .el-select::after { color: var(--el-mute); }
+[data-theme="ghost-terminal"] .el-search {
+  font-family: var(--el-font-mono);
+  font-size: var(--el-fs-sm);
+  color: var(--el-ink);
+  background-color: transparent;
+  border: 0;
+  border-bottom: 1px dashed var(--el-line-strong);
+  border-radius: 2px;
+  caret-color: var(--el-accent);
+}
+[data-theme="ghost-terminal"] .el-search:focus {
+  outline: none;
+  border-bottom: 1px solid var(--el-accent);
+  box-shadow: var(--el-ring);
+}
+[data-theme="ghost-terminal"] .el-search-field::before { color: var(--el-mute); }
+[data-theme="ghost-terminal"] .el-hint { font-family: var(--el-font-mono); color: var(--el-mute); }
+[data-theme="ghost-terminal"] .el-field .el-error { font-family: var(--el-font-mono); font-size: var(--el-fs-xs); color: var(--el-fail); }
+[data-theme="ghost-terminal"] .el-field[data-invalid] .el-input,
+[data-theme="ghost-terminal"] .el-field[data-invalid] .el-textarea {
+  border-bottom-color: var(--el-fail);
+  box-shadow: 0 0 16px -6px color-mix(in oklab, var(--el-fail) 45%, transparent);
+}
+
+[data-theme="ghost-terminal"] .el-segmented {
+  gap: 2px;
+  padding: 2px;
+  background: color-mix(in oklab, var(--el-bg) 55%, var(--el-panel-2));
+  border: 1px dashed var(--el-line-strong);
+  border-radius: 2px;
+}
+[data-theme="ghost-terminal"] .el-segmented button {
+  font-family: var(--el-font-mono);
+  font-size: var(--el-fs-sm);
+  letter-spacing: 0.08em;
+  border-radius: 1px;
+  color: var(--el-ink-soft);
+}
+[data-theme="ghost-terminal"] .el-segmented button.on {
+  background: color-mix(in oklab, var(--el-accent) 18%, transparent);
+  color: var(--el-accent);
+  text-shadow: 0 0 10px color-mix(in oklab, var(--el-accent) 40%, transparent);
+}
+[data-theme="ghost-terminal"] .el-check {
+  border-radius: 1px;
+  border-color: var(--el-line-strong);
+  background: color-mix(in oklab, var(--el-bg) 52%, var(--el-panel-2));
+}
+[data-theme="ghost-terminal"] .el-check::after { color: var(--el-on-accent); }
+[data-theme="ghost-terminal"] .el-check.on,
+[data-theme="ghost-terminal"] .el-check:has(input:checked) {
+  background: var(--el-accent);
+  border-color: var(--el-accent);
+  box-shadow: 0 0 12px color-mix(in oklab, var(--el-accent) 40%, transparent);
+}
+[data-theme="ghost-terminal"] .el-switch.selected,
+[data-theme="ghost-terminal"] .el-switch.on { text-shadow: 0 0 10px color-mix(in oklab, var(--el-accent) 40%, transparent); }
+
+[data-theme="ghost-terminal"] .el-stepper li .num {
+  font-family: var(--el-font-mono);
+  border-radius: 1px;
+  background: var(--el-panel-2);
+  border: 1px dashed var(--el-line-strong);
+  color: var(--el-ink-soft);
+}
+[data-theme="ghost-terminal"] .el-stepper li.done .num { background: var(--el-ok); border-color: var(--el-ok); color: var(--el-on-accent); box-shadow: 0 0 10px color-mix(in oklab, var(--el-ok) 40%, transparent); }
+[data-theme="ghost-terminal"] .el-stepper li.active .num { background: var(--el-accent); border-color: var(--el-accent); color: var(--el-on-accent); box-shadow: 0 0 12px color-mix(in oklab, var(--el-accent) 55%, transparent); }
+[data-theme="ghost-terminal"] .el-stepper li.active { color: var(--el-accent); }
+[data-theme="ghost-terminal"] .el-ladder-step { border-radius: 2px; }
+[data-theme="ghost-terminal"] .el-ladder-step .el-ladder-idx { font-family: var(--el-font-mono); border-radius: 1px; }
+[data-theme="ghost-terminal"] .el-ladder-step.is-done .el-ladder-idx { background: var(--el-ok); border-color: var(--el-ok); color: var(--el-on-accent); }
+[data-theme="ghost-terminal"] .el-ladder-step.is-running .el-ladder-label { color: var(--el-accent); text-shadow: 0 0 10px color-mix(in oklab, var(--el-accent) 35%, transparent); }
+[data-theme="ghost-terminal"] .el-ladder-step.is-stale .el-ladder-label { color: var(--el-fail); }
+[data-theme="ghost-terminal"] .el-pagination .page { font-family: var(--el-font-mono); border-radius: 2px; min-width: 28px; }
+[data-theme="ghost-terminal"] .el-pagination .page.on {
+  color: var(--el-accent);
+  background: color-mix(in oklab, var(--el-accent) 12%, transparent);
+  border-color: color-mix(in oklab, var(--el-accent) 50%, transparent);
+  text-shadow: 0 0 10px color-mix(in oklab, var(--el-accent) 40%, transparent);
+}
+[data-theme="ghost-terminal"] .el-pagination .page:hover { color: var(--el-ink); border-color: var(--el-line-strong); }
+[data-theme="ghost-terminal"] .el-pagination .info { font-family: var(--el-font-mono); color: var(--el-mute); }
+
+/* stats + meters: backlit amber readouts */
+[data-theme="ghost-terminal"] .el-stat-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+[data-theme="ghost-terminal"] .el-stat-value { white-space: nowrap; }
+[data-theme="ghost-terminal"] .el-stat {
+  background: var(--el-panel);
+  background-image: var(--el-ornament);
+  border: 1px dashed var(--el-line-strong);
+  border-radius: 2px;
+  box-shadow: var(--el-raise-1), var(--el-hairline);
+  padding: var(--el-card-pad);
+}
+[data-theme="ghost-terminal"] .el-stat-label {
+  font-family: var(--el-font-mono);
+  font-size: var(--el-fs-xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--el-mute);
+}
+[data-theme="ghost-terminal"] .el-stat-value {
+  font-family: var(--el-font-mono);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+  color: var(--el-accent);
+  text-shadow: 0 0 16px color-mix(in oklab, var(--el-accent) 42%, transparent);
+}
+[data-theme="ghost-terminal"] .el-stat-value small { color: var(--el-mute); }
+[data-theme="ghost-terminal"] .el-stat-delta { font-family: var(--el-font-mono); font-size: var(--el-fs-xs); color: var(--el-ink-soft); }
+[data-theme="ghost-terminal"] .el-stat-delta.up { color: var(--el-ok); }
+[data-theme="ghost-terminal"] .el-stat-delta.down { color: var(--el-fail); }
+[data-theme="ghost-terminal"] .el-stat-delta.flat { color: var(--el-mute); }
+[data-theme="ghost-terminal"] .el-stat-note { font-family: var(--el-font-mono); font-size: var(--el-fs-xs); color: var(--el-mute); }
+[data-theme="ghost-terminal"] .el-sparkline { color: var(--el-accent); filter: drop-shadow(0 0 6px color-mix(in oklab, var(--el-accent) 55%, transparent)); }
+[data-theme="ghost-terminal"] .el-progress { background: var(--el-panel-3); border: 1px solid var(--el-line); border-radius: 1px; }
+[data-theme="ghost-terminal"] .el-progress > .fill {
+  background-color: var(--el-accent);
+  background-image: repeating-linear-gradient(90deg, transparent 0 4px, rgba(12, 11, 8, 0.8) 4px 5px);
+  box-shadow: 0 0 12px color-mix(in oklab, var(--el-accent) 45%, transparent);
+}
+[data-theme="ghost-terminal"] .el-progress.ok > .fill { background-color: var(--el-ok); box-shadow: 0 0 12px color-mix(in oklab, var(--el-ok) 45%, transparent); }
+[data-theme="ghost-terminal"] .el-progress.warn > .fill { background-color: var(--el-warn); }
+[data-theme="ghost-terminal"] .el-progress.fail > .fill { background-color: var(--el-fail); }
+[data-theme="ghost-terminal"] .el-meter { background: var(--el-panel-3); border: 1px solid var(--el-line); border-radius: 1px; }
+[data-theme="ghost-terminal"] .el-meter > .fill {
+  background: repeating-linear-gradient(90deg, var(--el-accent) 0 7px, transparent 7px 8px);
+  box-shadow: 0 0 10px color-mix(in oklab, var(--el-accent) 40%, transparent);
+}
+[data-theme="ghost-terminal"] .el-meter.ok > .fill { background: repeating-linear-gradient(90deg, var(--el-ok) 0 7px, transparent 7px 8px); }
+[data-theme="ghost-terminal"] .el-meter.warn > .fill { background: repeating-linear-gradient(90deg, var(--el-warn) 0 7px, transparent 7px 8px); }
+[data-theme="ghost-terminal"] .el-meter.fail > .fill { background: repeating-linear-gradient(90deg, var(--el-fail) 0 7px, transparent 7px 8px); }
+[data-theme="ghost-terminal"] .el-meter-label { font-family: var(--el-font-mono); font-size: var(--el-fs-xs); color: var(--el-mute); }
+
+/* chart text (donut center): glyphs ride onto the amber ring at 44px —
+   warm-black paint-order stroke keeps them legible, halo stays dark not amber */
+[data-theme="ghost-terminal"] .el-chart-svg text {
+  paint-order: stroke;
+  stroke: var(--el-bg);
+  stroke-width: 3px;
+  stroke-linejoin: round;
+}
+
+/* colortypo fix: unchecked checkbox/radio/switch boundaries ride --el-line-strong
+   (#51400f ≈ 1.9:1 on panel); ink-mixed amber restores the 3:1 boundary.
+   ROUTE: sheets should carry a dedicated control-border token ≥3:1. */
+[data-theme="ghost-terminal"] .el-check,
+[data-theme="ghost-terminal"] .el-radio .dot,
+[data-theme="ghost-terminal"] .el-switch {
+  border-color: color-mix(in oklab, var(--el-ink) 30%, var(--el-line-strong));
+}
+
+[data-theme="ghost-terminal"] .el-status-dot { border-radius: 1px; }
+[data-theme="ghost-terminal"] .el-status-dot.idle { color: var(--el-mute); box-shadow: 0 0 0 2px color-mix(in oklab, var(--el-mute) 20%, transparent); }
+[data-theme="ghost-terminal"] .el-status-dot.running { color: var(--el-accent); box-shadow: 0 0 10px color-mix(in oklab, var(--el-accent) 65%, transparent); }
+[data-theme="ghost-terminal"] .el-status-dot.ok { color: var(--el-ok); }
+[data-theme="ghost-terminal"] .el-status-dot.warn { color: var(--el-warn); }
+[data-theme="ghost-terminal"] .el-status-dot.fail { color: var(--el-fail); box-shadow: 0 0 12px color-mix(in oklab, var(--el-fail) 65%, transparent); }
+[data-theme="ghost-terminal"] .el-status-dot.live { color: var(--el-live); }
+[data-theme="ghost-terminal"] .el-status-pill {
+  font-family: var(--el-font-mono);
+  font-size: var(--el-fs-xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  border-radius: 2px;
+  background: color-mix(in oklab, var(--el-accent) 6%, transparent);
+  border: 1px dashed var(--el-line-strong);
+}
+[data-theme="ghost-terminal"] .el-status-pill::before { border-radius: 1px; }
+[data-theme="ghost-terminal"] .el-status-pill.queued { color: var(--el-mute); }
+[data-theme="ghost-terminal"] .el-status-pill.running { color: var(--el-accent); border-color: color-mix(in oklab, var(--el-accent) 50%, transparent); }
+[data-theme="ghost-terminal"] .el-status-pill.stale { color: var(--el-fail); border-color: color-mix(in oklab, var(--el-fail) 45%, transparent); }
+[data-theme="ghost-terminal"] .el-status-pill.ok { color: var(--el-ok); }
+[data-theme="ghost-terminal"] .el-status-pill.live { color: var(--el-live); border-style: solid; }
+
+/* app chrome: window frame reads as a tube — warm titlebar, glowing keys */
+[data-theme="ghost-terminal"] .el-appwin {
+  border-color: var(--el-line-strong);
+  border-radius: 2px;
+  box-shadow: var(--el-raise-3), inset 0 0 90px -30px color-mix(in oklab, var(--el-accent) 20%, transparent), var(--el-hairline);
+}
+[data-theme="ghost-terminal"] .el-titlebar {
+  background: linear-gradient(180deg, var(--el-panel-3), var(--el-panel-2));
+  border-bottom: 1px dashed var(--el-line-strong);
+}
+[data-theme="ghost-terminal"] .el-titlebar .el-app-title,
+[data-theme="ghost-terminal"] .el-titlebar .el-app-title small { font-family: var(--el-font-mono); }
+[data-theme="ghost-terminal"] .el-titlebar .el-app-title {
+  color: var(--el-accent);
+  text-shadow: 0 0 12px color-mix(in oklab, var(--el-accent) 38%, transparent);
+}
+[data-theme="ghost-terminal"] .el-titlebar .el-app-title small { color: var(--el-mute); }
+[data-theme="ghost-terminal"] .el-titlebar:is(.el-titlebar) .winbtns { padding-right: var(--el-space-2); }
+[data-theme="ghost-terminal"] .el-menubar { background: color-mix(in oklab, var(--el-panel) 55%, var(--el-bg)); border-bottom: 1px dashed var(--el-line); }
+[data-theme="ghost-terminal"] .el-menubar-item {
+  font-family: var(--el-font-mono);
+  font-size: var(--el-fs-sm);
+  letter-spacing: 0.08em;
+  border-radius: 2px;
+}
+[data-theme="ghost-terminal"] .el-menubar-item[aria-expanded="true"],
+[data-theme="ghost-terminal"] .el-menubar-item.is-open {
+  color: var(--el-accent);
+  text-shadow: 0 0 10px color-mix(in oklab, var(--el-accent) 40%, transparent);
+  box-shadow: inset 0 -2px 0 var(--el-accent);
+}
+[data-theme="ghost-terminal"] .el-headerbar {
+  background: var(--el-panel-2);
+  border-bottom: 1px dashed var(--el-line);
+}
+[data-theme="ghost-terminal"] .el-headerbar .el-headerbar-label { font-family: var(--el-font-mono); color: var(--el-accent); }
+[data-theme="ghost-terminal"] .el-listbox {
+  background: color-mix(in oklab, var(--el-bg) 70%, var(--el-panel));
+  border: 1px dashed var(--el-line-strong);
+  border-radius: 2px;
+}
+[data-theme="ghost-terminal"] .el-listbox-header {
+  font-family: var(--el-font-mono);
+  font-size: var(--el-fs-xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--el-mute);
+  border-bottom: 1px dashed var(--el-line);
+}
+[data-theme="ghost-terminal"] .el-listbox-row {
+  font-family: var(--el-font-mono);
+  font-size: var(--el-fs-sm);
+  border-radius: 0;
+  box-shadow: inset 0 -1px 0 var(--el-line-2);
+}
+[data-theme="ghost-terminal"] .el-listbox-row:last-child { box-shadow: none; }
+[data-theme="ghost-terminal"] .el-listbox-row .icon { color: var(--el-mute); }
+[data-theme="ghost-terminal"] .el-listbox-row:hover { background: color-mix(in oklab, var(--el-accent) 9%, transparent); }
+[data-theme="ghost-terminal"] .el-listbox-row.is-selected,
+[data-theme="ghost-terminal"] .el-listbox-row[aria-selected="true"] {
+  background: color-mix(in oklab, var(--el-accent) 14%, transparent);
+  box-shadow: inset 2px 0 0 var(--el-accent), 0 0 16px -6px color-mix(in oklab, var(--el-accent) 50%, transparent);
+}
+[data-theme="ghost-terminal"] .el-listbox-row .count { font-family: var(--el-font-mono); color: var(--el-mute); }
+[data-theme="ghost-terminal"] .el-actionbar { background: var(--el-panel-2); border-top: 1px dashed var(--el-line-strong); }
+[data-theme="ghost-terminal"] .el-actionbar .lead {
+  font-family: var(--el-font-mono);
+  font-size: var(--el-fs-xs);
+  letter-spacing: 0.1em;
+  color: var(--el-mute);
+}
+[data-theme="ghost-terminal"] .el-tabbar { background: var(--el-panel-2); border-top: 1px dashed var(--el-line-strong); }
+[data-theme="ghost-terminal"] .el-tabbar-item {
+  font-family: var(--el-font-mono);
+  font-size: var(--el-fs-xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border-radius: 2px;
+}
+[data-theme="ghost-terminal"] .el-tabbar-item.is-active {
+  background: color-mix(in oklab, var(--el-accent) 14%, transparent);
+  text-shadow: 0 0 10px color-mix(in oklab, var(--el-accent) 45%, transparent);
+  box-shadow: inset 0 2px 0 var(--el-accent);
+}
+[data-theme="ghost-terminal"] .el-notification {
+  background: var(--el-panel);
+  border: 1px dashed var(--el-line-strong);
+  border-radius: 2px;
+  box-shadow: var(--el-raise-2), var(--el-hairline);
+}
+[data-theme="ghost-terminal"] .el-notification > .icon {
+  border-radius: 2px;
+  background: color-mix(in oklab, var(--el-accent) 8%, transparent);
+  box-shadow: inset 0 0 0 1px var(--el-line-strong);
+  color: var(--el-accent);
+}
+[data-theme="ghost-terminal"] .el-notification .app {
+  font-family: var(--el-font-mono);
+  font-size: var(--el-fs-xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--el-accent);
+}
+[data-theme="ghost-terminal"] .el-notification .time { font-family: var(--el-font-mono); font-size: var(--el-fs-xs); color: var(--el-mute); }
+[data-theme="ghost-terminal"] .el-notification.running > .icon { color: var(--el-accent); }
+[data-theme="ghost-terminal"] .el-notification.ok > .icon { color: var(--el-ok); }
+[data-theme="ghost-terminal"] .el-notification.warn > .icon { color: var(--el-warn); }
+[data-theme="ghost-terminal"] .el-notification.fail > .icon { color: var(--el-fail); }
+[data-theme="ghost-terminal"] .el-notification.info > .icon { color: var(--el-info); }
+[data-theme="ghost-terminal"] .el-notification.live > .icon {
+  color: var(--el-live);
+  box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--el-live) 45%, transparent), 0 0 12px color-mix(in oklab, var(--el-live) 40%, transparent);
+}
+
+/* overlays: panels are glass-free CRT plates behind a phosphor scrim */
+[data-theme="ghost-terminal"] dialog.el-dialog,
+[data-theme="ghost-terminal"] .el-dialog:not(dialog) {
+  background: var(--el-panel);
+  border: 1px solid var(--el-line-strong);
+  border-radius: 2px;
+  box-shadow: var(--el-raise-3), 0 0 64px -8px color-mix(in oklab, var(--el-accent) 22%, transparent);
+  color: var(--el-ink);
+}
+[data-theme="ghost-terminal"] dialog.el-dialog::backdrop,
+[data-theme="ghost-terminal"] .el-scrim { background: rgba(6, 4, 1, 0.8); }
+[data-theme="ghost-terminal"] .el-dialog-head { border-bottom: 1px dashed var(--el-line-strong); }
+[data-theme="ghost-terminal"] .el-dialog-head h2,
+[data-theme="ghost-terminal"] .el-dialog-head h3,
+[data-theme="ghost-terminal"] .el-dialog-head .el-dialog-title { font-family: var(--el-font-display); }
+[data-theme="ghost-terminal"] .el-dialog-close { border-radius: 2px; color: var(--el-mute); }
+[data-theme="ghost-terminal"] .el-dialog-close:hover { color: var(--el-accent); background: color-mix(in oklab, var(--el-accent) 12%, transparent); }
+[data-theme="ghost-terminal"] .el-drawer { background: var(--el-panel); border-color: var(--el-line-strong); box-shadow: var(--el-raise-3), 0 0 48px -10px color-mix(in oklab, var(--el-accent) 24%, transparent); border-radius: 0; }
+[data-theme="ghost-terminal"] .el-drawer .el-drawer-head { border-bottom: 1px dashed var(--el-line-strong); }
+[data-theme="ghost-terminal"] .el-drawer .el-drawer-foot { border-top: 1px dashed var(--el-line-strong); }
+[data-theme="ghost-terminal"] .el-popover .el-pop {
+  background: var(--el-panel);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border: 1px dashed var(--el-line-strong);
+  border-radius: 2px;
+  box-shadow: var(--el-raise-3), 0 0 40px -10px color-mix(in oklab, var(--el-accent) 22%, transparent);
+}
+[data-theme="ghost-terminal"] .el-popover .el-pop > h4 { font-family: var(--el-font-mono); font-size: var(--el-fs-sm); letter-spacing: 0.02em; color: var(--el-accent); }
+[data-theme="ghost-terminal"] .el-menu {
+  background: var(--el-panel);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border: 1px dashed var(--el-line-strong);
+  border-radius: 2px;
+  box-shadow: var(--el-raise-3), 0 0 40px -10px color-mix(in oklab, var(--el-accent) 22%, transparent);
+}
+[data-theme="ghost-terminal"] .el-menu .el-menu-item {
+  font-family: var(--el-font-mono);
+  font-size: var(--el-fs-sm);
+  border-radius: 2px;
+}
+[data-theme="ghost-terminal"] .el-menu .el-menu-item:hover,
+[data-theme="ghost-terminal"] .el-menu .el-menu-item.on {
+  background: color-mix(in oklab, var(--el-accent) 13%, transparent);
+  color: var(--el-accent);
+  text-shadow: 0 0 10px color-mix(in oklab, var(--el-accent) 40%, transparent);
+}
+[data-theme="ghost-terminal"] .el-menu .el-menu-label { font-family: var(--el-font-mono); }
+[data-theme="ghost-terminal"] .el-tooltip::after {
+  font-family: var(--el-font-mono);
+  font-size: var(--el-fs-xs);
+  background: var(--el-panel-3);
+  border-color: var(--el-line-strong);
+  border-radius: 2px;
+  color: var(--el-accent);
+  text-shadow: 0 0 8px color-mix(in oklab, var(--el-accent) 35%, transparent);
+}
+[data-theme="ghost-terminal"] .el-toast {
+  font-family: var(--el-font-mono);
+  font-size: var(--el-fs-sm);
+  border-radius: 2px;
+  background: var(--el-panel);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  box-shadow: var(--el-raise-2), 0 0 26px -6px color-mix(in oklab, var(--el-accent) 26%, transparent);
+}
+[data-theme="ghost-terminal"] .el-toast > .close { border-radius: 2px; color: var(--el-mute); }
+[data-theme="ghost-terminal"] .el-toast > .close:hover { transform: none; background: color-mix(in oklab, var(--el-accent) 12%, transparent); color: var(--el-accent); }
+[data-theme="ghost-terminal"] .el-command-panel {
+  background: var(--el-panel);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border: 1px dashed var(--el-line-strong);
+  border-radius: 2px;
+  box-shadow: var(--el-raise-3), 0 0 64px -8px color-mix(in oklab, var(--el-accent) 24%, transparent);
+}
+[data-theme="ghost-terminal"] .el-command-input {
+  font-family: var(--el-font-mono);
+  border-block-end: 1px dashed var(--el-line-strong);
+}
+[data-theme="ghost-terminal"] .el-command-input:focus { border-block-end-color: var(--el-accent); }
+[data-theme="ghost-terminal"] .el-command-row { font-family: var(--el-font-mono); font-size: var(--el-fs-sm); border-radius: 2px; }
+[data-theme="ghost-terminal"] .el-command-row.sel {
+  background: color-mix(in oklab, var(--el-accent) 15%, transparent);
+  color: var(--el-accent);
+  text-shadow: 0 0 10px color-mix(in oklab, var(--el-accent) 40%, transparent);
+  box-shadow: inset 2px 0 0 var(--el-accent);
+}
+[data-theme="ghost-terminal"] .el-command-group { font-family: var(--el-font-mono); color: var(--el-mute); }
+[data-theme="ghost-terminal"] .el-command-empty { font-family: var(--el-font-mono); color: var(--el-mute); }
+[data-theme="ghost-terminal"] .el-command-foot { border-block-start: 1px dashed var(--el-line); }
+
+/* reader / inspector / oracle: long-form amber reading surfaces */
+[data-theme="ghost-terminal"] .el-reader { color: var(--el-ink-soft); }
+[data-theme="ghost-terminal"] .el-reader h1,
+[data-theme="ghost-terminal"] .el-reader h2,
+[data-theme="ghost-terminal"] .el-reader h3 { color: var(--el-ink); }
+[data-theme="ghost-terminal"] .el-reader blockquote {
+  font-family: var(--el-font-mono);
+  border-left: 2px solid var(--el-accent);
+  background: color-mix(in oklab, var(--el-accent) 6%, transparent);
+  border-radius: 0 2px 2px 0;
+}
+[data-theme="ghost-terminal"] .el-reader code,
+[data-theme="ghost-terminal"] .el-reader pre { background: var(--el-panel-2); border: 1px dashed var(--el-line); border-radius: 2px; }
+[data-theme="ghost-terminal"] .el-reader-meta { font-family: var(--el-font-mono); font-size: var(--el-fs-xs); color: var(--el-mute); }
+[data-theme="ghost-terminal"] .el-reader-version-chips .chip { font-family: var(--el-font-mono); border-radius: 2px; }
+[data-theme="ghost-terminal"] .el-code-block {
+  font-family: var(--el-font-mono);
+  background: var(--el-bg);
+  border: 1px dashed var(--el-line-strong);
+  border-radius: 2px;
+}
+[data-theme="ghost-terminal"] .el-code-block .el-keyword { color: var(--el-accent); text-shadow: 0 0 8px color-mix(in oklab, var(--el-accent) 40%, transparent); }
+[data-theme="ghost-terminal"] .el-code-block .el-string { color: var(--el-info); }
+[data-theme="ghost-terminal"] .el-code-block .el-number { color: var(--el-ok); }
+[data-theme="ghost-terminal"] .el-code-block .el-comment { color: var(--el-mute); }
+[data-theme="ghost-terminal"] .el-code-block .el-fn { color: var(--el-teal); }
+[data-theme="ghost-terminal"] .el-inspector { background: var(--el-panel); border-color: var(--el-line-strong); }
+[data-theme="ghost-terminal"] .el-inspector-header {
+  font-family: var(--el-font-mono);
+  font-size: var(--el-fs-xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--el-accent);
+  border-block-end: 1px dashed var(--el-line-strong);
+}
+[data-theme="ghost-terminal"] .el-inspector-close { border-radius: 2px; }
+[data-theme="ghost-terminal"] .el-inspector-scrim { background: rgba(6, 4, 1, 0.7); }
+[data-theme="ghost-terminal"] .el-assistant-panel {
+  background: var(--el-panel);
+  border: 1px dashed var(--el-line-strong);
+  border-radius: 2px;
+  box-shadow: var(--el-raise-1);
+}
+[data-theme="ghost-terminal"] .el-assistant-head {
+  font-family: var(--el-font-mono);
+  font-size: var(--el-fs-xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--el-accent);
+  text-shadow: 0 0 10px color-mix(in oklab, var(--el-accent) 38%, transparent);
+  border-block-end: 1px dashed var(--el-line);
+}
+[data-theme="ghost-terminal"] .el-msg--assistant { background: var(--el-panel-2); border: 1px dashed var(--el-line-strong); border-radius: 2px; }
+[data-theme="ghost-terminal"] .el-msg--user { background: color-mix(in oklab, var(--el-accent) 10%, transparent); border: 1px solid color-mix(in oklab, var(--el-accent) 30%, transparent); border-radius: 2px; }
+[data-theme="ghost-terminal"] .el-assistant-foot { border-block-start: 1px dashed var(--el-line); }
+[data-theme="ghost-terminal"] .el-assistant-stop { border-radius: 2px; }
+[data-theme="ghost-terminal"] .el-plan .el-plan-title { font-family: var(--el-font-mono); }
+
+/* feedback: banner is a warm band; shimmer stays inside the tube */
+[data-theme="ghost-terminal"] .el-banner { border-radius: 2px; }
+[data-theme="ghost-terminal"] .el-banner .action {
+  font-family: var(--el-font-mono);
+  font-size: var(--el-fs-sm);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+[data-theme="ghost-terminal"] .el-spinner { border-color: color-mix(in oklab, var(--el-accent) 26%, transparent); border-inline-start-color: var(--el-accent); }
+[data-theme="ghost-terminal"] .el-skeleton {
+  border-radius: 1px;
+  background: color-mix(in oklab, var(--el-accent) 9%, var(--el-panel-2));
+  border-bottom: 1px dashed var(--el-line);
+}
+[data-theme="ghost-terminal"] .el-inline-alert {
+  border-radius: 2px;
+  background: var(--el-panel);
+  border: 1px dashed var(--el-line-strong);
+}
+[data-theme="ghost-terminal"] .el-inline-alert > .el-icon { border-radius: 2px; }
+[data-theme="ghost-terminal"] .el-inline-alert .title { font-family: var(--el-font-mono); font-size: var(--el-fs-sm); letter-spacing: 0.04em; text-transform: uppercase; }
+
+/* tube motion law: lamps that blink or persist are exempt in reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  [data-theme="ghost-terminal"] .el-navbar .brand::before,
+  [data-theme="ghost-terminal"] .el-timeline > li.running::before,
+  [data-theme="ghost-terminal"] .el-timeline > li.live::before { animation: none; }
+  [data-theme="ghost-terminal"] .el-banner,
+  [data-theme="ghost-terminal"] .el-notification,
+  [data-theme="ghost-terminal"] .el-navbar .brand::before { animation-duration: 0.01ms !important; }
+}
+
+/* ── v0.4.0 spacing pass (WAXLAMP renders, 1440px): same exact-grid defects as
+   the mono pass — pin the --left-style track fill, flush plan columns, filled
+   fact rows, one 36px keycap height across the head/control rows ── */
+[data-theme="ghost-terminal"] .el-pricing { max-width: none; }
+[data-theme="ghost-terminal"] .el-fact-grid { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+[data-theme="ghost-terminal"] .el-search-field .el-search { min-height: var(--el-ctl-min-h); }
+[data-theme="ghost-terminal"] div.el-dropdown {
+  padding: 0;
+  border: 0;
+  background: none;
+  box-shadow: none;
+  min-height: 0;
+}
+
+/* narrow viewports: the three-pane app mock stacks instead of scrolling sideways */
+@media (max-width: 900px) {
+  [data-theme="mono-console"] .el-appwin-body,
+  [data-theme="ghost-terminal"] .el-appwin-body {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+}
+/* ═══════════════════ v0.4.0 MOBILE PASS — tech-mono family ═══════════════════
+   Mobile console = a TUI pane on a phone: chunky touch rows, mono command rows
+   that wrap instead of swipe, single-column stacks, the app mock collapsing to
+   one pane column (already shipped in the spacing pass above, kept here at its
+   wider scope for the record).
+
+   Three scopes only; desktop exact grids from the spacing pass are untouched:
+     ≤900  app mockup three-pane body stacks
+     ≤768  the brief's single-column breakpoint — inline-styled page grids
+           (cards, plans, app pane row pairs, fact bands) stack; nav link row
+           wraps instead of the hidden swipe rail; headerbar rows wrap
+     ≤430  touch rung — one 44px floor on every interactive height via the
+           tokens this theme already owns (--el-ctl-min-h / --el-row-h) plus
+           --el-touch-min for the controls with no height token
+
+   The demo pages pin a few grids with inline style attributes; author rules
+   can't beat inline declarations, so the media scopes carry !important for
+   exactly those attribute hooks and nowhere else. Evidence:
+   qa/sites/mono-console/m-*.png, qa/sites/ghost-terminal/m-*.png.             */
+
+/* ── ≤900: app mockup panes (re-stated at the wider rung for the pass) ─────── */
+@media (max-width: 900px) {
+  [data-theme="mono-console"] .el-appwin-body[style*="grid-template-columns"],
+  [data-theme="ghost-terminal"] .el-appwin-body[style*="grid-template-columns"] {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+  /* the sheet pins .el-sidebar at --el-rail-w (248px); as the top stacked pane
+     that leaves an 84px dead strip beside its border — fill the column and
+     turn the rail border into a pane divider. The demo carries the rail's old
+     border as an inline style, so this needs the one !important it explains. */
+  [data-theme="mono-console"] .el-appwin-body > .el-sidebar,
+  [data-theme="ghost-terminal"] .el-appwin-body > .el-sidebar {
+    width: auto;
+    border-right: 0 !important;
+    border-bottom: var(--el-bw) solid var(--el-edge);
+  }
+}
+
+/* ── ≤768: single column ───────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  /* inline-styled content rows: clusters (cards/plans/citation rail), app stat
+     rows, fact bands, and the settings stack whose one implicit auto track
+     blew tracks out to the textarea's min-content (604px) and clipped every
+     field inside the identity panel at 360 */
+  [data-theme="mono-console"] .el-cluster[style*="grid-template-columns"],
+  [data-theme="mono-console"] .el-stat-row[style*="grid-template-columns"],
+  [data-theme="mono-console"] .el-fact-grid[style*="grid-template-columns"],
+  [data-theme="mono-console"] form[style*="display:grid"],
+  [data-theme="ghost-terminal"] .el-cluster[style*="grid-template-columns"],
+  [data-theme="ghost-terminal"] .el-stat-row[style*="grid-template-columns"],
+  [data-theme="ghost-terminal"] .el-fact-grid[style*="grid-template-columns"],
+  [data-theme="ghost-terminal"] form[style*="display:grid"] {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  [data-theme="mono-console"] .el-cluster[style*="grid-template-columns"],
+  [data-theme="mono-console"] .el-stat-row[style*="grid-template-columns"],
+  [data-theme="mono-console"] .el-fact-grid[style*="grid-template-columns"],
+  [data-theme="ghost-terminal"] .el-cluster[style*="grid-template-columns"],
+  [data-theme="ghost-terminal"] .el-stat-row[style*="grid-template-columns"],
+  [data-theme="ghost-terminal"] .el-fact-grid[style*="grid-template-columns"] {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+  /* fields inside stacked control stacks keep their own width floor at zero */
+  [data-theme="mono-console"] form[style*="display:grid"] > .el-field,
+  [data-theme="mono-console"] form[style*="display:grid"] > .el-inline-alert,
+  [data-theme="ghost-terminal"] form[style*="display:grid"] > .el-field,
+  [data-theme="ghost-terminal"] form[style*="display:grid"] > .el-inline-alert {
+    min-width: 0;
+  }
+  /* the app panes are inline-styled grids with no template: their single
+     implicit auto track grew to the widest child's min-content (the build
+     table) and pushed the pane past the window frame — pin one zero-floor
+     track so the pane stays inside the frame and the table scrolls in place */
+  [data-theme="mono-console"] .el-appwin-body [style*="display:grid"],
+  [data-theme="mono-console"] .el-appwin-body > aside.el-sidebar,
+  [data-theme="ghost-terminal"] .el-appwin-body [style*="display:grid"],
+  [data-theme="ghost-terminal"] .el-appwin-body > aside.el-sidebar {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  /* nav: the sheet's --top links row is a hidden-scroll swipe rail that cuts
+     every run past the fold; on the TUI pane the links wrap in place so
+     nothing is carried off-screen */
+  [data-theme="mono-console"] .el-navbar--top > .links,
+  [data-theme="ghost-terminal"] .el-navbar--top > .links {
+    flex-wrap: wrap;
+    overflow-x: visible;
+  }
+
+  /* headerbar: label + filter + search + danger button don't share 328px —
+     let the row wrap and give the search an honest flex share */
+  [data-theme="mono-console"] .el-headerbar,
+  [data-theme="ghost-terminal"] .el-headerbar { flex-wrap: wrap; }
+  [data-theme="mono-console"] .el-headerbar .el-search-field,
+  [data-theme="ghost-terminal"] .el-headerbar .el-search-field {
+    flex: 1 1 150px;
+    min-width: 140px;
+  }
+
+  /* titlebar: the lead hint ("fleet 412 · island portland-2") wrapped to three
+     lines and doubled the chrome height; even ellipsized it painted across the
+     centered app title at this track width — drop it, the title + app name pair
+     already carries the context on a TUI pane */
+  [data-theme="mono-console"] .el-titlebar .lead,
+  [data-theme="ghost-terminal"] .el-titlebar .lead { min-width: 0; }
+  [data-theme="mono-console"] .el-titlebar .lead .el-hint,
+  [data-theme="ghost-terminal"] .el-titlebar .lead .el-hint {
+    display: none;
+  }
+
+  /* the split hero is the sheet's two-column band until its own @760 container
+     query — between 760 and 768 the twins disagreed (mono's --left hero is
+     naturally single, ghost's --split held two tracks). Pin the split to one
+     column at this rung so both sites read the same. */
+  [data-theme="mono-console"] .el-hero--split,
+  [data-theme="ghost-terminal"] .el-hero--split {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  /* long tokens wrap before they push anything sideways */
+  [data-theme="mono-console"] .el-card-title,
+  [data-theme="mono-console"] .el-pricing .price,
+  [data-theme="ghost-terminal"] .el-card-title,
+  [data-theme="ghost-terminal"] .el-pricing .price {
+    overflow-wrap: anywhere;
+  }
+
+  /* pagination: the page + info set shares the row; wrap it on phone widths */
+  [data-theme="mono-console"] .el-pagination,
+  [data-theme="ghost-terminal"] .el-pagination { flex-wrap: wrap; }
+
+  /* app action bars keep their buttons on one row when space allows */
+  [data-theme="mono-console"] .el-actionbar,
+  [data-theme="ghost-terminal"] .el-actionbar { flex-wrap: wrap; }
+
+  /* the policy form's footer row is an inline nowrap flex of six controls
+     (Save changes · Strict/Balanced/Cheap · Discard · Delete workspace): it
+     spilled 207px past the panel on the 430 rung, under the form panel's
+     overflow-x clip that swallows the page scroll — give the row the same
+     wrap the actionbars get (the form itself is the .el-panel here) */
+  [data-theme="mono-console"] form[style*="display:grid"] > div[style*="display:flex"],
+  [data-theme="ghost-terminal"] form[style*="display:grid"] > div[style*="display:flex"] {
+    flex-wrap: wrap;
+    row-gap: var(--el-space-1);
+  }
+}
+
+/* ── ≤430: touch rung — one 44px floor ─────────────────────────────────────── */
+@media (max-width: 430px) {
+  [data-theme="mono-console"],
+  [data-theme="ghost-terminal"] {
+    --el-ctl-min-h: 44px;   /* buttons, inputs, selects, search fields */
+    --el-row-h: 44px;       /* listbox rows */
+    --el-touch-min: 44px;   /* controls with no height token of their own */
+  }
+
+  /* nav: link rows and the action buttons the persona wave pinned at 30px */
+  [data-theme="mono-console"] .el-navbar .links a,
+  [data-theme="mono-console"] .el-navbar .links button,
+  [data-theme="ghost-terminal"] .el-navbar .links a,
+  [data-theme="ghost-terminal"] .el-navbar .links button,
+  [data-theme="mono-console"] .el-navbar .actions .el-btn,
+  [data-theme="ghost-terminal"] .el-navbar .actions .el-btn {
+    min-height: var(--el-touch-min);
+  }
+
+  /* app chrome: menubar + menu + tabbar items */
+  [data-theme="mono-console"] .el-menu .el-menu-item,
+  [data-theme="ghost-terminal"] .el-menu .el-menu-item,
+  [data-theme="mono-console"] .el-menubar-item,
+  [data-theme="ghost-terminal"] .el-menubar-item,
+  [data-theme="mono-console"] .el-tabbar-item,
+  [data-theme="ghost-terminal"] .el-tabbar-item {
+    min-height: var(--el-touch-min);
+  }
+  [data-theme="mono-console"] .el-menubar,
+  [data-theme="ghost-terminal"] .el-menubar { flex-wrap: wrap; row-gap: var(--el-space-1); }
+
+  /* controls without their own height voice: fields, filter chips, segmented,
+     pagination */
+  [data-theme="mono-console"] .el-input,
+  [data-theme="mono-console"] .el-select select,
+  [data-theme="mono-console"] .el-search,
+  [data-theme="mono-console"] button.el-chip,
+  [data-theme="mono-console"] a.el-chip,
+  [data-theme="mono-console"] .el-segmented button,
+  [data-theme="mono-console"] .el-pagination,
+  [data-theme="ghost-terminal"] .el-input,
+  [data-theme="ghost-terminal"] .el-select select,
+  [data-theme="ghost-terminal"] .el-search,
+  [data-theme="ghost-terminal"] button.el-chip,
+  [data-theme="ghost-terminal"] a.el-chip,
+  [data-theme="ghost-terminal"] .el-segmented button,
+  [data-theme="ghost-terminal"] .el-pagination,
+  [data-theme="mono-console"] .el-inspector-close,
+  [data-theme="ghost-terminal"] .el-inspector-close,
+  [data-theme="mono-console"] .el-toast > .close,
+  [data-theme="ghost-terminal"] .el-toast > .close,
+  [data-theme="mono-console"] .el-notification .close,
+  [data-theme="ghost-terminal"] .el-notification .close,
+  [data-theme="mono-console"] .el-notification .actions button,
+  [data-theme="ghost-terminal"] .el-notification .actions button,
+  [data-theme="mono-console"] .el-assistant-stop,
+  [data-theme="ghost-terminal"] .el-assistant-stop {
+    min-height: var(--el-touch-min);
+  }
+
+  /* the two catalogs pin their selects inline (`min-height:34px` rides the
+     style attribute) — the pass's documented inline-beat !important applies */
+  [data-theme="mono-console"] select.el-dropdown,
+  [data-theme="ghost-terminal"] select.el-dropdown {
+    min-height: var(--el-touch-min) !important;
+  }
+  [data-theme="mono-console"] .el-notification .close,
+  [data-theme="ghost-terminal"] .el-notification .close {
+    min-width: var(--el-touch-min);
+  }
+
+  /* the demo's own sidebar rows (nav buttons under .el-sidebar .grp, the head
+     toggle) are demo-local elements with no height token — floor them too */
+  [data-theme="mono-console"] .el-sidebar .grp > button,
+  [data-theme="ghost-terminal"] .el-sidebar .grp > button {
+    min-height: var(--el-touch-min);
+    padding-block: var(--el-space-1);
+  }
+  [data-theme="mono-console"] .el-sidebar .head .toggle,
+  [data-theme="ghost-terminal"] .el-sidebar .head .toggle {
+    min-height: var(--el-touch-min);
+  }
+
+  /* radios: the tap target is the whole label row — make the row a 44px band */
+  [data-theme="mono-console"] .el-radio,
+  [data-theme="ghost-terminal"] .el-radio {
+    min-height: var(--el-touch-min);
+    align-items: center;
+  }
+  /* checkboxes: the invisible native input covers only the 17px painted box
+     (sheet inset:0, its own 13px box); a 44px outset keeps the visual
+     untouched and just grows the hit area — nothing paints outside the box */
+  [data-theme="mono-console"] .el-check input,
+  [data-theme="ghost-terminal"] .el-check input {
+    inset: -15.5px;
+  }
+
+  /* sliders: the sheet builds the rail out of the input's own 6px background —
+     unusable as a drag target under the thumb. Keep the painted rail 6px
+     (background-size strip, honored by both engines) and give the box the
+     full 44px drag height plus a grip-sized thumb. */
+  [data-theme="mono-console"] .el-slider,
+  [data-theme="ghost-terminal"] .el-slider {
+    height: var(--el-touch-min);
+    background-size: 100% 6px;
+    background-position: 0 50%;
+    background-repeat: no-repeat;
+  }
+  [data-theme="mono-console"] .el-slider::-webkit-slider-thumb,
+  [data-theme="ghost-terminal"] .el-slider::-webkit-slider-thumb {
+    width: 24px;
+    height: 24px;
+  }
+  [data-theme="mono-console"] .el-pagination { row-gap: var(--el-space-1); }
+  [data-theme="ghost-terminal"] .el-pagination { row-gap: var(--el-space-1); }
+  [data-theme="mono-console"] .el-pagination .page,
+  [data-theme="ghost-terminal"] .el-pagination .page {
+    min-width: 40px;
+    min-height: var(--el-touch-min);
+  }
+
+  /* window buttons: the sheet's 22px box is well under the touch floor, but the
+     visible control is only the 12px ::before dot — the box itself paints
+     nothing, so enlarging the box enlarges only the hit area */
+  [data-theme="mono-console"] .el-winbtn,
+  [data-theme="ghost-terminal"] .el-winbtn {
+    width: var(--el-touch-min);
+    height: var(--el-touch-min);
+  }
+
+  /* the brand link is a 21px logo row; footer links are 18px inline rows —
+     both real tap targets. The footer link rows read as TUI command lines. */
+  [data-theme="mono-console"] .el-navbar .brand,
+  [data-theme="ghost-terminal"] .el-navbar .brand {
+    min-height: var(--el-touch-min);
+  }
+  [data-theme="mono-console"] .el-footer a,
+  [data-theme="ghost-terminal"] .el-footer a {
+    display: inline-flex;
+    align-items: center;
+    min-height: var(--el-touch-min);
+  }
+
+  /* tooltips: the rest-state bubble (opacity 0) still contributes scrollable
+     overflow — measured +8px past the 430 rung on right-edge nav actions
+     (mono-console catalog sw 438). Anchor the bubble to its trigger's right
+     edge on the touch rung so it can only grow leftward. */
+  [data-theme="mono-console"] .el-tooltip::after,
+  [data-theme="ghost-terminal"] .el-tooltip::after,
+  [data-theme="mono-console"] .el-tooltip--below::after,
+  [data-theme="ghost-terminal"] .el-tooltip--below::after {
+    left: auto;
+    right: 0;
+    transform: none;
+  }
+  [data-theme="mono-console"] .el-tooltip:hover::after,
+  [data-theme="mono-console"] .el-tooltip:focus-within::after,
+  [data-theme="mono-console"] .el-tooltip:has(:focus-visible)::after,
+  [data-theme="mono-console"] .el-tooltip--below:hover::after,
+  [data-theme="mono-console"] .el-tooltip--below:focus-within::after,
+  [data-theme="mono-console"] .el-tooltip--below:has(:focus-visible)::after { transform: none; }
+  [data-theme="ghost-terminal"] .el-tooltip:hover::after,
+  [data-theme="ghost-terminal"] .el-tooltip:focus-within::after,
+  [data-theme="ghost-terminal"] .el-tooltip:has(:focus-visible)::after,
+  [data-theme="ghost-terminal"] .el-tooltip--below:hover::after,
+  [data-theme="ghost-terminal"] .el-tooltip--below:focus-within::after,
+  [data-theme="ghost-terminal"] .el-tooltip--below:has(:focus-visible)::after { transform: none; }
+
+  /* code-copy chip: the sheet bleeds its hit lane with the same ::after device
+     at inset:-11px (=42px on a 20px chip); nudge the bleed to a full 44 */
+  [data-theme="mono-console"] .el-codecopy::after,
+  [data-theme="ghost-terminal"] .el-codecopy::after { inset: -13px; }
+
+  /* citation-rail rows (article sources): a bare 19px inline anchor becomes a
+     44px band — the block link carries the tap target */
+  [data-theme="mono-console"] .el-citation-rail .el-cite,
+  [data-theme="ghost-terminal"] .el-citation-rail .el-cite {
+    align-items: center;
+  }
+  [data-theme="mono-console"] .el-citation-rail .el-cite a,
+  [data-theme="ghost-terminal"] .el-citation-rail .el-cite a {
+    display: block;
+    padding-block: calc((var(--el-touch-min) - 1.4em) / 2);
+  }
+}

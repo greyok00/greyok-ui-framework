@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en" data-theme="solar-halo">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aurelia Dome — the sky, indoors</title>
+<link rel="stylesheet" href="../../../base.css">
+<link rel="stylesheet" href="../../../fonts.css">
+<link rel="stylesheet" href="../../../tokens.css">
+<link rel="stylesheet" href="../../../elements-display.css">
+<link rel="stylesheet" href="../../../elements-structure.css">
+<link rel="stylesheet" href="../../../elements-lists.css">
+<link rel="stylesheet" href="../../../elements-app.css">
+<link rel="stylesheet" href="../../../elements-containers.css">
+<link rel="stylesheet" href="../../../elements-controls.css">
+<link rel="stylesheet" href="../../../elements-inputs.css">
+<link rel="stylesheet" href="../../../elements-dataviz.css">
+<link rel="stylesheet" href="../../../elements-overlay.css">
+<link rel="stylesheet" href="../../../elements-interactions.css">
+<link rel="stylesheet" href="../../../elements-misc.css">
+<link rel="stylesheet" href="../../../elements-size.css">
+<link rel="stylesheet" href="../../../elements-workflow.css">
+<link rel="stylesheet" href="../../../elements-inspector.css">
+<link rel="stylesheet" href="../../../elements-reader.css">
+<link rel="stylesheet" href="../../../elements-assistant.css">
+<link rel="stylesheet" href="../../../themes/src/webgl-immersive.css">
+<script src="../../../elements.js" defer></script>
+<script src="../../../charts.js" defer></script>
+</head>
+<body>
+<main class="el-page">
+<nav class="el-navbar el-navbar--top">
+  <a class="brand" href="index.html">AURELIA DOME</a>
+  <div class="links"><a href="index.html" aria-current="page">Now Playing</a><a href="catalog.html">Exhibits</a><a href="article.html">Journal</a><a href="account.html">Tickets</a><a href="observe.html">Backstage</a><a href="app.html">Dome Console</a></div>
+  <div class="actions">
+<span class="el-chip live el-chip--sm">Doors 19:00</span>
+<button class="el-btn el-btn--ghost" data-toast="Program guide sent to your inbox">Program</button>
+<button class="el-btn" data-dialog-open="dlg-tickets">Book seats</button></div>
+</nav>
+<header class="el-hero el-hero--poster">
+<div class="media"><svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Dome interior">
+<defs>
+<radialGradient id="sg" cx="50%" cy="42%" r="52%">
+<stop offset="0" stop-color="#ffcb74" stop-opacity="0.9"/><stop offset="0.45" stop-color="#b96a1c" stop-opacity="0.55"/><stop offset="1" stop-color="#401f06" stop-opacity="0"/>
+</radialGradient>
+<linearGradient id="sv" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#2b1a0a"/><stop offset="0.62" stop-color="#180f07"/><stop offset="1" stop-color="#0b0806"/>
+</linearGradient>
+</defs>
+<rect width="1600" height="900" fill="url(#sv)"/>
+<line x1="800" y1="450" x2="1295" y2="450" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="800" y1="450" x2="1265" y2="619" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="800" y1="450" x2="1179" y2="768" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="800" y1="450" x2="1048" y2="879" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="800" y1="450" x2="886" y2="937" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="800" y1="450" x2="714" y2="937" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="800" y1="450" x2="553" y2="879" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="800" y1="450" x2="421" y2="768" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="800" y1="450" x2="335" y2="619" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="800" y1="450" x2="305" y2="450" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="800" y1="450" x2="335" y2="281" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="800" y1="450" x2="421" y2="132" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="800" y1="450" x2="552" y2="21" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="800" y1="450" x2="714" y2="-37" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="800" y1="450" x2="886" y2="-37" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="800" y1="450" x2="1048" y2="21" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="800" y1="450" x2="1179" y2="132" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="800" y1="450" x2="1265" y2="281" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/>
+<circle cx="800" cy="396" r="234" fill="url(#sg)"/>
+<circle cx="800" cy="396" r="81" fill="#ffd28a"/>
+<path d="M 1151 731 a 45 27 0 0 0 -76 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/><path d="M 1088 716 a 45 27 0 0 0 -63 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/><path d="M 1007 704 a 45 27 0 0 0 -45 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/><path d="M 914 696 a 45 27 0 0 0 -25 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/><path d="M 814 693 a 45 27 0 0 0 -3 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/><path d="M 714 695 a 45 27 0 0 0 19 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/><path d="M 619 701 a 45 27 0 0 0 39 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/><path d="M 534 712 a 45 27 0 0 0 58 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/><path d="M 465 726 a 45 27 0 0 0 73 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/>
+</svg></div>
+<div class="el-eyebrow">AURELIA DOME · A PLANETARIUM, KEPT WARM</div>
+<h1>The sky, indoors.</h1>
+<p>An 18-meter dome, 8,000 stars, and exactly enough light to find your seat. Shows nightly; the smell of popcorn is not an effect.</p>
+<div class="actions"><button class="el-btn" data-dialog-open="dlg-tickets">Book tonight</button><button class="el-btn el-btn--outline" data-toast="Season brochure sent">See the season</button></div>
+<div class="el-row-flex" style="margin-top:18px;gap:8px;flex-wrap:wrap"><span class="el-pill">8K STEREO</span><span class="el-pill">18 M DOME</span><span class="el-pill">340 SEATS</span><span class="el-pill">SINCE 1994</span></div>
+</header>
+<div class="el-banner el-banner--warn el-banner--attached">
+<span class="glyph">☀</span>
+<div class="copy"><b>Lamp swap tonight 22:30</b><span class="detail">The 21:45 "Ring of Fire" runs on the B projector; picture identical, bulb newer.</span></div>
+<button class="action el-btn el-btn--squared" data-toast="Seat held for the 21:45 run" data-toast-variant="ok">Hold my seat</button>
+<button class="close" aria-label="Dismiss">×</button>
+</div>
+<section class="el-section">
+  <div class="el-section-head"><div><div class="el-eyebrow">Tonight</div><h2>Friday at the dome, 19:00</h2></div></div>
+  <div class="el-cluster"><div class="el-stat"><div class="el-stat-label">Tonight's shows</div><div class="el-stat-value">6</div><div class="el-stat-row"><span class="el-stat-note">next 19:30</span></div><span class="el-sparkline" data-chart="sparkline" data-values="3,3,4,5,4,6,6" data-width="150" data-height="40" data-color="#ffb347"></span></div><div class="el-stat"><div class="el-stat-label">Dome fill</div><div class="el-stat-value">92<small>%</small></div><div class="el-stat-row"><span class="el-stat-delta up">3.1%</span><span class="el-stat-note">vs last Friday</span></div><span class="el-sparkline" data-chart="sparkline" data-values="71,74,80,84,88,90,92" data-width="150" data-height="40" data-color="#ffb347"></span></div><div class="el-stat"><div class="el-stat-label">Members</div><div class="el-stat-value">12,904</div><div class="el-stat-row"><span class="el-stat-note">+214 this month</span></div><span class="el-sparkline" data-chart="sparkline" data-values="12.1,12.3,12.4,12.6,12.7,12.8,12.90" data-width="150" data-height="40" data-color="#d9c58f"></span></div><div class="el-stat"><div class="el-stat-label">Lamp hours</div><div class="el-stat-value">4,821<small> h</small></div><div class="el-stat-row"><span class="el-stat-delta flat">3.1%</span><span class="el-stat-note">A/B lamps at 72%</span></div><span class="el-sparkline" data-chart="sparkline" data-values="4.2,4.4,4.5,4.6,4.7,4.8,4.82" data-width="150" data-height="40" data-color="#ffd28a"></span></div></div>
+  <div class="el-row-flex"><div class="el-panel">
+<div class="el-panel-head"><span>Seats filled tonight</span><span class="el-status-pill live">DOORS 19:00</span></div>
+<span class="el-chart" data-chart="donut" data-values="92,8" data-width="150" data-height="150" data-color="#ffb347" data-label="92% filled"></span>
+</div><span class="el-chart" data-chart="area" data-values="55,62,68,71,74,76,78,81,84,86,88,90,92" data-width="520" data-height="120" data-color="#ffb347" data-label="seat fill across the evening"></span></div>
+</section>
+<section class="el-section">
+  <div class="el-section-head"><div><div class="el-eyebrow">Now playing</div><h2>Three seats, three skies</h2></div><p class="rule"></p></div>
+  <div class="el-cluster"><article class="el-card el-card--raised is-interactive">
+<div class="el-card-media"><svg viewBox="0 0 640 300" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Show plate">
+<defs>
+<radialGradient id="sg" cx="50%" cy="42%" r="52%">
+<stop offset="0" stop-color="#ffcb74" stop-opacity="0.9"/><stop offset="0.45" stop-color="#b96a1c" stop-opacity="0.55"/><stop offset="1" stop-color="#401f06" stop-opacity="0"/>
+</radialGradient>
+<linearGradient id="sv" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#2b1a0a"/><stop offset="0.62" stop-color="#180f07"/><stop offset="1" stop-color="#0b0806"/>
+</linearGradient>
+</defs>
+<rect width="640" height="300" fill="url(#sv)"/>
+<line x1="320" y1="150" x2="485" y2="150" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="150" x2="475" y2="206" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="150" x2="446" y2="256" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="150" x2="402" y2="293" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="150" x2="349" y2="312" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="150" x2="291" y2="312" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="150" x2="238" y2="293" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="150" x2="194" y2="256" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="150" x2="165" y2="206" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="150" x2="155" y2="150" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="150" x2="165" y2="94" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="150" x2="194" y2="44" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="150" x2="237" y2="7" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="150" x2="291" y2="-12" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="150" x2="349" y2="-12" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="150" x2="402" y2="7" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="150" x2="446" y2="44" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="150" x2="475" y2="94" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/>
+<circle cx="320" cy="132" r="78" fill="url(#sg)"/>
+<circle cx="320" cy="132" r="27" fill="#ffd28a"/>
+<path d="M 437 244 a 15 9 0 0 0 -25 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/><path d="M 416 239 a 15 9 0 0 0 -21 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/><path d="M 389 235 a 15 9 0 0 0 -15 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/><path d="M 358 232 a 15 9 0 0 0 -8 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/><path d="M 325 231 a 15 9 0 0 0 -1 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/><path d="M 291 232 a 15 9 0 0 0 6 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/><path d="M 260 234 a 15 9 0 0 0 13 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/><path d="M 231 237 a 15 9 0 0 0 19 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/><path d="M 208 242 a 15 9 0 0 0 24 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/>
+</svg></div>
+<div class="lbl">FULDDOME · 40 MIN</div>
+<h3>Ring of Fire</h3>
+<span class="sub">The sun's year, told from inside. 8K stereo, scored live on the dome's pipe.</span>
+<div class="el-card-foot">
+<span class="el-badge">NEW</span>
+<span class="el-cluster" style="margin-left:auto"><button class="el-btn el-btn--ghost el-btn--squared" data-dialog-open="dlg-tickets">Seats &amp; times</button></span>
+</div></article><article class="el-card el-card--raised is-interactive">
+<div class="el-card-media"><svg viewBox="0 0 640 300" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Show plate">
+<defs>
+<radialGradient id="sg" cx="50%" cy="42%" r="52%">
+<stop offset="0" stop-color="#ffcb74" stop-opacity="0.9"/><stop offset="0.45" stop-color="#b96a1c" stop-opacity="0.55"/><stop offset="1" stop-color="#401f06" stop-opacity="0"/>
+</radialGradient>
+<linearGradient id="sv" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#2b1a0a"/><stop offset="0.62" stop-color="#180f07"/><stop offset="1" stop-color="#0b0806"/>
+</linearGradient>
+</defs>
+<rect width="640" height="300" fill="url(#sv)"/>
+<line x1="320" y1="150" x2="485" y2="150" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="150" x2="475" y2="206" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="150" x2="446" y2="256" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="150" x2="402" y2="293" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="150" x2="349" y2="312" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="150" x2="291" y2="312" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="150" x2="238" y2="293" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="150" x2="194" y2="256" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="150" x2="165" y2="206" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="150" x2="155" y2="150" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="150" x2="165" y2="94" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="150" x2="194" y2="44" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="150" x2="237" y2="7" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="150" x2="291" y2="-12" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="150" x2="349" y2="-12" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="150" x2="402" y2="7" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="150" x2="446" y2="44" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="150" x2="475" y2="94" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/>
+<circle cx="320" cy="132" r="78" fill="url(#sg)"/>
+<circle cx="320" cy="132" r="27" fill="#ffd28a"/>
+<path d="M 437 244 a 15 9 0 0 0 -25 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/><path d="M 416 239 a 15 9 0 0 0 -21 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/><path d="M 389 235 a 15 9 0 0 0 -15 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/><path d="M 358 232 a 15 9 0 0 0 -8 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/><path d="M 325 231 a 15 9 0 0 0 -1 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/><path d="M 291 232 a 15 9 0 0 0 6 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/><path d="M 260 234 a 15 9 0 0 0 13 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/><path d="M 231 237 a 15 9 0 0 0 19 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/><path d="M 208 242 a 15 9 0 0 0 24 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/>
+</svg></div>
+<div class="lbl">STARBALL · 55 MIN</div>
+<h3>Grand Tour, 1974</h3>
+<span class="sub">The original starball projection, restored bulb and all. Bring someone over 60.</span>
+<div class="el-card-foot">
+<span class="el-badge">CLASSIC</span>
+<span class="el-cluster" style="margin-left:auto"><button class="el-btn el-btn--ghost el-btn--squared" data-toast="Reminder set for Wednesday">Seats &amp; times</button></span>
+</div></article><article class="el-card el-card--raised is-interactive">
+<div class="el-card-media"><svg viewBox="0 0 640 300" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Show plate">
+<defs>
+<radialGradient id="sg" cx="50%" cy="42%" r="52%">
+<stop offset="0" stop-color="#ffcb74" stop-opacity="0.9"/><stop offset="0.45" stop-color="#b96a1c" stop-opacity="0.55"/><stop offset="1" stop-color="#401f06" stop-opacity="0"/>
+</radialGradient>
+<linearGradient id="sv" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#2b1a0a"/><stop offset="0.62" stop-color="#180f07"/><stop offset="1" stop-color="#0b0806"/>
+</linearGradient>
+</defs>
+<rect width="640" height="300" fill="url(#sv)"/>
+<line x1="320" y1="150" x2="485" y2="150" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="150" x2="475" y2="206" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="150" x2="446" y2="256" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="150" x2="402" y2="293" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="150" x2="349" y2="312" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="150" x2="291" y2="312" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="150" x2="238" y2="293" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="150" x2="194" y2="256" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="150" x2="165" y2="206" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="150" x2="155" y2="150" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="150" x2="165" y2="94" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="150" x2="194" y2="44" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="150" x2="237" y2="7" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="150" x2="291" y2="-12" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="150" x2="349" y2="-12" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="150" x2="402" y2="7" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="150" x2="446" y2="44" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="150" x2="475" y2="94" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/>
+<circle cx="320" cy="132" r="78" fill="url(#sg)"/>
+<circle cx="320" cy="132" r="27" fill="#ffd28a"/>
+<path d="M 437 244 a 15 9 0 0 0 -25 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/><path d="M 416 239 a 15 9 0 0 0 -21 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/><path d="M 389 235 a 15 9 0 0 0 -15 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/><path d="M 358 232 a 15 9 0 0 0 -8 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/><path d="M 325 231 a 15 9 0 0 0 -1 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/><path d="M 291 232 a 15 9 0 0 0 6 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/><path d="M 260 234 a 15 9 0 0 0 13 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/><path d="M 231 237 a 15 9 0 0 0 19 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/><path d="M 208 242 a 15 9 0 0 0 24 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/>
+</svg></div>
+<div class="lbl">AFTER DARK · 21+ · 90 MIN</div>
+<h3>Ember & Vacuum</h3>
+<span class="sub">Cosmic dust, warm drinks, one astronomer with opinions about the moon hoax.</span>
+<div class="el-card-foot">
+<span class="el-badge">ADULTS</span>
+<span class="el-cluster" style="margin-left:auto"><button class="el-btn el-btn--ghost el-btn--squared" data-toast="After Dark sells out by Thursday" data-toast-variant="warn">Seats &amp; times</button></span>
+</div></article></div>
+</section>
+<section class="el-section">
+  <div class="el-section-head"><div><div class="el-eyebrow">Season passes</div><h2>Return often, save always</h2></div></div>
+  <div class="el-row-flex" style="align-items:stretch"><article class="el-pricing "><h3 class="name">Single visit</h3><div class="price">$18<span class="per">/ adult</span></div><ul class="feats"><li>One fulldome feature</li><li>Starball classic included</li><li>Members' gallery access</li><li class="off">Priority seat pick</li><li class="off">Program archive</li></ul><div class="cta"><button class="el-btn el-btn--ghost" data-dialog-open="dlg-tickets">Evening of it</button></div></article><article class="el-pricing el-pricing--featured"><span class="flag">Most warm</span><h3 class="name">Season pass</h3><div class="price">$149<span class="per">/ year</span></div><ul class="feats"><li>Unlimited standard shows</li><li>Members' nights (12 per year)</li><li>10% gift-shop discount</li><li>Priority seat pick</li><li>Program archive</li><li class="off">After Dark passes</li></ul><div class="cta"><button class="el-btn" data-dialog-open="dlg-tickets">Join tonight</button></div></article><article class="el-pricing "><h3 class="name">Educator</h3><div class="price">$290<span class="per">/ classroom · year</span></div><ul class="feats"><li>Everything in Season pass</li><li>Up to 34 students per visit</li><li>Curriculum kits + starball time</li><li>Private dome hour</li></ul><div class="cta"><button class="el-btn el-btn--outline">Bring a class</button></div><p class="note">Fits 34 fifth-graders comfortably.</p></article></div>
+</section>
+<section class="el-section">
+  <div class="el-section-head"><div><div class="el-eyebrow">From our visitors</div><h2>Nights that stayed</h2></div></div>
+  <div class="el-row-flex" style="align-items:stretch">
+  <figure class="el-testimonial">
+<blockquote class="q">“My daughter asked whether the ring around the sun was drawn or real. I have never been happier to say neither of us knew for two full minutes.”</blockquote>
+<figcaption class="attrib"><span class="el-avatar">MV</span>
+<span><b>Marisol Vane</b> <span class="who">· member since 2019</span></span></figcaption></figure>
+  <figure class="el-testimonial">
+<blockquote class="q">“I proposed during the second act of Grand Tour. The dome did not blink. The starball operator says the bulb has heard worse.”</blockquote>
+<figcaption class="attrib"><span class="el-avatar">TB</span>
+<span><b>Theo Brack</b> <span class="who">· After Dark regular</span></span></figcaption></figure>
+  </div>
+</section>
+<footer class="el-footer"><div class="cols"><div class="col"><span class="label">Visit</span><ul><li><a href="#">Plan your evening</a></li><li><a href="#">Accessibility</a></li><li><a href="#">School field trips</a></li><li><a href="#">Getting here</a></li></ul></div><div class="col"><span class="label">Programs</span><ul><li><a href="#">Fulldome features</a></li><li><a href="#">Starball classics</a></li><li><a href="#">After Dark (21+)</a></li><li><a href="#">Members' nights</a></li></ul></div><div class="col"><span class="label">Support</span><ul><li><a href="#">Adopt a star</a></li><li><a href="#">Dome renewal fund</a></li><li><a href="#">Volunteer guild</a></li><li><a href="#">Corporate evenings</a></li></ul></div></div><p class="small"><span>Aurelia Dome · 18-meter dome, 8K stereo projection, and 340 warm seats since 1994</span><span>Tonight: doors 19:00 · first show 19:30</span></p></footer>
+</main>
+<dialog id="dlg-tickets" class="el-dialog">
+<div class="el-dialog-head"><h3>Book seats</h3><button class="el-dialog-close" data-dialog-close aria-label="Close">×</button></div>
+<form method="dialog" class="el-dialog-body">
+<label class="el-field"><span class="el-label">Show</span><input class="el-input" value="Ring of Fire · 19:30"><span class="el-hint">Held for 9 minutes while you pay.</span></label>
+<div class="el-segmented"><button>Adult</button><button class="on">Member −20%</button><button>Student</button></div>
+</form>
+<div class="el-dialog-foot"><button class="el-btn el-btn--ghost" data-dialog-close>Keep browsing</button><button class="el-btn" data-toast="Seats 12–14 held · pay at kiosk or online" data-toast-variant="ok">Hold seats</button></div>
+</dialog>
+</body>
+</html>

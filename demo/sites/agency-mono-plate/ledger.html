@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="en" data-theme="agency-mono-plate">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ashlar Ledger — engagement console</title>
+<link rel="stylesheet" href="../../../base.css">
+<link rel="stylesheet" href="../../../fonts.css">
+<link rel="stylesheet" href="../../../tokens.css">
+<link rel="stylesheet" href="../../../elements-display.css">
+<link rel="stylesheet" href="../../../elements-structure.css">
+<link rel="stylesheet" href="../../../elements-lists.css">
+<link rel="stylesheet" href="../../../elements-app.css">
+<link rel="stylesheet" href="../../../elements-containers.css">
+<link rel="stylesheet" href="../../../elements-controls.css">
+<link rel="stylesheet" href="../../../elements-inputs.css">
+<link rel="stylesheet" href="../../../elements-dataviz.css">
+<link rel="stylesheet" href="../../../elements-overlay.css">
+<link rel="stylesheet" href="../../../elements-interactions.css">
+<link rel="stylesheet" href="../../../elements-misc.css">
+<link rel="stylesheet" href="../../../elements-size.css">
+<link rel="stylesheet" href="../../../elements-workflow.css">
+<link rel="stylesheet" href="../../../elements-inspector.css">
+<link rel="stylesheet" href="../../../elements-reader.css">
+<link rel="stylesheet" href="../../../elements-assistant.css">
+<link rel="stylesheet" href="../../../themes/src/agency-classic.css">
+<script src="../../../elements.js" defer></script>
+<script src="../../../charts.js" defer></script>
+</head>
+<body>
+
+<main class="el-page el-page--flush" style="max-width:1360px;padding-block:var(--el-space-4)">
+
+  <div class="el-appwin" style="overflow:visible">
+    <div class="el-titlebar">
+      <span class="lead"><span class="el-status-dot live" aria-hidden="true"></span><span class="el-hint" style="margin:0">plate bench · portland-2</span></span>
+      <div class="el-app-title">Ashlar Ledger <small>halstead loom · set 34</small></div>
+      <div class="winbtns">
+        <button class="el-winbtn min" type="button" aria-label="Minimize"></button>
+        <button class="el-winbtn max" type="button" aria-label="Maximize"></button>
+        <button class="el-winbtn close" type="button" aria-label="Close"></button>
+      </div>
+    </div>
+
+    <div class="el-menubar" role="menubar">
+      <div class="el-menu-anchor">
+        <button class="el-menubar-item" data-menu="sets-menu" aria-expanded="false">Engagements</button>
+        <div class="el-menu" id="sets-menu" role="menu">
+          <div class="el-menu-label">On the bench</div>
+          <button class="el-menu-item" type="button">Halstead Loom · gate 4</button>
+          <button class="el-menu-item" type="button">Orrin Market · gate 2 hold</button>
+          <div class="el-menu-sep" role="separator"></div>
+          <button class="el-menu-item" type="button">Archive (36 sets)…</button>
+        </div>
+      </div>
+      <div class="el-menu-anchor">
+        <button class="el-menubar-item" data-menu="gates-menu" aria-expanded="false">Gates</button>
+        <div class="el-menu" id="gates-menu" role="menu">
+          <div class="el-menu-label">Gate actions</div>
+          <button class="el-menu-item" type="button" data-dialog-open="pass-gate">Advance gate 4…</button>
+          <button class="el-menu-item" type="button">Schedule the weekly reading…</button>
+          <div class="el-menu-sep" role="separator"></div>
+          <button class="el-menu-item is-danger" type="button" data-toast="Hold logged — the plate stops until the office answers." data-toast-variant="fail">Hold the set…</button>
+        </div>
+      </div>
+      <button class="el-menubar-item" type="button">Plates</button>
+      <button class="el-menubar-item" type="button" data-command="ledger-cmd">Commands</button>
+      <div class="el-menubar-sep" role="separator"></div>
+      <div class="el-menubar-spring"></div>
+      <span class="el-status-pill info"><span class="el-status-dot running" aria-hidden="true"></span>gate 4 · reading live</span>
+      <span class="el-avatar soft" title="Ada Halvorsen" style="margin-left:var(--el-space-2)">AH</span>
+    </div>
+
+    <div class="el-headerbar">
+      <span class="el-headerbar-label">Halstead Loom · week 7 of 20</span>
+      <span class="spring"></span>
+      <div class="el-popover">
+        <button class="el-btn el-btn--outline" type="button" aria-expanded="false">Filter</button>
+        <div class="el-pop">
+          <h4>Filter plates</h4>
+          <span class="el-check on" style="display:inline-block;margin-bottom:8px"><input type="checkbox" checked aria-label="Pressed plates only"></span>
+          <span style="font-size:var(--el-fs-sm);vertical-align:middle">pressed plates only</span>
+          <p style="font-size:var(--el-fs-xs);color:var(--el-mute);margin:10px 0 0">Rubric 31 · 40 readings</p>
+        </div>
+      </div>
+      <label class="el-search-field">
+        <input class="el-search" type="search" placeholder="Search sets, plates, readings…" aria-label="Search ledger">
+      </label>
+      <span class="el-tooltip" data-tip="Gates advance on the client's signature, not on ours." tabindex="0">
+        <button class="el-btn el-btn--ghost" type="button">Gate rules</button>
+      </span>
+      <button class="el-btn" type="button" data-dialog-open="pass-gate">Advance gate 4</button>
+    </div>
+
+    <div class="el-appwin-body ag-app-cols" style="min-height:700px">
+
+      <aside class="el-sidebar ag-app-side">
+        <div class="head">
+          <span class="brand">ashlar · set 34</span>
+          <button class="toggle" type="button" aria-label="Collapse sidebar"><span class="chev">&#8964;</span></button>
+        </div>
+        <div class="grp">
+          <span class="label">Engagements</span>
+          <button type="button" aria-current="page">Board</button>
+          <button type="button">Ladder</button>
+          <button type="button">Plates</button>
+        </div>
+        <div class="grp">
+          <span class="label">Gates</span>
+          <button type="button">Advanced <span class="el-badge" style="margin-left:auto">3</span></button>
+          <button type="button">Open <span class="el-badge warn" style="margin-left:auto">1</span></button>
+          <button type="button">Held <span class="el-badge fail" style="margin-left:auto">1</span></button>
+        </div>
+        <div class="grp">
+          <span class="label">Exports</span>
+          <button type="button">Reading sheets <span class="el-badge" style="margin-left:auto">12</span></button>
+          <button type="button">Drift logs <span class="el-badge" style="margin-left:auto">9</span></button>
+        </div>
+        <div class="end" style="font-family:var(--el-font-mono);font-size:var(--el-fs-sm);color:var(--el-mute)">rubric 31 · rev B</div>
+      </aside>
+
+      <div class="ag-pane" style="padding:var(--el-space-5);display:grid;gap:var(--el-space-5);align-content:start">
+        <div class="ag-grid-4" style="gap:var(--el-space-3)">
+          <div class="el-stat">
+            <span class="el-stat-label">unaided recall</span>
+            <span class="el-stat-value">6 / 8</span>
+            <span class="el-stat-delta up">▲ 2 readings</span>
+            <span class="el-sparkline" data-chart="sparkline" data-values="2,3,3,4,5,5,6,6" data-width="126" data-height="30" style="color:var(--el-accent)"></span>
+          </div>
+          <div class="el-stat">
+            <span class="el-stat-label">names screened</span>
+            <span class="el-stat-value">6 of 80</span>
+            <span class="el-stat-delta up">bench holds at 4</span>
+            <span class="el-sparkline" data-chart="bar" data-values="18,12,8,6,4,4,2,0" data-width="126" data-height="30" style="color:var(--el-accent)"></span>
+          </div>
+          <div class="el-stat">
+            <span class="el-stat-label">plate drift</span>
+            <span class="el-stat-value">1.8%</span>
+            <span class="el-stat-delta">tolerance 3%</span>
+            <div class="el-meter" data-value="60" style="height:8px"><span class="fill" data-fill style="width:60%"></span></div>
+          </div>
+          <div class="el-stat">
+            <span class="el-stat-label">term adoption</span>
+            <span class="el-stat-value">52%</span>
+            <span class="el-stat-delta up">▲ 7 pts wk on wk</span>
+            <span class="el-sparkline" data-chart="donut" data-values="52,48" data-width="58" data-height="58" data-label="52%" style="color:var(--el-teal)"></span>
+          </div>
+        </div>
+
+        <div>
+          <p class="el-eyebrow" style="margin:0 0 var(--el-space-2)">Gate rail · six plates to handover</p>
+          <div class="el-stage-rail" aria-label="Gate rail">
+            <div class="el-stage is-done"><span class="el-stage-dot"></span><span class="el-stage-name">1 · evidence</span><span class="el-dur">12 intv</span><span class="el-stage-count">3</span></div>
+            <div class="el-stage is-done"><span class="el-stage-dot"></span><span class="el-stage-name">2 · position</span><span class="el-dur">1 sentence</span><span class="el-stage-count">3</span></div>
+            <div class="el-stage is-running"><span class="el-stage-dot"></span><span class="el-stage-name">3 · name</span><span class="el-dur">4 pressed</span><span class="el-stage-count">1</span></div>
+            <div class="el-stage"><span class="el-stage-dot"></span><span class="el-stage-name">4 · terms</span><span class="el-dur">2 inks</span><span class="el-stage-count">2</span></div>
+            <div class="el-stage"><span class="el-stage-dot"></span><span class="el-stage-name">5 · set</span><span class="el-dur">plates 01–06</span><span class="el-stage-count">4</span></div>
+            <div class="el-stage is-stale"><span class="el-stage-dot"></span><span class="el-stage-name">6 · proof</span><span class="el-dur">1 yr audit</span><span class="el-stage-count">—</span></div>
+          </div>
+        </div>
+
+        <div>
+          <p class="el-eyebrow" style="margin:0 0 var(--el-space-2)">The ladder · what moves this gate</p>
+          <div class="ag-pair">
+            <ul class="el-ladder" aria-label="Gate ladder">
+              <li class="el-ladder-step is-done"><span class="el-ladder-idx">1</span><span class="el-ladder-label">Wholesale accounts interviewed</span><span class="el-ladder-meta">7 of 12 · two no'ed twice</span></li>
+              <li class="el-ladder-step is-done"><span class="el-ladder-idx">2</span><span class="el-ladder-label">Position sentence signed</span><span class="el-ladder-meta">“woven to the millimetre”</span></li>
+              <li class="el-ladder-step is-running"><span class="el-ladder-idx">3</span><span class="el-ladder-label">Bench pressed at rev B</span><span class="el-ladder-meta">four plates at width</span></li>
+              <li class="el-ladder-step"><span class="el-ladder-idx">4</span><span class="el-ladder-label">Recall transcripts scored</span><span class="el-ladder-meta">niners score Friday</span></li>
+            </ul>
+            <div>
+              <div class="el-progress-truth" style="margin-bottom:var(--el-space-3)">
+                <span class="el-pt-chunk on"></span><span class="el-pt-chunk on"></span><span class="el-pt-chunk is-running"></span><span class="el-pt-chunk"></span>
+                <span class="el-pt-count">2 / 4</span>
+                <span class="el-pt-label">ladder rungs signed this gate</span>
+              </div>
+              <div style="font-size:var(--el-fs-sm);color:var(--el-ink-soft)">The two open rungs need the client COO's initials; the bench rev B sheet is attached to rung 3.</div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <p class="el-eyebrow" style="margin:0 0 var(--el-space-2)">Readings · this set, latest first</p>
+          <div class="el-table el-table--ruled">
+            <table style="width:100%">
+              <thead>
+                <tr><th style="text-align:left">Reading</th><th style="text-align:left">Plate</th><th>Rev</th><th>Measure</th><th style="text-align:left">State</th></tr>
+              </thead>
+              <tbody>
+                <tr class="OK is-selected">
+                  <td><b>Recall · unaided</b></td><td>plate 03 · name</td><td class="el-mono">B</td><td class="el-mono">6 / 8</td><td><span class="el-status-pill ok"><span class="el-status-dot ok" aria-hidden="true"></span>passed</span></td>
+                </tr>
+                <tr class="OK">
+                  <td><b>Ink density</b></td><td>plate 05 · set</td><td class="el-mono">B</td><td class="el-mono">1.8%</td><td><span class="el-status-pill running"><span class="el-status-dot running" aria-hidden="true"></span>in tolerance</span></td>
+                </tr>
+                <tr class="HIGH">
+                  <td><b>Term load · wholesale</b></td><td>plate 04 · terms</td><td class="el-mono">A</td><td class="el-mono">2.9%</td><td>
+                    <span class="el-status-pill warn"><span class="el-status-dot warn" aria-hidden="true"></span>at edge</span>
+                    <span class="el-tooltip" tabindex="0" data-tip="2.9% is 0.1 under the hold line — next sheet decides.">ⓘ</span>
+                  </td>
+                </tr>
+                <tr class="CRIT">
+                  <td><b>Founder's name, 2nd press</b></td><td>plate 03 · name</td><td class="el-mono">B</td><td class="el-mono">rejected</td><td><span class="el-status-pill fail"><span class="el-status-dot warn" aria-hidden="true"></span>hold</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <aside class="ag-app-rail">
+
+        <div class="el-inspector el-inspector--docked is-docked" aria-label="Set inspector">
+          <div class="el-inspector-header"><span>Set inspector</span><button class="el-inspector-close" type="button" aria-label="Hide inspector">&times;</button></div>
+          <div class="el-inspector-body">
+            <p style="margin-top:0;font-size:var(--el-fs-sm);color:var(--el-ink-soft)">Halstead Loom rides gate 4. The bench seats four plates; two are pressed, one is at the re-press line.</p>
+            <div class="el-fact-grid">
+              <div class="el-fact"><span class="k">Set</span><span class="v">34</span></div>
+              <div class="el-fact is-hot"><span class="k">drift</span><span class="v">1.8%</span></div>
+            </div>
+            <label class="el-field" style="margin-top:var(--el-space-3)">
+              <span class="el-label">Reading rubric</span>
+              <span class="el-select" style="width:100%">
+                <select aria-label="Reading rubric">
+                  <option>rubric 31 · rev B (current)</option>
+                  <option>rubric 31 · rev A</option>
+                  <option>rubric 28 · archived</option>
+                </select>
+              </span>
+            </label>
+          </div>
+        </div>
+
+        <div class="el-inspector el-inspector--docked is-docked" aria-label="Ledger docent">
+          <div class="el-inspector-header"><span>Ledger docent</span><button class="el-inspector-close" type="button" aria-label="Close docent">&times;</button></div>
+          <div class="el-inspector-body">
+            <div class="el-assistant-panel">
+              <div class="el-assistant-head">ASHLAR DOCENT · local</div>
+              <div class="el-assistant-log">
+                <div class="el-msg el-msg--assistant">Gate 4 needs two initials: the COO on rungs 3 and 4. Rev B bench is attached to rung 3.</div>
+                <div class="el-msg el-msg--user">What if the founder name runs a third press?</div>
+                <div class="el-msg el-msg--assistant">Then the rejection record carries it and the bench stays at four. <span class="el-cite-inline">[plate.py · output 8812]</span></div>
+              </div>
+              <div class="el-assistant-foot">
+                <input class="el-input" type="text" placeholder="Ask the docent about this set…" aria-label="Ask the docent">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <p class="el-eyebrow" style="margin:0 0 var(--el-space-2)">Plates on file</p>
+          <div class="el-listbox">
+            <div class="el-listbox-header"><span>Plate</span><span>Rev</span></div>
+            <button class="el-listbox-row" type="button"><span>01 · evidence</span><span class="count">A</span></button>
+            <button class="el-listbox-row" type="button" aria-selected="true"><span>03 · name</span><span class="count">B</span></button>
+            <button class="el-listbox-row" type="button"><span>04 · terms</span><span class="count">A</span></button>
+          </div>
+        </div>
+
+        <div>
+          <p class="el-eyebrow" style="margin:0 0 var(--el-space-2)">Ledger notices</p>
+          <div class="el-notification-stack">
+            <div class="el-notification ok is-unread">
+              <span class="icon"><svg class="el-icon" viewBox="0 0 24 24"><path d="M4 12.5 9.5 18 20 6" fill="none"/></svg></span>
+              <div><div class="head"><span class="title">Recall transcripts ready</span><span class="app">gate 4</span></div>
+              <p class="body">Nine strangers read “Vernal” once; scorer assigned for Friday.</p></div>
+              <button class="close" type="button" aria-label="Dismiss">✕</button>
+              <span class="time">09:12</span>
+            </div>
+            <div class="el-notification warn">
+              <span class="icon"><svg class="el-icon" viewBox="0 0 24 24"><path d="M12 3 2 20h20z" fill="none"/></svg></span>
+              <div><div class="head"><span class="title">Term load at the edge</span><span class="app">wholesale</span></div>
+              <p class="body">2.9% against a 3% hold line. Next sheet decides plate 04.</p>
+              <div class="actions"><button type="button" data-toast="Reading scheduled — plate 04 re-presses before Friday." data-toast-variant="ok">Schedule re-press</button></div></div>
+              <button class="close" type="button" aria-label="Dismiss">✕</button>
+              <span class="time">yesterday</span>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <p class="el-eyebrow" style="margin:0 0 var(--el-space-2)">Fired this hour</p>
+          <div class="el-stack" style="margin:0;gap:var(--el-space-2)">
+            <div class="el-toast info" style="position:static"><span><b>Sheet distributed</b> — rev B reading sheet went to three client seats.</span><button class="close" type="button" aria-label="Dismiss">✕</button></div>
+            <div class="el-toast ok" style="position:static"><span><b>Rung signed</b> — rung 2 initials landed from the COO's desk.</span><button class="close" type="button" aria-label="Dismiss">✕</button></div>
+          </div>
+        </div>
+      </aside>
+
+    </div>
+
+    <div class="el-tabbar" role="tablist">
+      <button class="el-tabbar-item is-active" role="tab" type="button"><span class="el-icon">&#9638;</span>Board</button>
+      <button class="el-tabbar-item" role="tab" type="button"><span class="el-icon">&#9638;</span>Ladder</button>
+      <button class="el-tabbar-item" role="tab" type="button"><span class="el-icon">&#9638;</span>Plates&nbsp;<span class="count">12</span></button>
+      <button class="el-tabbar-item" role="tab" type="button"><span class="el-icon">&#9638;</span>Sheets&nbsp;<span class="count">9</span></button>
+    </div>
+
+    <div class="el-actionbar">
+      <span class="lead"><span class="el-status-dot ok"></span> synced 09:41 · rubric 31 · six readings riding</span>
+      <span class="actions">
+        <span class="el-tooltip" data-tip="Sheets export as plate PDFs — measured, signed, replayable." tabindex="0"><button class="el-btn el-btn--ghost" type="button">Export sheet</button></span>
+        <button class="el-btn" type="button" data-dialog-open="pass-gate">Advance gate 4</button>
+      </span>
+    </div>
+  </div>
+
+  <section class="el-section el-section--dense" style="max-width:var(--el-page-max);margin:var(--el-space-4) auto 0" aria-label="Ledger notes">
+    <p class="el-body" style="margin:0;color:var(--el-ink-soft)">Ledger is the console our clients ride — the board above runs read-only here. Seats are granted with each engagement and the reading sheet is the contract. <a href="engage.html">Brief the office →</a></p>
+  </section>
+
+</main>
+
+<div class="el-scrim" id="ledger-scrim" data-dialog-scrim></div>
+
+<dialog class="el-dialog" id="pass-gate">
+  <div class="el-dialog-head">Advance gate 4 — terms
+    <button class="el-dialog-close" type="button" aria-label="Close" data-dialog-close>✕</button>
+  </div>
+  <div class="el-dialog-body">
+    <p class="el-body" style="margin:0">Advancing pins the rev B readings — recall, ink density, term load — to the set with your signature. Gates only move forward on record.</p>
+    <div class="el-fact-grid" style="margin-top:var(--el-space-3)">
+      <div class="el-fact"><span class="k">Readings</span><span class="v">40 pinned</span></div>
+      <div class="el-fact"><span class="k">Recall</span><span class="v">6 / 8</span></div>
+      <div class="el-fact"><span class="k">Signs as</span><span class="v">A. Halvorsen</span></div>
+      <div class="el-fact is-hot"><span class="k">Gate</span><span class="v">4 · terms</span></div>
+    </div>
+  </div>
+  <div class="el-dialog-foot">
+    <button class="el-btn el-btn--ghost" type="button" data-dialog-close>Not yet</button>
+    <button class="el-btn" type="button" data-dialog-close data-toast="Gate 4 advanced — the set moves to the terms press." data-toast-variant="ok">Sign the advance</button>
+  </div>
+</dialog>
+
+<div class="el-command" id="ledger-cmd" role="dialog" aria-label="Ledger command bar">
+  <div class="el-command-panel">
+    <input class="el-command-input" type="text" placeholder="Type a command… (advance, press, hold, export)" aria-label="Command input">
+    <div class="el-command-results">
+      <div class="el-command-group">Gates</div>
+      <button class="el-command-row sel" type="button">Advance gate 4 — halstead loom <span class="el-command-hint">G4</span></button>
+      <button class="el-command-row" type="button">Schedule weekly reading — friday <span class="el-command-hint">R5</span></button>
+      <div class="el-command-group">Sets</div>
+      <button class="el-command-row" type="button">Open board — halstead loom <span class="el-command-hint">B L</span></button>
+      <button class="el-command-row" type="button">Export reading sheet — rev B <span class="el-command-hint">E</span></button>
+    </div>
+    <div class="el-command-foot"><span class="el-hint">arrows to move · enter to run · esc to close</span></div>
+  </div>
+</div>
+
+</body>
+</html>

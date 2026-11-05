@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en" data-theme="agency-quartz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The six-gate method — Halstead &amp; Byrne</title>
+<link rel="stylesheet" href="../../../base.css">
+<link rel="stylesheet" href="../../../fonts.css">
+<link rel="stylesheet" href="../../../tokens.css">
+<link rel="stylesheet" href="../../../elements-display.css">
+<link rel="stylesheet" href="../../../elements-structure.css">
+<link rel="stylesheet" href="../../../elements-lists.css">
+<link rel="stylesheet" href="../../../elements-app.css">
+<link rel="stylesheet" href="../../../elements-containers.css">
+<link rel="stylesheet" href="../../../elements-controls.css">
+<link rel="stylesheet" href="../../../elements-inputs.css">
+<link rel="stylesheet" href="../../../elements-dataviz.css">
+<link rel="stylesheet" href="../../../elements-overlay.css">
+<link rel="stylesheet" href="../../../elements-interactions.css">
+<link rel="stylesheet" href="../../../elements-misc.css">
+<link rel="stylesheet" href="../../../elements-size.css">
+<link rel="stylesheet" href="../../../elements-workflow.css">
+<link rel="stylesheet" href="../../../elements-inspector.css">
+<link rel="stylesheet" href="../../../elements-reader.css">
+<link rel="stylesheet" href="../../../elements-assistant.css">
+<link rel="stylesheet" href="../../../themes/src/agency-classic.css">
+<script src="../../../elements.js" defer></script>
+<script src="../../../charts.js" defer></script>
+<style>
+  /* reader discipline: the paper reads on ONE column — the header and the article
+     each lay a 1fr / measure / 1fr grid so every text child shares the same measure
+     track (a per-element ch cap would give each font size its own left edge), and
+     the rubric plate breaks out to the full band width like every other section */
+  main.el-page > header,
+  main.el-page > article.el-reader {
+    display: grid;
+    grid-template-columns: 1fr minmax(0, var(--el-measure)) 1fr;
+    max-width: 100%;
+  }
+  main.el-page > header > *,
+  main.el-page > article.el-reader > * {
+    grid-column: 2;
+  }
+  main.el-page > article.el-reader > figure {
+    grid-column: 1 / -1;
+  }
+</style>
+</head>
+<body>
+
+<nav class="el-navbar el-navbar--top">
+  <div class="ag-topbar">
+    <a class="brand" href="index.html">Halstead &amp; Byrne</a>
+    <div class="links">
+      <a href="work.html">Work</a>
+      <a href="method.html" aria-current="page">Method</a>
+      <a href="contact.html">Contact</a>
+      <a href="tracker.html">Tracker</a>
+    </div>
+    <div class="actions">
+      <button class="el-btn el-btn--ghost" type="button" data-toast="Client portal opens with your engagement kickoff — ask your partner for a seat." data-toast-variant="info">Client sign-in</button>
+      <a class="el-btn" href="contact.html">Start an engagement</a>
+    </div>
+  </div>
+</nav>
+
+<main class="el-page">
+
+  <header style="padding-top:var(--el-space-5)">
+    <p class="el-eyebrow">The method · paper no. 6</p>
+    <div class="el-reader-meta" style="margin-top:var(--el-space-2)">
+      <span>Thomas Byrne · partner</span><span>·</span><span>2 Nov 2026</span><span>·</span><span>14 min read</span><span>·</span><span>Portland</span>
+    </div>
+  </header>
+
+  <article class="el-reader" style="margin-top:var(--el-space-4)">
+    <h1>The six-gate method</h1>
+    <p class="lead">Every Halstead &amp; Byrne engagement runs through the same six gates. Not as ceremony — as a way to keep a year-long systems build from quietly becoming a year of drift.</p>
+    <p>Most design-system programs don't fail on craft. They fail on <em>drift</em>: tokens fork, the library diverges from the product, governance becomes a meeting nobody schedules. Our method makes drift expensive to hide and cheap to fix, because the same tracker your leadership reads is the one the engineers stand up in.</p>
+    <div class="el-reader-version-chips">
+      <span class="chip">paper v1 · 2019</span>
+      <span class="chip">v2.0 · 2021</span>
+      <span class="chip">v3.4 · 2024</span>
+      <span class="chip" aria-current="version">v4.2 · current</span>
+    </div>
+
+    <figure style="margin-block:var(--el-space-5)">
+      <div class="el-media-band">
+        <figure class="media" style="margin:0">
+          <svg viewBox="0 0 760 380" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Gate rubric plate — six gates on a hairline ruler">
+            <rect width="760" height="380" fill="#f6f8fa"></rect>
+            <line x1="40" y1="120" x2="720" y2="120" stroke="#aab3c0" stroke-width="1"></line>
+            <g fill="#46536c" font-family="IBM Plex Mono, monospace" font-size="10">
+              <g transform="translate(70,120)"><circle r="7" fill="#166534" stroke="#f6f8fa"></circle></g>
+              <g transform="translate(180,120)"><circle r="7" fill="#166534" stroke="#f6f8fa"></circle></g>
+              <g transform="translate(290,120)"><circle r="7" fill="#1d4ed8" stroke="#f6f8fa"></circle></g>
+              <g transform="translate(400,120)"><circle r="7" fill="#1d4ed8" stroke="#f6f8fa"></circle></g>
+              <g transform="translate(510,120)"><circle r="7" fill="none" stroke="#64748b"></circle></g>
+              <g transform="translate(620,120)"><circle r="7" fill="none" stroke="#64748b"></circle></g>
+            </g>
+            <g font-family="IBM Plex Mono, monospace" font-size="10" fill="#46536c">
+              <text x="44" y="100">1 tokens</text><text x="154" y="100">2 library</text>
+              <text x="256" y="100">3 rails</text><text x="374" y="100">4 qa</text>
+              <text x="486" y="100">5 adoption</text><text x="592" y="100">6 handover</text>
+            </g>
+            <rect x="283" y="120" width="3" height="150" fill="#1d4ed8" opacity="0.25"></rect>
+            <text x="283" y="300" font-family="IBM Plex Mono, monospace" font-size="10" fill="#1d4ed8">you are here · gate 3 of 6</text>
+            <text x="40" y="34" font-family="IBM Plex Mono, monospace" font-size="10" fill="#5f6b82">gate rubric 4.2 · pass requires signed evidence at every gate</text>
+          </svg>
+          <figcaption>the six gates · a system ships only when each gate signs</figcaption>
+        </figure>
+        <div class="body">
+          <span class="label">fig. 02 · the rubric</span>
+          <h3>Six gates, one ruler</h3>
+          <p class="el-body">Green dots are signed, blue is open, hollow is unscheduled. The ruler never moves — what moves is your system's fill line.</p>
+        </div>
+      </div>
+    </figure>
+
+    <h2>Gate 1 — Tokens</h2>
+    <p>A system begins as arithmetic, not pictures. Before any component exists we agree the type scale, the spacing ladder, the semantic colors, and — critically — the <em>decision log</em> that records why each value is what it is. Gate 1 passes when the tokens build clean and every value has a written reason.</p>
+    <p>The tokens live as code. To see one, open a terminal and run:</p>
+    <pre class="el-code-block"><code><span class="el-comment"># gate 1 · build and diff the token set</span>
+$ <span class="el-keyword">pdm</span> run tokens --build
+<span class="el-comment">→ 214 values ok · 0 undocumented · drift 0.00%</span>
+$ <span class="el-keyword">pdm</span> run tokens --diff --against=<span class="el-string">main</span></code></pre>
+    <p>Reviewers sign by running <span class="el-kbd">G1</span> in the tracker command palette, or <span class="el-kbd">⌘</span>&nbsp;<span class="el-kbd">K</span> then “gate sign”. A signature is a person, a date, and the exact artifact hash — not a meeting.</p>
+
+    <blockquote>"The tokens are the contract. Everything after gate 1 is just the contract made visible." — internal method memo, 2021</blockquote>
+
+    <h2>Gate 2 — Library</h2>
+    <p>Ninety-six components is the median we ship, and no component enters the library until it can be built <em>only</em> from tokens. Library reviews are boring on purpose: same order every time — anatomy, states, density, motion, a11y, deletion.</p>
+
+    <h2>Gate 3 — Rails</h2>
+    <p>"Rails" is what your product teams ride: the layouts, flows, and patterns the library composes into. This is where most engagements spend their run time. Rails pass when three product teams, who never spoke to each other, build the same surface and agree it took <em>less</em> time than before.</p>
+
+    <h2>Gates 4–6, in sequence</h2>
+    <ol class="el-timeline" style="margin:var(--el-space-4) 0">
+      <li class="ok" style="font-family:var(--el-font-body)">
+        <span class="when">wk 09</span>
+        <span class="what">Gate 4 signed — QA harness at 1,912 checks, zero regressions on 41 screens. <span class="src">evidence: qa-run-2026-06-18</span></span>
+      </li>
+      <li class="running" style="font-family:var(--el-font-body)">
+        <span class="when">wk 13</span>
+        <span class="what">Gate 5 open — adoption telemetry running in three product lines; reuse target 60% at readout. <span class="src">evidence: due Nov 21</span></span>
+      </li>
+      <li style="font-family:var(--el-font-body)">
+        <span class="when">wk 22</span>
+        <span class="what">Gate 6 scheduled — handover board seats nine engineers; owner map signed before the last invoice. <span class="src">evidence: pending</span></span>
+      </li>
+      <li class="warn" style="font-family:var(--el-font-body)">
+        <span class="when">holding</span>
+        <span class="what">Gate 5 rider — Orrin's token freeze slipped a week; re-check Dec 2. <span class="src">risk: vendor delay</span></span>
+      </li>
+    </ol>
+
+    <h2>What a gate costs — and what it buys</h2>
+    <p>A gate is a scheduled readout, a signed rubric sheet, and one number in the tracker. Skipping one is allowed exactly once per engagement, in writing, with an expiry. The audit below is the live coverage from the Meridian run at gate 4.</p>
+
+    <div style="max-width:560px">
+      <div style="display:flex;align-items:center;gap:var(--el-space-3)">
+        <span style="font-family:var(--el-font-mono);font-size:var(--el-fs-xs);color:var(--el-ink-soft);min-width:170px">systems audit coverage</span>
+        <div class="el-progress" data-animate-to="84" style="flex:1"><span class="fill" style="width:8%"></span></div>
+        <b style="font-family:var(--el-font-mono);font-size:var(--el-fs-lg);font-variant-numeric:tabular-nums;min-width:52px;text-align:right">84%</b>
+      </div>
+      <div style="display:flex;align-items:center;gap:var(--el-space-3);margin-top:var(--el-space-3)">
+        <span style="font-family:var(--el-font-mono);font-size:var(--el-fs-xs);color:var(--el-ink-soft);min-width:170px">a11y pass rate (2.2 AA)</span>
+        <div class="el-progress" style="flex:1"><span class="fill" style="width:100%"></span></div>
+        <b style="font-family:var(--el-font-mono);font-size:var(--el-fs-lg);font-variant-numeric:tabular-nums;min-width:52px;text-align:right">100%</b>
+      </div>
+      <div style="display:flex;align-items:center;gap:var(--el-space-3);margin-top:var(--el-space-3)">
+        <span style="font-family:var(--el-font-mono);font-size:var(--el-fs-xs);color:var(--el-ink-soft);min-width:170px">component drift vs main</span>
+        <div class="el-meter" style="flex:1" role="img" aria-label="Drift meter 2 percent"><span class="fill" style="width:2%"></span></div>
+        <b style="font-family:var(--el-font-mono);font-size:var(--el-fs-lg);font-variant-numeric:tabular-nums;min-width:52px;text-align:right">2%</b>
+      </div>
+    </div>
+
+    <h2>Where the numbers come from</h2>
+    <p>Three sources feed the tracker, and each is versioned so a readout can be replayed:</p>
+    <div class="el-citation-rail">
+      <span class="el-cite"><span class="n">1</span><a href="#ref-1">Rubric sheets, signed at each gate</a></span>
+      <span class="el-cite"><span class="n">2</span><a href="#ref-2">Tracker exports (nightly, since 2023)</a></span>
+      <span class="el-cite"><span class="n">3</span><a href="#ref-3">Client telemetry, 90-day windows</a></span>
+    </div>
+
+    <div class="ag-grid-3" style="margin:var(--el-space-4) 0;grid-column:1/-1">
+      <a class="el-source-card is-cited" href="tracker.html" id="ref-1">
+        <span class="src">h&amp;b method · 2019 →</span>
+        <span class="ttl">The rubric, verbatim</span>
+        <span class="snip">All 68 checks a gate requires, in evaluation order, with the signature line each one needs.</span>
+      </a>
+      <a class="el-source-card" href="tracker.html" id="ref-2">
+        <span class="src">h&amp;b tracker · live →</span>
+        <span class="ttl">Six engagements, nightly</span>
+        <span class="snip">Gate positions, reuse, and drift for every active engagement. Read it before you brief us.</span>
+      </a>
+      <a class="el-source-card" href="work.html" id="ref-3">
+        <span class="src">h&amp;b work archive · 2019 →</span>
+        <span class="ttl">Thirty-eight case studies</span>
+        <span class="snip">Every shipped system since 2019 with its final reuse number — no rounding, no survivors edited out.</span>
+      </a>
+    </div>
+
+    <div class="el-cluster" style="margin-top:var(--el-space-5);gap:var(--el-space-2)">
+      <span class="el-pill">governance</span>
+      <span class="el-pill">release trains</span>
+      <span class="el-pill ok">v4.2 · in force</span>
+      <span class="el-pill">6 gates · 68 checks</span>
+    </div>
+  </article>
+
+</main>
+
+<footer class="el-footer">
+  <div style="width:100%;max-width:var(--el-page-max);margin:0 auto;padding:0 var(--el-space-5)">
+    <div class="cols">
+      <div class="col">
+        <span class="label">Practice</span>
+        <ul><li><a href="work.html">Selected work</a></li><li><a href="method.html">The method</a></li><li><a href="contact.html">Engagement brief</a></li></ul>
+      </div>
+      <div class="col">
+        <span class="label">Service lines</span>
+        <ul><li><a href="work.html">Design systems</a></li><li><a href="work.html">Product design</a></li><li><a href="work.html">Design ops</a></li></ul>
+      </div>
+      <div class="col">
+        <span class="label">Tools</span>
+        <ul><li><a href="tracker.html">Delivery tracker</a></li><li><a href="work.html">Case archive</a></li><li><a href="contact.html">Request a demo</a></li></ul>
+      </div>
+      <div class="col">
+        <span class="label">Contact</span>
+        <ul><li><a href="mailto:partners@halsteadbyrne.com">partners@halsteadbyrne.com</a></li><li><a href="tel:+15035550114">+1 503 555 0114</a></li></ul>
+      </div>
+    </div>
+    <div class="small"><span>© 2026 Halstead &amp; Byrne LLP · Portland</span><span class="colophon">Set in Inter &amp; Helvetica Neue · figures in IBM Plex Mono</span></div>
+  </div>
+</footer>
+
+</body>
+</html>

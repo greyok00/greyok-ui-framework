@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="en" data-theme="ghost-terminal">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>wl-dash — WAXLAMP ops dashboard</title>
+<link rel="stylesheet" href="../../../base.css">
+<link rel="stylesheet" href="../../../fonts.css">
+<link rel="stylesheet" href="../../../tokens.css">
+<link rel="stylesheet" href="../../../elements-display.css">
+<link rel="stylesheet" href="../../../elements-structure.css">
+<link rel="stylesheet" href="../../../elements-lists.css">
+<link rel="stylesheet" href="../../../elements-app.css">
+<link rel="stylesheet" href="../../../elements-containers.css">
+<link rel="stylesheet" href="../../../elements-controls.css">
+<link rel="stylesheet" href="../../../elements-inputs.css">
+<link rel="stylesheet" href="../../../elements-dataviz.css">
+<link rel="stylesheet" href="../../../elements-overlay.css">
+<link rel="stylesheet" href="../../../elements-interactions.css">
+<link rel="stylesheet" href="../../../elements-misc.css">
+<link rel="stylesheet" href="../../../elements-size.css">
+<link rel="stylesheet" href="../../../elements-workflow.css">
+<link rel="stylesheet" href="../../../elements-inspector.css">
+<link rel="stylesheet" href="../../../elements-reader.css">
+<link rel="stylesheet" href="../../../elements-assistant.css">
+<link rel="stylesheet" href="../../../themes/src/tech-mono.css">
+<script src="../../../elements.js" defer></script>
+<script src="../../../charts.js" defer></script>
+</head>
+<body style="padding:16px;background:#070604;">
+<div class="el-page">
+
+  <main>
+    <div class="el-appwin">
+      <div class="el-titlebar">
+        <span class="lead"><span class="el-status-dot live" aria-hidden="true"></span><span class="el-hint" style="margin:0;">amber-63 &middot; drift 0 &middot; store 1.2 GB</span></span>
+        <div class="el-app-title">wl-dash <small>kettleroom fleet</small></div>
+        <div class="winbtns">
+          <button class="el-winbtn min" type="button" aria-label="Minimize"></button>
+          <button class="el-winbtn max" type="button" aria-label="Maximize"></button>
+          <button class="el-winbtn close" type="button" aria-label="Close"></button>
+        </div>
+      </div>
+
+      <div class="el-menubar" role="menubar">
+        <div class="el-menu-anchor">
+          <button class="el-menubar-item" data-menu="wl-menu" aria-expanded="false">Jobs</button>
+          <div class="el-menu" id="wl-menu" role="menu">
+            <div class="el-menu-label">Queues</div>
+            <button class="el-menu-item" type="button">nightly &middot; kettleroom <span class="hint">8 parked</span></button>
+            <button class="el-menu-item" type="button">canary &middot; edge fleet <span class="hint">live</span></button>
+            <div class="el-menu-sep" role="separator"></div>
+            <button class="el-menu-item is-danger" type="button" data-toast="Purge refused — jobs pinned by drift digest" data-toast-variant="fail">Purge queue…</button>
+          </div>
+        </div>
+        <button class="el-menubar-item" type="button">Lamps</button>
+        <button class="el-menubar-item" type="button" data-command="wl-cmd">Palette</button>
+        <div class="el-menubar-sep" role="separator"></div>
+        <div class="el-menubar-spring"></div>
+        <span class="el-status-pill running" style="margin-right:8px;">2 running</span>
+      </div>
+
+      <div class="el-headerbar">
+        <span class="el-headerbar-label">jobs &middot; last 6 h</span>
+        <span class="spring"></span>
+        <div class="el-popover">
+          <button class="el-btn el-btn--outline" type="button" aria-expanded="false">Show</button>
+          <div class="el-pop">
+            <h4>[ show in table ]</h4>
+            <span class="el-check on" style="display:inline-block;margin-bottom:8px;"><input type="checkbox" checked aria-label="failed only"></span>
+            <span style="font-size:var(--el-fs-sm);vertical-align:middle;">failed first</span>
+          </div>
+        </div>
+        <label class="el-search-field">
+          <input class="el-search" type="search" placeholder="[ search jobs ]" aria-label="Search jobs">
+        </label>
+        <span class="el-tooltip" data-tip="Kill a queued or running job — lane stays warm" tabindex="0">
+          <button class="el-btn el-btn--danger" type="button" data-dialog-open="wl-kill">Kill job</button>
+        </span>
+      </div>
+
+      <div class="el-appwin-body" style="display:grid;grid-template-columns:var(--el-rail-w, 248px) 1fr 300px;gap:0;min-height:640px;">
+        <aside class="el-sidebar" style="border-right:1px dashed var(--el-line-strong);border-radius:0;">
+          <div class="head">
+            <span class="brand">kettleroom</span>
+            <button class="toggle" type="button" aria-label="Collapse host tree"><span class="chev">&#8964;</span></button>
+          </div>
+          <div class="grp">
+            <span class="label">Hosts</span>
+            <button type="button" aria-current="page">kettle-01 <span class="el-badge ok" style="margin-left:auto;">live</span></button>
+            <button type="button">kettle-02</button>
+            <button type="button">edge-fleet</button>
+          </div>
+          <details class="grp" open>
+            <summary>Lamp shelves <span class="chev">&#8964;</span></summary>
+            <button type="button">amber-63</button>
+            <button type="button">paper-noir</button>
+          </details>
+          <div class="end">
+            <span class="el-hint" style="margin:0;">wx 3.0-rc4</span>
+          </div>
+        </aside>
+
+        <div style="display:grid;gap:var(--el-space-3);padding:var(--el-space-3);align-content:start;">
+          <div class="el-stat-row" style="display:grid;grid-template-columns:repeat(3,1fr);gap:var(--el-space-2);">
+            <div class="el-stat">
+              <span class="el-stat-label">cold start</span>
+              <span class="el-stat-value">18<small>&nbsp;ms</small></span>
+              <span class="el-stat-delta up">6ms</span>
+              <span class="el-sparkline el-chart" data-chart="sparkline" data-values="31,29,27,24,22,20,18,18" data-width="110" data-height="26" data-color="var(--el-accent)"></span>
+              <span class="el-stat-note">p99 fleet</span>
+            </div>
+            <div class="el-stat">
+              <span class="el-stat-label">commit lag</span>
+              <span class="el-stat-value">0.4<small>&nbsp;s</small></span>
+              <span class="el-stat-delta flat">&plusmn;0.1</span>
+              <span class="el-chart" data-chart="line" data-values="4,4,5,4,4,4,4,4" data-width="110" data-height="26" data-color="var(--el-accent)" data-label="commit lag"></span>
+            </div>
+            <div class="el-stat is-live">
+              <span class="el-stat-label">tubes open</span>
+              <span class="el-stat-value">27</span>
+              <span class="el-stat-note">12 hosts in relay</span>
+            </div>
+          </div>
+
+          <div class="el-progress-truth" aria-label="nightly queue progress">
+            <span class="el-pt-chunk is-done">replay <span class="el-pt-count">27/27</span></span>
+            <span class="el-pt-chunk is-running">jobs <span class="el-pt-count">11/27</span></span>
+            <span class="el-pt-chunk is-stale">drift <span class="el-pt-count">3 stale</span></span>
+            <span class="el-pt-chunk">digest <span class="el-pt-count">0/27</span></span>
+          </div>
+
+          <div class="el-stage-rail">
+            <div class="el-stage is-done"><span class="el-stage-dot"></span><span class="el-stage-name">Replay scrollback</span><span class="el-dur">18ms</span></div>
+            <div class="el-stage is-running"><span class="el-stage-dot"></span><span class="el-stage-name">Nightly jobs</span><span class="el-stage-count">11/27</span></div>
+            <div class="el-stage is-queued"><span class="el-stage-dot"></span><span class="el-stage-name">Drift pass</span><span class="el-stage-count">0/27</span></div>
+            <div class="el-stage is-stale"><span class="el-stage-dot"></span><span class="el-stage-name">Digest send</span><span class="el-stage-count">relay down</span></div>
+          </div>
+
+          <table class="el-table el-table--ruled">
+            <thead><tr><th scope="col">Job</th><th scope="col">Host</th><th scope="col">Stage</th><th scope="col">State</th><th scope="col" class="num">Age</th></tr></thead>
+            <tbody>
+              <tr><td class="num">wl-4471</td><td>kettle-01</td><td>replay</td><td><span class="el-status-dot running" aria-hidden="true"></span> <span class="el-status-pill running">running</span></td><td class="num">2m</td></tr>
+              <tr class="is-selected"><td class="num">wl-4470</td><td>kettle-02</td><td>commit</td><td><span class="el-badge live">live</span></td><td class="num">6m</td></tr>
+              <tr><td class="num">wl-4468</td><td>edge-fleet</td><td>drift</td><td><span class="el-badge fail">conflict</span></td><td class="num">14m</td></tr>
+              <tr><td class="num">wl-4461</td><td>kettle-01</td><td>gc</td><td><span class="el-badge ok">pinned</span></td><td class="num">31m</td></tr>
+              <tr><td class="num">wl-4457</td><td>edge-fleet</td><td>relay</td><td><span class="el-badge warn">stale</span></td><td class="num">48m</td></tr>
+            </tbody>
+          </table>
+
+          <div class="el-cluster" style="display:grid;grid-template-columns:1fr 1fr;gap:var(--el-space-3);">
+            <div class="el-panel" style="padding:var(--el-space-3);">
+              <h3 style="margin:0 0 10px;font-size:var(--el-fs-md);">[ host lamps ]</h3>
+              <div class="el-meter" style="--el-meter-value:62%;"><div class="fill"></div></div>
+              <span class="el-meter-label">kettle-01 &middot; 62% &middot; steady</span>
+              <div class="el-meter ok" style="--el-meter-value:84%;margin-top:10px;"><div class="fill"></div></div>
+              <span class="el-meter-label">kettle-02 &middot; 84% &middot; steady</span>
+              <div class="el-meter fail" style="--el-meter-value:97%;margin-top:10px;"><div class="fill"></div></div>
+              <span class="el-meter-label">edge-fleet &middot; 97% &middot; saturated</span>
+              <div class="el-progress" data-animate-to="0" style="margin-top:12px;"><div class="fill" style="width:71%;"></div></div>
+              <span class="el-meter-label">store migration &middot; 88% target &middot; 71% replayed</span>
+            </div>
+            <div class="el-panel" style="padding:var(--el-space-3);">
+              <h3 style="margin:0 0 10px;font-size:var(--el-fs-md);">[ job ladder &middot; wl-4470 ]</h3>
+              <div class="el-ladder" style="min-width:0;">
+                <div class="el-ladder-step is-done"><span class="el-ladder-idx">01</span><span class="el-ladder-label">Replay marks</span><span class="el-ladder-meta">9ms</span></div>
+                <div class="el-ladder-step is-done"><span class="el-ladder-idx">02</span><span class="el-ladder-label">Commit frames</span><span class="el-ladder-meta">0.4s</span></div>
+                <div class="el-ladder-step is-running"><span class="el-ladder-idx">03</span><span class="el-ladder-label">Drift compare</span><span class="el-ladder-meta">6m ago</span></div>
+                <div class="el-ladder-step"><span class="el-ladder-idx">04</span><span class="el-ladder-label">Digest send</span><span class="el-ladder-meta">queued</span></div>
+                <div class="el-ladder-step is-stale"><span class="el-ladder-idx">05</span><span class="el-ladder-label">Relay ping</span><span class="el-ladder-meta">no answer</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="el-actionbar">
+            <span class="lead"><span class="el-hint" style="margin:0;">wl-4470 &middot; kettle-02 &middot; amber-63</span></span>
+            <div class="actions">
+              <button class="el-btn el-btn--ghost" type="button" data-drawer-open="wl-drawer">Inspect host</button>
+              <button class="el-btn el-btn--outline" type="button" data-toast="Replay queued for kettle-02" data-toast-variant="info">Replay</button>
+              <button class="el-btn" type="button" data-toast="Digest sent — drift 0" data-toast-variant="ok">Send digest</button>
+            </div>
+          </div>
+
+          <div class="el-tabbar" role="tablist">
+            <button class="el-tabbar-item is-active" role="tab" aria-selected="true" type="button"><span class="el-icon">&#9638;</span>Jobs</button>
+            <button class="el-tabbar-item" role="tab" type="button"><span class="el-icon">&#9638;</span>Hosts</button>
+            <button class="el-tabbar-item" role="tab" type="button"><span class="el-icon">&#9638;</span>Store&nbsp;<span class="count">12</span></button>
+            <button class="el-tabbar-item" role="tab" aria-disabled="true" type="button"><span class="el-icon">&#9638;</span>Relay</button>
+          </div>
+        </div>
+
+        <aside style="display:grid;gap:var(--el-space-3);padding:var(--el-space-3);border-left:1px dashed var(--el-line-strong);align-content:start;">
+          <div class="el-listbox" role="listbox" aria-label="Tubes">
+            <div class="el-listbox-header">tubes &middot; kettle-01</div>
+            <button class="el-listbox-row" role="option" aria-selected="false" type="button"><svg viewBox="0 0 16 16" width="14" height="14" fill="currentColor" aria-hidden="true"><rect x="2" y="3" width="12" height="10"/></svg><span>wl-4471 &middot; nightly</span><span class="count">2m</span></button>
+            <button class="el-listbox-row" role="option" aria-selected="true" type="button"><svg viewBox="0 0 16 16" width="14" height="14" fill="currentColor" aria-hidden="true"><rect x="2" y="3" width="12" height="10"/></svg><span>wl-4470 &middot; canary</span><span class="count">6m</span></button>
+            <button class="el-listbox-row" role="option" aria-selected="false" type="button"><span>D</span><span>wl-4468 &middot; drift</span><span class="count">14m</span></button>
+            <button class="el-listbox-row" role="option" aria-selected="false" type="button" aria-disabled="true"><span>R</span><span>relay &middot; edge-fleet</span><span class="count">down</span></button>
+            <button class="el-listbox-row" role="option" aria-selected="false" type="button"><span class="el-skeleton" style="width:60px;height:8px;display:inline-block;"></span><span class="el-skeleton" style="width:80px;height:8px;display:inline-block;margin-left:auto;"></span></button>
+          </div>
+
+          <div class="el-inspector el-inspector--docked is-docked" aria-label="Host inspector">
+            <div class="el-inspector-header"><span>[ host inspector ]</span><button class="el-inspector-close" type="button" aria-label="Hide inspector">&times;</button></div>
+            <div class="el-inspector-body">
+              <p style="margin-top:0;font-size:var(--el-fs-sm);color:var(--el-ink-soft);">kettle-01 is the reference host: 18 ms cold start, 1.2 GB store, relay up.</p>
+              <div class="el-fact-grid">
+                <div class="el-fact"><span class="k">cold</span><span class="v">18ms</span></div>
+                <div class="el-fact is-hot"><span class="k">drift</span><span class="v">0</span></div>
+              </div>
+              <label class="el-field" style="margin-top:var(--el-space-3);">
+                <span class="el-label">Lamp</span>
+                <select class="el-select" style="padding:8px 12px;border:1px dashed var(--el-line-strong);background:var(--el-panel-2);color:var(--el-ink);border-radius:2px;font-family:var(--el-font-mono);font-size:var(--el-fs-sm);">
+                  <option>amber-63</option><option>paper-noir</option>
+                </select>
+              </label>
+            </div>
+          </div>
+
+          <div class="el-notification-stack" aria-label="Notifications">
+            <article class="el-notification running">
+              <span class="icon"><span class="el-icon">&#9654;</span></span>
+              <div class="head"><span class="title">Commit lag rising</span><span class="app">wl-dash</span>
+                <button class="close" type="button" aria-label="Dismiss notification">&times;</button></div>
+              <div class="body">kettle-02 committed at 900 ms twice in a row; store is busy with migration replay.</div>
+              <span class="time">2m ago</span>
+              <div class="actions"><button type="button" data-toast="Commit window widened to 600 ms" data-toast-variant="info">Widen window</button><button type="button">Dismiss</button></div>
+            </article>
+            <article class="el-notification fail">
+              <span class="icon"><span class="el-icon">&#215;</span></span>
+              <div class="head"><span class="title">Drift conflict edge-fleet</span><span class="app">wl-dash</span>
+                <button class="close" type="button" aria-label="Dismiss notification">&times;</button></div>
+              <div class="body">Newest-frame-wins dropped a hand edit; frame marked CONFLICT inline</div>
+              <span class="time">14m ago</span>
+              <div class="actions"><button type="button">Show conflict</button></div>
+            </article>
+            <article class="el-notification ok">
+              <span class="icon"><span class="el-icon">&#10003;</span></span>
+              <div class="head"><span class="title">Store verified</span><span class="app">wl-shell</span>
+                <button class="close" type="button" aria-label="Dismiss notification">&times;</button></div>
+              <div class="body">1,284 segments, hashes green, gc pinned until 03:00 UTC</div>
+              <span class="time">31m ago</span>
+            </article>
+          </div>
+
+          <div class="el-toast-region" role="status" aria-live="polite">
+            <div class="el-toast ok"><span>commit window widened to 600 ms</span><span class="close" aria-label="Dismiss">&times;</span></div>
+            <div class="el-toast warn"><span>[ relay down — edge-fleet stale 48m ]</span><span class="close" aria-label="Dismiss">&times;</span></div>
+          </div>
+
+          <div class="el-assistant-panel" aria-label="Wl assistant">
+            <div class="el-assistant-head">[ wl assistant ]</div>
+            <div class="el-assistant-log">
+              <div class="el-msg el-msg--assistant">
+                Commit lag on kettle-02 is the store replay, not your job. Widening the window to 600 ms settles it — the paper's number is 400, the drift digest tolerates 600. <span class="el-cite-inline">[1][3]</span>
+              </div>
+              <div class="el-msg el-msg--user">Widen it, then replay kettle-02.</div>
+              <div class="el-msg el-msg--assistant is-streaming">Committing…<span class="el-cite-inline">[1]</span></div>
+              <div class="el-plan">
+                <div class="el-plan-title">plan &middot; widen + replay</div>
+                <div class="el-ladder-step is-done"><span class="el-ladder-idx">1</span><span class="el-ladder-label">Write account.toml</span><span class="el-ladder-meta">done</span></div>
+                <div class="el-ladder-step is-running"><span class="el-ladder-idx">2</span><span class="el-ladder-label">Queue replay</span><span class="el-ladder-meta">waiting your OK</span></div>
+              </div>
+            </div>
+            <div class="el-assistant-foot">
+              <span class="el-hint" style="margin:0;">cited from store notes &middot; no sources = it says so</span>
+              <button class="el-assistant-stop" type="button">Stop</button>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </main>
+
+</div>
+
+<dialog class="el-dialog" id="wl-kill">
+  <div class="el-dialog-head">
+    <h3 class="el-dialog-title">[ kill wl-4471? ]</h3>
+    <button class="el-dialog-close" type="button" aria-label="Close" data-dialog-close>&times;</button>
+  </div>
+  <form class="el-dialog-body" method="dialog">
+    <p style="margin-top:0;">The tube stays lit and the store keeps its segments; only the job stops. The conflict mark stays inline.</p>
+    <label class="el-field">
+      <span class="el-label">Reason (digest prints it)</span>
+      <span class="el-search-bar" style="display:flex;">
+        <input class="el-search" type="search" placeholder="[ migration, wedge, hand edit… ]" aria-label="Kill reason">
+      </span>
+      <span class="el-hint">The store segments before and after are linked automatically.</span>
+    </label>
+  </form>
+  <div class="el-dialog-foot">
+    <button class="el-btn el-btn--ghost" type="button" data-dialog-close>Let it run</button>
+    <button class="el-btn el-btn--danger" type="button" data-toast="wl-4471 killed — segments kept" data-toast-variant="fail" data-dialog-close>Kill job</button>
+  </div>
+</dialog>
+
+<aside class="el-drawer right" id="wl-drawer" aria-label="Host inspector" data-scrim="wl-scrim">
+  <div class="el-drawer-head"><strong>[ kettle-01 — host inspector ]</strong></div>
+  <div class="el-drawer-body">
+    <p style="margin-top:0;">Reference host. Amber-63 lamp, store at 1.2 GB, relay up.</p>
+    <div class="el-fact-grid" style="grid-template-columns:repeat(3,1fr);">
+      <div class="el-fact"><span class="k">cold</span><span class="v">18ms</span></div>
+      <div class="el-fact"><span class="k">segs</span><span class="v">1,284</span></div>
+      <div class="el-fact is-hot"><span class="k">drift</span><span class="v">0</span></div>
+    </div>
+  </div>
+  <div class="el-drawer-foot">
+    <button class="el-btn el-btn--ghost" type="button" data-drawer-close="wl-drawer">Close</button>
+    <button class="el-btn" type="button" data-toast="Kettle-01 pinned green until 03:00" data-toast-variant="ok">Pin green</button>
+  </div>
+</aside>
+<div class="el-scrim" id="wl-scrim" data-dialog-scrim></div>
+
+<div class="el-command" id="wl-cmd" role="dialog" aria-label="Palette">
+  <div class="el-command-panel">
+    <input class="el-command-input" type="text" placeholder="[ palette — type a command ]" aria-label="Palette input">
+    <div class="el-command-results">
+      <div class="el-command-group">store</div>
+      <button class="el-command-row sel" type="button">wl store verify <span class="el-command-hint">S V</span></button>
+      <button class="el-command-row" type="button">wl store gc --keep 30d <span class="el-command-hint">S G</span></button>
+      <div class="el-command-group">fleet</div>
+      <button class="el-command-row" type="button">relay: restart edge-fleet <span class="el-command-hint">F R</span></button>
+      <button class="el-command-row" type="button">digest: send now <span class="el-command-hint">D</span></button>
+    </div>
+    <div class="el-command-foot"><span class="el-hint">enter to run &middot; esc to fade</span></div>
+  </div>
+</div>
+
+</body>
+</html>

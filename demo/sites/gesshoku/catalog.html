@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="en" data-theme="gesshoku">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Practice library · Gesshoku</title>
+<link rel="stylesheet" href="../../../base.css">
+<link rel="stylesheet" href="../../../fonts.css">
+<link rel="stylesheet" href="../../../tokens.css">
+<link rel="stylesheet" href="../../../elements-display.css">
+<link rel="stylesheet" href="../../../elements-structure.css">
+<link rel="stylesheet" href="../../../elements-lists.css">
+<link rel="stylesheet" href="../../../elements-app.css">
+<link rel="stylesheet" href="../../../elements-containers.css">
+<link rel="stylesheet" href="../../../elements-controls.css">
+<link rel="stylesheet" href="../../../elements-inputs.css">
+<link rel="stylesheet" href="../../../elements-dataviz.css">
+<link rel="stylesheet" href="../../../elements-overlay.css">
+<link rel="stylesheet" href="../../../elements-interactions.css">
+<link rel="stylesheet" href="../../../elements-misc.css">
+<link rel="stylesheet" href="../../../elements-size.css">
+<link rel="stylesheet" href="../../../elements-workflow.css">
+<link rel="stylesheet" href="../../../themes/src/quiet-minimal.css">
+<script src="../../../elements.js" defer></script>
+<script src="../../../charts.js" defer></script>
+<script src="../../../elements-workflow.js" defer></script>
+<style>
+  .grid-practice { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--el-space-4); align-items: stretch; }
+  .el-panel--flush { display: flex; align-items: center; gap: var(--el-space-2); flex-wrap: wrap; padding: var(--el-space-3) var(--el-space-4); }
+  .el-card--flat .foot { display: flex; align-items: center; justify-content: space-between; margin-top: var(--el-space-4); padding-top: var(--el-space-3); border-top: 1px solid color-mix(in oklab, var(--el-ink) 7%, transparent); }
+  .el-drawer .band { margin: var(--el-space-4) 0; }
+  .empty-hold { display: none; }
+  .empty-hold.is-shown { display: block; }
+  @media (max-width: 940px) { .grid-practice { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<main class="el-page">
+
+  <nav class="el-navbar el-navbar--headerbar">
+    <div class="lead">
+      <button class="el-winbtn min" aria-label="Minimize"></button>
+      <button class="el-winbtn max" aria-label="Maximize"></button>
+      <button class="el-winbtn close" aria-label="Close"></button>
+    </div>
+    <div class="title-block">
+      <span class="title">Gesshoku</span>
+      <span class="subtitle">practice library</span>
+    </div>
+    <div class="end">
+      <div class="links">
+        <a href="index.html">Room</a>
+        <a href="catalog.html" aria-current="page">Practice</a>
+        <a href="app.html">Sessions</a>
+        <a href="article.html">Journal</a>
+        <a href="account.html">Settings</a>
+      </div>
+      <button class="el-btn el-btn--ghost el-btn--small" data-dialog-open="enroll">Enroll</button>
+    </div>
+  </nav>
+
+  <header class="el-hero el-hero--left">
+    <span class="el-eyebrow">The library · forty-two practices</span>
+    <h1>Forty-two practices, one breath long.</h1>
+    <p>Each card is a complete sitting: how it is timed, what it asks, and who
+       keeps it tonight. Filter by room; open a record for its breath pattern.</p>
+    <div class="actions">
+      <div class="el-segmented" role="tablist">
+        <button class="on" type="button">All rooms</button>
+        <button type="button">Evening</button>
+        <button type="button">Work</button>
+      </div>
+      <select class="el-select" aria-label="Sort by"><option>Sort: room order</option><option>Recently kept</option></select>
+    </div>
+  </header>
+
+  <div class="el-panel el-panel--flush">
+    <button class="el-chip on" type="button" data-kind="all">All practices</button>
+    <button class="el-chip" type="button" data-kind="breath">Breathing</button>
+    <button class="el-chip" type="button" data-kind="posture">Posture</button>
+    <button class="el-chip" type="button" data-kind="interval">Intervals</button>
+    <button class="el-chip" type="button" data-kind="silence">Silence</button>
+    <span class="el-badge">42 kept</span>
+  </div>
+
+  <section class="el-section el-section--dense">
+    <div class="grid-practice">
+      <article class="el-card el-card--flat" data-kind="breath">
+        <span class="el-chip">breath</span>
+        <h3>Four in, six out</h3>
+        <p>The house pattern. Bell at the sixth, and the counter does the
+           counting so you cannot.</p>
+        <div class="foot">
+          <span><span class="el-status-dot ok"></span> kept tonight</span>
+          <span class="el-avatar">RE</span>
+          <button class="el-btn el-btn--ghost-outline" data-open-drawer="p-0412">Open →</button>
+        </div>
+      </article>
+      <article class="el-card el-card--flat" data-kind="posture">
+        <span class="el-chip">posture</span>
+        <h3>Two hands, one line</h3>
+        <p>A spine check that takes eleven seconds. Kept before every long
+           sitting, without exception.</p>
+        <div class="foot">
+          <span><span class="el-status-dot live"></span> kept now</span>
+          <span class="el-avatar">MA</span>
+          <button class="el-btn el-btn--ghost-outline" data-open-drawer="p-0412">Open →</button>
+        </div>
+      </article>
+      <article class="el-card el-card--flat" data-kind="interval">
+        <span class="el-chip">interval</span>
+        <h3>Lamp lowers at 21:00</h3>
+        <p>The room's own interval: one bright hour, one dark. Nothing is
+           scheduled inside the dark one.</p>
+        <div class="foot">
+          <span><span class="el-status-dot warn"></span> tonight at nine</span>
+          <span class="el-avatar">SO</span>
+          <button class="el-btn el-btn--ghost-outline" data-open-drawer="p-0412">Open →</button>
+        </div>
+      </article>
+      <article class="el-card el-card--flat" data-kind="silence">
+        <span class="el-chip">silence</span>
+        <h3>Half an hour, no counter</h3>
+        <p>The timer is hidden and the bell is optional. Practiced on the
+           first Saturday of the month.</p>
+        <div class="foot">
+          <span><span class="el-status-dot idle"></span> Saturday</span>
+          <span class="el-avatar">KI</span>
+          <button class="el-btn el-btn--ghost-outline" data-open-drawer="p-0412">Open →</button>
+        </div>
+      </article>
+      <article class="el-card el-card--flat" data-kind="breath">
+        <span class="el-chip">breath</span>
+        <h3>The eclipsed pause</h3>
+        <p>One long hold at the hour's middle. Strange at first; the room
+           swears by it after the third week.</p>
+        <div class="foot">
+          <span><span class="el-status-dot ok"></span> kept tonight</span>
+          <span class="el-avatar">RU</span>
+          <button class="el-btn el-btn--ghost-outline" data-open-drawer="p-0412">Open →</button>
+        </div>
+      </article>
+      <article class="el-card el-card--flat" data-kind="interval">
+        <span class="el-chip">interval</span>
+        <h3>Close while it reads well</h3>
+        <p>The return motion. Ninety seconds to bank the lamp, reread the
+           note, and leave the page.</p>
+        <div class="foot">
+          <span><span class="el-status-dot idle"></span> at every end</span>
+          <span class="el-avatar">MA</span>
+          <button class="el-btn el-btn--ghost-outline" data-open-drawer="p-0412">Open →</button>
+        </div>
+      </article>
+    </div>
+
+    <div class="empty-hold" id="no-results">
+      <div class="el-empty">
+        <span class="el-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M8 12h8"/></svg></span>
+        <h3>Nothing in this room tonight</h3>
+        <p>Loosen the filter — the practice you want may be kept in another room.</p>
+        <button class="el-btn el-btn--ghost" data-kind="all">Show everything</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="el-section el-section--dense">
+    <h2>This week's sittings</h2>
+    <table class="el-table el-table--ruled">
+      <thead><tr>
+        <th>Practice</th><th>Length</th><th class="num">Breath</th><th>State</th><th>Card</th>
+      </tr></thead>
+      <tbody>
+        <tr><td>Four in, six out</td><td>50 min</td><td class="num">12</td><td><span class="el-status-dot ok"></span> done</td><td><a href="#" class="el-btn el-btn--ghost-outline">open</a></td></tr>
+        <tr><td>Two hands, one line</td><td>-</td><td class="num">1</td><td><span class="el-status-dot ok"></span> done</td><td><a href="#" class="el-btn el-btn--ghost-outline">open</a></td></tr>
+        <tr><td>Lamp lowers at 21:00</td><td>60 min</td><td class="num">30</td><td><span class="el-status-dot live"></span> running</td><td><a href="#" class="el-btn el-btn--ghost-outline">open</a></td></tr>
+        <tr><td>Half an hour, no counter</td><td>30 min</td><td class="num">-</td><td><span class="el-status-dot idle"></span> queued</td><td><a href="#" class="el-btn el-btn--ghost-outline">open</a></td></tr>
+        <tr><td>The eclipsed pause</td><td>50 min</td><td class="num">12</td><td><span class="el-status-dot stale"></span> stale</td><td><a href="#" class="el-btn el-btn--ghost-outline">open</a></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <nav class="el-pagination" aria-label="Library pages">
+    <button type="button" aria-label="Previous">‹</button>
+    <button class="page on" type="button">1</button>
+    <button class="page" type="button">2</button>
+    <button class="page" type="button">3</button>
+    <button type="button" aria-label="Next">›</button>
+    <span class="el-hint">1–6 of 42</span>
+  </nav>
+
+  <aside class="el-drawer right" id="p-0412" aria-label="Practice record">
+    <div class="el-drawer-head">
+      <span class="el-chip">breath</span>
+      <button class="el-btn el-btn--ghost" data-close-drawer="p-0412" aria-label="Close">×</button>
+    </div>
+    <div class="el-drawer-body">
+      <h3 style="margin-top:0">Four in, six out</h3>
+      <p>The keeper's card, kept in the margin of the room ledger since spring.</p>
+      <figure class="el-media-band el-media-band--flat band">
+        <div class="media">
+          <svg viewBox="0 0 560 220" role="img" aria-label="Two breath phases drawn as a rising and falling line">
+            <rect width="560" height="220" fill="#1c1710"/>
+            <polyline points="60,170 130,110 200,60 270,96 340,150 410,110 480,66 540,96" fill="none" stroke="#9a7b4f" stroke-width="2"/>
+            <line x1="60" y1="180" x2="540" y2="180" stroke="#31281a"/>
+          </svg>
+          <figcaption>breath curve · room ledger · spring</figcaption>
+        </div>
+      </figure>
+      <div class="el-fact-grid">
+        <div class="el-fact"><span class="k">In</span><span class="v">4</span></div>
+        <div class="el-fact"><span class="k">Out</span><span class="v">6</span></div>
+        <div class="el-fact"><span class="k">Kept by</span><span class="v">RE</span></div>
+        <div class="el-fact is-hot"><span class="k">Nights this week</span><span class="v">5</span></div>
+      </div>
+      <span class="el-label" style="display:block;margin-top:var(--el-space-4)">Completion tonight</span>
+      <div class="el-progress ok" data-value="68"><span class="fill" style="width:68%"></span></div>
+      <span class="el-label" style="display:block;margin-top:var(--el-space-3)">Silence kept</span>
+      <span class="el-meter" role="meter" aria-valuenow="62" aria-valuemin="0" aria-valuemax="100"><span class="fill" style="width:62%"></span></span>
+    </div>
+    <div class="el-drawer-foot">
+      <button class="el-btn" data-toast="Four in, six out — kept to your tonight room.">Keep tonight</button>
+      <button class="el-btn el-btn--ghost" data-close-drawer="p-0412">Return to library</button>
+    </div>
+  </aside>
+
+  <footer class="el-footer">
+    <div class="cols">
+      <div class="col">
+        <div class="label">Gesshoku</div>
+        <p class="small">Room 1 · north of the river · lamp down at 21:00.</p>
+      </div>
+      <div class="col"><div class="label">Practice</div><p class="small">Catalog · sessions · fieldnotes</p></div>
+      <div class="col"><div class="label">Write</div><p class="small">room@gesshoku.example</p></div>
+    </div>
+    <p class="colophon">Gesshoku · library · forty-two practices kept in one room.</p>
+  </footer>
+
+  <dialog id="enroll" class="el-dialog el-dialog--narrow">
+    <div class="el-dialog-head"><h2>Enroll a practice</h2>
+      <button class="el-dialog-close" data-dialog-close="enroll" aria-label="Close">×</button></div>
+    <div class="el-dialog-body"><p>Write the practice in plain words and a length.
+       The room keeper reads every one before it is kept.</p></div>
+    <div class="el-dialog-foot">
+      <button class="el-btn el-btn--ghost" data-dialog-close="enroll">Understood</button>
+    </div>
+  </dialog>
+
+</main>
+<script>
+  (function () {
+    var chips = document.querySelectorAll('[data-kind]');
+    var cards = document.querySelectorAll('.grid-practice .el-card');
+    var hold = document.getElementById('no-results');
+    function apply(kind) {
+      var visible = 0;
+      cards.forEach(function (c) {
+        var show = kind === 'all' || c.getAttribute('data-kind') === kind;
+        c.style.display = show ? '' : 'none';
+        if (show) visible++;
+      });
+      hold.classList.toggle('is-shown', visible === 0);
+    }
+    chips.forEach(function (ch) {
+      ch.addEventListener('click', function () {
+        chips.forEach(function (o) { o.classList.remove('on'); });
+        ch.classList.add('on');
+        apply(ch.getAttribute('data-kind'));
+      });
+    });
+    document.querySelectorAll('[data-open-drawer]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var d = document.getElementById(b.getAttribute('data-open-drawer'));
+        if (d) d.classList.add('is-open');
+      });
+    });
+    document.querySelectorAll('[data-close-drawer]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var d = document.getElementById(b.getAttribute('data-close-drawer'));
+        if (d) d.classList.remove('is-open');
+      });
+    });
+  })();
+</script>
+</body>
+</html>

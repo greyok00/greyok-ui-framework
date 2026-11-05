@@ -1,0 +1,520 @@
+<!doctype html>
+<html lang="en" data-theme="neutral">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>greyok-ui-framework · demo</title>
+  <link rel="stylesheet" href="../tokens.css">
+  <link rel="stylesheet" href="../themes.css">
+  <link rel="stylesheet" href="../fonts.css">
+  <link rel="stylesheet" href="../base.css">
+  <link rel="stylesheet" href="../elements-display.css">
+<link rel="stylesheet" href="../elements-structure.css">
+  <link rel="stylesheet" href="../elements-lists.css">
+  <link rel="stylesheet" href="../elements-controls.css">
+  <link rel="stylesheet" href="../elements-inputs.css">
+  <link rel="stylesheet" href="../elements-containers.css">
+  <link rel="stylesheet" href="../elements-dataviz.css">
+  <link rel="stylesheet" href="../elements-interactions.css">
+  <link rel="stylesheet" href="../elements-size.css">
+</head>
+<body class="el-reset">
+
+  <!-- ─── Top bar ─── -->
+  <header class="el-demo-bar">
+    <h1>greyok-ui-framework <small>v0.4.0</small></h1>
+    <div class="el-cluster">
+      <span style="color:var(--el-ink-soft);font:11px var(--el-font-mono);letter-spacing:0.06em;text-transform:uppercase">theme</span>
+      <div id="el-theme-strip" data-theme-strip></div>
+      <span class="el-dot live" title="framework live"></span>
+    </div>
+  </header>
+
+  <main class="el-page">
+
+    <!-- ─── Hero ─── -->
+    <section style="display:flex;flex-direction:column;align-items:center;gap:var(--el-space-4);padding:var(--el-space-7) var(--el-space-4) var(--el-space-5);text-align:center">
+      <img src="../assets/wordmark.svg" alt="greyok-ui-framework" style="max-width:360px;height:auto">
+      <p style="max-width:560px;color:var(--el-ink-soft);font-size:var(--el-fs-md);margin:0;line-height:1.5">A drop-in CSS + JS framework with ~100 UI primitives, 20 swappable themes + neutral, and 6 size buckets. Works in HTML, TypeScript, and Python/Tkinter — no build step.</p>
+      <div style="display:flex;gap:var(--el-space-2);justify-content:center;flex-wrap:wrap">
+        <span class="el-pill ok">100 elements</span>
+        <span class="el-pill accent">20 themes</span>
+        <span class="el-pill">6 sizes</span>
+        <span class="el-pill info">TS + Python bindings</span>
+      </div>
+      <div style="display:flex;gap:var(--el-space-2);justify-content:center;margin-top:var(--el-space-3);flex-wrap:wrap">
+        <a href="display.html" class="el-card" style="padding:10px 18px;display:inline-flex;gap:8px;align-items:center;text-decoration:none;color:var(--el-accent);font-weight:600">Browse demo →</a>
+        <a href="https://github.com/greyok00/greyok-ui-framework" class="el-card" style="padding:10px 18px;display:inline-flex;gap:8px;align-items:center;text-decoration:none;color:var(--el-ink);border-color:var(--el-line)">GitHub</a>
+      </div>
+    </section>
+
+    <!-- ─── Categories ─── -->
+    <section style="margin-top:var(--el-space-6)">
+      <h2 style="font-family:var(--el-font-display);font-weight:600;font-size:var(--el-fs-xl);letter-spacing:-0.01em;margin:0 0 var(--el-space-2);color:var(--el-ink)">Categories <small style="font-family:var(--el-font-mono);font-size:var(--el-fs-xs);color:var(--el-ink-soft);letter-spacing:0.08em;text-transform:uppercase;margin-left:var(--el-space-2);font-weight:500">7 · 87 primitives</small></h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:var(--el-space-3);margin:var(--el-space-5) 0">
+
+        <a class="el-card" href="display.html" style="text-decoration:none;color:inherit">
+          <div class="el-cluster" style="justify-content:space-between">
+            <span class="el-pill ok">15</span>
+            <span style="font-size:24px">✦</span>
+          </div>
+          <h3>Display</h3>
+          <div class="sub">pills, dots, gauges, badges, progress, sparklines</div>
+          <div style="display:flex;gap:var(--el-space-2);align-items:center;margin-top:var(--el-space-2);min-height:28px;flex-wrap:wrap">
+            <span class="el-pill ok">OK</span>
+            <span class="el-pill fail">FAIL</span>
+            <span class="el-pill warn">WARN</span>
+            <span class="el-dot live" style="width:8px;height:8px"></span>
+          </div>
+        </a>
+
+        <a class="el-card" href="lists.html" style="text-decoration:none;color:inherit">
+          <div class="el-cluster" style="justify-content:space-between">
+            <span class="el-pill ok">15</span>
+            <span style="font-size:24px">≡</span>
+          </div>
+          <h3>Lists</h3>
+          <div class="sub">timelines, tables, kanban, cards, trees, breadcrumbs</div>
+          <div style="display:flex;gap:var(--el-space-2);align-items:center;margin-top:var(--el-space-2);min-height:28px;flex-wrap:wrap">
+            <span class="el-chip">chips</span>
+            <span class="el-chip added">selected</span>
+            <span class="el-chip ok">passed</span>
+          </div>
+        </a>
+
+        <a class="el-card" href="controls.html" style="text-decoration:none;color:inherit">
+          <div class="el-cluster" style="justify-content:space-between">
+            <span class="el-pill ok">15</span>
+            <span style="font-size:24px">⚙</span>
+          </div>
+          <h3>Controls</h3>
+          <div class="sub">dropdowns, toggles, sliders, palettes, comboboxes</div>
+          <div style="display:flex;gap:var(--el-space-2);align-items:center;margin-top:var(--el-space-2);min-height:28px;flex-wrap:wrap">
+            <span class="el-toggle on">on</span>
+            <span class="el-switch on">switch</span>
+            <span class="el-check">✓</span>
+          </div>
+        </a>
+
+        <a class="el-card" href="inputs.html" style="text-decoration:none;color:inherit">
+          <div class="el-cluster" style="justify-content:space-between">
+            <span class="el-pill ok">10</span>
+            <span style="font-size:24px">⎘</span>
+          </div>
+          <h3>Inputs</h3>
+          <div class="sub">text, search, prompt, file-upload, signature-pad</div>
+          <div style="display:flex;gap:var(--el-space-2);align-items:center;margin-top:var(--el-space-2);min-height:28px;flex-wrap:wrap">
+            <input class="el-input" type="text" placeholder="type…" style="width:140px">
+          </div>
+        </a>
+
+        <a class="el-card" href="dataviz.html" style="text-decoration:none;color:inherit">
+          <div class="el-cluster" style="justify-content:space-between">
+            <span class="el-pill ok">10</span>
+            <span style="font-size:24px">📊</span>
+          </div>
+          <h3>Data viz</h3>
+          <div class="sub">mini-bars, heatmaps, graphs, diff-view, markdown</div>
+          <div style="display:flex;gap:var(--el-space-2);align-items:center;margin-top:var(--el-space-2);min-height:28px;flex-wrap:wrap">
+            <div class="el-mini-bars" style="height:36px">
+              <span class="bar" style="height:60%"></span>
+              <span class="bar" style="height:80%"></span>
+              <span class="bar" style="height:40%"></span>
+              <span class="bar ok" style="height:90%"></span>
+            </div>
+          </div>
+        </a>
+
+        <a class="el-card" href="containers.html" style="text-decoration:none;color:inherit">
+          <div class="el-cluster" style="justify-content:space-between">
+            <span class="el-pill ok">12</span>
+            <span style="font-size:24px">▤</span>
+          </div>
+          <h3>Containers</h3>
+          <div class="sub">panels, tabs, modals, drawers, bento grids</div>
+          <div style="display:flex;gap:var(--el-space-2);align-items:center;margin-top:var(--el-space-2);min-height:28px;flex-wrap:wrap">
+            <div class="el-tabs-h" style="font-size:10px">
+              <span class="tab on">A</span>
+              <span class="tab">B</span>
+              <span class="tab">C</span>
+            </div>
+          </div>
+        </a>
+
+        <a class="el-card" href="interactions.html" style="text-decoration:none;color:inherit">
+          <div class="el-cluster" style="justify-content:space-between">
+            <span class="el-pill ok">10</span>
+            <span style="font-size:24px">↔</span>
+          </div>
+          <h3>Interactions</h3>
+          <div class="sub">drag, tooltip, popover, toast, context-menu</div>
+          <div style="display:flex;gap:var(--el-space-2);align-items:center;margin-top:var(--el-space-2);min-height:28px;flex-wrap:wrap">
+            <span class="el-tooltip" data-tip="tooltipped">hover me</span>
+          </div>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- ─── additions ─── -->
+    <section style="margin-top:var(--el-space-6)">
+      <h2 style="font-family:var(--el-font-display);font-weight:600;font-size:var(--el-fs-xl);letter-spacing:-0.01em;margin:0 0 var(--el-space-2);color:var(--el-ink)">additions <small style="font-family:var(--el-font-mono);font-size:var(--el-fs-xs);color:var(--el-ink-soft);letter-spacing:0.08em;text-transform:uppercase;margin-left:var(--el-space-2);font-weight:500">new primitives · 20 themes · charts</small></h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:var(--el-space-3);margin:var(--el-space-5) 0">
+
+        <a class="el-card" href="workflows.html" style="text-decoration:none;color:inherit">
+          <div class="el-cluster" style="justify-content:space-between">
+            <span class="el-pill accent">v0.2.0</span>
+            <span style="font-size:24px">▸</span>
+          </div>
+          <h3>Workflows</h3>
+          <div class="sub">stage rail, run ladder, progress truth, source cards, citation rail, fact grid — <a href="reader.html">reader</a> · <a href="assistant.html">assistant</a></div>
+        </a>
+
+        <a class="el-card" href="misc.html" style="text-decoration:none;color:inherit">
+          <div class="el-cluster" style="justify-content:space-between">
+            <span class="el-pill accent">new</span>
+            <span style="font-size:24px">✨</span>
+          </div>
+          <h3>Misc &amp; charts</h3>
+          <div class="sub">datepicker, select, carousel, palette, toast-promise, split, icons, glass, charts</div>
+        </a>
+
+        <div class="el-card" style="color:inherit">
+          <div class="el-cluster" style="justify-content:space-between">
+            <span class="el-pill accent">20 themes</span>
+            <span style="font-size:24px">✦</span>
+          </div>
+          <h3>Theme library</h3>
+          <div class="sub">20 v0.4.0 looks from the icon strip above — or the full gallery at <a href="themes.html">themes</a></div>
+          <div style="display:flex;gap:var(--el-space-2);align-items:center;margin-top:var(--el-space-2);min-height:28px;flex-wrap:wrap">
+            <span class="el-chip">mono-console</span><span class="el-chip">noir-couture</span><span class="el-chip">orbit-deep</span>
+          </div>
+        </div>
+
+        <div class="el-card" style="color:inherit">
+          <div class="el-cluster" style="justify-content:space-between">
+            <span class="el-pill info">svg</span>
+            <span style="font-size:24px">📈</span>
+          </div>
+          <h3>Charts</h3>
+          <div class="sub">sparkline · bar · line · area · donut — zero deps, CSS-animated</div>
+          <div style="display:flex;gap:var(--el-space-3);align-items:flex-end;margin-top:var(--el-space-2);min-height:56px;flex-wrap:wrap">
+            <span data-chart="sparkline" data-values="4,8,6,10,7,12,9,14" data-width="120" data-height="40"></span>
+            <span data-chart="donut" data-values="68" data-width="48" data-label="false"></span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ─── Install tabs ─── -->
+    <section style="margin-top:var(--el-space-6)">
+      <h2 style="font-family:var(--el-font-display);font-weight:600;font-size:var(--el-fs-xl);letter-spacing:-0.01em;margin:0 0 var(--el-space-2);color:var(--el-ink)">Install <small style="font-family:var(--el-font-mono);font-size:var(--el-fs-xs);color:var(--el-ink-soft);letter-spacing:0.08em;text-transform:uppercase;margin-left:var(--el-space-2);font-weight:500">pick a language</small></h2>
+      <div style="margin-top:var(--el-space-3)">
+        <div class="el-tabs-h" style="flex-wrap:wrap">
+          <span class="tab on" data-target="#install-html">HTML</span>
+          <span class="tab" data-target="#install-npm">npm</span>
+          <span class="tab" data-target="#install-py">Python</span>
+          <span class="tab" data-target="#install-ts">TypeScript</span>
+        </div>
+
+        <div class="panel on" id="install-html">
+          <button class="el-card" data-copy="<link rel=&quot;stylesheet&quot; href=&quot;greyok-ui-framework/tokens.css&quot;>
+<link rel=&quot;stylesheet&quot; href=&quot;greyok-ui-framework/themes.css&quot;>
+<link rel=&quot;stylesheet&quot; href=&quot;greyok-ui-framework/fonts.css&quot;>
+<link rel=&quot;stylesheet&quot; href=&quot;greyok-ui-framework/base.css&quot;>
+<link rel=&quot;stylesheet&quot; href=&quot;greyok-ui-framework/elements-display.css&quot;>
+<link rel=&quot;stylesheet&quot; href=&quot;greyok-ui-framework/elements-lists.css&quot;>
+<link rel=&quot;stylesheet&quot; href=&quot;greyok-ui-framework/elements-controls.css&quot;>
+<link rel=&quot;stylesheet&quot; href=&quot;greyok-ui-framework/elements-dataviz.css&quot;>
+<link rel=&quot;stylesheet&quot; href=&quot;greyok-ui-framework/elements-containers.css&quot;>
+<link rel=&quot;stylesheet&quot; href=&quot;greyok-ui-framework/elements-inputs.css&quot;>
+<link rel=&quot;stylesheet&quot; href=&quot;greyok-ui-framework/elements-interactions.css&quot;>
+<link rel=&quot;stylesheet&quot; href=&quot;greyok-ui-framework/elements-size.css&quot;>
+<script src=&quot;greyok-ui-framework/theme-switcher.js&quot; defer>&lt;/script>
+<script src=&quot;greyok-ui-framework/elements.js&quot; defer>&lt;/script>" style="float:right;margin:0 0 var(--el-space-2);padding:4px 10px;font-size:11px;cursor:pointer">Copy</button>
+          <pre style="margin:0;padding:var(--el-space-4);background:var(--el-panel-2);border-radius:0 0 var(--el-r-md) var(--el-r-md);overflow-x:auto;font-family:var(--el-font-mono);font-size:var(--el-fs-sm)">&lt;link rel="stylesheet" href="greyok-ui-framework/tokens.css"&gt;
+&lt;link rel="stylesheet" href="greyok-ui-framework/themes.css"&gt;
+&lt;link rel="stylesheet" href="greyok-ui-framework/fonts.css"&gt;
+&lt;link rel="stylesheet" href="greyok-ui-framework/base.css"&gt;
+&lt;link rel="stylesheet" href="greyok-ui-framework/elements-display.css"&gt;
+&lt;link rel="stylesheet" href="greyok-ui-framework/elements-lists.css"&gt;
+&lt;link rel="stylesheet" href="greyok-ui-framework/elements-controls.css"&gt;
+&lt;link rel="stylesheet" href="greyok-ui-framework/elements-dataviz.css"&gt;
+&lt;link rel="stylesheet" href="greyok-ui-framework/elements-containers.css"&gt;
+&lt;link rel="stylesheet" href="greyok-ui-framework/elements-inputs.css"&gt;
+&lt;link rel="stylesheet" href="greyok-ui-framework/elements-interactions.css"&gt;
+&lt;link rel="stylesheet" href="greyok-ui-framework/elements-size.css"&gt;
+&lt;script src="greyok-ui-framework/theme-switcher.js" defer&gt;&lt;/script&gt;
+&lt;script src="greyok-ui-framework/elements.js" defer&gt;&lt;/script&gt;</pre>
+        </div>
+
+        <div class="panel" id="install-npm" style="display:none">
+          <button class="el-card" data-copy="npm install greyok-ui-framework" style="float:right;margin:0 0 var(--el-space-2);padding:4px 10px;font-size:11px;cursor:pointer">Copy</button>
+          <pre style="margin:0;padding:var(--el-space-4);background:var(--el-panel-2);border-radius:0 0 var(--el-r-md) var(--el-r-md);overflow-x:auto;font-family:var(--el-font-mono);font-size:var(--el-fs-sm)">npm install greyok-ui-framework</pre>
+        </div>
+
+        <div class="panel" id="install-py" style="display:none">
+          <button class="el-card" data-copy="from greyok_ui_framework import ElTheme, ElWidget, get_theme
+
+theme = get_theme('mono-console')
+btn = ElWidget(parent, 'btn', theme=theme, text='Run', command=handler)
+btn.pack()" style="float:right;margin:0 0 var(--el-space-2);padding:4px 10px;font-size:11px;cursor:pointer">Copy</button>
+          <pre style="margin:0;padding:var(--el-space-4);background:var(--el-panel-2);border-radius:0 0 var(--el-r-md) var(--el-r-md);overflow-x:auto;font-family:var(--el-font-mono);font-size:var(--el-fs-sm)">from greyok_ui_framework import ElTheme, ElWidget, get_theme
+
+theme = get_theme('mono-console')      # any of 20 themes
+btn = ElWidget(parent, 'btn', theme=theme, text='Run', command=handler)
+btn.pack()
+
+# or use the dataclass directly
+print(f'bg={theme.bg}  accent={theme.accent}  live={theme.live}')</pre>
+        </div>
+
+        <div class="panel" id="install-ts" style="display:none">
+          <button class="el-card" data-copy="import 'greyok-ui-framework/typescript/elements.d.ts';
+
+const pill = document.querySelector('.el-pill.ok') as HTMLSpanElement;
+const tabs = document.querySelector('.el-tabs-h') as HTMLDivElement;" style="float:right;margin:0 0 var(--el-space-2);padding:4px 10px;font-size:11px;cursor:pointer">Copy</button>
+          <pre style="margin:0;padding:var(--el-space-4);background:var(--el-panel-2);border-radius:0 0 var(--el-r-md) var(--el-r-md);overflow-x:auto;font-family:var(--el-font-mono);font-size:var(--el-fs-sm)">import 'greyok-ui-framework/typescript/elements.d.ts';
+
+const pill = document.querySelector('.el-pill.ok') as HTMLSpanElement;
+const tabs = document.querySelector('.el-tabs-h') as HTMLDivElement;</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── Theme gallery ─── -->
+    <section style="margin-top:var(--el-space-6)">
+      <h2 style="font-family:var(--el-font-display);font-weight:600;font-size:var(--el-fs-xl);letter-spacing:-0.01em;margin:0 0 var(--el-space-2);color:var(--el-ink)">Themes <small style="font-family:var(--el-font-mono);font-size:var(--el-fs-xs);color:var(--el-ink-soft);letter-spacing:0.08em;text-transform:uppercase;margin-left:var(--el-space-2);font-weight:500">20 v0.4.0 skins · live preview · click a card to apply</small></h2>
+      <p class="el-hint" style="color:var(--el-ink-soft);font:12px var(--el-font-mono);margin:0 0 var(--el-space-3)">neutral stays available from the icon strip in the header — cards are styled by theme-switcher.js (<code>.el-theme-card</code> <code>.el-theme-card-swatch-row</code> <code>.el-theme-card-swatch</code> <code>.el-theme-card-name</code>), no elements file touched</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:var(--el-space-3);margin:var(--el-space-4) 0">
+
+        <div class="el-theme-card" data-theme="mono-console" data-set-theme="mono-console">
+          <div class="el-theme-card-swatch-row">
+            <span class="el-theme-card-swatch" style="background:var(--el-bg)"></span>
+            <span class="el-theme-card-swatch" style="background:var(--el-panel-3)"></span>
+            <span class="el-theme-card-swatch" style="background:var(--el-accent)"></span>
+            <span class="el-theme-card-swatch" style="background:var(--el-ink)"></span>
+          </div>
+          <span class="el-theme-card-name">Mono Console</span>
+        </div>
+
+        <div class="el-theme-card" data-theme="ghost-terminal" data-set-theme="ghost-terminal">
+          <div class="el-theme-card-swatch-row">
+            <span class="el-theme-card-swatch" style="background:var(--el-bg)"></span>
+            <span class="el-theme-card-swatch" style="background:var(--el-panel-3)"></span>
+            <span class="el-theme-card-swatch" style="background:var(--el-accent)"></span>
+            <span class="el-theme-card-swatch" style="background:var(--el-ink)"></span>
+          </div>
+          <span class="el-theme-card-name">Ghost Terminal</span>
+        </div>
+
+        <div class="el-theme-card" data-theme="cream-journal" data-set-theme="cream-journal">
+          <div class="el-theme-card-swatch-row">
+            <span class="el-theme-card-swatch" style="background:var(--el-bg)"></span>
+            <span class="el-theme-card-swatch" style="background:var(--el-panel-3)"></span>
+            <span class="el-theme-card-swatch" style="background:var(--el-accent)"></span>
+            <span class="el-theme-card-swatch" style="background:var(--el-ink)"></span>
+          </div>
+          <span class="el-theme-card-name">Cream Journal</span>
+        </div>
+
+        <div class="el-theme-card" data-theme="paper-press" data-set-theme="paper-press">
+          <div class="el-theme-card-swatch-row">
+            <span class="el-theme-card-swatch" style="background:var(--el-bg)"></span>
+            <span class="el-theme-card-swatch" style="background:var(--el-panel-3)"></span>
+            <span class="el-theme-card-swatch" style="background:var(--el-accent)"></span>
+            <span class="el-theme-card-swatch" style="background:var(--el-ink)"></span>
+          </div>
+          <span class="el-theme-card-name">Paper Press</span>
+        </div>
+
+        <div class="el-theme-card" data-theme="brutal-stamp" data-set-theme="brutal-stamp">
+          <div class="el-theme-card-swatch-row">
+            <span class="el-theme-card-swatch" style="background:var(--el-bg)"></span>
+            <span class="el-theme-card-swatch" style="background:var(--el-panel-3)"></span>
+            <span class="el-theme-card-swatch" style="background:var(--el-accent)"></span>
+            <span class="el-theme-card-swatch" style="background:var(--el-ink)"></span>
+          </div>
+          <span class="el-theme-card-name">Brutal Stamp</span>
+        </div>
+
+        <div class="el-theme-card" data-theme="brutal-index" data-set-theme="brutal-index">
+          <div class="el-theme-card-swatch-row">
+            <span class="el-theme-card-swatch" style="background:var(--el-bg)"></span>
+            <span class="el-theme-card-swatch" style="background:var(--el-panel-3)"></span>
+            <span class="el-theme-card-swatch" style="background:var(--el-accent)"></span>
+            <span class="el-theme-card-swatch" style="background:var(--el-ink)"></span>
+          </div>
+          <span class="el-theme-card-name">Brutal Index</span>
+        </div>
+
+        <div class="el-theme-card" data-theme="orbit-deep" data-set-theme="orbit-deep">
+          <div class="el-theme-card-swatch-row">
+            <span class="el-theme-card-swatch" style="background:var(--el-bg)"></span>
+            <span class="el-theme-card-swatch" style="background:var(--el-panel-3)"></span>
+            <span class="el-theme-card-swatch" style="background:var(--el-accent)"></span>
+            <span class="el-theme-card-swatch" style="background:var(--el-ink)"></span>
+          </div>
+          <span class="el-theme-card-name">Orbit Deep</span>
+        </div>
+
+        <div class="el-theme-card" data-theme="solar-halo" data-set-theme="solar-halo">
+          <div class="el-theme-card-swatch-row">
+            <span class="el-theme-card-swatch" style="background:var(--el-bg)"></span>
+            <span class="el-theme-card-swatch" style="background:var(--el-panel-3)"></span>
+            <span class="el-theme-card-swatch" style="background:var(--el-accent)"></span>
+            <span class="el-theme-card-swatch" style="background:var(--el-ink)"></span>
+          </div>
+          <span class="el-theme-card-name">Solar Halo</span>
+        </div>
+
+        <div class="el-theme-card" data-theme="agency-quartz" data-set-theme="agency-quartz">
+          <div class="el-theme-card-swatch-row">
+            <span class="el-theme-card-swatch" style="background:var(--el-bg)"></span>
+            <span class="el-theme-card-swatch" style="background:var(--el-panel-3)"></span>
+            <span class="el-theme-card-swatch" style="background:var(--el-accent)"></span>
+            <span class="el-theme-card-swatch" style="background:var(--el-ink)"></span>
+          </div>
+          <span class="el-theme-card-name">Agency Quartz</span>
+        </div>
+
+        <div class="el-theme-card" data-theme="agency-mono-plate" data-set-theme="agency-mono-plate">
+          <div class="el-theme-card-swatch-row">
+            <span class="el-theme-card-swatch" style="background:var(--el-bg)"></span>
+            <span class="el-theme-card-swatch" style="background:var(--el-panel-3)"></span>
+            <span class="el-theme-card-swatch" style="background:var(--el-accent)"></span>
+            <span class="el-theme-card-swatch" style="background:var(--el-ink)"></span>
+          </div>
+          <span class="el-theme-card-name">Agency Mono-Plate</span>
+        </div>
+
+        <div class="el-theme-card" data-theme="maison-serif" data-set-theme="maison-serif">
+          <div class="el-theme-card-swatch-row">
+            <span class="el-theme-card-swatch" style="background:var(--el-bg)"></span>
+            <span class="el-theme-card-swatch" style="background:var(--el-panel-3)"></span>
+            <span class="el-theme-card-swatch" style="background:var(--el-accent)"></span>
+            <span class="el-theme-card-swatch" style="background:var(--el-ink)"></span>
+          </div>
+          <span class="el-theme-card-name">Maison Serif</span>
+        </div>
+
+        <div class="el-theme-card" data-theme="noir-couture" data-set-theme="noir-couture">
+          <div class="el-theme-card-swatch-row">
+            <span class="el-theme-card-swatch" style="background:var(--el-bg)"></span>
+            <span class="el-theme-card-swatch" style="background:var(--el-panel-3)"></span>
+            <span class="el-theme-card-swatch" style="background:var(--el-accent)"></span>
+            <span class="el-theme-card-swatch" style="background:var(--el-ink)"></span>
+          </div>
+          <span class="el-theme-card-name">Noir Couture</span>
+        </div>
+
+        <div class="el-theme-card" data-theme="sticker-pop" data-set-theme="sticker-pop">
+          <div class="el-theme-card-swatch-row">
+            <span class="el-theme-card-swatch" style="background:var(--el-bg)"></span>
+            <span class="el-theme-card-swatch" style="background:var(--el-panel-3)"></span>
+            <span class="el-theme-card-swatch" style="background:var(--el-accent)"></span>
+            <span class="el-theme-card-swatch" style="background:var(--el-ink)"></span>
+          </div>
+          <span class="el-theme-card-name">Sticker Pop</span>
+        </div>
+
+        <div class="el-theme-card" data-theme="sketchbook" data-set-theme="sketchbook">
+          <div class="el-theme-card-swatch-row">
+            <span class="el-theme-card-swatch" style="background:var(--el-bg)"></span>
+            <span class="el-theme-card-swatch" style="background:var(--el-panel-3)"></span>
+            <span class="el-theme-card-swatch" style="background:var(--el-accent)"></span>
+            <span class="el-theme-card-swatch" style="background:var(--el-ink)"></span>
+          </div>
+          <span class="el-theme-card-name">Sketchbook</span>
+        </div>
+
+        <div class="el-theme-card" data-theme="console-light" data-set-theme="console-light">
+          <div class="el-theme-card-swatch-row">
+            <span class="el-theme-card-swatch" style="background:var(--el-bg)"></span>
+            <span class="el-theme-card-swatch" style="background:var(--el-panel-3)"></span>
+            <span class="el-theme-card-swatch" style="background:var(--el-accent)"></span>
+            <span class="el-theme-card-swatch" style="background:var(--el-ink)"></span>
+          </div>
+          <span class="el-theme-card-name">Console Light</span>
+        </div>
+
+        <div class="el-theme-card" data-theme="grid-ledger" data-set-theme="grid-ledger">
+          <div class="el-theme-card-swatch-row">
+            <span class="el-theme-card-swatch" style="background:var(--el-bg)"></span>
+            <span class="el-theme-card-swatch" style="background:var(--el-panel-3)"></span>
+            <span class="el-theme-card-swatch" style="background:var(--el-accent)"></span>
+            <span class="el-theme-card-swatch" style="background:var(--el-ink)"></span>
+          </div>
+          <span class="el-theme-card-name">Grid Ledger</span>
+        </div>
+
+        <div class="el-theme-card" data-theme="kinetic-ink" data-set-theme="kinetic-ink">
+          <div class="el-theme-card-swatch-row">
+            <span class="el-theme-card-swatch" style="background:var(--el-bg)"></span>
+            <span class="el-theme-card-swatch" style="background:var(--el-panel-3)"></span>
+            <span class="el-theme-card-swatch" style="background:var(--el-accent)"></span>
+            <span class="el-theme-card-swatch" style="background:var(--el-ink)"></span>
+          </div>
+          <span class="el-theme-card-name">Kinetic Ink</span>
+        </div>
+
+        <div class="el-theme-card" data-theme="aperture-motion" data-set-theme="aperture-motion">
+          <div class="el-theme-card-swatch-row">
+            <span class="el-theme-card-swatch" style="background:var(--el-bg)"></span>
+            <span class="el-theme-card-swatch" style="background:var(--el-panel-3)"></span>
+            <span class="el-theme-card-swatch" style="background:var(--el-accent)"></span>
+            <span class="el-theme-card-swatch" style="background:var(--el-ink)"></span>
+          </div>
+          <span class="el-theme-card-name">Aperture Motion</span>
+        </div>
+
+        <div class="el-theme-card" data-theme="ma-quiet" data-set-theme="ma-quiet">
+          <div class="el-theme-card-swatch-row">
+            <span class="el-theme-card-swatch" style="background:var(--el-bg)"></span>
+            <span class="el-theme-card-swatch" style="background:var(--el-panel-3)"></span>
+            <span class="el-theme-card-swatch" style="background:var(--el-accent)"></span>
+            <span class="el-theme-card-swatch" style="background:var(--el-ink)"></span>
+          </div>
+          <span class="el-theme-card-name">MA Quiet</span>
+        </div>
+
+        <div class="el-theme-card" data-theme="gesshoku" data-set-theme="gesshoku">
+          <div class="el-theme-card-swatch-row">
+            <span class="el-theme-card-swatch" style="background:var(--el-bg)"></span>
+            <span class="el-theme-card-swatch" style="background:var(--el-panel-3)"></span>
+            <span class="el-theme-card-swatch" style="background:var(--el-accent)"></span>
+            <span class="el-theme-card-swatch" style="background:var(--el-ink)"></span>
+          </div>
+          <span class="el-theme-card-name">Gesshoku</span>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ─── Footer ─── -->
+    <footer style="text-align:center;padding:var(--el-space-6) 0 var(--el-space-4);color:var(--el-ink-soft);font-size:var(--el-fs-sm);border-top:1px solid var(--el-line);margin-top:var(--el-space-6)">
+      <p>Apache License 2.0 © 2026 <a href="https://github.com/greyok00" style="color:var(--el-accent)">greyok00</a> · <a href="https://github.com/greyok00/greyok-ui-framework" style="color:var(--el-accent)">github.com/greyok00/greyok-ui-framework</a></p>
+      <p><span style="color:var(--el-ink-soft);font:11px var(--el-font-mono);letter-spacing:0.06em;text-transform:uppercase">100 elements · 20 themes · 6 sizes · 0 build</span></p>
+    </footer>
+
+  </main>
+
+  <!-- Panel switch script (only 4 LOC; tabs.js handler exists but we need panel-on toggle). -->
+  <script>
+    document.querySelectorAll('.install-tabs .el-tabs-h .tab, .el-tabs-h .tab[data-target^="#install"]').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.el-tabs-h .tab[data-target^="#install"]').forEach(t => t.classList.remove('on'));
+        tab.classList.add('on');
+        document.querySelectorAll('.panel[id^="install-"]').forEach(p => p.style.display = 'none');
+        const tgt = document.querySelector(tab.dataset.target);
+        if (tgt) tgt.style.display = 'block';
+      });
+    });
+  </script>
+
+  <script src="../theme-switcher.js"></script>
+  <script src="../elements.js"></script>
+  <script src="../charts.js"></script>
+</body>
+</html>

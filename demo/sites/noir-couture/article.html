@@ -1,0 +1,166 @@
+<!doctype html><html lang="en" data-theme="noir-couture"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Notes from the fourteenth hour — Noir Vasseur · noir-couture</title>
+<link rel="stylesheet" href="../../../base.css"><link rel="stylesheet" href="../../../fonts.css">
+<link rel="stylesheet" href="../../../tokens.css">
+<link rel="stylesheet" href="../../../elements-display.css">
+<link rel="stylesheet" href="../../../elements-structure.css">
+<link rel="stylesheet" href="../../../elements-lists.css">
+<link rel="stylesheet" href="../../../elements-app.css">
+<link rel="stylesheet" href="../../../elements-containers.css">
+<link rel="stylesheet" href="../../../elements-controls.css">
+<link rel="stylesheet" href="../../../elements-inputs.css">
+<link rel="stylesheet" href="../../../elements-dataviz.css">
+<link rel="stylesheet" href="../../../elements-overlay.css">
+<link rel="stylesheet" href="../../../elements-interactions.css">
+<link rel="stylesheet" href="../../../elements-misc.css">
+<link rel="stylesheet" href="../../../elements-size.css">
+<link rel="stylesheet" href="../../../elements-workflow.css">
+<link rel="stylesheet" href="../../../elements-inspector.css">
+<link rel="stylesheet" href="../../../elements-reader.css">
+<link rel="stylesheet" href="../../../elements-assistant.css">
+<link rel="stylesheet" href="../../../themes/src/fashion-serif.css">
+<script src="../../../elements.js" defer></script><script src="../../../charts.js" defer></script>
+</head><body>
+<div class="el-page">
+
+  <div class="el-banner el-banner--warn el-banner--attached" role="status">
+    <span class="glyph" aria-hidden="true">✦</span>
+    <span class="copy"><b>Embargo in force</b><span class="detail"> · backstage frames release one week after the hour; runway plates are live now</span></span>
+    <button class="el-btn el-btn--ghost" data-toast="The embargo reminder is written to your desk file.">Acknowledge</button>
+  </div>
+
+  <nav class="el-navbar el-navbar--top" aria-label="Primary">
+    <a class="brand" href="index.html">Noir Vasseur <small>Paris · 1998</small></a>
+    <div class="links">
+      <a href="index.html">Collection</a>
+      <a href="catalog.html">Looks</a>
+      <a href="article.html" aria-current="page">Revue</a>
+      <a href="account.html">Accreditation</a>
+      <a href="app.html">Press desk</a>
+    </div>
+    <div class="actions">
+      <button class="el-btn el-btn--ghost" data-toast="The revue page is copied to your desk file.">Copy the citation</button>
+      <button class="el-btn" data-dialog-open="press-dialog">Request the lookbook</button>
+    </div>
+  </nav>
+
+  <main>
+    <section class="el-section">
+      <div class="el-reader" style="max-width:70ch;margin-inline:auto;">
+        <p class="el-eyebrow">Revue · the fourteenth hour</p>
+        <h1 style="font-size:var(--el-fs-2xl);line-height:1.08;">Notes from the fourteenth hour</h1>
+        <p class="el-reader-meta">By R. Marchetti · press seat, second bar · 11 October 2026 · read in seven minutes, embargo held</p>
+
+        <p>The house does not announce its hour; it arrives at it. The room filled in the dark, a
+           stopped pocket-watch on a stand where the podium would be, and when the fourteenth
+           minute of the fourteenth hour came, the first coat walked. Collection No.&thinsp;14
+           &mdash; «La Quatorzième Heure» &mdash; was shown in Paris in fourteen minutes and
+           thirty seconds, and the house gave no encore.</p>
+
+        <p class="el-body">The collection divides into three acts, and the desk files them the
+           way the walk ran: darkness first, light second, a closing that returns the room to
+           the dark it came in wearing. Read in that order, the forty-two looks are one
+           argument about time rather than forty-two outfits.</p>
+
+        <figure class="el-media-band el-media-band--flat" style="margin-inline:0;">
+          <div class="media"><svg viewBox="0 0 800 440" preserveAspectRatio="xMidYMid slice" role="img" aria-label="The walk at its second bar" style="width:100%;height:100%;display:block">
+            <rect width="800" height="440" fill="#0e0e10"/><rect y="330" width="800" height="110" fill="#1e1c16" opacity="0.9"/><rect x="372" y="40" width="56" height="330" fill="#c9a962" opacity="0.1"/><rect x="200" y="60" width="400" height="60" fill="#c9a962" opacity="0.05"/></svg>
+            <figcaption>The walk, second bar · plate released with the hour</figcaption></div>
+        </figure>
+
+        <h2>The clock is the collection&rsquo;s tailoring</h2>
+        <p>Vasseur fits to a stopped pocket-watch the founder carried in 1998. Each look is
+           rehearsed to its second, and the desk&rsquo;s credits carry those seconds. The plate
+           file for Look 01 reads, in the house&rsquo;s own notation:</p>
+
+        <p class="el-mono" style="text-align:center;">LOOK 01 · <kbd class="el-kbd">14:00</kbd> &rarr; <kbd class="el-kbd">14:22</kbd> · bar 2, beat 1 · Awa · wool/gold</p>
+
+        <p>Automated checks the atelier runs on each rehearsal file keep the walk true to the
+           clock; the format is short and has not changed since edition nine:</p>
+
+        <div class="el-code-block" role="figure" aria-label="Rehearsal file example">
+<span class="el-comment"># edition-14/walk.clock — kept format since edition nine</span>
+<span class="el-keyword">look</span>   = (<span class="el-number">01</span>, <span class="el-string">"opening coat"</span>, model=<span class="el-string">"Awa"</span>)
+<span class="el-keyword">cue</span>    = <span class="el-keyword">at</span> <span class="el-string">"14:00:14"</span>, bar=<span class="el-number">2</span>
+<span class="el-keyword">hold</span>   = <span class="el-fn">assert</span>(clock == <span class="el-string">"stopped"</span>, <span class="el-string">"the watch never runs"</span>)</div>
+
+        <div class="el-inline-alert fail"><span class="el-icon" aria-hidden="true">✕</span>
+            <div><span class="title">Embargo discipline</span><span class="body">Backstage frames stay with the desk for one week. The house has
+          never broken an embargo; correspondents who wait are served first next edition.</span></div>
+          <button class="close" aria-label="Dismiss">×</button></div>
+
+        <h2>The three acts, as the walk ran</h2>
+        <p>Times are from the house clock, as filed by the desk. The full plate list is on file
+           at the desk for accredited correspondents:</p>
+
+        <ol class="el-timeline">
+          <li><span class="when">14:00</span><span class="what"><b>Act I — the room goes dark</b><span class="src"> · Looks 01–16, wool and melton, gold at the lapels.</span></span></li>
+          <li><span class="when">14:05</span><span class="what"><b>Act II — the light comes up</b><span class="src"> · Looks 17–29, duchesse and crepe, the un-dyed hour.</span></span></li>
+          <li><span class="when">14:09</span><span class="what"><b>The seam note</b><span class="src"> · Look 23, one seam, back to front — the walk&rsquo;s only improvisation, rehearsed anyway.</span></span></li>
+          <li><span class="when">14:12</span><span class="what"><b>Act III — the close</b><span class="src"> · Looks 30–42, organza over archive corsetry.</span></span></li>
+          <li class="running"><span class="when">14:14</span><span class="what"><b>The stopped clock</b><span class="src"> · Look 42 walks as the watch reads 14:00 — the fourteenth hour, held.</span></span></li>
+        </ol>
+
+        <h2>What the desk can confirm</h2>
+        <p>Every claim in this revue is confirmed against a desk record. Accredited
+           correspondents can read the same records through the press desk:</p>
+
+        <div class="el-progress" role="progressbar" aria-label="Plates released" aria-valuemin="0" aria-valuemax="100" aria-valuenow="60" style="margin-top:var(--el-space-4);"><span class="fill" style="width:60%"></span></div>
+        <p class="el-mute-body" style="margin:6px 0 0;">Runway plates released — 25 of 42; backstage frames release after a week.</p>
+
+        <aside class="el-citation-rail" style="margin:var(--el-space-5) 0;">
+          <p class="el-eyebrow" style="margin-bottom:14px;">Read this against the desk</p>
+          <article class="el-source-card is-cited" style="margin-bottom:12px;">
+            <span class="src">Desk clock file · edition 14</span>
+            <span class="ttl">The walk, to the second</span>
+            <p class="snip">Forty-two cues filed against the stopped watch; drift measured at zero.</p>
+          </article>
+          <article class="el-source-card" style="margin-bottom:12px;">
+            <span class="src">House revue · editions 1–13</span>
+            <span class="ttl">Thirteen hours before this one</span>
+            <p class="snip">The clock convention is kept from the first edition; every closing look stops the watch.</p>
+          </article>
+          <article class="el-source-card">
+            <span class="src">This revue · 11 October 2026</span>
+            <span class="ttl">Notes from the fourteenth hour</span>
+            <p class="snip">R. Marchetti from the second bar; embargo held in the writing of the page.</p>
+          </article>
+        </aside>
+
+        <div class="el-meter" style="margin-top:var(--el-space-4);--el-meter-value:60%;" role="meter" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" aria-label="Plates released">
+          <span class="fill"></span>
+        </div>
+        <p class="el-mute-body" style="margin:6px 0 0;">Plate release, this edition: 60% and holding to the week-old rule.</p>
+      </div>
+
+      <nav class="el-pagination" aria-label="Revue pages" style="margin-top:var(--el-space-6);">
+        <button class="page" disabled aria-label="Previous page">‹</button>
+        <button class="page">1</button>
+        <button class="page on" aria-current="page">2</button>
+        <button class="page">3</button>
+        <button class="page" aria-label="Next page">›</button>
+        <span class="info">Revue · edition fourteen</span>
+      </nav>
+    </section>
+  </main>
+
+  <footer class="el-footer">
+    <div class="cols">
+      <div class="col"><p class="label">The label</p><a href="index.html">Collection</a><a href="catalog.html">Looks</a><a href="app.html">Press desk</a></div>
+      <div class="col"><p class="label">Revue</p><a href="article.html">The fourteenth hour</a><a href="article.html">Embargo notes</a></div>
+      <div class="col"><p class="label">The desk</p><a href="account.html">Accreditation</a><p class="small">Answers in two days · Paris, 4e</p></div>
+    </div>
+    <p class="colophon">© 1998–2026 Noir Vasseur, Paris · the revue is filed with the hour, never before it.</p>
+  </footer>
+
+  <dialog id="press-dialog" class="el-dialog" aria-labelledby="press-title">
+    <div class="el-dialog-head"><h2 id="press-title">Request the lookbook</h2>
+      <button class="el-dialog-close" data-dialog-close aria-label="Close">×</button></div>
+    <div class="el-dialog-body"><p>The desk answers within two days, under embargo until the hour.</p></div>
+    <div class="el-dialog-foot"><button class="el-btn el-btn--ghost" data-dialog-close>Not now</button>
+      <button class="el-btn" data-dialog-close data-toast="The desk has your request.">Send to the desk</button></div>
+  </dialog>
+
+</div>
+</body></html>

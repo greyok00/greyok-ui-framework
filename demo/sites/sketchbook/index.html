@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="en" data-theme="sketchbook">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Poppy Alder Illustration — sketchbook</title>
+<link rel="stylesheet" href="../../../base.css">
+<link rel="stylesheet" href="../../../fonts.css">
+<link rel="stylesheet" href="../../../tokens.css">
+<link rel="stylesheet" href="../../../elements-display.css">
+<link rel="stylesheet" href="../../../elements-structure.css">
+<link rel="stylesheet" href="../../../elements-lists.css">
+<link rel="stylesheet" href="../../../elements-app.css">
+<link rel="stylesheet" href="../../../elements-containers.css">
+<link rel="stylesheet" href="../../../elements-controls.css">
+<link rel="stylesheet" href="../../../elements-inputs.css">
+<link rel="stylesheet" href="../../../elements-dataviz.css">
+<link rel="stylesheet" href="../../../elements-overlay.css">
+<link rel="stylesheet" href="../../../elements-interactions.css">
+<link rel="stylesheet" href="../../../elements-misc.css">
+<link rel="stylesheet" href="../../../elements-size.css">
+<link rel="stylesheet" href="../../../elements-workflow.css">
+<link rel="stylesheet" href="../../../elements-inspector.css">
+<link rel="stylesheet" href="../../../elements-reader.css">
+<link rel="stylesheet" href="../../../elements-assistant.css">
+<link rel="stylesheet" href="../../../themes/src/illustration.css">
+<script src="../../../elements.js" defer></script>
+<script src="../../../charts.js" defer></script>
+</head>
+<body>
+<div class="el-page">
+
+  <nav class="el-navbar el-navbar--top" aria-label="Primary">
+    <a class="brand" href="index.html">Poppy Alder</a>
+    <ul class="links">
+      <li><a href="index.html" aria-current="page">Studio</a></li>
+      <li><a href="catalog.html">Available work</a></li>
+      <li><a href="article.html">Process notes</a></li>
+      <li><a href="account.html">Commissions</a></li>
+      <li><a href="app.html">Sketch Ledger</a></li>
+    </ul>
+    <div class="actions">
+      <span class="el-tooltip" data-tip="One email a month, sketch included" tabindex="0">
+        <button class="el-btn el-btn--ghost" type="button">Studio letter</button>
+      </span>
+      <div class="el-popover">
+        <button class="el-btn el-btn--outline" type="button" aria-expanded="false">Share studio</button>
+        <div class="el-pop">
+          <h4>Pass the studio along</h4>
+          <p style="margin:0 0 8px;font-size:var(--el-fs-sm);color:var(--el-ink-soft);">Plain link, no tracking, no AI-generated anything.</p>
+          <button class="el-btn" type="button" data-toast="Studio link copied" data-toast-variant="ok">Copy the link</button>
+        </div>
+      </div>
+      <button class="el-btn" type="button" data-dialog-open="booking-dialog">Book a commission</button>
+    </div>
+  </nav>
+
+  <header class="el-hero el-hero--left">
+    <span class="el-eyebrow">commission book open &middot; winter 2026</span>
+    <h1>Drawn on paper. Painted on walls.</h1>
+    <p>Poppy Alder is an illustrator and muralist in Asheville, North Carolina. Gouache first, then paint, then the ladder. Commission work books three months out; prints and sketchbook studies are on the shelf today.</p>
+    <div class="actions">
+      <button class="el-btn" type="button" data-dialog-open="booking-dialog">Start a commission</button>
+      <a class="el-btn el-btn--ghost" href="catalog.html">Shelf of available work</a>
+      <span class="el-kbd" aria-label="press the slash key to open the command bar">/</span>
+    </div>
+    <div class="media"><div class="fill" role="img" aria-label="Studio wall: a half-finished mural study in gouache, marker green and charcoal"></div></div>
+  </header>
+
+  <section class="el-section">
+    <div class="el-section-head">
+      <h2>The year on paper</h2>
+      <div class="rule"></div>
+      <span class="el-hint" style="margin:0;">Sep 2025 &ndash; Aug 2026</span>
+    </div>
+    <div class="el-stat-row">
+      <div class="el-stat">
+        <span class="el-stat-label">Commissions delivered</span>
+        <span class="el-stat-value">31<small>&nbsp;pieces</small></span>
+        <span class="el-stat-delta up">5</span>
+        <span class="el-sparkline el-chart" data-chart="sparkline" data-values="2,3,2,4,3,5,6,6" data-width="120" data-height="30" data-color="var(--el-accent)"></span>
+      </div>
+      <div class="el-stat">
+        <span class="el-stat-label">Murals painted</span>
+        <span class="el-stat-value">6<small>&nbsp;walls</small></span>
+        <span class="el-stat-delta flat">&plusmn;1</span>
+        <span class="el-chart" data-chart="bar" data-values="1,1,2,1,2,3,2,3" data-width="120" data-height="30" data-color="var(--el-accent)"></span>
+      </div>
+      <div class="el-stat">
+        <span class="el-stat-label">Prints mailed</span>
+        <span class="el-stat-value">1,847<small>&nbsp;prints</small></span>
+        <span class="el-stat-delta up">9%</span>
+        <span class="el-chart" data-chart="line" data-values="120,150,140,170,180,210,230,260" data-width="120" data-height="30" data-color="var(--el-accent)" data-label="mails"></span>
+      </div>
+      <div class="el-stat is-live">
+        <span class="el-stat-label">Waitlist</span>
+        <span class="el-stat-value">14<small>&nbsp;of 18</small></span>
+        <span class="el-stat-note">January start &middot; ledger updated weekly</span>
+        <span class="el-meter" style="--el-meter-value:78%;"><div class="fill"></div></span>
+      </div>
+    </div>
+  </section>
+
+  <section class="el-section">
+    <div class="el-section-head">
+      <h2>Recent work</h2>
+      <div class="rule"></div>
+      <a class="el-btn el-btn--ghost" href="catalog.html">Full available shelf</a>
+    </div>
+    <div class="card-grid">
+      <article class="el-card el-card--flat">
+        <div class="el-card-media" style="height:170px;background:linear-gradient(135deg,color-mix(in oklab,var(--el-accent) 18%,var(--el-panel-2)),color-mix(in oklab,var(--el-warn) 14%,var(--el-panel-2)));display:grid;place-items:end start;">
+          <span class="el-eyebrow" style="margin:12px;">gouache &middot; 2026</span>
+        </div>
+        <h3 class="el-card-title">Radler Stairwell</h3>
+        <p class="el-card-body">Three flights of stairwell mural for the Radler bakery — 41 feet, marker green with charcoal shadows, painted in 12 working days.</p>
+        <div class="el-card-foot"><span class="el-badge ok">delivered</span><button class="el-btn el-btn--ghost" type="button" data-drawer-open="ledger-drawer">Provenance</button></div>
+      </article>
+      <article class="el-card el-card--flat">
+        <div class="el-card-media" style="height:170px;background:linear-gradient(225deg,color-mix(in oklab,var(--el-info) 16%,var(--el-panel-2)),var(--el-panel-2));display:grid;place-items:end start;">
+          <span class="el-eyebrow" style="margin:12px;">gouache &middot; press</span>
+        </div>
+        <h3 class="el-card-title">Mason's Row, 7 AM</h3>
+        <p class="el-card-body">Neighborhood morning study, 11&times;14 in gouache. The printer took 9 of these as an edition of 60; 12 remain on the shelf.</p>
+        <div class="el-card-foot"><span class="el-badge">12 left</span><button class="el-btn el-btn--ghost" type="button" data-drawer-open="ledger-drawer">Provenance</button></div>
+      </article>
+      <article class="el-card el-card--flat">
+        <div class="el-card-media" style="height:170px;background:repeating-linear-gradient(0deg,transparent 0 20px,color-mix(in oklab,var(--el-ink) 7%,transparent) 20px 21px),var(--el-panel-2);display:grid;place-items:end start;">
+          <span class="el-eyebrow" style="margin:12px;">sketchbook &middot; studies</span>
+        </div>
+        <h3 class="el-card-title">Fence Post Studies</h3>
+        <p class="el-card-body">Pencil and marker, drawn in the truck between mural walls. Eight studies, sold as a folio with the field notes kept in Sketch Ledger.</p>
+        <div class="el-card-foot"><span class="el-badge ok">delivered</span><button class="el-btn el-btn--ghost" type="button" data-drawer-open="ledger-drawer">Provenance</button></div>
+      </article>
+    </div>
+  </section>
+
+  <section class="el-section">
+    <div class="el-media-band">
+      <div class="media">
+        <div class="fill" role="img" aria-label="Long photo strip of the Radler stairwell mural in progress, half marker green"></div>
+        <figcaption>Radler Stairwell &middot; day 7 &middot; the hand-lettered sign went up last</figcaption>
+      </div>
+      <div class="body">
+        <span class="el-eyebrow">in the ledger</span>
+        <h2>Wall five of six, this winter</h2>
+        <p>The Lexington Ave. grain elevator wall goes up next: 62 feet, four weeks of lift time, and a paint schedule kept in the Sketch Ledger app down to the bucket.</p>
+        <div class="actions">
+          <button class="el-btn" type="button" data-toast="Wall watch added — Sketch Ledger pings you at each milestone" data-toast-variant="info">Watch this wall</button>
+          <a class="el-btn el-btn--ghost" href="article.html">Read the process notes</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="el-section">
+    <div class="el-section-head">
+      <h2>Commission rates</h2>
+      <div class="rule"></div>
+    </div>
+    <div class="plan-grid">
+      <div class="el-pricing">
+        <span class="name">Study</span>
+        <span class="price">$480<span class="per">/piece</span></span>
+        <ul class="feats">
+          <li>One subject, one sitting's worth of drawings</li>
+          <li>Pencil or marker on cream stock</li>
+          <li>Original ships flat, 2 weeks</li>
+          <li class="off">Wall scaling rights</li>
+        </ul>
+        <div class="cta"><button class="el-btn el-btn--outline" type="button" data-toast="Study commission held — brief form next" data-toast-variant="ok">Book a study</button></div>
+        <p class="note">The most common first commission. Nineteen of these last year.</p>
+      </div>
+      <div class="el-pricing el-pricing--featured">
+        <span class="flag">most booked</span>
+        <span class="name">Canvas</span>
+        <span class="price">$2,400<span class="per">/piece</span></span>
+        <ul class="feats">
+          <li>Everything in Study</li>
+          <li>Gouache finish, up to 24&times;36</li>
+          <li>Two revision rounds in the ledger</li>
+          <li>Print edition rights included</li>
+        </ul>
+        <div class="cta"><button class="el-btn" type="button" data-toast="Canvas commission held — brief form next" data-toast-variant="ok">Book a canvas</button></div>
+        <p class="note">Four slots left in the winter book. Ledger waitlist at 14.</p>
+      </div>
+      <div class="el-pricing">
+        <span class="name">Wall</span>
+        <span class="price">from $12k</span>
+        <ul class="feats">
+          <li>Site visit, scaffold plan, paint schedule</li>
+          <li>Anti-graffiti coat on request</li>
+          <li>Progress diary, shared weekly</li>
+          <li>10-year touch-up letter</li>
+        </ul>
+        <div class="cta"><button class="el-btn el-btn--outline" type="button" data-toast="Wall consultation requested — calendar link sent" data-toast-variant="ok">Request a wall consult</button></div>
+        <p class="note">Two walls in the winter book; both inside city limits.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="el-section">
+    <figure class="el-testimonial">
+      <blockquote class="quote">
+        <p class="q">"Poppy drew the whole bakery's delivery route as one continuous line and somehow got the correct number of stoplights. The stairwell gets photographed more than the bread."</p>
+      </blockquote>
+      <figcaption class="attrib"><span class="who"><span class="el-avatar" aria-hidden="true">JR</span></span><span><strong>J. Radler</strong> — owner, Radler Bakery, Asheville NC &middot; commissioned two walls</span></figcaption>
+    </figure>
+  </section>
+
+  <section class="el-section">
+    <div class="el-banner">
+      <span class="glyph">&#9998;</span>
+      <div class="copy"><strong>The winter commission book is open.</strong> 18 names on the ledger, 14 held, four January slots left — briefs close when the scaffolding calendar fills.</div>
+      <button class="action el-btn el-btn--outline" type="button" data-toast="Held a provisional January slot for you" data-toast-variant="ok">Hold a slot</button>
+    </div>
+  </section>
+
+  <section class="el-section">
+    <div class="el-section-head">
+      <h2>Studio facts</h2>
+      <div class="rule"></div>
+    </div>
+    <div class="el-fact-grid">
+      <div class="el-fact"><span class="k">Working from</span><span class="v">2016</span></div>
+      <div class="el-fact"><span class="k">Squadrons owned</span><span class="v">2 <small>studio ladders</small></span></div>
+      <div class="el-fact"><span class="k">Walls painted</span><span class="v">43</span></div>
+      <div class="el-fact is-hot"><span class="k">Sketch books filled</span><span class="v">112</span></div>
+    </div>
+  </section>
+
+  <footer class="el-footer">
+    <div class="cols">
+      <div class="col"><span class="label">Work</span><ul><li><a href="catalog.html">Available shelf</a></li><li><a href="catalog.html">Mural archive</a></li><li><a href="article.html">Process notes</a></li></ul></div>
+      <div class="col"><span class="label">Commissions</span><ul><li><a href="account.html">Start a brief</a></li><li><a href="account.html">Contracts &amp; invoices</a></li><li><a href="app.html">Sketch Ledger app</a></li></ul></div>
+      <div class="col"><span class="label">Studio</span><ul><li><a href="index.html">About &amp; rates</a></li><li><a href="article.html">The ledger habit</a></li><li><a href="catalog.html">Field studies</a></li></ul></div>
+      <div class="col"><span class="label">Practical</span><ul><li><a href="index.html">Framing &amp; shipping</a></li><li><a href="account.html">Print edition rights</a></li><li><a href="catalog.html">Wall consult</a></li></ul></div>
+    </div>
+    <div class="small"><span>&copy; 2026 Poppy Alder &middot; studio on Clingman Ave, Asheville NC &middot; every image is a photograph of real paper</span><span class="el-badge live">commission book open</span></div>
+  </footer>
+
+</div>
+
+<dialog class="el-dialog" id="booking-dialog">
+  <div class="el-dialog-head">
+    <h3 class="el-dialog-title">Start a commission</h3>
+    <button class="el-dialog-close" type="button" aria-label="Close" data-dialog-close>&times;</button>
+  </div>
+  <form class="el-dialog-body" method="dialog">
+    <p style="margin-top:0;">Three questions now; the full brief lives in the commissions portal. The waitlist moves in ledger order, first sketched, first inked.</p>
+    <label class="el-field">
+      <span class="el-label">Where should the work end up?</span>
+      <input class="el-input" type="text" placeholder="a stairwell, a book cover, a wall on Lexington">
+      <span class="el-hint">Answer in a sentence — walls get a site visit, flat work ships.</span>
+    </label>
+  </form>
+  <div class="el-dialog-foot">
+    <button class="el-btn el-btn--ghost" type="button" data-dialog-close>Think it over</button>
+    <button class="el-btn" type="button" data-toast="Commission held — brief link sent by studio letter" data-toast-variant="ok" data-dialog-close>Hold my slot</button>
+  </div>
+</dialog>
+
+</body>
+</html>

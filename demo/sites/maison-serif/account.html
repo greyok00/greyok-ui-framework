@@ -1,0 +1,181 @@
+<!doctype html><html lang="en" data-theme="maison-serif"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Client ledger — Maison Auberon · maison-serif</title>
+<link rel="stylesheet" href="../../../base.css"><link rel="stylesheet" href="../../../fonts.css">
+<link rel="stylesheet" href="../../../tokens.css">
+<link rel="stylesheet" href="../../../elements-display.css">
+<link rel="stylesheet" href="../../../elements-structure.css">
+<link rel="stylesheet" href="../../../elements-lists.css">
+<link rel="stylesheet" href="../../../elements-app.css">
+<link rel="stylesheet" href="../../../elements-containers.css">
+<link rel="stylesheet" href="../../../elements-controls.css">
+<link rel="stylesheet" href="../../../elements-inputs.css">
+<link rel="stylesheet" href="../../../elements-dataviz.css">
+<link rel="stylesheet" href="../../../elements-overlay.css">
+<link rel="stylesheet" href="../../../elements-interactions.css">
+<link rel="stylesheet" href="../../../elements-misc.css">
+<link rel="stylesheet" href="../../../elements-size.css">
+<link rel="stylesheet" href="../../../elements-workflow.css">
+<link rel="stylesheet" href="../../../elements-inspector.css">
+<link rel="stylesheet" href="../../../elements-reader.css">
+<link rel="stylesheet" href="../../../elements-assistant.css">
+<link rel="stylesheet" href="../../../themes/src/fashion-serif.css">
+<script src="../../../elements.js" defer></script><script src="../../../charts.js" defer></script>
+</head><body>
+<div class="el-page">
+
+  <div class="el-banner el-banner--info el-banner--attached" role="status">
+    <span class="glyph" aria-hidden="true">✉</span>
+    <span class="copy"><b>The desk writes on Fridays</b><span class="detail"> · correspondence and ledger entries are posted each week</span></span>
+    <a class="el-btn el-btn--ghost" href="app.html">Open the desk</a>
+  </div>
+
+  <nav class="el-navbar el-navbar--top" aria-label="Primary">
+    <a class="brand" href="index.html">Maison Auberon <small>Paris · 1911</small></a>
+    <div class="links">
+      <a href="index.html">Collection</a>
+      <a href="catalog.html">The Book</a>
+      <a href="article.html">Journal</a>
+      <a href="account.html" aria-current="page">Appointments</a>
+      <a href="app.html">Desk</a>
+    </div>
+    <div class="actions">
+      <span class="el-avatar">CL</span>
+      <span class="el-status-pill ok"><span class="el-status-dot ok"></span>Ledger in good standing</span>
+    </div>
+  </nav>
+
+  <main>
+    <section class="el-section">
+      <header class="el-section-head"><p class="el-eyebrow">Your page of the ledger</p><h2>Standing orders &amp; correspondence</h2><span class="rule"></span></header>
+      <p class="el-body" style="max-width:70ch;">The desk keeps a page for every client: standing
+         orders for the pieces you re-cut each autumn, how the desk may reach you, and the hours
+         you prefer. Changes are read aloud once, then written into the bound book.</p>
+
+      <ol class="el-stepper" style="margin:var(--el-space-5) 0;">
+        <li class="done"><span class="num">✓</span>Ledger entry</li>
+        <li class="active"><span class="num">2</span>Standing orders</li>
+        <li><span class="num">3</span>Correspondence</li>
+        <li><span class="num">4</span>Salon hours</li>
+        <li><span class="num">5</span>Binding</li>
+      </ol>
+
+      <div class="el-cluster" style="align-items:flex-start;gap:var(--el-space-6);flex-wrap:wrap;">
+        <form class="el-section" style="flex:2 1 360px;padding-block:0;">
+          <div class="el-field">
+            <label class="el-label" for="cl-name">Name as it is written in the book</label>
+            <input class="el-input" id="cl-name" value="Hélène Duval">
+            <p class="el-hint">Bound names are never shortened; the ledger has held &ldquo;Hélène Duval&rdquo; since 1968.</p>
+          </div>
+
+          <div class="el-field" data-invalid>
+            <label class="el-label" for="cl-mail">Correspondence address</label>
+            <input class="el-input" id="cl-mail" value="helene.duval@poste.example" aria-invalid="true">
+            <span class="el-error">The desk cannot reach this address — last Friday&rsquo;s letter returned.</span>
+          </div>
+
+          <div class="el-field">
+            <label class="el-label" for="cl-search">Find a past plate in your page of the book</label>
+            <div class="el-search-field"><input class="el-search" id="cl-search" type="search" placeholder="Recipe no., cloth, or piece name."></div>
+            <p class="el-hint">Your page holds 71 entries since 1968.</p>
+          </div>
+
+          <div class="el-field">
+            <label class="el-label" for="cl-cloth">Standing cloth order</label>
+            <div class="el-select"><select id="cl-cloth">
+              <option>Champagne twill — Plate 07, cut each November</option>
+              <option>Flax cashmere — the Sévigné shawl</option>
+              <option>Lyonnais duchesse — opera stole</option>
+              <option>No standing order</option>
+            </select></div>
+          </div>
+
+          <div class="el-field">
+            <label class="el-label" for="cl-notes">Notes for the desk</label>
+            <textarea class="el-textarea" id="cl-notes" rows="3" placeholder="Anything the house should know before your hour.">Prefers the east fitting room; allergic to lavender used at the counter.</textarea>
+          </div>
+
+          <fieldset class="el-field" style="border:0;padding:0;display:grid;gap:12px;justify-items:start;">
+            <legend class="el-label">The desk may reach you by</legend>
+            <label><span class="el-check"><input type="checkbox" checked></span> Letter, on house paper</label>
+            <label><span class="el-check"><input type="checkbox" checked></span> Telephone, between 10 and 12h</label>
+            <label><span class="el-check"><input type="checkbox"></span> Never by e-mail</label>
+          </fieldset>
+
+          <fieldset class="el-field" style="border:0;padding:0;display:grid;gap:12px;justify-items:start;">
+            <legend class="el-label">Autumn appointment preference</legend>
+            <label class="el-radio"><input type="radio" name="slot" checked><span class="dot"></span> Weekday mornings, quiet hours</label>
+            <label class="el-radio"><input type="radio" name="slot"><span class="dot"></span> Thursday atelier hour</label>
+            <label class="el-radio"><input type="radio" name="slot"><span class="dot"></span> Saturday with the curator</label>
+          </fieldset>
+
+          <fieldset class="el-field" style="border:0;padding:0;">
+            <legend class="el-label">Fitting room</legend>
+            <div class="el-segmented">
+              <button type="button">East room</button>
+              <button type="button" class="on">First floor</button>
+              <button type="button">Pattern room</button>
+            </div>
+          </fieldset>
+
+          <div class="el-field">
+            <label class="el-label" for="cl-lead">Notice before an autumn appointment</label>
+            <div class="el-range"><input class="el-slider" id="cl-lead" type="range" min="1" max="12" value="4" aria-label="Weeks of notice"><span class="val">4 weeks</span></div>
+            <p class="el-hint">The book fills from the north first; three weeks is generous.</p>
+          </div>
+
+          <div class="el-field">
+            <label class="el-label" for="cl-house">Archive copy</label>
+            <div class="el-switch on" role="switch" aria-checked="true" tabindex="0" id="cl-house"></div>
+            <p class="el-hint">Receive a paper extract of your page each January, as the ledger binds.</p>
+          </div>
+
+          <div class="el-btn-group">
+            <button class="el-btn" type="submit" data-toast="Your page is rewritten in the bound ledger.">Bind the page</button>
+            <button class="el-btn el-btn--ghost" type="reset">Revert to the book</button>
+          </div>
+        </form>
+
+        <div style="flex:1 1 260px;display:grid;gap:var(--el-space-4);">
+          <div class="el-inline-alert"><span class="el-icon" aria-hidden="true">ⓘ</span>
+            <div><span class="title">Ledger entries are read aloud once</span><span class="body">The desk reads your changes back before binding, as it has since 1911.</span></div></div>
+
+          <div class="el-card el-card--flat">
+            <h3 class="el-card-title">Saturday hour, confirming</h3>
+            <p class="el-card-body">Your curator hour is being written into the book. The desk is
+               preparing its paper:</p>
+            <span class="el-skeleton block" style="width:82%;height:14px;"></span>
+            <span class="el-skeleton block" style="width:64%;height:14px;"></span>
+            <span class="el-skeleton block" style="width:74%;height:14px;"></span>
+            <div class="el-card-foot"><span class="el-spinner sm" role="status" aria-label="Binding"></span>
+              <span class="el-pill live"><span class="el-status-dot live"></span>Binding in ink</span></div>
+          </div>
+
+          <div class="el-card el-card--flat">
+            <h3 class="el-card-title">Your autumn, at a glance</h3>
+            <div class="el-stat">
+              <span class="el-stat-label">Entries since 1968</span>
+              <span class="el-stat-value">71</span>
+              <span class="el-stat-delta up">▲ 9 new this autumn</span>
+            </div>
+            <div class="el-meter" style="--el-meter-value:64%;margin-top:var(--el-space-3);" role="meter" aria-valuenow="64" aria-valuemin="0" aria-valuemax="100" aria-label="Salon days passed">
+              <span class="fill"></span>
+            </div>
+            <p class="el-mute-body" style="margin:6px 0 0;font-size:var(--el-fs-sm);">23 of 36 salon days passed.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="el-footer">
+    <div class="cols">
+      <div class="col"><p class="label">The house</p><a href="index.html">Collection</a><a href="catalog.html">The book</a><a href="article.html">Journal</a></div>
+      <div class="col"><p class="label">Your page</p><a href="account.html">Standing orders</a><a href="app.html">The desk</a></div>
+      <div class="col"><p class="label">Post</p><p class="small">Ledger extracts post each January; letters on Fridays.</p></div>
+    </div>
+    <p class="colophon">© 1911–2026 Maison Auberon, Paris · your page is bound, not stored.</p>
+  </footer>
+
+</div>
+</body></html>

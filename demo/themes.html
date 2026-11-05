@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en" data-theme="neutral">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Themes · el-framework</title>
+  <link rel="stylesheet" href="../tokens.css">
+  <link rel="stylesheet" href="../themes.css">
+  <link rel="stylesheet" href="../fonts.css">
+  <link rel="stylesheet" href="../base.css">
+  <link rel="stylesheet" href="../elements-display.css">
+<link rel="stylesheet" href="../elements-structure.css">
+  <link rel="stylesheet" href="../elements-lists.css">
+</head>
+<body class="el-reset">
+  <header class="el-demo-bar">
+    <strong>Themes</strong>
+    <span>click a card or use the 32px icon rail to apply that theme globally</span>
+    <a href="index.html">← index</a>
+  </header>
+
+  <main class="el-page">
+    <h1>20 v0.3.0 themes + neutral</h1>
+    <p>Click a card to apply that theme. The icon rail above switches instantly too; the choice persists in <code>localStorage['el-theme']</code> and re-derives from a <code>#theme=&lt;slug&gt;</code> hash. Card colors and type come from each theme's own tokens — cards carry <code>data-theme</code>, so they stay true when <code>themes.css</code> changes.</p>
+    <p class="el-hint" style="color:var(--el-ink-soft);font:12px var(--el-font-mono)">styled by theme-switcher.js (injected rules: <code>.el-theme-card</code> <code>.el-theme-card-swatch-row</code> <code>.el-theme-card-swatch</code> <code>.el-theme-card-name</code>) — no extra CSS file</p>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:var(--el-space-3);margin:var(--el-space-4) 0">
+      <div class="el-theme-card" data-theme="mono-console" data-set-theme="mono-console">
+        <div class="el-theme-card-swatch-row">
+          <span class="el-theme-card-swatch" style="background:var(--el-bg)"></span>
+          <span class="el-theme-card-swatch" style="background:var(--el-panel-3)"></span>
+          <span class="el-theme-card-swatch" style="background:var(--el-accent)"></span>
+          <span class="el-theme-card-swatch" style="background:var(--el-ink)"></span>
+        </div>
+        <span class="el-theme-card-name">Mono Console</span>
+      </div>
+
+      <div class="el-theme-card" data-theme="ghost-terminal" data-set-theme="ghost-terminal">
+        <div class="el-theme-card-swatch-row">
+          <span class="el-theme-card-swatch" style="background:var(--el-bg)"></span>
+          <span class="el-theme-card-swatch" style="background:var(--el-panel-3)"></span>
+          <span class="el-theme-card-swatch" style="background:var(--el-accent)"></span>
+          <span class="el-theme-card-swatch" style="background:var(--el-ink)"></span>
+        </div>
+        <span class="el-theme-card-name">Ghost Terminal</span>
+      </div>
+
+      <div class="el-theme-card" data-theme="cream-journal" data-set-theme="cream-journal">
+        <div class="el-theme-card-swatch-row">
+          <span class="el-theme-card-swatch" style="background:var(--el-bg)"></span>
+          <span class="el-theme-card-swatch" style="background:var(--el-panel-3)"></span>
+          <span class="el-theme-card-swatch" style="background:var(--el-accent)"></span>
+          <span class="el-theme-card-swatch" style="background:var(--el-ink)"></span>
+        </div>
+        <span class="el-theme-card-name">Cream Journal</span>
+      </div>
+
+      <div class="el-theme-card" data-theme="paper-press" data-set-theme="paper-press">
+        <div class="el-theme-card-swatch-row">
+          <span class="el-theme-card-swatch" style="background:var(--el-bg)"></span>
+          <span class="el-theme-card-swatch" style="background:var(--el-panel-3)"></span>
+          <span class="el-theme-card-swatch" style="background:var(--el-accent)"></span>
+          <span class="el-theme-card-swatch" style="background:var(--el-ink)"></span>
+        </div>
+        <span class="el-theme-card-name">Paper Press</span>
+      </div>
+
+      <div class="el-theme-card" data-theme="brutal-stamp" data-set-theme="brutal-stamp">
+        <div class="el-theme-card-swatch-row">
+          <span class="el-theme-card-swatch" style="background:var(--el-bg)"></span>
+          <span class="el-theme-card-swatch" style="background:var(--el-panel-3)"></span>
+          <span class="el-theme-card-swatch" style="background:var(--el-accent)"></span>
+          <span class="el-theme-card-swatch" style="background:var(--el-ink)"></span>
+        </div>
+        <span class="el-theme-card-name">Brutal Stamp</span>
+      </div>
+
+      <div class="el-theme-card" data-theme="brutal-index" data-set-theme="brutal-index">
+        <div class="el-theme-card-swatch-row">
+          <span class="el-theme-card-swatch" style="background:var(--el-bg)"></span>
+          <span class="el-theme-card-swatch" style="background:var(--el-panel-3)"></span>
+          <span class="el-theme-card-swatch" style="background:var(--el-accent)"></span>
+          <span class="el-theme-card-swatch" style="background:var(--el-ink)"></span>
+        </div>
+        <span class="el-theme-card-name">Brutal Index</span>
+      </div>
+
+      <div class="el-theme-card" data-theme="orbit-deep" data-set-theme="orbit-deep">
+        <div class="el-theme-card-swatch-row">
+          <span class="el-theme-card-swatch" style="background:var(--el-bg)"></span>
+          <span class="el-theme-card-swatch" style="background:var(--el-panel-3)"></span>
+          <span class="el-theme-card-swatch" style="background:var(--el-accent)"></span>
+          <span class="el-theme-card-swatch" style="background:var(--el-ink)"></span>
+        </div>
+        <span class="el-theme-card-name">Orbit Deep</span>
+      </div>
+
+      <div class="el-theme-card" data-theme="solar-halo" data-set-theme="solar-halo">
+        <div class="el-theme-card-swatch-row">
+          <span class="el-theme-card-swatch" style="background:var(--el-bg)"></span>
+          <span class="el-theme-card-swatch" style="background:var(--el-panel-3)"></span>
+          <span class="el-theme-card-swatch" style="background:var(--el-accent)"></span>
+          <span class="el-theme-card-swatch" style="background:var(--el-ink)"></span>
+        </div>
+        <span class="el-theme-card-name">Solar Halo</span>
+      </div>
+
+      <div class="el-theme-card" data-theme="agency-quartz" data-set-theme="agency-quartz">
+        <div class="el-theme-card-swatch-row">
+          <span class="el-theme-card-swatch" style="background:var(--el-bg)"></span>
+          <span class="el-theme-card-swatch" style="background:var(--el-panel-3)"></span>
+          <span class="el-theme-card-swatch" style="background:var(--el-accent)"></span>
+          <span class="el-theme-card-swatch" style="background:var(--el-ink)"></span>
+        </div>
+        <span class="el-theme-card-name">Agency Quartz</span>
+      </div>
+
+      <div class="el-theme-card" data-theme="agency-mono-plate" data-set-theme="agency-mono-plate">
+        <div class="el-theme-card-swatch-row">
+          <span class="el-theme-card-swatch" style="background:var(--el-bg)"></span>
+          <span class="el-theme-card-swatch" style="background:var(--el-panel-3)"></span>
+          <span class="el-theme-card-swatch" style="background:var(--el-accent)"></span>
+          <span class="el-theme-card-swatch" style="background:var(--el-ink)"></span>
+        </div>
+        <span class="el-theme-card-name">Agency Mono-Plate</span>
+      </div>
+
+      <div class="el-theme-card" data-theme="maison-serif" data-set-theme="maison-serif">
+        <div class="el-theme-card-swatch-row">
+          <span class="el-theme-card-swatch" style="background:var(--el-bg)"></span>
+          <span class="el-theme-card-swatch" style="background:var(--el-panel-3)"></span>
+          <span class="el-theme-card-swatch" style="background:var(--el-accent)"></span>
+          <span class="el-theme-card-swatch" style="background:var(--el-ink)"></span>
+        </div>
+        <span class="el-theme-card-name">Maison Serif</span>
+      </div>
+
+      <div class="el-theme-card" data-theme="noir-couture" data-set-theme="noir-couture">
+        <div class="el-theme-card-swatch-row">
+          <span class="el-theme-card-swatch" style="background:var(--el-bg)"></span>
+          <span class="el-theme-card-swatch" style="background:var(--el-panel-3)"></span>
+          <span class="el-theme-card-swatch" style="background:var(--el-accent)"></span>
+          <span class="el-theme-card-swatch" style="background:var(--el-ink)"></span>
+        </div>
+        <span class="el-theme-card-name">Noir Couture</span>
+      </div>
+
+      <div class="el-theme-card" data-theme="sticker-pop" data-set-theme="sticker-pop">
+        <div class="el-theme-card-swatch-row">
+          <span class="el-theme-card-swatch" style="background:var(--el-bg)"></span>
+          <span class="el-theme-card-swatch" style="background:var(--el-panel-3)"></span>
+          <span class="el-theme-card-swatch" style="background:var(--el-accent)"></span>
+          <span class="el-theme-card-swatch" style="background:var(--el-ink)"></span>
+        </div>
+        <span class="el-theme-card-name">Sticker Pop</span>
+      </div>
+
+      <div class="el-theme-card" data-theme="sketchbook" data-set-theme="sketchbook">
+        <div class="el-theme-card-swatch-row">
+          <span class="el-theme-card-swatch" style="background:var(--el-bg)"></span>
+          <span class="el-theme-card-swatch" style="background:var(--el-panel-3)"></span>
+          <span class="el-theme-card-swatch" style="background:var(--el-accent)"></span>
+          <span class="el-theme-card-swatch" style="background:var(--el-ink)"></span>
+        </div>
+        <span class="el-theme-card-name">Sketchbook</span>
+      </div>
+
+      <div class="el-theme-card" data-theme="console-light" data-set-theme="console-light">
+        <div class="el-theme-card-swatch-row">
+          <span class="el-theme-card-swatch" style="background:var(--el-bg)"></span>
+          <span class="el-theme-card-swatch" style="background:var(--el-panel-3)"></span>
+          <span class="el-theme-card-swatch" style="background:var(--el-accent)"></span>
+          <span class="el-theme-card-swatch" style="background:var(--el-ink)"></span>
+        </div>
+        <span class="el-theme-card-name">Console Light</span>
+      </div>
+
+      <div class="el-theme-card" data-theme="grid-ledger" data-set-theme="grid-ledger">
+        <div class="el-theme-card-swatch-row">
+          <span class="el-theme-card-swatch" style="background:var(--el-bg)"></span>
+          <span class="el-theme-card-swatch" style="background:var(--el-panel-3)"></span>
+          <span class="el-theme-card-swatch" style="background:var(--el-accent)"></span>
+          <span class="el-theme-card-swatch" style="background:var(--el-ink)"></span>
+        </div>
+        <span class="el-theme-card-name">Grid Ledger</span>
+      </div>
+
+      <div class="el-theme-card" data-theme="kinetic-ink" data-set-theme="kinetic-ink">
+        <div class="el-theme-card-swatch-row">
+          <span class="el-theme-card-swatch" style="background:var(--el-bg)"></span>
+          <span class="el-theme-card-swatch" style="background:var(--el-panel-3)"></span>
+          <span class="el-theme-card-swatch" style="background:var(--el-accent)"></span>
+          <span class="el-theme-card-swatch" style="background:var(--el-ink)"></span>
+        </div>
+        <span class="el-theme-card-name">Kinetic Ink</span>
+      </div>
+
+      <div class="el-theme-card" data-theme="aperture-motion" data-set-theme="aperture-motion">
+        <div class="el-theme-card-swatch-row">
+          <span class="el-theme-card-swatch" style="background:var(--el-bg)"></span>
+          <span class="el-theme-card-swatch" style="background:var(--el-panel-3)"></span>
+          <span class="el-theme-card-swatch" style="background:var(--el-accent)"></span>
+          <span class="el-theme-card-swatch" style="background:var(--el-ink)"></span>
+        </div>
+        <span class="el-theme-card-name">Aperture Motion</span>
+      </div>
+
+      <div class="el-theme-card" data-theme="ma-quiet" data-set-theme="ma-quiet">
+        <div class="el-theme-card-swatch-row">
+          <span class="el-theme-card-swatch" style="background:var(--el-bg)"></span>
+          <span class="el-theme-card-swatch" style="background:var(--el-panel-3)"></span>
+          <span class="el-theme-card-swatch" style="background:var(--el-accent)"></span>
+          <span class="el-theme-card-swatch" style="background:var(--el-ink)"></span>
+        </div>
+        <span class="el-theme-card-name">MA Quiet</span>
+      </div>
+
+      <div class="el-theme-card" data-theme="gesshoku" data-set-theme="gesshoku">
+        <div class="el-theme-card-swatch-row">
+          <span class="el-theme-card-swatch" style="background:var(--el-bg)"></span>
+          <span class="el-theme-card-swatch" style="background:var(--el-panel-3)"></span>
+          <span class="el-theme-card-swatch" style="background:var(--el-accent)"></span>
+          <span class="el-theme-card-swatch" style="background:var(--el-ink)"></span>
+        </div>
+        <span class="el-theme-card-name">Gesshoku</span>
+      </div>
+    </div>
+  </main>
+
+  <script src="../theme-switcher.js"></script>
+</body>
+</html>

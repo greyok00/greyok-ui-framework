@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en" data-theme="brutal-index">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Signatory account — The Volume Bureau</title>
+<link rel="stylesheet" href="../../../base.css">
+<link rel="stylesheet" href="../../../fonts.css">
+<link rel="stylesheet" href="../../../tokens.css">
+<link rel="stylesheet" href="../../../elements-display.css">
+<link rel="stylesheet" href="../../../elements-structure.css">
+<link rel="stylesheet" href="../../../elements-lists.css">
+<link rel="stylesheet" href="../../../elements-app.css">
+<link rel="stylesheet" href="../../../elements-containers.css">
+<link rel="stylesheet" href="../../../elements-controls.css">
+<link rel="stylesheet" href="../../../elements-inputs.css">
+<link rel="stylesheet" href="../../../elements-dataviz.css">
+<link rel="stylesheet" href="../../../elements-overlay.css">
+<link rel="stylesheet" href="../../../elements-interactions.css">
+<link rel="stylesheet" href="../../../elements-misc.css">
+<link rel="stylesheet" href="../../../elements-size.css">
+<link rel="stylesheet" href="../../../elements-workflow.css">
+<link rel="stylesheet" href="../../../elements-inspector.css">
+<link rel="stylesheet" href="../../../elements-reader.css">
+<link rel="stylesheet" href="../../../elements-assistant.css">
+<link rel="stylesheet" href="../../../themes/src/neo-brutalist.css">
+<script src="../../../elements.js" defer></script>
+<script src="../../../charts.js" defer></script>
+</head>
+<body class="el-reset">
+
+<div class="el-shell" style="display:flex;align-items:stretch;min-height:100vh">
+
+  <nav class="el-navbar el-navbar--rail" aria-label="Primary">
+    <span class="brand">VOLUME<br>BUREAU</span>
+    <div class="links">
+      <a href="index.html">Index</a>
+      <a href="catalog.html">Catalog</a>
+      <a href="article.html">Method</a>
+      <a href="account.html" aria-current="page">Account</a>
+      <a href="app.html">Accessions</a>
+    </div>
+    <div class="actions">
+      <span class="el-tooltip" data-tip="Signed in as: corporate signatory, Halden Systems"><span class="el-avatar" aria-label="Signatory">OP</span></span>
+    </div>
+  </nav>
+
+  <main class="el-page" style="flex:1;min-width:0;padding-right:24px">
+
+    <div class="el-banner" style="margin-bottom:6px">
+      <span class="glyph" aria-hidden="true">
+        <svg viewBox="0 0 16 16" width="16" height="16"><rect x="2" y="2" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"/><path d="M5 8h6" stroke="currentColor" stroke-width="2"/></svg>
+      </span>
+      <span class="copy"><b>Deposit anniversary on Dec 12.</b> <span class="detail">Corporate
+        management renews automatically; retrievals reset to 200/month unless amended.</span></span>
+      <a class="action" href="#renew">Amend →</a>
+    </div>
+
+    <header class="el-section el-section--flush" style="padding-bottom:4px">
+      <p class="el-eyebrow">SIGNATORY ACCOUNT · HALDEN SYSTEMS · DEPOSIT VB-4081</p>
+      <h1>YOUR KEYS TO THE BUREAU</h1>
+      <p class="el-body" style="max-width:640px;margin-top:8px">Signatory rules, retrieval
+         lanes, and the seal list. Everything on this page is countersigned nightly — the
+         ledger is the record, this page is only the form.</p>
+      <div class="el-inline-alert ok" style="margin-top:14px;max-width:640px">
+        <span class="el-icon" aria-hidden="true">
+          <svg viewBox="0 0 16 16" width="16" height="16"><path d="M2 9l4 4 8-9" fill="none" stroke="currentColor" stroke-width="2.5"/></svg>
+        </span>
+        <span><span class="title">Custody re-verified 2026-10-28</span>
+        <span class="body">Board minutes VB-4081 passed pass 12 of 12. Next re-verification: 2027-10.</span></span>
+        <button class="close" aria-label="Dismiss confirmation">✕</button>
+      </div>
+    </header>
+
+    <ol class="el-stepper" style="max-width:640px;margin:18px 0 0">
+      <li class="done"><span class="num">1</span>Signatories</li>
+      <li class="active"><span class="num">2</span>Retrievals</li>
+      <li><span class="num">3</span>Seals</li>
+      <li><span class="num">4</span>Countersign</li>
+    </ol>
+
+    <section class="el-section el-section--dense el-twain" style="display:grid;gap:24px">
+
+      <div style="display:grid;gap:22px">
+        <!-- signatories -->
+        <div class="el-panel">
+          <span class="name">SIGNATORIES OF RECORD</span>
+          <div class="el-field">
+            <label class="el-label" for="sig-org">DEPOSITOR NAME</label>
+            <input class="el-input" id="sig-org" value="Halden Systems Ltd.">
+            <span class="el-hint">The name as the ledger spells it. Amendments rename the ledger row, not the shelves.</span>
+          </div>
+          <div class="el-field">
+            <label class="el-label" for="sig-desc">AUTHORIZATION MEMO (LEDGER COPY)</label>
+            <textarea class="el-textarea" id="sig-desc" rows="3">Counsel reads sealed rows in the room. Ops reads planning series only. No courier pickups without the badge.</textarea>
+            <span class="el-hint">Read aloud at every deposit amendment.</span>
+          </div>
+          <div class="el-field">
+            <label class="el-label" for="sig-mail">LEDGER NOTICES TO</label>
+            <input class="el-input" id="sig-mail" type="email" value="counsel@halden.example">
+          </div>
+        </div>
+
+        <!-- retrieval preferences -->
+        <div class="el-panel">
+          <span class="name">RETRIEVAL RULES</span>
+          <div class="el-field">
+            <label class="el-label" for="ret-lane">DEFAULT LANE</label>
+            <select class="el-dropdown" id="ret-lane">
+              <option>Reading room · desk B</option>
+              <option>Reading room · desk A</option>
+              <option>Night lane · escrow reader</option>
+            </select>
+          </div>
+          <div class="el-field">
+            <label class="el-label" for="ret-find">FIND MY PULLS</label>
+            <div class="el-search-field">
+              <input class="el-search" id="ret-find" type="search" placeholder="Search your pulls — accession, folder, date…" aria-label="Search pulls">
+            </div>
+          </div>
+          <div class="el-field">
+            <span class="el-label">WHEN THE DESK SHOULD CALL ME</span>
+            <div style="display:flex;gap:18px;flex-wrap:wrap">
+              <label class="el-check-wrapper" style="display:flex;gap:8px;align-items:center">
+                <span class="el-check on"><input type="checkbox" checked></span>
+                <span>Restricted folder requested</span>
+              </label>
+              <label class="el-check-wrapper" style="display:flex;gap:8px;align-items:center">
+                <span class="el-check on"><input type="checkbox" checked></span>
+                <span>SLA at risk (30 min)</span>
+              </label>
+              <label class="el-check-wrapper" style="display:flex;gap:8px;align-items:center">
+                <span class="el-check"><input type="checkbox"></span>
+                <span>Nightly index syncs</span>
+              </label>
+            </div>
+          </div>
+          <div class="el-field">
+            <label class="el-label" for="ret-pair">PAIR THE ACCOUNT TO COUNSEL READS</label>
+            <label class="el-switch on"><input type="checkbox" checked hidden></label>
+            <span style="font-size:var(--el-fs-sm);vertical-align:middle;margin-left:8px">Allow escrow readers to page restricted series</span>
+          </div>
+        </div>
+
+        <!-- seals -->
+        <div class="el-panel">
+          <span class="name">SEAL WALL</span>
+          <div class="el-field">
+            <span class="el-label">ROWS I MAY FILE A SEAL ON</span>
+            <div style="display:flex;gap:8px;flex-wrap:wrap">
+              <button class="el-chip on">CORPORATE</button>
+              <button class="el-chip on">CIVIC</button>
+              <button class="el-chip">ESTATE</button>
+            </div>
+          </div>
+          <div class="el-field">
+            <span class="el-label">SEAL EXPIRY CONVENTION</span>
+            <div class="el-segmented"><button>ANNIVERSARY</button><button class="on">ESTATE OPEN</button><button>MANUAL</button></div>
+          </div>
+          <div class="el-field">
+            <label class="el-label" for="ret-caps">RETRIEVAL CAP / MONTH</label>
+            <input type="range" class="el-slider" id="ret-caps" min="50" max="400" value="200">
+            <span class="el-hint">200 of 400 plan cap. Overruns bill at the published rate.</span>
+          </div>
+          <div class="el-field">
+            <span class="el-label">READER CONDUCT</span>
+            <div style="display:flex;gap:18px;flex-wrap:wrap">
+              <label class="el-radio"><input type="radio" name="conduct-lane" checked><span class="dot"></span>Gloves for all pulls</label>
+            </div>
+            <div style="display:flex;gap:18px;flex-wrap:wrap">
+              <label class="el-radio"><input type="radio" name="conduct-lane"><span class="dot"></span>Gloves for pre-1950 only</label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <aside style="display:grid;gap:20px;align-content:start">
+        <div class="el-panel">
+          <span class="name">TONIGHT'S INDEX SYNC</span>
+          <div style="display:grid;gap:10px;margin-top:10px">
+            <span class="el-skeleton" style="width:90%"></span>
+            <span class="el-skeleton" style="width:72%"></span>
+            <span class="el-skeleton block" style="height:60px"></span>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;margin-top:14px">
+            <span class="el-spinner" aria-hidden="true"></span>
+            <span style="font-size:var(--el-fs-sm)">Night lane writes aids after 23:00…</span>
+          </div>
+        </div>
+
+        <div class="el-panel">
+          <span class="name">RETRIEVAL LEDGER</span>
+          <div class="el-progress" style="margin-top:10px"><span class="fill" style="width:58%"></span></div>
+          <div class="el-progress-truth" style="margin-top:12px" aria-live="polite">
+            <span class="el-pt-chunk is-done" data-state="done">this month ✓ <span class="el-pt-count">116</span></span>
+            <span class="el-pt-chunk is-running" data-state="running">open <span class="el-pt-count">3</span></span>
+            <span class="el-pt-chunk is-queued" data-state="queued">cap 200</span>
+          </div>
+          <p class="el-mute-body" style="margin:10px 0 0">116 of 200 used. The desk files the
+             overrun notice before the cap, never after.</p>
+        </div>
+
+        <div class="el-panel">
+          <span class="name">THE FINE PRINT</span>
+          <div class="el-inline-alert fail" style="margin-top:8px">
+            <span class="el-icon" aria-hidden="true">
+              <svg viewBox="0 0 16 16" width="16" height="16"><path d="M3 3l10 10M13 3L3 13" stroke="currentColor" stroke-width="2.5" fill="none"/></svg>
+            </span>
+            <span><span class="title">Seals are deeds, not favors</span>
+            <span class="body">A seal filed here binds the index and the shelf in the same
+              minute. Counsel removal needs both signatory keys — no exceptions, no calls.</span></span>
+            <button class="close" aria-label="Dismiss warning">✕</button>
+          </div>
+          <p class="el-mute-body" style="margin:12px 0 0">All countersignatures print with the
+             nightly ledger and post to the reading-room wall.</p>
+        </div>
+
+        <div class="el-panel">
+          <span class="name">COUNT, STEP BY STEP</span>
+          <div class="el-ladder-step is-done" data-state="done" style="margin-top:8px"><span class="el-ladder-idx">01</span><span class="el-ladder-label">Signatories</span><span class="el-ladder-meta">keyed</span></div>
+          <div class="el-ladder-step is-running" data-state="running"><span class="el-ladder-idx">02</span><span class="el-ladder-label">Retrievals</span><span class="el-ladder-meta">now</span></div>
+          <div class="el-ladder-step is-queued" data-state="queued"><span class="el-ladder-idx">03</span><span class="el-ladder-label">Seals</span><span class="el-ladder-meta">queue</span></div>
+          <div class="el-ladder-step is-queued" data-state="queued"><span class="el-ladder-idx">04</span><span class="el-ladder-label">Countersign</span><span class="el-ladder-meta">nightly</span></div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="el-section el-section--flush" style="padding-top:6px">
+      <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center">
+        <button class="el-btn" data-toast="Countersign filed — ledger prints tonight" data-toast-variant="ok">Countersign changes</button>
+        <button class="el-btn el-btn--outline">Preview the ledger row</button>
+        <div class="el-btn-group">
+          <button class="el-btn el-btn--ghost">Copy citation key</button>
+          <button class="el-btn el-btn--ghost" data-toast="Ledger CSV copied" data-toast-variant="info">Copy CSV</button>
+        </div>
+        <button class="el-btn el-btn--ghost">Discard</button>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;margin-top:20px">
+        <div class="el-pagination" aria-label="Ledger pages">
+          <span class="page" data-action="prev">‹</span>
+          <span class="page on">1</span><span class="page">2</span><span class="page">3</span><span class="page">4</span>
+          <span class="page" data-action="next">›</span>
+          <span class="info">page 1 · 4</span>
+        </div>
+        <span class="el-mono" style="font-weight:700">DEPOSIT VB-4081 · SINCE 2021</span>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,109 @@
+@layer el-elements {
+
+
+
+
+
+
+/* ── assistant panel: plan-first, cited, streaming — assistant not replacement ─ */
+
+.el-assistant-panel {
+  display: flex;
+  flex-direction: column;
+  min-width: 280px;
+  max-width: 420px;
+  max-height: min(640px, 80vh);
+  background: color-mix(in oklab, var(--el-panel) 92%, var(--el-ink) 8%);
+  border: var(--el-bw) solid var(--el-edge);
+  border-radius: var(--el-r-lg);
+  box-shadow: var(--el-raise-2);
+  overflow: hidden;
+}
+.el-assistant-head {
+  display: flex;
+  align-items: center;
+  gap: var(--el-space-2);
+  min-height: 42px;
+  padding: var(--el-space-2) var(--el-space-4);
+  border-bottom: var(--el-bw) solid var(--el-line-2);
+  color: var(--el-ink);
+  font-size: var(--el-fs-md);
+}
+.el-assistant-log {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  padding: var(--el-space-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--el-space-2);
+}
+.el-msg {
+  max-width: 92%;
+  padding: var(--el-space-2) var(--el-space-3);
+  border-radius: var(--el-r-md);
+  font-size: var(--el-fs-md);
+  line-height: 1.45;
+}
+.el-msg--assistant {
+  align-self: flex-start;
+  background: var(--el-panel-2);
+  border: var(--el-bw) solid var(--el-edge);
+  color: var(--el-ink);
+}
+.el-msg--user {
+  align-self: flex-end;
+  background: color-mix(in oklab, var(--el-accent) 16%, var(--el-panel));
+  color: var(--el-ink);
+}
+/* the single generative-motion surface: cadence while streaming */
+.el-msg.is-streaming { animation: el-cadence var(--el-dur-progress) linear infinite; }
+@keyframes el-cadence { 0%, 100% { opacity: 0.72; } 50% { opacity: 1; } }
+
+/* plan block: reused run-ladder, compact — user can start, trim, or cancel */
+.el-plan {
+  margin: var(--el-space-2) 0;
+  padding: var(--el-space-2);
+  border: var(--el-bw) dashed var(--el-line-strong);
+  border-radius: var(--el-r-sm);
+}
+.el-plan .el-plan-title {
+  font-size: var(--el-fs-xs);
+  text-transform: uppercase;
+  letter-spacing: var(--el-label-tracking, .08em);
+  color: var(--el-mute);
+  margin-bottom: var(--el-space-1);
+}
+.el-assistant-foot {
+  display: flex;
+  align-items: center;
+  gap: var(--el-space-2);
+  padding: var(--el-space-2) var(--el-space-3);
+  border-top: var(--el-bw) solid var(--el-line-2);
+}
+.el-assistant-stop {
+  margin-left: auto;
+  padding: var(--el-space-1) var(--el-space-3);
+  border: var(--el-bw) solid var(--el-stage-stale);
+  border-radius: var(--el-r-sm);
+  color: var(--el-stage-stale);
+  background: none;
+  cursor: pointer;
+  font-size: var(--el-fs-sm);
+  transition: background-color var(--el-dur-fast) var(--el-ease-quiet);
+}
+.el-assistant-stop:hover { background: color-mix(in oklab, var(--el-stage-stale) 12%, transparent); }
+/* cited answers: quiet, anchored */
+.el-msg .el-cite-inline { color: var(--el-stage-active); font-variant-numeric: tabular-nums; }
+/* no compiled sources: say so quietly */
+.el-msg.is-unsourced { color: var(--el-ink-soft); font-style: italic; }
+
+/* v0.4.0 mobile pass (routed): the stop control reaches the 44px lane at touch */
+@media (max-width: 430px) {
+  .el-assistant-stop { min-height: 44px; box-sizing: border-box; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .el-msg.is-streaming { animation: none; }
+}
+
+}

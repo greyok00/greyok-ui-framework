@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en" data-theme="ma-quiet">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Collection · Studio Ma</title>
+<link rel="stylesheet" href="../../../base.css">
+<link rel="stylesheet" href="../../../fonts.css">
+<link rel="stylesheet" href="../../../tokens.css">
+<link rel="stylesheet" href="../../../elements-display.css">
+<link rel="stylesheet" href="../../../elements-structure.css">
+<link rel="stylesheet" href="../../../elements-lists.css">
+<link rel="stylesheet" href="../../../elements-app.css">
+<link rel="stylesheet" href="../../../elements-containers.css">
+<link rel="stylesheet" href="../../../elements-controls.css">
+<link rel="stylesheet" href="../../../elements-inputs.css">
+<link rel="stylesheet" href="../../../elements-dataviz.css">
+<link rel="stylesheet" href="../../../elements-overlay.css">
+<link rel="stylesheet" href="../../../elements-interactions.css">
+<link rel="stylesheet" href="../../../elements-misc.css">
+<link rel="stylesheet" href="../../../elements-size.css">
+<link rel="stylesheet" href="../../../elements-workflow.css">
+<link rel="stylesheet" href="../../../themes/src/quiet-minimal.css">
+<script src="../../../elements.js" defer></script>
+<script src="../../../charts.js" defer></script>
+<script src="../../../elements-workflow.js" defer></script>
+<script>
+document.addEventListener('click', function (e) {
+  var t = e.target.closest('[data-open-drawer]');
+  if (t) { var d = document.getElementById(t.getAttribute('data-open-drawer')); if (d) d.classList.add('is-open'); }
+  var c = e.target.closest('[data-close-drawer]');
+  if (c) { var q = document.getElementById(c.getAttribute('data-close-drawer')); if (q) q.classList.remove('is-open'); }
+  var f = e.target.closest('[data-filter]');
+  if (f) {
+    document.querySelectorAll('.el-chip').forEach(function (ch) { ch.classList.remove('is-selected'); });
+    f.classList.add('is-selected');
+    var want = f.getAttribute('data-filter');
+    var shown = 0;
+    document.querySelectorAll('[data-shelf]').forEach(function (card) {
+      var show = want === 'all' || card.getAttribute('data-shelf') === want;
+      card.style.display = show ? '' : 'none'; if (show) shown++;
+    });
+    var empty = document.getElementById('no-results');
+    if (empty) empty.style.display = shown ? 'none' : '';
+  }
+});
+</script>
+<style>
+  .grid-works { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--el-space-4); }
+  .el-panel--flush { display: flex; flex-wrap: wrap; align-items: center; gap: var(--el-space-2); padding: var(--el-space-3) var(--el-space-4); }
+  .el-card--flat { display: grid; align-content: start; gap: var(--el-space-3); }
+  .el-card--flat .el-avatar { justify-self: start; }
+  .el-card--flat > .el-chip, .el-card--flat > .el-btn { justify-self: start; }
+  .el-drawer .el-media-band { margin: 0 0 var(--el-space-3); }
+  /* v0.4.0 mobile pass: work cards go full-width index cards */
+  @media (max-width: 940px) { .grid-works { grid-template-columns: minmax(0, 1fr); } }
+</style>
+</head>
+<body>
+<main class="el-page">
+
+  <nav class="el-navbar el-navbar--top">
+    <div class="brand">Studio Ma</div>
+    <div class="links">
+      <a href="index.html">Collection</a>
+      <a href="catalog.html" aria-current="page">Exhibitions</a>
+      <a href="article.html">Journal</a>
+      <a href="account.html">Membership</a>
+      <a href="app.html">Archive Console</a>
+    </div>
+    <div class="actions">
+      <span class="el-tooltip" data-tip="Command kiosk - press / to search"><input class="el-search" type="search" placeholder="Search 411 artifacts…"></span>
+      <button class="el-btn el-btn--ghost" data-dialog-open="visit">Visit</button>
+    </div>
+  </nav>
+
+  <header class="el-hero el-hero--left">
+    <span class="el-eyebrow">The collection</span>
+    <h1>Four hundred eleven objects, kept deliberately small.</h1>
+    <p>Each shelf below is a complete run. Filter by shelf; open any record to read its
+       accession card, conservation state and custodian.</p>
+    <div class="actions">
+      <div class="el-segmented" role="tablist">
+        <button>All</button><button class="on">Printed</button><button>Objects</button>
+      </div>
+      <div style="min-width:170px">
+        <select class="el-select" aria-label="Sort by">
+          <option>Accession date</option><option>Title</option><option>Year</option>
+        </select>
+      </div>
+    </div>
+  </header>
+
+  <div class="el-panel el-panel--flush">
+    <div class="el-chip" data-filter="all">All shelves</div>
+    <div class="el-chip is-selected" data-filter="identity">Identity</div>
+    <div class="el-chip" data-filter="books">Ma Editions</div>
+    <div class="el-chip" data-filter="moon">Moon calendar</div>
+    <div class="el-chip" data-filter="none">Kiln samples</div>
+    <span class="el-badge">411 records</span>
+  </div>
+
+  <section class="el-section el-section--dense">
+    <div class="grid-works">
+      <article class="el-card el-card--flat" data-shelf="identity">
+        <div class="el-chip" data-state="ok">Identity</div>
+        <h3>Northern kilns letterheads</h3>
+        <p>MA-0881 · 1989–2004 · letterpress on 90 g</p>
+        <div class="el-avatar" aria-hidden="true">SM</div>
+        <button class="el-btn el-btn--ghost" data-open-drawer="rec-0881">Open card</button>
+      </article>
+      <article class="el-card el-card--flat" data-shelf="identity">
+        <div class="el-chip" data-state="ok">Identity</div>
+        <h3>Sanshoku tofu works</h3>
+        <p>MA-1023 · 1996 · one stamp, three meals</p>
+        <div class="el-avatar" aria-hidden="true">RM</div>
+        <button class="el-btn el-btn--ghost" data-open-drawer="rec-0881">Open card</button>
+      </article>
+      <article class="el-card el-card--flat" data-shelf="books">
+        <div class="el-chip" data-state="live">Books</div>
+        <h3>Ma Editions Nº 19</h3>
+        <p>MA-0419 · 2003 · <em>Rules of the Quiet House</em></p>
+        <div class="el-avatar" aria-hidden="true">SM</div>
+        <button class="el-btn el-btn--ghost" data-open-drawer="rec-0419">Open card</button>
+      </article>
+      <article class="el-card el-card--flat" data-shelf="moon">
+        <div class="el-chip">Posters</div>
+        <h3>Moon calendar 2011</h3>
+        <p>MA-0902 · blind-signed, power-failure proof</p>
+        <div class="el-avatar" aria-hidden="true">KY</div>
+        <button class="el-btn el-btn--ghost" data-open-drawer="rec-0902">Open card</button>
+      </article>
+      <article class="el-card el-card--flat" data-shelf="books">
+        <div class="el-chip" data-state="warn">Books</div>
+        <h3>Ma Editions Nº 44</h3>
+        <p>MA-0444 · 2007 · foxing at the gutter</p>
+        <div class="el-avatar" aria-hidden="true">RM</div>
+        <button class="el-btn el-btn--ghost" data-open-drawer="rec-0444">Open card</button>
+      </article>
+    </div>
+
+    <div id="no-results" class="el-empty" style="display:none">
+      <span class="el-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4.2-4.2"/></svg></span>
+      <h3 class="el-title">No shelf answers "kiln samples" yet.</h3>
+      <p>We accession slowly — the shelf is planned for spring 2027 and the sample
+         boxes are already in the basement.</p>
+      <button class="el-btn el-btn--ghost-outline" data-filter="all">Return to all shelves</button>
+    </div>
+
+    <nav class="el-pagination" aria-label="Collection pages">
+      <button class="page disabled" aria-disabled="true">‹</button>
+      <button class="page">1</button>
+      <button class="page on">2</button>
+      <button class="page">3</button>
+      <span class="info">Page 2 of 3 · 148 objects on this shelf</span>
+      <button class="page">›</button>
+    </nav>
+  </section>
+
+  <aside class="el-drawer right" id="rec-0881" aria-hidden="true">
+    <div class="el-drawer-head">Record MA-0881 <button class="el-btn el-btn--ghost" data-close-drawer="rec-0881" aria-label="Close">×</button></div>
+    <div class="el-drawer-body">
+      <figure class="el-media-band el-media-band--flat">
+        <div class="media">
+          <svg viewBox="0 0 400 240" role="img" aria-label="Letterhead specimen" preserveAspectRatio="xMidYMid slice">
+            <rect width="400" height="240" fill="#fbfaf7"/>
+            <line x1="200" y1="16" x2="200" y2="28" stroke="#d8d3c7" stroke-width="1"/>
+            <text x="200" y="70" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" letter-spacing="4" fill="#2b2b2b">KAMO KILN</text>
+            <text x="200" y="120" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#8d8d8d">glazed stoneware</text>
+            <line x1="150" y1="170" x2="250" y2="170" stroke="#c0392b" stroke-width="1"/>
+            <text x="200" y="200" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" letter-spacing="2" fill="#8d8d8d">90G · 1948</text>
+          </svg>
+          <figcaption>Sheet 12 of 41 · photographed once, 2019</figcaption>
+        </div>
+        <div class="body">
+          <span class="label">Accession card</span>
+          <div class="el-fact-grid">
+            <div class="el-fact"><span class="k">Accessioned</span><span class="v">2019</span></div>
+            <div class="el-fact"><span class="k">Sheets</span><span class="v">41</span></div>
+            <div class="el-fact is-hot"><span class="k">Conservation</span><span class="v">A</span></div>
+          </div>
+          <div class="el-progress ok"><span class="fill" style="width:92%"></span></div>
+          <p class="small">Condition <span class="el-status-dot ok"></span> stable · float flat in box 14.</p>
+        </div>
+      </figure>
+      <div class="el-meter" style="--el-meter-value:92"><span class="fill" style="width:92%"></span></div>
+    </div>
+    <div class="el-drawer-foot">
+      <button class="el-btn" data-close-drawer="rec-0881">Close the card</button>
+      <button class="el-btn el-btn--ghost-outline" data-toast="MA-0881 - a print file has been requested; the curator will send it.">Request print file</button>
+    </div>
+  </aside>
+
+  <aside class="el-drawer right" id="rec-0419" aria-hidden="true">
+    <div class="el-drawer-head">Record MA-0419 <button class="el-btn el-btn--ghost" data-close-drawer="rec-0419" aria-label="Close">×</button></div>
+    <div class="el-drawer-body">
+      <div class="el-fact-grid">
+        <div class="el-fact"><span class="k">Edition</span><span class="v">60</span></div>
+        <div class="el-fact"><span class="k">On view</span><span class="v">Nº 19</span></div>
+        <div class="el-fact"><span class="k">Cloth</span><span class="v">4 shades</span></div>
+      </div>
+      <div class="el-progress" data-value="64"><span class="fill" style="width:64%"></span></div>
+    </div>
+    <div class="el-drawer-foot"><button class="el-btn" data-close-drawer="rec-0419">Close the card</button></div>
+  </aside>
+
+  <footer class="el-footer">
+    <div class="cols">
+      <div class="col">
+        <div class="label">Studio Ma</div>
+        <p class="small">14 Wakamiya-dori, Kamigyo, Kyoto. Wed–Sat, 11–6.</p>
+      </div>
+      <div class="col"><div class="label">Visit</div><p class="small">Catalog · viewing room · press</p></div>
+      <div class="col"><div class="label">Write</div><p class="small">post@studioma.example</p></div>
+    </div>
+    <p class="colophon">Studio Ma · catalog · set in Inter and Satoshi on warm paper.</p>
+  </footer>
+
+  <dialog id="visit" class="el-dialog">
+    <div class="el-dialog-head"><h2>Arrange a visit</h2><button class="el-dialog-close" data-dialog-close="visit" aria-label="Close">×</button></div>
+    <div class="el-dialog-body"><p>Thursday mornings, ten to twelve. The curator confirms within two days.</p></div>
+    <div class="el-dialog-foot"><button class="el-btn" data-dialog-close="visit">Understood</button></div>
+  </dialog>
+
+</main>
+</body>
+</html>

@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en" data-theme="kinetic-ink"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Work index — Kinetika</title>
+<link rel="stylesheet" href="../../../base.css"><link rel="stylesheet" href="../../../fonts.css">
+<link rel="stylesheet" href="../../../tokens.css">
+<link rel="stylesheet" href="../../../elements-display.css">
+<link rel="stylesheet" href="../../../elements-structure.css">
+<link rel="stylesheet" href="../../../elements-lists.css">
+<link rel="stylesheet" href="../../../elements-app.css">
+<link rel="stylesheet" href="../../../elements-containers.css">
+<link rel="stylesheet" href="../../../elements-controls.css">
+<link rel="stylesheet" href="../../../elements-inputs.css">
+<link rel="stylesheet" href="../../../elements-dataviz.css">
+<link rel="stylesheet" href="../../../elements-overlay.css">
+<link rel="stylesheet" href="../../../elements-interactions.css">
+<link rel="stylesheet" href="../../../elements-misc.css">
+<link rel="stylesheet" href="../../../elements-size.css">
+<link rel="stylesheet" href="../../../elements-workflow.css">
+<link rel="stylesheet" href="../../../elements-inspector.css">
+<link rel="stylesheet" href="../../../elements-reader.css">
+<link rel="stylesheet" href="../../../elements-assistant.css">
+<link rel="stylesheet" href="../../../themes/src/motion-brand.css">
+<script src="../../../elements.js" defer></script><script src="../../../charts.js" defer></script>
+<style>
+  .kin-work-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+  .kin-work-head { display:flex; flex-wrap:wrap; gap:14px 10px; align-items:center; padding-top:14px; }
+  .kin-w { font-size:13px; }
+  @media (max-width:1000px){ .kin-work-grid{ grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:700px){ .kin-work-grid{ grid-template-columns:1fr; } }
+  .kin-mono-row td { font-family:var(--el-font-mono); font-size:.92em; }
+  /* v0.4.0 mobile pass: phone column plan re-balances the colgroup so the state
+     pill and the timecode stay whole; desktop shares keep their widths */
+  @media (max-width:430px){
+    .el-table colgroup > col:nth-child(1){ width:26% }
+    .el-table colgroup > col:nth-child(2){ width:15% }
+    .el-table colgroup > col:nth-child(3){ width:18% }
+    .el-table colgroup > col:nth-child(4){ width:14% }
+    .el-table colgroup > col:nth-child(5){ width:27% }
+  }
+  @media (max-width:380px){
+    .el-table colgroup > col:nth-child(1){ width:20% }
+    .el-table colgroup > col:nth-child(2){ width:15% }
+    .el-table colgroup > col:nth-child(3){ width:19% }
+    .el-table colgroup > col:nth-child(4){ width:18% }
+    .el-table colgroup > col:nth-child(5){ width:28% }
+  }
+</style>
+</head>
+<body>
+<main class="el-page">
+
+  <nav class="el-navbar el-navbar--top" aria-label="Primary">
+    <a class="brand" href="index.html"><span class="el-bar-mark" aria-hidden="true"></span>Kinetika</a>
+    <div class="links">
+      <a href="index.html">Showreel</a>
+      <a href="catalog.html" aria-current="page">Work index</a>
+      <a href="article.html">Journal</a>
+      <a href="account.html">Client space</a>
+      <a href="app.html">Review desk</a>
+    </div>
+    <div class="actions">
+      <button class="el-btn ghost" data-toast="Full index PDF queued — 38 pages, rendered on the shared pool." data-toast-variant="info">Download index</button>
+    </div>
+  </nav>
+
+  <header class="el-hero el-hero--left" style="padding:34px 0 12px;min-height:0">
+    <p class="el-eyebrow">Work index — 45 cuts</p>
+    <h1 class="el-title-xl" style="font-size:clamp(1.7em,3.2vw,2.4em)">Every cut we shipped, on one plate.</h1>
+    <p class="el-body" style="max-width:64ch">Filter by discipline, sort by year, and open any card for the
+    review trail. Delivery files stay indexed even after the broadcast wraps.</p>
+  </header>
+
+  <section class="el-section el-section--flush">
+    <div class="kin-work-head">
+      <label class="el-field" style="margin:0;min-width:260px">
+        <span class="el-label">Search the index</span>
+        <span class="el-search-field">
+          <input class="el-search" type="search" placeholder="project, client, discipline…">
+        </span>
+      </label>
+      <div class="el-chips" role="group" aria-label="Discipline filters" style="display:flex;gap:8px;flex-wrap:wrap">
+        <button class="el-chip is-selected">All 45</button>
+        <button class="el-chip">Title sequence</button>
+        <button class="el-chip">Broadcast</button>
+        <button class="el-chip">Product film</button>
+        <button class="el-chip live">In review · 3</button>
+      </div>
+      <span class="el-tooltip" data-tip="Rows stay on the desk for 3 years after wrap">
+        <button class="el-btn ghost">Retention</button>
+      </span>
+    </div>
+  </section>
+
+  <section class="el-section">
+    <div class="kin-work-grid">
+
+      <article class="el-card el-card--raised is-interactive">
+        <div class="el-card-media" style="height:132px"><span style="display:block;height:132px;background:linear-gradient(115deg,#231018,#0f0f13 70%)"></span></div>
+        <div class="lbl">TITLE SEQUENCE · 2026</div>
+        <h3>Meridian Rail — “Westbound”</h3>
+        <p class="sub">31 shots, a night-train plate, and one continuous type ride. Aired as the network rebrand anchor.</p>
+        <div class="actions">
+          <span class="el-badge ok">delivered</span>
+          <span class="el-avatar" title="D. Okonkwo" style="width:26px;height:26px;font-size:.72em">DO</span>
+          <button class="el-btn ghost" style="min-height:30px;padding:2px 10px" data-drawer-open="kin-cut-drawer">Details</button>
+        </div>
+      </article>
+
+      <article class="el-card el-card--raised is-interactive">
+        <div class="el-card-media" style="height:132px"><span style="display:block;height:132px;background:linear-gradient(115deg,#101820,#0f2a30 70%)"></span></div>
+        <div class="lbl">PRODUCT FILM · 2026</div>
+        <h3>Fovea Optics — Macro Season</h3>
+        <p class="sub">Six 15-second macro films from one build. CAD turns graded for retail loops.</p>
+        <div class="actions">
+          <span class="el-badge ok">delivered</span>
+          <span class="el-avatar" title="R. Vance" style="width:26px;height:26px;font-size:.72em">RV</span>
+          <button class="el-btn ghost" style="min-height:30px;padding:2px 10px" data-drawer-open="kin-cut-drawer">Details</button>
+        </div>
+      </article>
+
+      <article class="el-card el-card--raised is-interactive">
+        <div class="el-card-media" style="height:132px"><span style="display:block;height:132px;background:linear-gradient(115deg,#1c1032,#120d1c 70%)"></span></div>
+        <div class="lbl">BROADCAST KIT · 2026</div>
+        <h3>Channel Nyn — Scoreboard wraps</h3>
+        <p class="sub">Overnight-safe transitions, lower thirds, and four scoreboard states for a hockey season.</p>
+        <div class="actions">
+          <span class="el-badge live">in review</span>
+          <span class="el-avatar" title="S. Blaine" style="width:26px;height:26px;font-size:.72em">SB</span>
+          <button class="el-btn ghost" style="min-height:30px;padding:2px 10px" data-drawer-open="kin-cut-drawer">Details</button>
+        </div>
+      </article>
+
+      <article class="el-card el-card--raised is-interactive">
+        <div class="el-card-media" style="height:132px"><span style="display:block;height:132px;background:linear-gradient(115deg,#2a2210,#121013 70%)"></span></div>
+        <div class="lbl">UI MOTION · 2025</div>
+        <h3>Ledgerline — Console transitions</h3>
+        <p class="sub">Motion spec for a fintech console: 12 transitions, springs tuned to the product’s own easing.</p>
+        <div class="actions">
+          <span class="el-badge ok">delivered</span>
+          <span class="el-avatar" title="T. Osei" style="width:26px;height:26px;font-size:.72em">TO</span>
+          <button class="el-btn ghost" style="min-height:30px;padding:2px 10px" data-drawer-open="kin-cut-drawer">Details</button>
+        </div>
+      </article>
+
+      <article class="el-card el-card--raised is-interactive">
+        <div class="el-card-media" style="height:132px"><span style="display:block;height:132px;background:linear-gradient(115deg,#141416,#1e1a2c 70%)"></span></div>
+        <div class="lbl">TITLE SEQUENCE · 2025</div>
+        <h3>Rooftop Harvest — Main on End</h3>
+        <p class="sub">End crawl built from 1,200 harvest photos; type follows the skyline the whole way down.</p>
+        <div class="actions">
+          <span class="el-badge ok">delivered</span>
+          <span class="el-avatar" title="M. Ruiz" style="width:26px;height:26px;font-size:.72em">MR</span>
+          <button class="el-btn ghost" style="min-height:30px;padding:2px 10px" data-drawer-open="kin-cut-drawer">Details</button>
+        </div>
+      </article>
+
+      <section class="el-card el-card--flat" style="display:grid;align-content:center;gap:10px">
+        <div class="el-empty">
+          <span class="el-icon"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M8 12h8"/></svg></span>
+          <span class="el-title">No cuts match that filter</span>
+          <span class="el-msg">“Long-form feature” is not a discipline we sell — our features work is story-credit only.</span>
+          <span class="el-hint">Try: title sequence, broadcast, product film.</span>
+          <span class="el-action"><button class="el-btn ghost">Reset filters</button></span>
+        </div>
+      </section>
+
+    </div>
+  </section>
+
+  <section class="el-section el-section--dense">
+    <p class="el-eyebrow">Recent deliveries</p>
+    <h2>The ledger of the last six weeks</h2>
+    <table class="el-table el-table--zebra">
+      <colgroup><col style="width:34%"><col style="width:18%"><col style="width:16%"><col style="width:16%"><col style="width:16%"></colgroup>
+      <thead><tr><th>Cut</th><th>Client</th><th class="num">Runtime</th><th>Shipped</th><th>State</th></tr></thead>
+      <tbody class="kin-mono-row">
+        <tr><td>Night Signal — open v07</td><td>Channel Nyn</td><td class="num">00:01:02</td><td class="el-ink-ok">Oct 28</td><td><span class="el-status-pill ok">approved</span></td></tr>
+        <tr><td>Westbound — type ride v11</td><td>Meridian Rail</td><td class="num">00:00:38</td><td class="el-ink-ok">Oct 21</td><td><span class="el-status-pill ok">approved</span></td></tr>
+        <tr><td>Macro Season — reel 04</td><td>Fovea Optics</td><td class="num">00:00:15</td><td>Oct 30</td><td><span class="el-status-pill running">reviewing</span></td></tr>
+        <tr><td>Scoreboard wraps — state 4</td><td>Channel Nyn</td><td class="num">00:00:06</td><td>Nov 01</td><td><span class="el-status-pill queued">queued</span></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <nav class="el-pagination" aria-label="Work pages" style="justify-content:center;margin:26px 0 8px">
+    <button class="page" aria-label="Previous">‹ Prev</button>
+    <button class="page on">1</button>
+    <button class="page">2</button>
+    <button class="page">3</button>
+    <span class="info el-mono">page 1 of 3 · 45 cuts</span>
+    <button class="page">Next ›</button>
+  </nav>
+
+  <footer class="el-footer el-footer--plain" style="border-top:1px solid var(--el-line-2);padding-top:20px">
+    <div class="small"><span>© 2026 Kinetika LLC · work index 2026.4</span><span><a href="index.html" style="color:var(--el-accent)">studio home</a></span></div>
+  </footer>
+
+  <div id="kin-cut-drawer" class="el-drawer right" role="dialog" aria-label="Cut details">
+    <div class="el-drawer-head">Cut detail — meridian rail<button data-drawer-close style="background:none;border:0;color:inherit;cursor:pointer;font-size:1em" aria-label="Close">✕</button></div>
+    <div class="el-drawer-body">
+      <div class="el-media-band el-media-band--flat" style="margin-bottom:14px">
+        <div class="media"><div class="frame" style="position:absolute;inset:0;background:linear-gradient(115deg,#231018,#0f0f13 70%)"></div>
+        <figcaption>v11 — type ride locked</figcaption></div>
+        <div class="body">
+          <span class="label">Westbound</span>
+          <p class="el-body" style="font-size:.92em">Night-train plate, one continuous ride of type, 38 seconds.</p>
+        </div>
+      </div>
+      <div class="el-fact-grid">
+        <div class="el-card el-card--flat"><span class="el-label">Client</span><span class="el-mono">Meridian Rail</span></div>
+        <div class="el-card el-card--flat"><span class="el-label">Year</span><span class="el-mono">2026</span></div>
+        <div class="el-card el-card--flat"><span class="el-label">Shots</span><span class="el-mono">31</span></div>
+        <div class="el-card el-card--flat"><span class="el-label">Rounds</span><span class="el-mono">11</span></div>
+      </div>
+      <p class="el-body" style="font-size:.92em;margin-top:14px">Master formats: 4K DCI scope ProRes 4444, HDR10, and an H.264 review proxy on the desk.</p>
+    </div>
+    <div class="el-drawer-foot">
+      <button class="el-btn ghost" data-drawer-close>Close</button>
+      <button class="el-btn" data-toast="Proxy added to your review desk." data-toast-variant="ok">Add to review desk</button>
+    </div>
+  </div>
+
+</main>
+</body></html>

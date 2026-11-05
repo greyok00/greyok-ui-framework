@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="en" data-theme="neutral">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>qa · app chrome — window · menubar · listbox · actionbar · tabbar</title>
+<link rel="stylesheet" href="../../base.css">
+<link rel="stylesheet" href="../../fonts.css">
+<link rel="stylesheet" href="../../tokens.css">
+<link rel="stylesheet" href="../../tokens-v2.css">
+<link rel="stylesheet" href="../../elements-structure.css">
+<link rel="stylesheet" href="../../elements-display.css">
+<link rel="stylesheet" href="../../elements-lists.css">
+<link rel="stylesheet" href="../../elements-dataviz.css">
+<link rel="stylesheet" href="../../elements-containers.css">
+<link rel="stylesheet" href="../../elements-interactions.css">
+<link rel="stylesheet" href="../../elements-inputs.css">
+<link rel="stylesheet" href="../../elements-controls.css">
+<link rel="stylesheet" href="../../elements-overlay.css">
+<link rel="stylesheet" href="../../elements-misc.css">
+<link rel="stylesheet" href="../../elements-app.css">
+<link rel="stylesheet" href="../../themes.css">
+<script>
+(function () {
+  var t = new URLSearchParams(location.search).get("theme");
+  if (t) document.documentElement.setAttribute("data-theme", t);
+  var probe = new URLSearchParams(location.search).get("probe");
+  window.addEventListener("load", function () {
+    if (probe === "states") {
+      document.querySelectorAll("[data-probe-selected]").forEach(function (n) { n.classList.add("is-selected"); });
+      document.querySelectorAll("[data-probe-disabled]").forEach(function (n) { n.setAttribute("aria-disabled", "true"); });
+      document.querySelectorAll("[data-probe-open]").forEach(function (n) { n.setAttribute("aria-expanded", "true"); });
+      document.querySelectorAll("[data-probe-unread]").forEach(function (n) { n.classList.add("is-unread"); });
+    }
+    if (probe === "focus") {
+      var el = document.querySelector("[data-probe-focus]");
+      if (el) el.focus({ preventScroll: false });
+    }
+  });
+})();
+</script>
+</head>
+<body>
+<main class="el-page">
+
+  <div class="el-demo-bar">
+    <h1>qa · app chrome <small>group 7 — the GTK 6 window layer</small></h1>
+    <span class="el-cluster"><span class="el-pill">v0.4.0</span><span class="el-badge ok">sandbox</span></span>
+  </div>
+
+  <!-- ══ the full window scene ══════════════════════════════════════════ -->
+  <div class="el-appwin" style="max-width:1080px;margin:var(--el-space-3) 0">
+
+    <div class="el-titlebar">
+      <div class="lead">
+        <button class="el-btn el-btn--ghost" style="min-height:28px;padding:2px 8px" aria-label="reveal sidebar">☰</button>
+        <span class="el-mono" style="font-size:var(--el-fs-xs);color:var(--el-mute)">vault://ledger-prod</span>
+      </div>
+      <span class="el-app-title">Ledger Console<small>2026-11-02 · four shards healthy</small></span>
+      <div class="winbtns">
+        <button class="el-winbtn min" aria-label="minimize"></button>
+        <button class="el-winbtn max" aria-label="restore"></button>
+        <button class="el-winbtn close" aria-label="close"></button>
+      </div>
+    </div>
+
+    <div class="el-menubar" role="menubar">
+      <button class="el-menubar-item">Ledger</button>
+      <button class="el-menubar-item" data-probe-open aria-haspopup="true">Edit</button>
+      <button class="el-menubar-item">View</button>
+      <button class="el-menubar-item">Tools</button>
+      <button class="el-menubar-item" aria-disabled="true">Export</button>
+      <span class="el-menubar-spring"></span>
+      <button class="el-menubar-item">Help</button>
+    </div>
+
+    <div class="el-headerbar">
+      <span class="el-headerbar-label">Positions</span>
+      <div class="el-segmented" role="tablist" style="display:inline-flex">
+        <button class="el-btn el-btn--ghost" style="min-height:26px;padding:0 10px">Open</button>
+        <button class="el-btn el-btn--ghost" style="min-height:26px;padding:0 10px;border-bottom:0;background:var(--el-accent-soft);color:var(--el-accent)">Settled</button>
+        <button class="el-btn el-btn--ghost" style="min-height:26px;padding:0 10px">Archive</button>
+      </div>
+      <span class="spring"></span>
+      <label class="el-field" style="position:relative;min-width:220px">
+        <span class="el-label" style="position:absolute;left:-9999px">Search positions</span>
+        <input class="el-input" data-probe-focus tabindex="0" placeholder="Search positions… (⌘K)" style="width:100%">
+      </label>
+      <button class="el-btn">New entry</button>
+    </div>
+
+    <div class="el-appwin-body" style="display:flex;gap:var(--el-space-4);padding:var(--el-space-4)">
+
+      <!-- left: GTK listbox -->
+      <div style="width:280px;flex:none;display:flex;flex-direction:column;gap:var(--el-space-3)">
+        <div class="el-listbox" role="listbox" aria-label="Watchlist">
+          <div class="el-listbox-header">Watchlist · 6</div>
+          <div class="el-listbox-row is-selected" role="option" aria-selected="true" tabindex="0" data-probe-focus>
+            <span class="icon"><svg class="el-icon" viewBox="0 0 24 24"><path d="M4 17l6-6 4 4 8-8"/><path d="M4 3h18v18"/></svg></span>
+            <span class="el-listbox-label"><span class="label">ingest-gateway</span><span class="sub">us-east · 12 ms p99</span></span>
+            <span class="count">1.4k</span>
+          </div>
+          <div class="el-listbox-row" role="option" tabindex="0">
+            <span class="icon"><svg class="el-icon" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 9h18"/></svg></span>
+            <span class="el-listbox-label"><span class="label">render-farm</span><span class="sub">eu-west · queued 3</span></span>
+            <span class="action"><svg class="el-icon" viewBox="0 0 24 24"><circle cx="12" cy="5" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="12" cy="19" r="1"/></svg></span>
+          </div>
+          <div class="el-listbox-row" role="option" tabindex="0" data-probe-disabled>
+            <span class="icon"><svg class="el-icon" viewBox="0 0 24 24"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M5 21h14"/></svg></span>
+            <span class="el-listbox-label"><span class="label">legacy-sync</span><span class="sub">disabled row</span></span>
+          </div>
+          <div class="el-listbox-row" role="option" tabindex="0">
+            <span class="icon"><svg class="el-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg></span>
+            <span class="el-listbox-label"><span class="label">auth-proxy</span><span class="sub">us-west · warn</span></span>
+            <span class="el-status-pill warn">warn</span>
+          </div>
+          <div class="el-listbox-row" role="option" tabindex="0">
+            <span class="icon"><svg class="el-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M10 9l4 3-4 3z"/></svg></span>
+            <span class="el-listbox-label"><span class="label">edge-cache</span><span class="sub">live</span></span>
+            <span class="count">98</span>
+          </div>
+        </div>
+
+        <div class="el-listbox">
+          <div class="el-listbox-row"><span class="label">Preferences…</span><span class="count">⌘,</span></div>
+          <div class="el-listbox-row"><span class="label">Keyboard shortcuts</span><span class="count">⌘K</span></div>
+        </div>
+
+        <div class="el-notification-stack">
+          <div class="el-notification ok">
+            <span class="icon"><svg class="el-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg></span>
+            <span class="head"><span class="title">Backup verified</span><span class="app">1m</span></span>
+            <button class="close" aria-label="dismiss">✕</button>
+            <span class="body">Snapshot checksums match.</span>
+            <span class="actions"><button>View</button><button>Dismiss</button></span>
+          </div>
+          <div class="el-notification warn is-unread" data-probe-unread>
+            <span class="icon"><svg class="el-icon" viewBox="0 0 24 24"><path d="M12 3l10 18H2z"/><path d="M12 10v5"/></svg></span>
+            <span class="head"><span class="title">Pool B at 81%</span><span class="app">14m</span></span>
+            <button class="close" aria-label="dismiss">✕</button>
+            <span class="body">Prune plan is staged.</span>
+            <span class="actions"><button>Open plan</button><button>Snooze</button></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- right: table + stats + alert -->
+      <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:var(--el-space-3)">
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:var(--el-space-3)">
+          <div class="el-stat">
+            <span class="el-stat-label">Book value</span>
+            <span class="el-stat-row"><span class="el-stat-value">$48.2k</span><span class="el-stat-delta up">2.1%</span></span>
+          </div>
+          <div class="el-stat is-live">
+            <span class="el-stat-label">Streaming</span>
+            <span class="el-stat-row"><span class="el-stat-value">312</span><span class="el-stat-note">events/min</span></span>
+          </div>
+          <div class="el-stat" data-probe-selected>
+            <span class="el-stat-label">Margin</span>
+            <span class="el-stat-row"><span class="el-stat-value">18.4%</span><span class="el-stat-delta down">0.4%</span></span>
+          </div>
+        </div>
+
+        <table class="el-table el-table--zebra el-table--sticky-head">
+          <thead><tr><th>Position</th><th>Side</th><th class="num">Qty</th><th class="num">Price</th><th>&nbsp;</th></tr></thead>
+          <tbody>
+            <tr><td>ING-EDGE</td><td>buy</td><td class="num">1,200</td><td class="num">$12.04</td><td><span class="el-status-dot ok"></span></td></tr>
+            <tr class="is-selected"><td>REN-FARM</td><td>hold</td><td class="num">480</td><td class="num">$33.19</td><td><span class="el-status-dot running"></span></td></tr>
+            <tr><td>AUT-PROXY</td><td>sell</td><td class="num">96</td><td class="num">$71.52</td><td><span class="el-status-dot warn"></span></td></tr>
+            <tr aria-disabled="true"><td>LEG-SYNC</td><td>—</td><td class="num">—</td><td class="num">—</td><td><span class="el-status-dot idle"></span></td></tr>
+            <tr><td>EDG-CACHE</td><td>buy</td><td class="num">2,410</td><td class="num">$5.88</td><td><span class="el-status-dot live"></span></td></tr>
+          </tbody>
+        </table>
+
+        <div>
+          <span class="el-meter-label"><span>Shard capacity</span><span>72%</span></span>
+          <div class="el-meter ok" data-ticks="10"><span class="fill" style="width:72%"></span></div>
+        </div>
+
+        <div class="el-inline-alert info">
+          <svg class="el-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 10v6"/><circle cx="12" cy="7.5" r=".5"/></svg>
+          <span><span class="title">Settlement window</span><span class="body">T+1 window opens 18:00 UTC; queue drains automatically.</span></span>
+          <button class="close" aria-label="dismiss">✕</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="el-actionbar">
+      <span class="lead">
+        <svg class="el-icon" viewBox="0 0 24 24"><path d="M5 12l4 4 10-10"/></svg>
+        <span>3 selected · autosave on</span>
+      </span>
+      <span class="actions">
+        <button class="el-btn el-btn--ghost">Discard</button>
+        <button class="el-btn">Commit</button>
+      </span>
+    </div>
+
+    <div class="el-tabbar" role="tablist" aria-label="workspace">
+      <button class="el-tabbar-item is-active" role="tab" aria-selected="true"><svg class="el-icon" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>Overview</button>
+      <button class="el-tabbar-item" role="tab"><svg class="el-icon" viewBox="0 0 24 24"><path d="M4 17l6-6 4 4 8-8"/></svg>Ledger</button>
+      <button class="el-tabbar-item" role="tab"><svg class="el-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="10" r="3"/><path d="M6.5 18.5c1.5-3 9.5-3 11 0"/></svg>People</button>
+      <button class="el-tabbar-item" role="tab" data-probe-disabled><svg class="el-icon" viewBox="0 0 24 24"><path d="M12 4v16"/><path d="M5 8h14"/></svg>Archive</button>
+      <button class="el-tabbar-item" role="tab"><svg class="el-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 2"/></svg>Alerts<span class="count">2</span></button>
+    </div>
+  </div>
+
+  <!-- ══ second window: dim + press card + card anatomy strip ════════════ -->
+  <div id="cardstrip" style="display:grid;grid-template-columns:1fr 1fr;gap:var(--el-space-3);max-width:1080px;margin:var(--el-space-3) 0">
+    <div class="el-appwin is-dim">
+      <div class="el-titlebar">
+        <div class="lead"><span class="el-mono" style="font-size:var(--el-fs-xs)">modal parent (unfocused)</span></div>
+        <span class="el-app-title">Ledger Console—dimmed</span>
+        <div class="winbtns">
+          <button class="el-winbtn min"></button>
+          <button class="el-winbtn close" data-probe-focus></button>
+        </div>
+      </div>
+      <div class="el-menubar">
+        <button class="el-menubar-item">File</button>
+        <button class="el-menubar-item">Edit</button>
+      </div>
+      <div class="el-appwin-body">
+        <p class="el-body">Unfocused chrome: title + items drop back while hairlines stay crisp. Focus probe lands on the close window button.</p>
+      </div>
+      <div class="el-actionbar"><span class="lead">Idle</span></div>
+    </div>
+
+    <div class="el-stack" style="gap:var(--el-space-3)">
+      <div class="el-card"><h3>Default card</h3><p class="sub">Base anatomy: ornament bar, elevation, hairline edge.</p><div class="actions"><button class="el-btn">Open</button></div></div>
+      <div class="el-card el-card--flat"><h3>Flat card</h3><p class="sub">Quiet: one hairline, no shadow, no top bar.</p><div class="actions"><button class="el-btn ghost">Dismiss</button></div></div>
+      <div class="el-card el-card--raised is-interactive"><h3>Raised card</h3><p class="sub">Interactive: lifts above the plane, presses on click.</p><div class="actions"><button class="el-btn">Act</button></div></div>
+      <div class="el-card el-card--press" aria-pressed="false"><h3>Press card</h3><p class="sub">Tactile: key-like click and pressed state.</p></div>
+      <div class="el-card el-card--print"><h3>Print card</h3><p class="sub">Paper: square frame on the reading surface.</p></div>
+      <div class="el-card el-card--flat is-selected"><h3>Selected card</h3><p class="sub">Selection ring stays crisp.</p></div>
+    </div>
+  </div>
+
+  <!-- ══ modal (legacy pair) + panel ═════════════════════════════════════ -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--el-space-3);max-width:1080px;padding-bottom:var(--el-space-5)">
+    <div class="el-panel">
+      <span class="el-panel-head">quiet panel</span>
+      <p class="el-body">Panels keep the token-governed ornament strip; set <span class="el-mono">--el-bar-h: 0px</span> to silence it.</p>
+    </div>
+    <div style="position:relative;height:240px;overflow:hidden;border-radius:var(--el-r-lg);border:var(--el-bw) solid var(--el-edge)">
+      <div class="el-modal-backdrop open" style="position:absolute">
+        <div class="el-modal" style="min-width:260px">
+          <h3>Legacy modal</h3>
+          <p class="el-body">el-modal pair kept for demo + JS contracts; new builds use el-dialog.</p>
+          <div class="close" style="position:absolute;top:10px;right:12px;cursor:pointer">✕</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="el-divider">
+  <p class="el-spec">probe matrix: append <b>?probe=states</b> · <b>?probe=focus</b> · <b>?theme=&lt;slug&gt;</b></p>
+
+</main>
+</body>
+</html>
