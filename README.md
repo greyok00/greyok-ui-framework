@@ -45,15 +45,15 @@ The pages below ship in `demo/` and open directly in a browser, offline.
 
 <div align="center">
 
-**Element demo — every component on one page**
+**Element demo: every component on one page**
 
 <img src="docs/screenshots/element-tour.png" width="760" alt="Element demo page with forms, tables, and controls">
 
-**Theme harness — inspect one theme at a time**
+**Theme harness: inspect one theme at a time**
 
 <img src="docs/screenshots/app-chrome.png" width="760" alt="Theme harness page with panels and charts">
 
-**Twenty persona sites — full pages built from the same tokens**
+**Twenty persona sites: full pages built from the same tokens**
 
 <img src="docs/screenshots/twenty-sites.png" width="760" alt="Index of twenty persona demo sites">
 
