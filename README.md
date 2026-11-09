@@ -2,12 +2,13 @@
 
 # greyok-ui-framework
 
-**Dependency-free CSS + JS design system: 100+ primitives, 15 themes, SVG charts, @layer tokens.**
+**Dependency-free CSS + JS design system: 100+ primitives, 20 themes, SVG charts, @layer tokens.**
 
 [![License](https://img.shields.io/badge/license-Apache--2.0-22C55E)](LICENSE)
 [![Version](https://img.shields.io/badge/version-0.4.0-blue)](package.json)
-[![Build](https://img.shields.io/badge/build-zero-lightgrey)](#what-is-it)
-[![Components](https://img.shields.io/badge/components-100%2B-orange)](fonts/manifest.json)
+[![Live demo](https://img.shields.io/badge/live%20demo-greyok00.github.io%2Fgreyok--ui--framework-7C3AED)](https://greyok00.github.io/greyok-ui-framework/)
+
+<img src="docs/screenshots/showcase.png" width="920" alt="Showcase page titled A design system that changes character, not just color, with buttons, status atoms, and cards">
 
 </div>
 
@@ -38,6 +39,30 @@ every theme declares a complete token set so components re-skin instantly.
 | `elements-workflow.js` | Stage rail, inspector, and assistant plan helpers |
 | `python/`, `typescript/` | Tkinter bridge (CSS variables to `ElTheme`) and element interface declarations |
 
+## Screenshots
+
+The pages below ship in `demo/` and open directly in a browser, offline.
+
+<div align="center">
+
+**Element demo — every component on one page**
+
+<img src="docs/screenshots/element-tour.png" width="760" alt="Element demo page with forms, tables, and controls">
+
+**Theme harness — inspect one theme at a time**
+
+<img src="docs/screenshots/app-chrome.png" width="760" alt="Theme harness page with panels and charts">
+
+**Twenty persona sites — full pages built from the same tokens**
+
+<img src="docs/screenshots/twenty-sites.png" width="760" alt="Index of twenty persona demo sites">
+
+**Responsive from phones up**
+
+<img src="docs/screenshots/phone-430.png" width="300" alt="Showcase page at 430px phone width">
+
+</div>
+
 ## Use
 
 A minimal page; the same include order every demo page uses.
@@ -65,7 +90,9 @@ A minimal page; the same include order every demo page uses.
 
 Serve the directory statically (`python3 -m http.server`) and open the page.
 `demo/` contains one page per element category plus `demo/themes.html` with a
-preview card per theme, all working offline against the same files.
+preview card per theme, all working offline against the same files. The
+online copy of the same tree is the
+[live demo](https://greyok00.github.io/greyok-ui-framework/).
 
 ## Themes
 
