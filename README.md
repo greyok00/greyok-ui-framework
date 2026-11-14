@@ -3,21 +3,21 @@
 </p>
 
 <p align="center">
-  <strong>A dependency-free CSS + JS design system: 20 complete themes, 20 layout archetypes, 63 evidence-backed elements.</strong>
+  <strong>A dependency-free CSS + JS design system: 20 themes, 20 desktop layouts, 20 phone layouts, 63 evidence-backed elements.</strong>
   <br><br>
-  Structure and character are independent - every theme matches every layout. Works in HTML, TypeScript, and Python/Tkinter.
+  Structure and character are independent - any theme overlays any layout, at either width. Works in HTML, TypeScript, and Python/Tkinter.
   <br><br>
   <a href="https://greyok00.github.io/greyok-ui-framework/demo/"><img src="https://img.shields.io/badge/demo-LIVE-success?style=for-the-badge" alt="Live Demo"></a>
   <a href="https://github.com/greyok00/greyok-ui-framework"><img src="https://img.shields.io/badge/license-Apache--2.0-blue.svg" alt="Apache-2.0"></a>
-  <a href="https://github.com/greyok00/greyok-ui-framework"><img src="https://img.shields.io/badge/version-0.5.2-orange.svg" alt="v0.5.2"></a>
+  <a href="https://github.com/greyok00/greyok-ui-framework"><img src="https://img.shields.io/badge/version-0.5.3-orange.svg" alt="v0.5.3"></a>
   <a href="https://github.com/greyok00/greyok-ui-framework"><img src="https://img.shields.io/badge/greyok-00d4aa.svg" alt="greyok"></a>
 </p>
 
 <p align="center">
-  <img src="docs/screenshots/showcase.png" alt="Showcase front door: the hero and the poster wall of twenty persona sites" width="980">
+  <img src="docs/screenshots/showcase.png" alt="Showcase: hero with counts and the poster wall of twenty theme sites" width="980">
 </p>
 
-<p align="center"><em>The showcase: one token set, twenty complete personas. Every poster below the hero is a real multi-page site built with the framework.</em></p>
+<p align="center"><em>The showcase. Hero counts, then the wall: every poster is a real multi-page site on that theme.</em></p>
 
 ---
 
@@ -25,13 +25,13 @@
 
 **[→ greyok00.github.io/greyok-ui-framework/demo/](https://greyok00.github.io/greyok-ui-framework/demo/)**
 
-No install, no build. The front door opens on the theme wall; the layout tabs re-shuffle the same content into each of the twenty archetypes. Every card clicks through to a working site.
+No install, no build. The front door opens on the theme wall; the layout gallery re-shuffles the same content into twenty desktop and twenty phone structures. Every card clicks through to a working page.
 
 | | |
 |---|---|
 | 🪟 Showcase | [demo/index.html](https://greyok00.github.io/greyok-ui-framework/demo/) - 20-theme poster wall + layout picker |
 | 🎨 Theme gallery | [demo/themes.html](https://greyok00.github.io/greyok-ui-framework/demo/themes.html) - every theme as a swatch card, click to re-skin the page |
-| 📐 Layout gallery | [demo/layouts.html](https://greyok00.github.io/greyok-ui-framework/demo/layouts.html) - all 20 archetypes, desktop and mobile renders |
+| 📐 Layout gallery | [demo/layouts.html](https://greyok00.github.io/greyok-ui-framework/demo/layouts.html) - 20 desktop and 20 phone structures, live and rendered |
 | 🌐 Persona sites | [demo/sites/index.html](https://greyok00.github.io/greyok-ui-framework/demo/sites/index.html) - the 20 sites, grouped by family |
 | 🧩 Element tour | [demo/elements.html](https://greyok00.github.io/greyok-ui-framework/demo/elements.html) - the 63-element inventory on one page |
 
@@ -42,16 +42,16 @@ No install, no build. The front door opens on the theme wall; the layout tabs re
 The showcase is the product. Twenty themes, each worked through a complete site - home, catalog, article, account, and an app-styles mockup - so you can judge the system as a whole rather than as a pile of buttons. The screenshots below are renders of the actual pages, not mockups.
 
 <p align="center">
-  <img src="docs/screenshots/themes.png" alt="Theme gallery: swatch cards for all twenty themes" width="980">
+  <img src="docs/screenshots/themes.png" alt="Theme gallery: swatch cards for all twenty themes, each with a live preview" width="980">
 </p>
 
-<p align="center"><em>The theme gallery. Clicking any card re-skins the whole page instantly - every theme declares the complete token set.</em></p>
+<p align="center"><em>The theme gallery. Click a card and the whole page re-skins instantly; every theme declares the full token set.</em></p>
 
 <p align="center">
   <img src="docs/screenshots/twenty-sites.png" alt="Index of the twenty persona sites grouped by theme family" width="980">
 </p>
 
-<p align="center"><em>The persona roster, grouped by family. Each entry is a real site with its own nav anatomy, hero, card treatment and type voice.</em></p>
+<p align="center"><em>The roster, grouped by family. Each entry is a real site with its own nav anatomy, hero, card treatment and type voice.</em></p>
 
 ### The twenty themes
 
@@ -88,18 +88,24 @@ The phone layouts are dedicated structures, not the desktop kits collapsed. The 
 Every preview below is rendered in the neutral token set, so the only thing that changes between two cards is the structure.
 
 <p align="center">
-  <img src="docs/screenshots/layouts.png" alt="Layout gallery: twenty structure renders with names and data-layout slugs" width="980">
+  <img src="docs/screenshots/layouts.png" alt="Layout gallery: twenty desktop structure renders and twenty phone structures" width="980">
 </p>
 
-<p align="center"><em>All twenty desktop archetypes, neutral, full page. Same content, restructured twenty ways.</em></p>
+<p align="center"><em>The layout gallery. Desktop structures first, each rendered in neutral so structure is the only variable, then the twenty phone structures.</em></p>
 
 The twenty phone structures are: stack, bottom tabs, sticky header, full cover, stats first, two-up, carousel, swipe lanes, list rows, timeline, chip index, media first, hero band, pricing stack, masonry two-column, boxed, overlap, zen, atlas, and scroll sections.
 
 <p align="center">
-  <img src="docs/screenshots/layout-overlay.png" alt="The bento-dashboard layout re-skinned by the brutal-stamp theme" width="980">
+  <img src="docs/screenshots/phone-430.png" alt="The showcase at 430 px: hero, counts and the start of the theme wall" width="300">
 </p>
 
-<p align="center"><em>The same bento layout with the brutal-stamp theme overlaid: structure unchanged, paint swapped.</em></p>
+<p align="center"><em>The same showcase at 430 px. The phone axis is chosen separately from the desktop axis.</em></p>
+
+<p align="center">
+  <img src="docs/screenshots/layout-overlay.png" alt="The bento-dashboard layout re-skinned by the brutal-stamp theme, unchanged structure" width="980">
+</p>
+
+<p align="center"><em>One layout, one theme overlaid. The block grid is identical; only the paint changed.</em></p>
 
 Each layout ships as a **live page** under `demo/layouts/<slug>.html`. It opens neutral and takes any theme and any phone layout as overlays, from the selectors on the page or from the URL:
 
@@ -289,6 +295,13 @@ const tabs = document.querySelector(".el-tabs-h") as HTMLDivElement;
 Apply directly on any element: `<span class="el-pill el--xs">…</span>`
 
 ## Element categories
+
+<p align="center">
+  <img src="docs/screenshots/element-tour.png" alt="Element tour page with forms, tables and controls" width="900">
+</p>
+
+<p align="center"><em>The element tour, secondary to the showcase: all 63 elements on one page, in whatever theme is active.</em></p>
+
 
 The element set is the supporting cast, not the pitch - but it is what the themes are made of, and every persona site uses all 63.
 

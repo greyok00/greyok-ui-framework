@@ -58,6 +58,7 @@ def main() -> int:
     ap.add_argument("--width", type=int, default=1440)
     ap.add_argument("--height", type=int, default=900)
     ap.add_argument("--click", help="CSS selector to click before the shot")
+    ap.add_argument("--scale", type=float, default=1, help="device scale factor (2 = HiDPI)")
     args = ap.parse_args()
 
     jobs: list[tuple[str, Path, int, int, bool, str | None]] = []
@@ -85,7 +86,7 @@ def main() -> int:
     from patchright.sync_api import sync_playwright
     with sync_playwright() as pw:
         browser = pw.chromium.launch()
-        page = browser.new_page(device_scale_factor=1)
+        page = browser.new_page(device_scale_factor=args.scale)
         for url, out, w, h, full, click in jobs:
             _shot(page, url, out, w, h, full, click=click)
         browser.close()

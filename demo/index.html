@@ -12,494 +12,358 @@
   <link rel="stylesheet" href="../elements-structure.css">
   <link rel="stylesheet" href="../elements-lists.css">
   <link rel="stylesheet" href="../elements-controls.css">
-  <link rel="stylesheet" href="../elements-inputs.css">
-  <link rel="stylesheet" href="../elements-containers.css">
   <link rel="stylesheet" href="../elements-misc.css">
-  <link rel="stylesheet" href="../elements-dataviz.css">
-  <link rel="stylesheet" href="../elements-interactions.css">
-  <link rel="stylesheet" href="../elements-size.css">
   <style>
-    /* page-local: persona poster cards (wall of the 25 demo sites) */
-    .poster-wall { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:var(--el-space-3); margin:var(--el-space-4) 0 0; }
-    a.site-card { display:block; padding:0; overflow:hidden; text-decoration:none; color:inherit; }
-    a.site-card img { display:block; width:100%; aspect-ratio:14/9; object-fit:cover; object-position:top;
-      border-bottom:1px solid var(--el-line); }
-    a.site-card .cap { padding:var(--el-space-3) var(--el-space-3) var(--el-space-3); }
-    a.site-card .cap b { display:block; font-family:var(--el-font-display); font-size:var(--el-fs-md); color:var(--el-ink); }
-    a.site-card .cap span { display:block; margin-top:2px; font-size:var(--el-fs-sm); color:var(--el-mute); line-height:1.45; }
-    a.site-card { transition:border-color var(--el-dur-fast) var(--el-ease), box-shadow var(--el-dur-fast) var(--el-ease), transform var(--el-dur-fast) var(--el-ease); }
-    a.site-card:hover { text-decoration:none; border-color:var(--el-accent); transform:var(--el-lift); box-shadow:var(--el-raise-2); }
-    @media (max-width:430px) {
-      .poster-wall { grid-template-columns:1fr; }
-      .btn-row a { width:100%; justify-content:center; }
-    }
-    @media (max-width:900px) {
-      /* injected .el-theme-strip (inner rail, inside [data-theme-strip]) wraps
-         to a multi-row blob on narrow bars - one scrollable row instead */
-      #el-theme-strip .el-theme-strip { flex-wrap:nowrap; overflow-x:auto; scrollbar-width:none; max-width:100%; }
-      #el-theme-strip .el-theme-strip::-webkit-scrollbar { display:none; }
-    }
+    .hero{margin:var(--el-space-6) 0 var(--el-space-6);padding:var(--el-space-7) var(--el-space-5);text-align:center;border:1px solid var(--el-line);border-radius:18px;background:
+      radial-gradient(1200px 380px at 50% -120px, var(--el-accent-soft), transparent 70%), var(--el-panel)}
+    .hero h1{font-family:var(--el-font-display);font-size:clamp(2rem,4vw,3.1rem);line-height:1.06;letter-spacing:-0.02em;margin:var(--el-space-3) auto var(--el-space-3);max-width:900px}
+    .hero p{color:var(--el-ink-soft);max-width:680px;margin:0 auto;line-height:1.65;font-size:var(--el-fs-lg)}
+    .stats{display:flex;gap:var(--el-space-3);justify-content:center;flex-wrap:wrap;margin-top:var(--el-space-5)}
+    .stat{border:1px solid var(--el-line);border-radius:12px;padding:10px 16px;background:var(--el-bg);min-width:112px}
+    .stat b{display:block;font-family:var(--el-font-display);font-size:1.6rem;line-height:1.1}
+    .stat span{font:10px var(--el-font-mono);letter-spacing:.16em;text-transform:uppercase;color:var(--el-mute)}
+    .wall{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--el-space-4);margin:var(--el-space-4) 0 0}
+    .wall.phone{grid-template-columns:repeat(6,1fr);gap:var(--el-space-3)}
+    .pick-card{display:block;text-decoration:none;color:inherit;border:1px solid var(--el-line);border-radius:12px;overflow:hidden;background:var(--el-panel);transition:transform .16s ease,border-color .16s ease,box-shadow .16s ease}
+    .pick-card:hover{transform:translateY(-2px);border-color:var(--el-accent);box-shadow:var(--el-shadow-2)}
+    .pick-card img{display:block;width:100%;aspect-ratio:14/9;object-fit:cover;object-position:top;border-bottom:1px solid var(--el-line)}
+    .pick-card.phone img{aspect-ratio:9/16}
+    .pick-card .cap{display:flex;justify-content:space-between;gap:8px;align-items:baseline;padding:9px 12px}
+    .pick-card .cap b{font-family:var(--el-font-display);font-size:var(--el-fs-sm);text-transform:capitalize}
+    .pick-card .cap span{font:10px var(--el-font-mono);color:var(--el-mute);letter-spacing:.08em;text-transform:uppercase;white-space:nowrap}
+    .pick-card .cap .fam{font:10px var(--el-font-mono);color:var(--el-accent);letter-spacing:.1em;text-transform:uppercase;white-space:nowrap}
+    .combo{display:grid;grid-template-columns:280px 1fr;gap:var(--el-space-4);border:1px solid var(--el-line);border-radius:16px;background:var(--el-panel);padding:var(--el-space-4);margin:var(--el-space-4) 0}
+    .combo label{display:block;font:10px var(--el-font-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--el-mute);margin:0 0 4px}
+    .combo select{width:100%;padding:8px;background:var(--el-bg);color:var(--el-ink);border:1px solid var(--el-line);border-radius:8px;margin-bottom:var(--el-space-3)}
+    .combo iframe{width:100%;height:520px;border:1px solid var(--el-line);border-radius:12px;background:var(--el-bg)}
+    .combo .meta{font:11px var(--el-font-mono);color:var(--el-ink-soft);line-height:1.6}
+    @media (max-width:900px){.wall{grid-template-columns:repeat(2,1fr)}.wall.phone{grid-template-columns:repeat(3,1fr)}.combo{grid-template-columns:1fr}}
   </style>
 </head>
 <body class="el-reset">
-
   <header class="el-demo-bar">
     <strong>greyok-ui-framework</strong>
-    <span style="font:11px var(--el-font-mono);color:var(--el-mute);letter-spacing:0.08em">v0.5.0</span>
+    <span style="font:11px var(--el-font-mono);color:var(--el-mute);letter-spacing:0.08em">v0.5.3</span>
     <div id="el-theme-strip" data-theme-strip></div>
     <span class="el-dot live" title="framework live"></span>
   </header>
 
   <main class="el-page">
-
-    <!-- ─── Hero ─── -->
-    <section class="el-card" style="margin:var(--el-space-6) 0 var(--el-space-5);padding:var(--el-space-6) var(--el-space-5);text-align:center">
+    <section class="hero">
       <span class="el-badge">showcase</span>
-      <h1 style="font-family:var(--el-font-display);font-size:var(--el-fs-2xl);letter-spacing:var(--el-head-tracking, -0.02em);margin:var(--el-space-3) 0 var(--el-space-2);line-height:1.12">A design system that changes character, not just color</h1>
-      <p style="color:var(--el-ink-soft);max-width:640px;margin:0 auto;line-height:1.6;font-size:var(--el-fs-md)">Twenty complete personas and twenty layout archetypes, all built from one token set. Layout is structure, theme is character: every theme pairs with every layout, and the wall below shows each theme as a real multi-page site.</p>
-      <div class="el-cluster" style="justify-content:center;margin-top:var(--el-space-4);flex-wrap:wrap">
-        <span class="el-pill ok">20 themes</span>
-        <span class="el-pill ghost">20 layouts · desktop + mobile</span>
+      <h1>A design system that changes character, not just color</h1>
+      <p>Twenty complete themes, twenty desktop layouts and twenty phone layouts. Layout is structure, theme is the overlay: every theme sits over every layout, at either width, from one token set.</p>
+      <div class="stats">
+        <div class="stat"><b>20</b><span>themes</span></div>
+        <div class="stat"><b>20</b><span>desktop layouts</span></div>
+        <div class="stat"><b>20</b><span>phone layouts</span></div>
+        <div class="stat"><b>400</b><span>pairings per width</span></div>
+        <div class="stat"><b>63</b><span>elements</span></div>
       </div>
-      <div class="el-cluster btn-row" style="justify-content:center;margin-top:var(--el-space-4);flex-wrap:wrap">
-        <a href="themes.html" class="el-btn el--lg el-btn--outline">Theme gallery</a>
-        <a href="layouts.html" class="el-btn el--lg el-btn--outline">Layout gallery</a>
-        <a href="elements.html" class="el-btn el--lg el-btn--outline">Element tour</a>
+      <div class="el-cluster" style="justify-content:center;margin-top:var(--el-space-5);flex-wrap:wrap">
+        <a href="themes.html" class="el-btn">Theme gallery</a>
+        <a href="layouts.html" class="el-btn el-btn--outline">Layout gallery</a>
+        <a href="elements.html" class="el-btn el-btn--outline">Element tour</a>
       </div>
     </section>
 
-    <!-- ─── The showcase: twenty real websites ─── -->
-    <div class="el-section-head"><h2>The showcase - 20 themes, 20 real sites</h2><span class="rule"></span></div>
-    <p class="el-hint" style="margin:0 0 var(--el-space-2)">Every theme is a persona: its own nav anatomy, hero, card treatment and type voice, worked through a full site - home, catalog, article, account, and an app-styles mockup. The poster wall below is the whole system at a glance; the layout tabs show the same content restructured 20 ways.</p>
+    <div class="el-section-head"><h2>Twenty themes, twenty real sites</h2><span class="rule"></span></div>
+    <p class="el-hint" style="margin:0 0 var(--el-space-2)">Each theme is a persona with its own nav anatomy, hero, card treatment and type voice, worked through a full site. Click any poster to open it.</p>
+    <div class="wall">
+      <a class="pick-card" href="sites/mono-console/index.html">
+        <img src="posters/mono-console.png" alt="mono-console theme site front page" loading="lazy">
+        <span class="cap"><b>mono console</b><span class="fam">tech mono</span></span>
+      </a>
+      <a class="pick-card" href="sites/ghost-terminal/index.html">
+        <img src="posters/ghost-terminal.png" alt="ghost-terminal theme site front page" loading="lazy">
+        <span class="cap"><b>ghost terminal</b><span class="fam">tech mono</span></span>
+      </a>
+      <a class="pick-card" href="sites/cream-journal/index.html">
+        <img src="posters/cream-journal.png" alt="cream-journal theme site front page" loading="lazy">
+        <span class="cap"><b>cream journal</b><span class="fam">editorial</span></span>
+      </a>
+      <a class="pick-card" href="sites/paper-press/index.html">
+        <img src="posters/paper-press.png" alt="paper-press theme site front page" loading="lazy">
+        <span class="cap"><b>paper press</b><span class="fam">editorial</span></span>
+      </a>
+      <a class="pick-card" href="sites/brutal-stamp/index.html">
+        <img src="posters/brutal-stamp.png" alt="brutal-stamp theme site front page" loading="lazy">
+        <span class="cap"><b>brutal stamp</b><span class="fam">neo brutalist</span></span>
+      </a>
+      <a class="pick-card" href="sites/brutal-index/index.html">
+        <img src="posters/brutal-index.png" alt="brutal-index theme site front page" loading="lazy">
+        <span class="cap"><b>brutal index</b><span class="fam">neo brutalist</span></span>
+      </a>
+      <a class="pick-card" href="sites/orbit-deep/index.html">
+        <img src="posters/orbit-deep.png" alt="orbit-deep theme site front page" loading="lazy">
+        <span class="cap"><b>orbit deep</b><span class="fam">webgl immersive</span></span>
+      </a>
+      <a class="pick-card" href="sites/solar-halo/index.html">
+        <img src="posters/solar-halo.png" alt="solar-halo theme site front page" loading="lazy">
+        <span class="cap"><b>solar halo</b><span class="fam">webgl immersive</span></span>
+      </a>
+      <a class="pick-card" href="sites/agency-quartz/index.html">
+        <img src="posters/agency-quartz.png" alt="agency-quartz theme site front page" loading="lazy">
+        <span class="cap"><b>agency quartz</b><span class="fam">agency classic</span></span>
+      </a>
+      <a class="pick-card" href="sites/agency-mono-plate/index.html">
+        <img src="posters/agency-mono-plate.png" alt="agency-mono-plate theme site front page" loading="lazy">
+        <span class="cap"><b>agency mono plate</b><span class="fam">agency classic</span></span>
+      </a>
+      <a class="pick-card" href="sites/maison-serif/index.html">
+        <img src="posters/maison-serif.png" alt="maison-serif theme site front page" loading="lazy">
+        <span class="cap"><b>maison serif</b><span class="fam">fashion serif</span></span>
+      </a>
+      <a class="pick-card" href="sites/noir-couture/index.html">
+        <img src="posters/noir-couture.png" alt="noir-couture theme site front page" loading="lazy">
+        <span class="cap"><b>noir couture</b><span class="fam">fashion serif</span></span>
+      </a>
+      <a class="pick-card" href="sites/sticker-pop/index.html">
+        <img src="posters/sticker-pop.png" alt="sticker-pop theme site front page" loading="lazy">
+        <span class="cap"><b>sticker pop</b><span class="fam">illustration</span></span>
+      </a>
+      <a class="pick-card" href="sites/sketchbook/index.html">
+        <img src="posters/sketchbook.png" alt="sketchbook theme site front page" loading="lazy">
+        <span class="cap"><b>sketchbook</b><span class="fam">illustration</span></span>
+      </a>
+      <a class="pick-card" href="sites/console-light/index.html">
+        <img src="posters/console-light.png" alt="console-light theme site front page" loading="lazy">
+        <span class="cap"><b>console light</b><span class="fam">dashboard light</span></span>
+      </a>
+      <a class="pick-card" href="sites/grid-ledger/index.html">
+        <img src="posters/grid-ledger.png" alt="grid-ledger theme site front page" loading="lazy">
+        <span class="cap"><b>grid ledger</b><span class="fam">dashboard light</span></span>
+      </a>
+      <a class="pick-card" href="sites/kinetic-ink/index.html">
+        <img src="posters/kinetic-ink.png" alt="kinetic-ink theme site front page" loading="lazy">
+        <span class="cap"><b>kinetic ink</b><span class="fam">motion brand</span></span>
+      </a>
+      <a class="pick-card" href="sites/aperture-motion/index.html">
+        <img src="posters/aperture-motion.png" alt="aperture-motion theme site front page" loading="lazy">
+        <span class="cap"><b>aperture motion</b><span class="fam">motion brand</span></span>
+      </a>
+      <a class="pick-card" href="sites/ma-quiet/index.html">
+        <img src="posters/ma-quiet.png" alt="ma-quiet theme site front page" loading="lazy">
+        <span class="cap"><b>ma quiet</b><span class="fam">quiet minimal</span></span>
+      </a>
+      <a class="pick-card" href="sites/gesshoku/index.html">
+        <img src="posters/gesshoku.png" alt="gesshoku theme site front page" loading="lazy">
+        <span class="cap"><b>gesshoku</b><span class="fam">quiet minimal</span></span>
+      </a>
+    </div>
 
-    <!-- ─── tabbed picker: desktop layouts / mobile layouts / themes ─── -->
-    <div class="el-card" id="pick-panel" style="margin:var(--el-space-4) 0 var(--el-space-5);padding:var(--el-space-5)">
-      <div id="pick-tabs" style="display:flex;gap:var(--el-space-2);flex-wrap:wrap;margin-bottom:var(--el-space-4)">
-        <button class="el-btn" id="tab-btn-themes" aria-pressed="true">Themes · 20</button>
-        <button class="el-btn el-btn--outline" id="tab-btn-desktop">Desktop layout · 20</button>
-        <button class="el-btn el-btn--outline" id="tab-btn-mobile">Phone layout · 20</button>
+    <div class="el-section-head" style="margin-top:var(--el-space-7)"><h2>Twenty desktop layouts, twenty phone layouts</h2><span class="rule"></span></div>
+    <p class="el-hint" style="margin:0 0 var(--el-space-3)">Layouts are spacing and structure only. They carry no color and no type, and the twenty phone structures are designed separately, not collapsed from the desktop kits. Pick a theme and a layout and watch the same page re-skin.</p>
+
+    <div class="combo">
+      <div>
+        <label for="combo-theme">theme</label>
+        <select id="combo-theme"><option value="neutral">neutral</option><option value="mono-console">mono console</option><option value="ghost-terminal">ghost terminal</option><option value="cream-journal">cream journal</option><option value="paper-press">paper press</option><option value="brutal-stamp">brutal stamp</option><option value="brutal-index">brutal index</option><option value="orbit-deep">orbit deep</option><option value="solar-halo">solar halo</option><option value="agency-quartz">agency quartz</option><option value="agency-mono-plate">agency mono plate</option><option value="maison-serif">maison serif</option><option value="noir-couture">noir couture</option><option value="sticker-pop">sticker pop</option><option value="sketchbook">sketchbook</option><option value="console-light">console light</option><option value="grid-ledger">grid ledger</option><option value="kinetic-ink">kinetic ink</option><option value="aperture-motion">aperture motion</option><option value="ma-quiet">ma quiet</option><option value="gesshoku">gesshoku</option></select>
+        <label for="combo-layout">desktop layout</label>
+        <select id="combo-layout"><option value="split-hero-left">Split hero, left</option><option value="split-hero-right">Split hero, right</option><option value="full-bleed-cover">Full-bleed cover</option><option value="centered-editorial">Centered editorial</option><option value="magazine-grid">Magazine grid</option><option value="bento-dashboard">Bento dashboard</option><option value="sidebar-rail-nav">Sidebar rail nav</option><option value="top-tab-console">Top tab console</option><option value="kanban-board">Kanban board</option><option value="catalog-aisle-rows">Catalog aisle rows</option><option value="pricing-columns">Pricing columns</option><option value="masonry-gallery">Masonry gallery</option><option value="timeline-vertical">Timeline vertical</option><option value="terminal-shell">Terminal shell</option><option value="boxed-frame">Boxed frame</option><option value="overlapping-panels">Overlapping panels</option><option value="carousel-storefront">Carousel storefront</option><option value="sticky-index">Sticky index</option><option value="atlas-map-first">Atlas map first</option><option value="single-column-zen">Single column zen</option></select>
+        <label for="combo-mobile">phone layout</label>
+        <select id="combo-mobile"><option value="m-stack">stack</option><option value="m-bottom-tabs">bottom tabs</option><option value="m-sticky-header">sticky header</option><option value="m-full-cover">full cover</option><option value="m-stats-first">stats first</option><option value="m-two-up">two up</option><option value="m-carousel">carousel</option><option value="m-swipe-lanes">swipe lanes</option><option value="m-list-rows">list rows</option><option value="m-timeline">timeline</option><option value="m-chip-index">chip index</option><option value="m-media-first">media first</option><option value="m-hero-band">hero band</option><option value="m-pricing-stack">pricing stack</option><option value="m-masonry-2">masonry 2</option><option value="m-boxed">boxed</option><option value="m-overlap">overlap</option><option value="m-zen">zen</option><option value="m-atlas">atlas</option><option value="m-scroll-sections">scroll sections</option></select>
+        <p class="meta" id="combo-meta">bento dashboard + m-stack + neutral</p>
+        <p class="meta"><a id="combo-open" href="layouts/bento-dashboard.html?theme=neutral&mobile=m-stack" style="color:var(--el-accent)">open the full page</a></p>
       </div>
-      <p class="el-hint" id="pick-note" style="margin:0 0 var(--el-space-2)">themes first - click any poster to open the site; every theme works under every layout</p>
-      <div id="tab-themes" class="tab-wall"></div>
-      <div id="tab-desktop" class="tab-wall" hidden></div>
-      <div id="tab-mobile" class="tab-wall" hidden></div>
-      <p id="pick-status" style="margin-top:var(--el-space-4);font:12px var(--el-font-mono);color:var(--el-ink-soft)"></p>
+      <iframe id="combo-frame" src="layouts/bento-dashboard.html?theme=neutral&mobile=m-stack" title="layout with theme overlay"></iframe>
     </div>
 
-    <div class="el-section-head" style="margin-top:var(--el-space-6)"><h2>Any theme over any layout</h2><span class="rule"></span></div>
-    <p class="el-hint" style="margin:0 0 var(--el-space-3)">A layout is spacing and structure only. Pick a layout card and a theme card above, and the same page re-skins live: the theme is the overlay, never baked into the layout.</p>
-    <div class="el-card" style="padding:var(--el-space-4)">
-      <p style="margin:0 0 var(--el-space-3);font:12px var(--el-font-mono);color:var(--el-ink-soft)">structure: <b id="combo-label" style="color:var(--el-ink)">bento-dashboard + neutral</b> · <a id="combo-open" href="layouts/bento-dashboard.html?theme=neutral" style="color:var(--el-accent)">open the full page</a></p>
-      <iframe id="combo-frame" src="layouts/bento-dashboard.html?theme=neutral" title="layout with theme overlay" style="width:100%;height:560px;border:1px solid var(--el-line);background:var(--el-bg)"></iframe>
+    <div class="el-section-head" style="margin-top:var(--el-space-5)"><h3 style="font-family:var(--el-font-display);margin:0">Desktop</h3><span class="rule"></span></div>
+    <div class="wall">
+      <a class="pick-card" href="layouts/split-hero-left.html">
+        <img src="layout-previews/split-hero-left.png" alt="Split hero, left desktop layout" loading="lazy">
+        <span class="cap"><b>Split hero, left</b><span>desktop</span></span>
+      </a>
+      <a class="pick-card" href="layouts/split-hero-right.html">
+        <img src="layout-previews/split-hero-right.png" alt="Split hero, right desktop layout" loading="lazy">
+        <span class="cap"><b>Split hero, right</b><span>desktop</span></span>
+      </a>
+      <a class="pick-card" href="layouts/full-bleed-cover.html">
+        <img src="layout-previews/full-bleed-cover.png" alt="Full-bleed cover desktop layout" loading="lazy">
+        <span class="cap"><b>Full-bleed cover</b><span>desktop</span></span>
+      </a>
+      <a class="pick-card" href="layouts/centered-editorial.html">
+        <img src="layout-previews/centered-editorial.png" alt="Centered editorial desktop layout" loading="lazy">
+        <span class="cap"><b>Centered editorial</b><span>desktop</span></span>
+      </a>
+      <a class="pick-card" href="layouts/magazine-grid.html">
+        <img src="layout-previews/magazine-grid.png" alt="Magazine grid desktop layout" loading="lazy">
+        <span class="cap"><b>Magazine grid</b><span>desktop</span></span>
+      </a>
+      <a class="pick-card" href="layouts/bento-dashboard.html">
+        <img src="layout-previews/bento-dashboard.png" alt="Bento dashboard desktop layout" loading="lazy">
+        <span class="cap"><b>Bento dashboard</b><span>desktop</span></span>
+      </a>
+      <a class="pick-card" href="layouts/sidebar-rail-nav.html">
+        <img src="layout-previews/sidebar-rail-nav.png" alt="Sidebar rail nav desktop layout" loading="lazy">
+        <span class="cap"><b>Sidebar rail nav</b><span>desktop</span></span>
+      </a>
+      <a class="pick-card" href="layouts/top-tab-console.html">
+        <img src="layout-previews/top-tab-console.png" alt="Top tab console desktop layout" loading="lazy">
+        <span class="cap"><b>Top tab console</b><span>desktop</span></span>
+      </a>
+      <a class="pick-card" href="layouts/kanban-board.html">
+        <img src="layout-previews/kanban-board.png" alt="Kanban board desktop layout" loading="lazy">
+        <span class="cap"><b>Kanban board</b><span>desktop</span></span>
+      </a>
+      <a class="pick-card" href="layouts/catalog-aisle-rows.html">
+        <img src="layout-previews/catalog-aisle-rows.png" alt="Catalog aisle rows desktop layout" loading="lazy">
+        <span class="cap"><b>Catalog aisle rows</b><span>desktop</span></span>
+      </a>
+      <a class="pick-card" href="layouts/pricing-columns.html">
+        <img src="layout-previews/pricing-columns.png" alt="Pricing columns desktop layout" loading="lazy">
+        <span class="cap"><b>Pricing columns</b><span>desktop</span></span>
+      </a>
+      <a class="pick-card" href="layouts/masonry-gallery.html">
+        <img src="layout-previews/masonry-gallery.png" alt="Masonry gallery desktop layout" loading="lazy">
+        <span class="cap"><b>Masonry gallery</b><span>desktop</span></span>
+      </a>
+      <a class="pick-card" href="layouts/timeline-vertical.html">
+        <img src="layout-previews/timeline-vertical.png" alt="Timeline vertical desktop layout" loading="lazy">
+        <span class="cap"><b>Timeline vertical</b><span>desktop</span></span>
+      </a>
+      <a class="pick-card" href="layouts/terminal-shell.html">
+        <img src="layout-previews/terminal-shell.png" alt="Terminal shell desktop layout" loading="lazy">
+        <span class="cap"><b>Terminal shell</b><span>desktop</span></span>
+      </a>
+      <a class="pick-card" href="layouts/boxed-frame.html">
+        <img src="layout-previews/boxed-frame.png" alt="Boxed frame desktop layout" loading="lazy">
+        <span class="cap"><b>Boxed frame</b><span>desktop</span></span>
+      </a>
+      <a class="pick-card" href="layouts/overlapping-panels.html">
+        <img src="layout-previews/overlapping-panels.png" alt="Overlapping panels desktop layout" loading="lazy">
+        <span class="cap"><b>Overlapping panels</b><span>desktop</span></span>
+      </a>
+      <a class="pick-card" href="layouts/carousel-storefront.html">
+        <img src="layout-previews/carousel-storefront.png" alt="Carousel storefront desktop layout" loading="lazy">
+        <span class="cap"><b>Carousel storefront</b><span>desktop</span></span>
+      </a>
+      <a class="pick-card" href="layouts/sticky-index.html">
+        <img src="layout-previews/sticky-index.png" alt="Sticky index desktop layout" loading="lazy">
+        <span class="cap"><b>Sticky index</b><span>desktop</span></span>
+      </a>
+      <a class="pick-card" href="layouts/atlas-map-first.html">
+        <img src="layout-previews/atlas-map-first.png" alt="Atlas map first desktop layout" loading="lazy">
+        <span class="cap"><b>Atlas map first</b><span>desktop</span></span>
+      </a>
+      <a class="pick-card" href="layouts/single-column-zen.html">
+        <img src="layout-previews/single-column-zen.png" alt="Single column zen desktop layout" loading="lazy">
+        <span class="cap"><b>Single column zen</b><span>desktop</span></span>
+      </a>
     </div>
-    <style>
-      .tab-wall{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:var(--el-space-3)}
-      .tab-wall[hidden]{display:none}
-      .pick-card{border:1px solid var(--el-line);border-radius:6px;overflow:hidden;background:var(--el-panel);color:inherit;cursor:pointer}
-      .pick-card img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;object-position:top}
-      .pick-card .cap{padding:8px 10px;font:12px var(--el-font-mono);display:flex;justify-content:space-between;gap:6px;align-items:baseline}
-      .pick-card.is-picked{outline:3px solid var(--el-accent);outline-offset:0}
-      .pick-card .open{color:var(--el-accent);text-decoration:none;white-space:nowrap}
-    </style>
-    <!-- ─── Footer ─── -->
-    <footer style="text-align:center;padding:var(--el-space-6) 0 var(--el-space-4);color:var(--el-ink-soft);font-size:var(--el-fs-sm);border-top:1px solid var(--el-line);margin-top:var(--el-space-6)">
-      <p>Apache License 2.0 © 2026 <a href="https://github.com/greyok00" style="color:var(--el-accent)">greyok00</a> · <a href="https://github.com/greyok00/greyok-ui-framework" style="color:var(--el-accent)">github.com/greyok00/greyok-ui-framework</a></p>
-      <p><span style="color:var(--el-ink-soft);font:11px var(--el-font-mono);letter-spacing:0.06em;text-transform:uppercase">20 themes · 20 layouts · 6 sizes · 63 elements</span></p>
-    </footer>
 
+    <div class="el-section-head" style="margin-top:var(--el-space-6)"><h3 style="font-family:var(--el-font-display);margin:0">Phone</h3><span class="rule"></span></div>
+    <div class="wall phone">
+      <a class="pick-card phone" href="layouts/split-hero-left.html?mobile=m-stack">
+        <img src="layout-previews-mobile/m-stack.png" alt="stack phone layout" loading="lazy">
+        <span class="cap"><b>stack</b><span>phone</span></span>
+      </a>
+      <a class="pick-card phone" href="layouts/split-hero-left.html?mobile=m-bottom-tabs">
+        <img src="layout-previews-mobile/m-bottom-tabs.png" alt="bottom tabs phone layout" loading="lazy">
+        <span class="cap"><b>bottom tabs</b><span>phone</span></span>
+      </a>
+      <a class="pick-card phone" href="layouts/split-hero-left.html?mobile=m-sticky-header">
+        <img src="layout-previews-mobile/m-sticky-header.png" alt="sticky header phone layout" loading="lazy">
+        <span class="cap"><b>sticky header</b><span>phone</span></span>
+      </a>
+      <a class="pick-card phone" href="layouts/split-hero-left.html?mobile=m-full-cover">
+        <img src="layout-previews-mobile/m-full-cover.png" alt="full cover phone layout" loading="lazy">
+        <span class="cap"><b>full cover</b><span>phone</span></span>
+      </a>
+      <a class="pick-card phone" href="layouts/split-hero-left.html?mobile=m-stats-first">
+        <img src="layout-previews-mobile/m-stats-first.png" alt="stats first phone layout" loading="lazy">
+        <span class="cap"><b>stats first</b><span>phone</span></span>
+      </a>
+      <a class="pick-card phone" href="layouts/split-hero-left.html?mobile=m-two-up">
+        <img src="layout-previews-mobile/m-two-up.png" alt="two up phone layout" loading="lazy">
+        <span class="cap"><b>two up</b><span>phone</span></span>
+      </a>
+      <a class="pick-card phone" href="layouts/split-hero-left.html?mobile=m-carousel">
+        <img src="layout-previews-mobile/m-carousel.png" alt="carousel phone layout" loading="lazy">
+        <span class="cap"><b>carousel</b><span>phone</span></span>
+      </a>
+      <a class="pick-card phone" href="layouts/split-hero-left.html?mobile=m-swipe-lanes">
+        <img src="layout-previews-mobile/m-swipe-lanes.png" alt="swipe lanes phone layout" loading="lazy">
+        <span class="cap"><b>swipe lanes</b><span>phone</span></span>
+      </a>
+      <a class="pick-card phone" href="layouts/split-hero-left.html?mobile=m-list-rows">
+        <img src="layout-previews-mobile/m-list-rows.png" alt="list rows phone layout" loading="lazy">
+        <span class="cap"><b>list rows</b><span>phone</span></span>
+      </a>
+      <a class="pick-card phone" href="layouts/split-hero-left.html?mobile=m-timeline">
+        <img src="layout-previews-mobile/m-timeline.png" alt="timeline phone layout" loading="lazy">
+        <span class="cap"><b>timeline</b><span>phone</span></span>
+      </a>
+      <a class="pick-card phone" href="layouts/split-hero-left.html?mobile=m-chip-index">
+        <img src="layout-previews-mobile/m-chip-index.png" alt="chip index phone layout" loading="lazy">
+        <span class="cap"><b>chip index</b><span>phone</span></span>
+      </a>
+      <a class="pick-card phone" href="layouts/split-hero-left.html?mobile=m-media-first">
+        <img src="layout-previews-mobile/m-media-first.png" alt="media first phone layout" loading="lazy">
+        <span class="cap"><b>media first</b><span>phone</span></span>
+      </a>
+      <a class="pick-card phone" href="layouts/split-hero-left.html?mobile=m-hero-band">
+        <img src="layout-previews-mobile/m-hero-band.png" alt="hero band phone layout" loading="lazy">
+        <span class="cap"><b>hero band</b><span>phone</span></span>
+      </a>
+      <a class="pick-card phone" href="layouts/split-hero-left.html?mobile=m-pricing-stack">
+        <img src="layout-previews-mobile/m-pricing-stack.png" alt="pricing stack phone layout" loading="lazy">
+        <span class="cap"><b>pricing stack</b><span>phone</span></span>
+      </a>
+      <a class="pick-card phone" href="layouts/split-hero-left.html?mobile=m-masonry-2">
+        <img src="layout-previews-mobile/m-masonry-2.png" alt="masonry 2 phone layout" loading="lazy">
+        <span class="cap"><b>masonry 2</b><span>phone</span></span>
+      </a>
+      <a class="pick-card phone" href="layouts/split-hero-left.html?mobile=m-boxed">
+        <img src="layout-previews-mobile/m-boxed.png" alt="boxed phone layout" loading="lazy">
+        <span class="cap"><b>boxed</b><span>phone</span></span>
+      </a>
+      <a class="pick-card phone" href="layouts/split-hero-left.html?mobile=m-overlap">
+        <img src="layout-previews-mobile/m-overlap.png" alt="overlap phone layout" loading="lazy">
+        <span class="cap"><b>overlap</b><span>phone</span></span>
+      </a>
+      <a class="pick-card phone" href="layouts/split-hero-left.html?mobile=m-zen">
+        <img src="layout-previews-mobile/m-zen.png" alt="zen phone layout" loading="lazy">
+        <span class="cap"><b>zen</b><span>phone</span></span>
+      </a>
+      <a class="pick-card phone" href="layouts/split-hero-left.html?mobile=m-atlas">
+        <img src="layout-previews-mobile/m-atlas.png" alt="atlas phone layout" loading="lazy">
+        <span class="cap"><b>atlas</b><span>phone</span></span>
+      </a>
+      <a class="pick-card phone" href="layouts/split-hero-left.html?mobile=m-scroll-sections">
+        <img src="layout-previews-mobile/m-scroll-sections.png" alt="scroll sections phone layout" loading="lazy">
+        <span class="cap"><b>scroll sections</b><span>phone</span></span>
+      </a>
+    </div>
+
+    <div class="el-section-head" style="margin-top:var(--el-space-7)"><h2>Twenty persona sites</h2><span class="rule"></span></div>
+    <p class="el-hint">The same twenty themes as full multi-page sites: home, catalog, article, account and an app-styles mockup each. <a href="sites/index.html" style="color:var(--el-accent)">Open the site index</a>.</p>
   </main>
+
+  <footer style="text-align:center;padding:var(--el-space-6) 0 var(--el-space-4);color:var(--el-ink-soft);font-size:var(--el-fs-sm);border-top:1px solid var(--el-line);margin-top:var(--el-space-6)">
+    <p>Apache License 2.0 © 2026 <a href="https://github.com/greyok00" style="color:var(--el-accent)">greyok00</a> · <a href="https://github.com/greyok00/greyok-ui-framework" style="color:var(--el-accent)">github.com/greyok00/greyok-ui-framework</a></p>
+    <p><span style="font:11px var(--el-font-mono);letter-spacing:0.06em;text-transform:uppercase">20 themes · 20 desktop layouts · 20 phone layouts · 63 elements</span></p>
+  </footer>
 
   <script src="../theme-switcher.js"></script>
   <script src="../elements.js"></script>
   <script>
-    // persona wall - static data, no fetch (the index must work from file://)
-    const SITES = [
-      ["mono-console","Developer-infra landing + console docs"],
-      ["ghost-terminal","Terminal tooling site + ops dashboard"],
-      ["cream-journal","Literary journal + subscriber portal"],
-      ["paper-press","Newspaper masthead + archive"],
-      ["brutal-stamp","Poster/event studio + ticketing"],
-      ["brutal-index","Index/archive service + records app"],
-      ["orbit-deep","Space-visualization studio + telemetry"],
-      ["solar-halo","Planetarium platform + exhibit control"],
-      ["agency-quartz","Design agency + project tracking"],
-      ["agency-mono-plate","Brand consultancy + engagement kit"],
-      ["maison-serif","Maison collection + boutique booking"],
-      ["noir-couture","Couture runway label + lookbook"],
-      ["sticker-pop","Kids-media studio + character library"],
-      ["sketchbook","Illustrator portfolio + commissions"],
-      ["console-light","Hosting SaaS console shell"],
-      ["grid-ledger","Accounting ledger product"],
-      ["kinetic-ink","Motion-design studio + review app"],
-      ["aperture-motion","Film production house + shoot log"],
-      ["ma-quiet","Design gallery archive + collection app"],
-      ["gesshoku","Zen focus software - app shell body"],
-          ];
-    // ─── layout × theme picker ─── the mask data mirrors the studio's
-    // visual planner (pipeline/visual_plan._HOME_MASKS): the wireframe shows
-    // the home blocks in the pinned order while the poster shows the theme
-    // as a real site; the studio renders the two combined.
-    const LAYOUTS = [
- {
-  "id": "split-hero-left",
-  "name": "Split hero, left",
-  "why": "hero beside the intro, findings stacked beside it",
-  "mask": [
-   "hero",
-   "who",
-   "findings",
-   "statrow",
-   "toc",
-   "mcards",
-   "disclaimer"
-  ]
- },
- {
-  "id": "split-hero-right",
-  "name": "Split hero, right",
-  "why": "the split flipped",
-  "mask": [
-   "hero",
-   "who",
-   "findings",
-   "statrow",
-   "mcards",
-   "toc",
-   "disclaimer"
-  ]
- },
- {
-  "id": "full-bleed-cover",
-  "name": "Full-bleed cover",
-  "why": "edge-to-edge cover photo, cards right under it",
-  "mask": [
-   "hero",
-   "mcards",
-   "findings",
-   "statrow",
-   "disclaimer"
-  ]
- },
- {
-  "id": "centered-editorial",
-  "name": "Centered editorial",
-  "why": "one centered column, generous paper margins",
-  "mask": [
-   "hero",
-   "who",
-   "findings",
-   "toc",
-   "disclaimer"
-  ]
- },
- {
-  "id": "magazine-grid",
-  "name": "Magazine grid",
-  "why": "asymmetric print grid, findings as pull quotes",
-  "mask": [
-   "hero",
-   "findings",
-   "mcards",
-   "toc",
-   "who",
-   "disclaimer"
-  ]
- },
- {
-  "id": "bento-dashboard",
-  "name": "Bento dashboard",
-  "why": "stat tiles and content panes like a dashboard",
-  "mask": [
-   "statrow",
-   "hero",
-   "findings",
-   "mcards",
-   "toc",
-   "disclaimer"
-  ]
- },
- {
-  "id": "sidebar-rail-nav",
-  "name": "Sidebar rail nav",
-  "why": "navigation rail first, content beside it",
-  "mask": [
-   "toc",
-   "hero",
-   "who",
-   "findings",
-   "mcards",
-   "disclaimer"
-  ]
- },
- {
-  "id": "top-tab-console",
-  "name": "Top tab console",
-  "why": "tab console across the top, panes beneath",
-  "mask": [
-   "hero",
-   "toc",
-   "mcards",
-   "statrow",
-   "findings",
-   "disclaimer"
-  ]
- },
- {
-  "id": "kanban-board",
-  "name": "Kanban board",
-  "why": "content lanes laid out like a board",
-  "mask": [
-   "mcards",
-   "toc",
-   "hero",
-   "findings",
-   "disclaimer"
-  ]
- },
- {
-  "id": "catalog-aisle-rows",
-  "name": "Catalog aisle rows",
-  "why": "one row per piece, aisle style",
-  "mask": [
-   "mcards",
-   "toc",
-   "hero",
-   "statrow",
-   "findings",
-   "disclaimer"
-  ]
- },
- {
-  "id": "pricing-columns",
-  "name": "Pricing columns",
-  "why": "columns that read like a table of offers",
-  "mask": [
-   "hero",
-   "mcards",
-   "statrow",
-   "findings",
-   "toc",
-   "disclaimer"
-  ]
- },
- {
-  "id": "masonry-gallery",
-  "name": "Masonry gallery",
-  "why": "a staggered gallery wall of cards",
-  "mask": [
-   "hero",
-   "mcards",
-   "findings",
-   "toc",
-   "statrow",
-   "disclaimer"
-  ]
- },
- {
-  "id": "timeline-vertical",
-  "name": "Timeline vertical",
-  "why": "a dated vertical spine through the content",
-  "mask": [
-   "hero",
-   "findings",
-   "toc",
-   "mcards",
-   "who",
-   "disclaimer"
-  ]
- },
- {
-  "id": "terminal-shell",
-  "name": "Terminal shell",
-  "why": "stat readout on top, content in a shell frame",
-  "mask": [
-   "statrow",
-   "hero",
-   "findings",
-   "toc",
-   "mcards",
-   "disclaimer"
-  ]
- },
- {
-  "id": "boxed-frame",
-  "name": "Boxed frame",
-  "why": "everything framed inside a page border",
-  "mask": [
-   "who",
-   "hero",
-   "findings",
-   "statrow",
-   "toc",
-   "mcards",
-   "disclaimer"
-  ]
- },
- {
-  "id": "overlapping-panels",
-  "name": "Overlapping panels",
-  "why": "cards overlap the hero like stacked prints",
-  "mask": [
-   "hero",
-   "mcards",
-   "statrow",
-   "toc",
-   "findings",
-   "disclaimer"
-  ]
- },
- {
-  "id": "carousel-storefront",
-  "name": "Carousel storefront",
-  "why": "shopfront rhythm, cards sweep under the hero",
-  "mask": [
-   "hero",
-   "mcards",
-   "statrow",
-   "findings",
-   "toc",
-   "disclaimer"
-  ]
- },
- {
-  "id": "sticky-index",
-  "name": "Sticky index",
-  "why": "the index pinned first, content scrolls beside it",
-  "mask": [
-   "toc",
-   "hero",
-   "mcards",
-   "findings",
-   "statrow",
-   "disclaimer"
-  ]
- },
- {
-  "id": "atlas-map-first",
-  "name": "Atlas map first",
-  "why": "the stat atlas up top, detail below",
-  "mask": [
-   "hero",
-   "statrow",
-   "mcards",
-   "toc",
-   "findings",
-   "disclaimer"
-  ]
- },
- {
-  "id": "single-column-zen",
-  "name": "Single column zen",
-  "why": "one quiet column, nothing decorative",
-  "mask": [
-   "hero",
-   "who",
-   "toc",
-   "findings",
-   "disclaimer"
-  ]
- }
-];
-    const MOBILE_LAYOUTS = [
-      ["m-stack", "stack"],
-      ["m-bottom-tabs", "bottom tabs"],
-      ["m-sticky-header", "sticky header"],
-      ["m-full-cover", "full cover"],
-      ["m-stats-first", "stats first"],
-      ["m-two-up", "two up"],
-      ["m-carousel", "carousel"],
-      ["m-swipe-lanes", "swipe lanes"],
-      ["m-list-rows", "list rows"],
-      ["m-timeline", "timeline"],
-      ["m-chip-index", "chip index"],
-      ["m-media-first", "media first"],
-      ["m-hero-band", "hero band"],
-      ["m-pricing-stack", "pricing stack"],
-      ["m-masonry-2", "masonry 2"],
-      ["m-boxed", "boxed"],
-      ["m-overlap", "overlap"],
-      ["m-zen", "zen"],
-      ["m-atlas", "atlas"],
-      ["m-scroll-sections", "scroll sections"],
-    ];
-    const THEMES = [
-      ...SITES.map(([slug, blurb]) => ({slug, blurb})),
-    ];
-    const walls = {
-      desktop: document.getElementById('tab-desktop'),
-      mobile: document.getElementById('tab-mobile'),
-      themes: document.getElementById('tab-themes'),
-    };
-    const btns = {
-      desktop: document.getElementById('tab-btn-desktop'),
-      mobile: document.getElementById('tab-btn-mobile'),
-      themes: document.getElementById('tab-btn-themes'),
-    };
-    const showTab = name => {
-      for (const key of Object.keys(walls)) {
-        walls[key].hidden = key !== name;
-        btns[key].setAttribute('aria-pressed', key === name ? 'true' : 'false');
-        btns[key].classList.toggle('el-btn--outline', key !== name);
+    (function () {
+      const t = document.getElementById('combo-theme');
+      const l = document.getElementById('combo-layout');
+      const m = document.getElementById('combo-mobile');
+      const frame = document.getElementById('combo-frame');
+      const open = document.getElementById('combo-open');
+      const meta = document.getElementById('combo-meta');
+      function sync() {
+        const url = `layouts/${l.value}.html?theme=${t.value}&mobile=${m.value}`;
+        frame.src = url; open.href = url;
+        meta.textContent = `${l.options[l.selectedIndex].text} + ${m.options[m.selectedIndex].text} + ${t.options[t.selectedIndex].text}`;
       }
-    };
-    Object.keys(btns).forEach(key => btns[key].addEventListener('click', () => showTab(key)));
-    const pick = { layout: '', mobile: '', theme: '' };
-    walls.desktop.innerHTML = LAYOUTS.map(l => `
-      <div class="pick-card" data-kind="layout" data-id="${l.id}" title="${l.why}">
-        <img src="layout-previews/${l.id}.png" alt="${l.name} desktop layout" loading="lazy">
-        <div class="cap"><b>${l.name}</b><span>${l.mask.length} blocks</span></div>
-      </div>`).join('');
-    walls.mobile.innerHTML = MOBILE_LAYOUTS.map(([id, name]) => `
-      <div class="pick-card" data-kind="mobile" data-id="${id}" title="${name} phone layout">
-        <img src="layout-previews-mobile/${id}.png" alt="${name} phone layout" loading="lazy" style="aspect-ratio:390/844;object-position:top">
-        <div class="cap"><b>${name}</b><span>390px</span></div>
-      </div>`).join('');
-    walls.themes.innerHTML = THEMES.map(th => {
-      const href = `sites/${th.slug}/index.html`;
-      const img = `posters/${th.slug}.png`;
-      return `
-      <div class="pick-card" data-kind="theme" data-id="${th.slug}" title="${th.blurb}">
-        <img src="${img}" alt="${th.slug} front page" loading="lazy">
-        <div class="cap"><b>${th.slug.replace(/-/g," ")}</b><a class="open" href="${href}" onclick="event.stopPropagation()">open ↗</a></div>
-      </div>`; }).join('');
-    function renderCombo() {
-      const l = pick.layout || 'bento-dashboard';
-      const t = pick.theme || 'neutral';
-      const m = pick.mobile || 'm-stack';
-      const url = `layouts/${l}.html?theme=${t}&mobile=${m}`;
-      document.getElementById('combo-frame').src = url;
-      document.getElementById('combo-open').href = url;
-      document.getElementById('combo-label').textContent = `${l} + ${m} + ${t}`;
-    }
-    function refresh() {
-      renderCombo();
-      document.querySelectorAll('.pick-card').forEach(c => {
-        const kind = c.dataset.kind;
-        const key = kind === 'theme' ? 'theme' : kind;
-        c.classList.toggle('is-picked', pick[key] === c.dataset.id);
-      });
-      const th = THEMES.find(x => pick.theme === x.slug);
-      const bits = [];
-      if (pick.layout) bits.push('desktop: ' + pick.layout.replace(/-/g, ' '));
-      else if (pick.layout || pick.mobile) bits.push('desktop: auto (planner)');
-      else bits.push('desktop: pick one');
-      if (pick.mobile) bits.push('mobile: ' + pick.mobile.replace(/-/g, ' '));
-      else if (pick.layout) bits.push('mobile: auto (planner)');
-      else bits.push('mobile: pick one');
-      if (th) {
-        const href = `sites/${th.slug}/index.html`;
-        bits.push(`theme: <a href="${href}" style="color:var(--el-accent)">${th.slug.replace(/-/g, ' ')} site ↗</a>`);
-      } else bits.push('theme: pick one');
-      document.getElementById('pick-status').innerHTML = bits.join(' · ');
-    }
-    document.querySelectorAll('.pick-card').forEach(c => {
-      c.addEventListener('click', () => {
-        const kind = c.dataset.kind === 'theme' ? 'theme' : c.dataset.kind;
-        pick[kind] = c.dataset.id;
-        refresh();
-      });
-    });
-    refresh();
+      [t,l,m].forEach(el => el.addEventListener('change', sync));
+      sync();
+    })();
   </script>
 </body>
 </html>
