@@ -23,6 +23,7 @@
     a.lay-card .cap code{display:inline-block;margin-top:6px;font-family:var(--el-font-mono);font-size:11px;color:var(--el-accent)}
     .mob-wall{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:var(--el-space-3);margin:var(--el-space-4) 0}
     .lay-mob{margin:0;border:1px solid var(--el-line);background:var(--el-panel)}
+    .lay-mob{display:block;text-decoration:none;color:inherit}
     .lay-mob img{display:block;width:100%;aspect-ratio:390/844;object-fit:cover;object-position:top}
     .lay-mob figcaption{padding:6px 8px;font:11px var(--el-font-mono);color:var(--el-ink-soft)}
   </style>
@@ -155,88 +156,89 @@
       </a>
     </div>
 
-    <div class="el-section-head" style="margin-top:var(--el-space-6)"><h2>Mobile</h2><span class="rule"></span></div>
+    <div class="el-section-head" style="margin-top:var(--el-space-6)"><h2>Phone layouts</h2><span class="rule"></span></div>
+    <p class="el-hint" style="margin:0 0 var(--el-space-2)">A second, independent axis: 20 phone structures, not the desktop kits collapsed. Pick one on any layout page to see it at 390 px.</p>
     <div class="mob-wall">
-      <figure class="lay-mob">
-        <img src="layout-previews-mobile/split-hero-left.png" alt="Split hero, left mobile layout" loading="lazy">
-        <figcaption>Split hero, left</figcaption>
-      </figure>
-      <figure class="lay-mob">
-        <img src="layout-previews-mobile/split-hero-right.png" alt="Split hero, right mobile layout" loading="lazy">
-        <figcaption>Split hero, right</figcaption>
-      </figure>
-      <figure class="lay-mob">
-        <img src="layout-previews-mobile/full-bleed-cover.png" alt="Full-bleed cover mobile layout" loading="lazy">
-        <figcaption>Full-bleed cover</figcaption>
-      </figure>
-      <figure class="lay-mob">
-        <img src="layout-previews-mobile/centered-editorial.png" alt="Centered editorial mobile layout" loading="lazy">
-        <figcaption>Centered editorial</figcaption>
-      </figure>
-      <figure class="lay-mob">
-        <img src="layout-previews-mobile/magazine-grid.png" alt="Magazine grid mobile layout" loading="lazy">
-        <figcaption>Magazine grid</figcaption>
-      </figure>
-      <figure class="lay-mob">
-        <img src="layout-previews-mobile/bento-dashboard.png" alt="Bento dashboard mobile layout" loading="lazy">
-        <figcaption>Bento dashboard</figcaption>
-      </figure>
-      <figure class="lay-mob">
-        <img src="layout-previews-mobile/sidebar-rail-nav.png" alt="Sidebar rail nav mobile layout" loading="lazy">
-        <figcaption>Sidebar rail nav</figcaption>
-      </figure>
-      <figure class="lay-mob">
-        <img src="layout-previews-mobile/top-tab-console.png" alt="Top tab console mobile layout" loading="lazy">
-        <figcaption>Top tab console</figcaption>
-      </figure>
-      <figure class="lay-mob">
-        <img src="layout-previews-mobile/kanban-board.png" alt="Kanban board mobile layout" loading="lazy">
-        <figcaption>Kanban board</figcaption>
-      </figure>
-      <figure class="lay-mob">
-        <img src="layout-previews-mobile/catalog-aisle-rows.png" alt="Catalog aisle rows mobile layout" loading="lazy">
-        <figcaption>Catalog aisle rows</figcaption>
-      </figure>
-      <figure class="lay-mob">
-        <img src="layout-previews-mobile/pricing-columns.png" alt="Pricing columns mobile layout" loading="lazy">
-        <figcaption>Pricing columns</figcaption>
-      </figure>
-      <figure class="lay-mob">
-        <img src="layout-previews-mobile/masonry-gallery.png" alt="Masonry gallery mobile layout" loading="lazy">
-        <figcaption>Masonry gallery</figcaption>
-      </figure>
-      <figure class="lay-mob">
-        <img src="layout-previews-mobile/timeline-vertical.png" alt="Timeline vertical mobile layout" loading="lazy">
-        <figcaption>Timeline vertical</figcaption>
-      </figure>
-      <figure class="lay-mob">
-        <img src="layout-previews-mobile/terminal-shell.png" alt="Terminal shell mobile layout" loading="lazy">
-        <figcaption>Terminal shell</figcaption>
-      </figure>
-      <figure class="lay-mob">
-        <img src="layout-previews-mobile/boxed-frame.png" alt="Boxed frame mobile layout" loading="lazy">
-        <figcaption>Boxed frame</figcaption>
-      </figure>
-      <figure class="lay-mob">
-        <img src="layout-previews-mobile/overlapping-panels.png" alt="Overlapping panels mobile layout" loading="lazy">
-        <figcaption>Overlapping panels</figcaption>
-      </figure>
-      <figure class="lay-mob">
-        <img src="layout-previews-mobile/carousel-storefront.png" alt="Carousel storefront mobile layout" loading="lazy">
-        <figcaption>Carousel storefront</figcaption>
-      </figure>
-      <figure class="lay-mob">
-        <img src="layout-previews-mobile/sticky-index.png" alt="Sticky index mobile layout" loading="lazy">
-        <figcaption>Sticky index</figcaption>
-      </figure>
-      <figure class="lay-mob">
-        <img src="layout-previews-mobile/atlas-map-first.png" alt="Atlas map first mobile layout" loading="lazy">
-        <figcaption>Atlas map first</figcaption>
-      </figure>
-      <figure class="lay-mob">
-        <img src="layout-previews-mobile/single-column-zen.png" alt="Single column zen mobile layout" loading="lazy">
-        <figcaption>Single column zen</figcaption>
-      </figure>
+      <a class="lay-mob" href="layouts/split-hero-left.html?mobile=m-stack">
+        <img src="layout-previews-mobile/m-stack.png" alt="stack phone layout" loading="lazy">
+        <figcaption>stack</figcaption>
+      </a>
+      <a class="lay-mob" href="layouts/split-hero-left.html?mobile=m-bottom-tabs">
+        <img src="layout-previews-mobile/m-bottom-tabs.png" alt="bottom tabs phone layout" loading="lazy">
+        <figcaption>bottom tabs</figcaption>
+      </a>
+      <a class="lay-mob" href="layouts/split-hero-left.html?mobile=m-sticky-header">
+        <img src="layout-previews-mobile/m-sticky-header.png" alt="sticky header phone layout" loading="lazy">
+        <figcaption>sticky header</figcaption>
+      </a>
+      <a class="lay-mob" href="layouts/split-hero-left.html?mobile=m-full-cover">
+        <img src="layout-previews-mobile/m-full-cover.png" alt="full cover phone layout" loading="lazy">
+        <figcaption>full cover</figcaption>
+      </a>
+      <a class="lay-mob" href="layouts/split-hero-left.html?mobile=m-stats-first">
+        <img src="layout-previews-mobile/m-stats-first.png" alt="stats first phone layout" loading="lazy">
+        <figcaption>stats first</figcaption>
+      </a>
+      <a class="lay-mob" href="layouts/split-hero-left.html?mobile=m-two-up">
+        <img src="layout-previews-mobile/m-two-up.png" alt="two up phone layout" loading="lazy">
+        <figcaption>two up</figcaption>
+      </a>
+      <a class="lay-mob" href="layouts/split-hero-left.html?mobile=m-carousel">
+        <img src="layout-previews-mobile/m-carousel.png" alt="carousel phone layout" loading="lazy">
+        <figcaption>carousel</figcaption>
+      </a>
+      <a class="lay-mob" href="layouts/split-hero-left.html?mobile=m-swipe-lanes">
+        <img src="layout-previews-mobile/m-swipe-lanes.png" alt="swipe lanes phone layout" loading="lazy">
+        <figcaption>swipe lanes</figcaption>
+      </a>
+      <a class="lay-mob" href="layouts/split-hero-left.html?mobile=m-list-rows">
+        <img src="layout-previews-mobile/m-list-rows.png" alt="list rows phone layout" loading="lazy">
+        <figcaption>list rows</figcaption>
+      </a>
+      <a class="lay-mob" href="layouts/split-hero-left.html?mobile=m-timeline">
+        <img src="layout-previews-mobile/m-timeline.png" alt="timeline phone layout" loading="lazy">
+        <figcaption>timeline</figcaption>
+      </a>
+      <a class="lay-mob" href="layouts/split-hero-left.html?mobile=m-chip-index">
+        <img src="layout-previews-mobile/m-chip-index.png" alt="chip index phone layout" loading="lazy">
+        <figcaption>chip index</figcaption>
+      </a>
+      <a class="lay-mob" href="layouts/split-hero-left.html?mobile=m-media-first">
+        <img src="layout-previews-mobile/m-media-first.png" alt="media first phone layout" loading="lazy">
+        <figcaption>media first</figcaption>
+      </a>
+      <a class="lay-mob" href="layouts/split-hero-left.html?mobile=m-hero-band">
+        <img src="layout-previews-mobile/m-hero-band.png" alt="hero band phone layout" loading="lazy">
+        <figcaption>hero band</figcaption>
+      </a>
+      <a class="lay-mob" href="layouts/split-hero-left.html?mobile=m-pricing-stack">
+        <img src="layout-previews-mobile/m-pricing-stack.png" alt="pricing stack phone layout" loading="lazy">
+        <figcaption>pricing stack</figcaption>
+      </a>
+      <a class="lay-mob" href="layouts/split-hero-left.html?mobile=m-masonry-2">
+        <img src="layout-previews-mobile/m-masonry-2.png" alt="masonry 2 phone layout" loading="lazy">
+        <figcaption>masonry 2</figcaption>
+      </a>
+      <a class="lay-mob" href="layouts/split-hero-left.html?mobile=m-boxed">
+        <img src="layout-previews-mobile/m-boxed.png" alt="boxed phone layout" loading="lazy">
+        <figcaption>boxed</figcaption>
+      </a>
+      <a class="lay-mob" href="layouts/split-hero-left.html?mobile=m-overlap">
+        <img src="layout-previews-mobile/m-overlap.png" alt="overlap phone layout" loading="lazy">
+        <figcaption>overlap</figcaption>
+      </a>
+      <a class="lay-mob" href="layouts/split-hero-left.html?mobile=m-zen">
+        <img src="layout-previews-mobile/m-zen.png" alt="zen phone layout" loading="lazy">
+        <figcaption>zen</figcaption>
+      </a>
+      <a class="lay-mob" href="layouts/split-hero-left.html?mobile=m-atlas">
+        <img src="layout-previews-mobile/m-atlas.png" alt="atlas phone layout" loading="lazy">
+        <figcaption>atlas</figcaption>
+      </a>
+      <a class="lay-mob" href="layouts/split-hero-left.html?mobile=m-scroll-sections">
+        <img src="layout-previews-mobile/m-scroll-sections.png" alt="scroll sections phone layout" loading="lazy">
+        <figcaption>scroll sections</figcaption>
+      </a>
     </div>
 
     <div class="el-section-head" style="margin-top:var(--el-space-6)"><h2>Install</h2><span class="rule"></span></div>

@@ -77,7 +77,7 @@
       <div id="pick-tabs" style="display:flex;gap:var(--el-space-2);flex-wrap:wrap;margin-bottom:var(--el-space-4)">
         <button class="el-btn" id="tab-btn-themes" aria-pressed="true">Themes · 20</button>
         <button class="el-btn el-btn--outline" id="tab-btn-desktop">Desktop layout · 20</button>
-        <button class="el-btn el-btn--outline" id="tab-btn-mobile">Mobile layout · 20</button>
+        <button class="el-btn el-btn--outline" id="tab-btn-mobile">Phone layout · 20</button>
       </div>
       <p class="el-hint" id="pick-note" style="margin:0 0 var(--el-space-2)">themes first - click any poster to open the site; every theme works under every layout</p>
       <div id="tab-themes" class="tab-wall"></div>
@@ -400,6 +400,28 @@
   ]
  }
 ];
+    const MOBILE_LAYOUTS = [
+      ["m-stack", "stack"],
+      ["m-bottom-tabs", "bottom tabs"],
+      ["m-sticky-header", "sticky header"],
+      ["m-full-cover", "full cover"],
+      ["m-stats-first", "stats first"],
+      ["m-two-up", "two up"],
+      ["m-carousel", "carousel"],
+      ["m-swipe-lanes", "swipe lanes"],
+      ["m-list-rows", "list rows"],
+      ["m-timeline", "timeline"],
+      ["m-chip-index", "chip index"],
+      ["m-media-first", "media first"],
+      ["m-hero-band", "hero band"],
+      ["m-pricing-stack", "pricing stack"],
+      ["m-masonry-2", "masonry 2"],
+      ["m-boxed", "boxed"],
+      ["m-overlap", "overlap"],
+      ["m-zen", "zen"],
+      ["m-atlas", "atlas"],
+      ["m-scroll-sections", "scroll sections"],
+    ];
     const THEMES = [
       ...SITES.map(([slug, blurb]) => ({slug, blurb})),
     ];
@@ -427,10 +449,10 @@
         <img src="layout-previews/${l.id}.png" alt="${l.name} desktop layout" loading="lazy">
         <div class="cap"><b>${l.name}</b><span>${l.mask.length} blocks</span></div>
       </div>`).join('');
-    walls.mobile.innerHTML = LAYOUTS.map(l => `
-      <div class="pick-card" data-kind="mobile" data-id="${l.id}" title="${l.why}">
-        <img src="layout-previews-mobile/${l.id}.png" alt="${l.name} mobile layout" loading="lazy" style="aspect-ratio:390/844;object-position:top">
-        <div class="cap"><b>${l.name}</b><span>390px</span></div>
+    walls.mobile.innerHTML = MOBILE_LAYOUTS.map(([id, name]) => `
+      <div class="pick-card" data-kind="mobile" data-id="${id}" title="${name} phone layout">
+        <img src="layout-previews-mobile/${id}.png" alt="${name} phone layout" loading="lazy" style="aspect-ratio:390/844;object-position:top">
+        <div class="cap"><b>${name}</b><span>390px</span></div>
       </div>`).join('');
     walls.themes.innerHTML = THEMES.map(th => {
       const href = `sites/${th.slug}/index.html`;
@@ -443,10 +465,11 @@
     function renderCombo() {
       const l = pick.layout || 'bento-dashboard';
       const t = pick.theme || 'neutral';
-      const url = `layouts/${l}.html?theme=${t}`;
+      const m = pick.mobile || 'm-stack';
+      const url = `layouts/${l}.html?theme=${t}&mobile=${m}`;
       document.getElementById('combo-frame').src = url;
       document.getElementById('combo-open').href = url;
-      document.getElementById('combo-label').textContent = `${l} + ${t}`;
+      document.getElementById('combo-label').textContent = `${l} + ${m} + ${t}`;
     }
     function refresh() {
       renderCombo();

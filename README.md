@@ -9,7 +9,7 @@
   <br><br>
   <a href="https://greyok00.github.io/greyok-ui-framework/demo/"><img src="https://img.shields.io/badge/demo-LIVE-success?style=for-the-badge" alt="Live Demo"></a>
   <a href="https://github.com/greyok00/greyok-ui-framework"><img src="https://img.shields.io/badge/license-Apache--2.0-blue.svg" alt="Apache-2.0"></a>
-  <a href="https://github.com/greyok00/greyok-ui-framework"><img src="https://img.shields.io/badge/version-0.5.1-orange.svg" alt="v0.5.1"></a>
+  <a href="https://github.com/greyok00/greyok-ui-framework"><img src="https://img.shields.io/badge/version-0.5.2-orange.svg" alt="v0.5.2"></a>
   <a href="https://github.com/greyok00/greyok-ui-framework"><img src="https://img.shields.io/badge/greyok-00d4aa.svg" alt="greyok"></a>
 </p>
 
@@ -74,7 +74,16 @@ Plus `neutral` - graphite and amber - which lives in `tokens.css` as the default
 
 ## 📐 The twenty layouts
 
-A layout is **spacing and structure only**. It re-orders the home blocks a page already has - hero, intro, findings, stats, contents, cards, disclaimer - and never paints anything: no colors, no type, no imagery. A theme is the paint. The two are independent, so **any theme overlays any layout**.
+A layout is **spacing and structure only**. It re-orders the home blocks a page already has - hero, intro, findings, stats, contents, cards, disclaimer - and never paints anything: no colors, no type, no imagery. A theme is the paint. The two are independent, so **any theme overlays any layout**, at either width.
+
+There are two layout axes, authored separately:
+
+| Axis | Attribute | Count | When it applies |
+|---|---|---|---|
+| Desktop layouts | `data-layout="<slug>"` | 20 | 701 px and up |
+| Phone layouts | `data-layout-mobile="<slug>"` | 20 | 700 px and down |
+
+The phone layouts are dedicated structures, not the desktop kits collapsed. The counts multiply: 20 themes over 20 desktop layouts makes 400 possible desktop combinations, and the same 20 themes over 20 phone layouts makes 400 possible phone combinations. Only 60 things are authored: 20 themes, 20 desktop layouts, 20 phone layouts.
 
 Every preview below is rendered in the neutral token set, so the only thing that changes between two cards is the structure.
 
@@ -82,7 +91,9 @@ Every preview below is rendered in the neutral token set, so the only thing that
   <img src="docs/screenshots/layouts.png" alt="Layout gallery: twenty structure renders with names and data-layout slugs" width="980">
 </p>
 
-<p align="center"><em>All twenty archetypes, neutral, full page. Same content, restructured twenty ways.</em></p>
+<p align="center"><em>All twenty desktop archetypes, neutral, full page. Same content, restructured twenty ways.</em></p>
+
+The twenty phone structures are: stack, bottom tabs, sticky header, full cover, stats first, two-up, carousel, swipe lanes, list rows, timeline, chip index, media first, hero band, pricing stack, masonry two-column, boxed, overlap, zen, atlas, and scroll sections.
 
 <p align="center">
   <img src="docs/screenshots/layout-overlay.png" alt="The bento-dashboard layout re-skinned by the brutal-stamp theme" width="980">
@@ -90,11 +101,13 @@ Every preview below is rendered in the neutral token set, so the only thing that
 
 <p align="center"><em>The same bento layout with the brutal-stamp theme overlaid: structure unchanged, paint swapped.</em></p>
 
-Each layout also ships as a **live page** under `demo/layouts/<slug>.html`. It opens neutral and takes any theme as an overlay, either from the selector on the page or from the URL:
+Each layout ships as a **live page** under `demo/layouts/<slug>.html`. It opens neutral and takes any theme and any phone layout as overlays, from the selectors on the page or from the URL:
 
 ```
-demo/layouts/bento-dashboard.html?theme=brutal-stamp
+demo/layouts/bento-dashboard.html?theme=brutal-stamp&mobile=m-carousel
 ```
+
+`tools/check_matrix.py` proves the matrix: for all 400 desktop pairings and all 400 phone pairings it renders the page, checks there is no horizontal overflow and no page error, and checks that changing the theme leaves the structural properties (display mode, grid tracks, child placement) identical. It also fingerprints each layout so two layouts that merely re-skin the same page are reported as duplicates.
 
 Pin one with a single attribute:
 
@@ -302,8 +315,8 @@ python3 -m http.server 8768 --bind 127.0.0.1
 demo/
 ├── index.html          ← showcase: 20-theme poster wall + layout picker (live)
 ├── themes.html         ← 25 theme cards, click to re-skin the page
-├── layouts.html        ← the 20 archetypes, desktop and mobile
-├── layouts/            ← 20 live layout pages, neutral + any theme overlay
+├── layouts.html        ← 20 desktop + 20 phone structures
+├── layouts/            ← 20 live layout pages: any theme and any phone overlay
 ├── elements.html       ← the 63-element inventory + install snippets
 ├── display.html … sizes.html   ← one page per element category
 ├── posters/            ← full-page renders of all 20 persona sites

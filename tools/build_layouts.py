@@ -11,7 +11,9 @@ emitter-only hooks to public ones, and minifies:
 
 A layout is structure only: it re-orders the home blocks a page already has
 (el-hero, el-section, el-stat-row, el-card-grid, el-issue-index, el-disclaimer)
-and never paints anything, so every theme still matches every layout.
+and never paints anything, so every theme still matches every layout. Two
+independent axes ship here: 20 desktop kits (data-layout) and 20 phone kits
+(data-layout-mobile, <=700px).
 
 Run: python3 tools/build_layouts.py
 """
@@ -43,7 +45,7 @@ def main() -> int:
     sys.path.insert(0, str(STUDIO))
     from pipeline import site
 
-    kits = site._LAYOUT_KITS_CSS
+    kits = site._LAYOUT_KITS_CSS + site.LAYOUT_MOBILE_CSS
     kits = kits.replace("main.site-main", "main.el-main")
     kits = kits.replace(".card-grid", ".el-card-grid")
     css = BASE + kits
