@@ -74,19 +74,33 @@ Plus `neutral` - graphite and amber - which lives in `tokens.css` as the default
 
 ## 📐 The twenty layouts
 
-A layout is **structure only**. It re-orders the home blocks a page already has - hero, intro, findings, stats, contents, cards, disclaimer - and never paints anything. That is why every theme matches every layout: the ink is owned by the theme, the skeleton by the layout.
+A layout is **spacing and structure only**. It re-orders the home blocks a page already has - hero, intro, findings, stats, contents, cards, disclaimer - and never paints anything: no colors, no type, no imagery. A theme is the paint. The two are independent, so **any theme overlays any layout**.
+
+Every preview below is rendered in the neutral token set, so the only thing that changes between two cards is the structure.
 
 <p align="center">
-  <img src="docs/screenshots/layouts.png" alt="Layout gallery: twenty desktop renders with names and data-layout slugs" width="980">
+  <img src="docs/screenshots/layouts.png" alt="Layout gallery: twenty structure renders with names and data-layout slugs" width="980">
 </p>
 
-<p align="center"><em>All twenty archetypes rendered at 1440 px. The same page, restructured twenty ways.</em></p>
+<p align="center"><em>All twenty archetypes, neutral, full page. Same content, restructured twenty ways.</em></p>
+
+<p align="center">
+  <img src="docs/screenshots/layout-overlay.png" alt="The bento-dashboard layout re-skinned by the brutal-stamp theme" width="980">
+</p>
+
+<p align="center"><em>The same bento layout with the brutal-stamp theme overlaid: structure unchanged, paint swapped.</em></p>
+
+Each layout also ships as a **live page** under `demo/layouts/<slug>.html`. It opens neutral and takes any theme as an overlay, either from the selector on the page or from the URL:
+
+```
+demo/layouts/bento-dashboard.html?theme=brutal-stamp
+```
 
 Pin one with a single attribute:
 
 ```html
 <link rel="stylesheet" href="layouts.css">
-<html data-layout="bento-dashboard" data-theme="mono-console">
+<html data-layout="bento-dashboard" data-theme="grid-ledger">
 ```
 
 | Slug | Name | Structure |
@@ -289,6 +303,7 @@ demo/
 ├── index.html          ← showcase: 20-theme poster wall + layout picker (live)
 ├── themes.html         ← 25 theme cards, click to re-skin the page
 ├── layouts.html        ← the 20 archetypes, desktop and mobile
+├── layouts/            ← 20 live layout pages, neutral + any theme overlay
 ├── elements.html       ← the 63-element inventory + install snippets
 ├── display.html … sizes.html   ← one page per element category
 ├── posters/            ← full-page renders of all 20 persona sites

@@ -85,6 +85,13 @@
       <div id="tab-mobile" class="tab-wall" hidden></div>
       <p id="pick-status" style="margin-top:var(--el-space-4);font:12px var(--el-font-mono);color:var(--el-ink-soft)"></p>
     </div>
+
+    <div class="el-section-head" style="margin-top:var(--el-space-6)"><h2>Any theme over any layout</h2><span class="rule"></span></div>
+    <p class="el-hint" style="margin:0 0 var(--el-space-3)">A layout is spacing and structure only. Pick a layout card and a theme card above, and the same page re-skins live: the theme is the overlay, never baked into the layout.</p>
+    <div class="el-card" style="padding:var(--el-space-4)">
+      <p style="margin:0 0 var(--el-space-3);font:12px var(--el-font-mono);color:var(--el-ink-soft)">structure: <b id="combo-label" style="color:var(--el-ink)">bento-dashboard + neutral</b> · <a id="combo-open" href="layouts/bento-dashboard.html?theme=neutral" style="color:var(--el-accent)">open the full page</a></p>
+      <iframe id="combo-frame" src="layouts/bento-dashboard.html?theme=neutral" title="layout with theme overlay" style="width:100%;height:560px;border:1px solid var(--el-line);background:var(--el-bg)"></iframe>
+    </div>
     <style>
       .tab-wall{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:var(--el-space-3)}
       .tab-wall[hidden]{display:none}
@@ -433,7 +440,16 @@
         <img src="${img}" alt="${th.slug} front page" loading="lazy">
         <div class="cap"><b>${th.slug.replace(/-/g," ")}</b><a class="open" href="${href}" onclick="event.stopPropagation()">open ↗</a></div>
       </div>`; }).join('');
+    function renderCombo() {
+      const l = pick.layout || 'bento-dashboard';
+      const t = pick.theme || 'neutral';
+      const url = `layouts/${l}.html?theme=${t}`;
+      document.getElementById('combo-frame').src = url;
+      document.getElementById('combo-open').href = url;
+      document.getElementById('combo-label').textContent = `${l} + ${t}`;
+    }
     function refresh() {
+      renderCombo();
       document.querySelectorAll('.pick-card').forEach(c => {
         const kind = c.dataset.kind;
         const key = kind === 'theme' ? 'theme' : kind;

@@ -74,8 +74,10 @@ def main() -> int:
                      ROOT / "docs" / "screenshots" / "showcase.png",
                      1440, 1250, False, None))
     if args.viewport:
-        page_path = ROOT / (args.page or "demo/index.html")
-        jobs.append((_page_url(page_path), ROOT / args.viewport,
+        page_ref = args.page or "demo/index.html"
+        page_path, _, query = page_ref.partition("?")
+        url = _page_url(ROOT / page_path) + (("?" + query) if query else "")
+        jobs.append((url, ROOT / args.viewport,
                      args.width, args.height, False, args.click))
     if not jobs:
         ap.error("nothing to do: pick --posters, --showcase, or --viewport")
