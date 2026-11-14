@@ -19,7 +19,7 @@
   <link rel="stylesheet" href="../elements-interactions.css">
   <link rel="stylesheet" href="../elements-size.css">
   <style>
-    /* page-local: persona poster cards (wall of the 20 demo sites) */
+    /* page-local: persona poster cards (wall of the 25 demo sites) */
     .poster-wall { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:var(--el-space-3); margin:var(--el-space-4) 0 0; }
     a.site-card { display:block; padding:0; overflow:hidden; text-decoration:none; color:inherit; }
     a.site-card img { display:block; width:100%; aspect-ratio:14/9; object-fit:cover; object-position:top;
@@ -29,17 +29,13 @@
     a.site-card .cap span { display:block; margin-top:2px; font-size:var(--el-fs-sm); color:var(--el-mute); line-height:1.45; }
     a.site-card { transition:border-color var(--el-dur-fast) var(--el-ease), box-shadow var(--el-dur-fast) var(--el-ease), transform var(--el-dur-fast) var(--el-ease); }
     a.site-card:hover { text-decoration:none; border-color:var(--el-accent); transform:var(--el-lift); box-shadow:var(--el-raise-2); }
-    .element-strip .lnk { color:var(--el-ink-soft); text-decoration:none; margin-right:var(--el-space-1); }
-    .element-strip .lnk:last-child { margin-right:0; }
-    .element-strip .lnk:hover { color:var(--el-accent); text-decoration:underline; text-underline-offset:2px; }
-    .element-strip .lnk { display:inline-block; padding:12px 2px; }
     @media (max-width:430px) {
       .poster-wall { grid-template-columns:1fr; }
       .btn-row a { width:100%; justify-content:center; }
     }
     @media (max-width:900px) {
       /* injected .el-theme-strip (inner rail, inside [data-theme-strip]) wraps
-         to a multi-row blob on narrow bars — one scrollable row instead */
+         to a multi-row blob on narrow bars - one scrollable row instead */
       #el-theme-strip .el-theme-strip { flex-wrap:nowrap; overflow-x:auto; scrollbar-width:none; max-width:100%; }
       #el-theme-strip .el-theme-strip::-webkit-scrollbar { display:none; }
     }
@@ -49,7 +45,7 @@
 
   <header class="el-demo-bar">
     <strong>greyok-ui-framework</strong>
-    <span style="font:11px var(--el-font-mono);color:var(--el-mute);letter-spacing:0.08em">v0.4.0</span>
+    <span style="font:11px var(--el-font-mono);color:var(--el-mute);letter-spacing:0.08em">v0.5.0</span>
     <div id="el-theme-strip" data-theme-strip></div>
     <span class="el-dot live" title="framework live"></span>
   </header>
@@ -59,49 +55,49 @@
     <!-- ─── Hero ─── -->
     <section class="el-card" style="margin:var(--el-space-6) 0 var(--el-space-5);padding:var(--el-space-6) var(--el-space-5);text-align:center">
       <span class="el-badge">showcase</span>
-      <h1 style="font-family:var(--el-font-display);font-size:var(--el-fs-2xl);letter-spacing:var(--el-head-tracking, -0.02em);margin:var(--el-space-3) 0 var(--el-space-2);line-height:1.12">A design system that<br>changes character, not just color</h1>
-      <p style="color:var(--el-ink-soft);max-width:560px;margin:0 auto;line-height:1.6;font-size:var(--el-fs-md)">Flip the picker and the whole page re-skins — radius, border, ornament, type voice, everything. These are the looks the framework ships with, worked through full real sites in the wall below.</p>
+      <h1 style="font-family:var(--el-font-display);font-size:var(--el-fs-2xl);letter-spacing:var(--el-head-tracking, -0.02em);margin:var(--el-space-3) 0 var(--el-space-2);line-height:1.12">A design system that changes character, not just color</h1>
+      <p style="color:var(--el-ink-soft);max-width:640px;margin:0 auto;line-height:1.6;font-size:var(--el-fs-md)">Twenty complete personas and twenty layout archetypes, all built from one token set. Layout is structure, theme is character: every theme pairs with every layout, and the wall below shows each theme as a real multi-page site.</p>
       <div class="el-cluster" style="justify-content:center;margin-top:var(--el-space-4);flex-wrap:wrap">
-        <span class="el-pill ok">63 audited elements</span>
-        <span class="el-pill accent">21 skins</span>
-        <span class="el-pill info">charts.js in the box</span>
-        <span class="el-pill ghost">@layer + reduced-motion</span>
+        <span class="el-pill ok">20 themes</span>
+        <span class="el-pill ghost">20 layouts · desktop + mobile</span>
       </div>
       <div class="el-cluster btn-row" style="justify-content:center;margin-top:var(--el-space-4);flex-wrap:wrap">
-        <a href="showcase.html" class="el-btn el--lg">Run the one-page tour</a>
         <a href="themes.html" class="el-btn el--lg el-btn--outline">Theme gallery</a>
-        <a href="elements.html" class="el-btn el--lg el-btn--ghost">Element index &amp; install</a>
+        <a href="layouts.html" class="el-btn el--lg el-btn--outline">Layout gallery</a>
+        <a href="elements.html" class="el-btn el--lg el-btn--outline">Element tour</a>
       </div>
     </section>
 
     <!-- ─── The showcase: twenty real websites ─── -->
-    <div class="el-section-head"><h2>Twenty real websites</h2><span class="rule"></span></div>
-    <p class="el-hint" style="margin:0 0 var(--el-space-2)">Every skin is a persona — its own nav anatomy, hero, card treatment and type voice, worked through a full site per theme: home, catalog, article, account, and an app-styles mockup. Fresh renders below; click through to any of them.</p>
-    <div class="poster-wall" id="poster-wall"></div>
+    <div class="el-section-head"><h2>The showcase - 20 themes, 20 real sites</h2><span class="rule"></span></div>
+    <p class="el-hint" style="margin:0 0 var(--el-space-2)">Every theme is a persona: its own nav anatomy, hero, card treatment and type voice, worked through a full site - home, catalog, article, account, and an app-styles mockup. The poster wall below is the whole system at a glance; the layout tabs show the same content restructured 20 ways.</p>
 
-    <!-- ─── Everything else, quiet ─── -->
-    <div class="el-section-head" style="margin-top:var(--el-space-6)"><h2>Also in the box</h2><span class="rule"></span></div>
-    <div class="el-card element-strip" style="padding:var(--el-space-4)">
-      <a class="lnk" href="display.html">display</a>·
-      <a class="lnk" href="lists.html">lists</a>·
-      <a class="lnk" href="controls.html">controls</a>·
-      <a class="lnk" href="inputs.html">inputs</a>·
-      <a class="lnk" href="dataviz.html">dataviz</a>·
-      <a class="lnk" href="containers.html">containers</a>·
-      <a class="lnk" href="interactions.html">interactions</a>·
-      <a class="lnk" href="workflows.html">workflows</a>·
-      <a class="lnk" href="misc.html">misc &amp; charts</a>·
-      <a class="lnk" href="sizes.html">size buckets</a>·
-      <a class="lnk" href="assistant.html">assistant</a>·
-      <a class="lnk" href="reader.html">reader</a>·
-      <a class="lnk" href="harness.html">harness</a>·
-      <a class="lnk" href="sites/index.html">the sites hub</a>
+    <!-- ─── tabbed picker: desktop layouts / mobile layouts / themes ─── -->
+    <div class="el-card" id="pick-panel" style="margin:var(--el-space-4) 0 var(--el-space-5);padding:var(--el-space-5)">
+      <div id="pick-tabs" style="display:flex;gap:var(--el-space-2);flex-wrap:wrap;margin-bottom:var(--el-space-4)">
+        <button class="el-btn" id="tab-btn-themes" aria-pressed="true">Themes · 20</button>
+        <button class="el-btn el-btn--outline" id="tab-btn-desktop">Desktop layout · 20</button>
+        <button class="el-btn el-btn--outline" id="tab-btn-mobile">Mobile layout · 20</button>
+      </div>
+      <p class="el-hint" id="pick-note" style="margin:0 0 var(--el-space-2)">themes first - click any poster to open the site; every theme works under every layout</p>
+      <div id="tab-themes" class="tab-wall"></div>
+      <div id="tab-desktop" class="tab-wall" hidden></div>
+      <div id="tab-mobile" class="tab-wall" hidden></div>
+      <p id="pick-status" style="margin-top:var(--el-space-4);font:12px var(--el-font-mono);color:var(--el-ink-soft)"></p>
     </div>
-
+    <style>
+      .tab-wall{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:var(--el-space-3)}
+      .tab-wall[hidden]{display:none}
+      .pick-card{border:1px solid var(--el-line);border-radius:6px;overflow:hidden;background:var(--el-panel);color:inherit;cursor:pointer}
+      .pick-card img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;object-position:top}
+      .pick-card .cap{padding:8px 10px;font:12px var(--el-font-mono);display:flex;justify-content:space-between;gap:6px;align-items:baseline}
+      .pick-card.is-picked{outline:3px solid var(--el-accent);outline-offset:0}
+      .pick-card .open{color:var(--el-accent);text-decoration:none;white-space:nowrap}
+    </style>
     <!-- ─── Footer ─── -->
     <footer style="text-align:center;padding:var(--el-space-6) 0 var(--el-space-4);color:var(--el-ink-soft);font-size:var(--el-fs-sm);border-top:1px solid var(--el-line);margin-top:var(--el-space-6)">
       <p>Apache License 2.0 © 2026 <a href="https://github.com/greyok00" style="color:var(--el-accent)">greyok00</a> · <a href="https://github.com/greyok00/greyok-ui-framework" style="color:var(--el-accent)">github.com/greyok00/greyok-ui-framework</a></p>
-      <p><span style="color:var(--el-ink-soft);font:11px var(--el-font-mono);letter-spacing:0.06em;text-transform:uppercase">63 elements · 21 skins · 6 sizes · 0 build</span></p>
+      <p><span style="color:var(--el-ink-soft);font:11px var(--el-font-mono);letter-spacing:0.06em;text-transform:uppercase">20 themes · 20 layouts · 6 sizes · 63 elements</span></p>
     </footer>
 
   </main>
@@ -109,7 +105,7 @@
   <script src="../theme-switcher.js"></script>
   <script src="../elements.js"></script>
   <script>
-    // persona wall — static data, no fetch (the index must work from file://)
+    // persona wall - static data, no fetch (the index must work from file://)
     const SITES = [
       ["mono-console","Developer-infra landing + console docs"],
       ["ghost-terminal","Terminal tooling site + ops dashboard"],
@@ -130,17 +126,341 @@
       ["kinetic-ink","Motion-design studio + review app"],
       ["aperture-motion","Film production house + shoot log"],
       ["ma-quiet","Design gallery archive + collection app"],
-      ["gesshoku","Zen focus software — app shell body"],
+      ["gesshoku","Zen focus software - app shell body"],
+          ];
+    // ─── layout × theme picker ─── the mask data mirrors the studio's
+    // visual planner (pipeline/visual_plan._HOME_MASKS): the wireframe shows
+    // the home blocks in the pinned order while the poster shows the theme
+    // as a real site; the studio renders the two combined.
+    const LAYOUTS = [
+ {
+  "id": "split-hero-left",
+  "name": "Split hero, left",
+  "why": "hero beside the intro, findings stacked beside it",
+  "mask": [
+   "hero",
+   "who",
+   "findings",
+   "statrow",
+   "toc",
+   "mcards",
+   "disclaimer"
+  ]
+ },
+ {
+  "id": "split-hero-right",
+  "name": "Split hero, right",
+  "why": "the split flipped",
+  "mask": [
+   "hero",
+   "who",
+   "findings",
+   "statrow",
+   "mcards",
+   "toc",
+   "disclaimer"
+  ]
+ },
+ {
+  "id": "full-bleed-cover",
+  "name": "Full-bleed cover",
+  "why": "edge-to-edge cover photo, cards right under it",
+  "mask": [
+   "hero",
+   "mcards",
+   "findings",
+   "statrow",
+   "disclaimer"
+  ]
+ },
+ {
+  "id": "centered-editorial",
+  "name": "Centered editorial",
+  "why": "one centered column, generous paper margins",
+  "mask": [
+   "hero",
+   "who",
+   "findings",
+   "toc",
+   "disclaimer"
+  ]
+ },
+ {
+  "id": "magazine-grid",
+  "name": "Magazine grid",
+  "why": "asymmetric print grid, findings as pull quotes",
+  "mask": [
+   "hero",
+   "findings",
+   "mcards",
+   "toc",
+   "who",
+   "disclaimer"
+  ]
+ },
+ {
+  "id": "bento-dashboard",
+  "name": "Bento dashboard",
+  "why": "stat tiles and content panes like a dashboard",
+  "mask": [
+   "statrow",
+   "hero",
+   "findings",
+   "mcards",
+   "toc",
+   "disclaimer"
+  ]
+ },
+ {
+  "id": "sidebar-rail-nav",
+  "name": "Sidebar rail nav",
+  "why": "navigation rail first, content beside it",
+  "mask": [
+   "toc",
+   "hero",
+   "who",
+   "findings",
+   "mcards",
+   "disclaimer"
+  ]
+ },
+ {
+  "id": "top-tab-console",
+  "name": "Top tab console",
+  "why": "tab console across the top, panes beneath",
+  "mask": [
+   "hero",
+   "toc",
+   "mcards",
+   "statrow",
+   "findings",
+   "disclaimer"
+  ]
+ },
+ {
+  "id": "kanban-board",
+  "name": "Kanban board",
+  "why": "content lanes laid out like a board",
+  "mask": [
+   "mcards",
+   "toc",
+   "hero",
+   "findings",
+   "disclaimer"
+  ]
+ },
+ {
+  "id": "catalog-aisle-rows",
+  "name": "Catalog aisle rows",
+  "why": "one row per piece, aisle style",
+  "mask": [
+   "mcards",
+   "toc",
+   "hero",
+   "statrow",
+   "findings",
+   "disclaimer"
+  ]
+ },
+ {
+  "id": "pricing-columns",
+  "name": "Pricing columns",
+  "why": "columns that read like a table of offers",
+  "mask": [
+   "hero",
+   "mcards",
+   "statrow",
+   "findings",
+   "toc",
+   "disclaimer"
+  ]
+ },
+ {
+  "id": "masonry-gallery",
+  "name": "Masonry gallery",
+  "why": "a staggered gallery wall of cards",
+  "mask": [
+   "hero",
+   "mcards",
+   "findings",
+   "toc",
+   "statrow",
+   "disclaimer"
+  ]
+ },
+ {
+  "id": "timeline-vertical",
+  "name": "Timeline vertical",
+  "why": "a dated vertical spine through the content",
+  "mask": [
+   "hero",
+   "findings",
+   "toc",
+   "mcards",
+   "who",
+   "disclaimer"
+  ]
+ },
+ {
+  "id": "terminal-shell",
+  "name": "Terminal shell",
+  "why": "stat readout on top, content in a shell frame",
+  "mask": [
+   "statrow",
+   "hero",
+   "findings",
+   "toc",
+   "mcards",
+   "disclaimer"
+  ]
+ },
+ {
+  "id": "boxed-frame",
+  "name": "Boxed frame",
+  "why": "everything framed inside a page border",
+  "mask": [
+   "who",
+   "hero",
+   "findings",
+   "statrow",
+   "toc",
+   "mcards",
+   "disclaimer"
+  ]
+ },
+ {
+  "id": "overlapping-panels",
+  "name": "Overlapping panels",
+  "why": "cards overlap the hero like stacked prints",
+  "mask": [
+   "hero",
+   "mcards",
+   "statrow",
+   "toc",
+   "findings",
+   "disclaimer"
+  ]
+ },
+ {
+  "id": "carousel-storefront",
+  "name": "Carousel storefront",
+  "why": "shopfront rhythm, cards sweep under the hero",
+  "mask": [
+   "hero",
+   "mcards",
+   "statrow",
+   "findings",
+   "toc",
+   "disclaimer"
+  ]
+ },
+ {
+  "id": "sticky-index",
+  "name": "Sticky index",
+  "why": "the index pinned first, content scrolls beside it",
+  "mask": [
+   "toc",
+   "hero",
+   "mcards",
+   "findings",
+   "statrow",
+   "disclaimer"
+  ]
+ },
+ {
+  "id": "atlas-map-first",
+  "name": "Atlas map first",
+  "why": "the stat atlas up top, detail below",
+  "mask": [
+   "hero",
+   "statrow",
+   "mcards",
+   "toc",
+   "findings",
+   "disclaimer"
+  ]
+ },
+ {
+  "id": "single-column-zen",
+  "name": "Single column zen",
+  "why": "one quiet column, nothing decorative",
+  "mask": [
+   "hero",
+   "who",
+   "toc",
+   "findings",
+   "disclaimer"
+  ]
+ }
+];
+    const THEMES = [
+      ...SITES.map(([slug, blurb]) => ({slug, blurb})),
     ];
-    document.getElementById("poster-wall").innerHTML = SITES.map(([slug, blurb]) => `
-      <a class="el-card site-card" href="sites/${slug}/index.html">
-        <img alt="${slug.replace(/-/g," ")} — theme site front page preview" data-poster="${slug}" loading="lazy">
-        <div class="cap"><b>${slug.replace(/-/g," ").replace(/\b\w/g,c=>c.toUpperCase())}</b><span>${blurb}</span></div>
-      </a>`).join("");
-    // poster paths are runtime-built (qa renders live next to the demo tree)
-    document.querySelectorAll("#poster-wall img[data-poster]").forEach(img => {
-      img.src = "../qa/sites/" + img.dataset.poster + "/index.png";
+    const walls = {
+      desktop: document.getElementById('tab-desktop'),
+      mobile: document.getElementById('tab-mobile'),
+      themes: document.getElementById('tab-themes'),
+    };
+    const btns = {
+      desktop: document.getElementById('tab-btn-desktop'),
+      mobile: document.getElementById('tab-btn-mobile'),
+      themes: document.getElementById('tab-btn-themes'),
+    };
+    const showTab = name => {
+      for (const key of Object.keys(walls)) {
+        walls[key].hidden = key !== name;
+        btns[key].setAttribute('aria-pressed', key === name ? 'true' : 'false');
+        btns[key].classList.toggle('el-btn--outline', key !== name);
+      }
+    };
+    Object.keys(btns).forEach(key => btns[key].addEventListener('click', () => showTab(key)));
+    const pick = { layout: '', mobile: '', theme: '' };
+    walls.desktop.innerHTML = LAYOUTS.map(l => `
+      <div class="pick-card" data-kind="layout" data-id="${l.id}" title="${l.why}">
+        <img src="layout-previews/${l.id}.png" alt="${l.name} desktop layout" loading="lazy">
+        <div class="cap"><b>${l.name}</b><span>${l.mask.length} blocks</span></div>
+      </div>`).join('');
+    walls.mobile.innerHTML = LAYOUTS.map(l => `
+      <div class="pick-card" data-kind="mobile" data-id="${l.id}" title="${l.why}">
+        <img src="layout-previews-mobile/${l.id}.png" alt="${l.name} mobile layout" loading="lazy" style="aspect-ratio:390/844;object-position:top">
+        <div class="cap"><b>${l.name}</b><span>390px</span></div>
+      </div>`).join('');
+    walls.themes.innerHTML = THEMES.map(th => {
+      const href = `sites/${th.slug}/index.html`;
+      const img = `posters/${th.slug}.png`;
+      return `
+      <div class="pick-card" data-kind="theme" data-id="${th.slug}" title="${th.blurb}">
+        <img src="${img}" alt="${th.slug} front page" loading="lazy">
+        <div class="cap"><b>${th.slug.replace(/-/g," ")}</b><a class="open" href="${href}" onclick="event.stopPropagation()">open ↗</a></div>
+      </div>`; }).join('');
+    function refresh() {
+      document.querySelectorAll('.pick-card').forEach(c => {
+        const kind = c.dataset.kind;
+        const key = kind === 'theme' ? 'theme' : kind;
+        c.classList.toggle('is-picked', pick[key] === c.dataset.id);
+      });
+      const th = THEMES.find(x => pick.theme === x.slug);
+      const bits = [];
+      if (pick.layout) bits.push('desktop: ' + pick.layout.replace(/-/g, ' '));
+      else if (pick.layout || pick.mobile) bits.push('desktop: auto (planner)');
+      else bits.push('desktop: pick one');
+      if (pick.mobile) bits.push('mobile: ' + pick.mobile.replace(/-/g, ' '));
+      else if (pick.layout) bits.push('mobile: auto (planner)');
+      else bits.push('mobile: pick one');
+      if (th) {
+        const href = `sites/${th.slug}/index.html`;
+        bits.push(`theme: <a href="${href}" style="color:var(--el-accent)">${th.slug.replace(/-/g, ' ')} site ↗</a>`);
+      } else bits.push('theme: pick one');
+      document.getElementById('pick-status').innerHTML = bits.join(' · ');
+    }
+    document.querySelectorAll('.pick-card').forEach(c => {
+      c.addEventListener('click', () => {
+        const kind = c.dataset.kind === 'theme' ? 'theme' : c.dataset.kind;
+        pick[kind] = c.dataset.id;
+        refresh();
+      });
     });
+    refresh();
   </script>
 </body>
 </html>

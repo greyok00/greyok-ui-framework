@@ -1,26 +1,25 @@
-/**
- * greyok-ui-framework: element behavior wiring.
- *
- * Attaches interactive behavior to .el-* markup: tabs, accordions, toggles,
- * drag and drop, menus, dialogs and drawers, the command palette, toasts,
- * keyboard support and the small input widgets. No network use and no timers
- * beyond toast and copy-button lifetimes; motion respects
- * prefers-reduced-motion. Public surface lives on window.Elements and
- * window.elToast; re-wiring a dynamically added subtree is done by calling
- * window.elInit(root).
- */
+
+
+
 (function Elements() {
   'use strict';
+
+  
   const $  = (sel, root) => (root || document).querySelector(sel);
   const $$ = (sel, root) => Array.from((root || document).querySelectorAll(sel));
   const on = (el, ev, fn, opts) => el && el.addEventListener(ev, fn, opts);
   const fire = (el, name, detail) => el && el.dispatchEvent(new CustomEvent(name, { detail, bubbles: true }));
 
-  /* Wiring convention: every wireX() marks the nodes it touches with a __wired
-     (or hook-specific) expando key, so re-running init() on the same subtree is
-     a no-op and dynamically added nodes can be wired individually. */
+  
+  
+  
+  
+  
 
-  /* ── selection surfaces: tabs, accordion, segmented, toggles, tree ───────── */
+  
+  
+  
+  
   function wireTabs(root) {
     ['.el-tabs-h', '.el-tabs-v', '.el-tabs-pill'].forEach(cls => {
       $$(`${cls} [data-target]`, root).forEach(tab => {
@@ -31,7 +30,9 @@
           tab.classList.add('on');
           const tgt = document.querySelector(tab.dataset.target);
           if (!tgt) return;
+          
           const panels = $$(`.${cls}-panel[data-for="${group.id || ''}"]`, document);
+          
           const groupId = group.id;
           if (groupId) {
             $$(`[data-tabpanel][data-group="${groupId}"]`, document).forEach(p => p.hidden = (p.id !== tab.dataset.target.replace('#', '')));
@@ -41,6 +42,12 @@
       });
     });
   }
+
+  
+  
+  
+  
+  
   function wireAccordion(root) {
     $$('.el-accordion', root).forEach(acc => {
       if (acc.__wired) return; acc.__wired = true;
@@ -54,6 +61,11 @@
       });
     });
   }
+
+  
+  
+  
+  
   function wireSegmented(root) {
     $$('.el-segmented', root).forEach(seg => {
       if (seg.__wired) return; seg.__wired = true;
@@ -66,6 +78,10 @@
       });
     });
   }
+
+  
+  
+  
   function wireToggles(root) {
     ['.el-toggle', '.el-switch', '.el-check'].forEach(cls => {
       $$(cls, root).forEach(el => {
@@ -76,6 +92,7 @@
         });
       });
     });
+    
     $$('.el-radio input[type="radio"]', root).forEach(inp => {
       if (inp.__wired) return; inp.__wired = true;
       on(inp, 'change', () => {
@@ -88,13 +105,22 @@
       });
     });
   }
-  /* ── drag and drop ── */
+
+  
+  
+  
+  
   function wireHoverCard(root) {
     $$('.el-hover-card', root).forEach(card => {
       if (card.__wired) return; card.__wired = true;
       on(card, 'click', () => card.classList.toggle('locked'));
     });
   }
+
+  
+  
+  
+  
   function wireTreeList(root) {
     $$('.el-tree-list .node', root).forEach(node => {
       if (node.__wired) return; node.__wired = true;
@@ -106,6 +132,11 @@
       });
     });
   }
+
+  
+  
+  
+  
   function wireDragDrop(root) {
     $$('[data-draggable]', root).forEach(el => {
       if (el.__wired) return; el.__wired = true;
@@ -135,6 +166,11 @@
       });
     });
   }
+
+  
+  
+  
+  
   function wireCombobox(root) {
     $$('.el-combobox', root).forEach(cb => {
       if (cb.__wired) return; cb.__wired = true;
@@ -156,6 +192,10 @@
       }));
     });
   }
+
+  
+  
+  
   function wireMultiSelect(root) {
     $$('.el-multi-select', root).forEach(ms => {
       if (ms.__wired) return; ms.__wired = true;
@@ -191,6 +231,10 @@
       });
     });
   }
+
+  
+  
+  
   function wireDropdownMenu(root) {
     $$('.el-dropdown-menu', root).forEach(dm => {
       if (dm.__wired) return; dm.__wired = true;
@@ -211,6 +255,10 @@
       });
     });
   }
+
+  
+  
+  
   function wireContextMenu(root) {
     $$('[data-context-target]', root).forEach(t => {
       if (t.__wired) return; t.__wired = true;
@@ -233,13 +281,24 @@
       });
     });
   }
+
+  
+  
+  
+  
+  
   function wireTooltip(root) {
     $$('.el-tooltip[data-tip-placement]', root).forEach(t => {
       if (t.__wired) return; t.__wired = true;
       on(t, 'mouseenter', () => {
+        
       });
     });
   }
+
+  
+  
+  
   function wirePopover(root) {
     $$('.el-popover', root).forEach(p => {
       if (p.__wired) return; p.__wired = true;
@@ -262,7 +321,10 @@
       if (trig) trig.setAttribute('aria-expanded', 'false');
     }));
   }
-  /* ── overlays: modal, drawer, dialog (with shared scrim + focus restore) ── */
+
+  
+  
+  
   function wireModal(root) {
     $$('[data-modal-open]', root).forEach(btn => {
       if (btn.__wired) return; btn.__wired = true;
@@ -283,6 +345,10 @@
       on(bd, 'click', (e) => { if (e.target === bd) bd.classList.remove('open'); });
     });
   }
+
+  
+  
+  
   function wireDrawer(root) {
     $$('[data-drawer-open]', root).forEach(btn => {
       if (btn.__wired) return; btn.__wired = true;
@@ -296,8 +362,11 @@
       on(btn, 'click', () => closeDrawer(btn.closest('.el-drawer')));
     });
   }
+
   /* ── overlay core: paired scrim sync + opener bookkeeping (focus returns) ── */
+
   const openers = new WeakMap();
+
   /* public APIs accept an element OR an id string (or a selector) */
   function resolveEl(target, cls) {
     if (typeof target !== 'string') return target || null;
@@ -305,14 +374,17 @@
     if (found == null) return null;
     return (cls && !found.classList.contains(cls)) ? null : found;
   }
+
   function restoreFocus(el) {
     const opener = openers.get(el);
     openers.delete(el);
     if (opener && document.contains(opener)) { try { opener.focus(); } catch (e) {} }
   }
+
   function scrimIds(el) {
     return (el.dataset.scrim || '').trim().split(/\s+/).filter(Boolean);
   }
+
   function syncScrims(el, open) {
     scrimIds(el).forEach(id => {
       const s = document.getElementById(id);
@@ -321,12 +393,14 @@
       s.classList.toggle('open', open);
     });
   }
+
   function closeOverlayPanel(el) {
     if (!el) return;
     if (el.classList.contains('el-drawer')) return closeDrawer(el);
     if (el.classList.contains('el-command')) return closeCommand(el);
     if (el.classList.contains('el-dialog')) return closeDialog(el);
   }
+
   function openDrawer(drawer, opener) {
     const d = resolveEl(drawer, 'el-drawer');
     if (!d) return;
@@ -335,6 +409,7 @@
     syncScrims(d, true);
     fire(d, 'el:open', {});
   }
+
   function closeDrawer(drawer) {
     const d = resolveEl(drawer, 'el-drawer');
     if (!d) return;
@@ -343,6 +418,7 @@
     syncScrims(d, false);
     fire(d, 'el:close', {});
   }
+
   function openDialog(dialog, opener) {
     const d = resolveEl(dialog, 'el-dialog');
     if (!d) return;
@@ -356,6 +432,7 @@
       if (first) first.focus();
     }
   }
+
   function closeDialog(dialog) {
     const d = resolveEl(dialog, 'el-dialog');
     if (!d) return;
@@ -368,6 +445,7 @@
     syncScrims(d, false);
     fire(d, 'el:close', {});
   }
+
   function wireDialog(root) {
     $$('[data-dialog-open]', root).forEach(btn => {
       if (btn.__wired) return; btn.__wired = true;
@@ -408,7 +486,9 @@
       if (top) { e.preventDefault(); closeDialog(top); }
     });
   }
+
   /* ── menu list: [data-menu] trigger → .el-menu surface, arrows + Esc + click-away ── */
+
   function wireMenu(root) {
     $$('[data-menu]', root).forEach(trig => {
       if (trig.__wired) return; trig.__wired = true;
@@ -455,7 +535,9 @@
       });
     });
   }
+
   /* ── command palette: type-to-run .el-command, rows are elements ─────────── */
+
   function openCommand(target, opener) {
     const cmd = resolveEl(target, 'el-command');
     if (!cmd) return;
@@ -468,6 +550,7 @@
     if (cmd.__elCommandFilter) cmd.__elCommandFilter('');
     if (input) input.focus();
   }
+
   function closeCommand(target) {
     const cmd = resolveEl(target, 'el-command');
     if (!cmd) return;
@@ -475,6 +558,7 @@
     cmd.classList.remove('is-open', 'open');
     fire(cmd, 'el:close', {});
   }
+
   function wireCommand(root) {
     $$('.el-command', root).forEach(cmd => {
       if (cmd.__wired) return; cmd.__wired = true;
@@ -548,7 +632,10 @@
       });
     });
   }
-  /* ── toasts: a single status region, capped region, promise helper ── */
+
+  
+  
+  
   function ensureToastRegion() {
     let r = $('.el-toast-region');
     if (!r) {
@@ -586,6 +673,7 @@
     return t;
   }
   window.elToast = { push: pushToast, dismiss: dismissToast };
+
   function toast(msg, opts) {
     opts = opts || {};
     return pushToast(msg, opts.variant || opts.type || '', opts);
@@ -604,7 +692,12 @@
     );
     return promise;
   }
-  /* ── data surfaces: pagination, breadcrumb, scroll shadows, table sort ── */
+
+  
+  
+  
+  
+  
   function wirePagination(root) {
     $$('.el-pagination[data-page-source]', root).forEach(pag => {
       if (pag.__wired) return; pag.__wired = true;
@@ -636,6 +729,11 @@
       render();
     });
   }
+
+  
+  
+  
+  
   function wireBreadcrumb(root) {
     $$('.el-breadcrumb[data-collapse-after]', root).forEach(bc => {
       if (bc.__wired) return; bc.__wired = true;
@@ -649,6 +747,11 @@
       children[after - 1].after(dots);
     });
   }
+
+  
+  
+  
+  
   function wireScrollShadow(root) {
     if (!('IntersectionObserver' in window)) return;
     $$('.el-scroll-shadow', root).forEach(s => {
@@ -666,12 +769,20 @@
       obs.observe(top); obs.observe(bot);
     });
   }
+
+  
+  
+  
   function wireChips(root) {
     $$('.el-chip', root).forEach(c => {
       if (c.__wired) return; c.__wired = true;
       on(c, 'click', () => c.classList.toggle('added'));
     });
   }
+
+  
+  
+  
   function wireTable(root) {
     $$('.el-table', root).forEach(tbl => {
       const ths = $$('thead th', tbl);
@@ -693,6 +804,10 @@
       });
     });
   }
+
+  
+  
+  
   function wirePalette(root) {
     $$('.el-palette .input', root).forEach(input => {
       if (input.__wired) return; input.__wired = true;
@@ -759,6 +874,10 @@
       });
     });
   }
+
+  
+  
+  
   function wireAnchorNav(root) {
     if (!('IntersectionObserver' in window)) return;
     $$('.el-anchor-nav', root).forEach(nav => {
@@ -778,7 +897,10 @@
       targets.forEach(t => obs.observe(t));
     });
   }
-  /* Entry point: wires every behavior under root. Safe to call repeatedly. */
+
+  
+  
+  
   function init(root) {
     root = root || document;
     wireTabs(root);
@@ -806,6 +928,7 @@
     wireTable(root);
     wirePalette(root);
     wireAnchorNav(root);
+    
     wireSignaturePad(root);
     wireAudioWaveform(root);
     wireFileUpload(root);
@@ -832,12 +955,18 @@
     wireSplitResizable(root);
     wireSkeletonLoaded(root);
   }
+
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => init());
   } else {
     init();
   }
-  /* ── input widgets: canvas, upload, copy, capture hooks ── */
+
+  
+  
+  
+
+  
   function wireSignaturePad(root) {
     $$('.el-signature-pad', root).forEach(canvas => {
       if (canvas.__wired) return; canvas.__wired = true;
@@ -862,9 +991,12 @@
       on(canvas, 'pointermove', e => move(e.offsetX, e.offsetY));
       on(canvas, 'pointerup',   stop);
       on(canvas, 'pointerleave', stop);
+      
       on(canvas, 'dblclick', () => ctx.clearRect(0, 0, canvas.width, canvas.height));
     });
   }
+
+  
   function wireAudioWaveform(root) {
     $$('.el-audio-waveform', root).forEach(w => {
       if (w.__wired) return; w.__wired = true;
@@ -892,9 +1024,12 @@
         }, 120);
       };
       const pause = () => { playing = false; if (timer) clearInterval(timer); };
+      
       on(w, 'dblclick', () => playing ? pause() : play());
     });
   }
+
+  
   function wireFileUpload(root) {
     $$('.el-file-upload', root).forEach(fu => {
       if (fu.__wired) return; fu.__wired = true;
@@ -923,9 +1058,12 @@
       });
     });
   }
+
+  
   function wireCodeBlock(root) {
     $$('.el-code-block', root).forEach(cb => {
       if (cb.__wired) return; cb.__wired = true;
+      
       const text = cb.textContent.replace(/\n$/, '');
       const lines = text.split('\n');
       cb.innerHTML = '';
@@ -944,6 +1082,7 @@
         row.appendChild(num); row.appendChild(code);
         cb.appendChild(row);
       });
+      
       const btn = document.createElement('button');
       btn.textContent = 'Copy';
       btn.className = 'el-codecopy'; /* styling lives on the sheet now */
@@ -958,6 +1097,8 @@
       });
     });
   }
+
+  
   function wireKbdInput(root) {
     $$('.el-kbd-input', root).forEach(inp => {
       if (inp.__wired) return; inp.__wired = true;
@@ -978,6 +1119,8 @@
       });
     });
   }
+
+  
   function wireRating(root) {
     $$('.el-rating', root).forEach(r => {
       if (r.__wired) return; r.__wired = true;
@@ -998,6 +1141,8 @@
       });
     });
   }
+
+  
   function wireProgressAnimate(root) {
     $$('.el-progress[data-animate-to]', root).forEach(p => {
       if (p.__wired) return; p.__wired = true;
@@ -1009,6 +1154,8 @@
       requestAnimationFrame(() => fill.style.width = target + '%');
     });
   }
+
+  
   function wireToastDismiss(root) {
     on(root, 'click', e => {
       if (e.target.classList.contains('close') && e.target.closest('.el-toast')) {
@@ -1016,11 +1163,10 @@
       }
     });
   }
+
   function wireToastHooks(root) {
     $$('[data-toast]', root).forEach(btn => {
-      /* per-hook guard: the shared __wired key lets earlier wires (dialog/
-         drawer close) silently steal toast buttons that carry both */
-      if (btn.__toastWired) return; btn.__toastWired = true;
+      if (btn.__wired) return; btn.__wired = true;
       on(btn, 'click', () => {
         if (btn.hasAttribute('aria-disabled')) return;
         const opts = { duration: btn.dataset.toastDuration !== undefined ? (parseInt(btn.dataset.toastDuration, 10) || 0) : undefined };
@@ -1028,7 +1174,8 @@
       });
     });
   }
-  /* ── keyboard support: arrow/enter/escape handlers for each surface ── */
+
+  
   function wirePaletteKeyboard(root) {
     $$('.el-palette', root).forEach(pal => {
       if (pal.__wired) return; pal.__wired = true;
@@ -1056,6 +1203,8 @@
       });
     });
   }
+
+  
   function wireComboboxKeyboard(root) {
     $$('.el-combobox', root).forEach(cb => {
       if (cb.__wired) return; cb.__wired = true;
@@ -1075,6 +1224,8 @@
       });
     });
   }
+
+  
   function wireTabsKeyboard(root) {
     ['.el-tabs-h', '.el-tabs-v', '.el-tabs-pill'].forEach(cls => {
       $$(cls, root).forEach(group => {
@@ -1092,6 +1243,8 @@
       });
     });
   }
+
+  
   function wireAccordionKeyboard(root) {
     $$('.el-accordion summary', root).forEach(s => {
       if (s.__wired) return; s.__wired = true;
@@ -1104,6 +1257,8 @@
       });
     });
   }
+
+  
   function wireTreeListKeyboard(root) {
     $$('.el-tree-list .node', root).forEach(n => {
       if (n.__wired) return; n.__wired = true;
@@ -1116,6 +1271,8 @@
       });
     });
   }
+
+  
   function wireToggleKeyboard(root) {
     ['.el-toggle', '.el-switch', '.el-check'].forEach(cls => {
       $$(cls, root).forEach(el => {
@@ -1130,6 +1287,8 @@
       });
     });
   }
+
+  
   function wireModalKeyboard(root) {
     $$('.el-modal-backdrop', root).forEach(bd => {
       if (bd.__wired) return; bd.__wired = true;
@@ -1141,6 +1300,8 @@
       });
     });
   }
+
+  
   function wireDrawerKeyboard(root) {
     $$('.el-drawer', root).forEach(d => {
       if (d.__wired) return; d.__wired = true;
@@ -1149,6 +1310,8 @@
       });
     });
   }
+
+  
   function wireSlider(root) {
     $$('.el-slider', root).forEach(s => {
       if (s.__wired) return; s.__wired = true;
@@ -1167,6 +1330,8 @@
       update();
     });
   }
+
+  
   function wireSearchBar(root) {
     $$('.el-search', root).forEach(s => {
       if (s.__wired) return; s.__wired = true;
@@ -1178,6 +1343,8 @@
       });
     });
   }
+
+  
   function wirePrompt(root) {
     $$('.el-prompt', root).forEach(p => {
       if (p.__wired) return; p.__wired = true;
@@ -1190,6 +1357,8 @@
       });
     });
   }
+
+  
   function wireClipboard(root) {
     $$('[data-copy]', root).forEach(el => {
       if (el.__wired) return; el.__wired = true;
@@ -1207,6 +1376,7 @@
       });
     });
   }
+
   function wireDatePicker(root) {
     $$('.el-datepicker', root).forEach(dp => {
       if (dp.__wired) return; dp.__wired = true;
@@ -1280,6 +1450,7 @@
       render();
     });
   }
+
   function wireCarousel(root) {
     $$('.el-carousel', root).forEach(c => {
       if (c.__wired) return; c.__wired = true;
@@ -1307,6 +1478,7 @@
       if (dots.length) dots[0].classList.add('on');
     });
   }
+
   function wireSplitResizable(root) {
     $$('.el-split-resizable', root).forEach(sp => {
       if (sp.__wired) return; sp.__wired = true;
@@ -1335,6 +1507,7 @@
       on(handle, 'pointercancel', up);
     });
   }
+
   function wireSkeletonLoaded(root) {
     $$('.el-skeleton[data-loaded]', root).forEach(sk => {
       if (sk.__wired) return; sk.__wired = true;
@@ -1342,11 +1515,13 @@
       setTimeout(() => sk.remove(), ms + 50);
     });
   }
+
   // Sprite URL resolves from THIS script's location (root or demo/ both work);
   // a page that inlines the sprite as <svg id="el-icons"> skips the fetch.
   const ICON_SPRITE_URL = (typeof document.currentScript !== 'undefined' && document.currentScript && document.currentScript.src)
     ? new URL('assets/icons.svg', document.currentScript.src).href
     : 'assets/icons.svg';
+
   function icon(name) {
     const span = document.createElement('span');
     span.className = 'el-icon';
@@ -1357,6 +1532,7 @@
     span.appendChild(svg);
     return span;
   }
+
   function setView(fn) {
     const doc = document;
     const apply = () => { fn(); if (doc.body) doc.body.classList.add('el-view-fade'); };
@@ -1366,6 +1542,7 @@
       apply();
     }
   }
+
   window.Elements = {
     toast,
     toastPromise,
@@ -1383,5 +1560,7 @@
     },
     supportsViewTransition: typeof document.startViewTransition === 'function'
   };
+
+
   window.elInit = init;
 })();

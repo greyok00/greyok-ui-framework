@@ -1,17 +1,14 @@
 #!/usr/bin/env python3
 """tools/minify.py — strip comments from Python, CSS, and JS source.
 
-Intended for dist build workflows: pass explicit paths of the artifacts being
-packaged. The committed root themes.css / fonts.css are readable multi-line
-builds (tools/build_themes.py, tools/fetch_fonts.py), not minified.
-
-- Python: tokenize-based comment+docstring strip.
+- Python: tokenize-based comment+docstring strip (same approach as the
+  other repos' tools/minify_source.py).
 - CSS:   removes /* ... */ block comments outside quoted strings.
 - JS:    removes // and /* ... */ comments outside string / template /
          regex literals (a small lexical state machine; `/` is treated as
          a regex opener only in positions where division is impossible).
 
-Run: python3 tools/minify.py [path...]
+Run: python3 tools/minify.py [path...]   # default: all tracked sources
 """
 import ast
 import io

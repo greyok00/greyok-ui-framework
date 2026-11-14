@@ -2,7 +2,7 @@
    A  ma-quiet  — warm-white paper, ink type, vermilion held for focus/live/seal stamps.
                   Index-card panels, quiet text+arrow buttons, wide asymmetric rules,
                   18px-air table rows, no ornament, 200-240ms fades, no bounce.
-   B  gesshoku  — moon-phase dark: warm umber ground, moon-silver ink, one muted gold.
+   B  gesshoku  — moon-phase dark: indigo ground, moon-silver ink, one pale glow.
                   Serif (Sentient) display, vertical side-labels, brush-weight rules,
                   moon-phase dots, shoji panels with a faint inner glow.
 
@@ -1045,30 +1045,30 @@
   [data-theme="ma-quiet"] .el-badge.live { animation: none; }
 }
 
-/* ── B · gesshoku — moon-phase dark: umber, moon-silver, one gold ─────────── */
+/* ── B · gesshoku — moon-phase dark: indigo night, moon-silver, one glow ──── */
 
 [data-theme="gesshoku"] {
   color-scheme: dark;
-  --el-bg: #17130e;
-  --el-panel: #1f1911;
-  --el-panel-2: #272013;
-  --el-panel-3: #32291a;
-  --el-line: #31281a;
-  --el-line-2: #2a2316;
-  --el-line-strong: #4a3e29;
-  --el-ink: #d9d4c8;
-  --el-ink-soft: #a89e8b;
-  --el-mute: #9a9078;
-  --el-on-accent: #17130e;
-  --el-accent: #9a7b4f;
-  --el-accent-hover: #bd9a67;
+  --el-bg: #131118;
+  --el-panel: #1a1826;
+  --el-panel-2: #201d2b;
+  --el-panel-3: #2a2637;
+  --el-line: #2e2a3c;
+  --el-line-2: #252230;
+  --el-line-strong: #423d57;
+  --el-ink: #dcdbe4;
+  --el-ink-soft: #a3a1b6;
+  --el-mute: #8f8da4;
+  --el-on-accent: #131118;
+  --el-accent: #97a3dd;
+  --el-accent-hover: #b7c0ea;
   --el-accent-soft: color-mix(in oklab, var(--el-accent) 12%, transparent);
-  --el-ok: #8a9a72;
-  --el-warn: #c2a05e;
-  --el-fail: #d2765c;
-  --el-info: #8d9cae;
-  --el-live: #cfb684;
-  --el-teal: #7b948e;
+  --el-ok: #85a08d;
+  --el-warn: #c9a86a;
+  --el-fail: #d07488;
+  --el-info: #8d9ede;
+  --el-live: #c6c1ec;
+  --el-teal: #7f96a8;
   --el-shadow-1: 0 1px 2px color-mix(in oklab, var(--el-bg) 52%, transparent);
   --el-shadow-2: 0 2px 10px color-mix(in oklab, var(--el-bg) 56%, transparent);
   --el-shadow-3: 0 10px 30px color-mix(in oklab, var(--el-bg) 60%, transparent);
@@ -1120,12 +1120,12 @@
   --el-hero-pad: 96px;
   --el-hero-min: 400px;
   --el-measure: 62ch;
-  --el-stage-active: #b08c53;
-  --el-stage-done: #8a9a72;
-  --el-stage-running: #cfb684;
-  --el-stage-stale: #c96a50;
-  --el-facts-paper: #1f1911;
-  --el-facts-ink: #d9d4c8;
+  --el-stage-active: #8d97d8;
+  --el-stage-done: #85a08d;
+  --el-stage-running: #c6c1ec;
+  --el-stage-stale: #9d6a80;
+  --el-facts-paper: #1a1826;
+  --el-facts-ink: #dcdbe4;
 
   /* v0.4 density: compact — tightened space ladder, short controls.
      type ladder at root 14px: xs 10 · sm 10.5 · md 14 · lg 15.75 · xl 21 · 2xl 31.5 · 3xl 45.5
@@ -1186,9 +1186,9 @@
 }
 [data-theme="gesshoku"] a:hover { color: var(--el-accent-hover); text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px; }
 
-[data-theme="gesshoku"] ::selection { background: color-mix(in oklab, var(--el-accent) 38%, transparent); color: #f2ecdd; }
+[data-theme="gesshoku"] ::selection { background: color-mix(in oklab, var(--el-accent) 38%, transparent); color: #e9e9f2; }
 
-/* focus never disappears: gold hairline ring */
+/* focus never disappears: moonlit hairline ring */
 [data-theme="gesshoku"] :focus-visible {
   outline: 1px solid var(--el-focus-ring);
   outline-offset: 3px;
@@ -1217,14 +1217,14 @@
   background:
     repeating-conic-gradient(from 0.5deg, color-mix(in oklab, var(--el-ink) 0.9%, transparent) 0% 25%, transparent 0% 50%) 0 0 / 2px 2px,
     radial-gradient(circle 150px at 50% 50%,
-      color-mix(in oklab, #f4e9d8 24%, transparent) 0%,
-      color-mix(in oklab, #ebe0cc 20%, transparent) 14%,
-      color-mix(in oklab, #ded1bc 15%, transparent) 27%,
-      color-mix(in oklab, #d0c2b0 10.5%, transparent) 40%,
-      color-mix(in oklab, #c3b7a6 7.5%, transparent) 52%,
-      color-mix(in oklab, #b6ac9f 5%, transparent) 63%,
-      color-mix(in oklab, #a9a296 3%, transparent) 74%,
-      color-mix(in oklab, #9fa097 1.5%, transparent) 85%,
+      color-mix(in oklab, #f2eef6 24%, transparent) 0%,
+      color-mix(in oklab, #e8e4ef 20%, transparent) 14%,
+      color-mix(in oklab, #dbd7e5 15%, transparent) 27%,
+      color-mix(in oklab, #cfcbe0 10.5%, transparent) 40%,
+      color-mix(in oklab, #c2bdd6 7.5%, transparent) 52%,
+      color-mix(in oklab, #b5b0cb 5%, transparent) 63%,
+      color-mix(in oklab, #a7a2bd 3%, transparent) 74%,
+      color-mix(in oklab, #9c97b4 1.5%, transparent) 85%,
       transparent 97%);
   pointer-events: none;
 }
@@ -1236,7 +1236,7 @@
   letter-spacing: var(--el-head-tracking);
 }
 
-/* vertical side-label — a hanging scroll tag; gold tick beneath the text run */
+/* vertical side-label — a hanging scroll tag; glow tick beneath the text run */
 [data-theme="gesshoku"] .el-eyebrow {
   display: block;
   margin: 0 0 18px 6px;
@@ -1322,7 +1322,7 @@
   margin: 2px 0 0 4px;
 }
 
-/* hairline control that warms to gold on hover */
+/* hairline control that cools to moon-glow on hover */
 [data-theme="gesshoku"] .el-btn {
   background: transparent;
   border: 1px solid color-mix(in oklab, var(--el-ink) 14%, transparent);
@@ -1379,23 +1379,23 @@
 
 /* moon-phase dots — full / half / eclipse / glow, all from radial recipes */
 [data-theme="gesshoku"] .el-dot {
-  background: radial-gradient(circle at 40% 34%, #5d5444 0%, #3a3223 72%);
+  background: radial-gradient(circle at 40% 34%, #5b5478 0%, #3b3552 72%);
   box-shadow: 0 0 0 1px color-mix(in oklab, var(--el-ink) 8%, transparent);
 }
 [data-theme="gesshoku"] .el-dot.ok {
-  background: radial-gradient(circle at 40% 34%, #b3c2a4 0%, #7d8f6a 58%, #46523c 100%);
+  background: radial-gradient(circle at 40% 34%, #b2c3b4 0%, #718f7a 58%, #3f5647 100%);
   box-shadow: 0 0 0 1px color-mix(in oklab, var(--el-ink) 10%, transparent);
 }
 [data-theme="gesshoku"] .el-dot.warn {
-  background: conic-gradient(from -90deg at 50% 50%, #cab27c 0deg 180deg, #33291a 180deg 360deg);
+  background: conic-gradient(from -90deg at 50% 50%, #c4b584 0deg 180deg, #2b2640 180deg 360deg);
   box-shadow: 0 0 0 1px color-mix(in oklab, var(--el-ink) 10%, transparent);
 }
 [data-theme="gesshoku"] .el-dot.fail {
-  background: radial-gradient(circle, color-mix(in oklab, var(--el-bg) 90%, transparent) 0 54%, #c96a50 55% 100%);
-  box-shadow: 0 0 6px color-mix(in oklab, #c96a50 35%, transparent);
+  background: radial-gradient(circle, color-mix(in oklab, var(--el-bg) 90%, transparent) 0 54%, #d07488 55% 100%);
+  box-shadow: 0 0 6px color-mix(in oklab, #d07488 35%, transparent);
 }
 [data-theme="gesshoku"] .el-dot.live {
-  background: radial-gradient(circle at 44% 40%, #f2e7cd 0%, var(--el-live) 46%, color-mix(in oklab, var(--el-live) 0%, transparent) 74%);
+  background: radial-gradient(circle at 44% 40%, #e9e9f2 0%, var(--el-live) 46%, color-mix(in oklab, var(--el-live) 0%, transparent) 74%);
   box-shadow: 0 0 var(--elq-moonglow) color-mix(in oklab, var(--el-accent) 55%, transparent);
   animation: elq-moonbreath 4.4s var(--el-ease-quiet) infinite alternate;
 }
@@ -1408,9 +1408,9 @@
   background: linear-gradient(90deg,
     color-mix(in oklab, var(--el-accent) 0%, transparent) 0%,
     color-mix(in oklab, var(--el-accent) 45%, transparent) 16%,
-    #c09a63 42%,
-    #cbb184 50%,
-    #c09a63 58%,
+    #aab4e6 42%,
+    #b9c1ee 50%,
+    #aab4e6 58%,
     color-mix(in oklab, var(--el-accent) 45%, transparent) 84%,
     color-mix(in oklab, var(--el-accent) 0%, transparent) 100%);
   margin: 80px 8% 56px 30% !important;
@@ -1618,7 +1618,7 @@
   box-shadow: none;
 }
 
-/* ruled table: moon table, gold tick under the header */
+/* ruled table: moon table, moonlit tick under the header */
 [data-theme="gesshoku"] .el-table--ruled thead th {
   background: transparent;
   color: var(--el-mute);
@@ -1645,7 +1645,7 @@
 [data-theme="gesshoku"] .el-table--ruled tbody td.num,
 [data-theme="gesshoku"] .el-table--ruled thead th.num { font-variant-numeric: tabular-nums; color: var(--el-ink); }
 
-/* pricing: moon plans, gold featured edge */
+/* pricing: moon plans, glow featured edge */
 [data-theme="gesshoku"] .el-pricing {
   background: color-mix(in oklab, var(--el-ink) 3%, transparent);
   border: 1px solid color-mix(in oklab, var(--el-ink) 9%, transparent);
@@ -1686,7 +1686,7 @@
   letter-spacing: 0.06em;
 }
 
-/* sidebar inside the app mock: transparent rail, gold current edge */
+/* sidebar inside the app mock: transparent rail, moonlit current edge */
 [data-theme="gesshoku"] .el-sidebar { background: transparent; border-right-color: color-mix(in oklab, var(--el-ink) 7%, transparent); }
 [data-theme="gesshoku"] .el-sidebar .grp > .label { color: var(--el-mute); }
 [data-theme="gesshoku"] .el-sidebar .grp a,
@@ -1762,7 +1762,7 @@
   background: color-mix(in oklab, var(--el-accent) 8%, transparent);
   box-shadow: inset 2px 0 0 color-mix(in oklab, var(--el-accent) 55%, transparent);
 }
-/* on the gold selected-row tint even the refreshed mute lands at the AA edge —
+/* on the moonlit selected-row tint even the refreshed mute lands at the AA edge —
    selected rows read their sub line in ink-soft */
 [data-theme="gesshoku"] .el-listbox-row.is-selected .sub { color: var(--el-ink-soft); }
 
@@ -1831,7 +1831,7 @@
 [data-theme="gesshoku"] .el-fact .v { font-family: var(--el-font-serif); font-size: var(--el-fs-xl); color: var(--el-ink); }
 [data-theme="gesshoku"] .el-fact.is-hot .v { color: var(--el-live); }
 
-/* timeline: moonline with gold phase nodes */
+/* timeline: moonline with glow phase nodes */
 [data-theme="gesshoku"] .el-timeline::before { background: linear-gradient(to bottom, transparent, color-mix(in oklab, var(--el-ink) 14%, transparent) 10%, color-mix(in oklab, var(--el-ink) 14%, transparent) 90%, transparent); }
 [data-theme="gesshoku"] .el-timeline > li::before { width: 7px; height: 7px; border-radius: 1px; background: var(--el-panel); border-color: color-mix(in oklab, var(--el-ink) 30%, transparent); top: 12px; }
 [data-theme="gesshoku"] .el-timeline > li.ok::before { border-color: var(--el-stage-done); }
@@ -1839,7 +1839,7 @@
 [data-theme="gesshoku"] .el-timeline > li.live::before { border-color: var(--el-live); background: var(--el-live); animation: elq-moonbreath 4s ease-in-out infinite; }
 [data-theme="gesshoku"] .el-timeline .when { color: var(--el-mute); }
 
-/* overlays: deep umber sheets, gold hairlines */
+/* overlays: deep indigo sheets, glow hairlines */
 [data-theme="gesshoku"] dialog.el-dialog,
 [data-theme="gesshoku"] .el-dialog:not(dialog) {
   background: var(--el-panel-2);
@@ -1899,13 +1899,13 @@
 [data-theme="gesshoku"] .el-command-foot { border-block-start-color: color-mix(in oklab, var(--el-ink) 9%, transparent); }
 [data-theme="gesshoku"] .el-command-foot kbd { background: color-mix(in oklab, var(--el-ink) 8%, transparent); border-color: color-mix(in oklab, var(--el-ink) 14%, transparent); box-shadow: none; color: var(--el-ink-soft); }
 [data-theme="gesshoku"] .el-tooltip::after {
-  background: #100c07;
+  background: #0d0c12;
   color: var(--el-ink);
   border: 1px solid color-mix(in oklab, var(--el-ink) 16%, transparent);
   border-radius: var(--el-r-sm);
 }
 
-/* badges/kbd/avatar chips: dark, gold-lined */
+/* badges/kbd/avatar chips: dark, glow-lined */
 [data-theme="gesshoku"] .el-badge {
   background: transparent;
   border-color: color-mix(in oklab, var(--el-ink) 14%, transparent);
@@ -1930,7 +1930,7 @@
 }
 [data-theme="gesshoku"] .el-avatar.sq { border-radius: var(--el-r-sm); }
 
-/* pagination + stepper: quiet gold current */
+/* pagination + stepper: quiet glow current */
 [data-theme="gesshoku"] .el-pagination .page {
   background: transparent;
   border: 1px solid transparent;
@@ -2004,7 +2004,7 @@
 [data-theme="gesshoku"] .el-assistant-foot { border-top: 1px solid color-mix(in oklab, var(--el-ink) 9%, transparent); }
 
 /* code: dark lattice code */
-[data-theme="gesshoku"] .el-code-block { background: #100c07; border-color: color-mix(in oklab, var(--el-ink) 12%, transparent); box-shadow: none; }
+[data-theme="gesshoku"] .el-code-block { background: #0d0c12; border-color: color-mix(in oklab, var(--el-ink) 12%, transparent); box-shadow: none; }
 [data-theme="gesshoku"] .el-accordion details { background: transparent; border-color: color-mix(in oklab, var(--el-ink) 8%, transparent); border-radius: 0 0 var(--el-r-sm) var(--el-r-sm); border-bottom: 1px solid color-mix(in oklab, var(--el-ink) 8%, transparent); }
 [data-theme="gesshoku"] .el-accordion summary::before { color: var(--el-mute); }
 [data-theme="gesshoku"] .el-accordion .body { border-top: 1px solid color-mix(in oklab, var(--el-ink) 6%, transparent); }

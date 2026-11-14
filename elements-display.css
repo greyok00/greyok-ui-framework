@@ -14,11 +14,11 @@
   flex-shrink: 0;
   box-shadow: 0 0 0 2px color-mix(in oklab, currentColor 25%, transparent);
 }
-.el-dot.ok    { background: var(--el-ok);   color: var(--el-ok);   box-shadow: 0 0 0 2px color-mix(in oklab, var(--el-ok)   25%, transparent), 0 0 8px color-mix(in oklab, var(--el-ok)   55%, transparent); }
-.el-dot.warn  { background: var(--el-warn); color: var(--el-warn); box-shadow: 0 0 0 2px color-mix(in oklab, var(--el-warn) 25%, transparent), 0 0 8px color-mix(in oklab, var(--el-warn) 55%, transparent); }
-.el-dot.fail  { background: var(--el-fail); color: var(--el-fail); box-shadow: 0 0 0 2px color-mix(in oklab, var(--el-fail) 25%, transparent), 0 0 8px color-mix(in oklab, var(--el-fail) 55%, transparent); }
-.el-dot.live  { background: var(--el-live); color: var(--el-live); box-shadow: 0 0 0 2px color-mix(in oklab, var(--el-live) 30%, transparent), 0 0 10px color-mix(in oklab, var(--el-live) 65%, transparent); animation: el-pulse 1.6s var(--el-ease) infinite; }
-.el-dot.info  { background: var(--el-info); color: var(--el-info); }
+.el-dot.ok    { background: var(--el-ok);   box-shadow: 0 0 0 2px color-mix(in oklab, var(--el-ok)   25%, transparent), 0 0 8px color-mix(in oklab, var(--el-ok)   55%, transparent); }
+.el-dot.warn  { background: var(--el-warn); box-shadow: 0 0 0 2px color-mix(in oklab, var(--el-warn) 25%, transparent), 0 0 8px color-mix(in oklab, var(--el-warn) 55%, transparent); }
+.el-dot.fail  { background: var(--el-fail); box-shadow: 0 0 0 2px color-mix(in oklab, var(--el-fail) 25%, transparent), 0 0 8px color-mix(in oklab, var(--el-fail) 55%, transparent); }
+.el-dot.live  { background: var(--el-live); box-shadow: 0 0 0 2px color-mix(in oklab, var(--el-live) 30%, transparent), 0 0 10px color-mix(in oklab, var(--el-live) 65%, transparent); animation: el-pulse 1.6s var(--el-ease) infinite; }
+.el-dot.info  { background: var(--el-info); box-shadow: 0 0 0 2px color-mix(in oklab, var(--el-info) 25%, transparent); }
 @keyframes el-pulse {
   0%, 100% { opacity: 1; transform: scale(1); }
   50%      { opacity: 0.55; transform: scale(0.88); }

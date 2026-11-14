@@ -54,7 +54,7 @@ def test_themes_total():
     assert blocks == set(V3_ROSTER), f"themes.css must contain exactly the v3 roster; got {sorted(blocks)}"
     tokens = read("tokens.css")
     assert ":root" in tokens or '[data-theme="neutral"]' in tokens, "neutral theme missing from tokens.css"
-    assert len(blocks) == 20, "expected 20 v3 themes (neutral lives in tokens.css)"
+    assert len(blocks) == 20, "expected 20 themes (neutral lives in tokens.css)"
 
 
 def test_no_duplicate_class_definitions():

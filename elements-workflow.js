@@ -1,4 +1,4 @@
-/* greyok-ui-framework — workflow behaviors (stage rail, inspector, assistant plan).
+/* greyok-ui-framework v0.2.0 — workflow behaviors (stage, inspector, assistant).
    Same contract as elements.js: no timers except streaming cadence opt-in,
    no network, honors prefers-reduced-motion. */
 (function () {

@@ -1,11 +1,3 @@
-/**
- * greyok-ui-framework: dependency-free SVG chart primitives.
- *
- * Five primitives (Sparkline, Bar, Line, Area, Donut) drawn as plain SVG with
- * colors taken from CSS custom properties so charts re-theme with the page.
- * Charts.auto() renders any [data-chart] host; animations honor
- * prefers-reduced-motion via the CSS classes they attach.
- */
 (function Charts() {
   'use strict';
 

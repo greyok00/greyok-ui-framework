@@ -1,11 +1,3 @@
-/**
- * greyok-ui-framework: theme switcher.
- *
- * Applies a theme by setting [data-theme] on <html>, persisting the choice in
- * localStorage with a #theme= URL-hash fallback, and rendering a 32px icon
- * strip (one inline SVG glyph per theme) into any [data-theme-strip] host.
- * Pages can register extra themes at runtime through window.EL_EXTRA_THEMES.
- */
 (function themeSwitcher() {
   const STORAGE_KEY = 'el-theme';
   const DEFAULT = 'neutral';
@@ -61,7 +53,7 @@
     'kinetic-ink': '<path d="M8 2.4c2.5 3.5 3.9 5.4 3.9 7.1a3.9 3.9 0 0 1-7.8 0c0-1.7 1.4-3.6 3.9-7.1z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>',
     'aperture-motion': '<path d="M8 2l5.2 3v6L8 14 2.8 11V5z" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><circle cx="8" cy="8" r="2" fill="currentColor"/>',
     'ma-quiet': '<circle cx="8" cy="8" r="5.5" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.55"/><circle cx="8" cy="8" r="1.4" fill="currentColor"/>',
-    'gesshoku': '<path d="M9.9 2.3a6 6 0 1 0 0 11.4 4.8 4.8 0 1 1 0-11.4z" fill="currentColor"/>'
+    'gesshoku': '<path d="M9.9 2.3a6 6 0 1 0 0 11.4 4.8 4.8 0 1 1 0-11.4z" fill="currentColor"/>',
   };
   // Local-only extension point: a page may predefine window.EL_EXTRA_THEMES =
   // {themes: [...slugs], names: {slug: Name}, glyphs: {slug: inner-svg}} to add

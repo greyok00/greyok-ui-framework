@@ -113,10 +113,8 @@ def dataset_hook_lines() -> str:
     }
     lines = []
     for k in keys:
-        # Undocumented hooks fall back to a data-kebab-case name derived from
-        # the camelCase dataset key.
-        fallback = "data-" + re.sub(r"(?<!^)(?=[A-Z])", "-", k).lower()
-        lines.append(f'    /** {docs.get(k, fallback)}. */')
+        lines.append(f'    /** {docs.get(k, k)}/ */' if False else
+                     f'    /** {docs.get(k, "data-" + re.sub(r"(?<!^)(?=[A-Z])", "-", k).lower())}. */')
         lines.append(f'    {k}?: string;')
     return "\n".join(lines)
 

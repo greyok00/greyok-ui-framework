@@ -1,15 +1,12 @@
 #!/usr/bin/env python3
-"""tools/build_themes.py — assemble themes/src families into themes.css.
+"""tools/build_themes.py — assemble themes/src families into minified themes.css.
 
 Each family file holds TWO theme blocks (the v3 rule: every theme is radically
 different, so sources stay grouped by family). Roster order defines output
 order; body is wrapped in @layer el-themes (declared last in base.css so
 signatures outrank the element baseline).
 
-Default output is the readable, multi-line themes.css committed at the repo
-root. Pass --minified for the collapsed one-line form used in dist packaging.
-
-Run: python3 tools/build_themes.py [--minified]
+Run: python3 tools/build_themes.py
 """
 import re, sys
 from pathlib import Path
@@ -102,19 +99,8 @@ def block_of(raw: str, slug: str) -> str:
     return "".join(s for s in top_level_segments(raw)
                    if f'[data-theme="{slug}"]' in s)
 
-def strip_source_comments(css: str) -> str:
-    """Remove /* ... */ comments while preserving all other whitespace."""
-    return re.sub(r"/\*.*?\*/", "", css, flags=re.S)
-
-
-def check_no_root(css: str) -> None:
-    """Every token must live on a [data-theme] block head, never :root."""
-    if ":root" in re.sub(r"\s+", "", css):
-        raise ValueError("output contains :root — tokens must live on [data-theme] block heads")
-
-
 def minify(css: str) -> str:
-    css = strip_source_comments(css)
+    css = re.sub(r"/\*.*?\*/", "", css, flags=re.S)
     css = re.sub(r"\s+", " ", css)
     css = re.sub(r"\s*([{};,])\s*", r"\1", css)
     stripped = css.strip()
@@ -127,11 +113,8 @@ def main() -> int:
     # (e.g. the local-only program) with the SAME gates. Roster is derived
     # from the files' own [data-theme] heads so the local program never
     # has to edit FAMILY_SLUGS. Default (no flags) behavior is unchanged.
-    global SRC, OUT, FAMILY_SLUGS
+    global FAMILY_SLUGS, SRC, OUT
     argv = sys.argv[1:]
-    out_minified = "--minified" in argv
-    if out_minified:
-        argv = [a for a in argv if a != "--minified"]
     local_roster = None
     if "--src" in argv:
         SRC = Path(argv[argv.index("--src") + 1]).resolve()
@@ -218,16 +201,7 @@ def main() -> int:
             orphan_css.append(m.group(0))
             slice_names.add(name)
 
-    content = "".join(chunks[s] for s in roster_order) + "\n".join(orphan_css)
-    check_no_root(content)
-    if out_minified:
-        body = "@layer el-themes{" + minify(content) + "}"
-    else:
-        # Readable artifact: comments stripped, original whitespace kept,
-        # each theme block separated by a blank line.
-        readable = strip_source_comments(content)
-        readable = re.sub(r"\n{3,}", "\n\n", readable).strip("\n")
-        body = "@layer el-themes {\n" + readable + "\n}\n"
+    body = "@layer el-themes{" + minify("".join(chunks[s] for s in roster_order) + " ".join(orphan_css)) + "}"
     tmp = OUT.with_suffix(".css.tmp")
     tmp.write_text(body + "\n")          # atomic: never leave a half-written artifact
     tmp.replace(OUT)

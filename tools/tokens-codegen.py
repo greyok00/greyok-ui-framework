@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """tools/tokens-codegen.py — emit CSS custom properties from design-token JSON.
 
-Expected input files in a design-tokens JSON directory:
+Feeds (in ~/ui-framework-notes/design-tokens/):
   colors.json      → --el-bg/--el-panel*/--el-line*/--el-ink*/--el-accent*/--el-ok/--el-warn/
                      --el-fail/--el-info/--el-live/--el-teal/--el-on-accent (per theme,
                      utility.semantic → ok/warn/fail/info fallbacks, utility.border → line tokens)
@@ -15,7 +15,7 @@ starting point for regenerating a palette from an audit JSON, not a replacement 
 Usage:
   python3 tools/tokens-codegen.py                     # all sources → stdout
   python3 tools/tokens-codegen.py -o out.css          # → file
-  python3 tools/tokens-codegen.py --dir path/tokens   # custom JSON dir
+  python3 tools/tokens-codegen.py --dir ~/path/tokens # custom notes dir
 """
 import argparse
 import json
@@ -150,7 +150,7 @@ def main():
         wrote.append("typography")
 
     if not wrote:
-        print("no token JSON found — nothing emitted", file=sys.stderr)
+        print("no token JSON found — nothing emitted", file=__import__("sys").stderr)
         return 1
     out.append(f"\n/* sources: {', '.join(w + '.json' for w in wrote)} */\n")
     text = "\n".join(out)

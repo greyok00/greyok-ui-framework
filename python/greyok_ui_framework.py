@@ -1,13 +1,5 @@
-"""Tkinter bridge for the greyok-ui-framework CSS token set.
 
-Parses tokens.css and themes.css at the repository root into ElTheme objects,
-so a Tkinter application can reuse the same theme values (colors, fonts) that
-the CSS framework applies in the browser. Themes are read from the
-``[data-theme="<slug>"]`` blocks in themes.css; custom property references
-(var(--x)) are resolved against the merged token set.
 
-Run: python3 python/greyok_ui_framework.py   # list the themes it can read
-"""
 from __future__ import annotations
 
 import re
@@ -15,20 +7,19 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Union
 
+
+
+
 _VAR_RE = re.compile(r"--([a-z0-9\-]+)\s*:\s*([^;]+?)\s*;")
 
 
 def _parse_vars(css_text: str) -> Dict[str, str]:
-    """Extract ``--name: value`` declarations from a CSS fragment."""
+
     return {m.group(1): m.group(2).strip() for m in _VAR_RE.finditer(css_text)}
 
 
 def _resolve(value: str, all_vars: Dict[str, str]) -> str:
-    """Expand var(--name[, fallback]) references against a token table.
 
-    Cycles are left as-is (the guard set stops re-substitution of a name a
-    second time); iteration is bounded so pathological nesting cannot loop.
-    """
     seen = set()
 
     def sub(match: re.Match) -> str:
@@ -48,7 +39,7 @@ def _resolve(value: str, all_vars: Dict[str, str]) -> str:
 
 
 def _hex_to_rgb(value: str) -> Optional[tuple]:
-    """Convert #rrggbb or #rgb to an (r, g, b) tuple; None for other formats."""
+
     m = re.match(r"#([0-9a-fA-F]{6})$", value)
     if m:
         h = m.group(1)
@@ -60,14 +51,11 @@ def _hex_to_rgb(value: str) -> Optional[tuple]:
     return None
 
 
+
+
 @dataclass
 class ElTheme:
-    """One theme's resolved tokens plus Tkinter widget option presets.
 
-    ``tokens`` maps token names without the ``--el-`` prefix ("bg", "accent")
-    to their resolved values. Property accessors fall back to sensible
-    defaults so a partially parsed theme still renders.
-    """
 
     slug: str
     tokens: Dict[str, str] = field(default_factory=dict)
@@ -136,8 +124,10 @@ class ElTheme:
     def font_mono(self) -> str:
         return self.tokens.get("font-mono", "TkFixedFont")
 
+
+
     def btn_kwargs(self, variant: str = "") -> Dict[str, Any]:
-        """Options for tk.Button styled with the theme accent."""
+
         return {
             "bg": self.accent,
             "fg": self.on_accent,
@@ -152,7 +142,6 @@ class ElTheme:
         }
 
     def label_kwargs(self, soft: bool = False) -> Dict[str, Any]:
-        """Options for tk.Label on the theme background."""
         return {
             "bg": self.bg,
             "fg": self.ink_soft if soft else self.ink,
@@ -160,14 +149,12 @@ class ElTheme:
         }
 
     def frame_kwargs(self, level: int = 0) -> Dict[str, Any]:
-        """Options for tk.Frame at the given surface depth (0 = page)."""
         levels = [self.bg, self.panel, self.panel_2, self.tokens.get("panel-3", self.panel_2)]
         return {
             "bg": levels[min(level, len(levels) - 1)],
         }
 
     def pill_kwargs(self, variant: str = "ok") -> Dict[str, Any]:
-        """Options for tk.Label styled as a status pill (ok/warn/fail/info/live)."""
         color = {
             "ok": self.ok,
             "warn": self.warn,
@@ -184,13 +171,16 @@ class ElTheme:
         }
 
     def _first_font_family(self) -> str:
+
         s = self.font_body
         m = re.match(r"'([^']+)'", s)
         return m.group(1) if m else "TkDefaultFont"
 
 
+
+
 class ElThemeNotFound(KeyError):
-    """Raised by get_theme() for a slug that is not in themes.css."""
+    pass
 
 
 _THEMES_CACHE: Optional[Dict[str, ElTheme]] = None
@@ -200,12 +190,7 @@ def _load_themes(
     tokens_path: Optional[Union[str, Path]] = None,
     themes_path: Optional[Union[str, Path]] = None,
 ) -> Dict[str, ElTheme]:
-    """Parse tokens.css + themes.css into {slug: ElTheme}; cached on first call.
 
-    The neutral theme holds the base token set from tokens.css. Each
-    [data-theme] block in themes.css overrides those tokens; var() references
-    in the overrides are resolved against the merged set.
-    """
     global _THEMES_CACHE
     if _THEMES_CACHE is not None:
         return _THEMES_CACHE
@@ -238,12 +223,12 @@ def _load_themes(
 
 
 def available_themes() -> List[str]:
-    """Return every theme slug the bridge can load (neutral included)."""
+
     return list(_load_themes().keys())
 
 
 def get_theme(slug: str = "neutral") -> ElTheme:
-    """Return the ElTheme for slug, raising ElThemeNotFound if unknown."""
+
     themes = _load_themes()
     if slug not in themes:
         raise ElThemeNotFound(
@@ -252,8 +237,11 @@ def get_theme(slug: str = "neutral") -> ElTheme:
     return themes[slug]
 
 
+
+
+
 def apply_theme(widget: Any, slug: str = "neutral") -> ElTheme:
-    """Set the widget's background to the theme and return the theme."""
+
     theme = get_theme(slug)
     try:
         widget.configure(bg=theme.bg)
@@ -262,8 +250,11 @@ def apply_theme(widget: Any, slug: str = "neutral") -> ElTheme:
     return theme
 
 
+
+
+
 class ElWidget:
-    """Prefab Tkinter widget carrying its ElTheme (btn/pill/label/frame/gauge)."""
+
 
     def __init__(self, parent: Any, kind: str, theme: Optional[ElTheme] = None, **kwargs):
         import tkinter as tk
@@ -294,6 +285,7 @@ class ElWidget:
             tk.Label(inner, text=kwargs.get("val", ""), bg=self.theme.panel_2, fg=fg, font=(self.theme._first_font_family(), 14, "bold")).pack(pady=(4, 8))
             self._w = inner
         else:
+
             self._w = tk.Label(parent, text=kwargs.get("text", kind),
                                **self.theme.label_kwargs())
 
@@ -314,7 +306,11 @@ class ElWidget:
         return self._w
 
 
+
+
+
 if __name__ == "__main__":
+
     print(f"Found {len(available_themes())} themes:\n")
     for slug in available_themes():
         t = get_theme(slug)

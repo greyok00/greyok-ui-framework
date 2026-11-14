@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""tools/check_sites.py — prove every theme's demo site uses EVERY contract element.
+"""tools/check_sites.py — prove every theme's demo site uses EVERY inventory element.
 
-For each slug with a site at demo/sites/<slug>/, all *.html pages concatenated
-must mark up every `.el-*` class in the shipped-element contract at least once.
-Structural slots (nav/hero/card/table variants) are the persona layer, reviewed
-by eye; element-class coverage is the hard proof here.
+Contract: docs/INVENTORY.md. For each slug with a site at demo/sites/<slug>/,
+all *.html pages concatenated must mark up every `.el-*` class the contract
+lists at least once. Structural slots (nav/hero/card/table variants) are the
+persona layer, reviewed by eye; element-class coverage is the hard proof here.
 
 Run: python3 tools/check_sites.py [slug ...]    (default: all built sites)
 """
@@ -12,76 +12,15 @@ import re, sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
+INVENTORY = ROOT / "docs" / "INVENTORY.md"
 SITES = ROOT / "demo" / "sites"
-CONTRACT_CLASSES = {
-    "el-actionbar",
-    "el-appwin",
-    "el-assistant-panel",
-    "el-avatar",
-    "el-badge",
-    "el-banner",
-    "el-btn",
-    "el-card",
-    "el-check",
-    "el-chip",
-    "el-citation-rail",
-    "el-command",
-    "el-dialog",
-    "el-drawer",
-    "el-empty",
-    "el-fact-grid",
-    "el-field",
-    "el-footer",
-    "el-headerbar",
-    "el-hero",
-    "el-inline-alert",
-    "el-input",
-    "el-inspector",
-    "el-kbd",
-    "el-ladder-step",
-    "el-listbox",
-    "el-media-band",
-    "el-menu",
-    "el-meter",
-    "el-navbar",
-    "el-notification",
-    "el-page",
-    "el-pagination",
-    "el-panel",
-    "el-pill",
-    "el-popover",
-    "el-pricing",
-    "el-progress",
-    "el-progress-truth",
-    "el-pt-chunk",
-    "el-reader",
-    "el-search",
-    "el-section",
-    "el-segmented",
-    "el-select",
-    "el-sidebar",
-    "el-skeleton",
-    "el-slider",
-    "el-source-card",
-    "el-sparkline",
-    "el-spinner",
-    "el-stage-rail",
-    "el-stat",
-    "el-status-dot",
-    "el-status-pill",
-    "el-stepper",
-    "el-switch",
-    "el-tabbar",
-    "el-table",
-    "el-testimonial",
-    "el-timeline",
-    "el-toast",
-    "el-tooltip",
-}
 
 
 def required_classes() -> set:
-    return set(CONTRACT_CLASSES)
+    text = INVENTORY.read_text()
+    # the "Files (v0.4 target)" tail lists filenames, not classes — drop it
+    text = text.split("## Files (v0.4 target)")[0]
+    return set(re.findall(r"\.el-[a-z0-9-]+", text))
 
 
 def main() -> int:

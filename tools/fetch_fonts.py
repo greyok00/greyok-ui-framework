@@ -108,8 +108,7 @@ def main():
             rules.append(
                 f"@font-face{{font-family:'{face['family']}';font-weight:{f['weight']};font-display:swap;"
                 f"src:url({f['file']}) format('woff2');}}")
-    # Readable one-rule-per-line artifact committed at the repo root.
-    (ROOT / "fonts.css").write_text("@layer el-fonts {\n" + "\n".join(rules) + "\n}\n")
+    (ROOT / "fonts.css").write_text("@layer el-fonts{" + "".join(rules) + "}\n")
     (ROOT / "fonts" / "manifest.json").write_text(json.dumps(manifest, indent=1))
     licenses = ["# Font licenses\n", "\nAll faces are delivered under their upstream licenses: SIL OFL 1.1 (Google Fonts set),\nFontshare ITF FFL (Clash Display, Satoshi, General Sans, Sentient). Source files in fonts/.\n"]
     (ROOT / "fonts" / "LICENSES.md").write_text("".join(licenses))
