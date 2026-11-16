@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en" data-theme="aperture-motion"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Filmography — Halide Motion Pictures</title>
+<link rel="stylesheet" href="../../../base.css"><link rel="stylesheet" href="../../../fonts.css">
+<link rel="stylesheet" href="../../../tokens.css">
+<link rel="stylesheet" href="../../../elements-display.css">
+<link rel="stylesheet" href="../../../elements-structure.css">
+<link rel="stylesheet" href="../../../elements-lists.css">
+<link rel="stylesheet" href="../../../elements-app.css">
+<link rel="stylesheet" href="../../../elements-containers.css">
+<link rel="stylesheet" href="../../../elements-controls.css">
+<link rel="stylesheet" href="../../../elements-inputs.css">
+<link rel="stylesheet" href="../../../elements-dataviz.css">
+<link rel="stylesheet" href="../../../elements-overlay.css">
+<link rel="stylesheet" href="../../../elements-interactions.css">
+<link rel="stylesheet" href="../../../elements-misc.css">
+<link rel="stylesheet" href="../../../elements-size.css">
+<link rel="stylesheet" href="../../../elements-workflow.css">
+<link rel="stylesheet" href="../../../elements-inspector.css">
+<link rel="stylesheet" href="../../../elements-reader.css">
+<link rel="stylesheet" href="../../../elements-assistant.css">
+<link rel="stylesheet" href="../../../themes/src/motion-brand.css">
+<script src="../../../elements.js" defer></script><script src="../../../charts.js" defer></script>
+<style>
+  .ap-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+  @media (max-width:1000px){ .ap-grid{ grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:700px){ .ap-grid{ grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<main class="el-page">
+
+  <nav class="el-navbar el-navbar--top" aria-label="Primary">
+    <a class="brand" href="index.html">Halide<span class="el-bar-mark" aria-hidden="true"></span></a>
+    <div class="links">
+      <a href="index.html">Productions</a>
+      <a href="catalog.html" aria-current="page">Filmography</a>
+      <a href="article.html">Notes from set</a>
+      <a href="account.html">Producer portal</a>
+      <a href="app.html">Shoot log</a>
+    </div>
+    <div class="actions">
+      <button class="el-btn ghost" data-toast="Filmography PDF queued — the press kit carries the log numbers." data-toast-variant="info">Press kit</button>
+    </div>
+  </nav>
+
+  <header class="el-hero el-hero--left" style="padding:34px 0 12px;min-height:0">
+    <p class="el-eyebrow">filmography — 41 productions · 2014–2026</p>
+    <h1 class="el-title-xl" style="font-size:clamp(1.7em,3.2vw,2.4em)">Every picture, with the permit days it took.</h1>
+    <p class="el-body" style="max-width:64ch">Search by title, filter by format, open any card for the
+    shoot record. Permit counts and day counts come straight from the log, not from the poster.</p>
+  </header>
+
+  <section class="el-section el-section--flush">
+    <div class="el-search-field" style="max-width:420px">
+      <input class="el-search" type="search" placeholder="search titles, formats, locations…">
+    </div>
+    <div class="el-chips" style="display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 0">
+      <button class="el-chip is-selected">All 41</button>
+      <button class="el-chip">Features</button>
+      <button class="el-chip">Shorts</button>
+      <button class="el-chip">Commissioned</button>
+      <button class="el-chip live">In production · 2</button>
+    </div>
+    <span class="el-tooltip" data-tip="Permit counts are audited by the production manager each quarter">
+      <button class="el-btn ghost" style="margin-top:12px">Why permit days matter</button>
+    </span>
+  </section>
+
+  <section class="el-section" style="padding-block:22px">
+    <div class="ap-grid">
+      <article class="el-card el-card--raised is-interactive">
+        <div class="el-card-media" style="height:140px"><span style="display:block;height:140px;background:linear-gradient(100deg,#2c1a0c,#140d07 72%)"></span></div>
+        <span class="lbl">feature · 2026 · 1.85:1</span>
+        <h3>Sonora Red</h3>
+        <p class="sub">Border radio, a rescue that has not happened yet. 32 shoot days, 21 permitted locations.</p>
+        <div class="actions"><span class="el-badge live">shooting</span><span class="el-mono" style="font-size:.78rem;color:var(--el-ink-soft)">permit 21/21</span>
+          <button class="el-btn ghost" style="min-height:30px;padding:2px 10px" data-drawer-open="ap-record-drawer">Record</button></div>
+      </article>
+      <article class="el-card el-card--raised is-interactive">
+        <div class="el-card-media" style="height:140px"><span style="display:block;height:140px;background:linear-gradient(100deg,#28210e,#120e07 72%)"></span></div>
+        <span class="lbl">feature · 2025 · 2.39:1</span>
+        <h3>The Salt Ledger</h3>
+        <p class="sub">An audit of a vanishing flat. 44 days, 9 permitted locations, one sound-stage insert block.</p>
+        <div class="actions"><span class="el-badge ok">picture lock</span><span class="el-mono" style="font-size:.78rem;color:var(--el-ink-soft)">permit 9/9</span>
+          <button class="el-btn ghost" style="min-height:30px;padding:2px 10px" data-drawer-open="ap-record-drawer">Record</button></div>
+      </article>
+      <article class="el-card el-card--raised is-interactive">
+        <div class="el-card-media" style="height:140px"><span style="display:block;height:140px;background:linear-gradient(100deg,#1c2218,#0f120e 72%)"></span></div>
+        <span class="lbl">shorts block · 2025</span>
+        <h3>Four Sunsets</h3>
+        <p class="sub">Four directors, one golden-hour window. 44 camera-days in total, none after dusk.</p>
+        <div class="actions"><span class="el-badge">boarded</span><span class="el-mono" style="font-size:.78rem;color:var(--el-ink-soft)">permit 4/4</span>
+          <button class="el-btn ghost" style="min-height:30px;padding:2px 10px" data-drawer-open="ap-record-drawer">Record</button></div>
+      </article>
+      <article class="el-card el-card--raised is-interactive">
+        <div class="el-card-media" style="height:140px"><span style="display:block;height:140px;background:linear-gradient(100deg,#232a2c,#111719 72%)"></span></div>
+        <span class="lbl">commissioned · 2024</span>
+        <h3>Copper Line</h3>
+        <p class="sub">A mining museum film and two visitor-center loops for the Heritage Corridor.</p>
+        <div class="actions"><span class="el-badge ok">delivered</span><span class="el-mono" style="font-size:.78rem;color:var(--el-ink-soft)">permit 12/12</span>
+          <button class="el-btn ghost" style="min-height:30px;padding:2px 10px" data-drawer-open="ap-record-drawer">Record</button></div>
+      </article>
+      <article class="el-card el-card--raised is-interactive">
+        <div class="el-card-media" style="height:140px"><span style="display:block;height:140px;background:linear-gradient(100deg,#2a1420,#130d10 72%)"></span></div>
+        <span class="lbl">feature · 2022 · 2.39:1</span>
+        <h3>The Quiet Ford</h3>
+        <p class="sub">A dry wash becomes a river for one night each year. 27 days, all night exteriors.</p>
+        <div class="actions"><span class="el-badge ok">released</span><span class="el-mono" style="font-size:.78rem;color:var(--el-ink-soft)">permit 27/27</span>
+          <button class="el-btn ghost" style="min-height:30px;padding:2px 10px" data-drawer-open="ap-record-drawer">Record</button></div>
+      </article>
+      <section class="el-card el-card--flat" style="display:grid;align-content:center;gap:10px">
+        <div class="el-empty">
+          <span class="el-icon"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4.2-4.2"/></svg></span>
+          <span class="el-title">Nothing filed under that</span>
+          <span class="el-msg">Halide does not do second-unit pickups for other houses — those records belong to whoever shot them.</span>
+          <span class="el-hint">Try: features, shorts, commissioned.</span>
+          <span class="el-action"><button class="el-btn ghost">Reset filters</button></span>
+        </div>
+      </section>
+    </div>
+  </section>
+
+  <section class="el-section el-section--dense">
+    <p class="el-eyebrow">Last ten finishes</p>
+    <h2>The can, in order</h2>
+    <table class="el-table el-table--zebra">
+      <thead><tr><th>Title</th><th>Format</th><th class="num">Days</th><th>Wrapped</th><th>State</th></tr></thead>
+      <tbody>
+        <tr><td>The Salt Ledger</td><td>2.39:1 feature</td><td class="num el-mono">44</td><td>Aug 2026</td><td><span class="el-status-pill ok">locked</span></td></tr>
+        <tr><td>Copper Line</td><td>16:9 commissioned</td><td class="num el-mono">12</td><td>Jun 2026</td><td><span class="el-status-pill ok">delivered</span></td></tr>
+        <tr><td>Wash Houses</td><td>16 mm short</td><td class="num el-mono">6</td><td>Mar 2026</td><td><span class="el-status-pill ok">delivered</span></td></tr>
+        <tr><td>Night Cartography</td><td>anamorphic short</td><td class="num el-mono">9</td><td>Jan 2026</td><td><span class="el-status-pill stale">archived</span></td></tr>
+      </tbody>
+    </table>
+    <nav class="el-pagination" aria-label="Filmography pages" style="margin-top:16px">
+      <button class="page" aria-label="Previous">‹</button>
+      <button class="page on">1</button><button class="page">2</button><button class="page">3</button><button class="page">4</button>
+      <span class="info el-mono">page 1 of 4 · 41 productions</span>
+      <button class="page">›</button>
+    </nav>
+  </section>
+
+  <footer class="el-footer el-footer--plain" style="border-top:1px solid var(--el-line-2);padding-top:20px">
+    <div class="small"><span>© 2026 Halide Motion Pictures · filmography 41 titles</span><span><a href="index.html" style="color:var(--el-accent)">studio home</a></span></div>
+  </footer>
+
+  <div id="ap-record-drawer" class="el-drawer right" role="dialog" aria-label="Production record">
+    <div class="el-drawer-head">Production record<button data-drawer-close style="background:none;border:0;color:inherit;cursor:pointer;font-size:1em" aria-label="Close">✕</button></div>
+    <div class="el-drawer-body">
+      <div class="el-fact-grid">
+        <div class="el-card el-card--flat"><span class="el-label">Shoot days</span><span class="el-big-num" style="font-size:1.3em">32</span></div>
+        <div class="el-card el-card--flat"><span class="el-label">Permits</span><span class="el-big-num" style="font-size:1.3em">21</span></div>
+        <div class="el-card el-card--flat"><span class="el-label">Call sheets</span><span class="el-big-num" style="font-size:1.3em">41</span></div>
+        <div class="el-card el-card--flat"><span class="el-label">Dailies nights</span><span class="el-big-num" style="font-size:1.3em">31</span></div>
+      </div>
+      <div class="el-progress-truth" style="margin-top:12px">
+        <span class="el-pt-chunk on"></span><span class="el-pt-chunk on"></span><span class="el-pt-chunk on"></span><span class="el-pt-chunk is-running"></span><span class="el-pt-chunk"></span>
+        <span class="el-pt-label"><span class="el-pt-count">3 / 5</span> reels through the conform</span>
+      </div>
+      <div class="el-media-band el-media-band--flat" style="margin-top:14px">
+        <div class="media"><div class="frame" style="position:absolute;inset:0;background:linear-gradient(100deg,#2a170b,#120b06 72%)"></div>
+        <figcaption>reel 2 conform plate</figcaption></div>
+        <div class="body"><span class="label">Sonora Red</span>
+        <p class="el-body" style="font-size:.92em">The border crossing sequence, conformed at 1.85:1 with the radio set intact.</p></div>
+      </div>
+    </div>
+    <div class="el-drawer-foot">
+      <button class="el-btn ghost" data-drawer-close>Close</button>
+      <button class="el-btn" data-toast="Production record exported to the producer portal." data-toast-variant="ok">Export record</button>
+    </div>
+  </div>
+
+  <div class="el-toast-region">
+    <div class="el-toast info" role="status"><span>Filmography counts are read from the shoot log each night at 02:10.</span><span class="close" aria-label="Dismiss">✕</span></div>
+  </div>
+
+</main>
+</body></html>

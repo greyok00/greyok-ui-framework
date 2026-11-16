@@ -1,0 +1,2969 @@
+/* themes/src/illustration.css — family 7: Illustration Playful.
+   Evidence: uiux-master wave1 research corpus (BRIEFS §7, TAXONOMY family 7)
+   (saturated accent on light ground, rounded everything, Caveat accents, springy overshoot,
+   sticker badges, hand-drawn strokes). Two directions, one file:
+
+     sticker-pop — warm white ground, coral accent, sky secondary, Baloo 2 + Poppins,
+                   blob sticker cards with candy-tinted shadows, polka-dot ornament.
+     sketchbook  — paper ground + deterministic grain ornament, charcoal ink, marker green
+                   accent, Caveat display + Nunito body, dashed sketch borders, taped-note footer.
+
+   v0.3.x polish: true 1–2px edges only, layered color-mix(in oklab) shadows/fills against
+   4K banding, image-set grain (crisp 1x/2x), @property instruments (candy sheen sweep,
+   drawing wavy ink), GTK-9 state machine, spring easing w/ reduced-motion collapse.
+
+   Bare fragment: concatenated inside @layer el-themes{ } by tools/build_themes.py. */
+
+/* ══ A · sticker-pop — playful consumer tool (stickers, candy, spring) ══ */
+
+[data-theme="sticker-pop"] {
+
+  /* palette — warm white + coral + sky */
+  --el-bg:           #fffdf8;
+  --el-panel:        #ffffff;
+  --el-panel-2:      #fff3ea;
+  --el-panel-3:      #ffe9dc;
+  --el-line:         #ffd9c2;
+  --el-line-2:       #fff1e8;
+  --el-line-strong:  #2b2b33;
+  --el-ink:          #2b2b33;
+  --el-ink-soft:     #635f6a;
+  /* v0.4.0 color pass — text-grade palette. Probe ledger (tmp probe, WCAG-AA):
+     the old brights (ok #2fb673 2.61:1, warn 1.83:1, fail 2.6:1, info 3.2:1,
+     live 2.5:1, mute #9b959f 2.9:1 all as small text on their own tints/panels)
+     were pastel-on-pastel; every value below clears 4.5:1 on every panel it
+     can land on. Bright coral/amber stay as the FILL voice via --el-accent /
+     --el-warn; text reads --el-accent-ink / --el-warn-ink. */
+  --el-mute:         #6b6672;
+  --el-on-accent:    #2b2b33;
+  --el-accent:       #ff6b4a;
+  --el-accent-hover: #ff8a62;
+  --el-accent-soft:  color-mix(in oklab, var(--el-accent) 13%, transparent);
+  --el-accent-ink:   #c2370e;
+  --el-warn-ink:     #8a5b00;
+  --el-ok:           #1e7c4a;
+  --el-warn:         #ffb02e;
+  --el-fail:         #c81d5a;
+  --el-info:         #3d6fb0;
+  --el-live:         #0a7668;
+  --el-teal:         #0a7668;
+  --el-shadow-1:     0 2px 6px color-mix(in oklab, var(--el-accent) 13%, transparent);
+  --el-shadow-2:     0 2px 4px color-mix(in oklab, var(--el-accent) 12%, transparent), 0 7px 18px -2px color-mix(in oklab, var(--el-accent) 20%, transparent);
+  --el-shadow-3:     0 2px 5px color-mix(in oklab, var(--el-accent) 14%, transparent), 0 12px 24px -6px color-mix(in oklab, var(--el-accent) 22%, transparent), 0 26px 52px -16px color-mix(in oklab, var(--el-accent) 26%, transparent);
+  --el-overlay:      color-mix(in oklab, #2b2b33 52%, transparent);
+  --el-focus-ring:   var(--el-accent-ink);
+
+  /* type — Baloo 2 display, Poppins body, Nunito "mono" */
+  --el-font-body:    'Poppins', system-ui, sans-serif;
+  --el-font-display: 'Baloo 2', 'Poppins', sans-serif;
+  --el-font-mono:    'Nunito', ui-monospace, monospace;
+  --el-body-weight:  500;
+  --el-head-weight:  800;
+  --el-head-tracking: 0;
+  --el-head-case:    none;
+  --el-label-weight: 700;
+  --el-label-tracking: .09em;
+  --el-label-case:   uppercase;
+
+  /* geometry — fat radii, chunky sticker borders */
+  --el-r-sm: 10px;
+  --el-r-md: 14px;
+  --el-r-lg: 18px;
+  --el-r-xl: 24px;
+  --el-bw: 2px;
+  --el-bw-emph: 2px;
+  --el-ctl-pad-y: 10px;
+  --el-ctl-pad-x: 18px;
+  --el-ctl-min-h: 44px;
+  --el-card-pad: 28px;
+  --el-hero-pad: 72px;
+  --el-hero-min: 380px;
+  --el-bar-h: 5px;
+
+  /* v0.4.0 wave — airy density ladder + reading measure + quote serif */
+  --el-space-1: 5px;
+  --el-space-2: 10px;
+  --el-space-3: 14px;
+  --el-space-4: 20px;
+  --el-space-5: 30px;
+  --el-space-6: 44px;
+  --el-measure: 66ch;
+  --el-font-serif: 'Nunito', system-ui, sans-serif;
+
+  /* elevation — crisp candy copy under the sheet + layered low-band halo */
+  --el-raise-1: 0 1px 2px color-mix(in oklab, var(--el-accent) 10%, transparent), 0 3px 8px -2px color-mix(in oklab, var(--el-accent) 12%, transparent);
+  --el-raise-2: 0 4px 0 color-mix(in oklab, var(--el-accent-hover) 40%, transparent), 0 7px 12px -5px color-mix(in oklab, var(--el-accent) 20%, transparent), 0 15px 30px -12px color-mix(in oklab, var(--el-accent) 26%, transparent);
+  --el-raise-3: 0 7px 0 color-mix(in oklab, var(--el-accent-hover) 44%, transparent), 0 12px 20px -9px color-mix(in oklab, var(--el-accent) 24%, transparent), 0 26px 50px -16px color-mix(in oklab, var(--el-accent) 34%, transparent);
+
+  /* motion — springy overshoot, settle */
+  --el-dur-fast: 150ms;
+  --el-dur-base: 240ms;
+  --el-dur-slow: 420ms;
+  --el-dur-progress: 1.6s;
+  --el-ease:      var(--el-ease-spring);
+  --el-ease-out:  cubic-bezier(.22, 1, .36, 1);
+  --el-lift:  translateY(-2px);
+  --el-press: scale(.955);
+
+  /* voice */
+  --el-ornament: dots;
+  --el-rule-style: solid;
+
+  /* focus — chunky double candy ring (token override) */
+  --el-ring: 0 0 0 3px color-mix(in oklab, var(--el-accent) 30%, transparent), 0 0 0 6px color-mix(in oklab, var(--el-accent) 10%, transparent);
+
+  /* workflow voice */
+  --el-stage-active:  var(--el-accent);
+  --el-stage-done:    var(--el-ok);
+  --el-stage-running: var(--el-accent);
+  --el-stage-stale:   var(--el-fail);
+  --el-facts-paper:   #ffffff;
+  --el-facts-ink:     #2b2b33;
+
+  /* system instrument chrome */
+  color-scheme: light;
+  accent-color: var(--el-accent);
+  scrollbar-color: var(--el-line-strong) transparent;
+  /* v0.4.0 type pass — restore the 16px root. base.css sizes html at
+     --el-fs-md (0.8125rem), which recursively rescales EVERY rem in the
+     system: body ran at 10.5px instead of 13px, h2/h3 collapsed to body
+     size, micro labels sat at 8px. This block restores the intended scale
+     (spacing tokens are all px and do not move). */
+  font-size: 16px;
+}
+
+/* A · ground — warm-white sheet, integer-tile polka lattice + layered washes
+   (the harness loads no base.css, so body + heading glue lives per theme) */
+[data-theme="sticker-pop"] body {
+  margin: 0;
+  font-family: var(--el-font-body);
+  font-size: var(--el-fs-md);
+  font-weight: var(--el-body-weight);
+  line-height: 1.55;
+  font-optical-sizing: auto;
+  color: var(--el-ink);
+  background:
+    radial-gradient(circle, color-mix(in oklab, var(--el-accent) 8%, transparent) 0 2.6px, transparent 3.2px),
+    radial-gradient(circle, color-mix(in oklab, var(--el-info) 7%, transparent) 0 1.6px, transparent 2.2px),
+    radial-gradient(1100px 500px at 9% -10%, color-mix(in oklab, var(--el-accent) 8%, transparent) 0%, color-mix(in oklab, var(--el-accent) 4%, transparent) 44%, transparent 68%),
+    radial-gradient(900px 460px at 108% 108%, color-mix(in oklab, var(--el-info) 8%, transparent) 0%, color-mix(in oklab, var(--el-info) 4%, transparent) 46%, transparent 70%),
+    var(--el-bg);
+  background-size: 72px 72px, 104px 104px, auto, auto, auto;
+  background-position: 0 0, 27px 53px, 0 0, 0 0, 0 0;
+  -webkit-font-smoothing: antialiased;
+}
+[data-theme="sticker-pop"] h1,
+[data-theme="sticker-pop"] h2,
+[data-theme="sticker-pop"] h3,
+[data-theme="sticker-pop"] h4 {
+  font-family: var(--el-font-display);
+  font-weight: var(--el-head-weight);
+  letter-spacing: var(--el-head-tracking);
+  text-transform: var(--el-head-case);
+  line-height: 1.16;
+  color: var(--el-ink);
+  text-wrap: balance;
+}
+
+/* A · card — blob sticker: white, fat irregular radius, crisp candy edge */
+[data-theme="sticker-pop"] .el-card {
+  background: var(--el-panel);
+  border: 2px solid color-mix(in oklab, var(--el-accent) 16%, #ffffff);
+  border-radius: 24px 26px 23px 26px / 26px 23px 26px 24px;
+  box-shadow: var(--el-raise-1);
+}
+[data-theme="sticker-pop"] .el-card::before {
+  /* crisp 5-stop candy stripe (color-mix pairs, no banding) */
+  background: linear-gradient(90deg,
+    var(--el-accent) 0%,
+    color-mix(in oklab, var(--el-accent) 52%, var(--el-warn)) 19%,
+    var(--el-warn) 40%,
+    color-mix(in oklab, var(--el-warn) 48%, var(--el-accent-hover)) 58%,
+    var(--el-accent-hover) 80%,
+    color-mix(in oklab, var(--el-accent-hover) 55%, var(--el-accent)) 100%);
+  opacity: .92;
+}
+[data-theme="sticker-pop"] .el-card:hover {
+  transform: translateY(-3px) scale(1.012);
+  box-shadow: var(--el-raise-3);
+  border-color: color-mix(in oklab, var(--el-accent) 46%, #ffffff);
+}
+[data-theme="sticker-pop"] .el-card:focus-within {
+  border-color: color-mix(in oklab, var(--el-accent) 46%, #ffffff);
+  box-shadow: var(--el-raise-2);
+}
+
+/* A · button — pill with springy scale, crisp candy halo (no blur-glow) */
+[data-theme="sticker-pop"] .el-btn,
+[data-theme="sticker-pop"] .el-btn--ghost,
+[data-theme="sticker-pop"] .el-btn.ghost,
+[data-theme="sticker-pop"] .el-btn--outline,
+[data-theme="sticker-pop"] .el-btn--danger {
+  border-radius: var(--el-r-pill);
+  transition:
+    transform 240ms var(--el-ease-spring),
+    box-shadow 240ms var(--el-ease-spring),
+    background-color 150ms var(--el-ease-out),
+    border-color 150ms var(--el-ease-out),
+    color 150ms var(--el-ease-out),
+    filter 150ms var(--el-ease-out);
+}
+[data-theme="sticker-pop"] .el-btn {
+  border: 2px solid color-mix(in oklab, var(--el-accent) 82%, var(--el-overlay));
+  box-shadow: var(--el-raise-1);
+}
+[data-theme="sticker-pop"] .el-btn:hover {
+  filter: brightness(1.05) saturate(1.08);
+  transform: scale(1.045);
+  box-shadow: 0 0 0 4px color-mix(in oklab, var(--el-accent) 13%, transparent), var(--el-raise-2);
+}
+[data-theme="sticker-pop"] .el-btn:active {
+  transform: scale(.955);
+  box-shadow: var(--el-raise-1);
+  transition-duration: 90ms;
+}
+[data-theme="sticker-pop"] .el-btn:focus-visible {
+  outline: 2px solid var(--el-focus-ring);
+  outline-offset: 3px;
+  box-shadow: var(--el-ring), var(--el-raise-1);
+}
+[data-theme="sticker-pop"] .el-btn:disabled,
+[data-theme="sticker-pop"] .el-btn[aria-disabled="true"] {
+  opacity: .45;
+  transform: none;
+  filter: saturate(.55);
+  box-shadow: none;
+  cursor: not-allowed;
+}
+[data-theme="sticker-pop"] .el-btn--ghost,
+[data-theme="sticker-pop"] .el-btn.ghost {
+  background: var(--el-panel);
+  border: 2px solid color-mix(in oklab, var(--el-ink) 13%, var(--el-line));
+  color: var(--el-ink);
+  box-shadow: var(--el-raise-1);
+}
+[data-theme="sticker-pop"] .el-btn--ghost:hover,
+[data-theme="sticker-pop"] .el-btn.ghost:hover {
+  background: var(--el-panel-2);
+  border-color: color-mix(in oklab, var(--el-accent) 38%, var(--el-line));
+  color: var(--el-ink);
+  transform: translateY(-2px);
+  box-shadow: var(--el-raise-2);
+}
+[data-theme="sticker-pop"] .el-btn--outline {
+  background: var(--el-panel);
+  border: 2px solid color-mix(in oklab, var(--el-accent) 52%, transparent);
+  color: var(--el-accent-ink);
+}
+[data-theme="sticker-pop"] .el-btn--outline:hover {
+  background: var(--el-accent-soft);
+  border-color: var(--el-accent);
+  color: var(--el-accent-ink);
+  transform: scale(1.045);
+  box-shadow: 0 0 0 4px color-mix(in oklab, var(--el-accent) 13%, transparent), var(--el-raise-2);
+}
+[data-theme="sticker-pop"] .el-btn--danger:hover {
+  filter: brightness(1.06);
+  transform: scale(1.045);
+  box-shadow: 0 0 0 4px color-mix(in oklab, var(--el-fail) 15%, transparent), var(--el-raise-2);
+}
+
+/* A · chip — sticker tag: white, 2px candy border, tiny tilt */
+[data-theme="sticker-pop"] .el-chip {
+  background: var(--el-panel);
+  border: 2px solid color-mix(in oklab, var(--el-accent) 26%, #ffffff);
+  color: var(--el-ink-soft);
+  font-weight: 600;
+  transform: rotate(-1deg);
+  box-shadow: var(--el-raise-1);
+  transition:
+    transform 240ms var(--el-ease-spring),
+    background-color 150ms var(--el-ease-out),
+    color 150ms var(--el-ease-out),
+    border-color 150ms var(--el-ease-out),
+    box-shadow 150ms var(--el-ease-out);
+}
+[data-theme="sticker-pop"] .el-chip:hover {
+  transform: rotate(0deg) scale(1.07);
+  border-color: var(--el-accent);
+  color: var(--el-ink);
+  box-shadow: var(--el-raise-2);
+}
+[data-theme="sticker-pop"] .el-chip:active { transform: rotate(0deg) scale(.97); }
+[data-theme="sticker-pop"] .el-chip.ok {
+  background: color-mix(in oklab, var(--el-ok) 9%, #ffffff);
+  border-color: color-mix(in oklab, var(--el-ok) 42%, #ffffff);
+  color: var(--el-ok);
+}
+[data-theme="sticker-pop"] .el-chip.warn {
+  background: color-mix(in oklab, var(--el-warn) 12%, #ffffff);
+  border-color: color-mix(in oklab, var(--el-warn) 44%, #ffffff);
+  color: var(--el-warn-ink);
+}
+[data-theme="sticker-pop"] .el-chip.fail {
+  background: color-mix(in oklab, var(--el-fail) 9%, #ffffff);
+  border-color: color-mix(in oklab, var(--el-fail) 42%, #ffffff);
+  color: var(--el-fail);
+}
+[data-theme="sticker-pop"] .el-chip.added {
+  background: color-mix(in oklab, var(--el-accent) 12%, #ffffff);
+  color: var(--el-accent-ink);
+  border-color: color-mix(in oklab, var(--el-accent) 58%, transparent);
+  transform: rotate(1deg);
+}
+[data-theme="sticker-pop"] .el-chip.live {
+  background: var(--el-accent);
+  border: 2px solid var(--el-accent);
+  color: var(--el-on-accent);
+}
+[data-theme="sticker-pop"] .el-chip[aria-disabled="true"] { opacity: .45; box-shadow: none; transform: rotate(-1deg); }
+
+/* A · dots — happy colors, paper ring instead of glow */
+[data-theme="sticker-pop"] .el-dot {
+  width: 9px;
+  height: 9px;
+  box-shadow: 0 0 0 2px var(--el-bg), 0 1px 2px color-mix(in oklab, currentColor 38%, transparent);
+}
+[data-theme="sticker-pop"] .el-dot.ok,
+[data-theme="sticker-pop"] .el-dot.warn,
+[data-theme="sticker-pop"] .el-dot.fail,
+[data-theme="sticker-pop"] .el-dot.info,
+[data-theme="sticker-pop"] .el-dot.live {
+  box-shadow: 0 0 0 2px var(--el-bg), 0 1px 2px color-mix(in oklab, currentColor 38%, transparent);
+}
+
+/* A · bar — fat candy progress (7-stop fill + registered sheen sweep) */
+[data-theme="sticker-pop"] .el-bar {
+  display: block;
+  height: 14px;
+  border-radius: var(--el-r-pill);
+  background: color-mix(in oklab, var(--el-panel-2) 72%, #ffffff);
+  box-shadow: inset 0 1px 3px color-mix(in oklab, var(--el-accent) 14%, transparent), inset 0 -1px 0 #ffffff;
+  overflow: hidden;
+}
+[data-theme="sticker-pop"] .el-bar > i {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg,
+    color-mix(in oklab, var(--el-warn) 88%, var(--el-accent)) 0%,
+    color-mix(in oklab, var(--el-warn) 58%, var(--el-accent-hover)) 15%,
+    var(--el-accent-hover) 34%,
+    color-mix(in oklab, var(--el-accent-hover) 52%, var(--el-accent)) 52%,
+    var(--el-accent) 72%,
+    color-mix(in oklab, var(--el-accent) 86%, #d14a28) 88%,
+    color-mix(in oklab, var(--el-accent) 74%, #c23f20) 100%);
+  box-shadow: inset 0 1px 0 color-mix(in srgb, #ffffff 58%, transparent), inset 0 -2px 0 color-mix(in srgb, #000000 7%, transparent);
+  transition: width var(--el-dur-base) var(--el-ease-spring);
+}
+[data-theme="sticker-pop"] .el-bar > i::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg,
+    transparent 0 30%,
+    color-mix(in srgb, #ffffff 30%, transparent) 42%,
+    color-mix(in srgb, #ffffff 62%, transparent) 49%,
+    color-mix(in srgb, #ffffff 30%, transparent) 56%,
+    transparent 68% 100%);
+  background-size: 38% 100%;
+  background-repeat: no-repeat;
+  background-position: var(--ill-sheen-x) 0;
+  animation: ill-sheen-sweep 2.8s var(--el-ease-out) 1.1s infinite;
+}
+
+/* A · hero — white playground panel: blob washes, dot mesh, crisp geometry */
+[data-theme="sticker-pop"] .el-hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: var(--el-space-2);
+  border-radius: 26px 30px 24px 30px / 30px 24px 30px 26px;
+  background:
+    radial-gradient(600px 340px at 88% -4%, color-mix(in oklab, var(--el-accent) 15%, transparent) 0%, color-mix(in oklab, var(--el-accent) 7%, transparent) 36%, transparent 68%),
+    radial-gradient(520px 320px at -4% 104%, color-mix(in oklab, var(--el-info) 16%, transparent) 0%, color-mix(in oklab, var(--el-info) 8%, transparent) 38%, transparent 70%),
+    radial-gradient(360px 240px at 64% 112%, color-mix(in oklab, var(--el-ok) 12%, transparent) 0%, color-mix(in oklab, var(--el-ok) 5%, transparent) 40%, transparent 72%),
+    var(--el-bg);
+  border: 2px solid color-mix(in oklab, var(--el-accent) 18%, #ffffff);
+  box-shadow: var(--el-raise-1);
+}
+[data-theme="sticker-pop"] .el-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: .6;
+  background-image:
+    radial-gradient(circle, color-mix(in oklab, var(--el-accent) 32%, transparent) 0 3px, transparent 3.5px),
+    radial-gradient(circle, color-mix(in oklab, var(--el-info) 26%, transparent) 0 2px, transparent 2.5px);
+  background-size: 44px 44px, 66px 66px;
+  background-position: 0 0, 11px 33px;
+}
+[data-theme="sticker-pop"] .el-hero::after {
+  /* crisp vector-clean sticker ring, half off-frame at the top right (no blur) */
+  content: "";
+  position: absolute;
+  top: -30px;
+  right: -22px;
+  width: 170px;
+  height: 170px;
+  pointer-events: none;
+  border: 2px solid color-mix(in oklab, var(--el-accent) 24%, transparent);
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 68%, color-mix(in oklab, var(--el-warn) 34%, transparent) 0 8px, transparent 10px);
+}
+
+/* A · eyebrow — chunky coral microlabel (deep coral text voice: AA on cream) */
+[data-theme="sticker-pop"] .el-eyebrow {
+  font-family: var(--el-font-display);
+  font-weight: 800;
+  font-size: .8em;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--el-accent-ink);
+}
+
+/* A · footer */
+[data-theme="sticker-pop"] .el-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--el-space-2);
+}
+
+/* A · form voice — crisp 2px fields, candy ring focus */
+[data-theme="sticker-pop"] :is(.el-input, .el-textarea, .el-prompt) { box-sizing: border-box; }
+[data-theme="sticker-pop"] .el-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 0 0 12px;
+}
+[data-theme="sticker-pop"] .el-input,
+[data-theme="sticker-pop"] .el-textarea {
+  background: var(--el-panel);
+  border: 2px solid var(--el-line);
+  border-radius: var(--el-r-md);
+  box-shadow: none;
+  transition: border-color 150ms var(--el-ease-out), box-shadow 200ms var(--el-ease-out), background-color 150ms var(--el-ease-out);
+}
+[data-theme="sticker-pop"] .el-input:hover,
+[data-theme="sticker-pop"] .el-textarea:hover {
+  border-color: color-mix(in oklab, var(--el-accent) 38%, var(--el-line));
+}
+[data-theme="sticker-pop"] .el-input:focus,
+[data-theme="sticker-pop"] .el-textarea:focus {
+  background: var(--el-panel);
+  border-color: var(--el-accent);
+  box-shadow: var(--el-ring);
+  outline: none;
+}
+[data-theme="sticker-pop"] .el-input::placeholder,
+[data-theme="sticker-pop"] .el-textarea::placeholder { color: var(--el-mute); font-weight: 400; }
+[data-theme="sticker-pop"] .el-input:disabled,
+[data-theme="sticker-pop"] .el-textarea:disabled {
+  opacity: .45;
+  background: var(--el-panel-2);
+  cursor: not-allowed;
+  box-shadow: none;
+}
+[data-theme="sticker-pop"] .el-switch {
+  border: 2px solid var(--el-line);
+  border-radius: var(--el-r-pill);
+  background: color-mix(in oklab, var(--el-accent) 5%, var(--el-panel-2));
+  transition: background-color 150ms var(--el-ease-out), border-color 150ms var(--el-ease-out), box-shadow 200ms var(--el-ease-out);
+}
+[data-theme="sticker-pop"] .el-switch::after {
+  background: var(--el-panel);
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 1px color-mix(in oklab, var(--el-ink) 12%, transparent),
+    0 1px 2px color-mix(in oklab, var(--el-accent) 32%, transparent);
+}
+[data-theme="sticker-pop"] .el-switch:hover { border-color: color-mix(in oklab, var(--el-accent) 45%, var(--el-line)); }
+[data-theme="sticker-pop"] .el-switch.on {
+  background: var(--el-accent);
+  border-color: color-mix(in oklab, var(--el-accent) 82%, var(--el-overlay));
+}
+[data-theme="sticker-pop"] .el-switch.on::after { background: var(--el-panel); }
+[data-theme="sticker-pop"] .el-switch:focus-visible {
+  outline: 2px solid var(--el-focus-ring);
+  outline-offset: 2px;
+}
+[data-theme="sticker-pop"] .el-switch[aria-disabled="true"],
+[data-theme="sticker-pop"] .el-switch.disabled { opacity: .45; cursor: not-allowed; box-shadow: none; }
+
+/* A · nav pills — flat sticker chips */
+[data-theme="sticker-pop"] .el-pill {
+  background: var(--el-panel);
+  border: 2px solid color-mix(in oklab, var(--el-line) 72%, transparent);
+  color: var(--el-ink-soft);
+  box-shadow: none;
+  transition:
+    transform 240ms var(--el-ease-spring),
+    background-color 150ms var(--el-ease-out),
+    color 150ms var(--el-ease-out),
+    border-color 150ms var(--el-ease-out),
+    box-shadow 150ms var(--el-ease-out);
+}
+[data-theme="sticker-pop"] .el-pill.ok,
+[data-theme="sticker-pop"] .el-pill.warn,
+[data-theme="sticker-pop"] .el-pill.fail,
+[data-theme="sticker-pop"] .el-pill.live,
+[data-theme="sticker-pop"] .el-pill.info {
+  background: color-mix(in oklab, currentColor 8%, var(--el-panel));
+  border-color: color-mix(in oklab, currentColor 40%, transparent);
+  color: color-mix(in oklab, currentColor 78%, var(--el-ink));
+}
+[data-theme="sticker-pop"] .el-pill:hover {
+  background: var(--el-panel-2);
+  border-color: color-mix(in oklab, var(--el-accent) 42%, transparent);
+  color: var(--el-ink);
+  transform: translateY(-2px);
+  box-shadow: var(--el-raise-2);
+}
+[data-theme="sticker-pop"] .el-pill:active { transform: translateY(0) scale(.97); }
+[data-theme="sticker-pop"] .el-pill:focus-visible {
+  outline: 2px solid var(--el-focus-ring);
+  outline-offset: 2px;
+}
+
+/* A · table — chunky crisp grid, coral row tint */
+[data-theme="sticker-pop"] .el-table {
+  border: 2px solid var(--el-line);
+  border-radius: var(--el-r-lg);
+  background: var(--el-panel);
+  box-shadow: var(--el-raise-1);
+}
+[data-theme="sticker-pop"] .el-table thead th {
+  background: var(--el-panel-2);
+  border-bottom: 2px solid color-mix(in oklab, var(--el-accent) 32%, #ffffff);
+}
+[data-theme="sticker-pop"] .el-table thead th:hover { background: var(--el-panel-3); }
+[data-theme="sticker-pop"] .el-table tbody td {
+  border-bottom: 1px solid color-mix(in oklab, var(--el-line) 52%, #ffffff);
+}
+[data-theme="sticker-pop"] .el-table tbody tr:hover {
+  background: color-mix(in oklab, var(--el-accent) 5%, transparent);
+}
+
+/* A · stage + source */
+[data-theme="sticker-pop"] .el-stage-rail {
+  background: color-mix(in oklab, var(--el-panel-2) 58%, transparent);
+  border: 2px solid var(--el-line);
+  border-radius: var(--el-r-lg);
+}
+[data-theme="sticker-pop"] .el-stage {
+  transition: background-color 160ms var(--el-ease-out), color 160ms var(--el-ease-out);
+}
+[data-theme="sticker-pop"] .el-stage:hover {
+  background: color-mix(in oklab, var(--el-accent) 8%, transparent);
+  color: var(--el-ink);
+}
+[data-theme="sticker-pop"] .el-stage:focus-visible {
+  outline: 2px solid var(--el-focus-ring);
+  outline-offset: 2px;
+  border-radius: var(--el-r-md);
+}
+[data-theme="sticker-pop"] .el-stage.is-active,
+[data-theme="sticker-pop"] .el-stage.is-running { background: color-mix(in oklab, var(--el-accent) 10%, var(--el-bg)); }
+[data-theme="sticker-pop"] .el-stage.is-stale { color: var(--el-fail); }
+[data-theme="sticker-pop"] .el-stage .el-stage-dot { width: 10px; height: 10px; background: color-mix(in oklab, var(--el-accent) 50%, #ffffff); }
+[data-theme="sticker-pop"] .el-stage.done .el-stage-dot,
+[data-theme="sticker-pop"] .el-stage.is-done .el-stage-dot { background: var(--el-ok); }
+[data-theme="sticker-pop"] .el-stage.run .el-stage-dot,
+[data-theme="sticker-pop"] .el-stage.is-active .el-stage-dot,
+[data-theme="sticker-pop"] .el-stage.is-running .el-stage-dot {
+  background: var(--el-accent);
+  animation: el-stage-pulse var(--el-dur-progress) var(--el-ease-out) infinite;
+}
+[data-theme="sticker-pop"] .el-stage.is-queued { opacity: .45; }
+[data-theme="sticker-pop"] .el-progress-truth .el-pt-chunk.on,
+[data-theme="sticker-pop"] .el-progress-truth .el-pt-chunk.is-done {
+  border: 2px solid var(--el-accent);
+  background: var(--el-accent-soft);
+}
+[data-theme="sticker-pop"] .el-pt-chunk.is-running { border-color: var(--el-accent); color: var(--el-accent-ink); }
+[data-theme="sticker-pop"] .el-source-card {
+  border: 2px solid var(--el-line);
+  border-radius: var(--el-r-lg);
+  background: var(--el-panel);
+  transition: border-color 160ms var(--el-ease-out), box-shadow 160ms var(--el-ease-out);
+}
+[data-theme="sticker-pop"] .el-source-card:hover { border-color: color-mix(in oklab, var(--el-accent) 38%, var(--el-line)); box-shadow: var(--el-raise-2); }
+[data-theme="sticker-pop"] .el-source-card.is-cited { border-left: 4px solid var(--el-stage-active); }
+
+/* A · semantic glue — labels, body, spec (unstyled hooks in the harness) */
+[data-theme="sticker-pop"] .el-label {
+  display: inline-block;
+  font-family: var(--el-font-body);
+  font-size: var(--el-fs-sm);
+  font-weight: var(--el-label-weight);
+  letter-spacing: var(--el-label-tracking);
+  text-transform: var(--el-label-case);
+  color: var(--el-ink-soft);
+  margin: 0;
+}
+[data-theme="sticker-pop"] .el-body {
+  font-family: var(--el-font-body);
+  font-size: var(--el-fs-md);
+  font-weight: var(--el-body-weight);
+  line-height: 1.65;
+  text-wrap: pretty;
+  margin: 0 0 var(--el-space-2);
+}
+[data-theme="sticker-pop"] .el-mute-body { color: var(--el-mute); margin: 0; }
+[data-theme="sticker-pop"] .el-fs-sm { font-size: var(--el-fs-sm); }
+[data-theme="sticker-pop"] .el-display-specimen { font-family: var(--el-font-display); }
+[data-theme="sticker-pop"] .el-title-xl {
+  font-family: var(--el-font-display);
+  font-weight: var(--el-head-weight);
+  letter-spacing: var(--el-head-tracking);
+  line-height: 1.08;
+  text-wrap: balance;
+  margin: 0 0 var(--el-space-2);
+}
+[data-theme="sticker-pop"] .el-mono { font-family: var(--el-font-mono); font-weight: 700; font-size: .95em; font-variant-numeric: tabular-nums; }
+[data-theme="sticker-pop"] .el-ink-ok { font-family: var(--el-font-mono); color: var(--el-ok); }
+[data-theme="sticker-pop"] .el-ink-fail { font-family: var(--el-font-mono); color: var(--el-fail); }
+[data-theme="sticker-pop"] .el-md { font-family: var(--el-font-display); font-weight: var(--el-head-weight); font-size: var(--el-fs-md); letter-spacing: var(--el-head-tracking); margin: 0; }
+[data-theme="sticker-pop"] .el-publisher { font-size: var(--el-fs-xs); font-weight: var(--el-label-weight); letter-spacing: var(--el-label-tracking); text-transform: var(--el-label-case); color: var(--el-mute); }
+[data-theme="sticker-pop"] .el-big-num {
+  font-family: var(--el-font-display);
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  color: var(--el-accent-ink);
+  letter-spacing: 0;
+}
+[data-theme="sticker-pop"] .el-rule { height: 1px; border-radius: var(--el-r-pill); }
+
+/* selection in the theme's candy voice, never browser default */
+[data-theme="sticker-pop"] ::selection {
+  background: color-mix(in oklab, var(--el-accent) 74%, var(--el-bg));
+  color: var(--el-on-accent);
+}
+[data-theme="sticker-pop"] ::-moz-selection {
+  background: color-mix(in oklab, var(--el-accent) 74%, var(--el-bg));
+  color: var(--el-on-accent);
+}
+
+/* A · instrument — registered candy sheen sweeps the progress fill */
+@property --ill-sheen-x {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: -40%;
+}
+@keyframes ill-sheen-sweep {
+  from { --ill-sheen-x: -40%; }
+  to   { --ill-sheen-x: 140%; }
+}
+
+/* A · reduced motion — springs collapse to calm fades */
+@media (prefers-reduced-motion: reduce) {
+  [data-theme="sticker-pop"] .el-btn,
+  [data-theme="sticker-pop"] .el-card,
+  [data-theme="sticker-pop"] .el-chip,
+  [data-theme="sticker-pop"] .el-pill,
+  [data-theme="sticker-pop"] .el-input,
+  [data-theme="sticker-pop"] .el-textarea,
+  [data-theme="sticker-pop"] .el-switch,
+  [data-theme="sticker-pop"] .el-stage {
+    transition-property: background-color, border-color, color, box-shadow, opacity, filter;
+    transition-duration: 120ms;
+    transition-timing-function: var(--el-ease-out);
+  }
+  [data-theme="sticker-pop"] .el-btn:hover,
+  [data-theme="sticker-pop"] .el-btn:active,
+  [data-theme="sticker-pop"] .el-card:hover,
+  [data-theme="sticker-pop"] .el-chip:hover,
+  [data-theme="sticker-pop"] .el-chip:active,
+  [data-theme="sticker-pop"] .el-pill:hover,
+  [data-theme="sticker-pop"] .el-pill:active { transform: none; }
+  [data-theme="sticker-pop"] .el-bar > i::after { animation: none; }
+  [data-theme="sticker-pop"] .el-stage.run .el-stage-dot,
+  [data-theme="sticker-pop"] .el-stage.is-active .el-stage-dot,
+  [data-theme="sticker-pop"] .el-stage.is-running .el-stage-dot { animation: none; }
+}
+
+/* ══ A2 · sticker-pop v0.4.0 wave — whole-UI persona voice ══
+   Slots: nav --top (floating sticker strip) · hero --centered · flat sticker
+   cards · tables --zebra · airy density. Every structural class the demo site
+   adopts gets candy material, never baseline chrome. */
+
+/* A2 · navbar — floating sticker strip (persona nav form: --top) */
+[data-theme="sticker-pop"] .el-navbar {
+  max-width: calc(var(--el-page-max) - 2 * var(--el-space-4));
+  width: calc(100% - 2 * var(--el-space-4));
+  margin: var(--el-space-3) auto 0;
+  border: var(--el-bw-emph) solid color-mix(in oklab, var(--el-accent) 18%, #ffffff);
+  border-radius: var(--el-r-pill);
+  background: color-mix(in srgb, #ffffff 88%, transparent);
+  backdrop-filter: blur(10px) saturate(1.35);
+  -webkit-backdrop-filter: blur(10px) saturate(1.35);
+  box-shadow: var(--el-raise-2);
+}
+[data-theme="sticker-pop"] .el-navbar .brand { font-family: var(--el-font-display); font-weight: var(--el-head-weight); }
+[data-theme="sticker-pop"] .el-navbar .links a,
+[data-theme="sticker-pop"] .el-navbar .links button {
+  font-weight: 600;
+  transition: transform var(--el-dur-base) var(--el-ease-spring), background 150ms var(--el-ease-out), color 150ms var(--el-ease-out), box-shadow 150ms var(--el-ease-out);
+}
+[data-theme="sticker-pop"] .el-navbar .links a:hover,
+[data-theme="sticker-pop"] .el-navbar .links button:hover {
+  background: var(--el-panel-2);
+  color: var(--el-ink);
+  transform: translateY(-1px) rotate(.6deg);
+}
+[data-theme="sticker-pop"] .el-navbar .links [aria-current="page"] {
+  background: var(--el-accent);
+  color: var(--el-on-accent);
+  box-shadow: var(--el-raise-1);
+  transform: rotate(-1.2deg);
+}
+[data-theme="sticker-pop"] .el-navbar .links [aria-current="page"]:hover { background: var(--el-accent-hover); color: var(--el-on-accent); }
+
+/* A2 · rail + headerbar forms (used by account section nav + app window) */
+[data-theme="sticker-pop"] .el-navbar--rail {
+  background: var(--el-panel-2);
+  border: var(--el-bw-emph) solid var(--el-line-2);
+  border-radius: var(--el-r-xl);
+  height: auto;
+}
+[data-theme="sticker-pop"] .el-navbar--rail .links [aria-current="page"] {
+  transform: none;
+  background: var(--el-accent-soft);
+  color: var(--el-accent-ink);
+  box-shadow: inset 0 0 0 var(--el-bw-emph) color-mix(in oklab, var(--el-accent) 30%, transparent);
+}
+[data-theme="sticker-pop"] .el-navbar--headerbar {
+  background: linear-gradient(180deg, color-mix(in oklab, var(--el-accent) 6%, var(--el-panel-2)) 0%, var(--el-panel-2) 55%, var(--el-panel) 100%);
+  border: var(--el-bw-emph) solid var(--el-line-2);
+  border-bottom: var(--el-bw-emph) solid color-mix(in oklab, var(--el-accent) 26%, #ffffff);
+  box-shadow: none;
+}
+
+/* A2 · hero — persona anatomy --centered; poster/split carry the same material */
+[data-theme="sticker-pop"] .el-hero {
+  padding: var(--el-hero-pad) var(--el-space-5);
+  min-height: var(--el-hero-min);
+}
+[data-theme="sticker-pop"] .el-hero > h1 { font-size: clamp(2.5rem, 5.2vw, 3.4rem); }
+[data-theme="sticker-pop"] .el-hero > p { color: var(--el-ink-soft); }
+[data-theme="sticker-pop"] .el-hero .media {
+  border: var(--el-bw-emph) solid color-mix(in oklab, var(--el-accent) 20%, #ffffff);
+  border-radius: 26px 30px 24px 30px / 30px 24px 30px 26px;
+  box-shadow: var(--el-raise-2);
+}
+[data-theme="sticker-pop"] .el-hero .media > .fill {
+  background:
+    radial-gradient(circle, color-mix(in oklab, var(--el-accent) 30%, transparent) 26%, transparent 27%) 0 0 / 36px 36px,
+    radial-gradient(circle, color-mix(in oklab, var(--el-warn) 34%, transparent) 24%, transparent 25%) 18px 18px / 36px 36px,
+    linear-gradient(160deg, color-mix(in oklab, var(--el-warn) 15%, var(--el-panel)) 0%, color-mix(in oklab, var(--el-accent) 17%, var(--el-panel-2)) 100%);
+  border-radius: inherit;
+}
+[data-theme="sticker-pop"] .el-hero--split {
+  /* A2 flex stacks plain heroes by design; split restores the sheet's two-column grid */
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: center;
+  gap: var(--el-space-5);
+}
+[data-theme="sticker-pop"] .el-hero--split .media { align-self: stretch; height: 100%; }
+[data-theme="sticker-pop"] .el-hero--poster { border-radius: 30px; }
+[data-theme="sticker-pop"] .el-hero--poster::after {
+  /* the sticker ring stays OUT of the cover; poster gets its own ink-safe scrim */
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg,
+    color-mix(in oklab, var(--el-bg) 52%, transparent) 0%,
+    color-mix(in oklab, var(--el-bg) 24%, transparent) 44%,
+    color-mix(in oklab, var(--el-bg) 90%, transparent) 100%);
+}
+
+/* A2 · section — airy blocks, candy section rule */
+[data-theme="sticker-pop"] .el-section-head .rule {
+  height: 2px;
+  border-radius: var(--el-r-pill);
+  background: linear-gradient(90deg, color-mix(in oklab, var(--el-accent) 48%, transparent), transparent 70%);
+}
+[data-theme="sticker-pop"] .el-section .actions .el-btn + .el-btn { margin-inline-start: 0; }
+
+/* A2 · footer — sticker card footer */
+[data-theme="sticker-pop"] .el-footer {
+  background: var(--el-panel);
+  border: var(--el-bw-emph) solid color-mix(in oklab, var(--el-accent) 14%, #ffffff);
+  border-radius: 28px 30px 26px 30px / 30px 26px 30px 28px;
+  box-shadow: var(--el-raise-1);
+  padding: var(--el-space-6) var(--el-space-5) var(--el-space-4);
+}
+[data-theme="sticker-pop"] .el-footer .small { border-top: 2px dashed var(--el-line-2); }
+[data-theme="sticker-pop"] .el-footer .colophon { font-family: var(--el-font-body); font-style: normal; }
+
+/* A2 · media band — polaroid sticker frame + coral caption bar */
+[data-theme="sticker-pop"] .el-media-band {
+  border: var(--el-bw-emph) solid color-mix(in oklab, var(--el-accent) 16%, #ffffff);
+  border-radius: 26px 28px 24px 28px / 28px 24px 28px 26px;
+  box-shadow: var(--el-raise-1);
+  background: var(--el-panel);
+}
+[data-theme="sticker-pop"] .el-media-band > .media > figcaption {
+  background: linear-gradient(90deg, var(--el-accent), var(--el-accent-hover));
+  border-top: 2px dashed color-mix(in srgb, #ffffff 45%, transparent);
+  color: var(--el-on-accent);
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+/* A2 · pricing — sticker plan cards; featured gets the big pop */
+[data-theme="sticker-pop"] .el-pricing {
+  background: var(--el-panel);
+  border: var(--el-bw-emph) solid color-mix(in oklab, var(--el-accent) 16%, #ffffff);
+  border-radius: 24px 27px 23px 27px / 27px 23px 27px 24px;
+  box-shadow: var(--el-raise-1);
+  transition: transform var(--el-dur-base) var(--el-ease-spring), box-shadow var(--el-dur-base) var(--el-ease-spring), border-color 150ms var(--el-ease-out);
+}
+[data-theme="sticker-pop"] .el-pricing:hover {
+  transform: translateY(-4px) rotate(-.6deg);
+  box-shadow: var(--el-raise-3);
+}
+[data-theme="sticker-pop"] .el-pricing .price { color: var(--el-accent-ink); }
+[data-theme="sticker-pop"] .el-pricing .feats li::before { content: "\2605"; color: var(--el-warn); font-size: .8rem; position: relative; top: 1px; }
+[data-theme="sticker-pop"] .el-pricing--featured {
+  background: linear-gradient(180deg, color-mix(in oklab, var(--el-accent) 9%, #ffffff) 0%, var(--el-panel) 62%);
+  border-color: color-mix(in oklab, var(--el-accent) 48%, #ffffff);
+  box-shadow: var(--el-raise-2);
+}
+[data-theme="sticker-pop"] .el-pricing--featured::before {
+  height: var(--el-bar-h);
+  background: linear-gradient(90deg, var(--el-warn), var(--el-accent) 45%, var(--el-accent-hover));
+}
+[data-theme="sticker-pop"] .el-pricing .flag {
+  background: var(--el-warn);
+  color: var(--el-ink);
+  font-family: var(--el-font-display);
+  font-weight: 700;
+  letter-spacing: .05em;
+  border-radius: var(--el-r-pill);
+  transform: rotate(2.5deg);
+  box-shadow: var(--el-raise-1);
+}
+
+/* A2 · testimonial — big Baloo quote on a blob card */
+[data-theme="sticker-pop"] .el-testimonial {
+  background: var(--el-panel);
+  border: var(--el-bw-emph) solid color-mix(in oklab, var(--el-accent) 15%, #ffffff);
+  border-radius: 26px 30px 24px 30px / 30px 24px 30px 26px;
+  box-shadow: var(--el-raise-1);
+}
+[data-theme="sticker-pop"] .el-testimonial::before { color: var(--el-accent); opacity: .85; }
+[data-theme="sticker-pop"] .el-testimonial .q,
+[data-theme="sticker-pop"] .el-testimonial .quote {
+  font-family: var(--el-font-display);
+  font-weight: 700;
+  font-size: var(--el-fs-xl);
+  line-height: 1.5;
+}
+
+/* A2 · banner — dashed sticker strip, tint variants carry the color */
+[data-theme="sticker-pop"] .el-banner {
+  margin: var(--el-space-3) 0 0;
+  border: var(--el-bw-emph) dashed color-mix(in oklab, var(--el-banner-tint) 46%, transparent);
+  border-radius: var(--el-r-lg);
+  background: linear-gradient(90deg, color-mix(in oklab, var(--el-banner-tint) 16%, transparent), transparent 52%), var(--el-panel);
+  box-shadow: var(--el-raise-1);
+}
+[data-theme="sticker-pop"] .el-banner--attached { border-inline: var(--el-bw-emph) dashed; }
+
+/* A2 · fact grid — sticker fact cards */
+[data-theme="sticker-pop"] .el-fact {
+  background: var(--el-panel);
+  border: var(--el-bw-emph) solid var(--el-line);
+  border-radius: var(--el-r-lg);
+  box-shadow: var(--el-raise-1);
+  padding: var(--el-space-4);
+}
+[data-theme="sticker-pop"] .el-fact .v { font-family: var(--el-font-display); font-weight: 800; color: var(--el-accent-ink); }
+
+/* A2 · timeline — candy milestone dots on a soft rail */
+[data-theme="sticker-pop"] .el-timeline::before { background: var(--el-line); width: 3px; border-radius: var(--el-r-pill); left: 11px; }
+[data-theme="sticker-pop"] .el-timeline > li::before {
+  width: 16px; height: 16px;
+  background: var(--el-accent);
+  border: 3px solid #ffffff;
+  box-shadow: 0 0 0 2px color-mix(in oklab, var(--el-accent) 34%, transparent), var(--el-raise-1);
+}
+[data-theme="sticker-pop"] .el-timeline > li.ok::before { background: var(--el-ok); box-shadow: 0 0 0 2px color-mix(in oklab, var(--el-ok) 34%, transparent); }
+[data-theme="sticker-pop"] .el-timeline > li { padding-inline-start: 44px; }
+
+/* A2 · flat sticker card — the persona grid card (no lift shadow at rest) */
+[data-theme="sticker-pop"] .el-card--flat {
+  box-shadow: none;
+  transform: none;
+  background: var(--el-panel);
+  border-color: color-mix(in oklab, var(--el-accent) 18%, #ffffff);
+}
+[data-theme="sticker-pop"] .el-card--flat::before { opacity: .55; }
+[data-theme="sticker-pop"] .el-card--flat:hover {
+  transform: translateY(-4px) rotate(-.5deg);
+  box-shadow: var(--el-raise-2);
+}
+[data-theme="sticker-pop"] .el-card--flat .el-card-title { font-family: var(--el-font-display); font-weight: 800; }
+[data-theme="sticker-pop"] .el-card-media {
+  position: relative;
+  min-height: 0;
+  overflow: clip;
+  background: var(--el-panel-2);
+}
+
+/* A2 · printable sheet card (character spec sheet — print anatomy) */
+[data-theme="sticker-pop"] .el-card--print {
+  background: #ffffff;
+  border: 1px solid var(--el-line-2);
+  border-radius: var(--el-r-md);
+  box-shadow: none;
+}
+[data-theme="sticker-pop"] .el-card--print::before { display: none; }
+
+/* A2 · zebra table — the persona table treatment */
+[data-theme="sticker-pop"] .el-table--zebra {
+  border-radius: var(--el-r-lg);
+  overflow: hidden;
+}
+[data-theme="sticker-pop"] .el-table--zebra thead th {
+  background: var(--el-panel-2);
+  border-bottom: var(--el-bw-emph) solid color-mix(in oklab, var(--el-accent) 40%, #ffffff);
+}
+[data-theme="sticker-pop"] .el-table--zebra tbody tr:nth-child(even) td {
+  background: color-mix(in oklab, var(--el-panel-2) 72%, #ffffff);
+  border-bottom: 1px solid var(--el-line-2);
+}
+[data-theme="sticker-pop"] .el-table--zebra tbody tr:hover td { background: color-mix(in oklab, var(--el-accent) 8%, #ffffff); }
+[data-theme="sticker-pop"] .el-table--zebra tbody tr:last-child td { border-bottom: 0; }
+[data-theme="sticker-pop"] .el-table thead th { font-family: var(--el-font-body); letter-spacing: .05em; text-transform: uppercase; }
+
+/* A2 · stat row — tiles share the airy grid (row class is a bare flex in the sheet) */
+[data-theme="sticker-pop"] .el-stat-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(215px, 1fr));
+  gap: var(--el-space-3);
+  align-items: stretch;
+}
+
+/* A2 · stat tiles — index cards with chunky numerals */
+[data-theme="sticker-pop"] .el-stat {
+  background: var(--el-panel);
+  border: var(--el-bw-emph) solid var(--el-line);
+  border-radius: 22px 25px 21px 25px / 25px 21px 25px 22px;
+  box-shadow: var(--el-raise-1);
+}
+[data-theme="sticker-pop"] .el-stat-value { font-family: var(--el-font-display); font-weight: 800; letter-spacing: 0; color: var(--el-ink); }
+[data-theme="sticker-pop"] .el-stat-delta { font-weight: 700; border-radius: var(--el-r-pill); }
+[data-theme="sticker-pop"] .el-sparkline { color: var(--el-accent-ink); }
+[data-theme="sticker-pop"] .el-sparkline .el-mini-bars .bar { background: var(--el-accent-hover); }
+
+/* A2 · meter + progress — candy trough, crisp fill (no glow) */
+[data-theme="sticker-pop"] .el-meter {
+  height: 12px;
+  border-radius: var(--el-r-pill);
+  background: color-mix(in oklab, var(--el-panel-2) 76%, #ffffff);
+  box-shadow: inset 0 0 0 2px color-mix(in oklab, var(--el-accent) 16%, transparent);
+}
+[data-theme="sticker-pop"] .el-meter > .fill {
+  background: linear-gradient(90deg, var(--el-accent-hover) 0%, var(--el-accent) 100%);
+  box-shadow: inset 0 1px 0 color-mix(in srgb, #ffffff 45%, transparent);
+}
+[data-theme="sticker-pop"] .el-progress {
+  height: 12px;
+  background: color-mix(in oklab, var(--el-panel-2) 72%, #ffffff);
+  box-shadow: inset 0 1px 3px color-mix(in oklab, var(--el-accent) 14%, transparent);
+}
+[data-theme="sticker-pop"] .el-progress > .fill {
+  background: linear-gradient(90deg, var(--el-accent-hover) 0%, var(--el-accent) 100%);
+  box-shadow: inset 0 1px 0 color-mix(in srgb, #ffffff 40%, transparent);
+}
+
+/* A2 · status voice — paper-ring dots, chunky pills */
+[data-theme="sticker-pop"] .el-status-dot { width: 10px; height: 10px; box-shadow: 0 0 0 2px var(--el-bg); }
+[data-theme="sticker-pop"] .el-status-pill { font-weight: 700; letter-spacing: .04em; text-transform: uppercase; border-radius: var(--el-r-pill); }
+[data-theme="sticker-pop"] .el-badge {
+  background: var(--el-panel);
+  border: 2px solid color-mix(in oklab, currentColor 44%, transparent);
+  box-shadow: var(--el-raise-1);
+  font-weight: 700;
+}
+[data-theme="sticker-pop"] .el-badge.ok, [data-theme="sticker-pop"] .el-badge.warn,
+[data-theme="sticker-pop"] .el-badge.fail, [data-theme="sticker-pop"] .el-badge.live,
+[data-theme="sticker-pop"] .el-badge.info { background: color-mix(in oklab, currentColor 10%, var(--el-panel)); }
+
+/* A2 · kbd + avatar — sticker key, candy avatar */
+[data-theme="sticker-pop"] .el-kbd {
+  background: #ffffff;
+  border: 2px solid var(--el-line);
+  border-bottom-width: 4px;
+  border-radius: 10px 12px 10px 12px;
+  box-shadow: none;
+  font-family: var(--el-font-mono);
+  font-weight: 700;
+  color: var(--el-ink);
+  padding: 2px 8px;
+}
+[data-theme="sticker-pop"] .el-avatar {
+  background: linear-gradient(135deg, var(--el-accent) 0%, var(--el-warn) 100%);
+  box-shadow: 0 0 0 2px var(--el-bg), 0 2px 5px color-mix(in oklab, var(--el-accent) 28%, transparent);
+  font-family: var(--el-font-display);
+  font-weight: 800;
+}
+[data-theme="sticker-pop"] .el-avatar.sq { border-radius: var(--el-r-md); }
+
+/* A2 · empty state — coral target circle */
+[data-theme="sticker-pop"] .el-empty .el-icon {
+  background: var(--el-accent-soft);
+  box-shadow: inset 0 0 0 var(--el-bw-emph) color-mix(in oklab, var(--el-accent) 40%, transparent);
+  color: var(--el-accent-ink);
+  border-radius: 50%;
+}
+[data-theme="sticker-pop"] .el-empty .el-msg { font-family: var(--el-font-display); font-weight: 800; color: var(--el-ink); }
+
+/* A2 · pagination + stepper — sticker page chips */
+[data-theme="sticker-pop"] .el-pagination .page {
+  border: 2px solid var(--el-line);
+  border-radius: var(--el-r-pill);
+  background: var(--el-panel);
+  box-shadow: var(--el-raise-1);
+  font-weight: 700;
+}
+[data-theme="sticker-pop"] .el-pagination .page.on {
+  background: var(--el-accent);
+  transform: rotate(-3deg) scale(1.05);
+  box-shadow: var(--el-raise-2);
+}
+[data-theme="sticker-pop"] .el-stepper li {
+  border: 2px solid var(--el-line);
+  border-radius: var(--el-r-pill);
+  background: var(--el-panel);
+  box-shadow: var(--el-raise-1);
+}
+[data-theme="sticker-pop"] .el-stepper li.done { border-color: color-mix(in oklab, var(--el-ok) 50%, transparent); }
+[data-theme="sticker-pop"] .el-ladder-step {
+  background: var(--el-panel);
+  border: 2px solid var(--el-line);
+  border-radius: var(--el-r-lg);
+  box-shadow: var(--el-raise-1);
+}
+[data-theme="sticker-pop"] .el-ladder-step .el-ladder-idx { font-family: var(--el-font-display); font-weight: 800; color: var(--el-accent-ink); }
+
+/* A2 · app chrome — candy window */
+[data-theme="sticker-pop"] .el-appwin {
+  background: var(--el-panel);
+  border: var(--el-bw-emph) solid var(--el-line);
+  border-radius: var(--el-r-xl);
+  box-shadow: var(--el-raise-3);
+}
+[data-theme="sticker-pop"] .el-appwin-body { background: var(--el-bg); }
+[data-theme="sticker-pop"] .el-titlebar {
+  background: linear-gradient(180deg, var(--el-panel-2) 0%, var(--el-panel) 100%);
+  border-bottom: var(--el-bw-emph) solid var(--el-line-2);
+}
+[data-theme="sticker-pop"] .el-app-title { font-family: var(--el-font-display); font-weight: 800; }
+[data-theme="sticker-pop"] .el-winbtn::before { background: color-mix(in oklab, var(--el-accent) 44%, transparent); }
+[data-theme="sticker-pop"] .el-winbtn.max::before { background: color-mix(in oklab, var(--el-warn) 66%, transparent); }
+[data-theme="sticker-pop"] .el-menubar {
+  background: var(--el-panel-2);
+  border-bottom: var(--el-bw-emph) solid var(--el-line-2);
+}
+[data-theme="sticker-pop"] .el-menubar-item.is-open,
+[data-theme="sticker-pop"] .el-menubar-item[aria-expanded="true"] { box-shadow: inset 0 0 0 2px color-mix(in oklab, var(--el-accent) 34%, transparent); }
+[data-theme="sticker-pop"] .el-headerbar {
+  background: color-mix(in oklab, var(--el-panel-2) 70%, #ffffff);
+  border-bottom: var(--el-bw-emph) solid var(--el-line-2);
+}
+[data-theme="sticker-pop"] .el-sidebar {
+  background: var(--el-panel-2);
+  border-right: var(--el-bw-emph) solid var(--el-line-2);
+}
+[data-theme="sticker-pop"] .el-sidebar .grp [aria-current="page"] {
+  background: var(--el-accent-soft);
+  color: var(--el-accent-ink);
+  box-shadow: inset 4px 0 0 var(--el-accent);
+}
+[data-theme="sticker-pop"] .el-listbox {
+  background: var(--el-panel);
+  border: 2px solid var(--el-line);
+  border-radius: var(--el-r-lg);
+  box-shadow: var(--el-raise-1);
+}
+[data-theme="sticker-pop"] .el-listbox-row.is-selected,
+[data-theme="sticker-pop"] .el-listbox-row[aria-selected="true"] {
+  background: var(--el-accent-soft);
+  box-shadow: inset var(--el-bw-emph) 0 0 0 var(--el-accent);
+}
+[data-theme="sticker-pop"] .el-actionbar {
+  background: var(--el-panel-2);
+  border-top: var(--el-bw-emph) solid var(--el-line-2);
+}
+[data-theme="sticker-pop"] .el-tabbar {
+  background: var(--el-panel-2);
+  border-top: var(--el-bw-emph) solid var(--el-line-2);
+}
+[data-theme="sticker-pop"] .el-tabbar-item {
+  border-radius: var(--el-r-pill);
+  font-weight: 600;
+  transition: transform var(--el-dur-base) var(--el-ease-spring), background 150ms var(--el-ease-out), color 150ms var(--el-ease-out);
+}
+[data-theme="sticker-pop"] .el-tabbar-item.is-active {
+  background: var(--el-accent);
+  color: var(--el-on-accent);
+  transform: translateY(-3px);
+}
+[data-theme="sticker-pop"] .el-notification {
+  background: var(--el-panel);
+  border: 2px solid var(--el-line);
+  border-radius: var(--el-r-lg);
+}
+[data-theme="sticker-pop"] .el-inspector.is-docked {
+  position: static;
+  background: var(--el-panel);
+  border: 2px solid var(--el-line);
+  border-radius: var(--el-r-lg);
+  box-shadow: var(--el-raise-1);
+}
+[data-theme="sticker-pop"] .el-inspector-header .el-inspector-close { color: var(--el-mute); }
+[data-theme="sticker-pop"] .el-assistant-panel {
+  background: var(--el-panel);
+  border: var(--el-bw-emph) solid var(--el-line);
+  border-radius: var(--el-r-lg);
+  box-shadow: var(--el-raise-1);
+}
+[data-theme="sticker-pop"] .el-msg--user { background: var(--el-accent-soft); }
+[data-theme="sticker-pop"] .el-msg--assistant { background: var(--el-bg); border: 2px solid var(--el-line-2); }
+[data-theme="sticker-pop"] .el-cite-inline { color: var(--el-accent-ink); font-weight: 700; }
+
+/* A2 · data + feedback voices — dialog/toast/command/menu/popover/tooltip */
+[data-theme="sticker-pop"] dialog.el-dialog,
+[data-theme="sticker-pop"] .el-dialog {
+  --el-dialog-max-w: 560px;
+  background: var(--el-panel);
+  border: var(--el-bw-emph) solid color-mix(in oklab, var(--el-accent) 22%, #ffffff);
+  border-radius: 26px 30px 24px 30px / 30px 24px 30px 26px;
+  box-shadow: var(--el-raise-3);
+}
+[data-theme="sticker-pop"] dialog.el-dialog::backdrop {
+  background: color-mix(in oklab, var(--el-accent) 16%, color-mix(in oklab, var(--el-ink) 34%, transparent));
+}
+[data-theme="sticker-pop"] .el-dialog-head h2,
+[data-theme="sticker-pop"] .el-dialog-head h3,
+[data-theme="sticker-pop"] .el-dialog-head .el-dialog-title { font-family: var(--el-font-display); }
+[data-theme="sticker-pop"] .el-dialog-foot { border-top: 2px dashed var(--el-line-2); }
+[data-theme="sticker-pop"] .el-drawer {
+  background: var(--el-panel);
+  border-left: var(--el-bw-emph) solid color-mix(in oklab, var(--el-accent) 30%, #ffffff);
+  border-radius: 24px 0 0 24px;
+  box-shadow: var(--el-raise-3);
+}
+[data-theme="sticker-pop"] .el-drawer.left { border-radius: 0 24px 24px 0; }
+[data-theme="sticker-pop"] .el-drawer-head { letter-spacing: .12em; text-transform: uppercase; font-family: var(--el-font-body); }
+[data-theme="sticker-pop"] .el-toast {
+  background: var(--el-panel);
+  border: 2px solid var(--el-line);
+  border-inline-start: 5px solid var(--el-accent);
+  border-radius: var(--el-r-lg);
+  box-shadow: var(--el-raise-2);
+}
+[data-theme="sticker-pop"] .el-toast.ok   { border-inline-start-color: var(--el-ok); }
+[data-theme="sticker-pop"] .el-toast.warn { border-inline-start-color: var(--el-warn); }
+[data-theme="sticker-pop"] .el-toast.fail { border-inline-start-color: var(--el-fail); }
+[data-theme="sticker-pop"] .el-toast.info { border-inline-start-color: var(--el-info); }
+[data-theme="sticker-pop"] .el-command-panel {
+  background: var(--el-panel);
+  border: var(--el-bw-emph) solid color-mix(in oklab, var(--el-accent) 22%, #ffffff);
+  border-radius: var(--el-r-xl);
+  box-shadow: var(--el-raise-3);
+}
+[data-theme="sticker-pop"] .el-command-row { border-radius: var(--el-r-md); }
+[data-theme="sticker-pop"] .el-command-row.sel {
+  background: var(--el-accent-soft);
+  box-shadow: inset 0 0 0 2px color-mix(in oklab, var(--el-accent) 36%, transparent);
+}
+[data-theme="sticker-pop"] .el-command-foot kbd {
+  border: 2px solid var(--el-line);
+  border-block-end-width: 3px;
+  border-radius: 8px;
+  background: var(--el-panel-2);
+}
+[data-theme="sticker-pop"] .el-menu {
+  background: var(--el-panel);
+  border: var(--el-bw-emph) solid var(--el-line);
+  border-radius: var(--el-r-lg);
+  box-shadow: var(--el-raise-3);
+}
+[data-theme="sticker-pop"] .el-menu .el-menu-item { border-radius: var(--el-r-md); }
+[data-theme="sticker-pop"] .el-menu .el-menu-item:hover,
+[data-theme="sticker-pop"] .el-menu .el-menu-item.on { background: var(--el-accent-soft); color: var(--el-accent); }
+[data-theme="sticker-pop"] .el-popover .el-pop,
+[data-theme="sticker-pop"] .el-tooltip::after {
+  border: 2px solid var(--el-line);
+  border-radius: var(--el-r-md);
+  box-shadow: var(--el-raise-2);
+  background: var(--el-panel);
+}
+[data-theme="sticker-pop"] .el-tooltip::after {
+  background: var(--el-ink);
+  border-color: var(--el-ink);
+  color: #ffffff;
+  font-weight: 600;
+}
+[data-theme="sticker-pop"] .el-spinner { color: var(--el-accent); }
+[data-theme="sticker-pop"] .el-skeleton {
+  background: linear-gradient(90deg, var(--el-panel-2) 25%, color-mix(in oklab, var(--el-accent) 12%, var(--el-panel-2)) 50%, var(--el-panel-2) 75%);
+  background-size: 200% 100%;
+  border-radius: var(--el-r-pill);
+}
+[data-theme="sticker-pop"] .el-inline-alert {
+  border: 2px solid color-mix(in oklab, var(--el-info) 34%, transparent);
+  border-radius: var(--el-r-lg);
+  background: color-mix(in oklab, var(--el-info) 9%, var(--el-panel));
+}
+[data-theme="sticker-pop"] .el-inline-alert.warn { background: color-mix(in oklab, var(--el-warn) 11%, var(--el-panel)); border-color: color-mix(in oklab, var(--el-warn) 36%, transparent); }
+[data-theme="sticker-pop"] .el-inline-alert.ok { background: color-mix(in oklab, var(--el-ok) 10%, var(--el-panel)); border-color: color-mix(in oklab, var(--el-ok) 34%, transparent); }
+
+/* A2 · reading surfaces + helpers */
+[data-theme="sticker-pop"] .el-reader { font-family: var(--el-font-body); font-size: .94rem; color: var(--el-ink-soft); }
+[data-theme="sticker-pop"] .el-reader .lead { color: var(--el-ink); font-weight: 600; }
+[data-theme="sticker-pop"] .el-reader blockquote {
+  border-left: 4px solid var(--el-accent);
+  border-radius: var(--el-r-sm);
+  padding: var(--el-space-2) var(--el-space-3);
+  background: var(--el-panel-2);
+}
+[data-theme="sticker-pop"] .el-code-block,
+[data-theme="sticker-pop"] .el-reader pre {
+  background: var(--el-ink);
+  color: #ffffff;
+  border: 0;
+  border-radius: var(--el-r-md);
+  box-shadow: var(--el-raise-1);
+}
+[data-theme="sticker-pop"] .el-citation-rail .el-cite .n {
+  background: var(--el-accent);
+  color: var(--el-on-accent);
+  font-family: var(--el-font-display);
+  border-radius: var(--el-r-pill);
+}
+[data-theme="sticker-pop"] .el-anchor-nav a { border-left: 3px solid var(--el-line); border-radius: var(--el-r-pill); }
+[data-theme="sticker-pop"] .el-anchor-nav a.active { border-left-color: var(--el-accent); background: var(--el-accent-soft); }
+[data-theme="sticker-pop"] .el-navbar .el-search,
+[data-theme="sticker-pop"] .el-search {
+  border: 2px solid var(--el-line);
+  border-radius: var(--el-r-pill);
+  background: #ffffff;
+}
+[data-theme="sticker-pop"] .el-search-field::before { border: 2px solid var(--el-line-strong); }
+[data-theme="sticker-pop"] .el-search-field::after { background: var(--el-line-strong); }
+[data-theme="sticker-pop"] .el-select,
+[data-theme="sticker-pop"] select.el-select { border: 2px solid var(--el-line); border-radius: var(--el-r-md); background: #ffffff; }
+[data-theme="sticker-pop"] .el-dropdown { border: 2px solid var(--el-line); border-radius: var(--el-r-md); background: #ffffff; }
+[data-theme="sticker-pop"] .el-segmented { background: var(--el-panel-2); border: 2px solid var(--el-line); box-shadow: none; }
+[data-theme="sticker-pop"] .el-segmented button.on { box-shadow: var(--el-raise-1); transform: translateY(-1px); }
+[data-theme="sticker-pop"] .el-check { border: 2px solid var(--el-line-strong); border-radius: 8px 10px 8px 10px; box-shadow: var(--el-raise-1); }
+[data-theme="sticker-pop"] .el-radio .dot { border: 2px solid var(--el-line-strong); box-shadow: var(--el-raise-1); }
+[data-theme="sticker-pop"] .el-slider { accent-color: var(--el-accent); }
+[data-theme="sticker-pop"] .el-field[data-invalid] .el-input { border-color: var(--el-fail) !important; }
+
+/* A2 · instrument — "NEW" sticker wobbles on hover */
+@keyframes ill-wobble {
+  0%, 100% { transform: rotate(-2.4deg) scale(1.05); }
+  50%      { transform: rotate(2.4deg) scale(1.05); }
+}
+[data-theme="sticker-pop"] .el-badge.live:hover { animation: ill-wobble 340ms var(--el-ease-spring) infinite; }
+
+/* A2 · reduced motion — new movers calm down */
+@media (prefers-reduced-motion: reduce) {
+  [data-theme="sticker-pop"] .el-navbar .links a,
+  [data-theme="sticker-pop"] .el-navbar .links button,
+  [data-theme="sticker-pop"] .el-pricing,
+  [data-theme="sticker-pop"] .el-card--flat,
+  [data-theme="sticker-pop"] .el-pagination .page,
+  [data-theme="sticker-pop"] .el-tabbar-item,
+  [data-theme="sticker-pop"] .el-badge.live:hover { transition-duration: 120ms; transform: none; animation: none; }
+}
+
+/* ══ B · sketchbook — hand-drawn paper (grain, marker green, dashed) ══ */
+
+[data-theme="sketchbook"] {
+
+  /* palette — paper + charcoal + marker green */
+  --el-bg:           #fdf8ee;
+  --el-panel:        #fffdf7;
+  --el-panel-2:      #f6efe1;
+  --el-panel-3:      #eee5d2;
+  --el-line:         #d9cdb4;
+  --el-line-2:       #e9dfc9;
+  --el-line-strong:  #2d2a26;
+  --el-ink:          #2d2a26;
+  --el-ink-soft:     #544c42;
+  /* v0.4.0 color pass — text-grade palette (probe: mute 3.5:1, live 3.5:1,
+     warn chip 3.1:1, ok chip 4.4:1 as small text). Accent/marker green was
+     already text-safe for this paper; amber/terracotta needed deep text
+     voices, and ok tightened to the marker's own depth. */
+  --el-mute:         #6b6154;
+  --el-on-accent:    #fdf8ee;
+  --el-accent:       #2f6f4f;
+  --el-accent-hover: #3f8661;
+  --el-accent-soft:  color-mix(in oklab, var(--el-accent) 10%, transparent);
+  --el-warn-ink:     #7a5200;
+  --el-ok:           #24653f;
+  --el-warn:         #b3801f;   /* ochre stays a fill/wash voice; text reads --el-warn-ink */
+  --el-fail:         #a84a31;
+  --el-info:         #38627a;
+  --el-live:         #9c4a28;
+  --el-teal:         #2e6f6a;
+  --el-shadow-1:     0 1px 2px color-mix(in oklab, var(--el-ink) 8%, transparent);
+  --el-shadow-2:     0 1px 2px color-mix(in oklab, var(--el-ink) 9%, transparent), 0 3px 7px -1px color-mix(in oklab, var(--el-ink) 12%, transparent);
+  --el-shadow-3:     0 2px 4px color-mix(in oklab, var(--el-ink) 10%, transparent), 0 8px 20px -4px color-mix(in oklab, var(--el-ink) 16%, transparent);
+  --el-overlay:      color-mix(in oklab, #2d2a26 52%, transparent);
+  --el-focus-ring:   var(--el-accent);
+
+  /* type — Caveat display, Nunito body (mono falls back to Nunito) */
+  --el-font-body:    'Nunito', system-ui, sans-serif;
+  --el-font-display: 'Caveat', 'Nunito', cursive;
+  --el-font-mono:    'Nunito', ui-monospace, monospace;
+  --el-body-weight:  600;
+  --el-head-weight:  700;
+  --el-head-tracking: .01em;
+  --el-head-case:    none;
+  --el-label-weight: 700;
+  --el-label-tracking: .05em;
+  --el-label-case:   none;
+
+  /* geometry — page-ish radii, true 1–2px pencil lines, emphasized 2px */
+  --el-r-sm: 6px;
+  --el-r-md: 10px;
+  --el-r-lg: 14px;
+  --el-r-xl: 18px;
+  --el-bw: 1px;
+  --el-bw-emph: 2px;
+  --el-ctl-pad-y: 9px;
+  --el-ctl-pad-x: 15px;
+  --el-ctl-min-h: 40px;
+  --el-card-pad: 26px;
+  --el-hero-pad: 72px;
+  --el-hero-min: 360px;
+  --el-bar-h: 0;
+
+  /* v0.4.0 wave — airy density ladder + reading measure + print serif */
+  --el-space-1: 5px;
+  --el-space-2: 9px;
+  --el-space-3: 13px;
+  --el-space-4: 18px;
+  --el-space-5: 28px;
+  --el-space-6: 42px;
+  --el-measure: 62ch;
+  --el-font-serif: 'Instrument Serif', 'Sentient', Georgia, serif;
+
+  /* elevation — paper lift, layered, no gloss */
+  --el-raise-1: 0 1px 0 color-mix(in oklab, var(--el-ink) 6%, transparent), 0 2px 4px color-mix(in oklab, var(--el-ink) 7%, transparent);
+  --el-raise-2: 0 1px 2px color-mix(in oklab, var(--el-ink) 8%, transparent), 0 3px 7px -1px color-mix(in oklab, var(--el-ink) 11%, transparent), 0 14px 30px -16px color-mix(in oklab, var(--el-ink) 20%, transparent);
+  --el-raise-3: 0 2px 5px color-mix(in oklab, var(--el-ink) 9%, transparent), 0 10px 18px -8px color-mix(in oklab, var(--el-ink) 14%, transparent), 0 30px 58px -22px color-mix(in oklab, var(--el-ink) 24%, transparent);
+
+  /* motion — quick pen snap, light spring settles */
+  --el-dur-fast: 140ms;
+  --el-dur-base: 220ms;
+  --el-dur-slow: 380ms;
+  --el-dur-progress: 1.5s;
+  --el-ease:     var(--el-ease-spring);
+  --el-ease-out: cubic-bezier(.28, .8, .35, 1);
+  --el-lift:  translateY(-1px);
+  --el-press: scale(.99);
+
+  /* voice */
+  --el-ornament: grain;
+  --el-rule-style: dashed;
+
+  /* focus — quiet pencil wash (token override); visible ring is the dashed outline */
+  --el-ring: 0 0 0 3px color-mix(in oklab, var(--el-accent) 22%, transparent);
+
+  /* workflow voice */
+  --el-stage-active:  var(--el-accent);
+  --el-stage-done:    var(--el-ok);
+  --el-stage-running: var(--el-accent);
+  --el-stage-stale:   var(--el-fail);
+  --el-facts-paper:   #fffdf7;
+  --el-facts-ink:     #2d2a26;
+
+  /* system instrument chrome */
+  color-scheme: light;
+  accent-color: var(--el-accent);
+  scrollbar-color: var(--el-line-strong) transparent;
+  /* v0.4.0 type pass — restore the 16px root (same recursive-shrink bug as
+     sticker-pop; see that block for the ledger). Spacing tokens are px. */
+  font-size: 16px;
+}
+
+/* B · ground — cream paper + deterministic grain (--el-ornament: grain)
+   grain tile: baseFrequency .72, seed 11, 180px 1x / 360px 2x (image-set keeps
+   the speckle at native device-pixel size on 2x screens) */
+[data-theme="sketchbook"] {
+  --ill-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.72' numOctaves='2' seed='11' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23g)' opacity='.07'/%3E%3C/svg%3E");
+  --ill-grain: image-set(url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.72' numOctaves='2' seed='11' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23g)' opacity='.07'/%3E%3C/svg%3E") 1x, url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='360' height='360'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.72' numOctaves='2' seed='11' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='360' height='360' filter='url(%23g)' opacity='.07'/%3E%3C/svg%3E") 2x);
+}
+[data-theme="sketchbook"] body {
+  margin: 0;
+  font-family: var(--el-font-body);
+  font-size: var(--el-fs-md);
+  font-weight: var(--el-body-weight);
+  line-height: 1.55;
+  font-optical-sizing: auto;
+  color: var(--el-ink);
+  background-image:
+    var(--ill-grain),
+    radial-gradient(1050px 480px at 8% -10%, color-mix(in oklab, var(--el-accent) 7%, var(--el-bg)) 0%, color-mix(in oklab, var(--el-accent) 3%, var(--el-bg)) 44%, transparent 68%),
+    radial-gradient(860px 420px at 106% 108%, color-mix(in oklab, var(--el-warn) 8%, var(--el-bg)) 0%, color-mix(in oklab, var(--el-warn) 4%, var(--el-bg)) 46%, transparent 70%);
+  background-size: 180px 180px, auto, auto;
+  background-position: 0 0, 0 0, 0 0;
+  background-color: var(--el-bg);
+  background-repeat: repeat, no-repeat, no-repeat;
+  -webkit-font-smoothing: antialiased;
+}
+[data-theme="sketchbook"] h1,
+[data-theme="sketchbook"] h2,
+[data-theme="sketchbook"] h3,
+[data-theme="sketchbook"] h4 {
+  font-family: var(--el-font-display);
+  font-weight: var(--el-head-weight);
+  letter-spacing: var(--el-head-tracking);
+  text-transform: var(--el-head-case);
+  line-height: 1.1;
+  color: var(--el-ink);
+  text-wrap: balance;
+}
+
+/* B · card — sketch panel: crisp 2px dashed ink border, wobbly radius */
+[data-theme="sketchbook"] .el-card {
+  background: var(--el-panel);
+  border: 2px dashed color-mix(in oklab, var(--el-ink) 34%, transparent);
+  border-radius: 12px 14px 11px 15px;
+  box-shadow: var(--el-raise-1);
+}
+[data-theme="sketchbook"] .el-card:hover {
+  transform: rotate(-.35deg) translateY(-1px);
+  box-shadow: var(--el-raise-2);
+  border-color: color-mix(in oklab, var(--el-accent) 55%, transparent);
+}
+[data-theme="sketchbook"] .el-card:focus-within {
+  border-color: color-mix(in oklab, var(--el-accent) 55%, transparent);
+}
+
+/* B · button — marker outline that floods green on hover (spring settle) */
+[data-theme="sketchbook"] .el-btn,
+[data-theme="sketchbook"] .el-btn--ghost,
+[data-theme="sketchbook"] .el-btn.ghost,
+[data-theme="sketchbook"] .el-btn--outline,
+[data-theme="sketchbook"] .el-btn--danger {
+  transition:
+    background-color var(--el-dur-base) var(--el-ease-spring),
+    border-color 140ms var(--el-ease-out),
+    color var(--el-dur-base) var(--el-ease-spring),
+    box-shadow var(--el-dur-base) var(--el-ease-out),
+    transform var(--el-dur-base) var(--el-ease-spring);
+}
+[data-theme="sketchbook"] .el-btn {
+  background: transparent;
+  border: 2px solid var(--el-accent);
+  border-radius: 9px 12px 8px 11px;
+  color: var(--el-accent);
+  font-weight: 700;
+  box-shadow: var(--el-raise-1);
+}
+[data-theme="sketchbook"] .el-btn:hover {
+  background: var(--el-accent);
+  border-color: var(--el-accent-hover);
+  color: var(--el-on-accent);
+  transform: translateY(-1px);
+  box-shadow: var(--el-raise-2);
+}
+[data-theme="sketchbook"] .el-btn:active {
+  transform: scale(.97);
+  box-shadow: var(--el-raise-1);
+  transition-duration: 100ms;
+}
+[data-theme="sketchbook"] .el-btn:focus-visible {
+  outline: 2px dashed var(--el-focus-ring);
+  outline-offset: 3px;
+}
+[data-theme="sketchbook"] .el-btn:disabled,
+[data-theme="sketchbook"] .el-btn[aria-disabled="true"] {
+  opacity: .45;
+  box-shadow: none;
+  background: transparent;
+  color: var(--el-ink-soft);
+  border-color: color-mix(in oklab, var(--el-ink) 20%, transparent);
+  cursor: not-allowed;
+}
+[data-theme="sketchbook"] .el-btn--ghost,
+[data-theme="sketchbook"] .el-btn.ghost {
+  background: transparent;
+  border: 2px dashed color-mix(in oklab, var(--el-ink) 38%, transparent);
+  color: var(--el-ink-soft);
+  box-shadow: none;
+}
+[data-theme="sketchbook"] .el-btn--ghost:hover,
+[data-theme="sketchbook"] .el-btn.ghost:hover {
+  background: var(--el-accent-soft);
+  border-color: var(--el-accent);
+  color: var(--el-accent);
+  transform: translateY(-1px);
+}
+[data-theme="sketchbook"] .el-btn--outline {
+  background: transparent;
+  border: 2px dashed var(--el-accent);
+  color: var(--el-accent);
+}
+[data-theme="sketchbook"] .el-btn--outline:hover {
+  background: var(--el-accent-soft);
+  border-color: var(--el-accent);
+  color: var(--el-accent);
+  transform: translateY(-1px);
+}
+[data-theme="sketchbook"] .el-btn--danger {
+  background: transparent;
+  border: 2px solid var(--el-fail);
+  color: var(--el-fail);
+}
+[data-theme="sketchbook"] .el-btn--danger:hover {
+  background: var(--el-fail);
+  border-color: var(--el-fail);
+  color: var(--el-on-accent);
+  transform: translateY(-1px);
+  box-shadow: var(--el-raise-2);
+}
+
+/* B · chip — hand-drawn tag, handwritten label */
+[data-theme="sketchbook"] .el-chip {
+  background: transparent;
+  border: 2px dashed color-mix(in oklab, var(--el-ink) 42%, transparent);
+  border-radius: 10px 12px 8px 12px;
+  color: var(--el-ink-soft);
+  font-family: var(--el-font-display);
+  font-size: 1.3em;
+  font-weight: 700;
+  letter-spacing: .01em;
+  padding: 2px 10px;
+  transition:
+    background-color 140ms var(--el-ease-out),
+    color 140ms var(--el-ease-out),
+    border-color 140ms var(--el-ease-out),
+    transform var(--el-dur-base) var(--el-ease-spring),
+    box-shadow var(--el-dur-base) var(--el-ease-out);
+}
+[data-theme="sketchbook"] .el-chip:hover {
+  background: var(--el-accent-soft);
+  border-color: var(--el-accent);
+  color: var(--el-accent);
+  transform: rotate(.4deg);
+}
+[data-theme="sketchbook"] .el-chip.ok {
+  background: color-mix(in oklab, var(--el-ok) 8%, transparent);
+  border-color: color-mix(in oklab, var(--el-ok) 50%, transparent);
+  color: var(--el-ok);
+}
+[data-theme="sketchbook"] .el-chip.warn {
+  background: color-mix(in oklab, var(--el-warn) 10%, transparent);
+  border-color: color-mix(in oklab, var(--el-warn) 50%, transparent);
+  color: var(--el-warn-ink);
+}
+[data-theme="sketchbook"] .el-chip.fail {
+  background: color-mix(in oklab, var(--el-fail) 8%, transparent);
+  border-color: color-mix(in oklab, var(--el-fail) 50%, transparent);
+  color: var(--el-fail);
+}
+[data-theme="sketchbook"] .el-chip.added {
+  background: var(--el-accent-soft);
+  border-color: var(--el-accent);
+  color: var(--el-accent);
+}
+[data-theme="sketchbook"] .el-chip.live {
+  background: var(--el-accent);
+  border: 2px solid var(--el-accent);
+  color: var(--el-on-accent);
+}
+[data-theme="sketchbook"] .el-chip[aria-disabled="true"] { opacity: .45; transform: none; }
+
+/* B · dots — flat marker dots (no glow) */
+[data-theme="sketchbook"] .el-dot { width: 9px; height: 9px; }
+[data-theme="sketchbook"] .el-dot.ok,
+[data-theme="sketchbook"] .el-dot.warn,
+[data-theme="sketchbook"] .el-dot.fail,
+[data-theme="sketchbook"] .el-dot.info,
+[data-theme="sketchbook"] .el-dot.live { box-shadow: 0 0 0 2px var(--el-bg); }
+
+/* B · bar — dashed outlined trough, marker fill (no gradient banding: two-stop solid wash) */
+[data-theme="sketchbook"] .el-bar {
+  display: block;
+  height: 14px;
+  padding: 3px 4px;
+  background: transparent;
+  border: 2px dashed color-mix(in oklab, var(--el-ink) 36%, transparent);
+  border-radius: 4px 5px 4px 6px;
+}
+[data-theme="sketchbook"] .el-bar > i {
+  display: block;
+  height: 100%;
+  border-radius: 2px 3px 2px 3px;
+  background:
+    linear-gradient(180deg, color-mix(in oklab, #ffffff 22%, transparent) 0 1px, transparent 1px),
+    linear-gradient(180deg, var(--el-accent-hover) 0%, color-mix(in oklab, var(--el-accent) 72%, var(--el-ok)) 62%, var(--el-accent) 100%);
+  box-shadow: 0 1px 1px color-mix(in oklab, var(--el-ink) 14%, transparent);
+  transition: width var(--el-dur-base) var(--el-ease-spring);
+}
+
+/* B · hero — ruled notebook page: grain + crisp 1px rules, Caveat headline */
+[data-theme="sketchbook"] .el-hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: var(--el-space-2);
+  border-radius: 6px 8px 5px 7px;
+  background: var(--el-panel);
+  border: 2px dashed color-mix(in oklab, var(--el-ink) 32%, transparent);
+  box-shadow: var(--el-raise-1);
+}
+[data-theme="sketchbook"] .el-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    repeating-linear-gradient(180deg, transparent 0 31px, color-mix(in oklab, var(--el-info) 13%, transparent) 31px 32px),
+    var(--ill-grain);
+  background-size: auto, 180px 180px;
+  background-position: 0 9px, 0 0;
+}
+
+/* B · eyebrow — Caveat annotation; the ink wave DRAWS itself on hover (instrument) */
+[data-theme="sketchbook"] .el-eyebrow {
+  position: relative;
+  font-family: var(--el-font-display);
+  font-weight: 700;
+  font-size: 1.5em;
+  letter-spacing: .01em;
+  text-transform: none;
+  color: var(--el-accent);
+  padding-bottom: .32em;
+}
+[data-theme="sketchbook"] .el-eyebrow::after {
+  /* hand-inked wave, %232f6f4f == var(--el-accent) (data URIs cannot hold vars) */
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: .02em;
+  height: 7px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='7' viewBox='0 0 24 7'%3E%3Cpath d='M0 5.3Q6 1.5 12 5.3T24 5.3' fill='none' stroke='%232f6f4f' stroke-width='1.7' stroke-linecap='round'/%3E%3C/svg%3E") 0 0 / 24px 7px repeat-x;
+  opacity: .78;
+  mask-image: linear-gradient(90deg, #000 0 var(--ill-wave, 100%), transparent calc(var(--ill-wave, 100%) + 1%));
+  -webkit-mask-image: linear-gradient(90deg, #000 0 var(--ill-wave, 100%), transparent calc(var(--ill-wave, 100%) + 1%));
+}
+[data-theme="sketchbook"] .el-eyebrow:hover::after,
+[data-theme="sketchbook"] .el-hero:hover .el-eyebrow::after,
+[data-theme="sketchbook"] .el-card:hover .el-eyebrow::after {
+  animation: ill-wave-draw 620ms var(--el-ease-spring) both;
+}
+
+/* B · footer — taped note strip (layered paper tape, crisp 1px edge) */
+[data-theme="sketchbook"] .el-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--el-space-2);
+  position: relative;
+}
+[data-theme="sketchbook"] .el-footer::before {
+  content: "";
+  position: absolute;
+  top: -9px;
+  left: 22px;
+  width: 92px;
+  height: 17px;
+  transform: rotate(-2deg);
+  background:
+    linear-gradient(90deg, transparent 0 1px, color-mix(in srgb, #b0915a 30%, transparent) 1px calc(100% - 1px), transparent calc(100% - 1px)),
+    linear-gradient(180deg, color-mix(in srgb, #eae2c0 92%, transparent), color-mix(in srgb, #e2ca8a 62%, transparent));
+  box-shadow: 0 1px 2px color-mix(in oklab, var(--el-ink) 16%, transparent);
+}
+[data-theme="sketchbook"] .el-footer::after {
+  content: "";
+  position: absolute;
+  top: -11px;
+  right: 34px;
+  width: 64px;
+  height: 15px;
+  transform: rotate(1.5deg);
+  background:
+    linear-gradient(90deg, transparent 0 1px, color-mix(in srgb, #b0915a 24%, transparent) 1px calc(100% - 1px), transparent calc(100% - 1px)),
+    linear-gradient(180deg, color-mix(in srgb, #eae2c0 78%, transparent), color-mix(in srgb, #e2ca8a 52%, transparent));
+  box-shadow: 0 1px 2px color-mix(in oklab, var(--el-ink) 12%, transparent);
+}
+
+/* B · form voice — crisp pencil fields */
+[data-theme="sketchbook"] :is(.el-input, .el-textarea, .el-prompt) { box-sizing: border-box; }
+[data-theme="sketchbook"] .el-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 0 0 12px;
+}
+[data-theme="sketchbook"] .el-input,
+[data-theme="sketchbook"] .el-textarea {
+  background: var(--el-panel);
+  border: 2px solid color-mix(in oklab, var(--el-ink) 30%, transparent);
+  border-radius: 8px 10px 9px 7px;
+  box-shadow: none;
+  transition: border-color 140ms var(--el-ease-out), box-shadow 200ms var(--el-ease-out), background-color 140ms var(--el-ease-out);
+}
+[data-theme="sketchbook"] .el-input:hover,
+[data-theme="sketchbook"] .el-textarea:hover {
+  border-color: color-mix(in oklab, var(--el-ink) 52%, transparent);
+}
+[data-theme="sketchbook"] .el-input:focus,
+[data-theme="sketchbook"] .el-textarea:focus {
+  background: var(--el-panel);
+  border-color: var(--el-accent);
+  box-shadow: var(--el-ring);
+  outline: none;
+}
+[data-theme="sketchbook"] .el-input::placeholder,
+[data-theme="sketchbook"] .el-textarea::placeholder { color: var(--el-mute); font-weight: 400; }
+[data-theme="sketchbook"] .el-input:disabled,
+[data-theme="sketchbook"] .el-textarea:disabled {
+  opacity: .45;
+  background: var(--el-panel-2);
+  border-color: color-mix(in oklab, var(--el-ink) 14%, transparent);
+  cursor: not-allowed;
+  box-shadow: none;
+}
+[data-theme="sketchbook"] .el-switch {
+  border: 2px solid color-mix(in oklab, var(--el-ink) 36%, transparent);
+  border-radius: 8px 10px 9px 7px;
+  background: var(--el-panel-2);
+  transition: background-color 140ms var(--el-ease-out), border-color 140ms var(--el-ease-out), box-shadow 200ms var(--el-ease-out);
+}
+[data-theme="sketchbook"] .el-switch::after {
+  background: color-mix(in oklab, var(--el-ink) 26%, var(--el-panel));
+  border-radius: 6px 7px 6px 7px;
+  box-shadow: 0 0 0 1px color-mix(in oklab, var(--el-ink) 16%, transparent);
+}
+[data-theme="sketchbook"] .el-switch:hover { border-color: color-mix(in oklab, var(--el-ink) 56%, transparent); }
+[data-theme="sketchbook"] .el-switch.on {
+  background: var(--el-accent-soft);
+  border-color: var(--el-accent);
+}
+[data-theme="sketchbook"] .el-switch.on::after { background: var(--el-accent); box-shadow: none; }
+[data-theme="sketchbook"] .el-switch:focus-visible {
+  outline: 2px dashed var(--el-focus-ring);
+  outline-offset: 2px;
+}
+[data-theme="sketchbook"] .el-switch[aria-disabled="true"],
+[data-theme="sketchbook"] .el-switch.disabled { opacity: .45; cursor: not-allowed; box-shadow: none; }
+
+/* B · nav pills — dashed pencil chips */
+[data-theme="sketchbook"] .el-pill {
+  background: transparent;
+  border: 2px dashed color-mix(in oklab, var(--el-ink) 34%, transparent);
+  color: var(--el-ink-soft);
+  box-shadow: none;
+  border-radius: 9px 11px 8px 10px;
+  transition:
+    background-color 140ms var(--el-ease-out),
+    color 140ms var(--el-ease-out),
+    border-color 140ms var(--el-ease-out),
+    transform var(--el-dur-base) var(--el-ease-spring);
+}
+[data-theme="sketchbook"] .el-pill:hover {
+  background: var(--el-accent-soft);
+  border-color: var(--el-accent);
+  color: var(--el-accent);
+  transform: translateY(-1px);
+}
+[data-theme="sketchbook"] .el-pill:active { transform: none; }
+[data-theme="sketchbook"] .el-pill:focus-visible {
+  outline: 2px dashed var(--el-focus-ring);
+  outline-offset: 2px;
+}
+[data-theme="sketchbook"] .el-pill[aria-disabled="true"] { opacity: .45; transform: none; }
+
+/* B · table — ruled columns, dashed rows, marker hover */
+[data-theme="sketchbook"] .el-table {
+  background: var(--el-panel);
+  border: 2px dashed color-mix(in oklab, var(--el-ink) 30%, transparent);
+  border-radius: 10px 12px 9px 12px;
+  box-shadow: var(--el-raise-1);
+}
+[data-theme="sketchbook"] .el-table thead th {
+  background: transparent;
+  border-bottom: 2px dashed color-mix(in oklab, var(--el-ink) 38%, transparent);
+  color: var(--el-ink-soft);
+}
+[data-theme="sketchbook"] .el-table thead th:hover { background: transparent; color: var(--el-ink); }
+[data-theme="sketchbook"] .el-table tbody td {
+  border-bottom: 1px dashed color-mix(in oklab, var(--el-ink) 24%, transparent);
+}
+[data-theme="sketchbook"] .el-table tbody tr:hover {
+  background: color-mix(in oklab, var(--el-accent) 5%, transparent);
+}
+
+/* B · stage + source — sketch boxes */
+[data-theme="sketchbook"] .el-stage-rail {
+  background: transparent;
+  border: 2px dashed color-mix(in oklab, var(--el-ink) 30%, transparent);
+  border-radius: 10px 12px 9px 12px;
+}
+[data-theme="sketchbook"] .el-stage { transition: background-color 140ms var(--el-ease-out), color 140ms var(--el-ease-out); }
+[data-theme="sketchbook"] .el-stage:hover {
+  background: color-mix(in oklab, var(--el-ink) 7%, transparent);
+  color: var(--el-ink);
+}
+[data-theme="sketchbook"] .el-stage:focus-visible {
+  outline: 2px dashed var(--el-focus-ring);
+  outline-offset: 2px;
+  border-radius: var(--el-r-md);
+}
+[data-theme="sketchbook"] .el-stage-rail .el-stage.is-active,
+[data-theme="sketchbook"] .el-stage-rail .el-stage.is-running { background: var(--el-accent-soft); }
+[data-theme="sketchbook"] .el-stage.is-stale { color: var(--el-fail); }
+[data-theme="sketchbook"] .el-stage .el-stage-dot {
+  width: 10px;
+  height: 10px;
+  background: color-mix(in oklab, var(--el-ink) 40%, var(--el-panel-2));
+  box-shadow: 0 0 0 1px color-mix(in oklab, var(--el-ink) 18%, transparent);
+}
+[data-theme="sketchbook"] .el-stage.done .el-stage-dot,
+[data-theme="sketchbook"] .el-stage.is-done .el-stage-dot { background: var(--el-ok); box-shadow: none; }
+[data-theme="sketchbook"] .el-stage.run .el-stage-dot,
+[data-theme="sketchbook"] .el-stage.is-active .el-stage-dot,
+[data-theme="sketchbook"] .el-stage.is-running .el-stage-dot {
+  background: var(--el-accent);
+  box-shadow: none;
+  animation: el-stage-pulse var(--el-dur-progress) var(--el-ease-out) infinite;
+}
+[data-theme="sketchbook"] .el-stage.is-queued { opacity: .45; }
+[data-theme="sketchbook"] .el-progress-truth {
+  background: transparent;
+  border: 2px dashed color-mix(in oklab, var(--el-ink) 26%, transparent);
+  border-radius: 8px 10px 9px 8px;
+}
+[data-theme="sketchbook"] .el-progress-truth .el-pt-chunk.on,
+[data-theme="sketchbook"] .el-progress-truth .el-pt-chunk.is-done {
+  border: 2px dashed var(--el-accent);
+  color: var(--el-accent);
+}
+[data-theme="sketchbook"] .el-pt-chunk.is-running { border-color: var(--el-accent); color: var(--el-accent); }
+[data-theme="sketchbook"] .el-source-card {
+  background: var(--el-panel);
+  border: 2px dashed color-mix(in oklab, var(--el-ink) 30%, transparent);
+  border-radius: 8px 10px 9px 10px;
+  transition: border-color 140ms var(--el-ease-out), box-shadow 140ms var(--el-ease-out);
+}
+[data-theme="sketchbook"] .el-source-card:hover { border-color: color-mix(in oklab, var(--el-accent) 50%, transparent); box-shadow: var(--el-raise-2); }
+[data-theme="sketchbook"] .el-source-card.is-cited { border-left: 4px solid var(--el-stage-active); }
+
+/* B · hand-drawn rule (inline border on the harness hr is overridden) */
+[data-theme="sketchbook"] .el-rule {
+  border-top: 2px dashed color-mix(in oklab, var(--el-ink) 28%, transparent) !important;
+}
+
+/* B · semantic glue */
+[data-theme="sketchbook"] .el-label {
+  display: inline-block;
+  font-family: var(--el-font-body);
+  font-size: var(--el-fs-sm);
+  font-weight: var(--el-label-weight);
+  letter-spacing: var(--el-label-tracking);
+  text-transform: var(--el-label-case);
+  color: var(--el-ink-soft);
+  margin: 0;
+}
+[data-theme="sketchbook"] .el-body {
+  font-family: var(--el-font-body);
+  font-size: var(--el-fs-md);
+  font-weight: var(--el-body-weight);
+  line-height: 1.65;
+  text-wrap: pretty;
+  margin: 0 0 var(--el-space-2);
+}
+[data-theme="sketchbook"] .el-mute-body { color: var(--el-mute); margin: 0; }
+[data-theme="sketchbook"] .el-fs-sm { font-size: var(--el-fs-sm); }
+[data-theme="sketchbook"] .el-display-specimen { font-family: var(--el-font-display); }
+[data-theme="sketchbook"] .el-title-xl {
+  font-family: var(--el-font-display);
+  font-weight: var(--el-head-weight);
+  letter-spacing: var(--el-head-tracking);
+  line-height: 1.02;
+  text-wrap: balance;
+  margin: 0 0 var(--el-space-2);
+}
+[data-theme="sketchbook"] .el-mono { font-family: var(--el-font-mono); font-weight: 700; font-size: .95em; font-variant-numeric: tabular-nums; }
+[data-theme="sketchbook"] .el-ink-ok { font-family: var(--el-font-mono); color: var(--el-ok); }
+[data-theme="sketchbook"] .el-ink-fail { font-family: var(--el-font-mono); color: var(--el-fail); }
+[data-theme="sketchbook"] .el-md { font-family: var(--el-font-display); font-weight: var(--el-head-weight); font-size: var(--el-fs-md); letter-spacing: var(--el-head-tracking); margin: 0; }
+[data-theme="sketchbook"] .el-publisher { font-size: var(--el-fs-xs); font-weight: var(--el-label-weight); letter-spacing: var(--el-label-tracking); color: var(--el-mute); }
+[data-theme="sketchbook"] .el-big-num {
+  font-family: var(--el-font-display);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  background: none;
+  -webkit-text-fill-color: currentColor;
+  color: var(--el-accent);
+  letter-spacing: .01em;
+}
+
+/* selection in the theme's marker voice, never browser default */
+[data-theme="sketchbook"] ::selection {
+  background: color-mix(in oklab, var(--el-accent) 30%, var(--el-bg));
+  color: var(--el-ink);
+}
+[data-theme="sketchbook"] ::-moz-selection {
+  background: color-mix(in oklab, var(--el-accent) 30%, var(--el-bg));
+  color: var(--el-ink);
+}
+
+/* B · instrument — registered ink wave draws itself (stroke reveal by mask) */
+@property --ill-wave {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 100%;
+}
+@keyframes ill-wave-draw {
+  from { --ill-wave: 0%; }
+  to   { --ill-wave: 100%; }
+}
+
+/* B · reduced motion — pen snaps collapse to calm fades, wave stays drawn */
+@media (prefers-reduced-motion: reduce) {
+  [data-theme="sketchbook"] .el-btn,
+  [data-theme="sketchbook"] .el-card,
+  [data-theme="sketchbook"] .el-chip,
+  [data-theme="sketchbook"] .el-pill,
+  [data-theme="sketchbook"] .el-input,
+  [data-theme="sketchbook"] .el-textarea,
+  [data-theme="sketchbook"] .el-switch,
+  [data-theme="sketchbook"] .el-stage {
+    transition-property: background-color, border-color, color, box-shadow, opacity;
+    transition-duration: 120ms;
+    transition-timing-function: var(--el-ease-out);
+  }
+  [data-theme="sketchbook"] .el-btn:hover,
+  [data-theme="sketchbook"] .el-btn:active,
+  [data-theme="sketchbook"] .el-card:hover,
+  [data-theme="sketchbook"] .el-chip:hover,
+  [data-theme="sketchbook"] .el-pill:hover,
+  [data-theme="sketchbook"] .el-pill:active { transform: none; }
+  [data-theme="sketchbook"] .el-eyebrow:hover::after,
+  [data-theme="sketchbook"] .el-hero:hover .el-eyebrow::after,
+  [data-theme="sketchbook"] .el-card:hover .el-eyebrow::after { animation: none; }
+  [data-theme="sketchbook"] .el-stage.run .el-stage-dot,
+  [data-theme="sketchbook"] .el-stage.is-active .el-stage-dot,
+  [data-theme="sketchbook"] .el-stage.is-running .el-stage-dot { animation: none; }
+}
+
+/* ══ B2 · sketchbook v0.4.0 wave — whole-UI persona voice ══
+   Slots: nav --top (pencil strip) · hero --left · flat sketch cards · tables
+   --ruled · airy density. Ink pencil-line furniture everywhere; grain carries. */
+
+/* B2 · navbar — pencil strip along the top; current page = marker green wash */
+[data-theme="sketchbook"] .el-navbar {
+  max-width: calc(var(--el-page-max) - 2 * var(--el-space-4));
+  width: calc(100% - 2 * var(--el-space-4));
+  margin: var(--el-space-3) auto 0;
+  border: 2px dashed color-mix(in oklab, var(--el-ink) 30%, transparent);
+  border-radius: 12px 15px 11px 14px;
+  background: color-mix(in srgb, var(--el-panel) 86%, transparent);
+  box-shadow: var(--el-raise-1);
+}
+[data-theme="sketchbook"] .el-navbar .brand { font-family: var(--el-font-display); font-weight: var(--el-head-weight); }
+[data-theme="sketchbook"] .el-navbar .links a,
+[data-theme="sketchbook"] .el-navbar .links button { transition: background 150ms var(--el-ease-out), color 150ms var(--el-ease-out), transform var(--el-dur-base) var(--el-ease-out); }
+[data-theme="sketchbook"] .el-navbar .links a:hover,
+[data-theme="sketchbook"] .el-navbar .links button:hover {
+  background: var(--el-panel-2);
+  color: var(--el-ink);
+  transform: skewX(-2deg);
+}
+[data-theme="sketchbook"] .el-navbar .links [aria-current="page"] {
+  background: var(--el-accent-soft);
+  color: var(--el-accent);
+  border-bottom: 3px solid var(--el-accent);
+  border-bottom-left-radius: 2px;
+  transform: rotate(-.6deg);
+}
+[data-theme="sketchbook"] .el-navbar--rail {
+  height: auto;
+  border-radius: 12px 14px 11px 15px;
+  background: var(--el-panel);
+}
+[data-theme="sketchbook"] .el-navbar--rail .links [aria-current="page"] {
+  transform: none;
+  border-bottom: 0;
+  box-shadow: inset 3px 0 0 var(--el-accent);
+}
+[data-theme="sketchbook"] .el-navbar--headerbar {
+  background: var(--el-panel);
+  border: 2px dashed color-mix(in oklab, var(--el-ink) 30%, transparent);
+  border-bottom-style: solid;
+}
+
+/* B2 · hero — ruled sketchbook spread; poster keeps an ink-safe scrim */
+[data-theme="sketchbook"] .el-hero {
+  padding: var(--el-hero-pad) var(--el-space-5);
+  min-height: var(--el-hero-min);
+}
+[data-theme="sketchbook"] .el-hero > h1 { font-family: var(--el-font-display); font-size: clamp(2.9rem, 5.6vw, 3.9rem); line-height: 1.02; }
+[data-theme="sketchbook"] .el-hero > p:not(.el-eyebrow) { max-width: var(--el-measure); color: var(--el-ink-soft); font-size: var(--el-fs-lg); }
+[data-theme="sketchbook"] .el-hero .media {
+  /* the B1 hero is a flex column; without stretch the fill-only media collapses */
+  align-self: stretch;
+  min-height: 215px;
+  border: 2px dashed color-mix(in oklab, var(--el-ink) 32%, transparent);
+  border-radius: 14px 12px 16px 10px;
+  box-shadow: var(--el-raise-2), var(--el-inset-field, inset 0 0 0 6px #fffdf7);
+}
+[data-theme="sketchbook"] .el-hero .media > .fill {
+  /* v0.4.0 color pass: the old 22% green + 13% charcoal radials overlapped
+     into a gray-olive slab; washes are lightened to gouache-on-paper */
+  background:
+    repeating-linear-gradient(180deg, transparent 0 26px, color-mix(in oklab, var(--el-accent) 8%, transparent) 26px 27px),
+    radial-gradient(120% 88% at 22% 20%, color-mix(in oklab, var(--el-accent) 14%, transparent) 0%, color-mix(in oklab, var(--el-accent) 5%, transparent) 42%, transparent 64%),
+    radial-gradient(92% 110% at 80% 82%, color-mix(in oklab, var(--el-warn) 10%, transparent) 0%, transparent 58%),
+    linear-gradient(160deg, var(--el-panel) 0%, color-mix(in oklab, var(--el-accent) 7%, var(--el-panel)) 58%, color-mix(in oklab, var(--el-accent) 12%, var(--el-panel-2)) 100%);
+  border-radius: inherit;
+}
+[data-theme="sketchbook"] .el-hero--split {
+  /* B1 flex makes plain heroes stack on purpose; split restores the sheet's two-column grid */
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: center;
+  gap: var(--el-space-6);
+}
+[data-theme="sketchbook"] .el-hero--split .media { align-self: stretch; height: 100%; }
+[data-theme="sketchbook"] .el-hero--poster { border-radius: 16px; }
+[data-theme="sketchbook"] .el-hero--poster::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg,
+    color-mix(in oklab, var(--el-bg) 46%, transparent) 0%,
+    color-mix(in oklab, var(--el-bg) 20%, transparent) 42%,
+    color-mix(in oklab, var(--el-bg) 92%, transparent) 100%);
+}
+
+/* B2 · section — airy blocks; head rule = pencil underline */
+[data-theme="sketchbook"] .el-section-head .rule {
+  height: 0;
+  border-top: 2px dashed color-mix(in oklab, var(--el-ink) 28%, transparent);
+  background: none;
+}
+
+/* B2 · media band — taped sketch with a Caveat caption */
+[data-theme="sketchbook"] .el-media-band {
+  border: 2px dashed color-mix(in oklab, var(--el-ink) 32%, transparent);
+  border-radius: 14px 12px 16px 10px;
+  background: var(--el-panel);
+  box-shadow: var(--el-raise-1);
+}
+[data-theme="sketchbook"] .el-media-band::before {
+  content: "";
+  position: absolute;
+  top: -9px;
+  left: 50%;
+  width: 92px;
+  height: 20px;
+  transform: translateX(-50%) rotate(-2deg);
+  background: color-mix(in srgb, var(--el-warn) 26%, #ffffff);
+  box-shadow: 0 1px 3px color-mix(in oklab, var(--el-ink) 14%, transparent);
+  opacity: .8;
+}
+[data-theme="sketchbook"] .el-media-band > .media > .fill {
+  /* the stairwell strip: painted half, charcoal sketch half, ruled underneath
+     (v0.4.0 color pass: same de-mud as the hero fill) */
+  background:
+    repeating-linear-gradient(180deg, transparent 0 26px, color-mix(in oklab, var(--el-accent) 7%, transparent) 26px 27px),
+    linear-gradient(90deg,
+      color-mix(in oklab, var(--el-accent) 22%, var(--el-panel)) 0 44%,
+      color-mix(in oklab, var(--el-warn) 11%, var(--el-panel)) 44% 50%,
+      color-mix(in oklab, var(--el-ink) 5%, var(--el-panel-2)) 50% 58%,
+      color-mix(in oklab, var(--el-info) 7%, var(--el-panel-2)) 58% 100%);
+}
+[data-theme="sketchbook"] .el-media-band > .media > figcaption {
+  font-family: var(--el-font-display);
+  font-size: var(--el-fs-lg);
+  color: var(--el-ink);
+  letter-spacing: 0;
+  background: color-mix(in srgb, var(--el-warn) 22%, #fffef9);
+  border-top: 1px dashed color-mix(in oklab, var(--el-ink) 28%, transparent);
+}
+
+/* B2 · pricing — estimate sheets; featured is the green-lit sheet */
+[data-theme="sketchbook"] .el-pricing {
+  background: var(--el-panel);
+  border: 2px dashed color-mix(in oklab, var(--el-ink) 34%, transparent);
+  border-radius: 12px 15px 11px 14px;
+  box-shadow: var(--el-raise-1);
+  transition: transform var(--el-dur-base) var(--el-ease-out), box-shadow var(--el-dur-base) var(--el-ease-out), border-color 150ms var(--el-ease-out);
+}
+[data-theme="sketchbook"] .el-pricing .name { font-family: var(--el-font-display); font-size: var(--el-fs-xl); }
+[data-theme="sketchbook"] .el-pricing .price { font-family: var(--el-font-display); font-weight: var(--el-head-weight); }
+[data-theme="sketchbook"] .el-pricing .feats li::before { content: "\2022"; color: var(--el-accent); font-size: 1.1rem; position: relative; top: -1px; line-height: 0; }
+[data-theme="sketchbook"] .el-pricing--featured {
+  border: 2px solid var(--el-accent);
+  box-shadow: var(--el-raise-2);
+  background:
+    repeating-linear-gradient(180deg, transparent 0 30px, color-mix(in oklab, var(--el-accent) 6%, transparent) 30px 31px),
+    var(--el-panel);
+}
+[data-theme="sketchbook"] .el-pricing .flag {
+  font-family: var(--el-font-display);
+  font-size: var(--el-fs-md);
+  transform: rotate(-2.5deg);
+}
+
+/* B2 · testimonial — written in pen, then taped to the page */
+[data-theme="sketchbook"] .el-testimonial {
+  background: var(--el-panel);
+  border: 2px dashed color-mix(in oklab, var(--el-ink) 32%, transparent);
+  border-radius: 12px 15px 11px 14px;
+  box-shadow: var(--el-raise-1);
+}
+[data-theme="sketchbook"] .el-testimonial::before { color: color-mix(in oklab, var(--el-accent) 55%, transparent); }
+[data-theme="sketchbook"] .el-testimonial .q,
+[data-theme="sketchbook"] .el-testimonial .quote {
+  font-family: "Instrument Serif", "Sentient", Georgia, serif;
+  font-size: var(--el-fs-xl);
+  font-style: italic;
+  line-height: 1.42;
+}
+
+/* B2 · banner — memo strip in the tint */
+[data-theme="sketchbook"] .el-banner {
+  margin: var(--el-space-3) 0 0;
+  border: 2px dashed color-mix(in oklab, var(--el-banner-tint) 52%, transparent);
+  border-radius: 12px 14px 11px 15px;
+  background:
+    repeating-linear-gradient(180deg, transparent 0 20px, color-mix(in oklab, var(--el-banner-tint) 5%, transparent) 20px 21px),
+    var(--el-panel);
+  box-shadow: var(--el-raise-1);
+}
+[data-theme="sketchbook"] .el-banner h2 { font-family: var(--el-font-display); }
+[data-theme="sketchbook"] .el-banner--attached { border-inline: 2px dashed; }
+
+/* B2 · fact grid — index cards with ruled lines */
+[data-theme="sketchbook"] .el-fact {
+  background:
+    repeating-linear-gradient(180deg, transparent 0 24px, color-mix(in oklab, var(--el-info) 9%, transparent) 24px 25px),
+    var(--el-panel);
+  border: 2px dashed color-mix(in oklab, var(--el-ink) 30%, transparent);
+  border-radius: 10px 12px 9px 13px;
+  box-shadow: var(--el-raise-1);
+  padding: var(--el-space-3) var(--el-space-4);
+}
+[data-theme="sketchbook"] .el-fact .k { font-family: var(--el-font-body); font-weight: 700; }
+[data-theme="sketchbook"] .el-fact .v { font-family: var(--el-font-display); color: var(--el-ink); }
+[data-theme="sketchbook"] .el-fact .v small { font-family: var(--el-font-body); }
+
+/* B2 · timeline — pencil rail, marker dots */
+[data-theme="sketchbook"] .el-timeline::before { border-left: 2px dashed color-mix(in oklab, var(--el-ink) 30%, transparent); background: none; left: 11px; }
+[data-theme="sketchbook"] .el-timeline > li::before {
+  width: 14px; height: 14px;
+  background: var(--el-panel);
+  border: 3px solid var(--el-accent);
+}
+[data-theme="sketchbook"] .el-timeline > li.ok::before { border-color: var(--el-ok); background: color-mix(in oklab, var(--el-ok) 22%, var(--el-panel)); }
+[data-theme="sketchbook"] .el-timeline > li { padding-inline-start: 40px; }
+[data-theme="sketchbook"] .el-timeline .when { font-family: var(--el-font-mono); font-weight: 700; color: var(--el-mute); }
+
+/* B2 · flat sketch card — the persona grid card */
+[data-theme="sketchbook"] .el-card--flat {
+  box-shadow: none;
+  transform: none;
+  background: var(--el-panel);
+  border-color: color-mix(in oklab, var(--el-ink) 28%, transparent);
+}
+[data-theme="sketchbook"] .el-card--flat:hover {
+  transform: translateY(-2px) rotate(-.4deg);
+  border-color: color-mix(in oklab, var(--el-ink) 44%, transparent);
+  box-shadow: var(--el-raise-1);
+}
+[data-theme="sketchbook"] .el-card--flat .el-card-title { font-family: var(--el-font-display); font-weight: var(--el-head-weight); }
+
+/* B2 · printable sheet card — clean pen rules, no grain */
+[data-theme="sketchbook"] .el-card--print {
+  background: #ffffff;
+  border: 1px solid var(--el-line-strong);
+  border-radius: 3px;
+  box-shadow: none;
+}
+
+/* B2 · ruled table — the persona table treatment, hand-inked rules */
+[data-theme="sketchbook"] .el-table--ruled thead th {
+  border-bottom: var(--el-bw-emph, 2px) solid color-mix(in oklab, var(--el-ink) 42%, transparent);
+}
+[data-theme="sketchbook"] .el-table--ruled tbody td { border-bottom: 1px dashed color-mix(in oklab, var(--el-ink) 30%, transparent); }
+[data-theme="sketchbook"] .el-table--ruled tbody td:last-child { border-right: 0; }
+[data-theme="sketchbook"] .el-table--ruled tbody tr:last-child td { border-bottom: 0; }
+[data-theme="sketchbook"] .el-table thead th { font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+
+/* B2 · stat row — tiles share the airy grid */
+[data-theme="sketchbook"] .el-stat-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(215px, 1fr));
+  gap: var(--el-space-3);
+  align-items: stretch;
+}
+
+/* B2 · stat tiles — index cards, Caveat numerals */
+[data-theme="sketchbook"] .el-stat {
+  background: var(--el-panel);
+  border: 2px dashed color-mix(in oklab, var(--el-ink) 30%, transparent);
+  border-radius: 10px 12px 9px 13px;
+  box-shadow: var(--el-raise-1);
+}
+[data-theme="sketchbook"] .el-stat .el-stat-label { font-weight: 700; }
+[data-theme="sketchbook"] .el-stat .el-stat-value { font-family: var(--el-font-display); font-weight: var(--el-head-weight); font-size: var(--el-fs-2xl); line-height: 1.05; }
+[data-theme="sketchbook"] .el-stat .el-stat-value small { font-family: var(--el-font-body); font-weight: 600; }
+[data-theme="sketchbook"] .el-sparkline { color: var(--el-accent); }
+
+/* B2 · meter + progress — pencil trough, marker fill */
+[data-theme="sketchbook"] .el-meter { box-shadow: var(--el-inset-field, inset 0 0 0 1px color-mix(in oklab, var(--el-ink) 18%, transparent)); }
+[data-theme="sketchbook"] .el-meter > .fill { background: linear-gradient(90deg, var(--el-accent), var(--el-accent-hover) 90%); }
+[data-theme="sketchbook"] .el-progress { background: var(--el-panel-2); box-shadow: var(--el-inset-field, inset 0 0 0 1px color-mix(in oklab, var(--el-ink) 18%, transparent)); }
+[data-theme="sketchbook"] .el-progress > .fill { background: linear-gradient(90deg, var(--el-accent), var(--el-accent-hover) 90%); box-shadow: none; }
+[data-theme="sketchbook"] .el-progress.ok > .fill, [data-theme="sketchbook"] .el-progress.warn > .fill, [data-theme="sketchbook"] .el-progress.fail > .fill { box-shadow: none; }
+
+/* B2 · status voice — hollow pencil dots, dashed pills */
+[data-theme="sketchbook"] .el-status-dot { box-shadow: 0 0 0 2px var(--el-bg); }
+[data-theme="sketchbook"] .el-status-pill { letter-spacing: .05em; border: 2px dashed color-mix(in oklab, currentColor 48%, transparent); background: color-mix(in oklab, currentColor 8%, var(--el-panel)); }
+[data-theme="sticker-pop"] .el-badge.live,
+[data-theme="sketchbook"] .el-badge { border-radius: 4px 6px 5px 7px; }
+[data-theme="sketchbook"] .el-badge { border-width: 2px; font-weight: 700; }
+
+/* B2 · kbd + avatar — pencil key, marker ring */
+[data-theme="sketchbook"] .el-kbd {
+  background: var(--el-panel);
+  border: 2px dashed color-mix(in oklab, var(--el-ink) 40%, transparent);
+  border-radius: 6px 8px 6px 8px;
+  box-shadow: none;
+  padding: 1px 7px;
+}
+[data-theme="sketchbook"] .el-avatar { box-shadow: inset 0 0 0 2px var(--el-panel), inset 0 0 0 4px var(--el-accent); font-family: var(--el-font-display); font-weight: var(--el-head-weight); }
+
+/* B2 · empty state — sketched circle, Caveat message */
+[data-theme="sketchbook"] .el-empty .el-icon {
+  font-family: var(--el-font-display);
+  font-size: var(--el-fs-2xl);
+  color: var(--el-accent);
+  border: 2px dashed color-mix(in oklab, var(--el-accent) 52%, transparent);
+  border-radius: 50%;
+  width: var(--el-fs-3xl);
+  height: var(--el-fs-3xl);
+  line-height: 1.3;
+}
+[data-theme="sketchbook"] .el-empty .el-msg { font-family: var(--el-font-display); font-size: var(--el-fs-xl); color: var(--el-ink); }
+
+/* B2 · pagination + stepper + ladder — page chips, pen ticks */
+[data-theme="sketchbook"] .el-pagination .page {
+  border: 2px dashed color-mix(in oklab, var(--el-ink) 32%, transparent);
+  border-radius: 8px 10px 7px 11px;
+  background: var(--el-panel);
+}
+[data-theme="sketchbook"] .el-pagination .page.on { border: 2px solid var(--el-accent); transform: rotate(-2deg); box-shadow: none; }
+[data-theme="sketchbook"] .el-stepper li {
+  border: 2px dashed color-mix(in oklab, var(--el-ink) 32%, transparent);
+  border-radius: 8px 10px 7px 11px;
+}
+[data-theme="sketchbook"] .el-ladder-step {
+  background: var(--el-panel);
+  border: 2px dashed color-mix(in oklab, var(--el-ink) 30%, transparent);
+  border-radius: 10px 13px 9px 14px;
+}
+[data-theme="sketchbook"] .el-ladder-step .el-ladder-idx { font-family: var(--el-font-display); color: var(--el-accent); }
+[data-theme="sketchbook"] .el-ladder-step.is-stale .el-ladder-label,
+[data-theme="sketchbook"] .el-ladder-step.is-stale .el-ladder-meta { color: var(--el-fail); }
+
+/* B2 · app chrome — the ledger as a hand-bound sketch app */
+[data-theme="sketchbook"] .el-appwin {
+  background: var(--el-panel);
+  border: 2px solid color-mix(in oklab, var(--el-ink) 44%, transparent);
+  border-radius: 12px 14px 11px 15px;
+  box-shadow: var(--el-raise-3);
+  background-image: var(--ill-grain);
+}
+[data-theme="sketchbook"] .el-appwin-body { background: transparent; background-image: var(--ill-grain); }
+[data-theme="sketchbook"] .el-titlebar {
+  background: var(--el-panel-2);
+  border-bottom: 2px dashed color-mix(in oklab, var(--el-ink) 26%, transparent);
+}
+[data-theme="sketchbook"] .el-app-title { font-family: var(--el-font-display); font-weight: var(--el-head-weight); }
+[data-theme="sketchbook"] .el-titlebar .lead { font-family: var(--el-font-body); }
+[data-theme="sketchbook"] .el-winbtn { border: 2px dashed color-mix(in oklab, var(--el-ink) 30%, transparent); }
+[data-theme="sketchbook"] .el-menubar { background: var(--el-panel-2); border-bottom: 2px dashed color-mix(in oklab, var(--el-ink) 26%, transparent); }
+[data-theme="sketchbook"] .el-headerbar {
+  background: var(--el-panel-2);
+  border-bottom: 2px dashed color-mix(in oklab, var(--el-ink) 26%, transparent);
+}
+[data-theme="sketchbook"] .el-headerbar .el-headerbar-label { font-family: var(--el-font-display); }
+[data-theme="sketchbook"] .el-sidebar {
+  background: var(--el-panel);
+  border-right: 2px dashed color-mix(in oklab, var(--el-ink) 28%, transparent);
+  background-image: var(--ill-grain);
+}
+[data-theme="sketchbook"] .el-sidebar .grp > .label { font-family: var(--el-font-display); }
+[data-theme="sketchbook"] .el-sidebar .grp [aria-current="page"] {
+  background: var(--el-accent-soft);
+  color: var(--el-accent);
+  border-left: 3px solid var(--el-accent);
+  transform: skewX(-2deg);
+}
+[data-theme="sketchbook"] .el-listbox {
+  background: var(--el-panel);
+  border: 2px dashed color-mix(in oklab, var(--el-ink) 32%, transparent);
+  border-radius: 10px 12px 9px 13px;
+}
+[data-theme="sketchbook"] .el-listbox-header { border-bottom: 2px dashed color-mix(in oklab, var(--el-ink) 24%, transparent); }
+[data-theme="sketchbook"] .el-listbox-row { border-bottom: 1px dashed color-mix(in oklab, var(--el-ink) 22%, transparent); }
+[data-theme="sketchbook"] .el-listbox-row.is-selected,
+[data-theme="sketchbook"] .el-listbox-row[aria-selected="true"] {
+  background: var(--el-accent-soft);
+  color: var(--el-accent);
+  border-left: 3px solid var(--el-accent);
+}
+[data-theme="sketchbook"] .el-actionbar { background: var(--el-panel-2); border-top: 2px dashed color-mix(in oklab, var(--el-ink) 26%, transparent); }
+[data-theme="sketchbook"] .el-tabbar { background: var(--el-panel-2); border-top: 2px dashed color-mix(in oklab, var(--el-ink) 26%, transparent); }
+[data-theme="sketchbook"] .el-tabbar-item { border-radius: 8px 10px 7px 11px; }
+[data-theme="sketchbook"] .el-tabbar-item.is-active {
+  background: var(--el-accent-soft);
+  color: var(--el-accent);
+  box-shadow: inset 0 -3px 0 var(--el-accent);
+}
+[data-theme="sketchbook"] .el-notification {
+  background: var(--el-panel);
+  border: 2px dashed color-mix(in oklab, var(--el-ink) 30%, transparent);
+  border-radius: 10px 12px 9px 13px;
+}
+[data-theme="sketchbook"] .el-inspector.is-docked {
+  position: static;
+  background: var(--el-panel);
+  border: 2px dashed color-mix(in oklab, var(--el-ink) 32%, transparent);
+  border-radius: 10px 13px 9px 14px;
+  box-shadow: var(--el-raise-1);
+  background-image: none;
+}
+[data-theme="sketchbook"] .el-inspector-header .el-inspector-close { color: var(--el-mute); }
+[data-theme="sketchbook"] .el-assistant-panel {
+  background: var(--el-panel);
+  border: 2px dashed color-mix(in oklab, var(--el-ink) 32%, transparent);
+  border-radius: 10px 13px 9px 14px;
+  box-shadow: var(--el-raise-1);
+}
+[data-theme="sketchbook"] .el-msg--user { background: var(--el-accent-soft); }
+[data-theme="sketchbook"] .el-msg--assistant { background: var(--el-panel-2); border-left: 3px solid var(--el-line-strong); }
+[data-theme="sketchbook"] .el-cite-inline { color: var(--el-accent); font-weight: 700; }
+
+/* B2 · overlay voices — paper dialogs, dashed menu, ink tooltip */
+[data-theme="sketchbook"] dialog.el-dialog,
+[data-theme="sketchbook"] .el-dialog {
+  --el-dialog-max-w: 560px;
+  background: var(--el-panel);
+  border: 2px solid color-mix(in oklab, var(--el-ink) 46%, transparent);
+  border-radius: 12px 15px 11px 14px;
+  box-shadow: var(--el-raise-3);
+  background-image: var(--ill-grain);
+}
+[data-theme="sketchbook"] dialog.el-dialog::backdrop { background: color-mix(in oklab, #2d2a26 42%, transparent); }
+[data-theme="sketchbook"] .el-dialog-head h2,
+[data-theme="sketchbook"] .el-dialog-head h3,
+[data-theme="sketchbook"] .el-dialog-head .el-dialog-title { font-family: var(--el-font-display); }
+[data-theme="sketchbook"] .el-dialog-foot { border-top: 2px dashed color-mix(in oklab, var(--el-ink) 24%, transparent); }
+[data-theme="sketchbook"] .el-drawer {
+  background: var(--el-panel);
+  border-left: 2px dashed color-mix(in oklab, var(--el-ink) 34%, transparent);
+  background-image: var(--ill-grain);
+}
+[data-theme="sketchbook"] .el-drawer-head { letter-spacing: .1em; text-transform: uppercase; }
+[data-theme="sketchbook"] .el-toast {
+  background: var(--el-panel);
+  border: 2px dashed color-mix(in oklab, var(--el-ink) 30%, transparent);
+  border-inline-start: 5px solid var(--el-accent);
+  border-radius: 10px 12px 9px 13px;
+}
+[data-theme="sketchbook"] .el-toast.ok   { border-inline-start-color: var(--el-ok); }
+[data-theme="sketchbook"] .el-toast.warn { border-inline-start-color: var(--el-warn); }
+[data-theme="sketchbook"] .el-toast.fail { border-inline-start-color: var(--el-fail); }
+[data-theme="sketchbook"] .el-toast.info { border-inline-start-color: var(--el-info); }
+[data-theme="sketchbook"] .el-command-panel {
+  background: var(--el-panel);
+  border: 2px solid color-mix(in oklab, var(--el-ink) 46%, transparent);
+  border-radius: 12px 14px 11px 15px;
+}
+[data-theme="sketchbook"] .el-command-row { border-radius: var(--el-r-md); }
+[data-theme="sketchbook"] .el-command-row.sel {
+  background: var(--el-accent-soft);
+  box-shadow: inset 3px 0 0 var(--el-accent);
+}
+[data-theme="sketchbook"] .el-command-foot kbd {
+  border: 2px dashed color-mix(in oklab, var(--el-ink) 36%, transparent);
+  border-radius: 6px 7px 6px 8px;
+  background: var(--el-panel-2);
+}
+[data-theme="sketchbook"] .el-menu {
+  background: var(--el-panel);
+  border: 2px dashed color-mix(in oklab, var(--el-ink) 36%, transparent);
+  border-radius: 10px 13px 9px 14px;
+}
+[data-theme="sketchbook"] .el-menu .el-menu-item { border-radius: var(--el-r-md); }
+[data-theme="sketchbook"] .el-menu .el-menu-item:hover,
+[data-theme="sketchbook"] .el-menu .el-menu-item.on { background: var(--el-accent-soft); color: var(--el-accent); }
+[data-theme="sketchbook"] .el-menu .el-menu-item.on > svg { color: var(--el-accent); }
+[data-theme="sketchbook"] .el-popover .el-pop,
+[data-theme="sketchbook"] .el-tooltip::after {
+  border: 2px dashed color-mix(in oklab, var(--el-ink) 34%, transparent);
+  border-radius: 10px 12px 9px 13px;
+  background: var(--el-panel);
+}
+[data-theme="sketchbook"] .el-tooltip::after {
+  background: var(--el-ink);
+  border-style: solid;
+  border-color: var(--el-ink);
+  color: var(--el-bg);
+  font-weight: 600;
+}
+[data-theme="sketchbook"] .el-spinner { color: var(--el-accent); }
+[data-theme="sketchbook"] .el-skeleton { border-radius: 8px 10px 7px 11px; }
+[data-theme="sketchbook"] .el-inline-alert {
+  border: 2px dashed color-mix(in oklab, var(--el-info) 42%, transparent);
+  border-radius: 10px 12px 9px 13px;
+  background: color-mix(in oklab, var(--el-info) 7%, var(--el-panel));
+}
+[data-theme="sketchbook"] .el-inline-alert.warn { background: color-mix(in oklab, var(--el-warn) 9%, var(--el-panel)); border-color: color-mix(in oklab, var(--el-warn) 44%, transparent); }
+[data-theme="sketchbook"] .el-inline-alert.ok { background: color-mix(in oklab, var(--el-ok) 8%, var(--el-panel)); border-color: color-mix(in oklab, var(--el-ok) 42%, transparent); }
+
+/* B2 · reading surfaces — serif body across the reader; pencil anchor rules */
+[data-theme="sketchbook"] .el-reader { font-size: 1.02rem; color: var(--el-ink-soft); }
+[data-theme="sketchbook"] .el-reader p,
+[data-theme="sketchbook"] .el-reader ul,
+[data-theme="sketchbook"] .el-reader ol { max-width: var(--el-measure); }
+[data-theme="sketchbook"] .el-reader .lead {
+  font-family: "Instrument Serif", "Sentient", Georgia, serif;
+  font-style: italic;
+  font-size: 1.25rem;
+  color: var(--el-ink);
+}
+[data-theme="sketchbook"] .el-reader h1,
+[data-theme="sketchbook"] .el-reader h2,
+[data-theme="sketchbook"] .el-reader h3 { font-family: var(--el-font-display); }
+[data-theme="sketchbook"] .el-reader blockquote {
+  border-left: 3px solid var(--el-accent);
+  border-radius: var(--el-r-sm);
+  font-family: "Instrument Serif", "Sentient", Georgia, serif;
+  font-style: italic;
+  background: var(--el-panel-2);
+}
+[data-theme="sketchbook"] .el-code-block,
+[data-theme="sketchbook"] .el-reader pre {
+  background: var(--el-ink);
+  color: var(--el-bg);
+  border: 0;
+  border-radius: 8px 11px 7px 12px;
+}
+[data-theme="sketchbook"] .el-reader-meta { font-family: var(--el-font-body); letter-spacing: .05em; text-transform: uppercase; font-size: var(--el-fs-xs); color: var(--el-mute); }
+[data-theme="sketchbook"] .el-citation-rail { border: 2px dashed color-mix(in oklab, var(--el-ink) 28%, transparent); border-radius: 10px 12px 9px 13px; background: var(--el-panel); padding: var(--el-space-3) var(--el-space-4); }
+[data-theme="sketchbook"] .el-citation-rail .el-cite .n {
+  background: var(--el-panel);
+  border: 2px solid var(--el-accent);
+  color: var(--el-accent);
+  font-family: var(--el-font-mono);
+  font-weight: 700;
+  border-radius: 50%;
+}
+[data-theme="sketchbook"] .el-anchor-nav a { border-left: 3px dashed color-mix(in oklab, var(--el-ink) 30%, transparent); }
+[data-theme="sketchbook"] .el-anchor-nav a.active {
+  border-left: 3px solid var(--el-accent);
+  background: var(--el-accent-soft);
+  color: var(--el-accent);
+  font-weight: 700;
+}
+
+/* B2 · forms — dashed controls, paper fields */
+[data-theme="sketchbook"] .el-navbar .el-search,
+[data-theme="sketchbook"] .el-search {
+  border: 2px dashed color-mix(in oklab, var(--el-ink) 30%, transparent);
+  border-radius: 8px 10px 7px 11px;
+  background: var(--el-panel);
+}
+[data-theme="sketchbook"] .el-search-field::before { border: 2px solid var(--el-ink-soft); }
+[data-theme="sketchbook"] .el-search-field::after { background: var(--el-ink-soft); }
+[data-theme="sketchbook"] .el-select,
+[data-theme="sketchbook"] select.el-select {
+  border: 2px dashed color-mix(in oklab, var(--el-ink) 30%, transparent);
+  border-radius: 8px 10px 7px 11px;
+  background: var(--el-panel);
+}
+[data-theme="sketchbook"] .el-dropdown {
+  border: 2px dashed color-mix(in oklab, var(--el-ink) 30%, transparent);
+  border-radius: 8px 10px 7px 11px;
+  background: var(--el-panel);
+}
+[data-theme="sketchbook"] .el-segmented { background: var(--el-panel-2); border: 2px dashed color-mix(in oklab, var(--el-ink) 30%, transparent); }
+[data-theme="sketchbook"] .el-segmented button.on { background: var(--el-panel); color: var(--el-ink); transform: skewX(-2deg); }
+[data-theme="sketchbook"] .el-check { border: 2px dashed color-mix(in oklab, var(--el-ink) 34%, transparent); border-radius: 6px 8px 6px 8px; }
+[data-theme="sketchbook"] .el-radio .dot { border: 2px dashed color-mix(in oklab, var(--el-ink) 40%, transparent); }
+[data-theme="sketchbook"] .el-slider { accent-color: var(--el-accent); }
+[data-theme="sketchbook"] .el-field .el-input,
+[data-theme="sketchbook"] .el-input,
+[data-theme="sketchbook"] .el-field .el-textarea,
+[data-theme="sketchbook"] .el-textarea { box-shadow: none; }
+
+/* B2 · reduced motion — sketch furniture calms down */
+@media (prefers-reduced-motion: reduce) {
+  [data-theme="sketchbook"] .el-navbar .links a,
+  [data-theme="sketchbook"] .el-navbar .links button,
+  [data-theme="sketchbook"] .el-pricing,
+  [data-theme="sketchbook"] .el-card--flat,
+  [data-theme="sketchbook"] .el-pagination .page,
+  [data-theme="sketchbook"] .el-tabbar-item,
+  [data-theme="sketchbook"] .el-navbar--headerbar,
+  [data-theme="sketchbook"] .el-navbar--rail { transition-duration: 120ms; }
+  [data-theme="sketchbook"] .el-navbar .links a:hover,
+  [data-theme="sketchbook"] .el-navbar .links button:hover,
+  [data-theme="sketchbook"] .el-navbar .links [aria-current="page"],
+  [data-theme="sketchbook"] .el-pricing:hover,
+  [data-theme="sketchbook"] .el-card--flat:hover,
+  [data-theme="sketchbook"] .el-pagination .page.on,
+  [data-theme="sketchbook"] .el-sidebar .grp [aria-current="page"],
+  [data-theme="sketchbook"] .el-segmented button.on { transform: none; }
+}
+
+/* ══ v0.4.0 spacing pass — band alignment corrections ═══════════════════════ */
+
+/* sticker clusters: mixed-height panels share their top edge. The sheet
+   centers flex clusters (base.css), which drops the shorter panel and
+   slides the taller one up — in this family panels hang from the top. */
+[data-theme="sticker-pop"] .el-cluster,
+[data-theme="sketchbook"] .el-cluster { align-items: stretch; }
+
+/* centered hero: eyebrow and action row join the h1/p that the sheet
+   centers through auto margins; A/B anatomy keeps flex-start for the rest */
+[data-theme="sticker-pop"] .el-hero--centered,
+[data-theme="sketchbook"] .el-hero--centered { align-items: center; }
+
+/* reader column: the citation rail and source cards are closed boxes the
+   sheet leaves margin-less inside the measure — give the stack its gaps */
+[data-theme="sticker-pop"] .el-reader .el-citation-rail,
+[data-theme="sketchbook"] .el-reader .el-citation-rail { margin: var(--el-space-1) 0 var(--el-space-3); }
+[data-theme="sticker-pop"] .el-reader .el-source-card,
+[data-theme="sketchbook"] .el-reader .el-source-card { margin: 0 0 var(--el-space-2); }
+
+/* ══ v0.4.0 color + type pass — text voices + type ladder ═══════════════════ */
+
+/* base.css pins the section head at fs-lg; with the restored root that lands
+   h2 on card-title size and flattens the ladder. Give section heads the xl
+   step back (24px vs 16px heads / 16px card titles). */
+[data-theme="sticker-pop"] .el-section-head h2,
+[data-theme="sketchbook"] .el-section-head h2 { font-size: var(--el-fs-xl); }
+
+/* ── sticker-pop: bright accent is a FILL voice — text reads the ink voice ── */
+
+/* base.css paints every link with the accent fill; as small text that is
+   ~2.8:1 on paper. Links ride accent-ink, hover keeps the coral underline. */
+[data-theme="sticker-pop"] a { color: var(--el-accent-ink); }
+[data-theme="sticker-pop"] a:hover { color: var(--el-accent-ink); }
+
+/* sheet: the danger button fills deep raspberry (#c81d5a) and pairs it with
+   on-accent ink — 2.5:1. White carries it at 5.5:1 without lifting the fill. */
+[data-theme="sticker-pop"] .el-btn--danger { color: #ffffff; }
+
+/* sheet: warn badges paint the amber fill as 10px text (~1.8:1 on the tint).
+   Badge wash/border follow currentColor in this theme, so the ring deepens
+   with the text — one amber-family pill, readable at 4.5:1. */
+[data-theme="sticker-pop"] .el-badge.warn { color: var(--el-warn-ink); }
+
+/* sheet: the stepper's active step and the open menubar / active tabbar text
+   carry bright coral as small text (~2.7:1) — the ink voice keeps the halo. */
+[data-theme="sticker-pop"] .el-stepper li.active { color: var(--el-accent-ink); }
+[data-theme="sticker-pop"] .el-menubar-item.is-open,
+[data-theme="sticker-pop"] .el-menubar-item[aria-expanded="true"],
+[data-theme="sticker-pop"] .el-tabbar-item.is-active { color: var(--el-accent-ink); }
+
+/* sheet: drawer heads and the warn banner glyph inherit the fills as text */
+[data-theme="sticker-pop"] .el-drawer-head { color: var(--el-accent-ink); }
+[data-theme="sticker-pop"] .el-banner--warn > .glyph { color: var(--el-warn-ink); }
+
+/* ── sketchbook: the amber family was still riding the ochre wash ────────── */
+
+/* warn badges/pills sit at ~3.1:1 as small text — the deep ink clears 6:1 and
+   the wash/border stay the warm amber voice */
+[data-theme="sketchbook"] .el-badge.warn,
+[data-theme="sketchbook"] .el-pill.warn { color: var(--el-warn-ink); }
+
+/* marginally-3:1 ochre glyph on its own wash — same deep voice */
+[data-theme="sketchbook"] .el-banner--warn > .glyph { color: var(--el-warn-ink); }
+
+/* Caveat collapses below 16px — h4 was printing at body size and vanishing
+   under the prose; the display face needs the lg floor */
+[data-theme="sketchbook"] h4 { font-size: var(--el-fs-lg); }
+
+/* ══ v0.4.0 mobile pass — illustration families ═══════════════════════════════
+   Rungs: 430 phone primary · 360 worst case (nothing may h-scroll) · 768
+   single-column spot check. Narrow media queries only — every desktop value
+   below stays what the spacing/color waves left it.
+   Baseline sweep defects this block fixes:
+   • app page (both sites): the appwin pane grid collapsed the content column
+     to 0px at 430 (--el-rail-w 248 + 300px inspector > viewport) and the
+     stat tiles pinned 3-up clipped their numerals — .pane-split stacks.
+   • account page: 190px side nav + 3fr/2fr cluster stayed pinned; the profile
+     stepper ran 668px wide at 430.
+   • article page: the 180px anchor rail squeezed prose to ~186px (doc 453 at
+     430); the rail becomes a horizontal chip strip instead.
+   • index/catalog: 3-col card + pricing rows pinned with inline styles ran
+     past both rungs (703px doc at 430; 849px at 768) — fluid reflow replaces
+     the pins, card feet wrap instead of clipping mid-button.
+   • controls riding a 44px touch floor in this family (persona keeps chips
+     playful, not tappable-thin): chips 34, navbar links 30, menubar 28,
+     menu/command rows 33, sketchbook token 40 — lifted at phone widths;
+     .el-badge stays a status label and is deliberately excluded. */
+
+/* ── M0 · page-grid hooks ───────────────────────────────────────────────────
+   The demo pages carried these desktop grids as inline styles, which no
+   stylesheet rule can retarget. Each inline style became a class here with
+   the same desktop declaration, value for value; the media queries below are
+   the only behavioral change (desktop renders diffed before/after). */
+[data-theme="sticker-pop"] .pane-split,
+[data-theme="sketchbook"] .pane-split {
+  display: grid;
+  grid-template-columns: var(--el-rail-w) minmax(0, 1fr) 300px;
+  gap: 0;
+  min-height: 660px;
+}
+[data-theme="sticker-pop"] .pane-rail,
+[data-theme="sketchbook"] .pane-rail { border-right: 2px var(--el-rule-style) var(--el-line); border-radius: 0; }
+[data-theme="sticker-pop"] .pane-main,
+[data-theme="sketchbook"] .pane-main {
+  display: flex;
+  flex-direction: column;
+  gap: var(--el-space-3);
+  padding: var(--el-space-3);
+}
+[data-theme="sticker-pop"] .pane-aside,
+[data-theme="sketchbook"] .pane-aside {
+  display: grid;
+  gap: var(--el-space-3);
+  padding: var(--el-space-3);
+  border-left: 2px var(--el-rule-style) var(--el-line);
+  align-content: start;
+}
+[data-theme="sticker-pop"] .stat-3up,
+[data-theme="sketchbook"] .stat-3up {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--el-space-2);
+}
+[data-theme="sticker-pop"] .panel-duo,
+[data-theme="sketchbook"] .panel-duo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--el-space-3);
+}
+[data-theme="sticker-pop"] .card-grid,
+[data-theme="sketchbook"] .card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--el-space-4);
+}
+[data-theme="sticker-pop"] .plan-grid,
+[data-theme="sketchbook"] .plan-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--el-space-4);
+  align-items: stretch;
+}
+[data-theme="sticker-pop"] .facts-2,
+[data-theme="sketchbook"] .facts-2 { grid-template-columns: repeat(2, 1fr); }
+[data-theme="sticker-pop"] .side-page,
+[data-theme="sketchbook"] .side-page {
+  display: grid;
+  grid-template-columns: 190px minmax(0, 1fr);
+  gap: var(--el-space-4);
+  align-items: start;
+}
+[data-theme="sticker-pop"] .split-cluster,
+[data-theme="sketchbook"] .split-cluster {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: var(--el-space-4);
+  align-items: start;
+}
+[data-theme="sticker-pop"] .anchor-page,
+[data-theme="sketchbook"] .anchor-page {
+  display: grid;
+  grid-template-columns: 180px minmax(0, 1fr);
+  gap: var(--el-space-5);
+  margin-top: var(--el-space-5);
+}
+[data-theme="sticker-pop"] .anchor-rail,
+[data-theme="sketchbook"] .anchor-rail { position: sticky; top: 16px; align-self: start; }
+
+/* ── M1 · ≤768 — the single-column breakpoint ───────────────────────────────
+   Tablet and below: page splits stack, the appwin panes become bands, card
+   and pricing rows reflow by content instead of a pinned 3-up. */
+@media (max-width: 768px) {
+  [data-theme="sticker-pop"] .pane-split,
+  [data-theme="sketchbook"] .pane-split {
+    grid-template-columns: minmax(0, 1fr);
+    min-height: 0;
+  }
+  /* the rail border re-axes from a divider to a band edge; the aside closes
+     with a top edge so the stack still reads as window furniture */
+  [data-theme="sticker-pop"] .pane-rail,
+  [data-theme="sketchbook"] .pane-rail {
+    border-right: 0;
+    border-bottom: 2px var(--el-rule-style) var(--el-line);
+  }
+  [data-theme="sticker-pop"] .pane-aside,
+  [data-theme="sketchbook"] .pane-aside {
+    border-left: 0;
+    border-top: 2px var(--el-rule-style) var(--el-line);
+  }
+  [data-theme="sticker-pop"] .side-page,
+  [data-theme="sketchbook"] .side-page { grid-template-columns: minmax(0, 1fr); }
+  [data-theme="sticker-pop"] .split-cluster,
+  [data-theme="sketchbook"] .split-cluster { grid-template-columns: minmax(0, 1fr); }
+  [data-theme="sticker-pop"] .anchor-page,
+  [data-theme="sketchbook"] .anchor-page {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--el-space-4);
+  }
+  /* the article rail: sticky column → a horizontal chip strip you can swipe;
+     the persona's left-edge tick keeps marking the current section */
+  [data-theme="sticker-pop"] .anchor-rail,
+  [data-theme="sketchbook"] .anchor-rail { position: static; }
+  [data-theme="sticker-pop"] .el-anchor-nav,
+  [data-theme="sketchbook"] .el-anchor-nav {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: var(--el-space-2);
+    padding-bottom: var(--el-space-2);
+    scrollbar-width: none;
+  }
+  [data-theme="sticker-pop"] .el-anchor-nav::-webkit-scrollbar,
+  [data-theme="sketchbook"] .el-anchor-nav::-webkit-scrollbar { display: none; }
+  [data-theme="sticker-pop"] .el-anchor-nav a,
+  [data-theme="sketchbook"] .el-anchor-nav a { white-space: nowrap; }
+  /* the theme's B1 wave restores the sheet's two-column hero grid at (0,2,0),
+     which outranks the sheet's own ≤760 fold — re-fold it here so the prose
+     column isn't a 146px sliver beside the media at tablets */
+  [data-theme="sticker-pop"] .el-hero--split,
+  [data-theme="sketchbook"] .el-hero--split {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--el-space-5);
+  }
+  /* card + pricing rows reflow by content: 3-up tablet, 2-up big phone,
+     1-up at 360; sticker cards keep one card per shelf when tall */
+  [data-theme="sticker-pop"] .card-grid,
+  [data-theme="sketchbook"] .card-grid {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 210px), 1fr));
+  }
+  [data-theme="sticker-pop"] .plan-grid,
+  [data-theme="sketchbook"] .plan-grid {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 215px), 1fr));
+  }
+  [data-theme="sticker-pop"] .stat-3up,
+  [data-theme="sketchbook"] .stat-3up {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 124px), 1fr));
+  }
+}
+
+/* ── M2 · ≤430 — the phone rung ─────────────────────────────────────────────
+   Touch floor 44px, candy strips that wrap instead of clip, ledgers that
+   scroll inside their pane, the playful rhythm intact on a 360px sheet. */
+@media (max-width: 430px) {
+  /* sketchbook's pencil controls sat 4px under the floor; lift the token and
+     every control the sheet measures picks it up */
+  [data-theme="sketchbook"] { --el-ctl-min-h: 44px; }
+
+  /* sticker clusters wrap — chips and foot rows flow onto the next shelf */
+  [data-theme="sticker-pop"] .el-cluster,
+  [data-theme="sketchbook"] .el-cluster { flex-wrap: wrap; }
+  [data-theme="sticker-pop"] .el-card-foot,
+  [data-theme="sketchbook"] .el-card-foot { flex-wrap: wrap; row-gap: var(--el-space-2); }
+  [data-theme="sticker-pop"] .el-stepper,
+  [data-theme="sketchbook"] .el-stepper { flex-wrap: wrap; }
+  [data-theme="sticker-pop"] .el-stepper li,
+  [data-theme="sketchbook"] .el-stepper li { flex: 1 1 44%; }
+
+  /* touch floor — interactive only; badges stay status labels */
+  [data-theme="sticker-pop"] .el-btn,
+  [data-theme="sketchbook"] .el-btn { min-height: 44px; }
+  /* the pill strip: the whole nav bar becomes shelves — brand + links on the
+     first rows, the actions pair drops to its own full-width row (its
+     max-content is wider than the phone, which is what pushed index pages
+     437/441px past the 360 sheet). the sheet's --top links strip is a
+     hidden-scrollbar scroll lane (routed); candy chips prefer to wrap,
+     overflow still scrolls inside */
+  [data-theme="sticker-pop"] .el-navbar,
+  [data-theme="sketchbook"] .el-navbar { flex-wrap: wrap; row-gap: var(--el-space-1); }
+  [data-theme="sticker-pop"] .el-navbar .links,
+  [data-theme="sketchbook"] .el-navbar .links { flex-wrap: wrap; }
+  [data-theme="sticker-pop"] .el-navbar .links [aria-current="page"],
+  [data-theme="sketchbook"] .el-navbar .links [aria-current="page"] { white-space: normal; }
+  [data-theme="sticker-pop"] .el-navbar .actions,
+  [data-theme="sketchbook"] .el-navbar .actions {
+    flex: 1 1 100%;
+    min-width: 0;
+    flex-wrap: wrap;
+    row-gap: var(--el-space-1);
+  }
+  [data-theme="sticker-pop"] .el-chip,
+  [data-theme="sketchbook"] .el-chip { min-height: 44px; }
+  [data-theme="sticker-pop"] .el-navbar .links a,
+  [data-theme="sticker-pop"] .el-navbar .links button,
+  [data-theme="sketchbook"] .el-navbar .links a,
+  [data-theme="sketchbook"] .el-navbar .links button { min-height: 44px; }
+  [data-theme="sticker-pop"] .el-navbar .brand,
+  [data-theme="sketchbook"] .el-navbar .brand { min-height: 44px; }
+  [data-theme="sticker-pop"] .el-menubar-item,
+  [data-theme="sketchbook"] .el-menubar-item { min-height: 44px; }
+  [data-theme="sticker-pop"] .el-menu-item,
+  [data-theme="sketchbook"] .el-menu-item { min-height: 44px; }
+  [data-theme="sticker-pop"] .el-listbox-row,
+  [data-theme="sketchbook"] .el-listbox-row { min-height: 44px; }
+  [data-theme="sticker-pop"] .el-command-row,
+  [data-theme="sketchbook"] .el-command-row { min-height: 44px; }
+  [data-theme="sticker-pop"] .el-check,
+  [data-theme="sketchbook"] .el-check { min-height: 44px; }
+  [data-theme="sticker-pop"] .el-pagination .page,
+  [data-theme="sketchbook"] .el-pagination .page { min-height: 44px; padding: var(--el-space-2) var(--el-space-3); }
+  /* the typed floors: sticker-pop inputs sat 2px under, sketchbook's pencil
+     inputs sat 6px under, selects and segmented pills wandered 35–40 —
+     lifted together so a thumb never misses */
+  [data-theme="sticker-pop"] .el-input,
+  [data-theme="sketchbook"] .el-input,
+  [data-theme="sticker-pop"] .el-select,
+  [data-theme="sketchbook"] .el-select,
+  [data-theme="sticker-pop"] .el-dropdown,
+  [data-theme="sketchbook"] .el-dropdown,
+  [data-theme="sticker-pop"] .el-search-bar,
+  [data-theme="sketchbook"] .el-search-bar,
+  [data-theme="sticker-pop"] .el-segmented button,
+  [data-theme="sketchbook"] .el-segmented button { min-height: 44px; }
+
+  /* app window strips: everything the 430px window can't fit wraps instead of
+     clipping mid-word; the sheet's nowrap strips get the family allowance */
+  [data-theme="sticker-pop"] .el-menubar,
+  [data-theme="sketchbook"] .el-menubar { flex-wrap: wrap; row-gap: var(--el-space-1); }
+  [data-theme="sticker-pop"] .el-menubar-spring,
+  [data-theme="sketchbook"] .el-menubar-spring { display: none; }
+  [data-theme="sticker-pop"] .el-headerbar,
+  [data-theme="sketchbook"] .el-headerbar { flex-wrap: wrap; row-gap: var(--el-space-2); }
+  [data-theme="sticker-pop"] .el-headerbar > .el-search,
+  [data-theme="sticker-pop"] .el-headerbar .el-search-bar,
+  [data-theme="sticker-pop"] .el-headerbar .el-search-field,
+  [data-theme="sketchbook"] .el-headerbar > .el-search,
+  [data-theme="sketchbook"] .el-headerbar .el-search-bar,
+  [data-theme="sketchbook"] .el-headerbar .el-search-field {
+    width: auto;
+    flex: 1 1 150px;
+    min-width: 0;
+  }
+  [data-theme="sticker-pop"] .el-actionbar,
+  [data-theme="sketchbook"] .el-actionbar { flex-wrap: wrap; row-gap: var(--el-space-2); }
+  [data-theme="sticker-pop"] .el-actionbar .actions,
+  [data-theme="sketchbook"] .el-actionbar .actions { flex-wrap: wrap; }
+  /* titlebar: the context lead sits in a 1fr grid track but its box sizes at
+     max-content (sheet justify-self: start), so at 430 it painted over the
+     centered title and wrapped mid-word — the sheet's own truncate can't fix
+     its track-escaping box. At phones the chrome is title + window buttons;
+     the lead steps aside, the app title keeps its sheet ellipsis. */
+  [data-theme="sticker-pop"] .el-titlebar .lead,
+  [data-theme="sketchbook"] .el-titlebar .lead { display: none; }
+  [data-theme="sticker-pop"] .el-titlebar .el-app-title,
+  [data-theme="sketchbook"] .el-titlebar .el-app-title {
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  /* wide ledgers scroll inside the pane — never the page (the sheet keeps
+     overflow: hidden so head radii stay crisp; this relaxes it at phones) */
+  [data-theme="sticker-pop"] .el-table,
+  [data-theme="sketchbook"] .el-table { display: block; overflow-x: auto; }
+
+  /* the stats shelf stacks at phone width: the big values are one
+     unbreakable unit (the sheet glues the unit onto the number with &nbsp;),
+     so three squeezed tiles clipped "18,204 packs" mid-word — one tile per
+     shelf keeps every number whole */
+  [data-theme="sticker-pop"] .stat-3up,
+  [data-theme="sketchbook"] .stat-3up { grid-template-columns: minmax(0, 1fr); }
+
+  /* label-wrapped check rows: the whole row is the tap zone at phones only —
+     desktop keeps the sheet's compact row height */
+  [data-theme="sticker-pop"] .check-row,
+  [data-theme="sketchbook"] .check-row {
+    min-height: 44px;
+    cursor: pointer;
+    align-items: center;
+  }
+}
+
+/* ── M3 · closed overlays leave the layout (any width — found at 430 and 768)
+   The sheet parks dropdown menus, share pops and tooltips at opacity 0 —
+   closed, but still measured. A closed dropdown still sits in the keyboard
+   walk invisibly, and a nowrap tooltip bubble painted out of an invisible
+   anchor pushed the catalog page 513px wide at the 430 rung and 849 at the
+   768 spot-check. visibility: hidden proved NOT enough (Chromium still
+   counts visibility-hidden boxes in the scroll area), so closed surfaces
+   drop out entirely: menus and pops get display: none (their div default is
+   block, so the .is-open/.open voices only need to be un-hidden), a tooltip
+   bubble gets content: none with its attr(data-tip) restored on the sheet's
+   exact hover/focus voices, and the transform-parked off-canvas drawer —
+   opacity 1, fully tabbable while invisible — goes visibility: hidden until
+   opened. Every open path keeps the sheet's fade; only the instant you can't
+   see changes. Touch rows get the 44px floor via the label-wrapped
+   .check-row hook in the demo pages. */
+[data-theme="sticker-pop"] .el-menu-anchor > .el-menu:not(.is-open),
+[data-theme="sticker-pop"] .el-popover .el-pop,
+[data-theme="sketchbook"] .el-menu-anchor > .el-menu:not(.is-open),
+[data-theme="sketchbook"] .el-popover .el-pop { display: none; }
+[data-theme="sticker-pop"] .el-popover.open .el-pop,
+[data-theme="sticker-pop"] .el-popover.is-open .el-pop,
+[data-theme="sketchbook"] .el-popover.open .el-pop,
+[data-theme="sketchbook"] .el-popover.is-open .el-pop { display: block; }
+[data-theme="sticker-pop"] .el-tooltip::after,
+[data-theme="sketchbook"] .el-tooltip::after { content: none; }
+[data-theme="sticker-pop"] .el-tooltip:hover::after,
+[data-theme="sticker-pop"] .el-tooltip:focus-within::after,
+[data-theme="sticker-pop"] .el-tooltip:has(:focus-visible)::after,
+[data-theme="sketchbook"] .el-tooltip:hover::after,
+[data-theme="sketchbook"] .el-tooltip:focus-within::after,
+[data-theme="sketchbook"] .el-tooltip:has(:focus-visible)::after {
+  content: attr(data-tip);
+}
+[data-theme="sticker-pop"] :where(.el-drawer:not(.is-open):not(.open)),
+[data-theme="sketchbook"] :where(.el-drawer:not(.is-open):not(.open)) { visibility: hidden; }
+[data-theme="sticker-pop"] .el-drawer.el-drawer.is-open,
+[data-theme="sticker-pop"] .el-drawer.el-drawer.open,
+[data-theme="sketchbook"] .el-drawer.el-drawer.is-open,
+[data-theme="sketchbook"] .el-drawer.el-drawer.open { visibility: visible; }

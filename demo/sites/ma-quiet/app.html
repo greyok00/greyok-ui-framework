@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="en" data-theme="ma-quiet">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Archive Console · Studio Ma</title>
+<link rel="stylesheet" href="../../../base.css">
+<link rel="stylesheet" href="../../../fonts.css">
+<link rel="stylesheet" href="../../../tokens.css">
+<link rel="stylesheet" href="../../../elements-display.css">
+<link rel="stylesheet" href="../../../elements-structure.css">
+<link rel="stylesheet" href="../../../elements-lists.css">
+<link rel="stylesheet" href="../../../elements-app.css">
+<link rel="stylesheet" href="../../../elements-containers.css">
+<link rel="stylesheet" href="../../../elements-controls.css">
+<link rel="stylesheet" href="../../../elements-inputs.css">
+<link rel="stylesheet" href="../../../elements-dataviz.css">
+<link rel="stylesheet" href="../../../elements-overlay.css">
+<link rel="stylesheet" href="../../../elements-interactions.css">
+<link rel="stylesheet" href="../../../elements-misc.css">
+<link rel="stylesheet" href="../../../elements-size.css">
+<link rel="stylesheet" href="../../../elements-workflow.css">
+<link rel="stylesheet" href="../../../elements-inspector.css">
+<link rel="stylesheet" href="../../../elements-assistant.css">
+<link rel="stylesheet" href="../../../themes/src/quiet-minimal.css">
+<script src="../../../elements.js" defer></script>
+<script src="../../../charts.js" defer></script>
+<script src="../../../elements-workflow.js" defer></script>
+<style>
+  .console { display: grid; grid-template-columns: 260px 1fr; gap: var(--el-space-5); align-items: start; margin-block: var(--el-space-5); }
+  .console-side { display: grid; gap: var(--el-space-4); }
+  .app-grid { display: grid; gap: var(--el-space-4); }
+  .app-body-grid { display: grid; grid-template-columns: 236px 1fr; gap: var(--el-space-4); align-items: start; }
+  .stat-strip { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--el-space-4); }
+  .notice-strip { display: grid; gap: var(--el-space-3); }
+  .console-cols { display: grid; grid-template-columns: 1fr 1fr; gap: var(--el-space-4); align-items: start; }
+  .el-drawer.is-open { visibility: visible; }
+  .el-search-bar { width: min(320px, 42%); }
+  /* v0.4.0 mobile pass: the console stacks; scroll tracks keep their min width
+     so the appwin body, not the page, carries any overflow */
+  @media (max-width: 940px) {
+    .console, .app-body-grid, .console-cols { grid-template-columns: minmax(0, 1fr); }
+    .app-grid { grid-template-columns: minmax(0, 1fr); }
+  }
+  @media (max-width: 430px) { .stat-strip { grid-template-columns: minmax(0, 1fr); } }
+</style>
+</head>
+<body>
+<main class="el-page">
+
+  <nav class="el-navbar el-navbar--top">
+    <div class="brand">Studio Ma</div>
+    <div class="links">
+      <a href="index.html">Collection</a>
+      <a href="catalog.html">Exhibitions</a>
+      <a href="article.html">Journal</a>
+      <a href="account.html">Membership</a>
+      <a href="app.html" aria-current="page">Archive Console</a>
+    </div>
+    <div class="actions">
+      <button class="el-btn el-btn--ghost" data-command="cmd-run">Commands <span class="el-kbd">/</span></button>
+    </div>
+  </nav>
+
+  <header class="el-hero el-hero--left">
+    <span class="el-eyebrow">Archive Console · custodian seat</span>
+    <h1>The morning, in records.</h1>
+    <p>Ingest ran at 06:40. Two papers float. The moon calendar shelf is stable.
+       Open a record with a click; the docent answers in the margin.</p>
+  </header>
+
+  <div class="console">
+    <div class="console-side">
+      <aside class="el-sidebar">
+        <div class="head">
+          <div class="brand">Ma Console</div>
+        </div>
+        <div class="grp">
+          <div class="label">Shelves</div>
+          <a href="#" aria-current="page"><span class="txt">Accessions</span><span class="end">411</span></a>
+          <a href="#"><span class="txt">Moon calendar</span><span class="end">90</span></a>
+          <a href="#"><span class="txt">Ma Editions</span><span class="end">60</span></a>
+          <a href="#"><span class="txt">Letterheads</span><span class="end">41</span></a>
+        </div>
+        <div class="grp">
+          <div class="label">Work</div>
+          <a href="#"><span class="txt">Ingest</span><span class="end">2</span></a>
+          <a href="#"><span class="txt">Conservation</span><span class="end">6</span></a>
+          <a href="#"><span class="txt">Loans</span><span class="end">3</span></a>
+        </div>
+        <button class="el-btn el-btn--ghost-outline el-sidebar-toggle">Collapse</button>
+      </aside>
+
+      <div class="el-listbox">
+        <div class="el-listbox-header">Room readings</div>
+        <div class="el-listbox-row is-selected"><span class="icon"><span class="el-status-dot live"></span></span><span class="label">North room</span><span class="action">18.2°C · 54% · <span class="el-badge">good</span></span></div>
+        <div class="el-listbox-row"><span class="icon"><span class="el-status-dot ok"></span></span><span class="label">Annex float</span><span class="action">17.9°C · 51% · <span class="el-badge ok">ok</span></span></div>
+        <div class="el-listbox-row"><span class="icon"><span class="el-status-dot warn"></span></span><span class="label">Stacks B</span><span class="action">21.4°C · 63% · <span class="el-badge warn">watch</span></span></div>
+        <div class="el-listbox-row"><span class="icon"><span class="el-status-dot idle"></span></span><span class="label">Press room</span><span class="action">closed · 15.1°C · <span class="el-badge">quiet</span></span></div>
+      </div>
+    </div>
+
+    <div class="app-grid">
+      <div class="el-appwin">
+        <div class="el-titlebar">
+          <div class="lead"><span class="el-status-dot live" title="console live"></span><span class="el-headerbar-label">ma-console 4.2</span></div>
+          <div class="el-app-title">Ma Archive Console<small>shelf B · accession queue</small></div>
+          <div class="winbtns">
+            <button class="el-winbtn min" aria-label="Minimize"></button>
+            <button class="el-winbtn max" aria-label="Maximize"></button>
+            <button class="el-winbtn close" aria-label="Close"></button>
+          </div>
+        </div>
+        <div class="el-menubar">
+          <span class="el-menu-anchor"><button class="el-menubar-item" data-menu="mb-file" aria-expanded="false">File</button>
+            <div class="el-menu" id="mb-file">
+              <div class="el-menu-label">Console</div>
+              <button class="el-menu-item" role="menuitem">New accession</button>
+              <button class="el-menu-item" role="menuitem">Import a pull log</button>
+              <span class="el-menu-sep"></span>
+              <button class="el-menu-item is-danger" role="menuitem">Retire shelf B4</button>
+            </div></span>
+          <span class="el-menu-anchor"><button class="el-menubar-item" data-menu="mb-edit" aria-expanded="false">Record</button>
+            <div class="el-menu" id="mb-edit">
+              <button class="el-menu-item" role="menuitem">Rewrite the card</button>
+              <button class="el-menu-item">Move to box 15</button>
+              <span class="el-menu-sep"></span>
+              <button class="el-menu-item">Export print file</button>
+            </div></span>
+          <button class="el-menubar-item">View</button>
+          <span class="el-menubar-sep"></span>
+          <button class="el-menubar-item">Window</button>
+          <span class="el-menubar-spring"></span>
+          <button class="el-menubar-item" data-command="cmd-run">Search</button>
+        </div>
+        <div class="el-headerbar">
+          <button class="el-btn" data-dialog-open="rec-new"><svg class="el-icon"><use href="../../../assets/icons.svg#el-i-plus"/></svg> New accession</button>
+          <button class="el-btn el-btn--ghost-outline" data-drawer-open="batch">Batch sheets</button>
+          <span class="el-search-bar"><input class="el-search" type="search" placeholder="Search MA numbers, years, rooms…"></span>
+          <span class="el-menubar-spring"></span>
+          <div class="el-popover">
+            <button class="el-btn el-btn--ghost" aria-label="View options"><svg class="el-icon"><use href="../../../assets/icons.svg#el-i-settings"/></svg></button>
+            <div class="el-pop"><h4>View options</h4><p>Row height, hairline weight and room columns are kept per shelf.</p></div>
+          </div>
+        </div>
+        <div class="el-appwin-body">
+          <div class="app-body-grid">
+            <div>
+              <div class="el-listbox">
+                <div class="el-listbox-header">Queue</div>
+                <div class="el-listbox-row is-selected" aria-selected="true"><span class="label">MA-1023</span><span class="action">letterhead sheet <span class="el-status-pill running">float</span></span></div>
+                <div class="el-listbox-row"><span class="label">MA-0419</span><span class="action">edition sheet <span class="el-status-pill queued">queued</span></span></div>
+                <div class="el-listbox-row"><span class="label">MA-0902</span><span class="action">moon 2011 <span class="el-status-pill ok">done</span></span></div>
+                <div class="el-listbox-row"><span class="label">MA-0444</span><span class="action">foxing pass <span class="el-status-pill stale">stale</span></span></div>
+                <div class="el-listbox-row"><span class="label">MA-0881</span><span class="action">loan out <span class="el-status-pill live">live</span></span></div>
+              </div>
+              <div class="el-ladder" data-el-ladder>
+                <div class="el-ladder-step" data-state="done"><span class="el-ladder-idx">01</span><span class="el-ladder-label">Gift deed signed</span><span class="el-ladder-meta">08:11</span></div>
+                <div class="el-ladder-step" data-state="done"><span class="el-ladder-idx">02</span><span class="el-ladder-label">Raking-light inspection</span><span class="el-ladder-meta">08:38</span></div>
+                <div class="el-ladder-step" data-state="running"><span class="el-ladder-idx">03</span><span class="el-ladder-label">Float flat, box 14</span><span class="el-ladder-meta">2 papers</span></div>
+                <div class="el-ladder-step" data-state="queued"><span class="el-ladder-idx">04</span><span class="el-ladder-label">Photograph once</span><span class="el-ladder-meta">—</span></div>
+                <div class="el-ladder-step" data-state="queued"><span class="el-ladder-idx">05</span><span class="el-ladder-label">Write the card</span><span class="el-ladder-meta">—</span></div>
+              </div>
+            </div>
+            <div class="app-grid">
+              <table class="el-table el-table--ruled" data-page-source="rows" data-page-size="6">
+                <thead><tr><th data-sort="accession">Accession</th><th>Title</th><th class="num">Sheets</th><th data-sort="state">State</th><th><span class="el-tooltip" data-tip="Open the card in the margin">Card</span></th></tr></thead>
+                <tbody>
+                  <tr><td class="num">MA-1023</td><td>Sanshoku tofu works</td><td class="num">1</td><td><span class="el-status-dot running"></span> float</td><td><button class="el-btn el-btn--ghost" data-drawer-open="rec-0881">Open</button></td></tr>
+                  <tr><td class="num">MA-0419</td><td>Ma Editions Nº 19</td><td class="num">1</td><td><span class="el-status-dot ok"></span> stable</td><td><button class="el-btn el-btn--ghost" data-drawer-open="rec-0881">Open</button></td></tr>
+                  <tr><td class="num">MA-0902</td><td>Moon calendar 2011</td><td class="num">1</td><td><span class="el-status-dot ok"></span> stable</td><td><button class="el-btn el-btn--ghost" data-drawer-open="rec-0881">Open</button></td></tr>
+                  <tr><td class="num">MA-0444</td><td>Ma Editions Nº 44</td><td class="num">1</td><td><span class="el-status-dot warn"></span> foxing</td><td><button class="el-btn el-btn--ghost" data-drawer-open="rec-0881">Open</button></td></tr>
+                  <tr><td class="num">MA-0881</td><td>Kiln letterheads</td><td class="num">41</td><td><span class="el-status-dot live"></span> loaned</td><td><button class="el-btn el-btn--ghost" data-drawer-open="rec-0881">Open</button></td></tr>
+                </tbody>
+              </table>
+
+              <div class="stat-strip">
+                <div class="el-stat"><span class="el-stat-label">Cards today</span><span class="el-stat-value">12</span></div>
+                <div class="el-stat"><span class="el-stat-label">Ingest queue</span>
+                  <span class="el-stat-value">7</span>
+                  <span class="el-sparkline"><svg width="110" height="26" viewBox="0 0 110 26"><polyline points="0,20 15,18 30,21 45,12 60,15 75,9 90,11 110,4" fill="none" stroke="#c0392b" stroke-width="2" stroke-linecap="round"/></svg></span></div>
+                <div class="el-stat is-live"><span class="el-stat-label">Humidity drift</span><span class="el-stat-value">-2%</span><span class="el-stat-note">since 06:40</span></div>
+                <div class="el-stat"><span class="el-stat-label">Conservation load</span>
+                  <span class="el-meter" style="--el-meter-value:38;grid-column:1/-1"><span class="fill" style="width:38%"></span></span></div>
+              </div>
+
+              <div class="el-actionbar">
+                <span class="lead">6 records · 2 floating · box 14 open</span>
+                <div class="el-actions" style="display:flex;gap:var(--el-space-2)">
+                  <button class="el-btn el-btn--ghost-outline" data-toast="Box 14 closed — humidity held at 55%.">Close box 14</button>
+                  <button class="el-btn" data-toast="Cards committed — the shelf ledger is rewritten.">Commit cards</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="el-tabbar">
+          <button class="el-tabbar-item is-active">Accessions <span class="count">7</span></button>
+          <button class="el-tabbar-item">Conservation</button>
+          <button class="el-tabbar-item">Loans</button>
+          <button class="el-tabbar-item">Press room</button>
+        </div>
+      </div>
+
+      <div class="notice-strip">
+        <div class="el-notification-stack">
+          <div class="el-notification is-unread">
+            <span class="icon"><svg class="el-icon"><use href="../../../assets/icons.svg#el-i-info"/></svg></span>
+            <div class="head"><span class="title">Float complete</span><span class="app">conservation</span><button class="close" aria-label="Dismiss">×</button></div>
+            <div class="body">Two 1989 letterhead proofs dried on schedule. Box 14 may close.</div>
+            <span class="time">06:40</span>
+          </div>
+          <div class="el-notification">
+            <span class="icon"><svg class="el-icon"><use href="../../../assets/icons.svg#el-i-calendar"/></svg></span>
+            <div class="head"><span class="title">Loan due Friday</span><span class="app">registrar</span><button class="close" aria-label="Dismiss">×</button></div>
+            <div class="el-progress ok"><span class="fill" style="width:80%"></span></div>
+            <span class="time">05:12</span>
+          </div>
+        </div>
+        <div class="el-toast info"><span>Ingest ran at 06:40 — 7 records held.</span><button class="close" aria-label="Dismiss">×</button></div>
+      </div>
+
+      <div class="el-stage-rail el-stage-rail--strip">
+        <div class="el-stage" data-state="done"><span class="el-stage-dot"></span><span class="el-stage-name">gift</span><span class="el-stage-count">deed</span></div>
+        <div class="el-stage" data-state="done"><span class="el-stage-dot"></span><span class="el-stage-name">inspect</span><span class="el-stage-count">raking</span></div>
+        <div class="el-stage" data-state="running"><span class="el-stage-dot"></span><span class="el-stage-name">float</span><span class="el-stage-count">2</span></div>
+        <div class="el-stage" data-state="queued"><span class="el-stage-dot"></span><span class="el-stage-name">photo</span><span class="el-stage-count">—</span></div>
+        <div class="el-stage" data-state="stale"><span class="el-stage-dot"></span><span class="el-stage-name">cards</span><span class="el-stage-count">paused</span></div>
+      </div>
+
+      <div class="el-progress-truth" aria-live="polite">
+        <span class="el-pt-chunk" data-state="done">gift ✓ <span class="el-pt-count">38</span></span>
+        <span class="el-pt-chunk" data-state="done">inspect ✓ <span class="el-pt-count">31</span></span>
+        <span class="el-pt-chunk" data-state="running">float <span class="el-pt-count">2/38</span></span>
+        <span class="el-pt-chunk" data-state="stale">cards ✗ paused</span>
+      </div>
+
+      <div class="console-cols">
+        <aside class="el-inspector is-docked" id="margin">
+          <div class="el-inspector-header">Docent <button class="el-inspector-close" data-el-inspector-close="#margin" aria-label="Close inspector">×</button></div>
+          <div class="el-inspector-body">
+            <div class="el-assistant-panel">
+              <div class="el-assistant-head">MA DOCENT · local</div>
+              <div class="el-assistant-log">
+                <div class="el-msg el-msg--assistant">Box 14 holds 12 sheets at 54% RH. The 2011 moon calendar is the only blind-signed item.</div>
+                <div class="el-msg el-msg--user">What is still floating?</div>
+                <div class="el-msg el-msg--assistant">Two proofs from MA-1023 — due out at 14:00. <span class="el-cite-inline">[box 14 log]</span></div>
+              </div>
+              <div class="el-assistant-foot"><input class="el-input" placeholder="Ask the docent…" aria-label="Ask the docent"></div>
+            </div>
+            <div class="el-fact-grid" style="margin-top:var(--el-space-3)">
+              <div class="el-fact"><span class="k">Cards</span><span class="v">411</span></div>
+              <div class="el-fact"><span class="k">Floating</span><span class="v">2</span></div>
+              <div class="el-fact is-hot"><span class="k">Room</span><span class="v">54%</span></div>
+            </div>
+          </div>
+        </aside>
+
+        <div class="app-grid">
+          <div class="el-inline-alert ok">
+            <span class="el-icon"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>
+            <div><div class="title">Morning ingest</div><div class="body">7 records held, 0 rejects, 41 cards rewritten.</div></div>
+          </div>
+          <div class="el-empty">
+            <span class="el-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4.2-4.2"/></svg></span>
+            <h3 class="el-title">No record matches "proof 3 of MA-0902".</h3>
+            <p>Third proofs were filed with the press room series until 2004.</p>
+            <button class="el-btn el-btn--ghost-outline" data-toast="Searching the press room series instead…">Try the press series</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="el-footer el-footer--plain">
+    <p class="colophon">Studio Ma · Archive Console — a mock window on the collection.</p>
+  </footer>
+
+  <dialog id="rec-new" class="el-dialog">
+    <div class="el-dialog-head"><h2>New accession</h2><button class="el-dialog-close" data-dialog-close="rec-new" aria-label="Close">×</button></div>
+    <div class="el-dialog-body">
+      <div class="el-field"><label class="el-label" for="a-id">Accession</label><input class="el-input" id="a-id" value="MA-1024"><span class="el-hint">The next number on shelf B.</span></div>
+      <div class="el-field"><label class="el-label" for="a-room">Room</label><select class="el-select" id="a-room"><option>North room</option><option>Annex float</option><option>Stacks B</option></select></div>
+      <div class="el-inline-alert warn"><span class="el-icon"><svg viewBox="0 0 24 24"><path d="M12 3l10 18H2z"/></svg></span><div><div class="title">Raking light first</div><div class="body">No card is written before raking light, every time.</div></div></div>
+    </div>
+    <div class="el-dialog-foot">
+      <button class="el-btn el-btn--ghost" data-dialog-close="rec-new">Cancel</button>
+      <button class="el-btn" data-dialog-close="rec-new" data-toast="MA-1024 opened — raking light tonight.">Open record</button>
+    </div>
+  </dialog>
+
+  <aside class="el-drawer right" id="batch" aria-hidden="true">
+    <div class="el-drawer-head">Batch sheets <button class="el-btn el-btn--ghost" data-drawer-close="batch" aria-label="Close">×</button></div>
+    <div class="el-drawer-body">
+      <div class="el-fact-grid">
+        <div class="el-fact"><span class="k">Sheets</span><span class="v">9</span></div>
+        <div class="el-fact"><span class="k">Boxes</span><span class="v">2</span></div>
+      </div>
+      <div class="el-progress-truth" aria-live="polite">
+        <span class="el-pt-chunk" data-state="done">float ✓ <span class="el-pt-count">7</span></span>
+        <span class="el-pt-chunk" data-state="running">photo <span class="el-pt-count">2/9</span></span>
+      </div>
+    </div>
+    <div class="el-drawer-foot"><button class="el-btn" data-drawer-close="batch">Close</button></div>
+  </aside>
+
+  <div class="el-command" id="cmd-run" aria-hidden="true">
+    <div class="el-command-panel">
+      <input class="el-command-input" placeholder="Run a console command…" aria-label="Command">
+      <div class="el-command-results">
+        <div class="el-command-row sel"><span>open shelf B4</span><span class="el-command-hint"><span class="el-kbd">G</span> <span class="el-kbd">B</span></span></div>
+        <div class="el-command-row"><span>run morning ingest</span><span class="el-command-hint"><span class="el-kbd">R</span></span></div>
+        <div class="el-command-row"><span>close box 14</span><span class="el-command-hint"><span class="el-kbd">X</span></span></div>
+        <div class="el-command-row"><span>ask the docent</span><span class="el-command-hint"><span class="el-kbd">D</span></span></div>
+      </div>
+      <div class="el-command-foot"><span class="el-kbd">↑↓</span> move · <span class="el-kbd">↵</span> run · <span class="el-kbd">esc</span> close</div>
+    </div>
+  </div>
+
+</main>
+</body>
+</html>

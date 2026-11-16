@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en" data-theme="solar-halo">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aurelia Dome — backstage</title>
+<link rel="stylesheet" href="../../../base.css">
+<link rel="stylesheet" href="../../../fonts.css">
+<link rel="stylesheet" href="../../../tokens.css">
+<link rel="stylesheet" href="../../../elements-display.css">
+<link rel="stylesheet" href="../../../elements-structure.css">
+<link rel="stylesheet" href="../../../elements-lists.css">
+<link rel="stylesheet" href="../../../elements-app.css">
+<link rel="stylesheet" href="../../../elements-containers.css">
+<link rel="stylesheet" href="../../../elements-controls.css">
+<link rel="stylesheet" href="../../../elements-inputs.css">
+<link rel="stylesheet" href="../../../elements-dataviz.css">
+<link rel="stylesheet" href="../../../elements-overlay.css">
+<link rel="stylesheet" href="../../../elements-interactions.css">
+<link rel="stylesheet" href="../../../elements-misc.css">
+<link rel="stylesheet" href="../../../elements-size.css">
+<link rel="stylesheet" href="../../../elements-workflow.css">
+<link rel="stylesheet" href="../../../elements-inspector.css">
+<link rel="stylesheet" href="../../../elements-reader.css">
+<link rel="stylesheet" href="../../../elements-assistant.css">
+<link rel="stylesheet" href="../../../themes/src/webgl-immersive.css">
+<script src="../../../elements.js" defer></script>
+<script src="../../../charts.js" defer></script>
+</head>
+<body>
+<main class="el-page">
+<nav class="el-navbar el-navbar--top">
+  <a class="brand" href="index.html">AURELIA DOME</a>
+  <div class="links"><a href="index.html">Now Playing</a><a href="catalog.html">Exhibits</a><a href="article.html">Journal</a><a href="account.html">Tickets</a><a href="observe.html" aria-current="page">Backstage</a><a href="app.html">Dome Console</a></div>
+  <div class="actions">
+<span class="el-chip live el-chip--sm">Doors 19:00</span>
+<button class="el-btn el-btn--ghost" data-toast="Program guide sent to your inbox">Program</button>
+<button class="el-btn" data-dialog-open="dlg-tickets">Book seats</button></div>
+</nav>
+<header class="el-hero el-hero--left">
+
+<div class="el-eyebrow">BACKSTAGE</div>
+<h1>The operator's hour</h1>
+<p>Behind the 18 meters of plaster: two bulbs, one pipe organ, and a duty log that treats lateness as weather.</p>
+<div class="actions"><button class="el-btn el-btn--outline" data-toast="Backstage tour list joined" data-toast-variant="ok">Join a backstage tour</button></div>
+
+</header>
+<section class="el-section">
+<div class="el-row-flex" style="align-items:flex-start;gap:16px">
+<div class="el-assistant-panel">
+<div class="el-assistant-head"><span class="el-chip live el-chip--sm">Backstage copilot</span><h3>Aurelia copilot · show duty log</h3><span class="el-mute" style="margin-left:auto;font-size:12px">grounded on the operations book</span></div>
+<div class="el-assistant-log">
+<div class="el-msg el-msg--user">What happens if the projector B lamp dips again during "Mare Frigoris"?</div>
+<div class="el-msg el-msg--assistant">
+The board flags it late by six minutes, same as tonight. House policy is to hold the lobby for the 22:15 start and run the atrium exhibit as filler <span class="el-cite-inline">[2]</span>.
+<div class="el-plan"><div class="el-plan-title">Plan · 3 steps</div>
+<div>1 · test bulb B at 21:40 under drill shutter</div>
+<div>2 · hold lobby announcement script in ready state</div>
+<div>3 · move "Mare Frigoris" lamps to A if the dip repeats</div></div>
+Sources: <span class="el-cite-inline">[1] Operations handbook, cue sheet 6</span> <span class="el-cite-inline">[2] Lamp-swap bulletin, Oct 28</span>
+</div>
+<div class="el-msg el-msg--assistant is-unsourced">I can't see the concession stock — ask the lobby terminal for that one.</div>
+<div class="el-msg el-msg--user is-streaming">Draft the lobby script.</div>
+</div>
+<div class="el-assistant-foot">
+<input class="el-input" placeholder="Ask the floor — “what holds the 22:15?”">
+<button class="el-btn el-btn--ghost el-assistant-stop" aria-label="Stop stream">■</button>
+<button class="el-btn" data-toast="Script drafted to the duty log" data-toast-variant="ok">Send</button>
+</div>
+</div>
+</div>
+</section>
+<section class="el-section">
+<div class="el-section-head"><div><div class="el-eyebrow">Duty board</div><h2>Tonight, told honestly</h2></div></div>
+<ol class="el-stepper"><li class="done"><span class="num">1</span><span class="lbl">Bulb test</span></li><li class="done"><span class="num">2</span><span class="lbl">Doors</span></li><li class="active"><span class="num">3</span><span class="lbl">Act II</span></li><li class=""><span class="num">4</span><span class="lbl">Dim-bounce</span></li><li class=""><span class="num">5</span><span class="lbl">Atrium open</span></li></ol>
+<div class="el-row-flex" style="align-items:flex-start;margin-top:14px;gap:16px">
+<div class="el-panel">
+<div class="el-panel-head"><span>Board colors, plain words</span><span class="el-status-pill live">LIVE</span></div>
+<div class="el-cluster" style="gap:8px">
+<span class="el-status-pill ok">ON TIME</span><span class="el-status-pill running">RUNNING</span><span class="el-status-pill queued">QUEUED</span><span class="el-status-pill stale">LATE</span><span class="el-status-dot live"></span><span class="el-status-dot stale"></span>
+</div>
+<p class="hint" style="font-size:13px;color:var(--el-mute);margin:10px 0 0">"Late" never hides a lamp fault. If the board says late and the bulb is warm, it is the operator's cue.</p>
+</div>
+<aside class="el-inspector is-docked">
+<div class="el-inspector-header"><h3>Inspector · bulb B</h3><button class="el-inspector-close" aria-label="Collapse">×</button></div>
+<div class="el-inspector-body">
+<div class="el-cluster" style="gap:8px;margin-bottom:10px"><span class="el-status-dot live"></span><span class="el-badge">TEST 21:40</span><span class="el-status-pill ok">ARMED</span></div>
+<div class="el-fact-grid">
+<div class="el-fact"><span class="k">Rated life</span><span class="v">4.9 kh</span></div>
+<div class="el-fact"><span class="k">Logged</span><span class="v">4,821 h</span></div>
+<div class="el-fact is-hot"><span class="k">Bulb B</span><span class="v">new · 0.2 kh</span></div>
+<div class="el-fact"><span class="k">Shutter</span><span class="v">1.2 s close</span></div>
+</div>
+<div class="el-cluster" style="margin-top:12px"><span class="el-meter warn" data-ticks="10" style="flex:1"><span class="fill" style="--el-meter-value:31%"></span></span><span class="el-mute" style="font-size:12px">duty margin</span></div>
+<div class="el-cluster" style="margin-top:12px"><span class="el-badge">8K STEREO</span><span class="el-badge">18 M DOME</span><span class="el-badge">ACT II LIVE</span></div>
+</div>
+</aside>
+</div>
+</section>
+<section class="el-section">
+<div class="el-section-head"><div><div class="el-eyebrow">Facts</div><h2>Held numbers</h2></div></div>
+<div class="el-fact-grid">
+<div class="el-fact"><span class="k">Doors</span><span class="v">19:00</span></div>
+<div class="el-fact"><span class="k">First show</span><span class="v">19:30</span></div>
+<div class="el-fact is-hot"><span class="k">Now</span><span class="v">Act II · 21:14</span></div>
+<div class="el-fact"><span class="k">Fill</span><span class="v">92%</span></div>
+</div>
+<div style="margin-top:16px"><div class="el-banner el-banner--warn">
+<span class="glyph">☀</span>
+<div class="copy"><b>Bulb B swap window</b><span class="detail">22:30 tonight, straight after "Mare Frigoris". No shutter drill needed — the failsafe holds.</span></div>
+<button class="action" data-toast="Lamp crew paged" data-toast-variant="ok">Page the lamp crew</button>
+<button class="close" aria-label="Dismiss">×</button>
+</div></div>
+</section>
+<section class="el-section">
+<figure class="el-media-band">
+<div class="media"><svg viewBox="0 0 880 360" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Backstage plate">
+<defs>
+<radialGradient id="sg" cx="50%" cy="42%" r="52%">
+<stop offset="0" stop-color="#ffcb74" stop-opacity="0.9"/><stop offset="0.45" stop-color="#b96a1c" stop-opacity="0.55"/><stop offset="1" stop-color="#401f06" stop-opacity="0"/>
+</radialGradient>
+<linearGradient id="sv" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#2b1a0a"/><stop offset="0.62" stop-color="#180f07"/><stop offset="1" stop-color="#0b0806"/>
+</linearGradient>
+</defs>
+<rect width="880" height="360" fill="url(#sv)"/>
+<line x1="440" y1="180" x2="638" y2="180" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="440" y1="180" x2="626" y2="248" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="440" y1="180" x2="592" y2="307" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="440" y1="180" x2="539" y2="351" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="440" y1="180" x2="474" y2="375" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="440" y1="180" x2="406" y2="375" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="440" y1="180" x2="341" y2="351" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="440" y1="180" x2="288" y2="307" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="440" y1="180" x2="254" y2="248" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="440" y1="180" x2="242" y2="180" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="440" y1="180" x2="254" y2="112" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="440" y1="180" x2="288" y2="53" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="440" y1="180" x2="341" y2="9" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="440" y1="180" x2="406" y2="-15" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="440" y1="180" x2="474" y2="-15" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="440" y1="180" x2="539" y2="9" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="440" y1="180" x2="592" y2="53" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="440" y1="180" x2="626" y2="112" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/>
+<circle cx="440" cy="158" r="94" fill="url(#sg)"/>
+<circle cx="440" cy="158" r="32" fill="#ffd28a"/>
+<path d="M 580 292 a 18 11 0 0 0 -31 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/><path d="M 555 286 a 18 11 0 0 0 -25 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/><path d="M 523 282 a 18 11 0 0 0 -18 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/><path d="M 486 278 a 18 11 0 0 0 -10 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/><path d="M 446 277 a 18 11 0 0 0 -1 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/><path d="M 406 278 a 18 11 0 0 0 7 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/><path d="M 367 280 a 18 11 0 0 0 16 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/><path d="M 334 285 a 18 11 0 0 0 23 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/><path d="M 306 291 a 18 11 0 0 0 29 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/>
+</svg><div class="fill"><figcaption>act II · cue 18</figcaption></div></div>
+<div class="body"><div class="label">GRAND DOME · BACKSTAGE</div><h2>Where the operator breathes</h2><p>The console sits in the waist of the dome; the starball and the pipe share one dimmer board. Two levers, one night.</p></div>
+</figure>
+</section>
+<footer class="el-footer"><div class="cols"><div class="col"><span class="label">Visit</span><ul><li><a href="#">Plan your evening</a></li><li><a href="#">Accessibility</a></li><li><a href="#">School field trips</a></li><li><a href="#">Getting here</a></li></ul></div><div class="col"><span class="label">Programs</span><ul><li><a href="#">Fulldome features</a></li><li><a href="#">Starball classics</a></li><li><a href="#">After Dark (21+)</a></li><li><a href="#">Members' nights</a></li></ul></div><div class="col"><span class="label">Support</span><ul><li><a href="#">Adopt a star</a></li><li><a href="#">Dome renewal fund</a></li><li><a href="#">Volunteer guild</a></li><li><a href="#">Corporate evenings</a></li></ul></div></div><p class="small"><span>Aurelia Dome · 18-meter dome, 8K stereo projection, and 340 warm seats since 1994</span><span>Tonight: doors 19:00 · first show 19:30</span></p></footer>
+</main>
+</body>
+</html>

@@ -1,0 +1,3414 @@
+/* ── agency-classic.css · family 5 — Agency Classic (professional services) ──
+   Basis: BRIEFS.md section 5 + TAXONOMY.md family 5 — white + gray scale, one
+   restrained accent, neutral Helvetic grotesque, motion capped at hover
+   reveals / card lifts / fades — nothing louder.
+   Wave 3 polish contract (2040 system-instrument grade):
+     · true 1px hairlines only — no blur-shadows standing in for borders
+     · all state tinting via color-mix(in oklab …); zero backdrop-filter
+     · complete GTK-9 state machine on every control (rest/hover/focus-visible/
+       active/disabled), themed ::selection, accent-color + scrollbar-color
+     · EXACTLY ONE 2040 instrument per voice:
+         A · agency-quartz      calibration data-grid — hairline column grid,
+                                right-aligned tabular numerals, and a @property-
+                                eased 1px blue rail that grows into the row on
+                                hover (registered <number>, transitions the rail)
+         B · agency-mono-plate  precision crosshair registration mark seated on
+                                the footer keyline corner (print-plate register)
+   Two directions, deliberately no crossover:
+     A · agency-quartz      corporate SaaS-blue on pure white, system-helvetica
+                            display, hairline service cards with case-study
+                            media plates, right-aligned numerals, quiet footers.
+     B · agency-mono-plate  editorial plate — warm-gray ground, near-black ink,
+                            2px keylines, numbered kickers in mono, flat
+                            General Sans plates with zero elevation. */
+
+/* @property: document-global registration, namespaced so no other family
+   collides. Quartz uses it to make the row rail an eased <number> instead of
+   an opacity snap — rail grows from the row's vertical center, hairline-true. */
+@property --elqu-rail {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+/* ═══ A · agency-quartz ═══ */
+
+[data-theme="agency-quartz"] {
+  --el-bg: #ffffff;
+  --el-panel: #f7f8fa;
+  --el-panel-2: #eef1f5;
+  --el-panel-3: #e3e8f0;
+
+  --el-line: #e4e7ed;
+  --el-line-2: #d2d8e2;
+  --el-line-strong: #64748b;
+
+  --el-ink: #0f172a;
+  --el-ink-soft: #46536c;
+  /* v0.4 color pass: muted gray went sub-AA everywhere it sat small on light
+     ground (2.6:1 on white). Deepened one step in the slate family — AA on
+     every panel this theme paints (5.4/5.0/4.7 on bg/panel/panel-2). */
+  --el-mute: #5f6b82;
+  --el-on-accent: #ffffff;
+
+  /* v0.4 color pass: the SaaS-blue accent dropped a full step into the navy
+     print register (persona: confident navy/khaki) — every accent-on-light
+     pairing now clears AA, accent-on-its-own-tint included. */
+  --el-accent: #1d4ed8;
+  --el-accent-hover: #1e40af;
+  --el-accent-soft: color-mix(in oklab, var(--el-accent) 8%, transparent);
+
+  /* state inks darkened to clear 4.5 on their own 9–12% soft tints */
+  --el-ok: #166534;
+  --el-warn: #92400e;
+  --el-fail: #991b1b;
+  --el-info: #3d5a8f;
+  --el-live: #0e7490;
+  --el-teal: #0f766e;
+
+  --el-shadow-1: 0 1px 2px color-mix(in oklab, var(--el-ink) 6%, transparent);
+  --el-shadow-2: 0 2px 6px color-mix(in oklab, var(--el-ink) 7%, transparent), 0 12px 28px -14px color-mix(in oklab, var(--el-ink) 16%, transparent);
+  --el-shadow-3: 0 24px 64px -24px color-mix(in oklab, var(--el-ink) 28%, transparent);
+  --el-overlay: color-mix(in oklab, var(--el-ink) 42%, transparent);
+  --el-focus-ring: color-mix(in oklab, var(--el-accent) 45%, transparent);
+
+  --el-font-body: 'Inter', system-ui, sans-serif;
+  --el-font-display:'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --el-font-mono: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+
+  --el-r-sm: 6px;
+  --el-r-md: 8px;
+  --el-r-lg: 12px;
+  --el-r-xl: 18px;
+
+  --el-raise-1: 0 1px 2px color-mix(in oklab, var(--el-ink) 5%, transparent);
+  --el-raise-2: 0 2px 4px color-mix(in oklab, var(--el-ink) 5%, transparent), 0 10px 24px -12px color-mix(in oklab, var(--el-ink) 18%, transparent);
+  --el-raise-3: 0 28px 72px -26px color-mix(in oklab, var(--el-ink) 30%, transparent);
+  --el-hairline: inset 0 1px 0 color-mix(in oklab, var(--el-bg) 72%, transparent);
+  --el-inset-field: inset 0 1px 2px color-mix(in oklab, var(--el-ink) 4%, transparent);
+  --el-ring: 0 0 0 3px color-mix(in oklab, var(--el-accent) 14%, transparent);
+  --el-ring-strong: 0 0 0 3px color-mix(in oklab, var(--el-accent) 22%, transparent);
+  --el-lift: translateY(-1px);
+  --el-press: scale(0.985);
+
+  /* identity: corporate card wall — hairline panels, tiny raise, blue ticks.
+     --el-card-media-h sizes the case-study image plate on .el-card. */
+  --el-card-media-h: 88px;
+  --el-bar-h: 3px;
+  --el-ctl-pad-y: 10px;
+  --el-ctl-pad-x: 18px;
+  --el-ctl-min-h: 40px;
+  --el-card-pad: 24px;
+
+  --el-head-weight: 640;
+  --el-head-tracking: -0.015em;
+  --el-head-case: none;
+  --el-label-weight: 600;
+  --el-label-tracking: 0.09em;
+  --el-label-case: uppercase;
+  --el-body-weight: 500;
+
+  /* v0.4 density + persona tokens (tight cadence; scoped to the slug only) */
+  --el-space-2: 6px;
+  --el-space-3: 10px;
+  --el-space-4: 14px;
+  --el-space-5: 20px;
+  --el-space-6: 28px;
+  --el-measure: 58ch;
+  --el-font-serif: 'Inter', system-ui, sans-serif;
+  --el-dur-surface: 240ms;
+  --el-dur-progress: 1400ms;
+  --el-stage-active: var(--el-accent);
+  --el-stage-running: var(--el-accent);
+  --el-stage-done: var(--el-ok);
+  --el-stage-stale: var(--el-warn);
+
+  --el-dur-fast: 120ms;
+  --el-dur-base: 200ms;
+  --el-dur-slow: 260ms;
+  --el-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --el-ease-quiet: cubic-bezier(0.33, 1, 0.68, 1);
+
+  --el-ornament: none;
+  --el-rule-style: hairline;
+  --el-hero-pad: 48px;
+  --el-hero-min: 380px;
+  --el-edge: var(--el-line);
+
+  /* instrument-grade native chrome: themed form accents + flat scrollbar */
+  accent-color: var(--el-accent);
+  scrollbar-color: var(--el-line-strong) transparent;
+}
+
+/* quartz page voice (mirrors base.css so the harness reads true) */
+[data-theme="agency-quartz"] body {
+  background: var(--el-bg);
+  color: var(--el-ink);
+  font-family: var(--el-font-body);
+  font-weight: var(--el-body-weight);
+  font-size: var(--el-fs-md);
+  font-optical-sizing: auto;
+  line-height: 1.6;
+}
+[data-theme="agency-quartz"] ::selection {
+  background: color-mix(in oklab, var(--el-accent) 16%, transparent);
+  color: var(--el-ink);
+}
+[data-theme="agency-quartz"] h1,
+[data-theme="agency-quartz"] h2,
+[data-theme="agency-quartz"] h3,
+[data-theme="agency-quartz"] h4 {
+  font-family: var(--el-font-display);
+  font-weight: var(--el-head-weight);
+  letter-spacing: var(--el-head-tracking);
+  line-height: 1.16;
+  color: var(--el-ink);
+  text-wrap: balance;
+}
+[data-theme="agency-quartz"] .el-display-specimen {
+  font-family: var(--el-font-display);
+  letter-spacing: var(--el-head-tracking);
+  text-wrap: balance;
+}
+[data-theme="agency-quartz"] .el-body {
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  color: var(--el-ink-soft);
+}
+[data-theme="agency-quartz"] .el-mute-body {
+  color: var(--el-mute);
+  font-size: var(--el-fs-sm);
+}
+[data-theme="agency-quartz"] .el-mono {
+  font-family: var(--el-font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+/* quartz hero — white stage, one true 1px base rule, nothing to smudge */
+[data-theme="agency-quartz"] .el-hero {
+  position: relative;
+  padding: var(--el-hero-pad) 0;
+  min-height: var(--el-hero-min);
+  border-bottom: 1px solid var(--el-line);
+}
+[data-theme="agency-quartz"] .el-hero h1 {
+  margin: 0 0 18px;
+}
+
+/* quartz eyebrow — the client-strip voice: letterspaced gray, blue tick lead */
+[data-theme="agency-quartz"] .el-eyebrow {
+  display: inline-block;
+  margin: 0 0 14px;
+  font-family: var(--el-font-body);
+  font-size: var(--el-fs-md);
+  font-weight: var(--el-label-weight);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--el-mute);
+}
+[data-theme="agency-quartz"] .el-eyebrow::before {
+  content: "";
+  display: inline-block;
+  width: 22px;
+  height: 2px;
+  margin-right: 10px;
+  vertical-align: 3px;
+  background: var(--el-accent);
+}
+[data-theme="agency-quartz"] .el-hero .el-eyebrow {
+  font-size: 0.875rem;
+  letter-spacing: 0.18em;
+}
+[data-theme="agency-quartz"] .el-label {
+  margin: 0 0 8px;
+  font-size: var(--el-fs-sm);
+  font-weight: var(--el-label-weight);
+  letter-spacing: var(--el-label-tracking);
+  text-transform: uppercase;
+  color: var(--el-ink-soft);
+}
+
+/* quartz field rhythm — the harness sets no field spacing; the theme carries
+   the 2026-grade label/field cadence. display:block pins the field label as
+   the input's containing block so width:100% lands inside the card padding
+   (the base inline label lets the input spill past the card edge). */
+[data-theme="agency-quartz"] .el-field {
+  display: block;
+}
+[data-theme="agency-quartz"] .el-field + .el-field {
+  margin-top: var(--el-space-3);
+}
+
+/* quartz service card — hairline panel with case-study media plate. The plate
+   is flat precision: two hard-stop tints (zero gradient banding by
+   construction), the 3px blue spine seated on the 24px control grid, one 1px
+   baseline rule. The plate is absolute, so content clears it via the first
+   child (cards carry an inline padding from demos that must keep winning). */
+[data-theme="agency-quartz"] .el-card {
+  background: var(--el-panel);
+  border: 1px solid var(--el-line);
+  border-radius: var(--el-r-lg);
+  box-shadow: var(--el-raise-1), var(--el-hairline);
+  transition: transform var(--el-dur-base) var(--el-ease), box-shadow var(--el-dur-base) var(--el-ease), border-color var(--el-dur-fast) var(--el-ease);
+}
+[data-theme="agency-quartz"] .el-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: var(--el-card-media-h);
+  opacity: 1;
+  background:
+    linear-gradient(var(--el-accent), var(--el-accent)) 24px 50% / 3px 44% no-repeat,
+    linear-gradient(180deg,
+      color-mix(in oklab, var(--el-accent) 7%, var(--el-panel-2)) 0 49.5%,
+      color-mix(in oklab, var(--el-accent) 12%, var(--el-panel-3)) 49.5% 100%);
+  box-shadow: inset 0 -1px 0 var(--el-line);
+  transition: background-size var(--el-dur-base) var(--el-ease);
+}
+[data-theme="agency-quartz"] .el-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--el-raise-2), var(--el-hairline);
+  border-color: color-mix(in oklab, var(--el-accent) 26%, var(--el-line));
+}
+/* the 2040 voice read: on hover the spine stretches — the plate "registers" */
+[data-theme="agency-quartz"] .el-card:hover::before {
+  background:
+    linear-gradient(var(--el-accent), var(--el-accent)) 24px 50% / 3px 58% no-repeat,
+    linear-gradient(180deg,
+      color-mix(in oklab, var(--el-accent) 7%, var(--el-panel-2)) 0 49.5%,
+      color-mix(in oklab, var(--el-accent) 12%, var(--el-panel-3)) 49.5% 100%);
+}
+[data-theme="agency-quartz"] .el-card > :first-child {
+  margin-top: calc(var(--el-card-media-h) - var(--el-card-pad) + 12px);
+}
+[data-theme="agency-quartz"] .el-card.el--sm > :first-child {
+  margin-top: calc(var(--el-card-media-h) - var(--el-space-2) + 10px);
+}
+[data-theme="agency-quartz"] .el-card.el--lg > :first-child {
+  margin-top: calc(var(--el-card-media-h) - var(--el-space-5) + 16px);
+}
+
+/* quartz button family — solid blue business control, complete state machine,
+   no gloss. Press is the calibrated scale token; focus never disappears. */
+[data-theme="agency-quartz"] .el-btn {
+  background: var(--el-accent);
+  border: 1px solid color-mix(in oklab, var(--el-accent) 82%, var(--el-ink));
+  border-radius: var(--el-r-md);
+  letter-spacing: 0.01em;
+  box-shadow: var(--el-raise-1);
+}
+[data-theme="agency-quartz"] .el-btn:hover {
+  background: var(--el-accent-hover);
+  border-color: var(--el-accent-hover);
+  filter: none;
+  transform: var(--el-lift);
+  box-shadow: var(--el-raise-2), var(--el-hairline);
+}
+[data-theme="agency-quartz"] .el-btn:focus-visible {
+  outline: 2px solid var(--el-focus-ring);
+  outline-offset: 2px;
+  box-shadow: var(--el-ring), var(--el-raise-1);
+}
+[data-theme="agency-quartz"] .el-btn:active {
+  transform: var(--el-press);
+  box-shadow: var(--el-raise-1);
+  transition-duration: 60ms;
+}
+[data-theme="agency-quartz"] .el-btn:disabled,
+[data-theme="agency-quartz"] .el-btn[aria-disabled="true"] {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+  filter: none;
+  box-shadow: none;
+}
+[data-theme="agency-quartz"] .el-btn--outline {
+  background: transparent;
+  color: var(--el-accent);
+  border: 1px solid color-mix(in oklab, var(--el-accent) 42%, transparent);
+  box-shadow: none;
+}
+[data-theme="agency-quartz"] .el-btn--outline:hover {
+  background: var(--el-accent-soft);
+  color: var(--el-accent-hover);
+  border-color: var(--el-accent);
+}
+[data-theme="agency-quartz"] .el-btn--outline:focus-visible {
+  box-shadow: var(--el-ring);
+}
+[data-theme="agency-quartz"] .el-btn--outline:disabled {
+  opacity: 0.45;
+  border-color: color-mix(in oklab, var(--el-accent) 30%, transparent);
+  color: color-mix(in oklab, var(--el-accent) 60%, var(--el-mute));
+}
+[data-theme="agency-quartz"] .el-btn--ghost,
+[data-theme="agency-quartz"] .el-btn.ghost {
+  background: transparent;
+  border-color: transparent;
+  box-shadow: none;
+  color: var(--el-ink-soft);
+}
+[data-theme="agency-quartz"] .el-btn--ghost:hover,
+[data-theme="agency-quartz"] .el-btn.ghost:hover {
+  background: var(--el-panel-2);
+  border-color: transparent;
+  color: var(--el-ink);
+  transform: none;
+  box-shadow: none;
+}
+[data-theme="agency-quartz"] .el-btn--ghost:disabled {
+  opacity: 0.45;
+  color: color-mix(in oklab, var(--el-ink-soft) 60%, var(--el-mute));
+}
+[data-theme="agency-quartz"] .el-btn--danger {
+  background: var(--el-fail);
+  border-color: var(--el-fail);
+}
+[data-theme="agency-quartz"] .el-btn--danger:hover {
+  background: color-mix(in oklab, var(--el-fail) 88%, #000);
+  border-color: color-mix(in oklab, var(--el-fail) 88%, #000);
+  filter: none;
+}
+[data-theme="agency-quartz"] .el-btn--danger:disabled {
+  opacity: 0.45;
+}
+
+/* quartz inputs — flat fields, hairline edge, ring that returns on focus.
+   box-sizing is pinned here because the bare harness loads no reset: without
+   it width:100% resolves content-box and the field spills the card padding. */
+[data-theme="agency-quartz"] .el-input,
+[data-theme="agency-quartz"] .el-textarea {
+  box-sizing: border-box;
+  background: var(--el-bg);
+  border: 1px solid var(--el-line-2);
+  border-radius: var(--el-r-md);
+}
+[data-theme="agency-quartz"] .el-input:hover,
+[data-theme="agency-quartz"] .el-textarea:hover {
+  border-color: color-mix(in oklab, var(--el-ink-soft) 55%, var(--el-line-2));
+}
+[data-theme="agency-quartz"] .el-input:focus,
+[data-theme="agency-quartz"] .el-input:focus-visible,
+[data-theme="agency-quartz"] .el-textarea:focus,
+[data-theme="agency-quartz"] .el-textarea:focus-visible {
+  background: var(--el-bg);
+  border-color: var(--el-accent);
+  outline: 2px solid var(--el-focus-ring);
+  outline-offset: 1px;
+  box-shadow: var(--el-ring), var(--el-inset-field);
+}
+[data-theme="agency-quartz"] .el-input:disabled,
+[data-theme="agency-quartz"] .el-textarea:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  border-color: var(--el-line);
+  background: color-mix(in oklab, var(--el-panel-2) 55%, var(--el-bg));
+}
+
+/* quartz switch — mechanical toggle, square-set on the r-sm grid */
+[data-theme="agency-quartz"] .el-switch {
+  box-shadow: none;
+}
+[data-theme="agency-quartz"] .el-switch:hover {
+  border-color: color-mix(in oklab, var(--el-ink-soft) 60%, var(--el-line-strong));
+}
+[data-theme="agency-quartz"] .el-switch:focus-visible {
+  outline: 2px solid var(--el-focus-ring);
+  outline-offset: 2px;
+  box-shadow: var(--el-ring);
+}
+[data-theme="agency-quartz"] .el-switch:active::after {
+  transform: scale(0.92);
+}
+[data-theme="agency-quartz"] .el-switch.on {
+  background: var(--el-accent);
+  border-color: color-mix(in oklab, var(--el-accent-hover) 90%, var(--el-accent));
+}
+[data-theme="agency-quartz"] .el-switch.on::after {
+  background: var(--el-on-accent);
+}
+[data-theme="agency-quartz"] .el-switch:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* quartz chip — tagged control, hairline rest, blue wash on hover */
+[data-theme="agency-quartz"] .el-chip {
+  background: color-mix(in oklab, var(--el-panel-2) 55%, var(--el-bg));
+  border: 1px solid var(--el-line);
+}
+[data-theme="agency-quartz"] .el-chip:hover {
+  background: color-mix(in oklab, var(--el-accent) 8%, var(--el-bg));
+  border-color: color-mix(in oklab, var(--el-accent) 38%, var(--el-line));
+  color: var(--el-accent-hover);
+}
+[data-theme="agency-quartz"] .el-chip:focus-visible {
+  outline: 2px solid var(--el-focus-ring);
+  outline-offset: 2px;
+}
+[data-theme="agency-quartz"] .el-chip:active {
+  transform: var(--el-press);
+  transition-duration: 60ms;
+}
+[data-theme="agency-quartz"] .el-chip:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* quartz pill — nav-grade lozenge with full machine */
+[data-theme="agency-quartz"] .el-pill {
+  background: var(--el-bg);
+  border: 1px solid var(--el-line);
+  color: var(--el-ink-soft);
+}
+[data-theme="agency-quartz"] .el-pill:hover {
+  background: var(--el-panel-2);
+  border-color: var(--el-line-2);
+  color: var(--el-ink);
+}
+[data-theme="agency-quartz"] .el-pill:focus-visible {
+  outline: 2px solid var(--el-focus-ring);
+  outline-offset: 2px;
+}
+[data-theme="agency-quartz"] .el-pill:active {
+  transform: var(--el-press);
+  transition-duration: 60ms;
+}
+[data-theme="agency-quartz"] .el-pill:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* quartz status dots — instrument-grade flat rings, no glow blur */
+[data-theme="agency-quartz"] .el-dot,
+[data-theme="agency-quartz"] .el-dot.ok,
+[data-theme="agency-quartz"] .el-dot.warn,
+[data-theme="agency-quartz"] .el-dot.fail,
+[data-theme="agency-quartz"] .el-dot.live {
+  box-shadow: 0 0 0 2px color-mix(in oklab, currentColor 22%, transparent);
+}
+
+/* quartz status pills — the sheet tints these with their own hue at 9%, and
+   hue-on-own-tint misses 4.5:1; the label drops one step to the navy hover ink
+   (live keeps its cyan dot + border, so the state voice survives) */
+[data-theme="agency-quartz"] .el-status-pill.running,
+[data-theme="agency-quartz"] .el-status-pill.live {
+  color: var(--el-accent-hover);
+}
+
+/* ═ quartz instrument · the calibration data-grid ═
+   hairline column rules + right-aligned tabular numerals + the @property
+   rail: a 1px blue mark seated on the row's left boundary, eased from the
+   row's vertical center by the registered --elqu-rail number. */
+[data-theme="agency-quartz"] .el-table {
+  background: var(--el-bg);
+  border: 1px solid var(--el-line);
+  border-radius: var(--el-r-md);
+  box-shadow: none;
+  font-variant-numeric: tabular-nums;
+}
+[data-theme="agency-quartz"] .el-table thead th {
+  background: var(--el-bg);
+  color: var(--el-mute);
+  border-bottom: 1px solid var(--el-line-2);
+  padding: var(--el-space-3) var(--el-space-4);
+}
+[data-theme="agency-quartz"] .el-table thead th:hover {
+  background: var(--el-bg);
+}
+[data-theme="agency-quartz"] .el-table thead th:not(:first-child),
+[data-theme="agency-quartz"] .el-table tbody td:not(:first-child) {
+  border-left: 1px solid var(--el-line);
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+[data-theme="agency-quartz"] .el-table tbody td {
+  position: relative;
+  padding: var(--el-space-3) var(--el-space-4);
+  border-bottom: 1px solid var(--el-line);
+  transition: background-color var(--el-dur-fast) var(--el-ease-quiet), --elqu-rail var(--el-dur-base) var(--el-ease);
+}
+[data-theme="agency-quartz"] .el-table tbody td::before {
+  content: "";
+  position: absolute;
+  left: -1px;
+  top: 50%;
+  width: 1px;
+  height: calc(var(--elqu-rail) * 72%);
+  transform: translateY(-50%);
+  background: var(--el-accent);
+  opacity: 0.9;
+}
+[data-theme="agency-quartz"] .el-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+[data-theme="agency-quartz"] .el-table tbody tr:hover {
+  background: color-mix(in oklab, var(--el-accent) 6%, var(--el-bg));
+}
+/* the rail: row's leading seam lights on row hover; the hovered cell's own
+   seam lights where the cursor is */
+[data-theme="agency-quartz"] .el-table tbody tr:hover td:first-child {
+  --elqu-rail: 1;
+}
+[data-theme="agency-quartz"] .el-table tbody td:not(:first-child):hover {
+  --elqu-rail: 1;
+}
+[data-theme="agency-quartz"] .el-table tbody tr.CRIT td:first-child {
+  box-shadow: inset 3px 0 0 var(--el-fail);
+}
+[data-theme="agency-quartz"] .el-table tbody tr.HIGH td:first-child {
+  box-shadow: inset 3px 0 0 var(--el-warn);
+}
+[data-theme="agency-quartz"] .el-table tbody tr.OK td:first-child {
+  box-shadow: inset 3px 0 0 var(--el-ok);
+}
+[data-theme="agency-quartz"] .el-ink-ok  { color: var(--el-ok); }
+[data-theme="agency-quartz"] .el-ink-fail { color: var(--el-fail); }
+
+/* quartz workflow rail — status words and their dots pick up the state voice */
+[data-theme="agency-quartz"] .el-stage:hover {
+  background: color-mix(in oklab, var(--el-accent) 5%, transparent);
+  color: var(--el-ink);
+}
+[data-theme="agency-quartz"] .el-stage.done .el-stage-dot,
+[data-theme="agency-quartz"] .el-stage.is-done .el-stage-dot {
+  background: var(--el-ok);
+}
+[data-theme="agency-quartz"] .el-stage.run .el-stage-dot,
+[data-theme="agency-quartz"] .el-stage.is-active .el-stage-dot {
+  background: var(--el-accent);
+}
+[data-theme="agency-quartz"] .el-stage.is-queued {
+  /* the sheet dims queued rows with 0.45 group opacity — no ink can clear 4.5:1
+     under that, so the theme carries "queued" with tone instead: mute label,
+     gray dot, full opacity (sheet's 0.45 routed in the report) */
+  opacity: 1;
+  color: var(--el-mute);
+}
+[data-theme="agency-quartz"] .el-ladder-step.is-queued,
+[data-theme="agency-quartz"] .el-ladder-step.is-queued .el-ladder-label {
+  opacity: 1; /* sheet dims at 0.4 group opacity (routed); tone carries the state */
+  color: var(--el-mute);
+}
+[data-theme="agency-quartz"] .el-progress-truth .el-pt-chunk.on {
+  background: var(--el-accent);
+}
+
+/* quartz KPI numeral — flat ink, tabular, no gradient play */
+[data-theme="agency-quartz"] .el-big-num {
+  background: none;
+  -webkit-text-fill-color: currentColor;
+  color: var(--el-ink);
+  font-variant-numeric: tabular-nums;
+  font-weight: var(--el-head-weight);
+  letter-spacing: -0.01em;
+}
+
+/* quartz progress strip */
+[data-theme="agency-quartz"] .el-bar {
+  height: 6px;
+  margin-top: 14px;
+  background: var(--el-panel-2);
+  border-radius: 999px;
+  overflow: hidden;
+}
+[data-theme="agency-quartz"] .el-bar > i {
+  display: block;
+  height: 100%;
+  background: var(--el-accent);
+  border-radius: inherit;
+}
+
+/* quartz footer — the block-flow imprint under one true hairline (base owns
+   the cols + small-print anatomy; the theme sets material + density) */
+[data-theme="agency-quartz"] .el-footer {
+  display: block;
+  padding: var(--el-space-5) 0 var(--el-space-2);
+  background: var(--el-bg);
+  border-top: 1px solid var(--el-line);
+  margin-top: var(--el-space-6);
+}
+[data-theme="agency-quartz"] .el-footer .el-eyebrow {
+  margin: 0;
+}
+[data-theme="agency-quartz"] .el-footer .el-mute-body {
+  margin: 0;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+[data-theme="agency-quartz"] .el-rule {
+  border: 0;
+  border-top: 1px solid var(--el-line);
+  margin: 28px 0;
+}
+
+/* quartz reduced motion — the lift and the rail settle instantly */
+@media (prefers-reduced-motion: reduce) {
+  [data-theme="agency-quartz"] .el-card,
+  [data-theme="agency-quartz"] .el-card::before,
+  [data-theme="agency-quartz"] .el-table tbody td,
+  [data-theme="agency-quartz"] .el-btn,
+  [data-theme="agency-quartz"] .el-bar > i {
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   quartz v0.4 persona — corporate design agency (work site + project app).
+   Structural slots this voice owns: nav --top · hero --split · raised cards ·
+   tables --ruled · tight density. Everything below is VOICE only: the element
+   sheets own anatomy; these rules re-skin the anatomy in the slate/blue/
+   hairline corporate register and keep the 2040 calibration-grid instrument.
+   ───────────────────────────────────────────────────────────────────────────── */
+
+/* navbar --top — opaque white hairline bar; brand rides a blue tick mark,
+   current link earns the 2px blue underline the way a real agency bar does */
+[data-theme="agency-quartz"] .el-navbar--top {
+  background: var(--el-bg);
+  border-bottom: 1px solid var(--el-line);
+  box-shadow: none;
+}
+[data-theme="agency-quartz"] .el-navbar .brand {
+  font-weight: var(--el-head-weight);
+  letter-spacing: -0.01em;
+}
+[data-theme="agency-quartz"] .el-navbar .brand::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  flex-shrink: 0;
+  background: var(--el-accent);
+  box-shadow: 5px 5px 0 -4px color-mix(in oklab, var(--el-accent) 45%, transparent);
+}
+[data-theme="agency-quartz"] .el-navbar .links a,
+[data-theme="agency-quartz"] .el-navbar .links button {
+  border-radius: var(--el-r-sm);
+  font-weight: 500;
+}
+[data-theme="agency-quartz"] .el-navbar .links [aria-current="page"] {
+  background: transparent;
+  color: var(--el-accent);
+  box-shadow: inset 0 -2px 0 0 var(--el-accent);
+}
+[data-theme="agency-quartz"] .el-navbar .links [aria-current="page"]:hover {
+  background: var(--el-accent-soft);
+}
+[data-theme="agency-quartz"] .el-navbar .el-mono {
+  font-variant-numeric: tabular-nums;
+}
+
+/* hero --split — the calibration plate opposite the copy column */
+[data-theme="agency-quartz"] .el-hero--split {
+  grid-template-columns: minmax(0, 1.04fr) minmax(0, 1fr);
+  border-bottom: 1px solid var(--el-line);
+}
+[data-theme="agency-quartz"] .el-hero--split h1 {
+  font-size: clamp(2.4rem, 4.2vw, 3.4rem);
+}
+[data-theme="agency-quartz"] .el-hero--split .copy {
+  gap: var(--el-space-4);
+}
+[data-theme="agency-quartz"] .el-hero--split .media {
+  border: 1px solid var(--el-line);
+  border-radius: var(--el-r-lg);
+  box-shadow: var(--el-raise-2);
+  background:
+    linear-gradient(var(--el-accent), var(--el-accent)) 0 50% / 3px 44% no-repeat,
+    linear-gradient(180deg,
+      color-mix(in oklab, var(--el-accent) 7%, var(--el-panel-2)) 0 49.5%,
+      color-mix(in oklab, var(--el-accent) 12%, var(--el-panel-3)) 49.5% 100%);
+}
+[data-theme="agency-quartz"] .el-hero--split .media > figcaption {
+  position: absolute;
+  inset: auto 0 0 0;
+  padding: var(--el-space-2) var(--el-space-3);
+  border-top: 1px solid var(--el-line);
+  background: color-mix(in oklab, var(--el-bg) 88%, transparent);
+  color: var(--el-mute);
+  font-family: var(--el-font-mono);
+  font-size: var(--el-fs-xs);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
+}
+
+/* hero meta — the one place the practice publishes its own telemetry */
+[data-theme="agency-quartz"] .el-hero .hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--el-space-5);
+  margin-top: var(--el-space-4);
+  padding-top: var(--el-space-3);
+  border-top: 1px solid var(--el-line);
+}
+[data-theme="agency-quartz"] .el-hero .hero-meta b {
+  display: block;
+  font-family: var(--el-font-display);
+  font-size: var(--el-fs-xl);
+  font-weight: var(--el-head-weight);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+}
+[data-theme="agency-quartz"] .el-hero .hero-meta span {
+  font-size: var(--el-fs-sm);
+  color: var(--el-mute);
+}
+
+/* section — tight cadence; the rule that follows the head is a true hairline */
+[data-theme="agency-quartz"] .el-section {
+  padding-block: var(--el-space-6);
+}
+[data-theme="agency-quartz"] .el-section > h2 {
+  font-size: var(--el-fs-2xl);
+}
+[data-theme="agency-quartz"] .el-section > p {
+  font-size: var(--el-fs-md);
+  color: var(--el-ink-soft);
+}
+[data-theme="agency-quartz"] .el-section .el-section-head {
+  margin-bottom: var(--el-space-4);
+}
+[data-theme="agency-quartz"] .el-section .el-section-head h2 {
+  font-size: var(--el-fs-xl);
+}
+[data-theme="agency-quartz"] .el-section .el-section-head .count {
+  font-family: var(--el-font-mono);
+  font-size: var(--el-fs-sm);
+  color: var(--el-mute);
+  font-variant-numeric: tabular-nums;
+}
+
+/* panel — quiet white counterpoint to raised cards */
+[data-theme="agency-quartz"] .el-panel {
+  background: color-mix(in oklab, var(--el-panel-2) 36%, var(--el-bg));
+  border: 1px solid var(--el-line);
+  border-radius: var(--el-r-lg);
+  box-shadow: none;
+}
+
+/* card anatomy variants — raised is the default voice; press/print/flat land */
+[data-theme="agency-quartz"] .el-card--raised {
+  box-shadow: var(--el-raise-2), var(--el-hairline);
+}
+[data-theme="agency-quartz"] .el-card--raised:hover {
+  box-shadow: var(--el-raise-3), var(--el-hairline);
+}
+[data-theme="agency-quartz"] .el-card--press {
+  background: var(--el-panel-2);
+  border-color: var(--el-line-2);
+  cursor: pointer;
+  user-select: none;
+}
+[data-theme="agency-quartz"] .el-card--press:active {
+  transform: var(--el-press);
+  transition-duration: 60ms;
+}
+[data-theme="agency-quartz"] .el-card--print {
+  background: var(--el-bg);
+  border-radius: var(--el-r-sm);
+  box-shadow: none;
+}
+[data-theme="agency-quartz"] .el-card--flat {
+  background: var(--el-panel-2);
+  box-shadow: none;
+}
+[data-theme="agency-quartz"] .el-card.no-plate::before {
+  content: none;
+}
+[data-theme="agency-quartz"] .el-card.no-plate > :first-child {
+  margin-top: 0;
+}
+[data-theme="agency-quartz"] .el-card .el-card-media {
+  border-bottom: 1px solid var(--el-line);
+}
+[data-theme="agency-quartz"] .el-card h3 {
+  font-size: var(--el-fs-lg);
+}
+
+/* empty state — dashed calibration field, centered action */
+[data-theme="agency-quartz"] .el-empty {
+  padding: var(--el-space-6);
+  background: color-mix(in oklab, var(--el-panel-2) 40%, var(--el-bg));
+  border: 1px dashed var(--el-line-2);
+  border-radius: var(--el-r-lg);
+  color: var(--el-ink-soft);
+}
+
+/* media-band — case plate: hairline shell, mono caption, tight body */
+[data-theme="agency-quartz"] .el-media-band {
+  border: 1px solid var(--el-line);
+  border-radius: var(--el-r-lg);
+  box-shadow: var(--el-raise-2);
+  background: var(--el-bg);
+}
+[data-theme="agency-quartz"] .el-media-band > .body {
+  gap: var(--el-space-3);
+  padding: var(--el-space-5);
+}
+[data-theme="agency-quartz"] .el-media-band > .body > .label {
+  font-family: var(--el-font-mono);
+  font-variant-numeric: tabular-nums;
+}
+[data-theme="agency-quartz"] .el-media-band > .media > figcaption {
+  font-variant-numeric: tabular-nums;
+}
+[data-theme="agency-quartz"] .el-media-band--flat {
+  box-shadow: none;
+}
+
+/* pricing — hairline plan plates; the featured plan carries the 3px blue bar */
+[data-theme="agency-quartz"] .el-pricing {
+  background: var(--el-bg);
+  border: 1px solid var(--el-line);
+  border-radius: var(--el-r-lg);
+  box-shadow: var(--el-raise-1);
+}
+[data-theme="agency-quartz"] .el-pricing:hover {
+  border-color: color-mix(in oklab, var(--el-accent) 28%, var(--el-line));
+}
+[data-theme="agency-quartz"] .el-pricing .price {
+  font-variant-numeric: tabular-nums;
+}
+[data-theme="agency-quartz"] .el-pricing--featured {
+  border-color: color-mix(in oklab, var(--el-accent) 40%, var(--el-line));
+}
+
+/* testimonial — grotesque quote (corporate: no serif borrowed voices) */
+[data-theme="agency-quartz"] .el-testimonial {
+  background: var(--el-panel);
+  border: 1px solid var(--el-line);
+  border-radius: var(--el-r-lg);
+  box-shadow: none;
+}
+[data-theme="agency-quartz"] .el-testimonial::before {
+  font-family: var(--el-font-display);
+  color: color-mix(in oklab, var(--el-accent) 52%, transparent);
+}
+[data-theme="agency-quartz"] .el-testimonial .q,
+[data-theme="agency-quartz"] .el-testimonial .quote {
+  font-family: var(--el-font-body);
+  font-size: var(--el-fs-lg);
+  font-weight: 500;
+  line-height: 1.6;
+}
+
+/* banner — flat white strip with the 2px blue left rail */
+[data-theme="agency-quartz"] .el-banner {
+  background: var(--el-bg);
+  border: 1px solid var(--el-line);
+  border-radius: var(--el-r-md);
+  box-shadow: var(--el-raise-1);
+}
+[data-theme="agency-quartz"] .el-banner .action {
+  color: var(--el-accent);
+  font-weight: 600;
+}
+
+/* stat tiles — hairline instrument cards, tabular value, ticked delta */
+[data-theme="agency-quartz"] .el-stat {
+  background: var(--el-bg);
+  border: 1px solid var(--el-line);
+  border-radius: var(--el-r-lg);
+  box-shadow: var(--el-raise-1);
+}
+[data-theme="agency-quartz"] .el-stat::after {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 3px;
+  background: var(--el-accent);
+  opacity: 0.55;
+}
+[data-theme="agency-quartz"] .el-stat-label {
+  letter-spacing: 0.1em;
+  color: var(--el-mute);
+}
+[data-theme="agency-quartz"] .el-stat-value {
+  font-family: var(--el-font-display);
+  font-weight: var(--el-head-weight);
+  letter-spacing: -0.01em;
+}
+[data-theme="agency-quartz"] .el-stat-delta.up { color: var(--el-ok); }
+[data-theme="agency-quartz"] .el-stat-delta.down { color: var(--el-fail); }
+[data-theme="agency-quartz"] .el-stat-note {
+  font-size: var(--el-fs-xs);
+  color: var(--el-mute);
+  font-variant-numeric: tabular-nums;
+}
+
+/* meter — capacity level bar: squared track, flat accent fill, no inner glow */
+[data-theme="agency-quartz"] .el-meter {
+  height: 8px;
+  border-radius: var(--el-r-sm);
+  background: var(--el-panel-2);
+  box-shadow: inset 0 0 0 1px var(--el-line);
+}
+[data-theme="agency-quartz"] .el-meter > .fill,
+[data-theme="agency-quartz"] .el-meter .fill {
+  background: var(--el-accent);
+  box-shadow: none;
+}
+[data-theme="agency-quartz"] .el-meter-label {
+  font-family: var(--el-font-mono);
+  font-size: var(--el-fs-xs);
+  color: var(--el-mute);
+  font-variant-numeric: tabular-nums;
+}
+
+/* progress — the honest 2040 strip: squared, flat fill, zero glow */
+[data-theme="agency-quartz"] .el-progress {
+  height: 5px;
+  border-radius: var(--el-r-sm);
+  background: var(--el-panel-2);
+  box-shadow: none;
+}
+[data-theme="agency-quartz"] .el-progress > .fill {
+  background: var(--el-accent);
+  border-radius: var(--el-r-sm);
+  box-shadow: none;
+}
+
+/* stage rail + ladder — delivery stages in the blue state voice */
+[data-theme="agency-quartz"] .el-stage-rail {
+  background: var(--el-bg);
+  border: 1px solid var(--el-line);
+  border-radius: var(--el-r-md);
+}
+[data-theme="agency-quartz"] .el-ladder {
+  /* bare ul inside the shell: drop the UA 40px inline padding so steps read
+     flush against the box, matching the stage rail beside it */
+  margin: 0;
+  padding: 0;
+}
+[data-theme="agency-quartz"] .el-ladder-step {
+  border-bottom: 1px solid var(--el-line);
+}
+[data-theme="agency-quartz"] .el-ladder .el-ladder-idx {
+  font-family: var(--el-font-mono);
+  color: var(--el-mute);
+  font-variant-numeric: tabular-nums;
+}
+
+/* timeline — hairline spine, flat event dots, mono timestamps */
+[data-theme="agency-quartz"] .el-timeline::before {
+  background: var(--el-line);
+}
+[data-theme="agency-quartz"] .el-timeline > li {
+  padding-left: var(--el-space-5);
+}
+[data-theme="agency-quartz"] .el-timeline > li:hover {
+  background: var(--el-accent-soft);
+}
+[data-theme="agency-quartz"] .el-timeline .when {
+  font-variant-numeric: tabular-nums;
+}
+
+/* fact grid + source cards + citation rail — the receipts, hairline plates */
+[data-theme="agency-quartz"] .el-fact {
+  background: var(--el-panel);
+  border: 1px solid var(--el-line);
+  border-radius: var(--el-r-sm);
+  box-shadow: none;
+}
+[data-theme="agency-quartz"] .el-fact .k {
+  font-family: var(--el-font-mono);
+  letter-spacing: 0.08em;
+}
+[data-theme="agency-quartz"] .el-fact .v {
+  font-family: var(--el-font-display);
+  font-weight: var(--el-head-weight);
+  font-variant-numeric: tabular-nums;
+}
+[data-theme="agency-quartz"] .el-source-card {
+  background: var(--el-panel);
+  border: 1px solid var(--el-line);
+  border-radius: var(--el-r-sm);
+  box-shadow: none;
+}
+[data-theme="agency-quartz"] .el-source-card:hover {
+  transform: none;
+  border-color: color-mix(in oklab, var(--el-accent) 30%, var(--el-line));
+  box-shadow: none;
+}
+[data-theme="agency-quartz"] .el-citation-rail {
+  border-left: 2px solid var(--el-accent);
+}
+[data-theme="agency-quartz"] .el-citation-rail .el-cite .n {
+  color: var(--el-accent);
+  font-variant-numeric: tabular-nums;
+}
+
+/* app chrome — the window reads as the tracker: white chrome, hairlines */
+[data-theme="agency-quartz"] .el-appwin {
+  border: 1px solid var(--el-line-2);
+  border-radius: var(--el-r-lg);
+  box-shadow: var(--el-raise-3);
+}
+[data-theme="agency-quartz"] .el-titlebar,
+[data-theme="agency-quartz"] .el-menubar,
+[data-theme="agency-quartz"] .el-headerbar,
+[data-theme="agency-quartz"] .el-actionbar,
+[data-theme="agency-quartz"] .el-tabbar {
+  background: var(--el-panel-2);
+}
+[data-theme="agency-quartz"] .el-titlebar {
+  border-bottom: 1px solid var(--el-line);
+}
+[data-theme="agency-quartz"] .el-menubar {
+  border-bottom: 1px solid var(--el-line);
+  font-size: var(--el-fs-sm);
+}
+[data-theme="agency-quartz"] .el-menubar-item {
+  border-radius: var(--el-r-sm);
+  color: var(--el-ink-soft);
+}
+[data-theme="agency-quartz"] .el-headerbar,
+[data-theme="agency-quartz"] .el-actionbar {
+  border-top: 0;
+  border-bottom: 1px solid var(--el-line);
+}
+[data-theme="agency-quartz"] .el-actionbar {
+  border-bottom: 0;
+  border-top: 1px solid var(--el-line);
+}
+[data-theme="agency-quartz"] .el-tabbar {
+  border-top: 1px solid var(--el-line);
+}
+[data-theme="agency-quartz"] .el-tabbar-item[aria-current="page"],
+[data-theme="agency-quartz"] .el-tabbar-item.on {
+  color: var(--el-accent);
+  box-shadow: inset 0 2px 0 0 var(--el-accent);
+}
+[data-theme="agency-quartz"] .el-winbtn::before {
+  border-radius: var(--el-r-sm);
+  background: color-mix(in oklab, var(--el-ink-soft) 38%, transparent);
+}
+[data-theme="agency-quartz"] .el-winbtn:hover::before {
+  background: color-mix(in oklab, var(--el-ink-soft) 64%, transparent);
+}
+
+/* sidebar — white rail, mono section labels, blue inset bar on current */
+[data-theme="agency-quartz"] .el-sidebar {
+  background: var(--el-bg);
+  border-right: 1px solid var(--el-line);
+  width: 224px;
+  --el-rail-w: 224px;
+}
+[data-theme="agency-quartz"] .el-sidebar .grp > .label,
+[data-theme="agency-quartz"] .el-sidebar .grp > summary {
+  font-family: var(--el-font-mono);
+  font-size: var(--el-fs-xs);
+  letter-spacing: 0.1em;
+}
+[data-theme="agency-quartz"] .el-sidebar .grp [aria-current="page"] {
+  background: var(--el-accent-soft);
+  color: var(--el-accent);
+  box-shadow: inset 2px 0 0 0 var(--el-accent);
+  font-weight: 600;
+}
+[data-theme="agency-quartz"] .el-sidebar .end {
+  font-variant-numeric: tabular-nums;
+}
+
+/* listbox — hairline rows, accent-soft selection */
+[data-theme="agency-quartz"] .el-listbox {
+  background: var(--el-bg);
+  border: 1px solid var(--el-line);
+  border-radius: var(--el-r-md);
+  box-shadow: none;
+}
+[data-theme="agency-quartz"] .el-listbox .el-listbox-row:hover {
+  background: var(--el-accent-soft);
+}
+
+/* notification stack — hairline cards, unread tick */
+[data-theme="agency-quartz"] .el-notification {
+  background: var(--el-bg);
+  border: 1px solid var(--el-line);
+  border-radius: var(--el-r-md);
+  box-shadow: var(--el-raise-1);
+}
+[data-theme="agency-quartz"] .el-notification.unread::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 3px;
+  background: var(--el-accent);
+}
+
+/* overlays — dialogs, drawers, palette: white plates over the tint */
+[data-theme="agency-quartz"] .el-dialog {
+  background: var(--el-bg);
+  border: 1px solid var(--el-line-2);
+  border-radius: var(--el-r-lg);
+  box-shadow: var(--el-raise-3);
+}
+[data-theme="agency-quartz"] .el-dialog::backdrop {
+  background: var(--el-overlay);
+}
+[data-theme="agency-quartz"] .el-drawer {
+  background: var(--el-bg);
+  border-left: 1px solid var(--el-line-2);
+  box-shadow: none;
+}
+[data-theme="agency-quartz"] .el-drawer.right,
+[data-theme="agency-quartz"] .el-inspector {
+  border-left: 1px solid var(--el-line-2);
+}
+[data-theme="agency-quartz"] .el-drawer > .el-drawer-head {
+  color: var(--el-accent);
+  font-family: var(--el-font-mono);
+  letter-spacing: 0.08em;
+}
+[data-theme="agency-quartz"] .el-command .el-command-panel {
+  background: var(--el-bg);
+  border: 1px solid var(--el-line-2);
+  border-radius: var(--el-r-lg);
+  box-shadow: var(--el-raise-3);
+}
+[data-theme="agency-quartz"] .el-command-input {
+  border-bottom: 1px solid var(--el-line);
+}
+[data-theme="agency-quartz"] .el-command-row.sel {
+  background: var(--el-accent-soft);
+  color: var(--el-accent-hover);
+}
+[data-theme="agency-quartz"] .el-menu,
+[data-theme="agency-quartz"] .el-popover .el-pop {
+  background: var(--el-bg);
+  border: 1px solid var(--el-line-2);
+  border-radius: var(--el-r-md);
+  box-shadow: var(--el-raise-3);
+}
+[data-theme="agency-quartz"] .el-menu .el-menu-item:hover {
+  background: var(--el-panel-2);
+  color: var(--el-accent-hover);
+}
+[data-theme="agency-quartz"] .el-tooltip::after {
+  background: var(--el-ink);
+  border: 0;
+  color: var(--el-on-accent);
+  border-radius: var(--el-r-sm);
+  font-size: var(--el-fs-sm);
+  box-shadow: var(--el-raise-2);
+}
+[data-theme="agency-quartz"] .el-toast {
+  background: var(--el-bg);
+  border: 1px solid var(--el-line);
+  border-radius: var(--el-r-md);
+  box-shadow: var(--el-raise-3);
+}
+[data-theme="agency-quartz"] .el-toast.ok { box-shadow: inset 2px 0 0 var(--el-ok), var(--el-raise-3); }
+[data-theme="agency-quartz"] .el-toast.warn { box-shadow: inset 2px 0 0 var(--el-warn), var(--el-raise-3); }
+[data-theme="agency-quartz"] .el-toast.fail { box-shadow: inset 2px 0 0 var(--el-fail), var(--el-raise-3); }
+[data-theme="agency-quartz"] .el-toast.info { box-shadow: inset 2px 0 0 var(--el-info), var(--el-raise-3); }
+
+/* badges, avatars, kbd, pill chips ride the corporate register */
+[data-theme="agency-quartz"] .el-badge {
+  background: color-mix(in oklab, var(--el-panel-2) 60%, var(--el-bg));
+  border: 1px solid var(--el-line);
+  border-radius: var(--el-r-sm);
+  font-variant-numeric: tabular-nums;
+}
+[data-theme="agency-quartz"] .el-avatar {
+  background: var(--el-accent);
+  color: var(--el-on-accent);
+  border-radius: var(--el-r-md);
+  box-shadow: none;
+  font-variant-numeric: tabular-nums;
+}
+[data-theme="agency-quartz"] .el-avatar.soft {
+  background: var(--el-accent-soft);
+  color: var(--el-accent-hover);
+  box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--el-accent) 30%, transparent);
+}
+[data-theme="agency-quartz"] .el-kbd {
+  background: var(--el-panel-2);
+  border: 1px solid var(--el-line-2);
+  border-bottom-width: 2px;
+  border-radius: var(--el-r-sm);
+  box-shadow: none;
+  font-variant-numeric: tabular-nums;
+}
+
+/* controls — segmented squares, flat slider, mechanical boxes */
+[data-theme="agency-quartz"] .el-segmented {
+  border: 1px solid var(--el-line);
+  border-radius: var(--el-r-md);
+  background: var(--el-panel-2);
+  padding: 2px;
+  box-shadow: none;
+}
+[data-theme="agency-quartz"] .el-segmented button {
+  border-radius: var(--el-r-sm);
+  color: var(--el-ink-soft);
+}
+[data-theme="agency-quartz"] .el-segmented button.on {
+  background: var(--el-bg);
+  color: var(--el-accent);
+  border: 1px solid var(--el-line);
+  box-shadow: var(--el-raise-1);
+}
+[data-theme="agency-quartz"] .el-check {
+  border-radius: var(--el-r-sm);
+  box-shadow: none;
+}
+[data-theme="agency-quartz"] .el-check.on,
+[data-theme="agency-quartz"] .el-check[aria-checked="true"] {
+  background: var(--el-accent);
+  border-color: var(--el-accent-hover);
+}
+[data-theme="agency-quartz"] .el-radio .dot,
+[data-theme="agency-quartz"] .el-radio input:checked + .dot {
+  border-color: var(--el-accent);
+}
+[data-theme="agency-quartz"] .el-slider {
+  border-radius: var(--el-r-sm);
+  box-shadow: inset 0 0 0 1px var(--el-line);
+}
+[data-theme="agency-quartz"] .el-slider::-webkit-slider-thumb {
+  border-radius: var(--el-r-sm);
+  background: var(--el-bg);
+  box-shadow: inset 0 0 0 1px var(--el-line-strong);
+}
+[data-theme="agency-quartz"] .el-select select,
+[data-theme="agency-quartz"] .el-dropdown {
+  background: var(--el-bg);
+  border: 1px solid var(--el-line-2);
+  border-radius: var(--el-r-md);
+  box-shadow: none;
+}
+[data-theme="agency-quartz"] .el-select select:hover,
+[data-theme="agency-quartz"] .el-dropdown:hover {
+  border-color: color-mix(in oklab, var(--el-ink-soft) 45%, var(--el-line-2));
+}
+[data-theme="agency-quartz"] .el-search {
+  background: var(--el-bg);
+  border: 1px solid var(--el-line-2);
+  border-radius: var(--el-r-md);
+}
+[data-theme="agency-quartz"] .el-search:focus {
+  border-color: var(--el-accent);
+  outline: 2px solid var(--el-focus-ring);
+  outline-offset: 1px;
+}
+[data-theme="agency-quartz"] .el-btn-group .el-btn + .el-btn {
+  margin-left: -1px;
+}
+[data-theme="agency-quartz"] .el-btn--squared {
+  border-radius: 0;
+}
+
+/* feedback — spinner, skeleton, inline alerts, stepper, pagination */
+[data-theme="agency-quartz"] .el-spinner {
+  border-top-color: var(--el-accent);
+  border-right-color: color-mix(in oklab, var(--el-accent) 55%, transparent);
+}
+[data-theme="agency-quartz"] .el-skeleton {
+  border-radius: var(--el-r-sm);
+  background: var(--el-panel-2);
+  animation-duration: 1.8s;
+}
+[data-theme="agency-quartz"] .el-inline-alert {
+  border-radius: var(--el-r-md);
+  font-size: var(--el-fs-md);
+}
+[data-theme="agency-quartz"] .el-stepper li {
+  border: 1px solid var(--el-line);
+  border-radius: var(--el-r-sm);
+  background: var(--el-bg);
+  font-variant-numeric: tabular-nums;
+}
+[data-theme="agency-quartz"] .el-stepper li.done {
+  border-color: color-mix(in oklab, var(--el-ok) 45%, var(--el-line));
+  color: var(--el-ok);
+}
+[data-theme="agency-quartz"] .el-stepper li.active,
+[data-theme="agency-quartz"] .el-stepper li.on {
+  border-color: var(--el-accent);
+  color: var(--el-accent);
+  font-weight: 600;
+}
+[data-theme="agency-quartz"] .el-pagination .page {
+  border: 1px solid var(--el-line);
+  border-radius: var(--el-r-sm);
+  font-variant-numeric: tabular-nums;
+}
+[data-theme="agency-quartz"] .el-pagination .page:hover {
+  border-color: color-mix(in oklab, var(--el-accent) 40%, var(--el-line));
+  color: var(--el-accent);
+}
+[data-theme="agency-quartz"] .el-pagination .page.on {
+  background: var(--el-accent);
+  border-color: var(--el-accent);
+  color: var(--el-on-accent);
+}
+
+/* assistant + inspector + reader — the docked voices stay corporate */
+[data-theme="agency-quartz"] .el-assistant-panel {
+  background: var(--el-bg);
+  border: 1px solid var(--el-line);
+  border-radius: var(--el-r-lg);
+  box-shadow: var(--el-raise-2);
+}
+[data-theme="agency-quartz"] .el-assistant-head {
+  background: var(--el-panel-2);
+  border-bottom: 1px solid var(--el-line);
+}
+[data-theme="agency-quartz"] .el-msg.el-msg--user {
+  background: var(--el-panel-2);
+  border-radius: var(--el-r-md);
+}
+[data-theme="agency-quartz"] .el-msg.el-msg--assistant {
+  border-left: 2px solid var(--el-accent);
+}
+[data-theme="agency-quartz"] .el-inspector {
+  border-left: 1px solid var(--el-line-2);
+}
+[data-theme="agency-quartz"] .el-inspector-header {
+  border-bottom: 1px solid var(--el-line);
+}
+[data-theme="agency-quartz"] .el-reader {
+  font-family: var(--el-font-serif);
+  line-height: 1.7;
+}
+[data-theme="agency-quartz"] .el-reader-meta {
+  font-family: var(--el-font-mono);
+  color: var(--el-mute);
+  font-variant-numeric: tabular-nums;
+}
+[data-theme="agency-quartz"] .el-reader h1,
+[data-theme="agency-quartz"] .el-reader h2,
+[data-theme="agency-quartz"] .el-reader h3 {
+  font-family: var(--el-font-display);
+}
+[data-theme="agency-quartz"] .el-code-block,
+[data-theme="agency-quartz"] pre.el-code,
+[data-theme="agency-quartz"] .el-code-block code {
+  background: var(--el-panel-2);
+  border: 1px solid var(--el-line);
+  border-radius: var(--el-r-md);
+}
+
+/* footer — the neat agency imprint (cols + colophon carry through) */
+[data-theme="agency-quartz"] .el-footer .col > .label {
+  font-family: var(--el-font-mono);
+  letter-spacing: 0.1em;
+}
+[data-theme="agency-quartz"] .el-footer a {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ═══ B · agency-mono-plate ═══ */
+
+[data-theme="agency-mono-plate"] {
+  --el-bg: #f4f4f2;
+  --el-panel: #fbfbf9;
+  --el-panel-2: #ececea;
+  --el-panel-3: #e1e1dc;
+
+  --el-line: #d9d9d4;
+  --el-line-2: #c3c3bc;
+  --el-line-strong: #171715;
+
+  --el-ink: #171715;
+  --el-ink-soft: #4c4c46;
+  /* v0.4 color pass: muted warm gray went sub-AA on every plate it sat on
+     (2.8–3.2:1). Deepened one full step into the warm-gray family — 5.6/5.9/5.2
+     on bg/panel/panel-2, 5.0 on the tinted banner ground. */
+  --el-mute: #63625a;
+  --el-on-accent: #f4f4f2;
+
+  --el-accent: #171715;
+  --el-accent-hover: #000000;
+  --el-accent-soft: color-mix(in oklab, var(--el-ink) 7%, transparent);
+
+  --el-ok: #41684b;
+  /* state inks darkened to clear 4.5 on bare plate + soft tints */
+  --el-warn: #8a5d14;
+  --el-fail: #a83a2a;
+  --el-info: #4e5d68;
+  --el-live: #9c4018;
+  --el-teal: #2f6b62;
+
+  --el-shadow-1: none;
+  --el-shadow-2: 0 16px 40px -20px color-mix(in oklab, var(--el-ink) 35%, transparent);
+  --el-shadow-3: 0 24px 64px -24px color-mix(in oklab, var(--el-ink) 45%, transparent);
+  --el-overlay: color-mix(in oklab, var(--el-ink) 50%, transparent);
+  --el-focus-ring: color-mix(in oklab, var(--el-ink) 50%, transparent);
+
+  --el-font-body: 'Inter', system-ui, sans-serif;
+  --el-font-display: 'General Sans', 'Inter', system-ui, sans-serif;
+  --el-font-mono: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+
+  --el-r-sm: 2px;
+  --el-r-md: 2px;
+  --el-r-lg: 4px;
+  --el-r-xl: 6px;
+
+  /* identity: flat plate — no elevation anywhere */
+  --el-raise-1: none;
+  --el-raise-2: none;
+  --el-raise-3: none;
+  --el-hairline: none;
+  --el-inset-field: none;
+  --el-lift: none;
+  --el-press: translateY(1px);
+  --el-ring: 0 0 0 3px color-mix(in oklab, var(--el-ink) 12%, transparent);
+  --el-ring-strong: 0 0 0 3px color-mix(in oklab, var(--el-ink) 20%, transparent);
+
+  --el-bar-h: 0;
+  --el-bw-emph: 2px;
+  --el-ctl-pad-y: 12px;
+  --el-ctl-pad-x: 22px;
+  --el-ctl-min-h: 46px;
+  --el-card-pad: 32px;
+
+  --el-head-weight: 600;
+  --el-head-tracking: -0.02em;
+  --el-head-case: none;
+  --el-label-weight: 600;
+  --el-label-tracking: 0.12em;
+  --el-label-case: uppercase;
+  --el-body-weight: 500;
+
+  --el-dur-fast: 120ms;
+  --el-dur-base: 240ms;
+  --el-dur-slow: 260ms;
+  --el-ease: cubic-bezier(0.3, 0.6, 0.2, 1);
+  --el-ease-quiet: cubic-bezier(0.3, 0.7, 0, 1);
+
+  --el-ornament: none;
+  --el-rule-style: solid;
+  --el-hero-pad: 80px;
+  --el-hero-min: 500px;
+  --el-edge: var(--el-line);
+  --el-measure: 66ch;
+  /* every full-bleed shell (navbar, poster hero, footer) lands its content on
+     the same edge .el-page uses, so the page reads one left margin at any width */
+  --el-shell-gutter: calc(max((100% - var(--el-page-max)) / 2, 0px) + var(--el-space-5));
+
+  /* v0.4 density + persona tokens (tight plate cadence; scoped to the slug) */
+  --el-space-2: 6px;
+  --el-space-3: 10px;
+  --el-space-4: 14px;
+  --el-space-5: 22px;
+  --el-space-6: 30px;
+  --el-font-serif: 'Instrument Serif', 'Georgia', serif;
+  --el-dur-surface: 260ms;
+  --el-dur-progress: 1500ms;
+  --el-stage-active: var(--el-ink);
+  --el-stage-running: var(--el-ink);
+  --el-stage-done: var(--el-ok);
+  --el-stage-stale: var(--el-warn);
+
+  counter-reset: el-plate-section 0;
+
+  /* instrument-grade native chrome: ink form accents + flat scrollbar */
+  accent-color: var(--el-accent);
+  scrollbar-color: var(--el-line-strong) transparent;
+}
+
+/* plate page voice (mirrors base.css so the harness reads true) */
+[data-theme="agency-mono-plate"] body {
+  background: var(--el-bg);
+  color: var(--el-ink);
+  font-family: var(--el-font-body);
+  font-weight: var(--el-body-weight);
+  font-size: var(--el-fs-md);
+  font-optical-sizing: auto;
+  line-height: 1.6;
+}
+[data-theme="agency-mono-plate"] ::selection {
+  background: color-mix(in oklab, var(--el-ink) 12%, transparent);
+  color: var(--el-ink);
+}
+[data-theme="agency-mono-plate"] h1,
+[data-theme="agency-mono-plate"] h2,
+[data-theme="agency-mono-plate"] h3,
+[data-theme="agency-mono-plate"] h4 {
+  font-family: var(--el-font-display);
+  font-weight: var(--el-head-weight);
+  letter-spacing: var(--el-head-tracking);
+  line-height: 1.14;
+  color: var(--el-ink);
+  text-wrap: balance;
+}
+[data-theme="agency-mono-plate"] .el-display-specimen {
+  font-family: var(--el-font-display);
+  letter-spacing: var(--el-head-tracking);
+  text-wrap: balance;
+}
+[data-theme="agency-mono-plate"] .el-body {
+  font-size: 0.9375rem;
+  line-height: 1.68;
+  color: var(--el-ink-soft);
+}
+[data-theme="agency-mono-plate"] .el-mute-body {
+  color: var(--el-mute);
+  font-size: var(--el-fs-sm);
+}
+[data-theme="agency-mono-plate"] .el-mono {
+  font-family: var(--el-font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+/* plate hero — huge General Sans over a 2px keyline with a hairline echo */
+[data-theme="agency-mono-plate"] .el-hero {
+  position: relative;
+  padding: var(--el-hero-pad) 0;
+  min-height: var(--el-hero-min);
+  border-bottom: 2px solid var(--el-ink);
+}
+[data-theme="agency-mono-plate"] .el-hero > .el-eyebrow,
+[data-theme="agency-mono-plate"] .el-hero > h1,
+[data-theme="agency-mono-plate"] .el-hero > p,
+[data-theme="agency-mono-plate"] .el-hero > .actions {
+  padding-inline: var(--el-shell-gutter);
+}
+[data-theme="agency-mono-plate"] .el-navbar,
+[data-theme="agency-mono-plate"] body > .el-banner {
+  padding-inline: var(--el-shell-gutter);
+}
+[data-theme="agency-mono-plate"] .el-hero::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 8px;
+  height: 1px;
+  background: var(--el-line-2);
+}
+[data-theme="agency-mono-plate"] .el-hero .el-eyebrow {
+  margin: 0 0 22px;
+}
+[data-theme="agency-mono-plate"] .el-hero h1 {
+  margin: 0 0 30px;
+}
+[data-theme="agency-mono-plate"] .el-hero h1::after {
+  content: "";
+  display: block;
+  width: 96px;
+  height: 1px;
+  margin-top: 26px;
+  background: var(--el-line-2);
+}
+
+/* plate eyebrow — letterspaced, no color, no tick: the rules carry the voice */
+[data-theme="agency-mono-plate"] .el-eyebrow {
+  display: inline-block;
+  margin: 0 0 16px;
+  font-family: var(--el-font-body);
+  font-size: var(--el-fs-sm);
+  font-weight: var(--el-label-weight);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--el-ink-soft);
+}
+
+/* plate label — numbered kicker: mono index before letterspaced ink caps.
+   Field labels are not kickers, so they stay unnumbered and the counter
+   advances only on real section/plate headers. */
+[data-theme="agency-mono-plate"] .el-label {
+  counter-increment: el-plate-section;
+  font-size: var(--el-fs-sm);
+  font-weight: var(--el-label-weight);
+  letter-spacing: var(--el-label-tracking);
+  text-transform: uppercase;
+  color: var(--el-ink);
+  margin: 0 0 10px;
+}
+[data-theme="agency-mono-plate"] .el-label::before {
+  content: counter(el-plate-section, decimal-leading-zero);
+  display: inline-block;
+  margin-right: 12px;
+  padding-right: 10px;
+  border-right: 1px solid var(--el-line-2);
+  font-family: var(--el-font-mono);
+  font-weight: 500;
+  font-size: 0.95em;
+  letter-spacing: 0.08em;
+  font-variant-numeric: tabular-nums;
+  color: var(--el-mute);
+}
+[data-theme="agency-mono-plate"] .el-field .el-label {
+  counter-increment: none;
+  margin: 0 0 6px;
+}
+[data-theme="agency-mono-plate"] .el-field .el-label::before {
+  content: none;
+}
+/* display:block pins the input's containing block to the field label so
+   width:100% lands inside the plate padding (the base inline label lets the
+   input spill past the plate edge) */
+[data-theme="agency-mono-plate"] .el-field {
+  display: block;
+}
+[data-theme="agency-mono-plate"] .el-field + .el-field {
+  margin-top: var(--el-space-3);
+}
+
+/* plate card — flat plate: hairline edge with a 2px ink keyline across the
+   top (the plate's edge-mark), generous pad, zero elevation */
+[data-theme="agency-mono-plate"] .el-card {
+  background: var(--el-panel);
+  border: 1px solid var(--el-line-2);
+  border-top: 2px solid var(--el-ink);
+  border-radius: var(--el-r-lg);
+  padding: var(--el-card-pad);
+  box-shadow: none;
+  transition: border-color var(--el-dur-base) var(--el-ease), background var(--el-dur-base) var(--el-ease);
+}
+[data-theme="agency-mono-plate"] .el-card::before {
+  content: none;
+}
+[data-theme="agency-mono-plate"] .el-card:hover {
+  transform: none;
+  box-shadow: none;
+  border-color: var(--el-ink);
+}
+[data-theme="agency-mono-plate"] .el-card h3 {
+  margin: 0 0 12px;
+}
+
+/* plate button — squared ink control with an underline that slides in.
+   State machine: rest → hover (underline slid) → focus (double ring) →
+   active (1px inset shift, no transform) → disabled (quiet 45% ink). */
+[data-theme="agency-mono-plate"] .el-btn {
+  background: var(--el-accent);
+  background-image: linear-gradient(var(--el-on-accent) 0 0), linear-gradient(var(--el-accent) 0 0);
+  background-repeat: no-repeat;
+  background-position: 14px calc(100% - 9px), 0 0;
+  background-size: calc(100% - 28px) 0px, 100% 100%;
+  border: 0;
+  border-radius: 0;
+  font-family: var(--el-font-display);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  box-shadow: none;
+  transition: background-size var(--el-dur-base) var(--el-ease), color var(--el-dur-fast) var(--el-ease), transform var(--el-dur-fast) var(--el-ease), filter var(--el-dur-fast) var(--el-ease), box-shadow var(--el-dur-fast) var(--el-ease);
+}
+[data-theme="agency-mono-plate"] .el-btn:hover {
+  filter: none;
+  transform: none;
+  box-shadow: none;
+  background-size: calc(100% - 28px) 2px, 100% 100%;
+}
+[data-theme="agency-mono-plate"] .el-btn:focus-visible {
+  outline: 2px solid var(--el-focus-ring);
+  outline-offset: 2px;
+  box-shadow: var(--el-ring);
+}
+[data-theme="agency-mono-plate"] .el-btn:active {
+  transform: translateY(1px);
+  box-shadow: none;
+  transition-duration: 60ms;
+}
+[data-theme="agency-mono-plate"] .el-btn:disabled,
+[data-theme="agency-mono-plate"] .el-btn[aria-disabled="true"] {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+  background-size: calc(100% - 28px) 0px, 100% 100%;
+}
+[data-theme="agency-mono-plate"] .el-btn--outline {
+  background: transparent;
+  color: var(--el-ink);
+  border: 2px solid var(--el-ink);
+  background-image: linear-gradient(var(--el-ink) 0 0), linear-gradient(var(--el-ink) 0 0);
+  background-position: 14px calc(100% - 8px), 0 0;
+  background-size: calc(100% - 28px) 0px, 0 0;
+}
+[data-theme="agency-mono-plate"] .el-btn--outline:hover {
+  background: transparent;
+  color: var(--el-ink);
+  border-color: var(--el-ink);
+  background-size: calc(100% - 28px) 2px, 0 0;
+}
+[data-theme="agency-mono-plate"] .el-btn--outline:disabled {
+  opacity: 0.45;
+  border-color: color-mix(in oklab, var(--el-ink) 40%, var(--el-line-2));
+}
+[data-theme="agency-mono-plate"] .el-btn--ghost,
+[data-theme="agency-mono-plate"] .el-btn.ghost {
+  background: transparent;
+  background-image: none;
+  box-shadow: none;
+  color: var(--el-ink-soft);
+}
+[data-theme="agency-mono-plate"] .el-btn--ghost:hover,
+[data-theme="agency-mono-plate"] .el-btn.ghost:hover {
+  background: var(--el-panel-2);
+  color: var(--el-ink);
+  transform: none;
+}
+[data-theme="agency-mono-plate"] .el-btn--ghost:disabled {
+  opacity: 0.45;
+  color: color-mix(in oklab, var(--el-ink-soft) 60%, var(--el-mute));
+}
+[data-theme="agency-mono-plate"] .el-btn--danger {
+  background: var(--el-fail);
+  background-image: linear-gradient(var(--el-on-accent) 0 0), linear-gradient(var(--el-fail) 0 0);
+}
+[data-theme="agency-mono-plate"] .el-btn--danger:hover {
+  background: color-mix(in oklab, var(--el-fail) 86%, #000);
+  background-image: linear-gradient(var(--el-on-accent) 0 0), linear-gradient(color-mix(in oklab, var(--el-fail) 86%, #000) 0 0);
+}
+[data-theme="agency-mono-plate"] .el-btn--danger:disabled {
+  opacity: 0.45;
+}
+
+/* plate inputs — white ground on the warm plate; focus doubles the ink edge
+   with a crisp 0-spread shadow so geometry never shifts at 4K. box-sizing is
+   pinned here because the bare harness loads no reset: without it width:100%
+   resolves content-box and the field spills the plate padding. */
+[data-theme="agency-mono-plate"] .el-input,
+[data-theme="agency-mono-plate"] .el-textarea {
+  box-sizing: border-box;
+  background: #ffffff;
+  border: 1px solid var(--el-line-2);
+  border-radius: var(--el-r-md);
+}
+[data-theme="agency-mono-plate"] .el-input:hover,
+[data-theme="agency-mono-plate"] .el-textarea:hover {
+  border-color: color-mix(in oklab, var(--el-ink) 35%, var(--el-line-2));
+}
+[data-theme="agency-mono-plate"] .el-input:focus,
+[data-theme="agency-mono-plate"] .el-input:focus-visible,
+[data-theme="agency-mono-plate"] .el-textarea:focus,
+[data-theme="agency-mono-plate"] .el-textarea:focus-visible {
+  background: #ffffff;
+  border-color: var(--el-ink);
+  outline: 2px solid var(--el-focus-ring);
+  outline-offset: 1px;
+  box-shadow: 0 0 0 1px var(--el-ink);
+}
+[data-theme="agency-mono-plate"] .el-input:disabled,
+[data-theme="agency-mono-plate"] .el-textarea:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  border-color: var(--el-line);
+}
+
+/* plate switch — squared mechanical toggle, flat, ink when on */
+[data-theme="agency-mono-plate"] .el-switch {
+  box-shadow: none;
+  border: 1px solid var(--el-line-2);
+}
+[data-theme="agency-mono-plate"] .el-switch:hover {
+  border-color: var(--el-ink);
+}
+[data-theme="agency-mono-plate"] .el-switch:focus-visible {
+  outline: 2px solid var(--el-focus-ring);
+  outline-offset: 2px;
+}
+[data-theme="agency-mono-plate"] .el-switch:active::after {
+  transform: scale(0.92);
+}
+[data-theme="agency-mono-plate"] .el-switch.on {
+  background: var(--el-ink);
+  border-color: var(--el-ink);
+}
+[data-theme="agency-mono-plate"] .el-switch.on::after {
+  background: var(--el-on-accent);
+}
+[data-theme="agency-mono-plate"] .el-switch:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* plate chip — squared tag, ink edge on hover */
+[data-theme="agency-mono-plate"] .el-chip {
+  border-radius: 0;
+  border: 1px solid var(--el-line-2);
+  background: transparent;
+}
+[data-theme="agency-mono-plate"] .el-chip:hover {
+  border-color: var(--el-ink);
+  background: color-mix(in oklab, var(--el-ink) 4%, transparent);
+}
+[data-theme="agency-mono-plate"] .el-chip:focus-visible {
+  outline: 2px solid var(--el-focus-ring);
+  outline-offset: 2px;
+}
+[data-theme="agency-mono-plate"] .el-chip:active {
+  transform: translateY(1px);
+  transition-duration: 60ms;
+}
+[data-theme="agency-mono-plate"] .el-chip:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* plate pill — squared nav tag with full machine */
+[data-theme="agency-mono-plate"] .el-pill {
+  border-radius: var(--el-r-sm);
+  border: 1px solid var(--el-line-2);
+  background: transparent;
+  color: var(--el-ink-soft);
+}
+[data-theme="agency-mono-plate"] .el-pill:hover {
+  border-color: var(--el-ink);
+  color: var(--el-ink);
+}
+[data-theme="agency-mono-plate"] .el-pill:focus-visible {
+  outline: 2px solid var(--el-focus-ring);
+  outline-offset: 2px;
+}
+[data-theme="agency-mono-plate"] .el-pill:active {
+  transform: translateY(1px);
+  transition-duration: 60ms;
+}
+[data-theme="agency-mono-plate"] .el-pill:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* plate status dots — flat rings, no glow */
+[data-theme="agency-mono-plate"] .el-dot,
+[data-theme="agency-mono-plate"] .el-dot.ok,
+[data-theme="agency-mono-plate"] .el-dot.warn,
+[data-theme="agency-mono-plate"] .el-dot.fail,
+[data-theme="agency-mono-plate"] .el-dot.live {
+  box-shadow: 0 0 0 2px color-mix(in oklab, currentColor 22%, transparent);
+}
+
+/* plate table — squared, 2px ink header rule, hairline row rules, flat tinted
+   hover (color-mix, never a fill hex) */
+[data-theme="agency-mono-plate"] .el-table {
+  background: var(--el-panel);
+  border: 1px solid var(--el-line-2);
+  border-radius: var(--el-r-md);
+  box-shadow: none;
+  font-variant-numeric: tabular-nums;
+}
+[data-theme="agency-mono-plate"] .el-table thead th {
+  background: var(--el-bg);
+  padding: var(--el-space-3) var(--el-space-4);
+  border-bottom: 2px solid var(--el-ink);
+  color: var(--el-ink);
+}
+[data-theme="agency-mono-plate"] .el-table thead th:hover {
+  background: var(--el-bg);
+}
+[data-theme="agency-mono-plate"] .el-table tbody td {
+  padding: var(--el-space-3) var(--el-space-4);
+  border-bottom: 1px solid var(--el-line);
+  font-variant-numeric: tabular-nums;
+}
+[data-theme="agency-mono-plate"] .el-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+[data-theme="agency-mono-plate"] .el-table tbody tr:hover {
+  background: color-mix(in oklab, var(--el-ink) 6.5%, var(--el-panel));
+}
+[data-theme="agency-mono-plate"] .el-table tbody tr.CRIT td:first-child {
+  box-shadow: inset 3px 0 0 var(--el-fail);
+}
+[data-theme="agency-mono-plate"] .el-table tbody tr.HIGH td:first-child {
+  box-shadow: inset 3px 0 0 var(--el-warn);
+}
+[data-theme="agency-mono-plate"] .el-table tbody tr.OK td:first-child {
+  box-shadow: inset 3px 0 0 var(--el-ok);
+}
+[data-theme="agency-mono-plate"] .el-ink-ok  { color: var(--el-ok); }
+[data-theme="agency-mono-plate"] .el-ink-fail { color: var(--el-fail); }
+
+/* plate workflow rail — flat, ink states only */
+[data-theme="agency-mono-plate"] .el-stage:hover {
+  background: color-mix(in oklab, var(--el-ink) 6.5%, transparent);
+  color: var(--el-ink);
+}
+[data-theme="agency-mono-plate"] .el-stage.done .el-stage-dot,
+[data-theme="agency-mono-plate"] .el-stage.is-done .el-stage-dot {
+  background: var(--el-ok);
+}
+[data-theme="agency-mono-plate"] .el-stage.run .el-stage-dot,
+[data-theme="agency-mono-plate"] .el-stage.is-active .el-stage-dot {
+  background: var(--el-ink);
+}
+[data-theme="agency-mono-plate"] .el-stage.is-queued {
+  /* same queued-state carrying as quartz: tone, not group opacity (sheet 0.45 routed) */
+  opacity: 1;
+  color: var(--el-mute);
+}
+[data-theme="agency-mono-plate"] .el-ladder-step.is-queued,
+[data-theme="agency-mono-plate"] .el-ladder-step.is-queued .el-ladder-label {
+  opacity: 1; /* sheet dims at 0.4 group opacity (routed); tone carries the state */
+  color: var(--el-mute);
+}
+[data-theme="agency-mono-plate"] .el-progress-truth .el-pt-chunk.on {
+  background: var(--el-ink);
+}
+
+/* plate KPI numeral — General Sans slab ink, tabular */
+[data-theme="agency-mono-plate"] .el-big-num {
+  background: none;
+  -webkit-text-fill-color: currentColor;
+  color: var(--el-ink);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}
+
+/* plate progress strip — squared plate segment */
+[data-theme="agency-mono-plate"] .el-bar {
+  height: 10px;
+  margin-top: 16px;
+  background: var(--el-panel-2);
+  border: 1px solid var(--el-line-2);
+  border-radius: 0;
+  overflow: hidden;
+}
+[data-theme="agency-mono-plate"] .el-bar > i {
+  display: block;
+  height: 100%;
+  background: var(--el-ink);
+}
+
+/* plate footer — mono imprint under a 2px ink keyline, carrying the ONE
+   instrument: a precision crosshair registration mark seated on the keyline's
+   right corner (the print-plate register). Three background layers: hairline
+   vertical, hairline horizontal, hairline circle — all crisp 1px ink. */
+[data-theme="agency-mono-plate"] .el-footer {
+  display: block;
+  position: relative;
+  /* the imprint content lands on the same shell gutter the navbar and poster
+     hero use — the full-bleed box keeps its keyline edge-to-edge */
+  padding: 30px var(--el-shell-gutter) 6px;
+  background: var(--el-bg);
+  border-top: 2px solid var(--el-ink) !important;
+  margin-top: var(--el-space-6);
+}
+[data-theme="agency-mono-plate"] .el-footer::after {
+  content: "";
+  position: absolute;
+  top: -7px;
+  right: 0;
+  width: 12px;
+  height: 12px;
+  background:
+    linear-gradient(var(--el-ink), var(--el-ink)) 50% 0 / 1px 12px no-repeat,
+    linear-gradient(var(--el-ink), var(--el-ink)) 0 50% / 12px 1px no-repeat,
+    radial-gradient(circle at 50% 50%,
+      transparent 3px,
+      color-mix(in oklab, var(--el-ink) 68%, transparent) 3px 3.75px,
+      transparent 3.75px);
+  opacity: 0.85;
+  pointer-events: none;
+}
+[data-theme="agency-mono-plate"] .el-footer .el-eyebrow {
+  margin: 0;
+  letter-spacing: 0.22em;
+}
+[data-theme="agency-mono-plate"] .el-footer .el-mute-body {
+  margin: 0;
+  font-family: var(--el-font-mono);
+  font-size: var(--el-fs-xs);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+[data-theme="agency-mono-plate"] .el-rule {
+  border: 0 !important;
+  border-top: 2px solid var(--el-ink) !important;
+  margin: 32px 0 !important;
+}
+
+/* plate reduced motion — the underline slide settles instantly */
+@media (prefers-reduced-motion: reduce) {
+  [data-theme="agency-mono-plate"] .el-btn,
+  [data-theme="agency-mono-plate"] .el-card,
+  [data-theme="agency-mono-plate"] .el-table tbody tr {
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   mono-plate v0.4 persona — brand consultancy (case-study site + ledger app).
+   Structural slots this voice owns: nav --top · hero --poster · flat cards ·
+   tables --ruled · tight density. Voice only; anatomy stays in the element
+   sheets. Materials: warm-gray plate ground, near-black ink, 2px keylines,
+   mono numbered kickers, zero elevation — the precision crosshair register on
+   the footer keyline stays the family's ONE instrument.
+   ───────────────────────────────────────────────────────────────────────────── */
+
+/* navbar --top — plate bar with the 2px ink rule; current link inverts */
+[data-theme="agency-mono-plate"] .el-navbar--top {
+  background: var(--el-bg);
+  border-bottom: 2px solid var(--el-ink);
+  box-shadow: none;
+}
+[data-theme="agency-mono-plate"] .el-navbar .brand {
+  font-weight: 650;
+  letter-spacing: -0.01em;
+}
+[data-theme="agency-mono-plate"] .el-navbar .brand::before {
+  content: "◼";
+  font-size: 0.72em;
+  line-height: 1;
+  color: var(--el-ink);
+}
+[data-theme="agency-mono-plate"] .el-navbar .links a,
+[data-theme="agency-mono-plate"] .el-navbar .links button {
+  border-radius: 0;
+  padding-inline: var(--el-space-3);
+}
+[data-theme="agency-mono-plate"] .el-navbar .links a:hover,
+[data-theme="agency-mono-plate"] .el-navbar .links button:hover {
+  background: transparent;
+  box-shadow: inset 0 -2px 0 0 var(--el-ink);
+  color: var(--el-ink);
+}
+[data-theme="agency-mono-plate"] .el-navbar .links [aria-current="page"] {
+  background: var(--el-ink);
+  color: var(--el-on-accent);
+  box-shadow: none;
+}
+[data-theme="agency-mono-plate"] .el-navbar .links [aria-current="page"]:hover {
+  background: var(--el-ink);
+  box-shadow: none;
+}
+
+/* hero --poster — full-bleed plate photo behind the ink declaration; the
+   scrim runs plate-color 28% → 94% so the 2px bottom keyline always reads */
+[data-theme="agency-mono-plate"] .el-hero--poster {
+  grid-template-columns: 1fr;
+  align-content: end;
+  justify-items: start;
+  min-height: calc(var(--el-hero-min) * 1.28);
+  padding-bottom: var(--el-space-6);
+}
+[data-theme="agency-mono-plate"] .el-hero--poster::after {
+  background:
+    linear-gradient(180deg,
+      color-mix(in oklab, var(--el-bg) 30%, transparent) 0%,
+      color-mix(in oklab, var(--el-bg) 62%, transparent) 46%,
+      color-mix(in oklab, var(--el-bg) 94%, transparent) 100%);
+}
+[data-theme="agency-mono-plate"] .el-hero--poster > .media {
+  background: var(--el-panel-2);
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+[data-theme="agency-mono-plate"] .el-hero--poster h1 {
+  font-size: clamp(3rem, 7vw, 5.2rem);
+  font-weight: 620;
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+}
+[data-theme="agency-mono-plate"] .el-hero--poster h1::after {
+  width: 120px;
+  background: var(--el-ink);
+}
+[data-theme="agency-mono-plate"] .el-hero--poster > p {
+  font-size: var(--el-fs-xl);
+  max-width: 54ch;
+}
+[data-theme="agency-mono-plate"] .el-hero--poster .actions .el-btn {
+  min-height: var(--el-ctl-min-h);
+}
+
+/* section — plates are numbered by the .el-label counter; a hairline separates
+   stacked sections so the page reads as a contact sheet of plates */
+[data-theme="agency-mono-plate"] .el-section {
+  padding-block: var(--el-space-6);
+}
+[data-theme="agency-mono-plate"] .el-section + .el-section {
+  border-top: 1px solid var(--el-line);
+}
+[data-theme="agency-mono-plate"] .el-section > h2 {
+  font-size: clamp(1.7rem, 2.6vw, 2.3rem);
+}
+[data-theme="agency-mono-plate"] .el-section .el-section-head h2 {
+  font-size: clamp(1.5rem, 2.2vw, 2rem);
+}
+[data-theme="agency-mono-plate"] .el-section .el-section-head .count {
+  font-family: var(--el-font-mono);
+  font-size: var(--el-fs-sm);
+  color: var(--el-mute);
+  font-variant-numeric: tabular-nums;
+}
+
+/* panel — quiet plate ground */
+[data-theme="agency-mono-plate"] .el-panel {
+  background: var(--el-panel);
+  border: 1px solid var(--el-line-2);
+  border-radius: var(--el-r-md);
+  box-shadow: none;
+}
+
+/* card anatomy variants — flat IS the voice; the other anatomies go quiet,
+   and the 2px ink edge-mark stays the plate's own border-top */
+[data-theme="agency-mono-plate"] .el-card--flat {
+  border-top: 2px solid var(--el-ink);
+}
+[data-theme="agency-mono-plate"] .el-card--raised,
+[data-theme="agency-mono-plate"] .el-card--press {
+  box-shadow: none;
+  border: 1px solid var(--el-line-2);
+  border-top: 2px solid var(--el-ink);
+  transform: none;
+}
+[data-theme="agency-mono-plate"] .el-card--print {
+  background: var(--el-bg);
+  border: 1px solid color-mix(in oklab, var(--el-ink) 46%, transparent);
+  border-top: 2px solid var(--el-ink);
+  border-radius: 0;
+  box-shadow: none;
+}
+[data-theme="agency-mono-plate"] .el-card h3 {
+  font-size: var(--el-fs-xl);
+}
+[data-theme="agency-mono-plate"] .el-card .el-card-media {
+  margin: calc(-1 * var(--el-card-pad)) calc(-1 * var(--el-card-pad)) var(--el-space-4);
+  border-bottom: 1px solid var(--el-line);
+}
+
+/* empty state — dashed plate field, ink icon chip */
+[data-theme="agency-mono-plate"] .el-empty {
+  padding: var(--el-space-6);
+  background: color-mix(in oklab, var(--el-panel-2) 55%, transparent);
+  border: 1px dashed var(--el-line-2);
+  border-radius: 0;
+}
+[data-theme="agency-mono-plate"] .el-empty .el-title {
+  font-family: var(--el-font-display);
+}
+
+/* media-band — case spread: flat plate, mono caption, 2px keyline head */
+[data-theme="agency-mono-plate"] .el-media-band {
+  border: 1px solid var(--el-line-2);
+  border-radius: 0;
+  box-shadow: none;
+  background: var(--el-panel);
+}
+[data-theme="agency-mono-plate"] .el-media-band > .body {
+  padding: var(--el-space-6) var(--el-space-5);
+}
+[data-theme="agency-mono-plate"] .el-media-band > .body > .label {
+  font-family: var(--el-font-mono);
+  font-variant-numeric: tabular-nums;
+  color: var(--el-ink-soft);
+}
+[data-theme="agency-mono-plate"] .el-media-band > .media > figcaption {
+  background: color-mix(in oklab, var(--el-ink) 78%, transparent);
+  border-top: 1px solid color-mix(in oklab, var(--el-ink) 90%, transparent);
+  color: var(--el-panel);
+  font-variant-numeric: tabular-nums;
+}
+[data-theme="agency-mono-plate"] .el-media-band--flat {
+  box-shadow: none;
+}
+
+/* pricing — flat plan plates; featured carries the full 2px ink frame */
+[data-theme="agency-mono-plate"] .el-pricing {
+  background: var(--el-panel);
+  border: 1px solid var(--el-line-2);
+  border-radius: 0;
+  box-shadow: none;
+}
+[data-theme="agency-mono-plate"] .el-pricing:hover {
+  border-color: var(--el-ink);
+}
+[data-theme="agency-mono-plate"] .el-pricing .price {
+  font-variant-numeric: tabular-nums;
+}
+[data-theme="agency-mono-plate"] .el-pricing .flag {
+  background: var(--el-ink);
+  color: var(--el-on-accent);
+  border-radius: 0;
+  font-variant-numeric: tabular-nums;
+}
+[data-theme="agency-mono-plate"] .el-pricing--featured {
+  border: 2px solid var(--el-ink);
+}
+[data-theme="agency-mono-plate"] .el-pricing--featured::before {
+  content: none;
+}
+[data-theme="agency-mono-plate"] .el-pricing--select.is-on {
+  border-color: var(--el-ink);
+  box-shadow: inset 0 0 0 1px var(--el-ink);
+}
+
+/* testimonial — Instrument Serif quote on a flat plate */
+[data-theme="agency-mono-plate"] .el-testimonial {
+  background: var(--el-panel);
+  border: 1px solid var(--el-line-2);
+  border-radius: 0;
+  box-shadow: none;
+}
+[data-theme="agency-mono-plate"] .el-testimonial::before {
+  font-family: var(--el-font-serif);
+  color: var(--el-ink);
+  opacity: 0.32;
+}
+[data-theme="agency-mono-plate"] .el-testimonial .q,
+[data-theme="agency-mono-plate"] .el-testimonial .quote {
+  font-family: var(--el-font-serif);
+  font-size: 1.6rem;
+  line-height: 1.42;
+}
+[data-theme="agency-mono-plate"] .el-testimonial .who .name {
+  font-weight: 650;
+}
+[data-theme="agency-mono-plate"] .el-testimonial .who .role {
+  font-family: var(--el-font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* banner — flat plate strip with the 2px ink left rail; tints ride state */
+[data-theme="agency-mono-plate"] .el-banner {
+  background: color-mix(in oklab, var(--el-banner-tint, var(--el-ink)) 7%, var(--el-panel));
+  border: 1px solid color-mix(in oklab, var(--el-banner-tint, var(--el-ink)) 34%, var(--el-line-2));
+  border-left: 2px solid var(--el-banner-tint, var(--el-ink));
+  border-radius: 0;
+  box-shadow: none;
+}
+[data-theme="agency-mono-plate"] .el-banner .action {
+  color: var(--el-ink);
+  font-weight: 650;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* stat tiles — flat plate, ink numeral, mono label */
+[data-theme="agency-mono-plate"] .el-stat {
+  background: var(--el-panel);
+  border: 1px solid var(--el-line-2);
+  border-radius: 0;
+  box-shadow: none;
+}
+[data-theme="agency-mono-plate"] .el-stat::after {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 2px;
+  background: var(--el-ink);
+}
+[data-theme="agency-mono-plate"] .el-stat-label {
+  color: var(--el-ink-soft);
+}
+[data-theme="agency-mono-plate"] .el-stat-value {
+  font-family: var(--el-font-display);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+[data-theme="agency-mono-plate"] .el-stat-delta.up { color: var(--el-ok); }
+[data-theme="agency-mono-plate"] .el-stat-delta.down { color: var(--el-fail); }
+
+/* meter — squared level bar, ink fill, mono label */
+[data-theme="agency-mono-plate"] .el-meter {
+  height: 10px;
+  border-radius: 0;
+  background: var(--el-panel-2);
+  box-shadow: inset 0 0 0 1px var(--el-line-2);
+}
+[data-theme="agency-mono-plate"] .el-meter > .fill,
+[data-theme="agency-mono-plate"] .el-meter .fill {
+  background: var(--el-ink);
+  box-shadow: none;
+}
+[data-theme="agency-mono-plate"] .el-meter-label {
+  font-family: var(--el-font-mono);
+  font-size: var(--el-fs-xs);
+  color: var(--el-ink-soft);
+  font-variant-numeric: tabular-nums;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* progress — squared honest strip, full ink fill */
+[data-theme="agency-mono-plate"] .el-progress {
+  height: 6px;
+  border-radius: 0;
+  background: var(--el-panel-2);
+  box-shadow: inset 0 0 0 1px var(--el-line-2);
+}
+[data-theme="agency-mono-plate"] .el-progress > .fill {
+  background: var(--el-ink);
+  border-radius: 0;
+  box-shadow: none;
+}
+
+/* stage rail + ladder — mono plates, ink states, mono indices */
+[data-theme="agency-mono-plate"] .el-stage-rail {
+  background: var(--el-panel);
+  border: 1px solid var(--el-line-2);
+  border-radius: 0;
+}
+[data-theme="agency-mono-plate"] .el-stage:hover {
+  background: color-mix(in oklab, var(--el-ink) 6.5%, transparent);
+}
+[data-theme="agency-mono-plate"] .el-stage.is-active,
+[data-theme="agency-mono-plate"] .el-stage.is-active .el-stage-dot {
+  color: var(--el-ink);
+}
+[data-theme="agency-mono-plate"] .el-ladder {
+  border: 1px solid var(--el-line-2);
+  border-radius: 0;
+  /* bare ul: kill the UA inline padding so steps land flush on the box edge */
+  margin: 0;
+  padding: 0;
+}
+[data-theme="agency-mono-plate"] .el-ladder-step {
+  border-bottom: 1px solid var(--el-line);
+  font-variant-numeric: tabular-nums;
+}
+[data-theme="agency-mono-plate"] .el-ladder .el-ladder-idx {
+  font-family: var(--el-font-mono);
+  color: var(--el-mute);
+}
+
+/* timeline — ink dots on a hairline spine, mono timestamps */
+[data-theme="agency-mono-plate"] .el-timeline::before {
+  background: var(--el-line-2);
+}
+[data-theme="agency-mono-plate"] .el-timeline > li::before {
+  background: var(--el-panel);
+  border-color: var(--el-ink);
+  border-radius: 0;
+  transform: rotate(45deg);
+}
+[data-theme="agency-mono-plate"] .el-timeline > li.ok::before {
+  background: var(--el-ok);
+  border-color: var(--el-ok);
+}
+[data-theme="agency-mono-plate"] .el-timeline > li.fail::before {
+  background: var(--el-fail);
+  border-color: var(--el-fail);
+}
+[data-theme="agency-mono-plate"] .el-timeline .when {
+  font-variant-numeric: tabular-nums;
+}
+
+/* fact grid + source cards + citation rail — receipts as plates */
+[data-theme="agency-mono-plate"] .el-fact {
+  background: var(--el-panel);
+  border: 1px solid var(--el-line-2);
+  border-radius: 0;
+  box-shadow: none;
+}
+[data-theme="agency-mono-plate"] .el-fact .k {
+  font-family: var(--el-font-mono);
+  letter-spacing: 0.08em;
+  color: var(--el-ink-soft);
+}
+[data-theme="agency-mono-plate"] .el-fact .v {
+  font-family: var(--el-font-display);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+[data-theme="agency-mono-plate"] .el-source-card {
+  background: var(--el-panel);
+  border: 1px solid var(--el-line-2);
+  border-radius: 0;
+  box-shadow: none;
+}
+[data-theme="agency-mono-plate"] .el-source-card:hover {
+  transform: none;
+  border-color: var(--el-ink);
+  box-shadow: none;
+}
+[data-theme="agency-mono-plate"] .el-source-card.is-cited {
+  border-left: 3px solid var(--el-ink);
+}
+[data-theme="agency-mono-plate"] .el-citation-rail {
+  border-left: 2px solid var(--el-ink);
+}
+[data-theme="agency-mono-plate"] .el-citation-rail .el-cite .n {
+  color: var(--el-ink);
+  font-variant-numeric: tabular-nums;
+}
+
+/* app chrome — the ledger window is a plate: 2px ink frame, zero elevation */
+[data-theme="agency-mono-plate"] .el-appwin {
+  border: 2px solid var(--el-ink);
+  border-radius: var(--el-r-md);
+  box-shadow: var(--el-shadow-2);
+}
+[data-theme="agency-mono-plate"] .el-titlebar,
+[data-theme="agency-mono-plate"] .el-menubar,
+[data-theme="agency-mono-plate"] .el-headerbar,
+[data-theme="agency-mono-plate"] .el-actionbar,
+[data-theme="agency-mono-plate"] .el-tabbar {
+  background: var(--el-panel-2);
+}
+[data-theme="agency-mono-plate"] .el-titlebar {
+  border-bottom: 1px solid var(--el-ink);
+}
+[data-theme="agency-mono-plate"] .el-titlebar .el-app-title {
+  font-family: var(--el-font-mono);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-size: var(--el-fs-sm);
+}
+[data-theme="agency-mono-plate"] .el-menubar {
+  border-bottom: 1px solid var(--el-line);
+  font-family: var(--el-font-mono);
+  font-size: var(--el-fs-sm);
+}
+[data-theme="agency-mono-plate"] .el-menubar-item {
+  border-radius: 0;
+}
+[data-theme="agency-mono-plate"] .el-headerbar {
+  border-bottom: 1px solid var(--el-ink);
+}
+[data-theme="agency-mono-plate"] .el-headerbar .el-headerbar-label {
+  font-family: var(--el-font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+[data-theme="agency-mono-plate"] .el-actionbar {
+  border-top: 2px solid var(--el-ink);
+}
+[data-theme="agency-mono-plate"] .el-tabbar {
+  border-top: 2px solid var(--el-ink);
+  padding-bottom: var(--el-space-2);
+}
+[data-theme="agency-mono-plate"] .el-tabbar-item {
+  border-radius: 0;
+  font-family: var(--el-font-mono);
+  text-transform: uppercase;
+}
+[data-theme="agency-mono-plate"] .el-tabbar-item.on,
+[data-theme="agency-mono-plate"] .el-tabbar-item[aria-current="page"] {
+  color: var(--el-ink);
+  box-shadow: inset 0 2px 0 0 var(--el-ink);
+}
+[data-theme="agency-mono-plate"] .el-winbtn {
+  border-radius: 0;
+}
+[data-theme="agency-mono-plate"] .el-winbtn::before {
+  border-radius: 0;
+  background: transparent;
+  box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--el-ink) 55%, transparent);
+}
+[data-theme="agency-mono-plate"] .el-winbtn:hover::before {
+  background: var(--el-ink);
+}
+[data-theme="agency-mono-plate"] .el-winbtn.close:hover::before {
+  background: var(--el-fail);
+}
+
+/* sidebar — plate rail, mono labels, 2px ink inset on the active row */
+[data-theme="agency-mono-plate"] .el-sidebar {
+  background: var(--el-bg);
+  border-right: 2px solid var(--el-ink);
+  width: 216px;
+  --el-rail-w: 216px;
+}
+[data-theme="agency-mono-plate"] .el-sidebar .grp > .label,
+[data-theme="agency-mono-plate"] .el-sidebar .grp > summary {
+  font-family: var(--el-font-mono);
+  letter-spacing: 0.1em;
+}
+[data-theme="agency-mono-plate"] .el-sidebar .grp a,
+[data-theme="agency-mono-plate"] .el-sidebar .grp button {
+  border-radius: 0;
+}
+[data-theme="agency-mono-plate"] .el-sidebar .grp [aria-current="page"] {
+  background: transparent;
+  color: var(--el-ink);
+  box-shadow: inset 2px 0 0 0 var(--el-ink);
+  font-weight: 650;
+}
+[data-theme="agency-mono-plate"] .el-sidebar .end {
+  font-variant-numeric: tabular-nums;
+}
+
+/* listbox + notification — plate rows */
+[data-theme="agency-mono-plate"] .el-listbox {
+  background: var(--el-panel);
+  border: 1px solid var(--el-line-2);
+  border-radius: 0;
+  box-shadow: none;
+}
+[data-theme="agency-mono-plate"] .el-listbox .el-listbox-row:hover {
+  background: color-mix(in oklab, var(--el-ink) 6.5%, var(--el-panel));
+}
+[data-theme="agency-mono-plate"] .el-notification {
+  background: var(--el-panel);
+  border: 1px solid var(--el-line-2);
+  border-radius: 0;
+  box-shadow: none;
+}
+[data-theme="agency-mono-plate"] .el-notification.unread::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 3px;
+  background: var(--el-ink);
+}
+
+/* overlays — flat plates, squared, ink edges; palette reads as a plate card */
+[data-theme="agency-mono-plate"] .el-dialog {
+  background: var(--el-panel);
+  border: 2px solid var(--el-ink);
+  border-radius: 0;
+  box-shadow: var(--el-shadow-3);
+}
+[data-theme="agency-mono-plate"] .el-dialog-head {
+  margin-bottom: var(--el-space-4);
+}
+[data-theme="agency-mono-plate"] .el-drawer {
+  background: var(--el-panel);
+  border-left: 2px solid var(--el-ink);
+  border-radius: 0;
+  box-shadow: var(--el-shadow-2);
+}
+[data-theme="agency-mono-plate"] .el-drawer > .el-drawer-head {
+  color: var(--el-ink);
+  font-family: var(--el-font-mono);
+  letter-spacing: 0.08em;
+}
+[data-theme="agency-mono-plate"] .el-command .el-command-panel {
+  background: var(--el-panel);
+  border: 2px solid var(--el-ink);
+  border-radius: 0;
+  box-shadow: var(--el-shadow-3);
+}
+[data-theme="agency-mono-plate"] .el-command-input {
+  border-bottom: 1px solid var(--el-line-2);
+}
+[data-theme="agency-mono-plate"] .el-command-row.sel {
+  background: color-mix(in oklab, var(--el-ink) 8%, transparent);
+  color: var(--el-ink);
+  box-shadow: inset 0 0 0 1px var(--el-ink);
+}
+[data-theme="agency-mono-plate"] .el-command-foot kbd {
+  border-radius: 0;
+}
+[data-theme="agency-mono-plate"] .el-menu,
+[data-theme="agency-mono-plate"] .el-popover .el-pop {
+  background: var(--el-panel);
+  border: 1px solid var(--el-ink);
+  border-radius: 0;
+  box-shadow: var(--el-shadow-2);
+}
+[data-theme="agency-mono-plate"] .el-menu .el-menu-item {
+  border-radius: 0;
+}
+[data-theme="agency-mono-plate"] .el-menu .el-menu-item:hover {
+  background: color-mix(in oklab, var(--el-ink) 6%, transparent);
+  color: var(--el-ink);
+}
+[data-theme="agency-mono-plate"] .el-tooltip::after {
+  background: var(--el-ink);
+  border: 0;
+  color: var(--el-on-accent);
+  border-radius: 0;
+  font-family: var(--el-font-mono);
+  font-size: var(--el-fs-sm);
+  box-shadow: none;
+}
+[data-theme="agency-mono-plate"] .el-toast {
+  background: var(--el-panel);
+  border: 1px solid var(--el-ink);
+  border-radius: 0;
+  box-shadow: var(--el-shadow-2);
+}
+[data-theme="agency-mono-plate"] .el-toast.ok { border-left-width: 3px; border-left-color: var(--el-ok); }
+[data-theme="agency-mono-plate"] .el-toast.warn { border-left-width: 3px; border-left-color: var(--el-warn); }
+[data-theme="agency-mono-plate"] .el-toast.fail { border-left-width: 3px; border-left-color: var(--el-fail); }
+[data-theme="agency-mono-plate"] .el-toast.info { border-left-width: 3px; border-left-color: var(--el-info); }
+
+/* badges, avatars, kbd — mono-plate marks: squared, hairline, tabular */
+[data-theme="agency-mono-plate"] .el-badge {
+  background: transparent;
+  border: 1px solid var(--el-line-2);
+  border-radius: 0;
+  font-family: var(--el-font-mono);
+  font-variant-numeric: tabular-nums;
+  box-shadow: none;
+}
+[data-theme="agency-mono-plate"] .el-badge.ok { border-color: var(--el-ok); color: var(--el-ok); }
+[data-theme="agency-mono-plate"] .el-badge.warn { border-color: var(--el-warn); color: var(--el-warn); }
+[data-theme="agency-mono-plate"] .el-badge.fail { border-color: var(--el-fail); color: var(--el-fail); }
+[data-theme="agency-mono-plate"] .el-badge.live { border-color: var(--el-live); color: var(--el-live); }
+[data-theme="agency-mono-plate"] .el-avatar {
+  background: var(--el-panel-3);
+  color: var(--el-ink);
+  border-radius: 0;
+  box-shadow: inset 0 0 0 1px var(--el-line-2);
+  font-family: var(--el-font-mono);
+  letter-spacing: 0.06em;
+}
+[data-theme="agency-mono-plate"] .el-avatar.soft {
+  background: transparent;
+  color: var(--el-ink);
+  box-shadow: inset 0 0 0 1px var(--el-line-2);
+}
+[data-theme="agency-mono-plate"] .el-kbd {
+  background: var(--el-panel-2);
+  border: 1px solid var(--el-ink);
+  border-radius: 0;
+  box-shadow: none;
+  font-family: var(--el-font-mono);
+}
+
+/* controls — squared, ink-voiced */
+[data-theme="agency-mono-plate"] .el-segmented {
+  border: 1px solid var(--el-ink);
+  border-radius: 0;
+  background: var(--el-panel-2);
+  padding: 2px;
+  box-shadow: none;
+}
+[data-theme="agency-mono-plate"] .el-segmented button {
+  border-radius: 0;
+  color: var(--el-ink-soft);
+}
+[data-theme="agency-mono-plate"] .el-segmented button.on {
+  background: var(--el-ink);
+  color: var(--el-on-accent);
+  border: 0;
+  box-shadow: none;
+}
+[data-theme="agency-mono-plate"] .el-check {
+  border-radius: 0;
+  box-shadow: none;
+  border-color: var(--el-ink);
+  background: var(--el-panel);
+}
+/* the theme's flat panel ground would out-rank the elements-layer :has fill in
+   the layers race — restate the checked voice here so a checked square stays ink */
+[data-theme="agency-mono-plate"] .el-check:has(input:checked),
+[data-theme="agency-mono-plate"] .el-check.on,
+[data-theme="agency-mono-plate"] .el-check[aria-checked="true"] {
+  background: var(--el-ink);
+  border-color: var(--el-ink);
+}
+[data-theme="agency-mono-plate"] .el-check.on {
+  background: var(--el-ink);
+  border-color: var(--el-ink);
+}
+[data-theme="agency-mono-plate"] .el-radio {
+  font-size: var(--el-fs-md);
+}
+[data-theme="agency-mono-plate"] .el-radio .dot,
+[data-theme="agency-mono-plate"] .el-radio input:checked + .dot {
+  border-radius: 0;
+  border-color: var(--el-ink);
+  transform: rotate(45deg);
+}
+[data-theme="agency-mono-plate"] .el-slider {
+  border-radius: 0;
+  height: 8px;
+  background:
+    linear-gradient(90deg, var(--el-ink) var(--el-fill, 0%), var(--el-panel-2) var(--el-fill, 0%));
+  box-shadow: inset 0 0 0 1px var(--el-line-2);
+}
+[data-theme="agency-mono-plate"] .el-slider::-webkit-slider-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 2px;
+  background: var(--el-panel);
+  border: 1px solid var(--el-ink);
+  box-shadow: none;
+}
+[data-theme="agency-mono-plate"] .el-select select,
+[data-theme="agency-mono-plate"] .el-dropdown {
+  background: var(--el-panel);
+  border: 1px solid var(--el-line-2);
+  border-radius: 0;
+  box-shadow: none;
+}
+[data-theme="agency-mono-plate"] .el-select select:hover,
+[data-theme="agency-mono-plate"] .el-dropdown:hover {
+  border-color: var(--el-ink);
+}
+[data-theme="agency-mono-plate"] .el-search {
+  background: var(--el-panel);
+  border: 1px solid var(--el-line-2);
+  border-radius: 0;
+}
+[data-theme="agency-mono-plate"] .el-search:focus {
+  border-color: var(--el-ink);
+  outline: 2px solid var(--el-focus-ring);
+  outline-offset: 1px;
+  box-shadow: 0 0 0 1px var(--el-ink);
+}
+[data-theme="agency-mono-plate"] .el-btn-group .el-btn + .el-btn {
+  margin-left: -1px;
+}
+[data-theme="agency-mono-plate"] .el-btn--squared {
+  border-radius: 0;
+}
+
+/* feedback — spinner, skeleton, inline alerts, stepper, pagination */
+[data-theme="agency-mono-plate"] .el-spinner {
+  border-top-color: var(--el-ink);
+  border-right-color: color-mix(in oklab, var(--el-ink) 55%, transparent);
+}
+[data-theme="agency-mono-plate"] .el-skeleton {
+  border-radius: 0;
+  background: var(--el-panel-2);
+  animation-duration: 1.9s;
+}
+[data-theme="agency-mono-plate"] .el-inline-alert {
+  border-radius: 0;
+  border: 1px solid color-mix(in oklab, var(--el-info) 34%, var(--el-line-2));
+  border-left: 2px solid var(--el-info);
+}
+[data-theme="agency-mono-plate"] .el-inline-alert.warn { border-left-color: var(--el-warn); }
+[data-theme="agency-mono-plate"] .el-inline-alert.fail { border-left-color: var(--el-fail); }
+[data-theme="agency-mono-plate"] .el-inline-alert.success,
+[data-theme="agency-mono-plate"] .el-inline-alert.ok { border-left-color: var(--el-ok); }
+[data-theme="agency-mono-plate"] .el-stepper li {
+  border: 1px solid var(--el-line-2);
+  border-radius: 0;
+  background: var(--el-panel);
+  font-variant-numeric: tabular-nums;
+}
+[data-theme="agency-mono-plate"] .el-stepper li.done {
+  border-color: var(--el-ok);
+  color: var(--el-ok);
+}
+[data-theme="agency-mono-plate"] .el-stepper li.active,
+[data-theme="agency-mono-plate"] .el-stepper li.on {
+  background: var(--el-ink);
+  border-color: var(--el-ink);
+  color: var(--el-on-accent);
+  font-weight: 600;
+}
+[data-theme="agency-mono-plate"] .el-pagination .page {
+  border: 1px solid var(--el-line-2);
+  border-radius: 0;
+  font-variant-numeric: tabular-nums;
+}
+[data-theme="agency-mono-plate"] .el-pagination .page:hover {
+  border-color: var(--el-ink);
+  color: var(--el-ink);
+}
+[data-theme="agency-mono-plate"] .el-pagination .page.on {
+  background: var(--el-ink);
+  border-color: var(--el-ink);
+  color: var(--el-on-accent);
+}
+
+/* assistant + inspector + reader — the docked voices stay plates */
+[data-theme="agency-mono-plate"] .el-assistant-panel {
+  background: var(--el-panel);
+  border: 1px solid var(--el-ink);
+  border-radius: 0;
+  box-shadow: var(--el-shadow-2);
+}
+[data-theme="agency-mono-plate"] .el-assistant-head {
+  background: var(--el-panel-2);
+  border-bottom: 2px solid var(--el-ink);
+  font-family: var(--el-font-mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+[data-theme="agency-mono-plate"] .el-msg.el-msg--user {
+  background: var(--el-panel-2);
+  border-radius: 0;
+}
+[data-theme="agency-mono-plate"] .el-msg.el-msg--assistant {
+  border-left: 2px solid var(--el-ink);
+}
+[data-theme="agency-mono-plate"] .el-inspector {
+  border-left: 2px solid var(--el-ink);
+}
+[data-theme="agency-mono-plate"] .el-inspector-header {
+  border-bottom: 1px solid var(--el-ink);
+  font-family: var(--el-font-mono);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+[data-theme="agency-mono-plate"] .el-reader {
+  font-family: var(--el-font-serif);
+  font-size: 1.125rem;
+}
+[data-theme="agency-mono-plate"] .el-reader-meta {
+  font-family: var(--el-font-mono);
+  color: var(--el-ink-soft);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-variant-numeric: tabular-nums;
+}
+[data-theme="agency-mono-plate"] .el-reader h1,
+[data-theme="agency-mono-plate"] .el-reader h2,
+[data-theme="agency-mono-plate"] .el-reader h3 {
+  font-family: var(--el-font-display);
+}
+[data-theme="agency-mono-plate"] .el-reader-version-chips .el-chip {
+  border-radius: 0;
+}
+[data-theme="agency-mono-plate"] .el-code-block,
+[data-theme="agency-mono-plate"] pre.el-code,
+[data-theme="agency-mono-plate"] .el-code-block code {
+  background: var(--el-panel-2);
+  border: 1px solid var(--el-ink);
+  border-radius: 0;
+}
+
+/* footer — the imprint keeps columns; colophon gets its serif voice */
+[data-theme="agency-mono-plate"] .el-footer .cols .col > .label {
+  font-family: var(--el-font-mono);
+  letter-spacing: 0.12em;
+}
+[data-theme="agency-mono-plate"] .el-footer .colophon {
+  font-family: var(--el-font-serif);
+  font-size: var(--el-fs-md);
+}
+[data-theme="agency-mono-plate"] .el-footer a {
+  font-variant-numeric: tabular-nums;
+}
+/* ═════════════════════════════════════════════════════════════════════════════
+   v0.4.0 MOBILE PASS — agency-classic (quartz + mono-plate)
+   Scope: single-column collapse at ~768px, phone rung at ~430px. Token-driven
+   only; desktop is untouched (every rule here lives inside a narrow-viewport
+   media query or is the desktop twin of a page hook whose inline style it
+   replaces byte-for-byte). Universal element-sheet defects observed during the
+   rung probes are ROUTED in the family report, not carried here.
+   Persona: the baseline grid collapses to one column and the work grid stacks;
+   the tracker/ledger appwin drops its three panes to one and the bottom
+   .el-tabbar takes navigation.
+   ═════════════════════════════════════════════════════════════════════════════ */
+
+/* ── page hooks — the desktop twins of inline styles removed from the demos ──
+   ag-grid-3/4 · trio and quad page grids; ag-pair · two-up rows; ag-split ·
+   form-over-rail split; ag-app-cols · appwin three-pane body; ag-app-side /
+   ag-app-rail · the pane borders the inline styles used to carry. */
+
+[data-theme="agency-quartz"] .ag-topbar,
+[data-theme="agency-mono-plate"] .ag-topbar {
+  width: 100%;
+  max-width: var(--el-page-max);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: var(--el-space-4);
+  padding: 0 var(--el-space-5);
+}
+
+[data-theme="agency-quartz"] .ag-grid-3,
+[data-theme="agency-mono-plate"] .ag-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--el-space-4);
+}
+/* grid items inside these hooks must be able to shrink below their content —
+   the default min-width:auto is what blows tracks out at phone widths */
+[data-theme="agency-quartz"] .ag-grid-3 > *,
+[data-theme="agency-quartz"] .ag-grid-4 > *,
+[data-theme="agency-mono-plate"] .ag-grid-3 > *,
+[data-theme="agency-mono-plate"] .ag-grid-4 > * {
+  min-width: 0;
+}
+[data-theme="agency-quartz"] .ag-grid-4,
+[data-theme="agency-mono-plate"] .ag-grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--el-space-4);
+}
+[data-theme="agency-quartz"] .ag-pair,
+[data-theme="agency-mono-plate"] .ag-pair {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--el-space-4);
+}
+[data-theme="agency-quartz"] .ag-split,
+[data-theme="agency-mono-plate"] .ag-split {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+  gap: var(--el-space-5);
+  align-items: start;
+}
+[data-theme="agency-quartz"] .ag-split > *,
+[data-theme="agency-mono-plate"] .ag-split > * {
+  min-width: 0;
+}
+/* the appwin working pane and its children shrink (the pane's inner grids and
+   the fixed-width sparkline svg are blowout sources otherwise) */
+[data-theme="agency-quartz"] .ag-pane,
+[data-theme="agency-mono-plate"] .ag-pane,
+[data-theme="agency-quartz"] .ag-pane > *,
+[data-theme="agency-mono-plate"] .ag-pane > * {
+  min-width: 0;
+}
+
+[data-theme="agency-quartz"] .ag-app-cols {
+  display: grid;
+  grid-template-columns: minmax(0, 224px) minmax(0, 1fr) minmax(0, 316px);
+  gap: 0;
+}
+[data-theme="agency-mono-plate"] .ag-app-cols {
+  display: grid;
+  grid-template-columns: minmax(0, 218px) minmax(0, 1fr) minmax(0, 316px);
+  gap: 0;
+}
+[data-theme="agency-quartz"] .ag-app-side,
+[data-theme="agency-mono-plate"] .ag-app-side {
+  border-right: 1px solid var(--el-line);
+  border-radius: 0;
+}
+[data-theme="agency-quartz"] .ag-app-rail {
+  display: grid;
+  gap: var(--el-space-3);
+  padding: var(--el-space-3);
+  align-content: start;
+  border-left: 1px solid var(--el-line);
+}
+[data-theme="agency-mono-plate"] .ag-app-rail {
+  display: grid;
+  gap: var(--el-space-4);
+  padding: var(--el-space-4);
+  align-content: start;
+  border-left: 1px solid var(--el-line);
+}
+
+/* ═══ ~768 — the single-column collapse ═══════════════════════════════════════ */
+
+@media (max-width: 768px) {
+
+  /* page grids — work/services/pricing/source plates and the form split stack;
+     KPI quads step to 2-up and pick their own rung lower down */
+  [data-theme="agency-quartz"] .ag-grid-3,
+  [data-theme="agency-mono-plate"] .ag-grid-3,
+  [data-theme="agency-quartz"] .ag-split,
+  [data-theme="agency-mono-plate"] .ag-split {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  [data-theme="agency-quartz"] .ag-grid-4,
+  [data-theme="agency-mono-plate"] .ag-grid-4 {
+    grid-template-columns: repeat(auto-fit, minmax(min(140px, 100%), 1fr));
+  }
+
+  /* section heads — title, hairline rule, and the trailing count/segment rows
+     wrap instead of clipping the trailing control through the panel edge */
+  [data-theme="agency-quartz"] .el-section-head,
+  [data-theme="agency-mono-plate"] .el-section-head {
+    flex-wrap: wrap;
+  }
+
+  /* navbar — rows wrap instead of pushing the bar wide: brand stays, links
+     wrap into their own line (the bar is sticky), CTA row wraps under when
+     the width runs out. Nothing is hidden, nothing scrolls the page. */
+  [data-theme="agency-quartz"] .ag-topbar,
+  [data-theme="agency-mono-plate"] .el-navbar--top {
+    flex-wrap: wrap;
+    row-gap: var(--el-space-2);
+  }
+  [data-theme="agency-quartz"] .el-navbar .links,
+  [data-theme="agency-mono-plate"] .el-navbar .links,
+  [data-theme="agency-mono-plate"] .el-navbar--top > .links {
+    flex-wrap: wrap;
+    overflow-x: visible;
+  }
+  [data-theme="agency-quartz"] .el-navbar .actions,
+  [data-theme="agency-mono-plate"] .el-navbar .actions {
+    /* the sheet pins flex-shrink:0 here; a wrapped CTA band must be able to
+       shrink to the bar's inner width or its own content pokes out sideways */
+    flex: 0 1 auto;
+    min-width: 0;
+    flex-wrap: wrap;
+    row-gap: var(--el-space-2);
+  }
+
+  /* hero — the theme's desktop split rule beats the sheet's 760px collapse
+     (attribute selector), so the single-column form is re-stated here */
+  [data-theme="agency-quartz"] .el-hero--split,
+  [data-theme="agency-mono-plate"] .el-hero--poster {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  [data-theme="agency-quartz"] .el-hero--split {
+    padding-block: var(--el-space-5) var(--el-space-6);
+    min-height: 0;
+  }
+  [data-theme="agency-quartz"] .el-hero--split .media {
+    min-height: var(--el-band-min);
+  }
+
+  /* tables — the page-level ledger scrolls inside its own band instead of
+     pushing the page sideways (sheet contract is overflow:hidden; routed) */
+  [data-theme="agency-quartz"] .el-table,
+  [data-theme="agency-mono-plate"] .el-table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  [data-theme="agency-quartz"] .el-table thead th,
+  [data-theme="agency-quartz"] .el-table tbody td {
+    padding: var(--el-space-3);
+  }
+
+  /* windows — the fixed-width sparkline svg shrinks to its track; the stage
+     rail scrolls its six gates inside the pane instead of crossing it */
+  [data-theme="agency-quartz"] .el-stat svg,
+  [data-theme="agency-mono-plate"] .el-stat svg,
+  [data-theme="agency-quartz"] .el-sparkline svg,
+  [data-theme="agency-mono-plate"] .el-sparkline svg {
+    max-width: 100%;
+  }
+  [data-theme="agency-quartz"] .el-appwin-body .el-stage-rail,
+  [data-theme="agency-mono-plate"] .el-appwin-body .el-stage-rail {
+    overflow-x: auto;
+  }
+
+  /* reader band (method · journal) — the 1fr / measure / 1fr page grid strand
+     the middle column at phone widths; one column keeps the article readable */
+  [data-theme="agency-quartz"] main.el-page > article.el-reader,
+  [data-theme="agency-mono-plate"] main.el-page > article.el-reader {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  [data-theme="agency-quartz"] main.el-page > article.el-reader > *,
+  [data-theme="agency-quartz"] main.el-page > article.el-reader > .shelf,
+  [data-theme="agency-mono-plate"] main.el-page > article.el-reader > *,
+  [data-theme="agency-mono-plate"] main.el-page > article.el-reader > .shelf {
+    grid-column: 1;
+  }
+
+  /* long values (prices, fact values, emails, ledger cells) never force a
+     track wide — they wrap instead */
+  [data-theme="agency-quartz"] .el-fact .v,
+  [data-theme="agency-quartz"] .el-footer a,
+  [data-theme="agency-quartz"] .el-price,
+  [data-theme="agency-mono-plate"] .el-fact .v,
+  [data-theme="agency-mono-plate"] .el-footer a,
+  [data-theme="agency-mono-plate"] .el-price {
+    overflow-wrap: anywhere;
+  }
+
+  /* appwin — three panes become one stacked column: the rail condenses into
+     horizontal bands, the window body scrolls, the inspector rail stacks
+     under the working pane */
+  [data-theme="agency-quartz"] .ag-app-cols,
+  [data-theme="agency-mono-plate"] .ag-app-cols {
+    grid-template-columns: minmax(0, 1fr);
+    min-height: 0;
+  }
+  [data-theme="agency-quartz"] .ag-app-cols > .el-sidebar,
+  [data-theme="agency-mono-plate"] .ag-app-cols > .el-sidebar {
+    position: static;
+    width: auto;
+    max-height: none;
+    border-right: 0;
+    border-bottom: 1px solid var(--el-line);
+    padding: 0;
+  }
+  [data-theme="agency-quartz"] .ag-app-cols > .el-sidebar .grp,
+  [data-theme="agency-mono-plate"] .ag-app-cols > .el-sidebar .grp {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--el-space-1) var(--el-space-2);
+    padding: var(--el-space-2) var(--el-space-3);
+  }
+  [data-theme="agency-quartz"] .ag-app-cols > .el-sidebar .grp > .label,
+  [data-theme="agency-mono-plate"] .ag-app-cols > .el-sidebar .grp > .label {
+    padding: 0;
+    white-space: nowrap;
+  }
+  [data-theme="agency-quartz"] .ag-app-cols > .el-sidebar .end,
+  [data-theme="agency-mono-plate"] .ag-app-cols > .el-sidebar .end {
+    padding: var(--el-space-2) var(--el-space-3) var(--el-space-3);
+  }
+  [data-theme="agency-quartz"] .ag-app-rail,
+  [data-theme="agency-mono-plate"] .ag-app-rail {
+    border-left: 0;
+    border-top: 1px solid var(--el-line);
+    padding: var(--el-space-3);
+  }
+
+  /* window chrome — toolbar rows wrap so every control stays on the glass */
+  [data-theme="agency-quartz"] .el-menubar,
+  [data-theme="agency-mono-plate"] .el-menubar,
+  [data-theme="agency-quartz"] .el-headerbar,
+  [data-theme="agency-mono-plate"] .el-headerbar,
+  [data-theme="agency-quartz"] .el-actionbar,
+  [data-theme="agency-mono-plate"] .el-actionbar {
+    flex-wrap: wrap;
+    row-gap: var(--el-space-1);
+  }
+  [data-theme="agency-quartz"] .el-headerbar .el-search-field,
+  [data-theme="agency-mono-plate"] .el-headerbar .el-search-field {
+    flex: 1 1 180px;
+    width: auto;
+    min-width: 160px;
+  }
+  [data-theme="agency-quartz"] .el-actionbar .actions,
+  [data-theme="agency-mono-plate"] .el-actionbar .actions {
+    flex-wrap: wrap;
+  }
+
+  /* closed-off-canvas drawers stay out of the tab order (sheet leaves them
+     focusable when translated offscreen; routed) */
+  [data-theme="agency-quartz"] .el-drawer:not(.is-open):not(.open),
+  [data-theme="agency-mono-plate"] .el-drawer:not(.is-open):not(.open) {
+    visibility: hidden;
+    transition: transform var(--el-dur-base) var(--el-ease-out), visibility 0s var(--el-dur-base);
+  }
+  [data-theme="agency-quartz"] .el-drawer.is-open,
+  [data-theme="agency-quartz"] .el-drawer.open,
+  [data-theme="agency-mono-plate"] .el-drawer.is-open,
+  [data-theme="agency-mono-plate"] .el-drawer.open {
+    visibility: visible;
+  }
+
+  /* tooltips — the sheet tip is nowrap + centered on the anchor; a 250px
+     tip on a span near the right edge extends the document (889 on a 768
+     viewport) even while invisible. Tips wrap and pin to the anchor's right
+     edge, so growth goes left (left overflow is unscrollable, not a gate) */
+  [data-theme="agency-quartz"] .el-tooltip::after,
+  [data-theme="agency-mono-plate"] .el-tooltip::after,
+  [data-theme="agency-quartz"] .el-tooltip--below::after,
+  [data-theme="agency-mono-plate"] .el-tooltip--below::after {
+    left: auto;
+    right: 0;
+    transform: translateY(3px);
+    white-space: normal;
+    width: max-content;
+    max-width: min(280px, calc(100vw - var(--el-space-5) * 2));
+  }
+  [data-theme="agency-quartz"] .el-tooltip:hover::after,
+  [data-theme="agency-quartz"] .el-tooltip:focus-within::after,
+  [data-theme="agency-quartz"] .el-tooltip:has(:focus-visible)::after,
+  [data-theme="agency-quartz"] .el-tooltip--below:hover::after,
+  [data-theme="agency-quartz"] .el-tooltip--below:focus-within::after,
+  [data-theme="agency-quartz"] .el-tooltip--below:has(:focus-visible)::after,
+  [data-theme="agency-mono-plate"] .el-tooltip:hover::after,
+  [data-theme="agency-mono-plate"] .el-tooltip:focus-within::after,
+  [data-theme="agency-mono-plate"] .el-tooltip:has(:focus-visible)::after,
+  [data-theme="agency-mono-plate"] .el-tooltip--below:hover::after,
+  [data-theme="agency-mono-plate"] .el-tooltip--below:focus-within::after,
+  [data-theme="agency-mono-plate"] .el-tooltip--below:has(:focus-visible)::after {
+    transform: translateY(0);
+  }
+}
+
+/* ═══ ~430 — the phone rung ═══════════════════════════════════════════════════ */
+
+@media (max-width: 430px) {
+
+  /* phone rung: two-up rows land as one column */
+  [data-theme="agency-quartz"] .ag-pair,
+  [data-theme="agency-mono-plate"] .ag-pair {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  /* hero calls to action become full-width bands */
+  [data-theme="agency-quartz"] .el-hero .actions > .el-btn,
+  [data-theme="agency-mono-plate"] .el-hero .actions > .el-btn {
+    flex: 1 1 100%;
+    justify-content: center;
+  }
+  /* checkbox/radio rows made <label class="ag-checkrow"> / label.el-radio so the
+     whole row toggles the control; the row, not the 22px box, is the tap target */
+  [data-theme="agency-quartz"] .ag-checkrow,
+  [data-theme="agency-mono-plate"] .ag-checkrow {
+    min-height: 44px;
+    cursor: pointer;
+  }
+  /* the KPI quad lands two-up for good: auto-fit cannot be trusted against the
+     appwin pane's ~310px inner width at 360 */
+  [data-theme="agency-quartz"] .ag-grid-4,
+  [data-theme="agency-mono-plate"] .ag-grid-4 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  /* touch targets — the control ladder lands on 44px: buttons/search/inputs
+     via explicit minimums (the drawn fields size by padding, the tokens only
+     reach the buttons), nav links, app rows, tabs, menus via minimums; small
+     graphical controls get a hit-area bleed so the visual stays compact but
+     the tap lands first time */
+  [data-theme="agency-quartz"] {
+    --el-ctl-min-h: 44px;
+  }
+  [data-theme="agency-quartz"] .el-navbar .brand,
+  [data-theme="agency-mono-plate"] .el-navbar .brand {
+    min-height: 44px;
+  }
+  [data-theme="agency-quartz"] .el-input,
+  [data-theme="agency-quartz"] .el-search,
+  [data-theme="agency-quartz"] .el-select,
+  [data-theme="agency-quartz"] .el-dropdown,
+  [data-theme="agency-mono-plate"] .el-input,
+  [data-theme="agency-mono-plate"] .el-search,
+  [data-theme="agency-mono-plate"] .el-select,
+  [data-theme="agency-mono-plate"] .el-dropdown {
+    min-height: 44px;
+  }
+  [data-theme="agency-quartz"] button.el-chip,
+  [data-theme="agency-mono-plate"] button.el-chip {
+    min-height: 44px;
+  }
+  [data-theme="agency-quartz"] .el-select select,
+  [data-theme="agency-mono-plate"] .el-select select {
+    min-height: 44px;
+  }
+  [data-theme="agency-quartz"] .el-notification .actions button,
+  [data-theme="agency-mono-plate"] .el-notification .actions button {
+    min-height: 44px;
+  }
+  [data-theme="agency-quartz"] .el-navbar .actions .el-btn,
+  [data-theme="agency-mono-plate"] .el-navbar .actions .el-btn {
+    min-height: 44px;
+  }
+  [data-theme="agency-quartz"] .el-navbar .links a,
+  [data-theme="agency-quartz"] .el-navbar .links button,
+  [data-theme="agency-mono-plate"] .el-navbar .links a,
+  [data-theme="agency-mono-plate"] .el-navbar .links button {
+    min-height: 44px;
+    padding-block: var(--el-space-2);
+  }
+  [data-theme="agency-quartz"] .el-navbar .actions .el-btn,
+  [data-theme="agency-mono-plate"] .el-navbar .actions .el-btn {
+    min-height: 44px;
+  }
+  [data-theme="agency-quartz"] .el-banner .action,
+  [data-theme="agency-mono-plate"] .el-banner .action {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    padding-block: var(--el-space-2);
+  }
+  [data-theme="agency-quartz"] .el-banner .close,
+  [data-theme="agency-mono-plate"] .el-banner .close,
+  [data-theme="agency-quartz"] .el-dialog-close,
+  [data-theme="agency-mono-plate"] .el-dialog-close,
+  [data-theme="agency-quartz"] .el-notification .close,
+  [data-theme="agency-mono-plate"] .el-notification .close,
+  [data-theme="agency-quartz"] .el-toast .close,
+  [data-theme="agency-mono-plate"] .el-toast .close,
+  [data-theme="agency-quartz"] .el-inspector-close,
+  [data-theme="agency-mono-plate"] .el-inspector-close,
+  [data-theme="agency-quartz"] .el-winbtn,
+  [data-theme="agency-mono-plate"] .el-winbtn {
+    position: relative;
+  }
+  [data-theme="agency-quartz"] .el-banner .close::after,
+  [data-theme="agency-mono-plate"] .el-banner .close::after,
+  [data-theme="agency-quartz"] .el-dialog-close::after,
+  [data-theme="agency-mono-plate"] .el-dialog-close::after,
+  [data-theme="agency-quartz"] .el-notification .close::after,
+  [data-theme="agency-mono-plate"] .el-notification .close::after,
+  [data-theme="agency-quartz"] .el-toast .close::after,
+  [data-theme="agency-mono-plate"] .el-toast .close::after,
+  [data-theme="agency-quartz"] .el-inspector-close::after,
+  [data-theme="agency-mono-plate"] .el-inspector-close::after,
+  [data-theme="agency-quartz"] .el-winbtn::after,
+  [data-theme="agency-mono-plate"] .el-winbtn::after {
+    content: "";
+    position: absolute;
+    inset: -14px; /* ✕ glyph: silent hit bleed to ≥44 */
+  }
+  [data-theme="agency-quartz"] .el-code-block > button::after,
+  [data-theme="agency-mono-plate"] .el-code-block > button::after {
+    content: "";
+    position: absolute;
+    inset: -14px; /* the JS-injected Copy chip in the code corner */
+  }
+  [data-theme="agency-quartz"] .el-tooltip,
+  [data-theme="agency-mono-plate"] .el-tooltip {
+    position: relative;
+  }
+  [data-theme="agency-quartz"] .el-tooltip::after,
+  [data-theme="agency-mono-plate"] .el-tooltip::after {
+    content: "";
+    position: absolute;
+    inset: -14px; /* inline ⓘ glyph: silent hit bleed to ≥44 */
+  }
+  [data-theme="agency-quartz"] .el-segmented button,
+  [data-theme="agency-mono-plate"] .el-segmented button,
+  [data-theme="agency-quartz"] .el-pagination .page,
+  [data-theme="agency-mono-plate"] .el-pagination .page {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+  }
+  [data-theme="agency-quartz"] .el-pagination .page,
+  [data-theme="agency-mono-plate"] .el-pagination .page {
+    min-width: 44px;
+  }
+  [data-theme="agency-quartz"] .el-listbox-row,
+  [data-theme="agency-mono-plate"] .el-listbox-row {
+    min-height: 44px;
+  }
+  [data-theme="agency-quartz"] .el-menubar-item,
+  [data-theme="agency-mono-plate"] .el-menubar-item,
+  [data-theme="agency-quartz"] .el-tabbar-item,
+  [data-theme="agency-mono-plate"] .el-tabbar-item,
+  [data-theme="agency-quartz"] .el-sidebar button,
+  [data-theme="agency-quartz"] .el-sidebar .grp > summary,
+  [data-theme="agency-mono-plate"] .el-sidebar button,
+  [data-theme="agency-mono-plate"] .el-sidebar .grp > summary {
+    min-height: 44px;
+  }
+  [data-theme="agency-quartz"] .el-radio,
+  [data-theme="agency-mono-plate"] .el-radio {
+    min-height: 44px;
+  }
+
+  /* form rows — drawn boxes scale up; the wrapper row keeps the native input
+     centered (raw native inputs stay their UA size; routed) */
+  [data-theme="agency-quartz"] .el-check,
+  [data-theme="agency-mono-plate"] .el-check {
+    width: 22px;
+    height: 22px;
+  }
+  [data-theme="agency-quartz"] .el-radio .dot,
+  [data-theme="agency-mono-plate"] .el-radio .dot {
+    width: 22px;
+    height: 22px;
+  }
+  [data-theme="agency-quartz"] .el-switch,
+  [data-theme="agency-mono-plate"] .el-switch {
+    width: 52px;
+    height: 30px;
+  }
+
+  /* KPI stats — a 43px sparkline strip does not fit 2-up at 320; the
+     auto-fit track above already lands 1-up here */
+  [data-theme="agency-quartz"] .el-stat,
+  [data-theme="agency-mono-plate"] .el-stat {
+    padding: var(--el-space-3) var(--el-space-4);
+  }
+
+  /* pricing plates — the two CTA row wraps and the flag stops overlapping the
+     price line at 320 */
+  [data-theme="agency-quartz"] .el-pricing .cta,
+  [data-theme="agency-mono-plate"] .el-pricing .cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--el-space-2);
+  }
+
+  /* anchored popovers — the sheet puts .el-pop at left:0 of the trigger, which
+     flings it off the phone edge; at phone widths the pop drops to a fixed
+     full-width band under the trigger (top:auto keeps the sheet's own
+     open/close transition working) */
+  [data-theme="agency-quartz"] .el-popover .el-pop,
+  [data-theme="agency-mono-plate"] .el-popover .el-pop {
+    position: fixed;
+    top: auto;
+    left: 12px;
+    right: 12px;
+  }
+
+  /* flowing text links — the tap lands with the link's own vertical padding
+     (inline padding does not move the line box); footer links become 44px rows */
+  [data-theme="agency-quartz"] .el-page a:not(.el-btn),
+  [data-theme="agency-mono-plate"] .el-page a:not(.el-btn) {
+    padding-block: 16px;
+  }
+  [data-theme="agency-quartz"] .el-page .el-cite a,
+  [data-theme="agency-mono-plate"] .el-page .el-cite a {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    padding-block: 0;
+  }
+  [data-theme="agency-quartz"] .el-footer .col a,
+  [data-theme="agency-mono-plate"] .el-footer .col a {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    padding-block: 0;
+  }
+}
+
+/* ═══ end v0.4.0 mobile pass ═══ */

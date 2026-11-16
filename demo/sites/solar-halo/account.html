@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en" data-theme="solar-halo">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aurelia Dome — box office</title>
+<link rel="stylesheet" href="../../../base.css">
+<link rel="stylesheet" href="../../../fonts.css">
+<link rel="stylesheet" href="../../../tokens.css">
+<link rel="stylesheet" href="../../../elements-display.css">
+<link rel="stylesheet" href="../../../elements-structure.css">
+<link rel="stylesheet" href="../../../elements-lists.css">
+<link rel="stylesheet" href="../../../elements-app.css">
+<link rel="stylesheet" href="../../../elements-containers.css">
+<link rel="stylesheet" href="../../../elements-controls.css">
+<link rel="stylesheet" href="../../../elements-inputs.css">
+<link rel="stylesheet" href="../../../elements-dataviz.css">
+<link rel="stylesheet" href="../../../elements-overlay.css">
+<link rel="stylesheet" href="../../../elements-interactions.css">
+<link rel="stylesheet" href="../../../elements-misc.css">
+<link rel="stylesheet" href="../../../elements-size.css">
+<link rel="stylesheet" href="../../../elements-workflow.css">
+<link rel="stylesheet" href="../../../elements-inspector.css">
+<link rel="stylesheet" href="../../../elements-reader.css">
+<link rel="stylesheet" href="../../../elements-assistant.css">
+<link rel="stylesheet" href="../../../themes/src/webgl-immersive.css">
+<script src="../../../elements.js" defer></script>
+<script src="../../../charts.js" defer></script>
+</head>
+<body>
+<main class="el-page">
+<nav class="el-navbar el-navbar--top">
+  <a class="brand" href="index.html">AURELIA DOME</a>
+  <div class="links"><a href="index.html">Now Playing</a><a href="catalog.html">Exhibits</a><a href="article.html">Journal</a><a href="account.html" aria-current="page">Tickets</a><a href="observe.html">Backstage</a><a href="app.html">Dome Console</a></div>
+  <div class="actions">
+<span class="el-chip live el-chip--sm">Doors 19:00</span>
+<button class="el-btn el-btn--ghost" data-toast="Program guide sent to your inbox">Program</button>
+<button class="el-btn" data-dialog-open="dlg-tickets">Book seats</button></div>
+</nav>
+<header class="el-hero el-hero--left">
+
+<div class="el-eyebrow">BOX OFFICE</div>
+<h1>Reserve your sky</h1>
+<p>Three beats to a held seat: pick the show, pick the row, pay at the kiosk or online.</p>
+<div class="actions"></div>
+
+</header>
+<section class="el-section"><ol class="el-stepper"><li class="done"><span class="num">1</span><span class="lbl">Pick the show</span></li><li class="done"><span class="num">2</span><span class="lbl">Pick the row</span></li><li class="active"><span class="num">3</span><span class="lbl">Payment</span></li><li class=""><span class="num">4</span><span class="lbl">Scan in</span></li></ol></section>
+<section class="el-section"><div class="el-banner el-banner--info">
+<span class="glyph">✶</span>
+<div class="copy"><b>Members' night added</b><span class="detail">A Thursday "Grand Tour" was added for members — your pass covers it.</span></div>
+<button class="action el-btn el-btn--squared" data-toast="Added to your plan">Add to plan</button>
+<button class="close" aria-label="Dismiss">×</button>
+</div><div style="height:14px"></div><div class="el-inline-alert warn">
+<span class="title">Two seats still held</span>
+<span class="body">Your Saturday "Ring of Fire" seats are held for 9 more minutes — checkout keeps them yours.</span>
+<button class="close" aria-label="Dismiss">×</button>
+</div></section>
+<section class="el-section">
+<div class="el-section-head"><div><div class="el-eyebrow">Checkout</div><h2>Your basket &amp; pass</h2></div></div>
+<form class="el-panel" onsubmit="return false">
+<div class="el-panel-head"><span>Household ticketing</span><span class="el-status-pill ok">MEMBER</span></div>
+<div class="el-cluster" style="gap:14px;align-items:start">
+<label class="el-field"><span class="el-label">Name on the pass *</span><input class="el-input" value="Marisol Vane"><span class="el-hint">Printed on the card; the host reads it.</span></label>
+<label class="el-field"><span class="el-label">Email</span><input class="el-input" type="email" value="m.vane@example.net"><span class="el-hint">One program email per week, never more.</span></label>
+<label class="el-field"><span class="el-label">Access notes</span><textarea class="el-textarea" rows="3" style="min-width:100%">Aisle seat preferred, wheelchair-width preferred. We bring one service dog; the dome is calm-lit for her.</textarea></label>
+<label class="el-search-field"><input class="el-search" type="search" placeholder="Find a show — try “ember”" aria-label="Find a show"></label>
+<label class="el-field"><span class="el-label">Time slot</span><select class="el-input"><option>19:30 · Ring of Fire</option><option>20:15 · Grand Tour</option><option>21:00 · Weather Below</option><option>21:45 · After Dark (21+)</option></select><span class="el-hint">Doors open 30 minutes before the show.</span></label>
+<div class="el-menu-anchor"><button class="el-dropdown">Pricing level · Member −20%</button>
+<div class="el-menu" role="menu"><span class="el-menu-label">Levels</span><button class="el-menu-item">General</button><button class="el-menu-item">Student</button><button class="el-menu-item">Member −20%</button><button class="el-menu-item" aria-disabled="true">Educator (needs roster)</button></div></div>
+<div class="el-cluster" style="gap:16px;align-items:center">
+<span><button class="el-check on" role="checkbox" aria-checked="true" aria-label="Email reminders"></button> Email reminders</span>
+<span><button class="el-check" role="checkbox" aria-checked="false" aria-label="Gift aid"></button> Add gift aid</span>
+</div>
+<div class="el-cluster" style="gap:16px;align-items:center">
+<label class="el-radio"><input type="radio" name="seat" checked><span class="dot"></span> Center block</label>
+<label class="el-radio"><input type="radio" name="seat"><span class="dot"></span> North recline</label>
+<label class="el-radio"><input type="radio" name="seat"><span class="dot"></span> Sofa row (two)</label>
+</div>
+<div class="el-segmented"><button>Adult</button><button class="on">Member −20%</button><button>Student</button></div>
+<label class="el-cluster" style="gap:10px"><span class="el-label">Group size · <b>4 seats</b></span><input class="el-slider" type="range" min="1" max="12" value="4" step="1"></label>
+<div class="el-row-flex" style="gap:10px">
+<button class="el-btn" data-toast="Two seats held · 9-minute timer started" data-toast-variant="ok">Hold seats</button>
+<button class="el-btn el-btn--outline">Add to calendar</button>
+<button class="el-btn el-btn--ghost">Clear form</button>
+<button class="el-btn el-btn--danger" data-toast="Released your held seats" data-toast-variant="fail">Release seats</button>
+<button class="el-btn el-btn--squared" data-toast="Cart staged">Stage</button>
+<span class="el-btn-group"><button class="el-btn el-btn--ghost">Gift</button><button class="el-btn el-btn--ghost">Print</button><button class="el-btn el-btn--ghost">Receipt</button></span>
+</div>
+<div class="el-cluster" style="gap:12px"><span class="el-spinner"></span><span style="font-size:13px;color:var(--el-mute)">Confirming tonight's fill with the box office…</span></div>
+<div><div class="el-skeleton block" style="height:56px;width:100%"></div></div>
+</div>
+</form>
+</section>
+<section class="el-section">
+<div class="el-section-head"><div><div class="el-eyebrow">Past evenings</div><h2>Your visits</h2></div></div>
+<table class="el-table el-table--zebra">
+<caption style="font-size:12px;color:var(--el-mute);margin-bottom:8px;text-align:left">Last five shows scanned</caption>
+<thead><tr><th>Show</th><th>Hall</th><th>Time</th><th>Seats</th><th>Host</th><th>Date</th></tr></thead>
+<tbody>
+<tr><td>Ring of Fire</td><td>Grand Dome</td><td>19:30</td><td>4</td><td>RN</td><td>Oct 24</td></tr>
+<tr><td>Grand Tour, 1974</td><td>Grand Dome</td><td>20:15</td><td>2</td><td>TB</td><td>Oct 12</td></tr>
+<tr><td>Weather Below</td><td>Grand Dome</td><td>21:00</td><td>4</td><td>MV</td><td>Oct 5</td></tr>
+<tr><td>Star Stories</td><td>Small Sky</td><td>18:30</td><td>4</td><td>AS</td><td>Sep 28</td></tr>
+<tr><td>Ember &amp; Vacuum</td><td>Small Sky</td><td>21:45</td><td>2</td><td>DB</td><td>Sep 20</td></tr>
+</tbody>
+</table>
+</section>
+<section class="el-section">
+<div class="el-row-flex"><nav class="el-pagination" data-page-source="#history-table"><button class="page disabled" data-action="first" aria-label="first">&laquo;</button><button class="page disabled" data-action="prev" aria-label="prev">&lsaquo;</button><button class="page" data-action="1">1</button><button class="page on" data-action="2">2</button><button class="page" data-action="3">3</button><button class="page" data-action="4">4</button><button class="page" data-action="5">5</button><button class="page" data-action="next" aria-label="next">&rsaquo;</button><button class="page" data-action="last" aria-label="last">&raquo;</button><span class="info">1-5 of 19 visits</span></nav></div>
+</section>
+<footer class="el-footer"><div class="cols"><div class="col"><span class="label">Visit</span><ul><li><a href="#">Plan your evening</a></li><li><a href="#">Accessibility</a></li><li><a href="#">School field trips</a></li><li><a href="#">Getting here</a></li></ul></div><div class="col"><span class="label">Programs</span><ul><li><a href="#">Fulldome features</a></li><li><a href="#">Starball classics</a></li><li><a href="#">After Dark (21+)</a></li><li><a href="#">Members' nights</a></li></ul></div><div class="col"><span class="label">Support</span><ul><li><a href="#">Adopt a star</a></li><li><a href="#">Dome renewal fund</a></li><li><a href="#">Volunteer guild</a></li><li><a href="#">Corporate evenings</a></li></ul></div></div><p class="small"><span>Aurelia Dome · 18-meter dome, 8K stereo projection, and 340 warm seats since 1994</span><span>Tonight: doors 19:00 · first show 19:30</span></p></footer>
+</main>
+</body>
+</html>

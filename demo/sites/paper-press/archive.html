@@ -1,0 +1,199 @@
+<!doctype html><html lang="en" data-theme="paper-press"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Morgue — the Courier archive · Copper County Courier</title>
+<link rel="stylesheet" href="../../../base.css"><link rel="stylesheet" href="../../../fonts.css">
+<link rel="stylesheet" href="../../../tokens.css">
+<link rel="stylesheet" href="../../../elements-display.css">
+<link rel="stylesheet" href="../../../elements-structure.css">
+<link rel="stylesheet" href="../../../elements-lists.css">
+<link rel="stylesheet" href="../../../elements-app.css">
+<link rel="stylesheet" href="../../../elements-containers.css">
+<link rel="stylesheet" href="../../../elements-controls.css">
+<link rel="stylesheet" href="../../../elements-inputs.css">
+<link rel="stylesheet" href="../../../elements-dataviz.css">
+<link rel="stylesheet" href="../../../elements-overlay.css">
+<link rel="stylesheet" href="../../../elements-interactions.css">
+<link rel="stylesheet" href="../../../elements-misc.css">
+<link rel="stylesheet" href="../../../elements-size.css">
+<link rel="stylesheet" href="../../../elements-workflow.css">
+<link rel="stylesheet" href="../../../elements-inspector.css">
+<link rel="stylesheet" href="../../../elements-reader.css">
+<link rel="stylesheet" href="../../../elements-assistant.css">
+<link rel="stylesheet" href="../../../themes/src/editorial.css">
+<script src="../../../elements.js" defer></script><script src="../../../charts.js" defer></script>
+</head>
+<body>
+
+<nav class="el-navbar el-navbar--top">
+  <a class="brand" href="index.html">The Copper County Courier <small class="el-badge" style="font-variant-caps:normal">EST. 1912</small></a>
+  <div class="links">
+    <a href="index.html">Front</a>
+    <a href="archive.html" aria-current="page">The Morgue</a>
+    <a href="article.html">Long Report</a>
+    <a href="account.html">My Courier</a>
+    <a href="app.html">The Archive Room</a>
+  </div>
+  <div class="actions">
+    <span class="el-status-pill info">Microfilm + clippings</span>
+    <a class="el-btn" href="account.html">Subscribe</a>
+  </div>
+</nav>
+
+<main class="el-page">
+  <header class="el-hero el-hero--poster" style="--el-hero-pad:56px;--el-hero-min:0">
+    <p class="el-eyebrow">THE MORGUE · CLIPPINGS DESK, THIRD FLOOR</p>
+    <h1 style="font-size:clamp(2.2rem,5vw,3.6rem)">Every paper, 1912 &rarr; yesterday.</h1>
+    <p class="lede">Bound volumes, clippings folders and 40 reels of microfilm. The morgue answers in one
+    business day if you can&rsquo;t find it here.</p>
+  </header>
+
+  <div class="el-banner el-banner--ok" style="margin:22px 0">
+    <span class="glyph"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="m5 13 4 4L19 7"/></svg></span>
+    <span class="copy"><span class="title">Volumes re-bound through August</span>
+    <span class="body">1912–1929 are off the shelf for two weeks; the microfilm reels carry them meanwhile.</span></span>
+    <button class="el-btn el-btn--outline" data-toast-variant="info" data-toast="The reels stay out until closing time.">Hold a reel</button>
+    <button class="close" aria-label="Dismiss">✕</button>
+  </div>
+
+  <section class="el-section">
+    <div class="el-section-head">
+      <p class="el-eyebrow">Folders</p>
+      <h2>The shelf, decade by decade</h2>
+      <span class="rule"></span>
+    </div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:22px;align-items:center">
+      <button class="el-chip on">1910s</button><button class="el-chip">1920s</button><button class="el-chip">1930s</button>
+      <button class="el-chip">1940s</button><button class="el-chip added">fires</button><button class="el-chip">rodeo</button>
+      <span class="el-tooltip" data-tip="Rubber-banded folders, 61 of them"><button class="el-chip">standpipe</button></span>
+      <button class="el-btn el-btn--ghost" data-toast-variant="info" data-toast="Filters cleared.">Clear</button>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:18px" id="shelf">
+      <article class="el-card el-card--press">
+        <p class="lbl"><span class="el-badge" style="font-variant-caps:normal">FIRE</span> · folder 4-11</p>
+        <h3>Telegraph Ridge, 1947</h3>
+        <p class="sub">Nine papers from the week the ridge burned, filed with the county fire map.</p>
+        <p class="foot"><span class="el-avatar" style="width:24px;height:24px">CW</span> <span class="who">CANDY WEEMS <span class="role">· carrier</span></span>
+          <button class="el-btn el-btn--ghost" data-drawer-open="drawer-folder" data-toast-variant="ok" data-toast="Folder opened in the reading rack.">Open</button></p>
+      </article>
+      <article class="el-card el-card--press">
+        <p class="lbl">FOLDER 4-12</p>
+        <h3>The 1971 flood maps</h3>
+        <p class="sub">Drawn over print editions by the water district — pencil on newsprint, kept.</p>
+        <p class="foot"><span class="el-avatar" style="width:24px;height:24px">JP</span> <span class="who">JESSE PALE <span class="role">· city</span></span>
+          <button class="el-btn el-btn--ghost" data-drawer-open="drawer-folder">Open</button></p>
+      </article>
+      <article class="el-card el-card--press">
+        <p class="lbl"><span class="el-badge" style="font-variant-caps:normal">RODEO</span> · folder 2-3</p>
+        <h3>Rodeo entries, 1961</h3>
+        <p class="sub">Entry cards, the judge&rsquo;s sheet, and a photograph nobody has ever Identified.</p>
+        <p class="foot"><span class="el-avatar" style="width:24px;height:24px">RA</span> <span class="who">RUTH ALDERTON <span class="role">· mine</span></span>
+          <button class="el-btn el-btn--ghost" data-drawer-open="drawer-folder">Open</button></p>
+      </article>
+    </div>
+
+    <nav class="el-pagination" data-page-source="#shelf" data-page-size="3" style="margin-top:18px">
+      <button class="page" data-action="first">«</button>
+      <button class="page" data-action="prev">‹</button>
+      <button class="page on">1</button><button class="page">2</button><button class="page">3</button>
+      <button class="page" data-action="next">›</button><button class="page" data-action="last">»</button>
+      <span class="info">1 / 3</span>
+    </nav>
+
+    <div class="el-empty" style="margin-top:30px">
+      <span class="el-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></span>
+      <span class="title">Nothing in the morgue answers to &ldquo;zinc prices&rdquo;</span>
+      <span class="msg">We style it plainly: if the paper didn&rsquo;t print it, the morgue doesn&rsquo;t hold it.</span>
+      <span class="hint">Try the county clerk instead — the Courier only quotes them.</span>
+      <button class="el-btn el-btn--outline" data-command="desk">Ask the desk <span class="el-kbd">⌘K</span></button>
+    </div>
+
+    <div class="el-listbox" style="margin-top:16px">
+      <span class="el-skeleton title"></span>
+      <span class="el-skeleton text"></span>
+      <span class="el-skeleton text" style="width:58%"></span>
+    </div>
+    <p class="el-eyebrow" style="margin-top:26px">FETCHING THE 1930s FIRE FOLDERS…</p>
+  </section>
+
+  <section class="el-section el-section--flush" style="padding-bottom:30px">
+    <div class="el-section-head">
+      <p class="el-eyebrow">The ledger</p>
+      <h2>Who keeps which decade</h2>
+      <span class="rule"></span>
+    </div>
+    <div style="display:flex;gap:14px;margin-bottom:14px;align-items:center">
+      <span class="el-avatar">EM</span> <span>ED DAHL · morgue chief, 1979 &rarr;</span>
+      <span class="el-avatar" style="width:26px;height:26px">RA</span> <span>RUTH ALDERTON · mine desk</span>
+      <span class="el-avatar" style="width:26px;height:26px">MM</span> <span>MAYA MOTT · farm</span>
+    </div>
+    <table class="el-table el-table--broadsheet">
+      <thead><tr><th>Decade</th><th>Volumes</th><th class="r">Reels</th><th>Kept by</th><th class="r">Run</th></tr></thead>
+      <tbody>
+        <tr><td>1910s</td><td>4</td><td class="num">2</td><td>E. Dahl</td><td class="num r">240</td></tr>
+        <tr><td>1940s</td><td>9</td><td class="num">6</td><td>R. Alderton</td><td class="num r">1,900</td></tr>
+        <tr><td>1970s</td><td>10</td><td class="num">9</td><td>E. Dahl</td><td class="num r">3,400</td></tr>
+        <tr><td>2020s</td><td>7</td><td class="num">—</td><td>Digital</td><td class="num r">12,000</td></tr>
+      </tbody>
+    </table>
+  </section>
+</main>
+
+<div id="scrim-archive" class="el-scrim" data-dialog-scrim style="position:fixed;inset:0"></div>
+<aside class="el-drawer right" id="drawer-folder" data-scrim="scrim-archive" aria-label="Folder detail">
+  <div class="el-drawer-head"><h2 style="font-family:var(--el-font-display);font-size:1.3rem;margin:0">Folder 4-11</h2>
+    <button class="close" data-drawer-close aria-label="Close">✕</button></div>
+  <div class="el-drawer-body">
+    <div class="el-media-band el-media-band--flat">
+      <figure class="media"><img alt="County fire map, 1947 edition, pencil marked"
+        src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='640' height='360'><rect width='640' height='360' fill='%23f1e8d4'/><path d='M40 320 L180 120 L360 190 L540 90 L600 320' stroke='%231d3557' stroke-width='4' fill='none'/><circle cx='360' cy='190' r='26' fill='none' stroke='%2399351f' stroke-width='3' stroke-dasharray='6 5'/><text x='52' y='46' font-family='Georgia,serif' font-size='20' fill='%2333302a'>COUNTY FIRE MAP · 1947</text><rect x='52' y='240' width='180' height='10' fill='%23cbb98f'/><rect x='52' y='262' width='140' height='10' fill='%23cbb98f'/></svg>"><figcaption>County fire map over the 21 Aug. edition</figcaption></figure>
+      <div class="body">
+        <p class="label el-eyebrow">Folder detail</p>
+        <h3>Nine papers, one map, rubber band</h3>
+        <p>Filed the week the ridge burned; the map was slipped in by the water district in 1952.</p>
+      </div>
+    </div>
+    <div class="el-fact-grid" style="margin-top:14px">
+      <div class="el-fact"><span class="k">Papers</span><span class="v">9</span></div>
+      <div class="el-fact"><span class="k">First to last</span><span class="v">19–27 Aug</span></div>
+      <div class="el-fact is-hot"><span class="k">Condition</span><span class="v">Brittle A</span></div>
+    </div>
+    <ul class="el-timeline" style="margin-top:14px">
+      <li class="ok"><span class="when">1947</span><span class="what">Filed at 9 a.m. the morning after.<span class="src">docket</span></span></li>
+      <li class="ok"><span class="when">1952</span><span class="what">Map added by the water district.<span class="src">pencil note</span></span></li>
+      <li class="pending"><span class="when">Now</span><span class="what">Ready for the digitising rack.<span class="src">queue</span></span></li>
+    </ul>
+    <div class="el-source-card" style="margin-top:14px">
+      <span class="src">Courier · 21 Aug 1947, p 1</span>
+      <span class="ttl">&ldquo;Ridge burns; whistle calls all hands&rdquo;</span>
+      <span class="snip">Torn corner, repaired with archive tape in 1996.</span>
+    </div>
+  </div>
+  <div class="el-drawer-foot">
+    <button class="el-btn el-btn--ghost" data-drawer-close>Back to the shelf</button>
+    <button class="el-btn" data-toast-variant="ok" data-toast="Folder 4-11 reserved at the desk.">Reserve</button>
+  </div>
+</aside>
+
+<div class="el-command" id="desk" role="dialog" aria-label="Morgue palette">
+  <div class="el-command-panel">
+    <input class="el-command-input" placeholder="Ask the morgue — folders, reels, decades…" aria-label="Command">
+    <div class="el-command-results">
+      <div class="el-command-group">Go</div>
+      <button class="el-command-row sel" data-value="reels">Reels, 40 of them<span class="el-command-hint"><span class="el-kbd">R</span></span></button>
+      <button class="el-command-row" data-value="folders">Folders by decade<span class="el-command-hint"><span class="el-kbd">F</span></span></button>
+      <div class="el-command-group">Desk verbs</div>
+      <button class="el-command-row" data-value="printday">Send morgue copy to print day<span class="el-command-hint"><span class="el-kbd">P</span></span></button>
+      <p class="el-command-empty">No folder answers to that.</p>
+    </div>
+    <div class="el-command-foot"><span>Return</span><span>open</span><span class="el-kbd">esc</span><span>close</span></div>
+  </div>
+</div>
+
+<footer class="el-footer">
+  <p class="el-eyebrow">The Copper County Courier — The Morgue</p>
+  <p class="el-mute-body">Clippings, volumes and reels · answers in one business day · printed since 1912</p>
+</footer>
+
+<div class="el-toast-region" aria-live="polite"></div>
+</body></html>

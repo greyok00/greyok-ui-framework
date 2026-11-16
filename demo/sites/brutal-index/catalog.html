@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en" data-theme="brutal-index">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Catalog — The Volume Bureau</title>
+<link rel="stylesheet" href="../../../base.css">
+<link rel="stylesheet" href="../../../fonts.css">
+<link rel="stylesheet" href="../../../tokens.css">
+<link rel="stylesheet" href="../../../elements-display.css">
+<link rel="stylesheet" href="../../../elements-structure.css">
+<link rel="stylesheet" href="../../../elements-lists.css">
+<link rel="stylesheet" href="../../../elements-app.css">
+<link rel="stylesheet" href="../../../elements-containers.css">
+<link rel="stylesheet" href="../../../elements-controls.css">
+<link rel="stylesheet" href="../../../elements-inputs.css">
+<link rel="stylesheet" href="../../../elements-dataviz.css">
+<link rel="stylesheet" href="../../../elements-overlay.css">
+<link rel="stylesheet" href="../../../elements-interactions.css">
+<link rel="stylesheet" href="../../../elements-misc.css">
+<link rel="stylesheet" href="../../../elements-size.css">
+<link rel="stylesheet" href="../../../elements-workflow.css">
+<link rel="stylesheet" href="../../../elements-inspector.css">
+<link rel="stylesheet" href="../../../elements-reader.css">
+<link rel="stylesheet" href="../../../elements-assistant.css">
+<link rel="stylesheet" href="../../../themes/src/neo-brutalist.css">
+<script src="../../../elements.js" defer></script>
+<script src="../../../charts.js" defer></script>
+</head>
+<body class="el-reset">
+
+<div class="el-shell" style="display:flex;align-items:stretch;min-height:100vh">
+
+  <nav class="el-navbar el-navbar--rail" aria-label="Primary">
+    <span class="brand">VOLUME<br>BUREAU</span>
+    <div class="links">
+      <a href="index.html">Index</a>
+      <a href="catalog.html" aria-current="page">Catalog</a>
+      <a href="article.html">Method</a>
+      <a href="account.html">Account</a>
+      <a href="app.html">Accessions</a>
+    </div>
+    <div class="actions">
+      <a class="el-btn" href="account.html">Signatory login</a>
+      <span class="el-status-pill ok" data-state="ok">INDEX LIVE</span>
+    </div>
+  </nav>
+
+  <main class="el-page" style="flex:1;min-width:0">
+
+    <div class="el-banner el-banner--info" style="margin-bottom:16px">
+      <span class="glyph" aria-hidden="true">
+        <svg viewBox="0 0 16 16" width="16" height="16"><circle cx="8" cy="8" r="6" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 5v4" stroke="currentColor" stroke-width="2"/><circle cx="8" cy="11.4" r="1" fill="currentColor"/></svg>
+      </span>
+      <span class="copy"><b>The public lane is read-only.</b> <span class="detail">Retrievals and
+        rows under seal require a signatory — the desk answers within the 40-minute SLA.</span></span>
+      <a class="action" href="account.html">Sign in →</a>
+    </div>
+
+    <header class="el-hero el-hero--split el-hero-cols" style="min-height:0;padding:26px 22px 8px">
+      <div class="copy">
+        <p class="el-eyebrow">PUBLIC CATALOG · 9,812 FINDING AIDS INDEXED</p>
+        <h1 style="font-size:clamp(2.2rem,5vw,3.6rem)">SEARCH THE INDEX,<br>NOT THE SHELVES.</h1>
+        <p class="el-body" style="margin-top:6px">Every row is a finding aid. Sealed rows show
+           the seal. Pull anything through the desk — logged, gloved, and returned before the
+           minute is up.</p>
+      </div>
+      <div class="copy" style="align-content:center;justify-items:stretch;gap:12px">
+        <div class="el-search-field">
+          <input class="el-search" type="search" placeholder="Search the index — folder, depositor, year…" aria-label="Search the index">
+        </div>
+        <div style="display:grid;gap:12px">
+          <div class="el-select">
+            <select aria-label="Filter by lane">
+              <option>Lane · all indexed aids</option>
+              <option>Lane · public record only</option>
+              <option>Lane · corporate deposits</option>
+              <option>Lane · estates + sealed rows</option>
+            </select>
+          </div>
+          <div class="el-select">
+            <select aria-label="Sort the index">
+              <option>Sort · accession date, newest first</option>
+              <option>Sort · depositor, A→Z</option>
+              <option>Sort · box count, largest first</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section class="el-section el-section--dense">
+      <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+        <span class="el-label">REFINE</span>
+        <button class="el-chip on">ALL AIDS</button>
+        <button class="el-chip">PUBLIC</button>
+        <button class="el-chip">CORPORATE</button>
+        <button class="el-chip">ESTATE</button>
+        <button class="el-chip ok">UNDER SLA</button>
+        <button class="el-chip fail">SEALED</button>
+      </div>
+    </section>
+
+    <!-- the index table — ruled finding-aid grid -->
+    <section class="el-section el-section--dense">
+      <h2>Finding aids · accession 4081–4128</h2>
+      <table class="el-table el-table--ruled" style="margin-top:14px">
+        <thead>
+          <tr>
+            <th>Accession</th><th>Finding aid</th><th>Depositor</th><th>Boxes</th>
+            <th>Custody check</th><th><span class="el-mono">PULL</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="el-mono">VB-4081</span></td>
+            <td><b>Board minutes 2016–2024</b><br><span class="el-mono" style="font-size:var(--el-fs-xs)" opacity="0.7">EAD · 46 series</span></td>
+            <td>Halden Systems <span class="el-avatar" aria-label="Signatory">OP</span></td>
+            <td class="el-mono">112</td>
+            <td><span class="el-badge ok">RE-VERIFIED 10-28</span></td>
+            <td><button class="el-btn el-btn--outline" data-drawer-open="pull-drawer">Request</button></td>
+          </tr>
+          <tr>
+            <td><span class="el-mono">VB-4094</span></td>
+            <td><b>Planning permits, east lot</b><br><span class="el-mono" style="font-size:var(--el-fs-xs)" opacity="0.7">DC · public lane</span></td>
+            <td>City of Ashen Wharf <span class="el-avatar" aria-label="Signatory">LT</span></td>
+            <td class="el-mono">38</td>
+            <td><span class="el-badge ok">RE-VERIFIED 10-30</span></td>
+            <td><button class="el-btn el-btn--outline" data-drawer-open="pull-drawer">Request</button></td>
+          </tr>
+          <tr>
+            <td><span class="el-mono">VB-4103</span></td>
+            <td><b>Ashcroft estate papers, sealed</b><br><span class="el-mono" style="font-size:var(--el-fs-xs)" opacity="0.7">EAD · seal until release</span></td>
+            <td>Ashcroft estate <span class="el-avatar" aria-label="Signatory">RB</span></td>
+            <td class="el-mono">—</td>
+            <td><span class="el-badge fail">SEALED</span></td>
+            <td><button class="el-btn el-btn--outline el-btn--squared" disabled aria-disabled="true">Sealed</button></td>
+          </tr>
+          <tr>
+            <td><span class="el-mono">VB-4117</span></td>
+            <td><b>Tape Hiss Era, artist archive</b><br><span class="el-mono" style="font-size:var(--el-fs-xs)" opacity="0.7">DC · 214 items</span></td>
+            <td>Tape Hiss Era LLC <span class="el-avatar" aria-label="Signatory">MK</span></td>
+            <td class="el-mono">19</td>
+            <td><span class="el-badge ok">RE-VERIFIED 11-01</span></td>
+            <td><button class="el-btn el-btn--outline" data-drawer-open="pull-drawer">Request</button></td>
+          </tr>
+          <tr>
+            <td><span class="el-mono">VB-4128</span></td>
+            <td><b>The Driftwood Room, contracts</b><br><span class="el-mono" style="font-size:var(--el-fs-xs)" opacity="0.7">EAD · intake in progress</span></td>
+            <td>Driftwood Room Ltd. <span class="el-avatar" aria-label="Signatory">VH</span></td>
+            <td class="el-mono">64</td>
+            <td><span class="el-badge warn">INTAKE RUNNING</span></td>
+            <td><button class="el-btn el-btn--outline" data-drawer-open="pull-drawer">Request</button></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;margin-top:20px">
+        <div class="el-pagination" aria-label="Index pages">
+          <span class="page" data-action="prev">‹</span>
+          <span class="page on">1</span><span class="page">2</span><span class="page">3</span><span class="page">4</span><span class="page">5</span><span class="page">6</span>
+          <span class="page" data-action="next">›</span>
+          <span class="info">1 / 6</span>
+        </div>
+        <span class="el-mono" style="font-weight:700">9,812 AIDS · LAST INDEX SYNC 04:12</span>
+      </div>
+    </section>
+
+    <!-- empty state -->
+    <section class="el-section el-section--dense">
+      <div class="el-panel" style="max-width:640px">
+        <span class="name">NO MATCH UNDER "ASHES TO ASHES"</span>
+        <div class="el-empty">
+          <div class="el-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="22" height="22"><circle cx="10" cy="10" r="6" fill="none" stroke="currentColor" stroke-width="2"/><path d="M14.5 14.5L20 20" stroke="currentColor" stroke-width="2"/></svg>
+          </div>
+          <div class="el-title">NOT IN THE INDEX</div>
+          <div class="el-msg">No finding aid in any lane matches that phrase. The Bureau does
+             not guess — either it is shelved elsewhere, or it was never accessioned.</div>
+          <div class="el-hint">Try the depositor's name, or the accession number if you have it.</div>
+          <div class="el-action"><a class="el-btn el-btn--outline" href="account.html">Ask the desk instead</a></div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- retrieval request drawer -->
+<div class="el-scrim" id="page-scrim" aria-hidden="true"></div>
+<section class="el-drawer right" id="pull-drawer" role="dialog" aria-label="Request a retrieval" data-scrim="page-scrim">
+  <div class="el-drawer-head">Request a retrieval <button class="close" data-drawer-close aria-label="Close request drawer">✕</button></div>
+  <div class="el-drawer-body">
+    <div class="el-field">
+      <label class="el-label" for="pull-acc">ACCESSION</label>
+      <select class="el-dropdown" id="pull-acc">
+        <option>VB-4081 · Board minutes 2016–2024</option>
+        <option>VB-4094 · Planning permits, east lot</option>
+        <option>VB-4117 · Tape Hiss Era, artist archive</option>
+      </select>
+      <span class="el-hint">Sealed rows never reach this list — counsel reads those in the room.</span>
+    </div>
+    <div class="el-field">
+      <label class="el-label" for="pull-who">READER + SIGNATORY</label>
+      <input class="el-input" id="pull-who" placeholder="Name on the badge">
+    </div>
+    <div class="el-field">
+      <label class="el-label" for="pull-when">WHEN YOU NEED IT</label>
+      <div class="el-segmented"><button class="on">NOW</button><button>TODAY PM</button><button>BOOK A DESK</button></div>
+    </div>
+    <label class="el-radio"><input type="radio" name="pull-lane" checked><span class="dot"></span>Reading room desk (Tue–Sat)</label>
+    <div style="margin-top:8px"><label class="el-check-wrapper" style="display:flex;gap:8px;align-items:center">
+      <span class="el-check"><input type="checkbox"></span>
+      <span style="font-size:var(--el-fs-sm)">File my pull to the public access log</span>
+    </label></div>
+  </div>
+  <div class="el-drawer-foot">
+    <button class="el-btn el-btn--ghost" data-drawer-close>Cancel</button>
+    <button class="el-btn" data-toast="Retrieval request logged — desk answers within 40 minutes" data-toast-variant="ok" data-drawer-close>Log the request</button>
+  </div>
+</section>
+
+</body>
+</html>

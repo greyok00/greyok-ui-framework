@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="en" data-theme="sticker-pop">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Club account — Wiggleworks</title>
+<link rel="stylesheet" href="../../../base.css">
+<link rel="stylesheet" href="../../../fonts.css">
+<link rel="stylesheet" href="../../../tokens.css">
+<link rel="stylesheet" href="../../../elements-display.css">
+<link rel="stylesheet" href="../../../elements-structure.css">
+<link rel="stylesheet" href="../../../elements-lists.css">
+<link rel="stylesheet" href="../../../elements-app.css">
+<link rel="stylesheet" href="../../../elements-containers.css">
+<link rel="stylesheet" href="../../../elements-controls.css">
+<link rel="stylesheet" href="../../../elements-inputs.css">
+<link rel="stylesheet" href="../../../elements-dataviz.css">
+<link rel="stylesheet" href="../../../elements-overlay.css">
+<link rel="stylesheet" href="../../../elements-interactions.css">
+<link rel="stylesheet" href="../../../elements-misc.css">
+<link rel="stylesheet" href="../../../elements-size.css">
+<link rel="stylesheet" href="../../../elements-workflow.css">
+<link rel="stylesheet" href="../../../elements-inspector.css">
+<link rel="stylesheet" href="../../../elements-reader.css">
+<link rel="stylesheet" href="../../../elements-assistant.css">
+<link rel="stylesheet" href="../../../themes/src/illustration.css">
+<script src="../../../elements.js" defer></script>
+<script src="../../../charts.js" defer></script>
+</head>
+<body>
+<div class="el-page">
+
+  <nav class="el-navbar el-navbar--top" aria-label="Primary">
+    <a class="brand" href="index.html">Wiggleworks</a>
+    <ul class="links">
+      <li><a href="index.html">Studio</a></li>
+      <li><a href="catalog.html">Sticker library</a></li>
+      <li><a href="article.html">How we make it</a></li>
+      <li><a href="account.html" aria-current="page">Club</a></li>
+      <li><a href="app.html">Sticker Board</a></li>
+    </ul>
+    <div class="actions">
+      <span class="el-avatar" aria-hidden="true">DK</span>
+      <button class="el-btn" type="button" data-command="wiggle-cmd"><span class="el-kbd">/</span>&nbsp;Quick find</button>
+    </div>
+  </nav>
+
+  <header class="el-hero el-hero--centered" style="min-height:0;padding:var(--el-space-5) var(--el-space-5) var(--el-space-4);">
+    <span class="el-eyebrow">bumble plan &middot; 14 months in</span>
+    <h1>Marta's club mailbox</h1>
+    <p>Account for marta@peach-ridge.net &middot; 2 club seats &middot; birthday card from Bomble lands June 11.</p>
+  </header>
+
+  <div class="side-page">
+    <nav class="el-navbar el-navbar--rail" aria-label="Club sections">
+      <a class="brand" href="account.html">Club</a>
+      <ul class="links">
+        <li><a href="account.html" aria-current="page">Profile</a></li>
+        <li><a href="account.html">Mail</a></li>
+        <li><a href="account.html">App seats</a></li>
+        <li><a href="catalog.html">Sticker library</a></li>
+        <li><a href="index.html">Studio</a></li>
+      </ul>
+      <div class="actions"><button class="el-btn el-btn--ghost" type="button" data-dialog-open="leave-club">Leave club</button></div>
+    </nav>
+
+    <main>
+      <section class="el-section el-section--flush">
+        <div class="el-banner el-banner--warn">
+          <span class="glyph">!</span>
+          <div class="copy"><strong>Verify Marta's grown-up email.</strong> Club mail can't ship until the account email is confirmed — the link goes to the peach-ridge address.</div>
+          <button class="action el-btn el-btn--outline" type="button" data-toast="Verification email re-sent to marta@peach-ridge.net" data-toast-variant="info">Resend verification</button>
+        </div>
+      </section>
+
+      <section class="el-section">
+        <h1 style="margin-top:0;">Profile &amp; mail</h1>
+        <p class="el-hint">Changes apply to both club seats. Sticker mail ships Thursdays from the Belmont print plant.</p>
+
+        <div class="el-stepper" role="list" aria-label="club signup steps">
+          <li class="done" role="listitem"><span class="num">1</span> Free short</li>
+          <li class="done" role="listitem"><span class="num">2</span> Bumble plan</li>
+          <li class="done" role="listitem"><span class="num">3</span> First sheet received</li>
+          <li class="active" role="listitem"><span class="num">4</span> Verify email</li>
+          <li role="listitem"><span class="num">5</span> Birthday card</li>
+        </div>
+      </section>
+
+      <section class="el-section el-section--dense">
+        <div class="el-cluster split-cluster">
+          <form class="el-panel" style="padding:var(--el-space-4);display:grid;gap:var(--el-space-3);">
+            <h2 style="margin:0;font-size:var(--el-fs-lg);">Club profile</h2>
+
+            <label class="el-field">
+              <span class="el-label">How we address the club member</span>
+              <input class="el-input" type="text" value="Marta" required>
+              <span class="el-hint">This name is written on the sticker packet by a person, in pen-flavored font.</span>
+            </label>
+
+            <label class="el-field">
+              <span class="el-label">About the two club members</span>
+              <textarea class="el-textarea" rows="4" placeholder="Ages, favorite beast, allergies to glitter…">Marta (7) loves Bomble. Theo (4) loves Zumbly but must be kept away from actual glitter.</textarea>
+              <span class="el-hint">Read by the packing table. Glitter allergies are taken seriously and in writing.</span>
+            </label>
+
+            <div class="el-field">
+              <span class="el-label">Pack arrival preference</span>
+              <select class="el-select" style="padding:9px 12px;border-radius:var(--el-r-md);font-family:var(--el-font-body);">
+                <option>Thursday mail (default)</option>
+                <option>First of the month</option>
+                <option>Hold everything to one summer pack</option>
+              </select>
+              <span class="el-hint">Print plant batches Thursday mail; 4,118 packs ride the press run.</span>
+            </div>
+
+            <div class="el-field">
+              <span class="el-label">Sort the season's sheets</span>
+              <select class="el-dropdown" aria-label="sort sheets">
+                <option>Newest first</option>
+                <option>Most reprinted</option>
+                <option>A&ndash;Z</option>
+              </select>
+              <span class="el-hint">Same order the sticker library uses — changed here, changed there.</span>
+            </div>
+
+            <label class="el-field">
+              <span class="el-label">Look up a past pack</span>
+              <span class="el-search-bar" style="display:inline-flex;flex:1;">
+                <input class="el-search el-search-inline" type="search" placeholder="Search 14 months of packs — try 'peach'" aria-label="Search past packs">
+              </span>
+              <span class="el-hint">Searches sheet names, episode titles and notes from the packing table.</span>
+            </label>
+
+            <h2 style="margin:var(--el-space-2) 0 0;font-size:var(--el-fs-lg);">Club behavior</h2>
+
+            <div class="el-field">
+              <span class="el-label">Sticker sheet format</span>
+              <div class="el-segmented" role="group" aria-label="sticker sheet format">
+                <button class="on" type="button">die-cut</button>
+                <button type="button">kiss-cut</button>
+                <button type="button">sheets</button>
+              </div>
+              <span class="el-hint">Die-cut pops out of the frame. Kiss-cut keeps the liner, saves the plate.</span>
+            </div>
+
+            <label class="el-field">
+              <span class="el-label">
+                <span class="el-switch on" role="switch" aria-checked="true" tabindex="0"><input type="checkbox" checked></span>
+                Include the birthday-cadence card from Bomble
+              </span>
+              <span class="el-hint">Bomble signs in pencil. This is a studio promise, kept since 2019.</span>
+            </label>
+
+            <div class="el-field">
+              <span class="el-label">Mail inserts the club consented to</span>
+              <div style="display:grid;gap:8px;">
+                <label class="check-row" style="display:grid;grid-template-columns:auto 1fr;gap:8px;">
+                  <span class="el-check on"><input type="checkbox" checked></span><span>Season sticker postcard</span>
+                </label>
+                <label class="check-row" style="display:grid;grid-template-columns:auto 1fr;gap:8px;">
+                  <span class="el-check on"><input type="checkbox" checked></span><span>Library tour flyer (Portland only)</span>
+                </label>
+                <label class="check-row" style="display:grid;grid-template-columns:auto 1fr;gap:8px;">
+                  <span class="el-check indeterminate on"><input type="checkbox" aria-label="part selected"></span><span>Peach-ridge neighborhood bulk rate</span>
+                </label>
+              </div>
+              <span class="el-hint">The neighborhood check is pending the other household's yes.</span>
+            </div>
+
+            <div class="el-field">
+              <span class="el-label">Puppet at screenings</span>
+              <div style="display:grid;gap:8px;">
+                <label class="el-radio check-row"><input type="radio" name="puppet" checked><span class="dot"></span><span>Yes — the giant bee hand puppet visits (default)</span></label>
+                <label class="el-radio check-row"><input type="radio" name="puppet"><span class="dot"></span><span>Shy mode — projector only</span></label>
+              </div>
+            </div>
+
+            <label class="el-field">
+              <span class="el-label">Cartoon motion sensitivity</span>
+              <input class="el-slider" type="range" min="0" max="100" value="30" step="5">
+              <span class="el-hint">30 &middot; the studio keeps wobble under 30 for any episode marked "quiet."</span>
+            </label>
+
+            <div class="el-inline-alert el-inline-alert--warn" style="display:flex;gap:10px;align-items:start;">
+              <span class="el-icon" aria-hidden="true">&Delta;</span>
+              <div><strong>Address change needs a pack cycle.</strong> Address edits made after Wednesday ship to the old porch for that week's pack.</div>
+            </div>
+
+            <div class="el-field" data-invalid>
+              <span class="el-label">Alt contact</span>
+              <input class="el-input" aria-invalid="true" value="marta at peach-ridge dot net">
+              <span class="el-error">That's a phrase, not an email — we write real envelopes here.</span>
+            </div>
+
+            <div style="display:flex;gap:var(--el-space-2);align-items:center;flex-wrap:wrap;">
+              <button class="el-btn" type="button" data-toast="Club profile saved — packing table notified" data-toast-variant="ok">Save profile</button>
+              <div class="el-btn-group" role="group" aria-label="mail presets">
+                <button class="el-btn el-btn--outline" type="button">Every week</button>
+                <button class="el-btn el-btn--outline" type="button">Monthly</button>
+                <button class="el-btn el-btn--outline" type="button">Summer only</button>
+              </div>
+              <button class="el-btn el-btn--ghost" type="button">Discard</button>
+              <button class="el-btn el-btn--danger" type="button" data-dialog-open="leave-club" style="margin-left:auto;">Leave the club</button>
+            </div>
+          </form>
+
+          <aside style="display:grid;gap:var(--el-space-3);">
+            <div class="el-panel" style="padding:var(--el-space-3);">
+              <h3 style="margin:0 0 8px;font-size:var(--el-fs-md);">Club status</h3>
+              <p style="margin:0 0 10px;display:flex;align-items:center;gap:8px;"><span class="el-status-dot ok" aria-hidden="true"></span><span class="el-status-pill ok">mail active</span></p>
+              <p style="margin:0 0 10px;display:flex;align-items:center;gap:8px;"><span class="el-status-dot warn" aria-hidden="true"></span><span class="el-status-pill warn">email unverified</span></p>
+              <div style="display:grid;gap:8px;">
+                <button class="el-btn el-btn--squared" type="button" data-toast="Sticker mail resumed — Thursday pack reserved" data-toast-variant="ok">Resume sticker mail</button>
+                <button class="el-btn el-btn--outline" type="button" data-toast="Checking the press line…" data-toast-variant="info">Check press line <span class="el-spinner sm" aria-hidden="true"></span></button>
+              </div>
+            </div>
+            <div class="el-panel" style="padding:var(--el-space-3);">
+              <h3 style="margin:0 0 8px;font-size:var(--el-fs-md);">Recent packs</h3>
+              <table class="el-table el-table--zebra" style="width:100%;">
+                <thead><tr><th scope="col">Pack</th><th scope="col" class="num">Cost</th></tr></thead>
+                <tbody>
+                  <tr><td>WK-46 &middot; Mrs. Peach</td><td class="num">$14.00</td></tr>
+                  <tr><td>WK-45 &middot; Bomble</td><td class="num">$14.00</td></tr>
+                  <tr><td>WK-44 &middot; Wrinkle</td><td class="num">$14.00</td></tr>
+                </tbody>
+              </table>
+              <nav class="el-pagination" aria-label="pack history pages" style="margin-top:12px;">
+                <button class="page disabled" type="button" aria-label="Previous page">&lsaquo;</button>
+                <button class="page on" type="button">1</button>
+                <button class="page" type="button">2</button>
+                <span class="info">1&ndash;3 of 14</span>
+                <button class="page" type="button" aria-label="Next page">&rsaquo;</button>
+              </nav>
+            </div>
+            <div class="el-panel" style="padding:var(--el-space-3);" aria-hidden="true">
+              <h3 style="margin:0 0 8px;font-size:var(--el-fs-md);">Next pack</h3>
+              <div class="el-skeleton" style="height:14px;width:70%;margin-bottom:8px;"></div>
+              <div class="el-skeleton" style="height:14px;width:46%;margin-bottom:8px;"></div>
+              <div class="el-skeleton" style="height:14px;width:58%;"></div>
+            </div>
+            <div class="el-panel" style="padding:var(--el-space-3);">
+              <h3 style="margin:0 0 8px;font-size:var(--el-fs-md);">Pins</h3>
+              <span class="el-pill">plan:bumble</span>
+              <span class="el-badge live" style="margin-left:6px;">thursday mail</span>
+            </div>
+          </aside>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <footer class="el-footer el-footer--plain">
+    <p class="colophon">Club records live in Sticker Board; this page edits the same table the packing table reads.</p>
+  </footer>
+
+</div>
+
+<dialog class="el-dialog" id="leave-club">
+  <div class="el-dialog-head">
+    <h3 class="el-dialog-title">Leave the sticker club?</h3>
+    <button class="el-dialog-close" type="button" aria-label="Close" data-dialog-close>&times;</button>
+  </div>
+  <form class="el-dialog-body" method="dialog">
+    <p style="margin-top:0;">Marta's two seats stop renewing. The 14 past packs stay in the library, and the birthday card from Bomble still goes out in June — that one's not a club thing, it's a Bomble thing.</p>
+    <label class="el-field">
+      <span class="el-label">Tell the studio why (a kid may read it)</span>
+      <span class="el-search-bar" style="display:flex;">
+        <input class="el-search" type="search" placeholder="grew up, moved, no mail slot…" aria-label="Reason for leaving">
+      </span>
+    </label>
+  </form>
+  <div class="el-dialog-foot">
+    <button class="el-btn el-btn--ghost" type="button" data-dialog-close>Stay in the club</button>
+    <button class="el-btn el-btn--danger" type="button" data-toast="Club ended at the next pack — 14 packs kept in the library" data-toast-variant="fail" data-dialog-close>Leave club</button>
+  </div>
+</dialog>
+
+<div class="el-command" id="wiggle-cmd" role="dialog" aria-label="Quick find">
+  <div class="el-command-panel">
+    <input class="el-command-input" type="text" placeholder="Find a pack, seat, or action… try 'seat'" aria-label="Quick find">
+    <div class="el-command-results">
+      <div class="el-command-group">Account</div>
+      <button class="el-command-row sel" type="button">Add an app seat <span class="el-command-hint">S</span></button>
+      <button class="el-command-row" type="button">Send verification email <span class="el-command-hint">V</span></button>
+      <div class="el-command-group">Mail</div>
+      <button class="el-command-row" type="button">Change pack day to monthly <span class="el-command-hint">M</span></button>
+      <div class="el-command-empty" hidden>Nothing packed under that name.</div>
+    </div>
+    <div class="el-command-foot">arrows to move &middot; enter to run &middot; esc to close</div>
+  </div>
+</div>
+
+</body>
+</html>

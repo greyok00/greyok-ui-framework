@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en" data-theme="sticker-pop">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sticker Library — Wiggleworks</title>
+<link rel="stylesheet" href="../../../base.css">
+<link rel="stylesheet" href="../../../fonts.css">
+<link rel="stylesheet" href="../../../tokens.css">
+<link rel="stylesheet" href="../../../elements-display.css">
+<link rel="stylesheet" href="../../../elements-structure.css">
+<link rel="stylesheet" href="../../../elements-lists.css">
+<link rel="stylesheet" href="../../../elements-app.css">
+<link rel="stylesheet" href="../../../elements-containers.css">
+<link rel="stylesheet" href="../../../elements-controls.css">
+<link rel="stylesheet" href="../../../elements-inputs.css">
+<link rel="stylesheet" href="../../../elements-dataviz.css">
+<link rel="stylesheet" href="../../../elements-overlay.css">
+<link rel="stylesheet" href="../../../elements-interactions.css">
+<link rel="stylesheet" href="../../../elements-misc.css">
+<link rel="stylesheet" href="../../../elements-size.css">
+<link rel="stylesheet" href="../../../elements-workflow.css">
+<link rel="stylesheet" href="../../../elements-inspector.css">
+<link rel="stylesheet" href="../../../elements-reader.css">
+<link rel="stylesheet" href="../../../elements-assistant.css">
+<link rel="stylesheet" href="../../../themes/src/illustration.css">
+<script src="../../../elements.js" defer></script>
+<script src="../../../charts.js" defer></script>
+</head>
+<body>
+<div class="el-page">
+
+  <nav class="el-navbar el-navbar--top" aria-label="Primary">
+    <a class="brand" href="index.html">Wiggleworks</a>
+    <ul class="links">
+      <li><a href="index.html">Studio</a></li>
+      <li><a href="catalog.html" aria-current="page">Sticker library</a></li>
+      <li><a href="article.html">How we make it</a></li>
+      <li><a href="account.html">Club</a></li>
+      <li><a href="app.html">Sticker Board</a></li>
+    </ul>
+    <div class="actions">
+      <div class="el-menu-anchor" style="position:relative;">
+        <button class="el-btn el-btn--outline" type="button" data-menu="sort-menu" aria-expanded="false">Sort &middot; newest &#9662;</button>
+        <div class="el-menu" id="sort-menu" role="menu">
+          <div class="el-menu-label">Order the cast by</div>
+          <button class="el-menu-item on" type="button">Newest first</button>
+          <button class="el-menu-item" type="button">Most reprinted</button>
+          <button class="el-menu-item" type="button">A–Z</button>
+          <div class="el-menu-sep" role="separator"></div>
+          <button class="el-menu-item" type="button" data-toast="Cast order reset to broadcast order" data-toast-variant="info">Broadcast order</button>
+        </div>
+      </div>
+      <button class="el-btn" type="button" data-command="wiggle-cmd">Quick find <span class="el-kbd">/</span></button>
+    </div>
+  </nav>
+
+  <header class="el-hero el-hero--split">
+    <div class="media">
+      <div class="fill" role="img" aria-label="Wall of 18 Bumblefluff sticker test sheets, coral and sunflower on cream"></div>
+    </div>
+    <div>
+      <span class="el-eyebrow">the sticker library</span>
+      <h1>Every beast we've ever drawn, one silly page.</h1>
+      <p>34 characters, 62 sticker sheets, and one retired mascot we legally cannot discuss. Filter by mood, episode, or how often the pack sold out.</p>
+      <div class="actions">
+        <button class="el-btn" type="button" data-drawer-open="cast-drawer">Open the cast drawer</button>
+        <button class="el-btn el-btn--ghost" type="button" data-toast="Random beast spun — you got Grumbee" data-toast-variant="info">Surprise me</button>
+      </div>
+    </div>
+  </header>
+
+  <section class="el-section">
+    <div class="el-cluster" role="group" aria-label="library filters" style="gap:8px;margin-bottom:var(--el-space-4);">
+      <button class="el-chip is-selected" type="button">all 34</button>
+      <button class="el-chip" type="button">humming</button>
+      <button class="el-chip" type="button">two dimensions</button>
+      <button class="el-chip ok" type="button">merch live</button>
+      <button class="el-chip warn" type="button">in production</button>
+      <button class="el-badge">season 3</button>
+      <span class="el-tooltip" data-tip="Filters come from the episode tags, not vibes" tabindex="0">
+        <button class="el-btn el-btn--ghost" type="button" aria-label="How filters work">?</button>
+      </span>
+    </div>
+
+    <div class="card-grid">
+      <article class="el-card el-card--flat">
+        <div class="el-card-media" style="height:130px;display:grid;place-items:center;"><span class="el-avatar" style="width:76px;height:76px;font-size:1.8rem;">Bo</span></div>
+        <h3 class="el-card-title">Bomble</h3>
+        <p class="el-card-body">Sheet B-01 &middot; 8 stickers &middot; last reprint Mar 2026 &middot; hums in E flat.</p>
+        <div class="el-card-foot"><span class="el-badge ok">aired</span><button class="el-btn el-btn--ghost" type="button" data-drawer-open="cast-drawer">Sheet details</button></div>
+      </article>
+      <article class="el-card el-card--flat">
+        <div class="el-card-media" style="height:130px;display:grid;place-items:center;"><span class="el-avatar sq" style="width:76px;height:76px;font-size:1.8rem;">Pe</span></div>
+        <h3 class="el-card-title">Mrs. Peach</h3>
+        <p class="el-card-body">Sheet P-02 &middot; 10 stickers &middot; sold out twice &middot; retired botanist.</p>
+        <div class="el-card-foot"><span class="el-badge">new</span><button class="el-btn el-btn--ghost" type="button" data-drawer-open="cast-drawer">Sheet details</button></div>
+      </article>
+      <article class="el-card el-card--flat">
+        <div class="el-card-media" style="height:130px;display:grid;place-items:center;"><span class="el-avatar" style="width:76px;height:76px;font-size:1.8rem;">Zu</span></div>
+        <h3 class="el-card-title">Zumbly</h3>
+        <p class="el-card-body">Sheet Z-03 &middot; 6 stickers &middot; only legal in 2D &middot; loud in any dimension.</p>
+        <div class="el-card-foot"><span class="el-badge warn">in production</span><button class="el-btn el-btn--ghost" type="button" data-drawer-open="cast-drawer">Sheet details</button></div>
+      </article>
+      <article class="el-card el-card--flat">
+        <div class="el-card-media" style="height:130px;display:grid;place-items:center;"><span class="el-avatar" style="width:76px;height:76px;font-size:1.8rem;">Gr</span></div>
+        <h3 class="el-card-title">Grumble</h3>
+        <p class="el-card-body">Sheet G-04 &middot; 8 stickers &middot; perpetually Tuesday &middot; the grumpy one.</p>
+        <div class="el-card-foot"><span class="el-badge ok">aired</span><button class="el-btn el-btn--ghost" type="button" data-drawer-open="cast-drawer">Sheet details</button></div>
+      </article>
+      <article class="el-card el-card--flat">
+        <div class="el-card-media" style="height:130px;display:grid;place-items:center;"><span class="el-avatar sq" style="width:76px;height:76px;font-size:1.8rem;">Wr</span></div>
+        <h3 class="el-card-title">Wrinkle</h3>
+        <p class="el-card-body">Sheet W-05 &middot; 12 stickers &middot; folds himself into envelopes &middot; mail's best friend.</p>
+        <div class="el-card-foot"><span class="el-badge ok">aired</span><button class="el-btn el-btn--ghost" type="button" data-drawer-open="cast-drawer">Sheet details</button></div>
+      </article>
+      <article class="el-card el-card--flat el-card--print">
+        <div class="el-card-media" style="height:130px;display:grid;place-items:center;"><span class="el-avatar" style="width:76px;height:76px;font-size:1.8rem;">Qu</span></div>
+        <h3 class="el-card-title">Query</h3>
+        <p class="el-card-body">Sheet Q-06 &middot; proof sheet only &middot; name pending legal review.</p>
+        <div class="el-card-foot"><span class="el-status-pill running">proofing</span><button class="el-btn el-btn--ghost" type="button" data-drawer-open="cast-drawer">Sheet details</button></div>
+      </article>
+    </div>
+
+    <div class="el-inline-alert" style="margin-top:var(--el-space-4);">
+      <span class="el-icon" aria-hidden="true">&#9654;</span>
+      <div><strong>Six more sheets are scanning now.</strong> The proof room runs Tuesday and Thursday; this grid fills in as plates pass.</div>
+    </div>
+
+    <div class="card-grid" style="margin-top:var(--el-space-4);" aria-hidden="true">
+      <div style="border:2px dashed var(--el-line);border-radius:22px 25px 21px 25px / 25px 21px 25px 22px;padding:var(--el-space-4);"><span class="el-skeleton" style="width:52px;height:52px;border-radius:50%;display:inline-block;margin-bottom:10px;"></span><span class="el-skeleton" style="width:60%;height:14px;display:block;margin-bottom:8px;"></span><span class="el-skeleton" style="width:92%;height:14px;display:block;"></span></div>
+      <div style="border:2px dashed var(--el-line);border-radius:22px 25px 21px 25px / 25px 21px 25px 22px;padding:var(--el-space-4);"><span class="el-skeleton" style="width:52px;height:52px;border-radius:50%;display:inline-block;margin-bottom:10px;"></span><span class="el-skeleton" style="width:70%;height:14px;display:block;margin-bottom:8px;"></span><span class="el-skeleton" style="width:88%;height:14px;display:block;"></span></div>
+      <div style="border:2px dashed var(--el-line);border-radius:22px 25px 21px 25px / 25px 21px 25px 22px;padding:var(--el-space-4);"><span class="el-spinner" aria-hidden="true"></span><span style="font-size:var(--el-fs-sm);color:var(--el-mute);margin-left:6px;">plate check running…</span></div>
+    </div>
+  </section>
+
+  <section class="el-section" style="text-align:center;">
+    <nav class="el-pagination" aria-label="sticker library pages" style="justify-content:center;">
+      <button class="page disabled" type="button" aria-label="Previous page">&lsaquo;</button>
+      <button class="page on" type="button">1</button>
+      <button class="page" type="button">2</button>
+      <button class="page" type="button">3</button>
+      <span class="info">showing 6 of 34 beasts</span>
+      <button class="page" type="button" aria-label="Next page">&rsaquo;</button>
+    </nav>
+  </section>
+
+  <section class="el-section">
+    <div class="el-banner el-banner--warn">
+      <span class="glyph">!</span>
+      <div class="copy"><strong>Two sheets are down to their last box.</strong> B-01 Bomble and G-04 Grumble go to reprint Friday — order before Thursday mail or wait three weeks.</div>
+      <button class="action el-btn el-btn--outline" type="button" data-toast="Restock alert set for B-01 and G-04" data-toast-variant="ok">Alert me at restock</button>
+    </div>
+  </section>
+
+  <section class="el-section">
+    <div class="el-empty">
+      <span class="el-icon" aria-hidden="true">&#9678;</span>
+      <p class="el-msg">No beast matches "two dimensions + gardening".</p>
+      <p class="el-hint">Zumbly refuses to garden — he says the porch is beneath him dimensionally. Try one filter instead of two.</p>
+      <div class="el-action">
+        <button class="el-btn el-btn--outline" type="button" data-toast="Filters cleared — all 34 beasts back" data-toast-variant="ok">Clear both filters</button>
+        <button class="el-btn el-btn--ghost" type="button">Suggest a beast</button>
+      </div>
+    </div>
+  </section>
+
+  <footer class="el-footer el-footer--plain">
+    <p class="colophon">Wiggleworks LLC &middot; sheet library synced from Sticker Board nightly &middot; counts include test prints, because test prints are stickers too.</p>
+  </footer>
+
+</div>
+
+<aside class="el-drawer right" id="cast-drawer" aria-label="Sticker sheet details" data-scrim="cast-scrim">
+  <div class="el-drawer-head"><strong>Sheet B-01 &middot; Bomble</strong></div>
+  <div class="el-drawer-body">
+    <p style="margin-top:0;">The flagship sheet. Reprinted eleven times, never re-colored — the hum note is part of the print spec.</p>
+    <div class="el-fact-grid facts-2">
+      <div class="el-fact"><span class="k">sticker count</span><span class="v">8</span></div>
+      <div class="el-fact"><span class="k">reprints</span><span class="v">11</span></div>
+      <div class="el-fact is-hot"><span class="k">best seller</span><span class="v">4,118</span></div>
+      <div class="el-fact"><span class="k">ink plates</span><span class="v">3</span></div>
+    </div>
+    <p style="margin-top:var(--el-space-3);font-size:var(--el-fs-sm);color:var(--el-ink-soft);">Sheet B-01 ships free on Bumble club week and rides in every library screening kit.</p>
+  </div>
+  <div class="el-drawer-foot">
+    <button class="el-btn el-btn--ghost" type="button" data-drawer-close="cast-drawer">Close</button>
+    <button class="el-btn" type="button" data-toast="Sheet B-01 added to your club cart" data-toast-variant="ok">Add to cart</button>
+  </div>
+</aside>
+<div class="el-scrim" id="cast-scrim" data-dialog-scrim></div>
+
+<div class="el-command" id="wiggle-cmd" role="dialog" aria-label="Quick find">
+  <div class="el-command-panel">
+    <input class="el-command-input" type="text" placeholder="Find a beast, sheet, or episode… try 'peach'" aria-label="Quick find">
+    <div class="el-command-results">
+      <div class="el-command-group">Beasts</div>
+      <button class="el-command-row sel" type="button">Mrs. Peach — sheet P-02 <span class="el-command-hint">P</span></button>
+      <button class="el-command-row" type="button">Bomble — sheet B-01 <span class="el-command-hint">B</span></button>
+      <button class="el-command-row" type="button">Zumbly — sheet Z-03 <span class="el-command-hint">Z</span></button>
+      <div class="el-command-group">Episodes</div>
+      <button class="el-command-row" type="button">"The Peach Protocol" — season 3, ep 2 <span class="el-command-hint">E</span></button>
+      <div class="el-command-empty" hidden>No beast by that name — try the porch.</div>
+    </div>
+    <div class="el-command-foot">arrows to move &middot; enter to open &middot; esc to close</div>
+  </div>
+</div>
+
+</body>
+</html>

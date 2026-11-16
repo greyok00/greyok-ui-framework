@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+.DS_Store
+node_modules/
+*.log
+.venv/
+.pytest_cache/
+qa/shots/
+local/
+qa/tmp/
+local/qa-scratch/

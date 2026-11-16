@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en" data-theme="ghost-terminal">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Persistence — WAXLAMP journal</title>
+<link rel="stylesheet" href="../../../base.css">
+<link rel="stylesheet" href="../../../fonts.css">
+<link rel="stylesheet" href="../../../tokens.css">
+<link rel="stylesheet" href="../../../elements-display.css">
+<link rel="stylesheet" href="../../../elements-structure.css">
+<link rel="stylesheet" href="../../../elements-lists.css">
+<link rel="stylesheet" href="../../../elements-app.css">
+<link rel="stylesheet" href="../../../elements-containers.css">
+<link rel="stylesheet" href="../../../elements-controls.css">
+<link rel="stylesheet" href="../../../elements-inputs.css">
+<link rel="stylesheet" href="../../../elements-dataviz.css">
+<link rel="stylesheet" href="../../../elements-overlay.css">
+<link rel="stylesheet" href="../../../elements-interactions.css">
+<link rel="stylesheet" href="../../../elements-misc.css">
+<link rel="stylesheet" href="../../../elements-size.css">
+<link rel="stylesheet" href="../../../elements-workflow.css">
+<link rel="stylesheet" href="../../../elements-inspector.css">
+<link rel="stylesheet" href="../../../elements-reader.css">
+<link rel="stylesheet" href="../../../elements-assistant.css">
+<link rel="stylesheet" href="../../../themes/src/tech-mono.css">
+<script src="../../../elements.js" defer></script>
+<script src="../../../charts.js" defer></script>
+</head>
+<body>
+<div class="el-page">
+
+  <nav class="el-navbar el-navbar--top" aria-label="Primary">
+    <a class="brand" href="index.html">WAXLAMP</a>
+    <ul class="links">
+      <li><a href="index.html">Lamp</a></li>
+      <li><a href="catalog.html">Registry</a></li>
+      <li><a href="article.html" aria-current="page">Journal</a></li>
+      <li><a href="account.html">Account</a></li>
+      <li><a href="app.html">Dash</a></li>
+    </ul>
+    <div class="actions">
+      <label class="el-search-field" style="min-width:220px;">
+        <input class="el-search" type="search" placeholder="[ search the journal ]" aria-label="Search the journal">
+      </label>
+    </div>
+  </nav>
+
+  <main>
+    <section class="el-section el-section--flush">
+      <div class="el-reader">
+        <div class="el-reader-meta" style="display:flex;gap:var(--el-space-3);align-items:center;flex-wrap:wrap;">
+          <span class="el-avatar" aria-hidden="true">RW</span>
+          <span>Rowan Wicker &middot; the persistence number &middot; Nov 2026</span>
+        </div>
+        <h1>Persistence: the scroll that remembers</h1>
+        <div class="el-reader-version-chips" style="display:flex;gap:6px;flex-wrap:wrap;">
+          <span class="chip el-chip el-chip--sm">3.0-rc4</span>
+          <span class="chip el-chip el-chip--sm">2.9 (still fine)</span>
+          <span class="chip el-chip el-chip--sm">2.x <span class="x">EOL Mar 2027</span></span>
+        </div>
+
+        <p>Terminal scrollback has always been a lie you lose on exit. Waxlamp 3.0 makes it a log. This piece explains the store, the 400 ms commit window, and what happens when two machines write the same scroll — the one place we had to choose a winner.</p>
+
+        <h2>The store</h2>
+        <p>Every frame the shell commits writes a segment to an append-only log under <code>~/.waxlamp/store</code>. Segments are 4 KiB, content-addressed, and replayed on boot before the first prompt. No lockfile, no fsync storm — one fsync per segment, roughly every 400 ms at human typing speed.</p>
+
+        <div class="el-code-block">
+<pre><code><span class="el-comment"># what a boot replay prints (abridged)</span>
+<span class="el-keyword">replay</span> <span class="el-string">store/segments</span> <span class="el-number">1284</span> segs &middot; <span class="el-number">71,204</span> lines
+  <span class="el-fn">marks</span> 3 restored &middot; cwd <span class="el-string">~/werk/waxlamp</span>
+  <span class="el-comment">-- cold start 18ms --</span></code></pre>
+        </div>
+
+        <h2>The 400 ms window</h2>
+        <p>We commit on a timer, not on every keypress. A power cut buys you up to 400 ms of silence — the last few keystrokes. We think that trade is correct: fsync-per-key turned the 2.x prototype into a heater, and losing a partial word beats burning 4% CPU all day.</p>
+
+        <blockquote>
+          <p>Recovering a terminal should feel like relighting a lamp, not restoring a database.</p>
+        </blockquote>
+
+        <h2>Two machines, one scroll</h2>
+        <p>Sync is outside the store. Two hosts replay their own tails and <span class="el-kbd">wl sync</span> reconciles by wall clock, newest frame wins, marked <code>CONFLICT</code> inline. We chose boring over clever because scrolls are cheap and clever is expensive to debug.</p>
+
+        <h2 id="how">How to verify</h2>
+        <p>Three steps, run anywhere: <span class="el-kbd">wl store verify</span> walks the segment hashes; <span class="el-kbd">wl store gc --keep 30d</span> trims; <span class="el-kbd">wl replay --dry</span> times a boot without touching the live tube.</p>
+
+        <h2>Rollout chronology</h2>
+        <ul class="el-timeline">
+          <li class="ok"><span class="when">2026 Apr</span><span class="what">store lands in nightlies, opt-in <span class="src">3.0-alpha1</span></span></li>
+          <li class="ok"><span class="when">2026 Aug</span><span class="what">segment format frozen at 1284-byte headers <span class="src">3.0-alpha7</span></span></li>
+          <li class="warn"><span class="when">2026 Oct</span><span class="what">gc race deleted marks on one beta box <span class="src">issue 4412</span></span></li>
+          <li class="running"><span class="when">now</span><span class="what">rc4: default on, import tool for 2.x configs <span class="src">3.0-rc4</span></span></li>
+        </ul>
+
+        <h2>Adoption</h2>
+        <p>Store migration is the last gate before stable. The meter is honest because the import tool prints its own numbers:</p>
+        <div class="el-progress" data-animate-to="88"><div class="fill" style="width:71%;"></div></div>
+        <p class="el-hint" style="margin-top:6px;">88% of nightly shells use the store; 71% of those imported from 2.x configs.</p>
+        <label class="el-field">
+          <span class="el-label">Commit window (milliseconds)</span>
+          <input class="el-slider" type="range" min="100" max="1000" value="400" step="50" aria-label="Commit window">
+          <span class="el-hint">400 is the default and the reference for every number in this piece.</span>
+        </label>
+      </div>
+
+      <div class="el-cluster" style="display:grid;grid-template-columns:1fr 1fr;gap:var(--el-space-3);align-items:start;">
+        <div class="el-citation-rail" aria-label="Compiled citations">
+          <div class="el-cite"><span class="n">1</span><a href="#wl1">Store design note — waxlamp repo, docs/store.md</a></div>
+          <div class="el-cite"><span class="n">2</span><a href="#wl2">Issue 4412 — gc race and the marks fix</a></div>
+          <div class="el-cite"><span class="n">3</span><a href="#wl3">3.0-rc4 release notes — import tool</a></div>
+        </div>
+        <div style="display:grid;gap:var(--el-space-2);">
+          <article class="el-source-card is-cited">
+            <span class="src">design note &middot; docs/store.md</span>
+            <span class="ttl">The log-structured scrollback</span>
+            <p class="snip">Segment format, 400 ms window, boot replay order, and why cold start stayed at 18 ms.</p>
+          </article>
+          <article class="el-source-card">
+            <span class="src">issue 4412 &middot; waxlamp core</span>
+            <span class="ttl">gc race deleted marks on beta box</span>
+            <p class="snip">Fixed in rc4 by replaying marks before gc and pinning them against deletion.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="el-section">
+      <div class="el-media-band">
+        <div class="media">
+          <div class="fill" role="img" aria-label="Diagram: shell, store segments, lamp fleet"></div>
+          <figcaption>one process, one log, no daemon</figcaption>
+        </div>
+        <div class="body">
+          <span class="el-eyebrow">[ the wiring ]</span>
+          <h2>One process, one log, no daemon</h2>
+          <p>The shell, the dash and the store live in one process on purpose. Anything that needs a second process has to make its case, and so far nothing has.</p>
+          <div class="el-fact-grid">
+            <div class="el-fact"><span class="k">segments</span><span class="v">1,284</span></div>
+            <div class="el-fact"><span class="k">lines kept</span><span class="v">71.2k</span></div>
+            <div class="el-fact is-hot"><span class="k">cold start</span><span class="v">18ms</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="el-footer el-footer--plain">
+    <p class="colophon">WAXLAMP Werk — the journal is the citable source; numbers come from the store, not from us.</p>
+  </footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en" data-theme="mono-console">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Zero-config caching — Ridgeline Systems docs</title>
+<link rel="stylesheet" href="../../../base.css">
+<link rel="stylesheet" href="../../../fonts.css">
+<link rel="stylesheet" href="../../../tokens.css">
+<link rel="stylesheet" href="../../../elements-display.css">
+<link rel="stylesheet" href="../../../elements-structure.css">
+<link rel="stylesheet" href="../../../elements-lists.css">
+<link rel="stylesheet" href="../../../elements-app.css">
+<link rel="stylesheet" href="../../../elements-containers.css">
+<link rel="stylesheet" href="../../../elements-controls.css">
+<link rel="stylesheet" href="../../../elements-inputs.css">
+<link rel="stylesheet" href="../../../elements-dataviz.css">
+<link rel="stylesheet" href="../../../elements-overlay.css">
+<link rel="stylesheet" href="../../../elements-interactions.css">
+<link rel="stylesheet" href="../../../elements-misc.css">
+<link rel="stylesheet" href="../../../elements-size.css">
+<link rel="stylesheet" href="../../../elements-workflow.css">
+<link rel="stylesheet" href="../../../elements-inspector.css">
+<link rel="stylesheet" href="../../../elements-reader.css">
+<link rel="stylesheet" href="../../../elements-assistant.css">
+<link rel="stylesheet" href="../../../themes/src/tech-mono.css">
+<script src="../../../elements.js" defer></script>
+<script src="../../../charts.js" defer></script>
+</head>
+<body>
+<div class="el-page">
+
+  <nav class="el-navbar el-navbar--top" aria-label="Primary">
+    <a class="brand" href="index.html">Ridgeline</a>
+    <ul class="links">
+      <li><a href="index.html">Console</a></li>
+      <li><a href="catalog.html">Runners</a></li>
+      <li><a href="article.html" aria-current="page">Docs</a></li>
+      <li><a href="account.html">Account</a></li>
+      <li><a href="app.html">App</a></li>
+    </ul>
+    <div class="actions">
+      <label class="el-search-field" style="min-width:220px;">
+        <input class="el-search" type="search" placeholder="Search docs — try cache keys" aria-label="Search docs">
+      </label>
+    </div>
+  </nav>
+
+  <main>
+    <section class="el-section el-section--flush">
+      <div class="el-reader">
+        <div class="el-reader-meta" style="display:flex;gap:var(--el-space-3);align-items:center;flex-wrap:wrap;">
+          <span class="el-avatar" aria-hidden="true">DV</span>
+          <span>Devon Vaughn &middot; build infra &middot; revised Nov 2026</span>
+        </div>
+        <h1>Zero-config caching: how the hit rate is earned</h1>
+        <div class="el-reader-version-chips" style="display:flex;gap:6px;flex-wrap:wrap;">
+          <span class="chip el-chip el-chip--sm">ridge-4</span>
+          <span class="chip el-chip el-chip--sm">ridge-3 (stable)</span>
+          <span class="chip el-chip el-chip--sm">ridge-2 <span class="x">EOL</span></span>
+        </div>
+
+        <p>Caching on Ridgeline is on by default and needs no manifest. This guide explains what we key on, why misses happen anyway, and how to read the hit meter when it drops. If you want rules instead of reasoning, jump to <a href="#commands">the commands</a>.</p>
+
+        <h2>The key, in one sentence</h2>
+        <p>The cache key is the pair <code>toolchain-hash + input-tree-hash</code>. We hash the input tree with a rolling Merkle build — no lockfile diffs, no git shims, no timestamps. Two branches with identical content share artifacts.</p>
+
+        <div class="el-code-block">
+<pre><code><span class="el-comment"># what ridgeline prints on a hit</span>
+<span class="el-keyword">cache</span> <span class="el-fn">hit</span> <span class="el-string">"toolchain:rust-1.84+aarch64"</span> <span class="el-string">"tree:9f2c…d41e"</span>
+  restored 1,208 artifacts in <span class="el-number">3.4s</span>  <span class="el-comment">(hit rate window 92.4%)</span></code></pre>
+        </div>
+
+        <h2>Why misses still happen</h2>
+        <p>Three causes account for nearly every miss we see, in order of frequency: a build reads the clock, an env variable leaks into a compile, or a tool writes absolute paths into outputs. Each is detectable from the timeline before it is detectable from the meter.</p>
+
+        <blockquote>
+          <p>A hit rate you cannot explain is a hit rate you cannot keep. Read the misses before tuning the knobs.</p>
+        </blockquote>
+
+        <h2 id="commands">Commands</h2>
+        <p>Most cache questions are answered by two commands. <span class="el-kbd">ridge cache explain &lt;job&gt;</span> prints the key and the diff that caused a miss; <span class="el-kbd">ridge cache gc --older-than 30d</span> trims the local mirror. Run them from the console terminal or any runner you have reserved.</p>
+
+        <h2>The migration timeline</h2>
+        <ul class="el-timeline">
+          <li class="ok"><span class="when">Sep 09</span><span class="what">ridge-3 content keys shipped to all islands <span class="src">release 3.4.0</span></span></li>
+          <li class="ok"><span class="when">Sep 30</span><span class="what">cross-region reads enabled for fleet plans <span class="src">release 3.5.0</span></span></li>
+          <li class="warn"><span class="when">Oct 14</span><span class="what">ashburn-4 degraded for 18 minutes during Merkle rollover <span class="src">incident 4471</span></span></li>
+          <li class="running"><span class="when">Nov 2026</span><span class="what">ridge-4: per-module keys in private preview <span class="src">preview 4.0-r7</span></span></li>
+        </ul>
+
+        <h2>Adoption meter</h2>
+        <p>Cross-region reads are the feature that moves the meter. Progress from the last fleet update:</p>
+        <div class="el-progress" data-animate-to="92"><div class="fill" style="width:64%;"></div></div>
+        <p class="el-hint" style="margin-top:6px;">92% of jobs read from the regional island; the rest pin to origin for compliance.</p>
+        <label class="el-field">
+          <span class="el-label">Warmup budget (gigabytes cached before first job)</span>
+          <input class="el-slider" type="range" min="0" max="2000" value="800" step="50" aria-label="Warmup budget">
+          <span class="el-hint">Default 800 GB covers most monorepos; raise it for media trees.</span>
+        </label>
+
+        <h2>Why this page exists</h2>
+        <p>Everything above was compiled from the sources below. The incident note matters: it is the only event where a cache key change cost wall clock, and the postmortem is public.</p>
+      </div>
+
+      <div class="el-cluster" style="display:grid;grid-template-columns:1fr 1fr;gap:var(--el-space-3);align-items:start;">
+        <div class="el-citation-rail" aria-label="Compiled citations">
+          <div class="el-cite"><span class="n">1</span><a href="#r1">Caching guide — ridge-4 handbook, ch. 2</a></div>
+          <div class="el-cite"><span class="n">2</span><a href="#r2">Incident 4471 — Merkle rollover postmortem</a></div>
+          <div class="el-cite"><span class="n">3</span><a href="#r3">Fleet update week 44 — cross-region reads</a></div>
+        </div>
+        <div style="display:grid;gap:var(--el-space-2);">
+          <article class="el-source-card is-cited">
+            <span class="src">handbook &middot; ridge-4 &middot; ch.2</span>
+            <span class="ttl">The content key, end to end</span>
+            <p class="snip">Defines the two-part key, the Merkle input tree, and the toolchain hash pinned at runner boot.</p>
+          </article>
+          <article class="el-source-card">
+            <span class="src">postmortem &middot; incident 4471</span>
+            <span class="ttl">Merkle rollover, Ashburn-4</span>
+            <p class="snip">A rollover race doubled miss traffic for 18 minutes. Fix: staged key rotation with island overlap.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="el-section">
+      <div class="el-media-band">
+        <div class="media">
+          <div class="fill" role="img" aria-label="Diagram: runner, cache island, artifact store"></div>
+          <figcaption>ridge-4 data plane: jobs read the island, write the ledger</figcaption>
+        </div>
+        <div class="body">
+          <span class="el-eyebrow">data plane</span>
+          <h2>Runners read the island; the ledger is the truth</h2>
+          <p>Every restore is recorded into an append-only ledger. Meter lines on the console page are computed from that ledger, which is why the hit rate never disagrees with the bill.</p>
+          <div class="el-fact-grid">
+            <div class="el-fact"><span class="k">ledger lag</span><span class="v">0.8s</span></div>
+            <div class="el-fact"><span class="k">islands</span><span class="v">6</span></div>
+            <div class="el-fact is-hot"><span class="k">hit rate</span><span class="v">92.4%</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="el-footer el-footer--plain">
+    <p class="colophon">Ridgeline docs are compiled weekly from the manual; the handbook is the citable source.</p>
+  </footer>
+
+</div>
+</body>
+</html>

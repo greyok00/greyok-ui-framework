@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="en" data-theme="aperture-motion"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Producer portal — Halide Motion Pictures</title>
+<link rel="stylesheet" href="../../../base.css"><link rel="stylesheet" href="../../../fonts.css">
+<link rel="stylesheet" href="../../../tokens.css">
+<link rel="stylesheet" href="../../../elements-display.css">
+<link rel="stylesheet" href="../../../elements-structure.css">
+<link rel="stylesheet" href="../../../elements-lists.css">
+<link rel="stylesheet" href="../../../elements-app.css">
+<link rel="stylesheet" href="../../../elements-containers.css">
+<link rel="stylesheet" href="../../../elements-controls.css">
+<link rel="stylesheet" href="../../../elements-inputs.css">
+<link rel="stylesheet" href="../../../elements-dataviz.css">
+<link rel="stylesheet" href="../../../elements-overlay.css">
+<link rel="stylesheet" href="../../../elements-interactions.css">
+<link rel="stylesheet" href="../../../elements-misc.css">
+<link rel="stylesheet" href="../../../elements-size.css">
+<link rel="stylesheet" href="../../../elements-workflow.css">
+<link rel="stylesheet" href="../../../elements-inspector.css">
+<link rel="stylesheet" href="../../../elements-reader.css">
+<link rel="stylesheet" href="../../../elements-assistant.css">
+<link rel="stylesheet" href="../../../themes/src/motion-brand.css">
+<script src="../../../elements.js" defer></script><script src="../../../charts.js" defer></script>
+<style>
+  .ap-frame { display:grid; grid-template-columns:236px 1fr; gap:28px; align-items:start; }
+  @media (max-width:900px){
+    .ap-frame{ grid-template-columns:1fr; }
+    /* v0.4.0 mobile pass: the sheet's sticky rail must go static when the frame
+       stacks — pinned inside the stack it paints under the flowing sections */
+    .ap-frame > .el-sidebar { position:static; max-height:none; }
+  }
+  .ap-form-2 { display:grid; grid-template-columns:1fr 1fr; gap:0 18px; }
+  @media (max-width:680px){ .ap-form-2{ grid-template-columns:1fr; } }
+  .ap-sk-row { display:grid; grid-template-columns:44px 1fr 84px; gap:12px; align-items:center; }
+  /* v0.4.0 mobile pass: the vault pairing drops to one column on the phone rung;
+     the sidebar inherits its width from the frame column instead of an inline pin */
+  .ap-duo { display:grid; grid-template-columns:1.2fr 1fr; gap:14px; }
+  @media (max-width:680px){ .ap-duo { grid-template-columns:1fr; } }
+  /* v0.4.0 mobile pass: the action rows wrap at the phone rung instead of
+     holding a 502px min-content line that widens the whole section */
+</style>
+</head>
+<body>
+<main class="el-page">
+
+  <nav class="el-navbar el-navbar--top" aria-label="Primary">
+    <a class="brand" href="index.html">Halide<span class="el-bar-mark" aria-hidden="true"></span></a>
+    <div class="links">
+      <a href="index.html">Productions</a>
+      <a href="catalog.html">Filmography</a>
+      <a href="article.html">Notes from set</a>
+      <a href="account.html" aria-current="page">Producer portal</a>
+      <a href="app.html">Shoot log</a>
+    </div>
+    <div class="actions">
+      <span class="el-avatar" title="June Valdez" style="width:30px;height:30px;font-size:.66em">JV</span>
+    </div>
+  </nav>
+
+  <div class="el-banner el-banner" role="status" style="margin:18px 0 0">
+    <span class="glyph"><svg class="el-icon" viewBox="0 0 24 24"><path d="M4 12a8 8 0 1 0 16 0A8 8 0 0 0 4 12zm8-4v8m-3-3 3 3 3-3" fill="none"/></svg></span>
+    <span class="copy"><b>Permit desk closes 18:00 MST.</b><span class="detail">Corridor renewals filed after the hour land next week.</span></span>
+    <button class="close" aria-label="Dismiss" onclick="this.closest('.el-banner').classList.add('is-dismissed')">✕</button>
+  </div>
+
+  <div class="ap-frame" style="margin-top:26px">
+    <aside class="el-sidebar">
+      <div class="head"><span class="brand" style="font-size:1rem">Producer portal</span></div>
+      <nav class="grp" aria-label="Account">
+        <span class="label">Workspace</span>
+        <a href="#profile" aria-current="page">Producer profile</a>
+        <a href="#slate">Slate preferences</a>
+        <a href="#log">Log deliveries</a>
+        <a href="#invoices">Invoices</a>
+      </nav>
+      <div class="grp" aria-label="Admin">
+        <details class="grp">
+          <summary>Unit seats <span class="chev" aria-hidden="true"></span></summary>
+          <a href="#seats">Seats (3 of 8)</a>
+          <a href="#permits">Permit desk alerts</a>
+        </details>
+      </div>
+      <div class="grp" aria-label="Storage">
+        <span class="label">Dailies vault</span>
+        <div class="el-meter" role="meter" aria-valuenow="48" style="--el-meter-value:48%"><span class="fill"></span></div>
+        <span class="end">48 / 100 TB</span>
+        <div class="el-bar" style="margin-top:6px"><i style="width:48%"></i></div>
+      </div>
+    </aside>
+
+    <div style="display:grid;gap:22px">
+      <section class="el-section" id="profile" style="padding-block:0">
+        <p class="el-eyebrow">workspace — the salt ledger</p>
+        <h2 style="font-family:var(--el-font-display);font-weight:var(--el-head-weight)">Producer profile</h2>
+
+        <div class="el-inline-alert warn" style="margin:10px 0 16px">
+          <svg class="el-icon" viewBox="0 0 24 24"><path d="M12 5 2 20h20z" fill="none"/></svg>
+          <span><span class="title">A festival deliverable is missing a signed spec sheet.</span>
+          <span class="body">The DCP submission needs the exhibition spec signed before the premiere slot is confirmed.</span></span>
+          <button class="close" aria-label="Dismiss">✕</button>
+        </div>
+
+        <div class="el-card el-card--raised">
+          <div class="el-form ap-form-2">
+            <label class="el-field">
+              <span class="el-label">Producer</span>
+              <input class="el-input" value="June Valdez" autocomplete="name">
+              <span class="el-hint" style="color:var(--el-mute);font-size:.78rem">Reads every call sheet at breakfast.</span>
+            </label>
+            <label class="el-field">
+              <span class="el-label">Deliveries contact</span>
+              <input class="el-input" placeholder="dailies@..." value="june@saltedledgerfilm.com">
+              <span class="el-error" style="color:var(--el-warn);font-size:.78rem">Verify — the vault rejected one push yesterday.</span>
+            </label>
+          </div>
+          <label class="el-field">
+            <span class="el-label">Standing producer note</span>
+            <textarea class="el-textarea" rows="3" placeholder="Anything the unit chief reads before call 1…">Every sunset block goes in the log with open and close times — no exceptions, no rounding.</textarea>
+          </label>
+          <div class="el-sep" style="height:1px;background:var(--el-line-2);margin:16px 0"></div>
+          <div class="el-form ap-form-2">
+            <label class="el-field">
+              <span class="el-label">Slate position</span>
+              <span class="el-select"><select>
+                <option>Full production — 210k picture</option>
+                <option>Unit support — weekly</option>
+                <option>Plate + stage — daily</option>
+              </select></span>
+            </label>
+            <label class="el-field">
+              <span class="el-label">Find in the log</span>
+              <span class="el-search-field"><input class="el-search" type="search" placeholder="Search call sheets, permits…"></span>
+            </label>
+          </div>
+          <div class="actions" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+            <span class="el-btn-group">
+              <button class="el-btn" data-toast="Producer profile saved — call sheets now name you first." data-toast-variant="ok">Save profile</button>
+              <button class="el-btn ghost" data-toast="Profile reverted to the last signed copy." data-toast-variant="warn">Revert</button>
+            </span>
+            <span class="el-spinner sm" role="status" aria-label="Syncing"></span>
+            <span class="el-mute-body el-fs-sm">vault synced 6 min ago</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="el-section" id="slate" style="padding-block:0">
+        <h2 style="font-family:var(--el-font-display);font-weight:var(--el-head-weight)">Slate preferences</h2>
+        <div class="ap-form-2">
+          <label class="el-field">
+            <span class="el-label">Default delivery format</span>
+            <span class="el-segmented" role="radiogroup" aria-label="Delivery" style="display:inline-flex">
+              <button class="on">DCP</button><button>ProRes</button><button>HDR10</button><button>Both</button>
+            </span>
+          </label>
+          <label class="el-field">
+            <span class="el-label">Light-window priority</span>
+            <input class="el-slider" type="range" min="0" max="100" value="88" aria-label="Light window priority">
+            <span class="el-hint" style="color:var(--el-mute);font-size:.78rem">88% — a sunset block outranks a stage day here</span>
+          </label>
+          <div class="el-field">
+            <span class="el-label">Permit desk</span>
+            <div style="display:grid;gap:8px;margin-top:4px">
+              <label class="el-radio"><input type="radio" name="ap-permit" checked><span class="dot"></span><span>Desk files for us (house process)</span></label>
+              <label class="el-radio"><input type="radio" name="ap-permit"><span class="dot"></span><span>Producer files, desk reviews</span></label>
+              <label class="el-radio"><input type="radio" name="ap-permit" disabled><span class="dot" style="opacity:.45"></span><span>Self-file — not on unit support</span></label>
+            </div>
+          </div>
+          <div class="el-field">
+            <span class="el-label">Portal conveniences</span>
+            <div style="display:grid;gap:10px;margin-top:10px">
+              <label style="display:flex;gap:10px;align-items:center"><span class="el-switch on" role="switch" aria-checked="true" tabindex="0"></span><span class="el-body" style="font-size:.9em">Call sheets at 04:58 <span class="el-chip" style="padding:1px 8px;font-size:.72rem">house rule</span></span></label>
+              <label style="display:flex;gap:10px;align-items:center"><span class="el-switch on" role="switch" aria-checked="true" tabindex="0"></span><span class="el-body" style="font-size:.9em">Golden-hour alerts 15 min out</span></label>
+              <label style="display:flex;gap:10px;align-items:center;opacity:.55"><span class="el-switch" role="switch" aria-checked="false" tabindex="0"></span><span class="el-body" style="font-size:.9em">Raw vault receipts in exports</span></label>
+            </div>
+          </div>
+        </div>
+        <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+          <button class="el-btn" data-toast="Slate preferences applied to every new picture." data-toast-variant="ok">Apply to new pictures</button>
+          <span class="el-popover"><button class="el-btn ghost">What is a sunset block?</button>
+            <div class="el-pop"><h4>Sunset block</h4><p>The day's last 28 minutes of usable light, booked like a stage. The log records open and close as lines.</p></div>
+          </span>
+          <button class="el-btn ghost" data-dialog-open="ap-invoice-dialog">Invoice preview</button>
+        </div>
+      </section>
+
+      <section class="el-section" id="log" style="padding-block:0">
+        <h2 style="font-family:var(--el-font-display);font-weight:var(--el-head-weight)">Log deliveries</h2>
+        <div class="ap-form-2">
+          <div class="el-field">
+            <span class="el-label">Who signs the log</span>
+            <div style="display:grid;gap:8px;margin-top:4px">
+              <label style="display:flex;gap:10px;align-items:center"><span class="el-check"><input type="checkbox" checked></span><span class="el-body" style="font-size:.9em">June Valdez — line producer</span></label>
+              <label style="display:flex;gap:10px;align-items:center"><span class="el-check"><input type="checkbox"></span><span class="el-body" style="font-size:.9em">Unit chief — nightly sign-off</span></label>
+              <label style="display:flex;gap:10px;align-items:center;opacity:.55"><span class="el-check indeterminate"><input type="checkbox" disabled></span><span class="el-body" style="font-size:.9em">Second unit — per block only</span></label>
+            </div>
+          </div>
+          <label class="el-field">
+            <span class="el-label">Log close time</span>
+            <input class="el-slider" type="range" min="0" max="24" value="2" aria-label="Log close hour">
+            <span class="el-hint" style="color:var(--el-mute);font-size:.78rem">02:10 MST — after the last setup, before breakfast.</span>
+          </label>
+        </div>
+      </section>
+
+      <section class="el-section el-section--dense" id="invoices" style="padding-block:0">
+        <h2 style="font-family:var(--el-font-display);font-weight:var(--el-head-weight)">Slate onboarding</h2>
+        <ul class="el-stepper">
+          <li class="done"><span class="num">1</span>Workspace created</li>
+          <li class="done"><span class="num">2</span>Unit seats assigned</li>
+          <li class="active"><span class="num">3</span>Deliverable spec signed</li>
+          <li><span class="num">4</span>First day log opened</li>
+        </ul>
+        <div style="display:flex;gap:10px;align-items:center;margin-top:12px;flex-wrap:wrap">
+          <button class="el-btn disabled" aria-disabled="true" disabled>Back</button>
+          <button class="el-btn" data-toast="Spec sheet sent for signature." data-toast-variant="ok">Send for signature</button>
+          <span class="el-pill ghost">step 3 of 4</span>
+        </div>
+      </section>
+
+      <section class="el-section el-section--dense" style="padding-block:0">
+        <h2 style="font-family:var(--el-font-display);font-weight:var(--el-head-weight)">Invoices</h2>
+        <table class="el-table el-table--zebra">
+          <thead><tr><th>Invoice</th><th>Scope</th><th class="num">Amount</th><th>Issued</th><th>State</th></tr></thead>
+          <tbody>
+            <tr><td class="el-mono">H-0871</td><td>Sonora Red — stage 3 week</td><td class="num el-mono">$23,400</td><td>Nov 01</td><td><span class="el-status-pill queued">awaiting</span></td></tr>
+            <tr><td class="el-mono">H-0865</td><td>Salt Ledger conform block</td><td class="num el-mono">$11,200</td><td>Oct 24</td><td><span class="el-status-pill ok">paid</span></td></tr>
+            <tr><td class="el-mono">H-0859</td><td>Night-glass kit rental</td><td class="num el-mono">$3,900</td><td>Oct 12</td><td><span class="el-status-pill ok">paid</span></td></tr>
+          </tbody>
+        </table>
+        <nav class="el-pagination" aria-label="Invoice pages" style="margin-top:14px">
+          <button class="page" aria-label="Previous">‹</button>
+          <button class="page on">1</button>
+          <button class="page">2</button>
+          <button class="page">Next ›</button>
+        </nav>
+      </section>
+
+      <section class="el-section el-section--dense" style="padding-block:0">
+        <h2 style="font-family:var(--el-font-display);font-weight:var(--el-head-weight)">Vault retrieval</h2>
+        <div class="ap-duo">
+          <div class="el-card el-card--flat" style="padding:16px">
+            <div class="ap-sk-row"><span class="el-skeleton circle" style="width:36px;height:36px"></span><span class="el-skeleton" style="height:12px"></span><span class="el-skeleton" style="height:10px"></span></div>
+            <div class="ap-sk-row" style="margin-top:10px"><span class="el-skeleton circle" style="width:36px;height:36px"></span><span class="el-skeleton" style="height:12px;width:70%"></span><span class="el-skeleton" style="height:10px"></span></div>
+            <p class="el-mute-body el-fs-sm" style="margin-top:10px">LTO restore queue — day-31 sunset plate is next in the tray.</p>
+            <div class="el-progress" role="progressbar" aria-valuenow="37"><span class="fill" style="width:37%"></span></div>
+          </div>
+          <div class="el-card el-card--flat" style="padding:16px;display:grid;gap:8px;align-content:center">
+            <span class="el-label">Vault health</span>
+            <div class="el-meter ok" role="meter" aria-valuenow="98" style="--el-meter-value:98%"><span class="fill"></span></div>
+            <span class="el-meter-label"><span>checksum pass</span><span>98%</span></span>
+            <button class="el-btn ghost" data-drawer-open="ap-vault-drawer">Open vault ledger</button>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <footer class="el-footer el-footer--plain" style="border-top:1px solid var(--el-line-2);padding-top:20px;margin-top:40px">
+    <div class="small"><span>© 2026 Halide Motion Pictures · producer portal</span><span><a href="app.html" style="color:var(--el-accent)">open the shoot log</a></span></div>
+  </footer>
+
+  <dialog id="ap-invoice-dialog" class="el-dialog el-dialog--narrow">
+    <div class="el-dialog-head"><h3 class="el-dialog-title">Invoice preview — H-0871</h3>
+      <button class="el-dialog-close" data-dialog-close aria-label="Close">✕</button></div>
+    <div class="el-dialog-body">
+      Sonora Red — stage 3 week. Net-15 from issue. Overtime from a permit variance is Halide's cost, never the picture's.
+      <div class="el-progress-truth" style="margin-top:10px"><span class="el-pt-chunk on"></span><span class="el-pt-chunk on"></span><span class="el-pt-chunk on"></span><span class="el-pt-label"><span class="el-pt-count">3 / 3</span> unit weeks invoiced</span></div>
+    </div>
+    <div class="el-dialog-foot">
+      <button class="el-btn ghost" data-dialog-close>Close</button>
+      <button class="el-btn" data-dialog-close data-toast="Invoice H-0871 sent to the deliveries contact." data-toast-variant="ok">Send invoice</button>
+    </div>
+  </dialog>
+
+  <div id="ap-vault-drawer" class="el-drawer right" role="dialog" aria-label="Vault ledger">
+    <div class="el-drawer-head">Vault ledger<button data-drawer-close style="background:none;border:0;color:inherit;cursor:pointer;font-size:1em" aria-label="Close">✕</button></div>
+    <div class="el-drawer-body">
+      <ul class="el-timeline" style="margin:0">
+        <li class="ok"><span class="when">NOV 01</span><span class="what">Checksum pass 98% — vault healthy</span></li>
+        <li class="running"><span class="when">NOV 01</span><span class="what">LTO restorations — day-31 sunset plate next</span></li>
+        <li><span class="when">OCT 24</span><span class="what">Salt Ledger conform sealed to the vault</span></li>
+      </ul>
+    </div>
+    <div class="el-drawer-foot"><button class="el-btn ghost" data-drawer-close>Close</button></div>
+  </div>
+
+  <div class="el-toast-region">
+    <div class="el-toast info" role="status"><span>Portal autosave on — the vault keeps your place.</span><span class="close" aria-label="Dismiss">✕</span></div>
+  </div>
+
+</main>
+</body></html>

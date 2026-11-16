@@ -1,0 +1,402 @@
+<!doctype html>
+<html lang="en" data-theme="gesshoku">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Workspace · Gesshoku</title>
+<link rel="stylesheet" href="../../../base.css">
+<link rel="stylesheet" href="../../../fonts.css">
+<link rel="stylesheet" href="../../../tokens.css">
+<link rel="stylesheet" href="../../../elements-display.css">
+<link rel="stylesheet" href="../../../elements-structure.css">
+<link rel="stylesheet" href="../../../elements-lists.css">
+<link rel="stylesheet" href="../../../elements-app.css">
+<link rel="stylesheet" href="../../../elements-containers.css">
+<link rel="stylesheet" href="../../../elements-controls.css">
+<link rel="stylesheet" href="../../../elements-inputs.css">
+<link rel="stylesheet" href="../../../elements-dataviz.css">
+<link rel="stylesheet" href="../../../elements-overlay.css">
+<link rel="stylesheet" href="../../../elements-interactions.css">
+<link rel="stylesheet" href="../../../elements-inspector.css">
+<link rel="stylesheet" href="../../../elements-assistant.css">
+<link rel="stylesheet" href="../../../elements-misc.css">
+<link rel="stylesheet" href="../../../elements-size.css">
+<link rel="stylesheet" href="../../../elements-workflow.css">
+<link rel="stylesheet" href="../../../themes/src/quiet-minimal.css">
+<script src="../../../elements.js" defer></script>
+<script src="../../../charts.js" defer></script>
+<script src="../../../elements-workflow.js" defer></script>
+<style>
+  .console { display: grid; grid-template-columns: 248px 1fr; gap: var(--el-space-5); margin-bottom: var(--el-space-5); }
+  .app-body-grid { display: grid; grid-template-columns: 236px 1fr; gap: var(--el-space-4); align-items: start; }
+  .stat-strip { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--el-space-3); margin-top: var(--el-space-4); }
+  .notice-strip { display: grid; gap: var(--el-space-3); margin-bottom: var(--el-space-5); }
+  .stage-strip { display: grid; gap: var(--el-space-3); margin-bottom: var(--el-space-5); }
+  .right-col { display: grid; gap: var(--el-space-4); }
+  .ladder-wrap { margin-top: var(--el-space-3); }
+  .el-drawer.is-open { visibility: visible; }
+  .dock-grid { display: grid; grid-template-columns: 300px 1fr; gap: var(--el-space-5); margin-bottom: var(--el-space-5); }
+  @media (max-width: 940px) { .console, .app-body-grid, .dock-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<main class="el-page">
+
+  <nav class="el-navbar el-navbar--headerbar">
+    <div class="lead">
+      <button class="el-winbtn min" aria-label="Minimize"></button>
+      <button class="el-winbtn max" aria-label="Maximize"></button>
+      <button class="el-winbtn close" aria-label="Close"></button>
+    </div>
+    <div class="title-block">
+      <span class="title">Workspace</span>
+      <span class="subtitle">stillness · tonight · room 1</span>
+    </div>
+    <div class="end">
+      <div class="links">
+        <a href="index.html">Room</a>
+        <a href="catalog.html">Practice</a>
+        <a href="app.html" aria-current="page">Sessions</a>
+        <a href="article.html">Journal</a>
+        <a href="account.html">Settings</a>
+      </div>
+      <button class="el-btn el-btn--ghost el-btn--small" data-command="cmd-run">Commands · /</button>
+    </div>
+  </nav>
+
+  <header class="el-hero el-hero--left">
+    <span class="el-eyebrow">Workspace · 21:20 · one room open</span>
+    <h1>The room is dark; the work is banked.</h1>
+    <p>Three sittings tonight, one in the margin. The docent reads the ledger
+       when it is asked, and never when it is not.</p>
+  </header>
+
+  <div class="console">
+    <aside class="el-sidebar">
+      <div class="head">Gesshoku · tonight</div>
+      <div class="grp">
+        <div class="label">Room</div>
+        <a href="app.html" aria-current="page">Sittings <span class="el-badge">3</span></a>
+        <a href="app.html">Bells <span class="el-badge">19</span></a>
+        <a href="app.html">Timers</a>
+      </div>
+      <div class="grp">
+        <div class="label">Archive</div>
+        <a href="article.html">Fieldnotes <span class="el-badge">41</span></a>
+        <a href="catalog.html">Plates <span class="el-badge">22</span></a>
+      </div>
+      <button class="el-btn el-btn--ghost-outline el-sidebar-toggle" type="button">Collapse v</button>
+    </aside>
+
+    <div class="el-listbox">
+      <div class="el-listbox-header">Room readings</div>
+      <div class="el-listbox-row" aria-selected="true">
+        <span class="icon"><span class="el-status-dot ok"></span></span><span class="label">Four in, six out</span>
+        <span class="action">banked 20:52 · <span class="el-badge ok">kept</span></span>
+      </div>
+      <div class="el-listbox-row">
+        <span class="icon"><span class="el-status-dot live"></span></span><span class="label">The eclipsed pause</span>
+        <span class="action">count 2 of 18 · <span class="el-badge live">running</span></span>
+      </div>
+      <div class="el-listbox-row">
+        <span class="icon"><span class="el-status-dot warn"></span></span><span class="label">Lamp lowers at 21:00</span>
+        <span class="action">bell armed · <span class="el-badge warn">soon</span></span>
+      </div>
+      <div class="el-listbox-row">
+        <span class="icon"><span class="el-status-dot idle"></span></span><span class="label">Half an hour, no counter</span>
+        <span class="action">saturday ledger · <span class="el-badge">queued</span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="el-appwin" role="application" aria-label="Gesshoku workspace">
+    <div class="el-titlebar">
+      <div class="lead"><span class="el-status-dot live"></span>
+        <span style="font-family:var(--el-font-mono);font-size:var(--el-fs-xs)">gesshoku-console 2.3</span></div>
+      <div class="el-app-title">stillness · tonight<small>room 1 · seven keys</small></div>
+      <div class="winbtns">
+        <button class="el-winbtn min" aria-label="Minimize"></button>
+        <button class="el-winbtn max" aria-label="Maximize"></button>
+        <button class="el-winbtn close" aria-label="Close"></button>
+      </div>
+    </div>
+
+    <div class="el-menubar">
+      <span class="el-menu-anchor">
+        <button class="el-menubar-item" data-menu="mb-file" aria-haspopup="true">File</button>
+        <div class="el-menu el-menu--dropdown" id="mb-file" role="menu">
+          <button class="el-menu-item" data-menu-keep-open>New sitting</button>
+          <button class="el-menu-item" data-menu-keep-open>Keep as draft</button>
+          <div class="el-menu-sep" role="separator"></div>
+          <button class="el-menu-item is-danger" data-menu-keep-open>Bank without a note</button>
+        </div>
+      </span>
+      <span class="el-menu-anchor">
+        <button class="el-menubar-item" data-menu="mb-record" aria-haspopup="true">Record</button>
+        <div class="el-menu el-menu--dropdown" id="mb-record" role="menu">
+          <button class="el-menu-item" data-menu-keep-open>From the top</button>
+          <button class="el-menu-item" data-menu-keep-open>From the margin</button>
+        </div>
+      </span>
+      <button class="el-menubar-item">View</button>
+      <button class="el-menubar-item">Window</button>
+      <span class="el-menubar-sep" role="separator"></span>
+      <span class="el-menubar-spring"></span>
+      <button class="el-menubar-item" data-command="cmd-run">Search</button>
+    </div>
+
+    <div class="el-headerbar">
+      <button class="el-btn el-btn--small" data-dialog-open="session-new">New session</button>
+      <button class="el-btn el-btn--ghost-outline el-btn--small" data-drawer-open="plates">Import plates</button>
+      <input class="el-search el-search-bar" type="search" placeholder="Find a sitting, a bell, a leaf…">
+      <span class="el-menubar-spring"></span>
+      <span class="el-popover">
+        <button class="el-btn el-btn--ghost el-btn--small" aria-haspopup="true">Room options</button>
+        <div class="el-pop">
+          <button class="el-menu-item">Bell tone: six-out</button>
+          <button class="el-menu-item">Lamp: hold 40%</button>
+          <button class="el-menu-item is-danger">Clear the margin</button>
+        </div>
+      </span>
+    </div>
+
+    <div class="el-appwin-body">
+      <div class="app-body-grid">
+        <div>
+          <div class="el-listbox">
+            <div class="el-listbox-header">Session queue</div>
+            <div class="el-listbox-row">
+              <span class="el-status-pill running">running</span>
+              <span class="label">Eclipsed pause</span><span class="sub">50 min</span>
+            </div>
+            <div class="el-listbox-row">
+              <span class="el-status-pill queued">queued</span>
+              <span class="label">First-saturday silence</span><span class="sub">30 min</span>
+            </div>
+            <div class="el-listbox-row">
+              <span class="el-status-pill ok">done</span>
+              <span class="label">Four in, six out</span><span class="sub">banked 20:52</span>
+            </div>
+            <div class="el-listbox-row">
+              <span class="el-status-pill stale">stale</span>
+              <span class="label">Ledger margin, nine</span><span class="sub">unkept 3 days</span>
+            </div>
+            <div class="el-listbox-row">
+              <span class="el-status-pill live">live</span>
+              <span class="label">Bell tone trial</span><span class="sub">six-out</span>
+            </div>
+          </div>
+
+          <div class="el-ladder-wrap">
+            <div class="el-ladder" data-el-ladder>
+              <div class="el-ladder-step" data-state="done">
+                <span class="el-ladder-idx">01</span><span class="el-ladder-label">Settle</span>
+                <span class="el-ladder-meta">lamp 40%</span></div>
+              <div class="el-ladder-step" data-state="done">
+                <span class="el-ladder-idx">02</span><span class="el-ladder-label">Breath</span>
+                <span class="el-ladder-meta">pattern 4·6</span></div>
+              <div class="el-ladder-step" data-state="running">
+                <span class="el-ladder-idx">03</span><span class="el-ladder-label">Count</span>
+                <span class="el-ladder-meta">2 of 18</span></div>
+              <div class="el-ladder-step" data-state="queued">
+                <span class="el-ladder-idx">04</span><span class="el-ladder-label">Return</span>
+                <span class="el-ladder-meta">bell armed</span></div>
+              <div class="el-ladder-step" data-state="stale">
+                <span class="el-ladder-idx">05</span><span class="el-ladder-label">Margin log</span>
+                <span class="el-ladder-meta">waiting since 21:02</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="right-col">
+          <table class="el-table el-table--ruled">
+            <thead><tr>
+              <th>Session</th><th>Practice</th><th class="num">Length</th><th>State</th><th>Plate</th>
+            </tr></thead>
+            <tbody>
+              <tr><td>N-2211</td><td>The eclipsed pause</td><td class="num">50 min</td>
+                <td><span class="el-status-dot live"></span> running</td><td><a href="#" class="el-btn el-btn--ghost-outline">open</a></td></tr>
+              <tr><td>N-2210</td><td>Four in, six out</td><td class="num">50 min</td>
+                <td><span class="el-status-dot ok"></span> done</td><td><a href="#" class="el-btn el-btn--ghost-outline">open</a></td></tr>
+              <tr><td>N-2209</td><td>Lamp lowers at 21:00</td><td class="num">60 min</td>
+                <td><span class="el-status-dot warn"></span> bell soon</td><td><a href="#" class="el-btn el-btn--ghost-outline">open</a></td></tr>
+              <tr><td>S-1104</td><td>Half an hour, no counter</td><td class="num">30 min</td>
+                <td><span class="el-status-dot idle"></span> queued</td><td><a href="#" class="el-btn el-btn--ghost-outline">open</a></td></tr>
+              <tr><td>N-2205</td><td>Ledger margin, nine</td><td class="num">50 min</td>
+                <td><span class="el-status-dot stale"></span> stale</td><td><a href="#" class="el-btn el-btn--ghost-outline">open</a></td></tr>
+            </tbody>
+          </table>
+
+          <div class="stat-strip">
+            <div class="el-stat"><span class="el-stat-label">Minutes tonight</span><span class="el-stat-value">42</span></div>
+            <div class="el-stat"><span class="el-stat-label">Breath kept</span>
+              <span class="el-sparkline"><svg width="86" height="24" viewBox="0 0 86 24"><polyline points="0,20 14,14 28,16 42,9 56,12 70,5 86,7" fill="none" stroke="var(--el-accent)" stroke-width="1.5"/></svg></span>
+              <span class="el-stat-note">4 · 6, twice</span></div>
+            <div class="el-stat"><span class="el-stat-label">Lamp load</span>
+              <span class="el-meter" role="meter" aria-valuenow="62" aria-valuemin="0" aria-valuemax="100"><span class="fill" style="width:62%"></span></span></div>
+            <div class="el-stat"><span class="el-stat-label">Margin</span><span class="el-stat-value">2</span>
+              <span class="el-stat-delta">+1</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dock-grid" style="margin-top:var(--el-space-4)">
+        <aside class="el-inspector is-docked" id="docent" aria-label="Docent">
+          <div class="el-inspector-header">Docent · local
+            <button class="el-inspector-close" data-el-inspector-close aria-label="Close">×</button></div>
+          <div class="el-inspector-body">
+            <div class="el-assistant-panel">
+              <div class="el-assistant-head">SESSHION DOCENT</div>
+              <div class="el-assistant-log">
+                <div class="el-msg el-msg--user">What did the margin keep tonight?</div>
+                <div class="el-msg el-msg--assistant">Two notes at 20:52; the return note is the one
+                  still open. <span class="el-cite-inline">[1]</span></div>
+                <div class="el-msg el-msg--assistant">The bell is armed for 21:00 — the dark hour
+                  begins after the six-out completes.</div>
+              </div>
+              <div class="el-assistant-foot">
+                <input class="el-input" type="text" placeholder="Ask the margin…">
+                <button class="el-btn el-btn--small">Read</button>
+              </div>
+            </div>
+          </div>
+        </aside>
+
+        <div class="right-col">
+          <div class="el-inline-alert ok">
+            <span class="el-icon"><svg viewBox="0 0 24 24"><path d="M4 12l6 6L20 6"/></svg></span>
+            <div><div class="title">Room readings are current</div>
+              <div class="body">The ledger took tonight's four cards as written; the margin holds one open note.</div></div>
+          </div>
+          <div class="el-empty">
+            <span class="el-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M8 12h8"/></svg></span>
+            <h3>The dark hour is empty by design</h3>
+            <p>Nothing is scheduled inside it. It closes at ten and the counter
+               forgets the middle of the night on purpose.</p>
+            <button class="el-btn el-btn--ghost" data-toast="The dark hour stays unbooked — as agreed.">Keep it unbooked</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="stage-strip">
+        <div class="el-stage-rail el-stage-rail--strip">
+          <div class="el-stage" data-state="done"><span class="el-stage-dot"></span><span class="el-stage-name">settle</span><span class="el-stage-count">lamp 40%</span></div>
+          <div class="el-stage" data-state="done"><span class="el-stage-dot"></span><span class="el-stage-name">breath</span><span class="el-stage-count">4 · 6</span></div>
+          <div class="el-stage" data-state="running"><span class="el-stage-dot"></span><span class="el-stage-name">count</span><span class="el-stage-count">2 of 18</span></div>
+          <div class="el-stage" data-state="queued"><span class="el-stage-dot"></span><span class="el-stage-name">return</span><span class="el-stage-count">bell armed</span></div>
+          <div class="el-stage" data-state="stale"><span class="el-stage-dot"></span><span class="el-stage-name">margin</span><span class="el-stage-count">open note</span></div>
+        </div>
+        <div class="el-progress-truth" aria-live="polite">
+          <span class="el-pt-chunk" data-state="done">settle ✓ <span class="el-pt-count">18</span></span>
+          <span class="el-pt-chunk" data-state="done">breath ✓ <span class="el-pt-count">14</span></span>
+          <span class="el-pt-chunk is-running" data-state="running">count <span class="el-pt-count">2/18</span></span>
+          <span class="el-pt-chunk" data-state="queued">return —</span>
+        </div>
+        <div class="el-progress" data-value="44"><span class="fill" style="width:44%"></span></div>
+      </div>
+    </div>
+
+    <div class="el-actionbar">
+      <span class="lead">24 records · 2 in the margin <span class="el-tooltip" data-tip="Records banked at the last bell.">what counts</span></span>
+      <button class="el-btn el-btn--ghost-outline el-btn--small" data-toast="14 cards banked — the ledger breathes out.">Close box</button>
+      <button class="el-btn el-btn--small" data-toast="Commit kept — room 1 is settled for the night.">Commit cards</button>
+    </div>
+
+    <div class="el-tabbar">
+      <button class="el-tabbar-item is-active">Sittings <span class="count">3</span></button>
+      <button class="el-tabbar-item">Bells <span class="count">19</span></button>
+      <button class="el-tabbar-item">Plates <span class="count">22</span></button>
+      <button class="el-tabbar-item">Margin <span class="count">2</span></button>
+      <button class="el-tabbar-item">Fieldnotes <span class="count">41</span></button>
+    </div>
+  </div>
+
+  <div class="notice-strip">
+    <div class="el-notification-stack">
+      <div class="el-notification is-unread">
+        <span class="el-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M8 12h8"/></svg></span>
+        <div><span class="title">Bell armed</span> <span class="app">gesshoku console · 21:00</span>
+          <div class="body">The lamp holds 40% until the six-out completes.</div></div>
+        <div class="actions"><button type="button" data-toast="Heard — the bell will sound at nine.">Heard</button></div>
+      </div>
+      <div class="el-notification">
+        <span class="el-icon"><svg viewBox="0 0 24 24"><path d="M4 12l6 6L20 6"/></svg></span>
+        <div><span class="title">Margin kept</span> <span class="app">the keeper · 20:52</span>
+          <div class="body">Tonight's margin note reads: "the bell is not the end."</div></div>
+        <div class="actions"><button type="button" data-toast="The margin note is kept to the journal.">Bank it</button></div>
+      </div>
+    </div>
+    <div class="el-toast info"><p>Draft kept at 20:58 — the margin opens it at the bell.</p>
+      <button class="close" aria-label="Dismiss">×</button></div>
+  </div>
+
+  <footer class="el-footer el-footer--plain">
+    <p class="colophon">Gesshoku · workspace · the lamp is banked by hand, once a night.</p>
+  </footer>
+
+  <dialog id="session-new" class="el-dialog">
+    <div class="el-dialog-head"><h2>New sitting</h2>
+      <button class="el-dialog-close" data-dialog-close="session-new" aria-label="Close">×</button></div>
+    <div class="el-dialog-body">
+      <div class="el-field">
+        <label class="el-label" for="s-name">Name the sitting</label>
+        <input class="el-input" id="s-name" value="The eclipsed pause, again">
+      </div>
+      <div class="el-field" style="margin-top:var(--el-space-3)">
+        <label class="el-label" for="s-length">Length</label>
+        <select class="el-select" id="s-length"><option>30 minutes</option><option selected>50 minutes</option><option>60 minutes</option></select>
+      </div>
+      <div class="el-inline-alert warn" style="margin-top:var(--el-space-3)">
+        <span class="el-icon"><svg viewBox="0 0 24 24"><path d="M12 3l10 18H2z"/><path d="M12 10v5"/><circle cx="12" cy="18" r="0.5"/></svg></span>
+        <div><div class="title">The dark hour is near</div>
+          <div class="body">Sittings started after 21:00 end in the dark — the return note waits for morning.</div></div>
+      </div>
+    </div>
+    <div class="el-dialog-foot">
+      <button class="el-btn" data-toast="Sitting opened — the lamp lowers with you.">Begin</button>
+      <button class="el-btn el-btn--ghost" data-dialog-close="session-new">Not yet</button>
+    </div>
+  </dialog>
+
+  <aside class="el-drawer right" id="plates" aria-label="Import plates">
+    <div class="el-drawer-head">Plates to import
+      <button class="el-btn el-btn--ghost" data-drawer-close="plates" aria-label="Close">×</button></div>
+    <div class="el-drawer-body">
+      <p>Two ledger plates are on the scanner. Choose a room for each.</p>
+      <div class="el-field">
+        <label class="el-label" for="d-room">Room for leaf 9</label>
+        <select class="el-select" id="d-room"><option>Evening bench</option><option selected>Room 1</option></select>
+      </div>
+      <div class="el-field" style="margin-top:var(--el-space-3)">
+        <label class="el-label" for="d-room2">Room for leaf 10</label>
+        <select class="el-select" id="d-room2"><option selected>First-saturday</option><option>Room 1</option></select>
+      </div>
+      <span class="el-label" style="display:block;margin-top:var(--el-space-4)">Scanner progress</span>
+      <div class="el-progress" data-value="68"><span class="fill" style="width:68%"></span></div>
+    </div>
+    <div class="el-drawer-foot">
+      <button class="el-btn" data-toast="Two plates imported — leaf 10 waits for a caption.">Import both</button>
+      <button class="el-btn el-btn--ghost" data-drawer-close="plates">Cancel</button>
+    </div>
+  </aside>
+
+  <div class="el-command" id="cmd-run" aria-label="Command kiosk">
+    <div class="el-command-panel">
+      <input class="el-command-input" type="text" placeholder="Command kiosk - press / to search anything" value="lamp">
+      <div class="el-command-results">
+        <button class="el-command-row sel">lamp: hold 40% — room option</button>
+        <button class="el-command-row">lamp: bank at the bell — room option</button>
+        <button class="el-command-row">lamp readings — tonight, room 1</button>
+        <button class="el-command-row">lamp plates — ledger leaves 9 and 10</button>
+      </div>
+      <div class="el-command-foot">
+        <span class="el-command-hint"><span class="el-kbd">/</span> kiosk</span>
+        <span class="el-command-hint"><span class="el-kbd">↵</span> run</span>
+        <span class="el-command-hint"><span class="el-kbd">esc</span> stillness</span>
+      </div>
+    </div>
+  </div>
+
+</main>
+</body>
+</html>
