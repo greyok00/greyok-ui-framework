@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en" data-theme="orbit-deep">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Orrery — observing floor</title>
+<link rel="stylesheet" href="../../../base.css">
+<link rel="stylesheet" href="../../../fonts.css">
+<link rel="stylesheet" href="../../../tokens.css">
+<link rel="stylesheet" href="../../../elements-display.css">
+<link rel="stylesheet" href="../../../elements-structure.css">
+<link rel="stylesheet" href="../../../elements-lists.css">
+<link rel="stylesheet" href="../../../elements-app.css">
+<link rel="stylesheet" href="../../../elements-containers.css">
+<link rel="stylesheet" href="../../../elements-controls.css">
+<link rel="stylesheet" href="../../../elements-inputs.css">
+<link rel="stylesheet" href="../../../elements-dataviz.css">
+<link rel="stylesheet" href="../../../elements-overlay.css">
+<link rel="stylesheet" href="../../../elements-interactions.css">
+<link rel="stylesheet" href="../../../elements-misc.css">
+<link rel="stylesheet" href="../../../elements-size.css">
+<link rel="stylesheet" href="../../../elements-workflow.css">
+<link rel="stylesheet" href="../../../elements-inspector.css">
+<link rel="stylesheet" href="../../../elements-reader.css">
+<link rel="stylesheet" href="../../../elements-assistant.css">
+<link rel="stylesheet" href="../../../themes/src/webgl-immersive.css">
+<script src="../../../elements.js" defer></script>
+<script src="../../../charts.js" defer></script>
+</head>
+<body>
+<main class="el-page">
+<nav class="el-navbar el-navbar--top">
+  <a class="brand" href="index.html">ORRERY</a>
+  <div class="links"><a href="index.html">Sky</a><a href="catalog.html">Archive</a><a href="article.html">Field Manual</a><a href="account.html">Ground Ops</a><a href="observe.html" aria-current="page">Observing Floor</a><a href="app.html">Mission Deck</a></div>
+  <div class="actions">
+<span class="el-chip live el-chip--sm">DSS-43 locked</span>
+<button class="el-btn el-btn--ghost" data-toast="Downlink window opens 23:41 UTC">Notify me</button>
+<button class="el-btn" data-dialog-open="dlg-signin">Operator sign-in</button></div>
+</nav>
+<header class="el-hero el-hero--centered">
+
+<div class="el-eyebrow">OBSERVING FLOOR</div>
+<h1>The floor, live.</h1>
+<p>One page for everything in the room: the copilot on call, the inspector on the lock, and the instruments holding their line.</p>
+<div class="actions"><span class="el-chip live">LIVE PASS</span><span class="el-badge">DSS-43</span></div>
+
+</header>
+<section class="el-section">
+<div class="el-section-head"><div><div class="el-eyebrow">Pass 2,941 · 00:12 elapsed</div><h2>Floor instruments</h2></div></div>
+<div class="el-row-flex" style="align-items:stretch">
+<div class="el-assistant-panel">
+<div class="el-assistant-head"><span class="el-chip live el-chip--sm">Copilot</span><h3>Orrery copilot · pass planning</h3><span class="el-mute" style="margin-left:auto;font-size:12px">grounded on archive</span></div>
+<div class="el-assistant-log">
+<div class="el-msg el-msg--user">Plan the Ka cross-support for Kestrel-9 using Madrid as backup.</div>
+<div class="el-msg el-msg--assistant">
+Ka cross-support is feasible within the 23:41 window: DSS-43 holds the primary feed, DSS-63 stages the Ka secondary with a 0.8° slew penalty <span class="el-cite-inline">[2]</span>.
+<div class="el-plan"><div class="el-plan-title">Plan · 3 steps</div>
+<div>1 · reserve DSS-63 Ka feed for 23:30–00:40 UTC</div>
+<div>2 · re-render handover plate with dual feeds</div>
+<div>3 · notify on-call with margin delta (−0.4 dB)</div></div>
+Sources: <span class="el-cite-inline">[1] BWG memo 44-C</span> <span class="el-cite-inline">[2] Cross-support matrix Oct</span>
+</div>
+<div class="el-msg el-msg--assistant is-unsourced">Weather window is promising, but confirm with the station chief — I have no forecast in the archive.</div>
+<div class="el-msg el-msg--user is-streaming">Notify now.</div>
+</div>
+<div class="el-assistant-foot">
+<input class="el-input" placeholder="Ask the floor — “why did margin drop at T+12?”">
+<button class="el-btn el-btn--ghost el-assistant-stop" aria-label="Stop stream">■</button>
+<button class="el-btn" data-toast="Copilot queued 2 render jobs" data-toast-variant="ok">Send</button>
+</div>
+</div>
+<aside class="el-inspector is-docked">
+<div class="el-inspector-header"><h3>Inspector · live window</h3><button class="el-inspector-close" aria-label="Collapse">×</button></div>
+<div class="el-inspector-body">
+<div class="el-cluster" style="gap:8px;margin-bottom:10px"><span class="el-status-dot live"></span><span class="el-badge">LOCK 00:12</span><span class="el-status-pill ok">STABLE</span></div>
+<div class="el-fact-grid">
+<div class="el-fact"><span class="k">S/N</span><span class="v">41 dB</span></div>
+<div class="el-fact"><span class="k">Elevation</span><span class="v">71.4°</span></div>
+<div class="el-fact is-hot"><span class="k">Margin</span><span class="v">11.2 dB</span></div>
+<div class="el-fact"><span class="k">Feed</span><span class="v">BWG-A</span></div>
+</div>
+<div class="el-cluster" style="margin-top:12px"><span class="el-sparkline" data-chart="sparkline" data-values="2,2.4,3,3.6,4.1,4.6,5.0,5.4" data-width="220" data-height="56" data-color="#5eead4"></span><span class="el-meter warn" data-ticks="10" style="flex:1"><span class="fill" style="--el-meter-value:31%"></span></span></div>
+</div>
+</aside>
+</div>
+</section>
+<section class="el-section">
+<div class="el-section-head"><div><div class="el-eyebrow">Procedures</div><h2>Calibration state</h2></div></div>
+<ol class="el-stepper"><li class="done"><span class="num">1</span><span class="lbl">Align</span></li><li class="done"><span class="num">2</span><span class="lbl">Lock</span></li><li class="active"><span class="num">3</span><span class="lbl">Render</span></li><li class=""><span class="num">4</span><span class="lbl">File</span></li></ol>
+<div class="el-cluster" style="gap:10px">
+<span class="el-status-dot ok"></span><span style="font-size:12px;color:var(--el-mute)">nominal</span>
+<span class="el-status-dot stale"></span><span style="font-size:12px;color:var(--el-mute)">stale traces</span>
+<span class="el-status-dot live"></span><span style="font-size:12px;color:var(--el-mute)">live lock</span>
+<span class="el-badge">+6 observers watching this pass</span>
+</div>
+</section>
+<section class="el-section">
+<div class="el-section-head"><div><div class="el-eyebrow">Watch</div><h2>Window banner</h2></div></div>
+<div class="el-banner el-banner--warn">
+<span class="glyph">◑</span>
+<div class="copy"><b>Eclipse shadow enters feed 00:36</b><span class="detail">Margin historically drops 3 dB for ~40 s. Copilot has a contingency render staged.</span></div>
+<button class="action el-btn el-btn--squared" data-toast="Contingency render armed" data-toast-variant="ok">Arm it</button>
+<button class="close" aria-label="Dismiss">×</button>
+</div>
+</section>
+<section class="el-section">
+<div class="el-section-head"><div><div class="el-eyebrow">Reference</div><h2>This week in the manual</h2></div></div>
+<figure class="el-media-band">
+<div class="media"><svg viewBox="0 0 900 300" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Reference plate">
+<defs>
+<radialGradient id="og" cx="50%" cy="50%" r="50%">
+<stop offset="0" stop-color="#2a5b8f" stop-opacity="0.75"/><stop offset="1" stop-color="#2a5b8f" stop-opacity="0"/>
+</radialGradient>
+<linearGradient id="vg" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#0a2242"/><stop offset="0.6" stop-color="#081528"/><stop offset="1" stop-color="#04070e"/>
+</linearGradient>
+</defs>
+<rect width="900" height="300" fill="url(#vg)"/>
+<circle cx="455" cy="111" r="1.0" fill="#cfe6ff" opacity="0.51"/><circle cx="589" cy="31" r="0.9" fill="#cfe6ff" opacity="0.57"/><circle cx="12" cy="132" r="1.1" fill="#cfe6ff" opacity="0.87"/><circle cx="443" cy="127" r="1.2" fill="#cfe6ff" opacity="0.39"/><circle cx="163" cy="184" r="1.4" fill="#cfe6ff" opacity="0.89"/><circle cx="525" cy="111" r="1.8" fill="#cfe6ff" opacity="0.4"/><circle cx="295" cy="213" r="1.2" fill="#cfe6ff" opacity="0.56"/><circle cx="529" cy="175" r="0.9" fill="#cfe6ff" opacity="0.3"/><circle cx="817" cy="288" r="1.9" fill="#cfe6ff" opacity="0.49"/><circle cx="618" cy="145" r="1.5" fill="#cfe6ff" opacity="0.64"/><circle cx="1" cy="31" r="1.6" fill="#cfe6ff" opacity="0.49"/><circle cx="14" cy="159" r="0.9" fill="#cfe6ff" opacity="0.56"/><circle cx="618" cy="241" r="0.8" fill="#cfe6ff" opacity="0.32"/><circle cx="875" cy="262" r="0.6" fill="#cfe6ff" opacity="0.89"/><circle cx="260" cy="151" r="1.4" fill="#cfe6ff" opacity="0.67"/><circle cx="361" cy="107" r="1.7" fill="#cfe6ff" opacity="0.45"/><circle cx="448" cy="182" r="0.6" fill="#cfe6ff" opacity="0.58"/><circle cx="584" cy="272" r="0.9" fill="#cfe6ff" opacity="0.33"/><circle cx="331" cy="19" r="1.6" fill="#cfe6ff" opacity="0.79"/><circle cx="454" cy="86" r="0.9" fill="#cfe6ff" opacity="0.62"/><circle cx="165" cy="92" r="1.4" fill="#cfe6ff" opacity="0.34"/><circle cx="1" cy="74" r="1.6" fill="#cfe6ff" opacity="0.63"/><circle cx="189" cy="175" r="1.4" fill="#cfe6ff" opacity="0.45"/><circle cx="93" cy="8" r="1.8" fill="#cfe6ff" opacity="0.7"/><circle cx="283" cy="199" r="1.6" fill="#cfe6ff" opacity="0.3"/><circle cx="238" cy="72" r="1.8" fill="#cfe6ff" opacity="0.29"/><circle cx="412" cy="267" r="1.7" fill="#cfe6ff" opacity="0.74"/><circle cx="774" cy="45" r="1.5" fill="#cfe6ff" opacity="0.25"/><circle cx="63" cy="195" r="0.9" fill="#cfe6ff" opacity="0.51"/><circle cx="450" cy="85" r="1.7" fill="#cfe6ff" opacity="0.78"/><circle cx="267" cy="59" r="0.9" fill="#cfe6ff" opacity="0.53"/><circle cx="185" cy="141" r="1.2" fill="#cfe6ff" opacity="0.27"/><circle cx="103" cy="249" r="0.9" fill="#cfe6ff" opacity="0.55"/><circle cx="425" cy="60" r="0.7" fill="#cfe6ff" opacity="0.26"/><circle cx="300" cy="148" r="1.6" fill="#cfe6ff" opacity="0.67"/><circle cx="184" cy="124" r="1.2" fill="#cfe6ff" opacity="0.85"/><circle cx="418" cy="213" r="1.5" fill="#cfe6ff" opacity="0.47"/><circle cx="469" cy="185" r="1.8" fill="#cfe6ff" opacity="0.31"/><circle cx="422" cy="275" r="1.3" fill="#cfe6ff" opacity="0.3"/><circle cx="395" cy="121" r="1.4" fill="#cfe6ff" opacity="0.75"/><circle cx="336" cy="44" r="1.6" fill="#cfe6ff" opacity="0.33"/><circle cx="392" cy="102" r="1.6" fill="#cfe6ff" opacity="0.36"/><circle cx="697" cy="38" r="0.8" fill="#cfe6ff" opacity="0.34"/><circle cx="789" cy="67" r="1.6" fill="#cfe6ff" opacity="0.27"/><circle cx="181" cy="210" r="0.7" fill="#cfe6ff" opacity="0.52"/><circle cx="299" cy="218" r="1.4" fill="#cfe6ff" opacity="0.51"/><circle cx="330" cy="202" r="0.8" fill="#cfe6ff" opacity="0.51"/><circle cx="677" cy="119" r="1.1" fill="#cfe6ff" opacity="0.83"/><circle cx="260" cy="3" r="0.9" fill="#cfe6ff" opacity="0.65"/><circle cx="477" cy="18" r="0.9" fill="#cfe6ff" opacity="0.46"/><circle cx="254" cy="117" r="1.4" fill="#cfe6ff" opacity="0.86"/><circle cx="392" cy="169" r="1.3" fill="#cfe6ff" opacity="0.67"/><circle cx="751" cy="53" r="0.6" fill="#cfe6ff" opacity="0.43"/><circle cx="380" cy="278" r="1.4" fill="#cfe6ff" opacity="0.45"/><circle cx="316" cy="222" r="0.8" fill="#cfe6ff" opacity="0.68"/><circle cx="281" cy="255" r="1.5" fill="#cfe6ff" opacity="0.27"/><circle cx="695" cy="43" r="1.9" fill="#cfe6ff" opacity="0.63"/><circle cx="319" cy="179" r="1.2" fill="#cfe6ff" opacity="0.81"/><circle cx="67" cy="67" r="1.4" fill="#cfe6ff" opacity="0.78"/><circle cx="591" cy="78" r="1.5" fill="#cfe6ff" opacity="0.68"/><circle cx="575" cy="14" r="1.3" fill="#cfe6ff" opacity="0.65"/><circle cx="448" cy="117" r="1.2" fill="#cfe6ff" opacity="0.26"/><circle cx="449" cy="218" r="0.8" fill="#cfe6ff" opacity="0.39"/><circle cx="456" cy="6" r="1.3" fill="#cfe6ff" opacity="0.5"/><circle cx="412" cy="187" r="1.6" fill="#cfe6ff" opacity="0.76"/><circle cx="652" cy="14" r="1.4" fill="#cfe6ff" opacity="0.73"/><circle cx="80" cy="275" r="1.8" fill="#cfe6ff" opacity="0.7"/><circle cx="484" cy="296" r="0.9" fill="#cfe6ff" opacity="0.64"/><circle cx="545" cy="167" r="0.9" fill="#cfe6ff" opacity="0.38"/><circle cx="435" cy="36" r="1.5" fill="#cfe6ff" opacity="0.44"/><circle cx="545" cy="178" r="0.8" fill="#cfe6ff" opacity="0.56"/><circle cx="846" cy="299" r="1.7" fill="#cfe6ff" opacity="0.73"/><circle cx="626" cy="261" r="1.7" fill="#cfe6ff" opacity="0.27"/><circle cx="608" cy="100" r="1.5" fill="#cfe6ff" opacity="0.61"/><circle cx="883" cy="28" r="1.7" fill="#cfe6ff" opacity="0.6"/><circle cx="262" cy="78" r="0.7" fill="#cfe6ff" opacity="0.6"/><circle cx="400" cy="88" r="1.9" fill="#cfe6ff" opacity="0.85"/><circle cx="473" cy="291" r="1.8" fill="#cfe6ff" opacity="0.57"/><circle cx="170" cy="192" r="1.4" fill="#cfe6ff" opacity="0.9"/><circle cx="392" cy="216" r="1.2" fill="#cfe6ff" opacity="0.56"/><circle cx="500" cy="194" r="0.6" fill="#cfe6ff" opacity="0.44"/><circle cx="415" cy="70" r="1.5" fill="#cfe6ff" opacity="0.54"/><circle cx="113" cy="220" r="1.8" fill="#cfe6ff" opacity="0.54"/><circle cx="318" cy="132" r="0.7" fill="#cfe6ff" opacity="0.35"/><circle cx="528" cy="59" r="1.1" fill="#cfe6ff" opacity="0.76"/><circle cx="887" cy="190" r="1.3" fill="#cfe6ff" opacity="0.63"/><circle cx="433" cy="154" r="1.3" fill="#cfe6ff" opacity="0.51"/><circle cx="34" cy="292" r="1.0" fill="#cfe6ff" opacity="0.65"/><circle cx="745" cy="17" r="1.1" fill="#cfe6ff" opacity="0.62"/><circle cx="498" cy="109" r="1.4" fill="#cfe6ff" opacity="0.37"/>
+<circle cx="378" cy="102" r="90" fill="url(#og)"/><circle cx="378" cy="102" r="39" fill="#0e2b4d"/>
+<ellipse cx="378" cy="102" rx="126" ry="48" fill="none" stroke="#7de1ff" stroke-opacity="0.4" stroke-width="1.2" transform="rotate(-16 378 102)"/>
+<ellipse cx="378" cy="102" rx="174" ry="60" fill="none" stroke="#7de1ff" stroke-opacity="0.2" stroke-width="1" transform="rotate(-16 378 102)"/>
+<circle cx="666" cy="78" r="3.5" fill="#7de1ff"/>
+<line x1="0" y1="234" x2="900" y2="216" stroke="#7de1ff" stroke-opacity="0.14" stroke-width="1"/>
+</svg><div class="fill"><figcaption>render 20 fps · feed BWG-A</figcaption></div></div>
+<div class="body"><div class="label">ORRERY OBSERVING FLOOR</div><h2>Feed cone over the rise</h2><p>The predicted cone and the measured cone overlap by 0.4° during the first 40 seconds — visible in the render, invisible to the eye. That is the point.</p></div>
+</figure>
+</section>
+<footer class="el-footer"><div class="cols"><div class="col"><span class="label">Platforms</span><ul><li><a href="#">Mission Deck</a></li><li><a href="#">Pass Planner</a></li><li><a href="#">Beacon API</a></li><li><a href="#">Archive SDK</a></li></ul></div><div class="col"><span class="label">Observatories</span><ul><li><a href="#">Goldstone, CA</a></li><li><a href="#">Canberra, AU</a></li><li><a href="#">Madrid, ES</a></li><li><a href="#">Kokee Park, HI</a></li></ul></div><div class="col"><span class="label">Program</span><ul><li><a href="#">Field manual</a></li><li><a href="#">Operator certification</a></li><li><a href="#">Residency</a></li><li><a href="#">Open telemetry</a></li></ul></div></div><p class="small"><span>Orrery Visualization Studio · 47 km of antenna feedline rendered every week</span><span>UTC 04:12 · solar wind nominal</span></p></footer>
+</main>
+</body>
+</html>

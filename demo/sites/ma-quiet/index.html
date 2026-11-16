@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en" data-theme="ma-quiet">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Studio Ma — a quiet archive of design, Kyoto</title>
+<link rel="stylesheet" href="../../../base.css">
+<link rel="stylesheet" href="../../../fonts.css">
+<link rel="stylesheet" href="../../../tokens.css">
+<link rel="stylesheet" href="../../../elements-display.css">
+<link rel="stylesheet" href="../../../elements-structure.css">
+<link rel="stylesheet" href="../../../elements-lists.css">
+<link rel="stylesheet" href="../../../elements-app.css">
+<link rel="stylesheet" href="../../../elements-containers.css">
+<link rel="stylesheet" href="../../../elements-controls.css">
+<link rel="stylesheet" href="../../../elements-inputs.css">
+<link rel="stylesheet" href="../../../elements-dataviz.css">
+<link rel="stylesheet" href="../../../elements-overlay.css">
+<link rel="stylesheet" href="../../../elements-interactions.css">
+<link rel="stylesheet" href="../../../elements-misc.css">
+<link rel="stylesheet" href="../../../elements-size.css">
+<link rel="stylesheet" href="../../../elements-workflow.css">
+<link rel="stylesheet" href="../../../themes/src/quiet-minimal.css">
+<script src="../../../elements.js" defer></script>
+<script src="../../../charts.js" defer></script>
+<style>
+  /* the exhibition plate reads as a poster: bleed edge to edge
+     (.el-page = 1200px max + 64px inline padding; subtract the auto gutters) */
+  main.el-page > .el-section > .el-media-band {
+    margin-inline: calc(-64px - max(0px, (100vw - 1200px) / 2));
+  }
+  main.el-page > .el-section > .el-media-band > .body { padding-inline: var(--el-space-6); }
+
+  /* v0.4.0 mobile pass: page ladders keep the desktop repeats, then stack.
+     The poster tracks the page gutter so it stays full-bleed at every rung. */
+  .stat-ladder { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--el-space-4); align-items: stretch; }
+  .grid-three { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--el-space-4); align-items: stretch; }
+  @media (max-width: 768px) {
+    main.el-page > .el-section > .el-media-band { margin-inline: -24px; }
+    main.el-page > .el-section > .el-media-band > .body { padding-inline: var(--el-space-4); }
+    .stat-ladder { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .grid-three { grid-template-columns: minmax(0, 1fr); }
+  }
+  @media (max-width: 430px) {
+    main.el-page > .el-section > .el-media-band { margin-inline: -20px; }
+    .stat-ladder { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 360px) {
+    .stat-ladder { grid-template-columns: minmax(0, 1fr); }
+  }
+</style>
+</head>
+<body>
+<main class="el-page">
+
+  <nav class="el-navbar el-navbar--top">
+    <div class="brand">Studio Ma</div>
+    <div class="links">
+      <a href="#" aria-current="page">Collection</a>
+      <a href="catalog.html">Exhibitions</a>
+      <a href="article.html">Journal</a>
+      <a href="account.html">Membership</a>
+      <a href="app.html">Archive Console</a>
+    </div>
+    <div class="actions">
+      <input class="el-search" type="search" placeholder="Search the archive…">
+      <button class="el-btn el-btn--ghost" data-dialog-open="visit">Visit</button>
+    </div>
+  </nav>
+
+  <header class="el-hero el-hero--centered">
+    <span class="el-eyebrow">Kyoto · est. 1987 · a gallery for reduction</span>
+    <h1>We keep the quiet designs.</h1>
+    <p>Studio Ma is a design gallery and studio archive: four hundred eleven printed artifacts,
+       nine exhibitions a year, and one rule we never break — a thing is finished when
+       nothing can be taken from it.</p>
+    <div class="actions">
+      <a class="el-btn" href="catalog.html">Browse the collection</a>
+      <a class="el-btn el-btn--ghost-outline" href="article.html">Read the journal</a>
+    </div>
+  </header>
+
+  <section class="el-section">
+    <h2>Now showing</h2>
+    <p class="lede">Held until 21 December in the north room.</p>
+    <figure class="el-media-band">
+      <div class="media">
+        <svg viewBox="0 0 720 340" role="img" aria-label="Exhibition poster: one vermilion disc on paper" preserveAspectRatio="xMidYMid slice">
+          <rect width="720" height="340" fill="#fbfaf7"/>
+          <line x1="360" y1="22" x2="360" y2="34" stroke="#d8d3c7" stroke-width="1"/>
+          <circle cx="360" cy="118" r="64" fill="#c0392b"/>
+          <circle cx="360" cy="118" r="70" fill="none" stroke="#2b2b2b" stroke-width="1"/>
+          <text x="360" y="228" text-anchor="middle" font-family="Inter, sans-serif" font-size="26" fill="#2b2b2b">One room. One light.</text>
+          <text x="360" y="260" text-anchor="middle" font-family="Inter, sans-serif" font-size="26" fill="#2b2b2b">Nine posters.</text>
+          <text x="360" y="300" text-anchor="middle" font-family="Inter, sans-serif" font-size="10" letter-spacing="3" fill="#8d8d8d">MA — 1987 TO NOW</text>
+        </svg>
+        <figcaption>Ninety posters · north room · free with membership</figcaption>
+      </div>
+      <div class="body">
+        <span class="label">Exhibition</span>
+        <h3>Posters for the Quiet Hours</h3>
+        <p>Thirty-eight years of work from the studio's own press — proofs, misprints
+           and finals shown shelf to shelf, in the order the ink dried.</p>
+        <div class="actions">
+          <a class="el-btn" href="catalog.html">Reserve a viewing</a>
+          <button class="el-btn el-btn--ghost-outline" data-toast="Holding sheet added to your visit — we will set the room.">Remind me</button>
+        </div>
+      </div>
+    </figure>
+  </section>
+
+  <section class="el-section el-section--dense">
+    <h2>Selected from the collection</h2>
+    <div class="el-stat-row stat-ladder">
+      <div class="el-stat"><span class="el-stat-label">Artifacts cataloged</span><span class="el-stat-value">411</span><span class="el-stat-note">of 460 accessioned</span></div>
+      <div class="el-stat"><span class="el-stat-label">Exhibitions held</span><span class="el-stat-value">132</span><span class="el-stat-note">since 1987</span></div>
+      <div class="el-stat is-live"><span class="el-stat-label">Viewing requests · week</span><span class="el-stat-value">38</span>
+        <span class="el-sparkline"><svg width="120" height="30" viewBox="0 0 120 30"><polyline points="0,24 15,20 30,22 45,14 60,16 75,10 90,13 105,7 120,5" fill="none" stroke="#c0392b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </div>
+      <div class="el-stat"><span class="el-stat-label">Conservation queue</span><span class="el-stat-value">6</span><span class="el-stat-note">2 papers in float</span></div>
+    </div>
+  </section>
+
+  <section class="el-section">
+    <h2>The archive, by shelf</h2>
+    <p class="lede">Everything here was printed by hand, kept deliberately small, and photographed once.</p>
+    <div class="grid-three">
+    <article class="el-card el-card--flat">
+      <div class="el-chip" data-state="ok">Identity</div>
+      <h3>Letterheads of the northern kilns</h3>
+      <p>Forty-one letterheads commissioned between 1989 and 2004 by the ceramic workshops
+         along the Kamo river. Two survive in use; thirty-nine live here.</p>
+      <div class="el-badge">41 items</div>
+    </article>
+    <article class="el-card el-card--flat">
+      <div class="el-chip" data-state="live">Books</div>
+      <h3>Ma Editions, numbers 1 to 60</h3>
+      <p>Sixty cloth-bound volumes, printed at sixty copies each, never reprinted. Number 19,
+         <em>Rules of the Quiet House</em>, is currently on view.</p>
+      <div class="el-badge">60 items</div>
+    </article>
+    <article class="el-card el-card--flat">
+      <div class="el-chip">Posters</div>
+      <h3>The moon calendar series</h3>
+      <p>Ninety lithographs printed each winter solstice from 1998. The 2011 sheet was pulled
+         during a power failure and is the only one signed blind.</p>
+      <div class="el-badge">90 items</div>
+    </article>
+    </div>
+  </section>
+
+  <section class="el-section">
+    <h2>Membership</h2>
+    <p class="lede">Three ways to stand a little closer to the paper.</p>
+    <div class="grid-three">
+    <div class="el-pricing">
+      <div class="name">Reader</div>
+      <div class="price">¥2,800<span class="per"> / year</span></div>
+      <ul class="feats">
+        <li>Journal by letter, four issues</li>
+        <li>Open Saturdays, unbooked</li>
+      </ul>
+      <button class="el-btn el-btn--ghost-outline" data-toast="Reader membership — a card arrives by post.">Choose Reader</button>
+    </div>
+    <div class="el-pricing el-pricing--featured el-pricing--select is-on">
+      <div class="flag">Most kept</div>
+      <div class="name">Custodian</div>
+      <div class="price">¥18,000<span class="per"> / year</span></div>
+      <ul class="feats">
+        <li>Viewing room, one weekday morning</li>
+        <li>Console of the archive, full records</li>
+        <li>Priority on new Ma Editions</li>
+      </ul>
+      <button class="el-btn" data-toast="Custodian membership — we will write within two days.">Choose Custodian</button>
+      <span class="note">Prices include the 10% consumption tax.</span>
+    </div>
+    <div class="el-pricing">
+      <div class="name">Studio</div>
+      <div class="price">¥52,000<span class="per"> / year</span></div>
+      <ul class="feats">
+        <li>Press visit with a curator</li>
+        <li>Two research days in the archive</li>
+        <li>Loan rights for exhibition</li>
+      </ul>
+      <button class="el-btn el-btn--ghost-outline" data-toast="Studio membership — the curator will call first.">Choose Studio</button>
+    </div>
+    </div>
+  </section>
+
+  <section class="el-section">
+    <blockquote class="el-testimonial">
+      <span class="q">“I came for the kiln letterheads and stayed a whole afternoon. Nothing
+      in this room raises its voice. It is the only collection I have walked through in
+      complete quiet.”</span>
+      <span class="attrib"><span class="who"><span class="name">Hana Segawa</span><span class="role">custodian, Paper&Press, Osaka</span></span></span>
+    </blockquote>
+  </section>
+
+  <footer class="el-footer" id="colophon">
+    <div class="cols">
+      <div class="col">
+        <div class="label">Studio Ma</div>
+        <p class="small">14 Wakamiya-dori, Kamigyo, Kyoto. Wed–Sat, 11–6.</p>
+      </div>
+      <div class="col">
+        <div class="label">Visit</div>
+        <p class="small">Catalog · viewing room · press</p>
+      </div>
+      <div class="col">
+        <div class="label">Write</div>
+        <p class="small">post@studioma.example</p>
+      </div>
+    </div>
+    <p class="colophon">Studio Ma · archive console v4 · set in Inter and Satoshi on warm paper.</p>
+  </footer>
+
+  <dialog id="visit" class="el-dialog">
+    <div class="el-dialog-head"><h2>Arrange a visit</h2><button class="el-dialog-close" data-dialog-close="visit" aria-label="Close">×</button></div>
+    <div class="el-dialog-body">
+      <p>Viewing room mornings are held on Thursdays, ten to twelve. Write or call and the
+         curator will confirm within two days.</p>
+    </div>
+    <div class="el-dialog-foot"><button class="el-btn" data-dialog-close="visit">Understood</button></div>
+  </dialog>
+
+</main>
+</body>
+</html>

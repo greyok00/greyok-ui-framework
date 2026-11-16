@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en" data-theme="ma-quiet">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Membership · Studio Ma</title>
+<link rel="stylesheet" href="../../../base.css">
+<link rel="stylesheet" href="../../../fonts.css">
+<link rel="stylesheet" href="../../../tokens.css">
+<link rel="stylesheet" href="../../../elements-display.css">
+<link rel="stylesheet" href="../../../elements-structure.css">
+<link rel="stylesheet" href="../../../elements-lists.css">
+<link rel="stylesheet" href="../../../elements-app.css">
+<link rel="stylesheet" href="../../../elements-containers.css">
+<link rel="stylesheet" href="../../../elements-controls.css">
+<link rel="stylesheet" href="../../../elements-inputs.css">
+<link rel="stylesheet" href="../../../elements-dataviz.css">
+<link rel="stylesheet" href="../../../elements-overlay.css">
+<link rel="stylesheet" href="../../../elements-interactions.css">
+<link rel="stylesheet" href="../../../elements-misc.css">
+<link rel="stylesheet" href="../../../elements-size.css">
+<link rel="stylesheet" href="../../../elements-workflow.css">
+<link rel="stylesheet" href="../../../themes/src/quiet-minimal.css">
+<script src="../../../elements.js" defer></script>
+<script src="../../../charts.js" defer></script>
+<script src="../../../elements-workflow.js" defer></script>
+<style>
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--el-space-4) var(--el-space-5); }
+  .form-grid .wide { grid-column: 1 / -1; }
+  .pref-rows { display: grid; gap: var(--el-space-4); }
+  .pref-row.is-column label { display: flex; align-items: center; gap: var(--el-space-3); }
+  select.el-select { width: 100%; }
+  .pref-row { display: flex; justify-content: space-between; align-items: center; gap: var(--el-space-4); }
+  .pref-row.is-column { display: grid; gap: var(--el-space-2); }
+  .pref-row p.small { margin: 0; }
+  .state-rows { display: grid; gap: var(--el-space-3); }
+  .saving-row { display: flex; align-items: center; gap: var(--el-space-2); }
+  .two-cols { display: grid; grid-template-columns: 1fr 1fr; gap: var(--el-space-5); align-items: start; }
+  /* v0.4.0 mobile pass: forms and panels stack to one column */
+  @media (max-width: 768px) { .form-grid { grid-template-columns: minmax(0, 1fr); } }
+  @media (max-width: 940px) { .two-cols { grid-template-columns: minmax(0, 1fr); } }
+  @media (max-width: 430px) { .pref-row label { min-height: 44px; display: inline-flex; align-items: center; } }
+</style>
+</head>
+<body>
+<main class="el-page">
+
+  <nav class="el-navbar el-navbar--top">
+    <div class="brand">Studio Ma</div>
+    <div class="links">
+      <a href="index.html">Collection</a>
+      <a href="catalog.html">Exhibitions</a>
+      <a href="article.html">Journal</a>
+      <a href="account.html" aria-current="page">Membership</a>
+      <a href="app.html">Archive Console</a>
+    </div>
+    <div class="actions">
+      <span class="el-avatar" aria-hidden="true">HS</span>
+      <button class="el-btn el-btn--ghost" data-dialog-open="visit">Visit</button>
+    </div>
+  </nav>
+
+  <div class="el-banner el-banner--info">
+    <span class="glyph">i</span>
+    <div class="copy"><strong>Autumn memberships open 1 November.</strong>
+      <span class="detail">Card renewals are processed by hand, one working day.</span></div>
+    <button class="el-btn el-btn--ghost action" data-toast="We will remember the autumn dates.">Remind me</button>
+    <button class="close" aria-label="Dismiss">×</button>
+  </div>
+
+  <header class="el-hero el-hero--left">
+    <span class="el-eyebrow">Your account</span>
+    <h1>Hana Segawa</h1>
+    <p>Custodian renewal · member since 2019 · accession card MA-M-0088.</p>
+  </header>
+
+  <ul class="el-stepper" role="list">
+    <li class="done"><span class="num">1</span> Details</li>
+    <li class="done"><span class="num">2</span> Shelf preferences</li>
+    <li class="active"><span class="num">3</span> Support</li>
+    <li><span class="num">4</span> Post</li>
+    <li><span class="num">5</span> Review</li>
+  </ul>
+
+  <section class="el-section el-section--dense">
+    <div class="two-cols">
+      <form class="el-panel" novalidate>
+        <h2>Standing details</h2>
+        <div class="form-grid">
+          <div class="el-field">
+            <label class="el-label" for="f-name">Name on the card</label>
+            <input class="el-input" id="f-name" value="Hana Segawa">
+            <span class="el-hint">As you want it letterpressed.</span>
+          </div>
+          <div class="el-field">
+            <label class="el-label" for="f-mail">Post</label>
+            <input class="el-input" id="f-mail" type="email" value="hana@paperpress.example">
+            <span class="el-hint">Letters go here quarterly.</span>
+          </div>
+          <div class="el-field wide" data-invalid="true">
+            <label class="el-label" for="f-addr">Delivery address</label>
+            <input class="el-input" id="f-addr" aria-invalid="true" value="14 Wakamiya-dori, Kamig">
+            <span class="el-error">The street ends at "Kamigyo" — add the ward.</span>
+          </div>
+          <div class="el-field">
+            <label class="el-label" for="f-note">Note to the curator</label>
+            <textarea class="el-textarea" id="f-note" rows="3">Standing closer to the moon calendar shelf, if a morning allows.</textarea>
+          </div>
+          <div class="el-field">
+            <label class="el-label" for="f-find">How did you find us</label>
+            <input class="el-search" id="f-find" type="search" placeholder="Search members by referral…">
+            <span class="el-hint">Optional. Mostly we ask out of interest.</span>
+          </div>
+          <div class="el-field">
+            <label class="el-label" for="f-tier">Tier</label>
+            <select class="el-select" id="f-tier"><option>Reader</option><option selected>Custodian</option><option>Studio</option></select>
+            <span class="el-hint">Changes take effect at renewal.</span>
+          </div>
+          <div class="el-field wide">
+            <span class="el-label">Donation to the conservation fund</span>
+            <div class="el-range">
+              <input class="el-slider" type="range" min="0" max="100" value="30" aria-label="Donation percent">
+              <span class="val">30%</span>
+            </div>
+            <span class="el-hint">Slid every yen to float-flat boxes and rehumidification.</span>
+          </div>
+        </div>
+        <div class="el-inline-alert warn">
+          <span class="el-icon"><svg viewBox="0 0 24 24"><path d="M12 3l10 18H2z"/><path d="M12 10v5"/><circle cx="12" cy="18" r="0.5"/></svg></span>
+          <div><div class="title">Two proofs wait your signature</div>
+          <div class="body">The 1989 letterhead loan file needs a second initial to leave the building.</div></div>
+          <button class="close" aria-label="Dismiss">×</button>
+        </div>
+        <div class="el-btn-group">
+          <button class="el-btn" type="button" data-toast="Details saved — the card will arrive by post.">Save details</button>
+          <button class="el-btn el-btn--ghost-outline" type="button">Save as draft</button>
+          <button class="el-btn el-btn--ghost" type="button" data-toast="Renewal canceled; nothing was sent.">Cancel renewal</button>
+        </div>
+      </form>
+
+      <div>
+        <div class="el-panel">
+          <h2>Kept preferences</h2>
+          <div class="pref-rows">
+            <div class="pref-row">
+              <div><strong>Post letters</strong><p class="small">Four issues, by hand.</p></div>
+              <div class="el-switch on" role="switch" aria-checked="true"></div>
+            </div>
+            <div class="pref-row">
+              <div><strong>Paper catalog on renewal</strong><p class="small">A small run, only on request.</p></div>
+              <div class="el-switch" role="switch" aria-checked="false"></div>
+            </div>
+            <div class="pref-row is-column">
+              <strong>Shelves you follow</strong>
+              <label><span class="el-check on"><input type="checkbox" checked hidden></span> Kiln letterheads</label>
+              <label><span class="el-check on"><input type="checkbox" checked hidden></span> Ma Editions</label>
+              <label><span class="el-check"><input type="checkbox" hidden></span> Moon calendar</label>
+              <label><span class="el-check on"><input type="checkbox" checked hidden></span> Press proofs</label>
+            </div>
+            <div class="pref-row is-column">
+              <span class="el-pill">Reading pace</span>
+              <div class="el-segmented" role="tablist">
+                <button>One page</button><button class="on">A section</button><button>The issue</button>
+              </div>
+            </div>
+            <div class="pref-row">
+              <div><span class="el-pill">Session</span></div>
+              <button class="el-btn el-btn--ghost-outline" data-dialog-open="signout">Sign out</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="el-panel">
+          <h2>Saving, as the press does it</h2>
+          <p class="small">A demonstration of the archive's quiet states.</p>
+          <div class="state-rows">
+            <div class="el-skeleton title"></div>
+            <div class="el-skeleton text"></div>
+            <div class="el-skeleton block"></div>
+            <div class="saving-row">
+              <span class="el-spinner sm"></span><span class="small">Blocking the proof sheet…</span>
+            </div>
+            <div class="el-inline-alert ok">
+              <span class="el-icon"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span>
+              <div><div class="title">Saved 14:02</div><div class="body">The record MA-M-0088 stands as written.</div></div>
+            </div>
+          </div>
+        </div>
+
+        <nav class="el-pagination" aria-label="Member letters">
+          <button class="page on">1</button>
+          <button class="page">2</button>
+          <button class="page">3</button>
+          <span class="info">Letters 1–3 of 9</span>
+        </nav>
+      </div>
+    </div>
+  </section>
+
+  <footer class="el-footer">
+    <div class="cols">
+      <div class="col">
+        <div class="label">Studio Ma</div>
+        <p class="small">14 Wakamiya-dori, Kamigyo, Kyoto. Wed–Sat, 11–6.</p>
+      </div>
+      <div class="col"><div class="label">Visit</div><p class="small">Catalog · viewing room · press</p></div>
+      <div class="col"><div class="label">Write</div><p class="small">post@studioma.example</p></div>
+    </div>
+    <p class="colophon">Studio Ma · membership · set in Inter and Satoshi on warm paper.</p>
+  </footer>
+
+  <dialog id="visit" class="el-dialog">
+    <div class="el-dialog-head"><h2>Arrange a visit</h2><button class="el-dialog-close" data-dialog-close="visit" aria-label="Close">×</button></div>
+    <div class="el-dialog-body"><p>Thursday mornings, ten to twelve. The curator confirms within two days.</p></div>
+    <div class="el-dialog-foot"><button class="el-btn" data-dialog-close="visit">Understood</button></div>
+  </dialog>
+
+  <dialog id="signout" class="el-dialog el-dialog--narrow">
+    <div class="el-dialog-head"><h2>Sign out of the console?</h2><button class="el-dialog-close" data-dialog-close="signout" aria-label="Close">×</button></div>
+    <div class="el-dialog-body"><p>Your draft note stays saved on the shelf card.</p></div>
+    <div class="el-dialog-foot">
+      <button class="el-btn el-btn--ghost" data-dialog-close="signout">Stay</button>
+      <button class="el-btn el-btn--ghost-outline" data-dialog-close="signout">Sign out</button>
+    </div>
+  </dialog>
+
+</main>
+</body>
+</html>

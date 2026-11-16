@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="en" data-theme="solar-halo">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aurelia Dome — program finder</title>
+<link rel="stylesheet" href="../../../base.css">
+<link rel="stylesheet" href="../../../fonts.css">
+<link rel="stylesheet" href="../../../tokens.css">
+<link rel="stylesheet" href="../../../elements-display.css">
+<link rel="stylesheet" href="../../../elements-structure.css">
+<link rel="stylesheet" href="../../../elements-lists.css">
+<link rel="stylesheet" href="../../../elements-app.css">
+<link rel="stylesheet" href="../../../elements-containers.css">
+<link rel="stylesheet" href="../../../elements-controls.css">
+<link rel="stylesheet" href="../../../elements-inputs.css">
+<link rel="stylesheet" href="../../../elements-dataviz.css">
+<link rel="stylesheet" href="../../../elements-overlay.css">
+<link rel="stylesheet" href="../../../elements-interactions.css">
+<link rel="stylesheet" href="../../../elements-misc.css">
+<link rel="stylesheet" href="../../../elements-size.css">
+<link rel="stylesheet" href="../../../elements-workflow.css">
+<link rel="stylesheet" href="../../../elements-inspector.css">
+<link rel="stylesheet" href="../../../elements-reader.css">
+<link rel="stylesheet" href="../../../elements-assistant.css">
+<link rel="stylesheet" href="../../../themes/src/webgl-immersive.css">
+<script src="../../../elements.js" defer></script>
+<script src="../../../charts.js" defer></script>
+</head>
+<body>
+<main class="el-page">
+<nav class="el-navbar el-navbar--top">
+  <a class="brand" href="index.html">AURELIA DOME</a>
+  <div class="links"><a href="index.html">Now Playing</a><a href="catalog.html" aria-current="page">Exhibits</a><a href="article.html">Journal</a><a href="account.html">Tickets</a><a href="observe.html">Backstage</a><a href="app.html">Dome Console</a></div>
+  <div class="actions">
+<span class="el-chip live el-chip--sm">Doors 19:00</span>
+<button class="el-btn el-btn--ghost" data-toast="Program guide sent to your inbox">Program</button>
+<button class="el-btn" data-dialog-open="dlg-tickets">Book seats</button></div>
+</nav>
+<header class="el-hero el-hero--centered">
+
+<div class="el-eyebrow">AURELIA PROGRAM FINDER</div>
+<h1>Pick your night.</h1>
+<p>Forty-one shows, two domes, one atrium, and a roof terrace for the summer solstice. Everything starts on time — the starball insists.</p>
+<div class="actions"><span class="el-badge">Updated 16:40</span></div>
+
+</header>
+<section class="el-section"><div class="el-panel">
+<div class="el-panel-head"><span>Program finder</span><span class="el-badge">41 shows</span></div>
+<div class="el-row-flex">
+<label class="el-search-field"><input class="el-search" type="search" placeholder="A show, a hall, or an age"></label>
+<div class="el-segmented"><button class="on">Tonight</button><button>Weekend</button><button>Field trips</button><button>Archive</button></div>
+<label class="el-select"><span class="el-label">Sort</span><select class="el-input"><option>Soonest first</option><option>Longest first</option><option>Least full</option></select></label>
+<div class="el-menu-anchor"><button class="el-dropdown">Hall</button><div class="el-menu el-menu--end" id="m-hall" role="menu"><span class="el-menu-label">Dome halls</span><button class="el-menu-item">Grand Dome (18 m)</button><button class="el-menu-item">Small Sky (6 m)</button><button class="el-menu-item">Atrium projection</button><div class="el-menu-sep"></div><button class="el-menu-item">Roof terrace (seasonal)</button></div></div>
+</div>
+<div class="el-cluster"><button class="el-chip is-selected">Fulldome</button><button class="el-chip">Starball</button><button class="el-chip">After Dark</button><button class="el-chip">Field trips</button><button class="el-chip ok">Relaxed showing</button><button class="el-chip warn">Few seats now</button><span class="el-chip live el-chip--sm">Doors in 2 h 04 m</span></div>
+</div></section>
+<section class="el-section">
+<div class="el-section-head"><div><div class="el-eyebrow">Tonight by hall</div><h2>Six programs</h2></div></div>
+<div class="el-cluster" id="shows-list" style="gap:18px">
+<article class="el-card el-card--raised is-interactive">
+<div class="el-card-media"><svg viewBox="0 0 640 240" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Program plate">
+<defs>
+<radialGradient id="sg" cx="50%" cy="42%" r="52%">
+<stop offset="0" stop-color="#ffcb74" stop-opacity="0.9"/><stop offset="0.45" stop-color="#b96a1c" stop-opacity="0.55"/><stop offset="1" stop-color="#401f06" stop-opacity="0"/>
+</radialGradient>
+<linearGradient id="sv" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#2b1a0a"/><stop offset="0.62" stop-color="#180f07"/><stop offset="1" stop-color="#0b0806"/>
+</linearGradient>
+</defs>
+<rect width="640" height="240" fill="url(#sv)"/>
+<line x1="320" y1="120" x2="452" y2="120" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="120" x2="444" y2="165" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="120" x2="421" y2="205" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="120" x2="386" y2="234" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="120" x2="343" y2="250" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="120" x2="297" y2="250" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="120" x2="254" y2="234" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="120" x2="219" y2="205" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="120" x2="196" y2="165" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="120" x2="188" y2="120" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="120" x2="196" y2="75" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="120" x2="219" y2="35" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="120" x2="254" y2="6" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="120" x2="297" y2="-10" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="120" x2="343" y2="-10" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="120" x2="386" y2="6" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="120" x2="421" y2="35" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="120" x2="444" y2="75" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/>
+<circle cx="320" cy="106" r="62" fill="url(#sg)"/>
+<circle cx="320" cy="106" r="22" fill="#ffd28a"/>
+<path d="M 414 195 a 12 7 0 0 0 -20 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/><path d="M 397 191 a 12 7 0 0 0 -17 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/><path d="M 375 188 a 12 7 0 0 0 -12 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/><path d="M 350 186 a 12 7 0 0 0 -7 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/><path d="M 324 185 a 12 7 0 0 0 -1 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/><path d="M 297 185 a 12 7 0 0 0 5 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/><path d="M 272 187 a 12 7 0 0 0 11 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/><path d="M 249 190 a 12 7 0 0 0 15 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/><path d="M 231 194 a 12 7 0 0 0 19 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/>
+</svg></div>
+<div class="el-cluster" style="gap:6px">
+<span class="el-badge">FULDDOME</span>
+<span class="el-status-pill ok">OK</span>
+</div>
+<h3>Ring of Fire · 19:30</h3>
+<span class="sub">40 min · Grand Dome · ages 6+</span>
+<div class="el-card-foot">
+<span class="el-avatar el-avatar--sm" title="RN">RN</span>
+<span class="el-mute" style="font-size:12px">host tonight</span>
+<span class="el-cluster" style="margin-left:auto">
+<button class="el-btn el-btn--ghost el-tooltip" data-tip="See the evening's run order">⌚</button>
+<button class="el-btn el-btn--squared" data-dialog-open="dlg-tickets">Book</button>
+</span>
+</div>
+</article>
+<article class="el-card el-card--raised is-interactive">
+<div class="el-card-media"><svg viewBox="0 0 640 240" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Program plate">
+<defs>
+<radialGradient id="sg" cx="50%" cy="42%" r="52%">
+<stop offset="0" stop-color="#ffcb74" stop-opacity="0.9"/><stop offset="0.45" stop-color="#b96a1c" stop-opacity="0.55"/><stop offset="1" stop-color="#401f06" stop-opacity="0"/>
+</radialGradient>
+<linearGradient id="sv" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#2b1a0a"/><stop offset="0.62" stop-color="#180f07"/><stop offset="1" stop-color="#0b0806"/>
+</linearGradient>
+</defs>
+<rect width="640" height="240" fill="url(#sv)"/>
+<line x1="320" y1="120" x2="452" y2="120" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="120" x2="444" y2="165" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="120" x2="421" y2="205" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="120" x2="386" y2="234" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="120" x2="343" y2="250" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="120" x2="297" y2="250" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="120" x2="254" y2="234" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="120" x2="219" y2="205" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="120" x2="196" y2="165" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="120" x2="188" y2="120" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="120" x2="196" y2="75" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="120" x2="219" y2="35" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="120" x2="254" y2="6" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="120" x2="297" y2="-10" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="120" x2="343" y2="-10" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="120" x2="386" y2="6" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="120" x2="421" y2="35" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="120" x2="444" y2="75" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/>
+<circle cx="320" cy="106" r="62" fill="url(#sg)"/>
+<circle cx="320" cy="106" r="22" fill="#ffd28a"/>
+<path d="M 414 195 a 12 7 0 0 0 -20 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/><path d="M 397 191 a 12 7 0 0 0 -17 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/><path d="M 375 188 a 12 7 0 0 0 -12 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/><path d="M 350 186 a 12 7 0 0 0 -7 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/><path d="M 324 185 a 12 7 0 0 0 -1 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/><path d="M 297 185 a 12 7 0 0 0 5 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/><path d="M 272 187 a 12 7 0 0 0 11 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/><path d="M 249 190 a 12 7 0 0 0 15 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/><path d="M 231 194 a 12 7 0 0 0 19 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/>
+</svg></div>
+<div class="el-cluster" style="gap:6px">
+<span class="el-badge">STARBALL</span>
+<span class="el-status-pill live">LIVE</span>
+</div>
+<h3>Grand Tour, 1974 · 20:15</h3>
+<span class="sub">55 min · Grand Dome · all ages</span>
+<div class="el-card-foot">
+<span class="el-avatar el-avatar--sm" title="TB">TB</span>
+<span class="el-mute" style="font-size:12px">host tonight</span>
+<span class="el-cluster" style="margin-left:auto">
+<button class="el-btn el-btn--ghost el-tooltip" data-tip="See the evening's run order">⌚</button>
+<button class="el-btn el-btn--squared" data-dialog-open="dlg-tickets">Book</button>
+</span>
+</div>
+</article>
+<article class="el-card el-card--raised is-interactive">
+<div class="el-card-media"><svg viewBox="0 0 640 240" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Program plate">
+<defs>
+<radialGradient id="sg" cx="50%" cy="42%" r="52%">
+<stop offset="0" stop-color="#ffcb74" stop-opacity="0.9"/><stop offset="0.45" stop-color="#b96a1c" stop-opacity="0.55"/><stop offset="1" stop-color="#401f06" stop-opacity="0"/>
+</radialGradient>
+<linearGradient id="sv" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#2b1a0a"/><stop offset="0.62" stop-color="#180f07"/><stop offset="1" stop-color="#0b0806"/>
+</linearGradient>
+</defs>
+<rect width="640" height="240" fill="url(#sv)"/>
+<line x1="320" y1="120" x2="452" y2="120" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="120" x2="444" y2="165" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="120" x2="421" y2="205" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="120" x2="386" y2="234" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="120" x2="343" y2="250" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="120" x2="297" y2="250" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="120" x2="254" y2="234" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="120" x2="219" y2="205" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="120" x2="196" y2="165" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="120" x2="188" y2="120" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="120" x2="196" y2="75" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="120" x2="219" y2="35" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="120" x2="254" y2="6" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="120" x2="297" y2="-10" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="120" x2="343" y2="-10" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="120" x2="386" y2="6" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="120" x2="421" y2="35" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="120" x2="444" y2="75" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/>
+<circle cx="320" cy="106" r="62" fill="url(#sg)"/>
+<circle cx="320" cy="106" r="22" fill="#ffd28a"/>
+<path d="M 414 195 a 12 7 0 0 0 -20 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/><path d="M 397 191 a 12 7 0 0 0 -17 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/><path d="M 375 188 a 12 7 0 0 0 -12 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/><path d="M 350 186 a 12 7 0 0 0 -7 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/><path d="M 324 185 a 12 7 0 0 0 -1 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/><path d="M 297 185 a 12 7 0 0 0 5 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/><path d="M 272 187 a 12 7 0 0 0 11 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/><path d="M 249 190 a 12 7 0 0 0 15 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/><path d="M 231 194 a 12 7 0 0 0 19 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/>
+</svg></div>
+<div class="el-cluster" style="gap:6px">
+<span class="el-badge">FULDDOME</span>
+<span class="el-status-pill ok">OK</span>
+</div>
+<h3>Weather Below · 21:00</h3>
+<span class="sub">35 min · Grand Dome · ages 10+</span>
+<div class="el-card-foot">
+<span class="el-avatar el-avatar--sm" title="MV">MV</span>
+<span class="el-mute" style="font-size:12px">host tonight</span>
+<span class="el-cluster" style="margin-left:auto">
+<button class="el-btn el-btn--ghost el-tooltip" data-tip="See the evening's run order">⌚</button>
+<button class="el-btn el-btn--squared" data-dialog-open="dlg-tickets">Book</button>
+</span>
+</div>
+</article>
+<article class="el-card el-card--raised is-interactive">
+<div class="el-card-media"><svg viewBox="0 0 640 240" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Program plate">
+<defs>
+<radialGradient id="sg" cx="50%" cy="42%" r="52%">
+<stop offset="0" stop-color="#ffcb74" stop-opacity="0.9"/><stop offset="0.45" stop-color="#b96a1c" stop-opacity="0.55"/><stop offset="1" stop-color="#401f06" stop-opacity="0"/>
+</radialGradient>
+<linearGradient id="sv" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#2b1a0a"/><stop offset="0.62" stop-color="#180f07"/><stop offset="1" stop-color="#0b0806"/>
+</linearGradient>
+</defs>
+<rect width="640" height="240" fill="url(#sv)"/>
+<line x1="320" y1="120" x2="452" y2="120" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="120" x2="444" y2="165" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="120" x2="421" y2="205" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="120" x2="386" y2="234" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="120" x2="343" y2="250" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="120" x2="297" y2="250" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="120" x2="254" y2="234" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="120" x2="219" y2="205" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="120" x2="196" y2="165" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="120" x2="188" y2="120" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="120" x2="196" y2="75" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="120" x2="219" y2="35" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="120" x2="254" y2="6" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="120" x2="297" y2="-10" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="120" x2="343" y2="-10" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="120" x2="386" y2="6" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="120" x2="421" y2="35" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="120" x2="444" y2="75" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/>
+<circle cx="320" cy="106" r="62" fill="url(#sg)"/>
+<circle cx="320" cy="106" r="22" fill="#ffd28a"/>
+<path d="M 414 195 a 12 7 0 0 0 -20 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/><path d="M 397 191 a 12 7 0 0 0 -17 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/><path d="M 375 188 a 12 7 0 0 0 -12 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/><path d="M 350 186 a 12 7 0 0 0 -7 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/><path d="M 324 185 a 12 7 0 0 0 -1 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/><path d="M 297 185 a 12 7 0 0 0 5 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/><path d="M 272 187 a 12 7 0 0 0 11 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/><path d="M 249 190 a 12 7 0 0 0 15 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/><path d="M 231 194 a 12 7 0 0 0 19 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/>
+</svg></div>
+<div class="el-cluster" style="gap:6px">
+<span class="el-badge">AFTER DARK</span>
+<span class="el-status-pill warn">WARN</span>
+</div>
+<h3>Ember &amp; Vacuum · 21:45</h3>
+<span class="sub">90 min · Small Sky · 21+</span>
+<div class="el-card-foot">
+<span class="el-avatar el-avatar--sm" title="DB">DB</span>
+<span class="el-mute" style="font-size:12px">host tonight</span>
+<span class="el-cluster" style="margin-left:auto">
+<button class="el-btn el-btn--ghost el-tooltip" data-tip="See the evening's run order">⌚</button>
+<button class="el-btn el-btn--squared" data-dialog-open="dlg-tickets">Book</button>
+</span>
+</div>
+</article>
+<article class="el-card el-card--raised is-interactive">
+<div class="el-card-media"><svg viewBox="0 0 640 240" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Program plate">
+<defs>
+<radialGradient id="sg" cx="50%" cy="42%" r="52%">
+<stop offset="0" stop-color="#ffcb74" stop-opacity="0.9"/><stop offset="0.45" stop-color="#b96a1c" stop-opacity="0.55"/><stop offset="1" stop-color="#401f06" stop-opacity="0"/>
+</radialGradient>
+<linearGradient id="sv" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#2b1a0a"/><stop offset="0.62" stop-color="#180f07"/><stop offset="1" stop-color="#0b0806"/>
+</linearGradient>
+</defs>
+<rect width="640" height="240" fill="url(#sv)"/>
+<line x1="320" y1="120" x2="452" y2="120" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="120" x2="444" y2="165" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="120" x2="421" y2="205" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="120" x2="386" y2="234" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="120" x2="343" y2="250" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="120" x2="297" y2="250" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="120" x2="254" y2="234" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="120" x2="219" y2="205" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="120" x2="196" y2="165" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="120" x2="188" y2="120" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="120" x2="196" y2="75" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="120" x2="219" y2="35" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="120" x2="254" y2="6" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="120" x2="297" y2="-10" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="120" x2="343" y2="-10" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="120" x2="386" y2="6" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="120" x2="421" y2="35" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="120" x2="444" y2="75" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/>
+<circle cx="320" cy="106" r="62" fill="url(#sg)"/>
+<circle cx="320" cy="106" r="22" fill="#ffd28a"/>
+<path d="M 414 195 a 12 7 0 0 0 -20 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/><path d="M 397 191 a 12 7 0 0 0 -17 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/><path d="M 375 188 a 12 7 0 0 0 -12 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/><path d="M 350 186 a 12 7 0 0 0 -7 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/><path d="M 324 185 a 12 7 0 0 0 -1 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/><path d="M 297 185 a 12 7 0 0 0 5 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/><path d="M 272 187 a 12 7 0 0 0 11 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/><path d="M 249 190 a 12 7 0 0 0 15 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/><path d="M 231 194 a 12 7 0 0 0 19 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/>
+</svg></div>
+<div class="el-cluster" style="gap:6px">
+<span class="el-badge">STARBALL</span>
+<span class="el-status-pill ok">OK</span>
+</div>
+<h3>Star Stories: Monsoon · 18:30</h3>
+<span class="sub">45 min · Small Sky · relaxed</span>
+<div class="el-card-foot">
+<span class="el-avatar el-avatar--sm" title="AS">AS</span>
+<span class="el-mute" style="font-size:12px">host tonight</span>
+<span class="el-cluster" style="margin-left:auto">
+<button class="el-btn el-btn--ghost el-tooltip" data-tip="See the evening's run order">⌚</button>
+<button class="el-btn el-btn--squared" data-dialog-open="dlg-tickets">Book</button>
+</span>
+</div>
+</article>
+<article class="el-card el-card--raised is-interactive">
+<div class="el-card-media"><svg viewBox="0 0 640 240" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Program plate">
+<defs>
+<radialGradient id="sg" cx="50%" cy="42%" r="52%">
+<stop offset="0" stop-color="#ffcb74" stop-opacity="0.9"/><stop offset="0.45" stop-color="#b96a1c" stop-opacity="0.55"/><stop offset="1" stop-color="#401f06" stop-opacity="0"/>
+</radialGradient>
+<linearGradient id="sv" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#2b1a0a"/><stop offset="0.62" stop-color="#180f07"/><stop offset="1" stop-color="#0b0806"/>
+</linearGradient>
+</defs>
+<rect width="640" height="240" fill="url(#sv)"/>
+<line x1="320" y1="120" x2="452" y2="120" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="120" x2="444" y2="165" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="120" x2="421" y2="205" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="120" x2="386" y2="234" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="120" x2="343" y2="250" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="120" x2="297" y2="250" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="120" x2="254" y2="234" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="120" x2="219" y2="205" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="120" x2="196" y2="165" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="120" x2="188" y2="120" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="120" x2="196" y2="75" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="120" x2="219" y2="35" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="120" x2="254" y2="6" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="120" x2="297" y2="-10" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="120" x2="343" y2="-10" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="120" x2="386" y2="6" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="120" x2="421" y2="35" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="320" y1="120" x2="444" y2="75" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/>
+<circle cx="320" cy="106" r="62" fill="url(#sg)"/>
+<circle cx="320" cy="106" r="22" fill="#ffd28a"/>
+<path d="M 414 195 a 12 7 0 0 0 -20 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/><path d="M 397 191 a 12 7 0 0 0 -17 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/><path d="M 375 188 a 12 7 0 0 0 -12 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/><path d="M 350 186 a 12 7 0 0 0 -7 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/><path d="M 324 185 a 12 7 0 0 0 -1 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/><path d="M 297 185 a 12 7 0 0 0 5 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/><path d="M 272 187 a 12 7 0 0 0 11 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/><path d="M 249 190 a 12 7 0 0 0 15 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/><path d="M 231 194 a 12 7 0 0 0 19 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/>
+</svg></div>
+<div class="el-cluster" style="gap:6px">
+<span class="el-badge">FULDDOME</span>
+<span class="el-status-pill stale">LAST RUN</span>
+</div>
+<h3>Mare Frigoris · 22:15</h3>
+<span class="sub">30 min · Grand Dome · late</span>
+<div class="el-card-foot">
+<span class="el-avatar el-avatar--sm" title="KO">KO</span>
+<span class="el-mute" style="font-size:12px">host tonight</span>
+<span class="el-cluster" style="margin-left:auto">
+<button class="el-btn el-btn--ghost el-tooltip" data-tip="See the evening's run order">⌚</button>
+<button class="el-btn el-btn--squared" data-dialog-open="dlg-tickets">Book</button>
+</span>
+</div>
+</article></div>
+<aside class="el-inspector is-docked">
+<div class="el-inspector-header"><h3>Inspector · Ring of Fire</h3><button class="el-inspector-close" aria-label="Collapse">×</button></div>
+<div class="el-inspector-body">
+<p class="el-ink-soft">Scored live on the dome's pipe organ; the projection follows the player, not a clock.</p>
+<div class="el-fact-grid">
+<div class="el-fact"><span class="k">Fill</span><span class="v">92%</span></div>
+<div class="el-fact"><span class="k">House open</span><span class="v">19:00</span></div>
+<div class="el-fact is-hot"><span class="k">Peak act</span><span class="v">Act II · corona</span></div>
+<div class="el-fact"><span class="k">Relaxed run</span><span class="v">Sunday 11:00</span></div>
+</div>
+<div class="el-cluster" style="margin-top:12px"><button class="el-switch on" role="switch" aria-checked="true" aria-label="Caption on dome"></button><span style="font-size:13px">Dome captions</span></div>
+</div>
+</aside>
+</section>
+<section class="el-section">
+<div class="el-section-head"><div><div class="el-eyebrow">Spotlight</div><h2>Featured evening</h2></div></div>
+<div class="el-row-flex" style="align-items:stretch">
+<article class="el-card el-card--print">
+<h3>Show card · Ring of Fire</h3>
+<div class="el-fact-grid">
+<div class="el-fact"><span class="k">Dome</span><span class="v">18 m · 8K</span></div>
+<div class="el-fact"><span class="k">Runtime</span><span class="v">40 min</span></div>
+<div class="el-fact"><span class="k">Seats</span><span class="v">312 / 340</span></div>
+<div class="el-fact is-hot"><span class="k">Tonight</span><span class="v">19:30</span></div>
+<div class="el-fact"><span class="k">Score</span><span class="v">Live pipe</span></div>
+<div class="el-fact"><span class="k">Lamp</span><span class="v">A · 72%</span></div>
+</div>
+</article>
+<figure class="el-media-band el-media-band--flip">
+<div class="media"><svg viewBox="0 0 760 320" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Spotlight plate">
+<defs>
+<radialGradient id="sg" cx="50%" cy="42%" r="52%">
+<stop offset="0" stop-color="#ffcb74" stop-opacity="0.9"/><stop offset="0.45" stop-color="#b96a1c" stop-opacity="0.55"/><stop offset="1" stop-color="#401f06" stop-opacity="0"/>
+</radialGradient>
+<linearGradient id="sv" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0" stop-color="#2b1a0a"/><stop offset="0.62" stop-color="#180f07"/><stop offset="1" stop-color="#0b0806"/>
+</linearGradient>
+</defs>
+<rect width="760" height="320" fill="url(#sv)"/>
+<line x1="380" y1="160" x2="556" y2="160" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="380" y1="160" x2="545" y2="220" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="380" y1="160" x2="515" y2="273" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="380" y1="160" x2="468" y2="312" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="380" y1="160" x2="411" y2="333" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="380" y1="160" x2="349" y2="333" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="380" y1="160" x2="292" y2="312" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="380" y1="160" x2="245" y2="273" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="380" y1="160" x2="215" y2="220" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="380" y1="160" x2="204" y2="160" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="380" y1="160" x2="215" y2="100" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="380" y1="160" x2="245" y2="47" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="380" y1="160" x2="292" y2="8" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="380" y1="160" x2="349" y2="-13" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="380" y1="160" x2="411" y2="-13" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="380" y1="160" x2="468" y2="8" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="380" y1="160" x2="515" y2="47" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/><line x1="380" y1="160" x2="545" y2="100" stroke="#ffcb74" stroke-opacity="0.12" stroke-width="2"/>
+<circle cx="380" cy="141" r="83" fill="url(#sg)"/>
+<circle cx="380" cy="141" r="29" fill="#ffd28a"/>
+<path d="M 505 260 a 16 10 0 0 0 -27 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/><path d="M 482 254 a 16 10 0 0 0 -22 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/><path d="M 454 250 a 16 10 0 0 0 -16 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/><path d="M 421 248 a 16 10 0 0 0 -9 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/><path d="M 385 246 a 16 10 0 0 0 -1 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/><path d="M 349 247 a 16 10 0 0 0 7 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/><path d="M 315 249 a 16 10 0 0 0 14 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/><path d="M 285 253 a 16 10 0 0 0 21 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/><path d="M 261 258 a 16 10 0 0 0 26 0" stroke="#ffb347" stroke-opacity="0.3" fill="none" stroke-width="2"/>
+</svg><div class="fill"><figcaption>Doors 19:00 · first star 19:30</figcaption></div></div>
+<div class="body"><div class="label">GRAND DOME</div><h2>Ring of Fire, in person</h2><p>Live pipe score, projector B on the lamp swap, and the atrium exhibit half-price with a ticket stub.</p></div>
+</figure>
+</div>
+</section>
+<section class="el-section"><div class="el-empty">
+<span class="el-icon">☾</span>
+<h4 class="el-title">No field trips in this filter</h4>
+<p class="el-msg">School visits book in term blocks — this week's morning slots are gone.</p>
+<p class="el-hint">Try the weekend tab or January.</p>
+<div class="el-action"><button class="el-btn el-btn--ghost">Show weekends</button><button class="el-btn">Join the wait list</button></div>
+</div></section>
+<section class="el-section">
+<div class="el-section-head"><div><div class="el-eyebrow">Season</div><h2>In the works</h2></div></div>
+<div class="el-row-flex">
+<div class="el-panel" style="flex:1"><div class="el-panel-head"><span>New show build</span></div><div class="el-skeleton title"></div><div class="el-skeleton text"></div><div class="el-skeleton text"></div></div>
+<div class="el-panel" style="flex:1"><div class="el-panel-head"><span>Bulb test</span></div><div class="el-skeleton circle lg" style="align-self:flex-start"></div><div class="el-skeleton block" style="height:52px"></div></div>
+</div>
+</section>
+<section class="el-section">
+<div class="el-row-flex" style="gap:50px"><nav class="el-pagination" data-page-source="#shows-list"><button class="page disabled" data-action="first" aria-label="first">&laquo;</button><button class="page disabled" data-action="prev" aria-label="prev">&lsaquo;</button><button class="page" data-action="1">1</button><button class="page" data-action="2">2</button><button class="page on" data-action="3">3</button><button class="page" data-action="4">4</button><button class="page" data-action="5">5</button><button class="page" data-action="6">6</button><button class="page" data-action="7">7</button><button class="page" data-action="8">8</button><button class="page" data-action="9">9</button><button class="page" data-action="next" aria-label="next">&rsaquo;</button><button class="page" data-action="last" aria-label="last">&raquo;</button><span class="info">Showing 25-36 of 41 programs</span></nav></div>
+<div class="el-row-flex"><button class="el-btn el-btn--outline" style="margin-left:auto" data-drawer-open="drw-show">Open run-of-show drawer</button></div>
+</section>
+<footer class="el-footer"><div class="cols"><div class="col"><span class="label">Visit</span><ul><li><a href="#">Plan your evening</a></li><li><a href="#">Accessibility</a></li><li><a href="#">School field trips</a></li><li><a href="#">Getting here</a></li></ul></div><div class="col"><span class="label">Programs</span><ul><li><a href="#">Fulldome features</a></li><li><a href="#">Starball classics</a></li><li><a href="#">After Dark (21+)</a></li><li><a href="#">Members' nights</a></li></ul></div><div class="col"><span class="label">Support</span><ul><li><a href="#">Adopt a star</a></li><li><a href="#">Dome renewal fund</a></li><li><a href="#">Volunteer guild</a></li><li><a href="#">Corporate evenings</a></li></ul></div></div><p class="small"><span>Aurelia Dome · 18-meter dome, 8K stereo projection, and 340 warm seats since 1994</span><span>Tonight: doors 19:00 · first show 19:30</span></p></footer>
+</main>
+<aside class="el-drawer right" id="drw-show" aria-hidden="true">
+<div class="el-drawer-head"><h3>Run of show · Grand Tour</h3><button class="el-btn el-btn--ghost el-btn--squared" data-drawer-close>Close</button></div>
+<div class="el-drawer-body">
+<div class="el-fact-grid">
+<div class="el-fact"><span class="k">Doors</span><span class="v">20:00</span></div>
+<div class="el-fact"><span class="k">Starball</span><span class="v">Manual bulb</span></div>
+</div>
+<div class="el-cluster" style="margin-top:12px"><span class="el-chip ok is-selected">Bulb restored</span><span class="el-chip">Original 1974 reel</span></div>
+</div>
+<div class="el-drawer-foot"><button class="el-btn el-btn--outline">Share run order</button><button class="el-btn" data-toast="Two seats held for 20:15" data-toast-variant="ok">Hold seats</button></div>
+</aside>
+</body>
+</html>

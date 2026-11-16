@@ -1,0 +1,286 @@
+<!doctype html><html lang="en" data-theme="cream-journal"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Folio Desk — the Quarto subscriber portal</title>
+<link rel="stylesheet" href="../../../base.css"><link rel="stylesheet" href="../../../fonts.css">
+<link rel="stylesheet" href="../../../tokens.css">
+<link rel="stylesheet" href="../../../elements-display.css">
+<link rel="stylesheet" href="../../../elements-structure.css">
+<link rel="stylesheet" href="../../../elements-lists.css">
+<link rel="stylesheet" href="../../../elements-app.css">
+<link rel="stylesheet" href="../../../elements-containers.css">
+<link rel="stylesheet" href="../../../elements-controls.css">
+<link rel="stylesheet" href="../../../elements-inputs.css">
+<link rel="stylesheet" href="../../../elements-dataviz.css">
+<link rel="stylesheet" href="../../../elements-overlay.css">
+<link rel="stylesheet" href="../../../elements-interactions.css">
+<link rel="stylesheet" href="../../../elements-misc.css">
+<link rel="stylesheet" href="../../../elements-size.css">
+<link rel="stylesheet" href="../../../elements-workflow.css">
+<link rel="stylesheet" href="../../../elements-inspector.css">
+<link rel="stylesheet" href="../../../elements-reader.css">
+<link rel="stylesheet" href="../../../elements-assistant.css">
+<link rel="stylesheet" href="../../../themes/src/editorial.css">
+<script src="../../../elements.js" defer></script><script src="../../../charts.js" defer></script>
+</head>
+<body style="background:color-mix(in oklab, var(--el-bg) 60%, var(--el-ink) 8%)">
+<div class="el-appwin" style="max-width:1340px;margin:26px auto 46px">
+  <div class="el-titlebar">
+    <span class="lead"><span class="el-app-title">The Folio Desk <small>Quarto subscriber portal · v3</small></span></span>
+    <span class="winbtns">
+      <button class="el-winbtn" aria-label="Minimise"></button>
+      <button class="el-winbtn" aria-label="Maximise"></button>
+      <button class="el-winbtn close" aria-label="Close"></button>
+    </span>
+  </div>
+  <div class="el-menubar">
+    <button class="el-menubar-item">Issues</button>
+    <button class="el-menubar-item">Margin</button>
+    <button class="el-menubar-item">Subscribers</button>
+    <button class="el-menubar-item">Press</button>
+    <span class="sep"></span><span class="spring"></span>
+    <span class="el-status-dot live" title="Press is printing"></span><span class="el-mono" style="font-size:0.82em;color:var(--el-mute)">press·run·07</span>
+  </div>
+
+  <div class="el-appwin-body" style="display:grid;grid-template-columns:236px minmax(0,1fr) 304px;gap:0;min-height:660px">
+
+    <aside class="el-sidebar">
+      <div class="head">
+        <span class="brand">Quarto</span>
+        <span class="el-badge" style="font-variant-caps:normal">desk</span>
+      </div>
+      <div class="grp">
+        <span class="label">The desk</span>
+        <button class="on"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5h16M4 10h16M4 15h10M4 20h7"/></svg> Reading log</button>
+        <button><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="4" width="16" height="16"/><path d="M8 10h8M8 14h5"/></svg> Margins</button>
+        <button><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg> The clock</button>
+      </div>
+      <div class="grp"><details open>
+        <summary><span class="chev">‹</span> Your shelf</summary>
+        <button>Back issues · 24</button>
+        <button>Currents · 147</button>
+        <button aria-disabled="true">Loan shelf (print only)</button>
+      </details></div>
+      <div class="grp">
+        <span class="label">Mail</span>
+        <button>Post box 4102-TT</button>
+        <button>The paper letter</button>
+      </div>
+      <div class="foot el-mute-body">Quarto Review · press pass 12 · no reprints</div>
+    </aside>
+
+    <div style="display:flex;flex-direction:column;border-inline-start:1px solid var(--el-line);border-inline-end:1px solid var(--el-line);min-width:0">
+      <div class="el-headerbar">
+        <span class="el-icon"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 6h16M4 12h11M4 18h7"/></svg></span>
+        <span class="label">Reading log — March</span>
+        <span class="el-pill on">autosave · 14:02</span>
+        <span class="el-pill">quiet hours</span>
+        <span class="spring"></span>
+        <span class="el-search-field s"><input class="el-search" type="search" placeholder="Find in the log"></span>
+        <span class="el-tooltip" data-tip="Clip the selected line"><button class="el-btn el-btn--ghost" data-toast="Clip on its way to the margin." data-toast-variant="ok">Clip</button></span>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;padding:14px 16px 0">
+        <div class="el-stat"><span class="el-stat-value">147</span><span class="el-stat-label">Issues read</span></div>
+        <div class="el-stat"><span class="el-stat-value">61</span><span class="el-stat-label">Margins kept</span>
+          <span class="el-sparkline el-chart" data-chart="sparkline" data-values="3,5,4,7,6,9,8,11" data-width="120" data-height="30" data-label="reads per season"></span></div>
+        <div class="el-stat"><span class="el-stat-value">4.7</span><span class="el-stat-label">Avg days per issue</span></div>
+        <div class="el-stat is-live"><span class="el-stat-value">1</span><span class="el-stat-label">Press printing now</span></div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr;gap:8px;padding:10px 16px">
+        <div>
+          <div class="el-meter" style="--el-meter-value:62%"><span class="fill"></span></div>
+          <span class="el-meter-label"><span>Spring run</span><span>14 of 22 tonnes cream stock</span></span>
+        </div>
+      </div>
+
+      <div style="padding:6px 16px 0">
+        <div class="el-listbox">
+          <div class="el-listbox-header">This month at the desk</div>
+          <div class="el-listbox-row is-selected"><span class="el-icon"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 4h12v16H6z"/><path d="M9 8h6M9 12h6"/></svg></span>
+            <span class="label">Issue 147 · The Slow Post</span><span class="sub">essay, four hands</span><span class="count">p 7–31</span>
+            <button class="el-btn el-btn--ghost" data-toast-variant="ok" data-toast="147 clipped.">Clip</button></div>
+          <div class="el-listbox-row"><span class="el-icon"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 4h12v16H6z"/><path d="M9 8h6"/></svg></span>
+            <span class="label">Issue 146 · The Bindery Letters</span><span class="sub">letters, sewn</span><span class="count">p 4–18</span>
+            <button class="el-btn el-btn--ghost" data-toast-variant="info" data-toast="Already in the log.">Open</button></div>
+          <div class="el-listbox-row"><span class="el-icon"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 4h12v16H6z"/></svg></span>
+            <span class="label">Issue 145 · Nine Days to Flagstaff</span><span class="sub">field notes</span><span class="count">p 3–22</span>
+            <button class="el-btn el-btn--ghost" data-toast-variant="ok" data-toast="145 clipped.">Clip</button></div>
+        </div>
+      </div>
+
+      <div style="display:flex;gap:4px;flex-wrap:wrap;padding:12px 16px 0;border-top:1px solid var(--el-line);margin-top:12px">
+        <nav class="el-tabbar" style="flex:1">
+          <button class="el-tabbar-item is-active">Log<span class="count">3</span></button>
+          <button class="el-tabbar-item">Margins<span class="count">61</span></button>
+          <button class="el-tabbar-item">Letters</button>
+        </nav>
+        <div class="el-actionbar" style="flex:0 0 300px">
+          <span class="lead">Desk draft · autosaved 14:02</span>
+          <span class="actions">
+            <button class="el-btn el-btn--ghost" data-menu="desk-menu" data-toast-variant="info" data-toast="Menu holds the desk's verbs.">Menu</button>
+            <button class="el-btn" data-toast-variant="ok" data-toast="Log entry pressed to the shelf.">Press entry</button>
+          </span>
+        </div>
+      </div>
+
+      <div style="padding:14px 16px">
+        <table class="el-table el-table--zebra">
+          <thead><tr><th>Line</th><th>Where</th><th>Note in the margin</th><th class="r">Day</th></tr></thead>
+          <tbody>
+            <tr><td>“The letter’s luggage.”</td><td>The Slow Post ¶1</td><td>read twice; kept</td><td class="num r">12</td></tr>
+            <tr><td>“Rides a slower mail…”</td><td>The Slow Post ¶1</td><td>Flagstaff in August — <em>yes</em></td><td class="num r">13</td></tr>
+            <tr><td>“seasons folded inside it”</td><td>The Slow Post ¶2</td><td>sewn binding does this physically</td><td class="num r">14</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div style="padding:0 16px 18px;display:grid;gap:12px">
+        <div class="el-notification-stack">
+          <div class="el-notification ok is-unread">
+            <span class="icon"><span class="el-icon"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m5 13 4 4L19 7"/></svg></span></span>
+            <span class="head"><span class="title">Margin returned from Despair</span><span class="app">reader mail</span></span>
+            <button class="close" aria-label="Dismiss">✕</button>
+            <span class="body">The pencil notes on 147 are back at the desk. Two are for you.</span>
+            <span class="time">07:14</span>
+            <span class="actions"><button>Open margin</button><button>Snooze</button></span>
+          </div>
+          <div class="el-notification info">
+            <span class="icon"><span class="el-icon"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg></span></span>
+            <span class="head"><span class="title">Press run 07 holds ink</span><span class="app">press room</span></span>
+            <button class="close" aria-label="Dismiss">✕</button>
+            <span class="body">Cream stock measured at 17 tonnes; the run keeps to Tuesday.</span>
+            <span class="time">06:52</span>
+          </div>
+        </div>
+
+        <div class="el-empty">
+          <span class="el-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 4h14v16H5z"/><path d="M8 9h8M8 13h8M8 17h4"/></svg></span>
+          <span class="title">No clippings from this issue yet</span>
+          <span class="msg">Clip a line in the log and it will rest here, held by its margin.</span>
+          <span class="hint">Clippings print with the fold only if you press them.</span>
+          <button class="el-btn el-btn--outline" data-toast-variant="info" data-toast="The fold takes handwritten clippings by preference.">How clippings print</button>
+        </div>
+        <div style="display:flex;gap:14px;align-items:center">
+          <span class="el-spinner"></span><span class="el-skeleton text" style="flex:1"></span>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:flex;flex-direction:column;min-width:0;gap:12px;padding:14px">
+      <div class="el-inspector is-docked">
+        <div class="el-inspector-header">
+          <span>Line inspector</span>
+          <button class="el-inspector-close" aria-label="Close">✕</button>
+        </div>
+        <div class="el-inspector-body">
+          <p class="el-eyebrow">Selection</p>
+          <p style="font-family:var(--el-font-display);font-size:1.1rem;margin:4px 0 10px">“The envelope rides a slower mail.”</p>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px">
+            <span class="el-chip">essay</span><span class="el-chip added">kept</span><span class="el-status-pill warn">in revision</span>
+            <span class="el-status-dot ok"></span><span class="el-kbd">↵</span> to keep
+          </div>
+          <div class="el-mute-body" style="font-size:0.88em">Margin: <span style="color:var(--el-ink)">“nine days, four hands, one pencil”</span>. Carried from issue 146.</div>
+        </div>
+      </div>
+
+      <div class="el-assistant-panel is-streaming">
+        <div class="el-assistant-head">
+          <span>The desk assistant</span>
+          <span class="el-status-pill running"><span class="el-msg-status"></span> streaming</span>
+        </div>
+        <div class="el-assistant-log">
+          <div class="el-msg el-msg--assistant">I have the log open. Issue 147 sits four days deep — a slow read, by the sound of it.</div>
+          <div class="el-msg el-msg--user">Find every line that mentions the dock.</div>
+          <div class="el-plan"><p class="el-plan-title">Searching the margin, press log and letters</p></div>
+          <div class="el-msg el-msg--assistant">Three lines dock on the desk: ¶1, the photo plate and the press book entry for 14 March. The press book one is print-only. </div>
+        </div>
+        <div class="el-assistant-foot">
+          <input class="el-input" placeholder="Ask the desk">
+          <button class="el-assistant-stop">Stop</button>
+        </div>
+      </div>
+
+      <div class="el-popover" style="align-self:center">
+        <button class="el-btn el-btn--ghost">Share line…</button>
+        <div class="el-pop">
+          <p class="label">Share by</p>
+          <button class="item" data-toast-variant="ok" data-toast="Shared to the margin reader.">Margin reader</button>
+          <button class="item" data-toast-variant="ok" data-toast="Copied as a press slip.">Press slip</button>
+        </div>
+      </div>
+
+      <div class="el-menu-anchor">
+        <button class="el-btn el-btn--outline" data-menu="share-menu">More verbs <span class="chev">▾</span></button>
+        <div class="el-menu" id="share-menu">
+          <button class="el-menu-item">Clip to shelf</button>
+          <button class="el-menu-item">Send the paper letter</button>
+          <button class="el-menu-item is-danger" data-toast-variant="warn" data-toast="Burn needs the editor's first name.">Burn note</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="el-menu-anchor" style="max-width:1340px;margin:0 auto 30px;display:flex;gap:10px;align-items:center">
+  <button class="el-btn el-btn--ghost" data-command="desk">Open the desk <span class="el-kbd">⌘K</span></button>
+  <button class="el-btn el-btn--outline" data-dialog-open="clip-dialog">New clipping</button>
+  <span class="el-tooltip" data-tip="Everything here is a mock; the press stays real."><span class="el-badge" style="font-variant-caps:normal">demo</span></span>
+</div>
+
+<div id="scrim-app" class="el-scrim" data-dialog-scrim style="position:fixed;inset:0"></div>
+<dialog class="el-dialog" id="clip-dialog" aria-label="New clipping">
+  <div class="el-dialog-head">
+    <h2>New clipping</h2>
+    <button class="el-dialog-close" data-dialog-close aria-label="Close">✕</button>
+  </div>
+  <div class="el-dialog-body">
+    <label class="el-field">
+      <span class="el-label">Line</span>
+      <input class="el-input" value="“The envelope rides a slower mail.”">
+    </label>
+    <label class="el-field">
+      <span class="el-label">Margin</span>
+      <textarea class="el-textarea" rows="2">nine days, four hands, one pencil</textarea>
+    </label>
+  </div>
+  <div class="el-dialog-foot">
+    <button class="el-btn el-btn--ghost" data-dialog-close>Cancel</button>
+    <button class="el-btn" data-dialog-close data-toast-variant="ok" data-toast="Clipping pressed to your shelf.">Press it</button>
+  </div>
+</dialog>
+
+<div class="el-command" id="desk" role="dialog" aria-label="The desk palette">
+  <div class="el-command-panel">
+    <input class="el-command-input" placeholder="Ask the desk — lines, margins, issues…" aria-label="Command">
+    <div class="el-command-results">
+      <div class="el-command-group">Go</div>
+      <button class="el-command-row sel" data-value="log">Reading log<span class="el-command-hint"><span class="el-kbd">L</span></span></button>
+      <button class="el-command-row" data-value="margins">Margins, 61 kept<span class="el-command-hint"><span class="el-kbd">M</span></span></button>
+      <div class="el-command-group">Desk verbs</div>
+      <button class="el-command-row" data-value="clip">Clip last line<span class="el-command-hint"><span class="el-kbd">.</span></span></button>
+      <button class="el-command-row" data-value="letter">The paper letter<span class="el-command-hint"><span class="el-kbd">P</span></span></button>
+      <p class="el-command-empty">No line by that name.</p>
+    </div>
+    <div class="el-command-foot"><span>Return</span><span>open</span><span class="el-kbd">esc</span><span>close desk</span></div>
+  </div>
+</div>
+
+<footer class="el-footer" style="max-width:1340px;margin:0 auto 44px">
+  <p class="el-eyebrow">The Folio Desk · The Quarto Review</p>
+  <p class="el-mute-body">Subscriber portal mock · issues, margins, mail and the press clock — printed quarterly since 1987</p>
+</footer>
+
+<div class="el-toast-region" aria-live="polite"></div>
+<template id="toast-fixture">
+  <div class="el-toast ok" data-toast-variant="ok"><span>Margin synced to the new shelf — 61 notes carried.</span><button class="close" aria-label="Dismiss">✕</button></div>
+</template>
+<script>
+window.addEventListener('DOMContentLoaded', function () {
+  var t = document.getElementById('toast-fixture');
+  if (!t) return;
+  var clone = t.content.firstElementChild.cloneNode(true);
+  var region = document.querySelector('.el-toast-region');
+  if (region) { region.appendChild(clone); clone.classList.add('open'); setTimeout(function(){ clone.remove(); }, 3400); }
+});
+</script>
+</body></html>

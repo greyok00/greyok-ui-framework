@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="en" data-theme="grid-ledger">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Books office — Fernbank Ledger</title>
+<link rel="stylesheet" href="../../../base.css">
+<link rel="stylesheet" href="../../../fonts.css">
+<link rel="stylesheet" href="../../../tokens.css">
+<link rel="stylesheet" href="../../../tokens-v2.css">
+<link rel="stylesheet" href="../../../elements-display.css">
+<link rel="stylesheet" href="../../../elements-structure.css">
+<link rel="stylesheet" href="../../../elements-lists.css">
+<link rel="stylesheet" href="../../../elements-app.css">
+<link rel="stylesheet" href="../../../elements-containers.css">
+<link rel="stylesheet" href="../../../elements-controls.css">
+<link rel="stylesheet" href="../../../elements-inputs.css">
+<link rel="stylesheet" href="../../../elements-dataviz.css">
+<link rel="stylesheet" href="../../../elements-overlay.css">
+<link rel="stylesheet" href="../../../elements-interactions.css">
+<link rel="stylesheet" href="../../../elements-misc.css">
+<link rel="stylesheet" href="../../../elements-size.css">
+<link rel="stylesheet" href="../../../elements-workflow.css">
+<link rel="stylesheet" href="../../../elements-inspector.css">
+<link rel="stylesheet" href="../../../elements-reader.css">
+<link rel="stylesheet" href="../../../elements-assistant.css">
+<link rel="stylesheet" href="../../../themes/src/dashboard-light.css">
+<script src="../../../elements.js" defer></script>
+<script src="../../../charts.js" defer></script>
+</head>
+<body class="el-reset">
+<div class="site-shell">
+
+  <nav class="el-navbar el-navbar--rail" aria-label="Fernbank Ledger">
+    <a class="brand" href="index.html">
+      <span class="brand-mark" aria-hidden="true">F</span>
+      <span class="brand-label">Fernbank Ledger</span>
+    </a>
+    <div class="links">
+      <a href="index.html"><span class="rail-idx">01</span>Overview</a>
+      <a href="catalog.html"><span class="rail-idx">02</span>Billing packages</a>
+      <a href="article.html"><span class="rail-idx">03</span>The close</a>
+      <a href="account.html" aria-current="page"><span class="rail-idx">04</span>Books office</a>
+      <a href="app.html"><span class="rail-idx">05</span>Ledger desk</a>
+    </div>
+    <div class="actions">
+      <button class="el-btn" data-toast="Workpaper bundle exported (ZIP, 2.1 GB)">Export workpapers</button>
+    </div>
+    <div class="rail-note">
+      <span>Whitfield Bookkeeping PLLC</span>
+      <span>plan Firm · 40 seats</span>
+    </div>
+  </nav>
+
+  <div class="site-main">
+    <main class="el-page">
+      <div class="el-banner el-banner--warn" role="status">
+        <span class="glyph" aria-hidden="true"><svg class="el-icon"><use href="../../../assets/icons.svg#el-i-info"/></svg></span>
+        <span class="copy"><strong>Two feed matches await review</strong><span class="detail">Sonoran Coffee Roasters: $84.60 and $1,190.00 are suggested, not matched. Review before the Nov 5 close.</span></span>
+        <button class="action" data-toast="Match queue opened at the desk">Open the queue</button>
+        <button class="close" data-banner-close aria-label="Dismiss"><svg class="el-icon"><use href="../../../assets/icons.svg#el-i-close"/></svg></button>
+      </div>
+
+      <div class="settings-grid" style="display:grid; grid-template-columns: 212px minmax(0,1fr); gap: var(--el-space-6); margin-top: var(--el-space-5);">
+        <aside class="el-sidebar" aria-label="Books office sections">
+          <div class="head">Books office</div>
+          <div class="grp">
+            <span class="label">Practice</span>
+            <a href="#" aria-current="page">Firm profile</a>
+            <a href="#">Bookkeepers</a>
+            <a href="#">Notifications</a>
+          </div>
+          <div class="grp">
+            <span class="label">Books</span>
+            <a href="#">Feeds &amp; banks</a>
+            <a href="#">Chart of accounts</a>
+            <a href="#">Close schedules</a>
+          </div>
+          <div class="grp">
+            <span class="label">Records</span>
+            <a href="#">Retention &amp; archive</a>
+          </div>
+        </aside>
+
+        <div style="display:grid; gap: var(--el-space-5); min-width: 0;">
+
+          <section class="el-section el-section--flush" style="padding:0;">
+            <div class="el-section-head">
+              <div><p class="el-eyebrow">Practice</p><h2 style="font-size: var(--el-fs-xl);">Firm profile</h2></div>
+            </div>
+            <div class="el-card">
+              <div class="fields-row" style="display:grid; grid-template-columns: 1fr 1fr; gap: var(--el-space-4);">
+                <div class="el-field">
+                  <label class="el-label" for="firm-name">Firm name</label>
+                  <input class="el-input" id="firm-name" value="Whitfield Bookkeeping PLLC" />
+                  <span class="el-hint">Prints on every certification and invoice.</span>
+                </div>
+                <div class="el-field">
+                  <label class="el-label" for="firm-ptin">PTIN / license</label>
+                  <input class="el-input" id="firm-ptin" value="AZ-CPA-88214" />
+                </div>
+                <div class="el-field" data-invalid="true">
+                  <label class="el-label" for="firm-contact">Client contact address</label>
+                  <input class="el-input" id="firm-contact" value="ruth@whitfieldbooks.invalid" />
+                  <span class="el-error">"invalid" TLD never resolves; invoices would bounce.</span>
+                </div>
+                <div class="el-field">
+                  <label class="el-label" for="firm-basis">Default accounting basis</label>
+                  <select class="el-select" id="firm-basis">
+                    <option selected>Accrual</option>
+                    <option>Cash</option>
+                    <option>Hybrid (per ledger)</option>
+                  </select>
+                </div>
+                <div class="el-field">
+                  <label class="el-label" for="firm-search">Find a ledger</label>
+                  <span class="el-search-field"><input class="el-search" id="firm-search" type="search" placeholder="Search 40 ledgers…" /></span>
+                </div>
+                <div class="el-field">
+                  <label class="el-label" for="firm-template">Invoice template</label>
+                  <div class="el-dropdown" tabindex="0">Fernbank classic · Net 30 <svg class="el-icon"><use href="../../../assets/icons.svg#el-i-chevron-down"/></svg></div>
+                </div>
+                <div class="el-field el-field--wide" style="grid-column: 1 / -1;">
+                  <label class="el-label" for="firm-note">Standing notes on every statement</label>
+                  <textarea class="el-textarea" id="firm-note" rows="4">Prepared by Whitfield Bookkeeping PLLC from client books at November 30. Unaudited. Variance notes included where required under the 2%/$500 band.</textarea>
+                </div>
+              </div>
+              <div class="el-card-foot">
+                <button class="el-btn" data-toast="Firm profile saved" data-toast-variant="ok">Save profile</button>
+                <button class="el-btn el-btn--ghost" data-toast="Reverted to last saved profile">Revert</button>
+              </div>
+            </div>
+          </section>
+
+          <section class="el-section el-section--flush" style="padding:0;">
+            <div class="el-section-head">
+              <div><p class="el-eyebrow">Books</p><h2 style="font-size: var(--el-fs-xl);">Feeds &amp; banks</h2></div>
+              <div class="actions"><span class="el-pill"><span class="el-status-dot ok" data-state="ok"></span>112 feeds healthy</span></div>
+            </div>
+            <div class="el-card">
+              <div class="el-fact-grid" style="grid-template-columns:repeat(auto-fit, minmax(150px, 1fr)); gap:var(--el-space-3);">
+                <div class="el-fact"><span class="k">feeds</span><span class="v">112</span></div>
+                <div class="el-fact"><span class="k">match rate</span><span class="v">94%</span></div>
+                <div class="el-fact is-hot"><span class="k">awaiting review</span><span class="v">2</span></div>
+              </div>
+              <div class="fields-row" style="display:grid; grid-template-columns: 1fr 1fr; gap: var(--el-space-4); margin-top: var(--el-space-4);">
+                <div class="el-field">
+                  <span class="el-label">Feed retry mode</span>
+                  <div class="el-segmented" role="tablist" aria-label="Feed retry mode">
+                    <button>off</button>
+                    <button class="on" aria-selected="true">quiet retry</button>
+                    <button>aggressive</button>
+                  </div>
+                  <span class="el-hint">Quiet retry backs off for 2 hours between attempts.</span>
+                </div>
+                <div class="el-field">
+                  <label class="el-label" for="feed-hours">Matching window</label>
+                  <div class="ctl-with-val" style="display:flex; align-items:center; gap:12px;">
+                    <input class="el-slider" id="feed-hours" type="range" min="1" max="21" value="7" style="flex:1;" aria-label="Matching window in days" />
+                    <span class="el-slider-val"><span class="val">7</span> days</span>
+                  </div>
+                  <span class="el-hint">How far back a rule may reach to match a feed row. 7 days covers weekend cutoffs.</span>
+                </div>
+              </div>
+              <div class="options-block" style="display:grid; gap: var(--el-space-3); margin-top: var(--el-space-4);">
+                <div style="display:flex; align-items:center; gap:10px;">
+                  <span class="el-switch on" role="switch" aria-checked="true"></span>
+                  <span style="font-size: var(--el-fs-md);">Auto-post matched feed rows</span> <span class="el-badge">recommended</span>
+                </div>
+                <div style="display:flex; align-items:center; gap:10px;">
+                  <span class="el-switch" role="switch" aria-checked="false"></span>
+                  <span style="font-size: var(--el-fs-md);">Print journal at every close</span>
+                </div>
+                <div style="display:flex; align-items:flex-start; gap:10px;">
+                  <span class="el-check on" role="checkbox" aria-checked="true"></span>
+                  <span><span style="font-size: var(--el-fs-md);">Require reviewer initials on every Day 4 journal</span><div style="font-size: var(--el-fs-sm); color: var(--el-mute);">Two sets of initials, one page — see field note #9.</div></span>
+                </div>
+                <div style="display:flex; align-items:center; gap:10px;">
+                  <span class="el-check" role="checkbox" aria-checked="false"></span>
+                  <span style="font-size: var(--el-fs-md);">Redact account names in client-visible exports</span>
+                </div>
+                <fieldset style="border:0; padding:0; margin: var(--el-space-2) 0 0; display:grid; gap:8px;">
+                  <legend style="font-size: var(--el-fs-sm); color: var(--el-ink-soft); padding:0;">When a feed breaks:</legend>
+                  <label class="el-radio"><input type="radio" name="feedbreak" checked><span class="dot"></span>Tell me quietly (email)</label>
+                  <label class="el-radio"><input type="radio" name="feedbreak"><span class="dot"></span>Post a banner at the desk</label>
+                  <label class="el-radio"><input type="radio" name="feedbreak"><span class="dot"></span>Both, and pause affected books</label>
+                </fieldset>
+              </div>
+              <div class="el-card-foot">
+                <div class="el-btn-group" role="group" aria-label="Feed actions">
+                  <button class="el-btn el-btn--outline" data-toast="112 feeds pinged · 110 answered in 4s">Ping all feeds</button>
+                  <button class="el-btn el-btn--outline" data-toast="Rule engine re-run: 214 rows matched, 2 queued">Re-run rules</button>
+                  <button class="el-btn" data-toast="Feed settings applied to 112 feeds" data-toast-variant="ok">Apply</button>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="el-section el-section--flush" style="padding:0;">
+            <div class="el-panel">
+              <div class="el-panel-head">this month's close · 4 of 5 days done</div>
+              <ol class="el-stepper">
+                <li class="done"><span class="num">✓</span>Day 1 · reconcile feeds</li>
+                <li class="done"><span class="num">✓</span>Day 2 · post accruals</li>
+                <li class="active"><span class="num">3</span>Day 3 · variance review</li>
+                <li><span class="num">4</span>Day 4 · reviewer initials</li>
+                <li><span class="num">5</span>Day 5 · certify + invoice</li>
+              </ol>
+              <div class="el-inline-alert el-inline-alert--ok">
+                <div><div class="title">On schedule</div><div class="body">Median close day is Nov 5; you are tracking to Nov 3. The two queued matches are the only blockers.</div></div>
+              </div>
+              <div style="margin-top: var(--el-space-3); display:grid; gap:8px;">
+                <div class="el-skeleton text" style="width: 68%;"></div>
+                <div class="el-skeleton text" style="width: 44%;"></div>
+              </div>
+              <div style="margin-top: var(--el-space-3); display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+                <button class="el-btn el-btn--outline" data-toast="Variance note pack exported (6 notes)"><svg class="el-icon"><use href="../../../assets/icons.svg#el-i-download"/></svg>Export notes</button>
+                <button class="el-btn" data-toast="Day 3 signed off (you, Ruth Whitfield)" data-toast-variant="ok">Sign Day 3</button>
+                <div class="el-menu-anchor">
+                  <button class="el-btn el-btn--ghost" data-menu="menu-ledger" aria-haspopup="true">More <svg class="el-icon"><use href="../../../assets/icons.svg#el-i-chevron-down"/></svg></button>
+                  <div class="el-menu" id="menu-ledger" role="menu" aria-label="More close actions">
+                    <div class="el-menu-label">Close actions</div>
+                    <button class="el-menu-item" data-toast="Journal printed to workpapers">Print today's journal</button>
+                    <button class="el-menu-item" data-toast="Reminder scheduled for reviewer, Day 4">Remind reviewer <span class="hint">Nov 4</span></button>
+                    <div class="el-menu-sep" role="separator"></div>
+                    <button class="el-menu-item is-danger" data-toast="Nothing was reset; close state untouched">Reset close state</button>
+                  </div>
+                </div>
+                <span class="el-pill" data-tip="Day 4 needs a different set of initials than Day 3" tabindex="0">review rule</span>
+              </div>
+            </div>
+          </section>
+
+          <section class="el-section el-section--flush" style="padding:0;">
+            <div class="el-section-head">
+              <div><p class="el-eyebrow">Records</p><h2 style="font-size: var(--el-fs-xl);">Retention &amp; archive</h2></div>
+            </div>
+            <div class="el-card el-card--flat">
+              <p class="sub" style="margin:0 0 var(--el-space-3);">Books are archived at 7 years by IRS guidance, then moved to cold storage. Deleting a ledger early requires typing its name — the archive keeps its workpapers either way.</p>
+              <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+                <button class="el-btn el-btn--danger" data-dialog-open="dlg-delete">Delete a ledger…</button>
+                <span class="el-pill" data-tip="Last archive: Nov 1, 2026 · 2.1 GB encrypted" tabindex="0"><svg class="el-icon"><use href="../../../assets/icons.svg#el-i-download"/></svg>archive current</span>
+              </div>
+            </div>
+          </section>
+
+          <div class="el-pagination" data-page-source="#ledger-pages" data-page-size="2" style="margin-top: var(--el-space-2);">
+            <button class="page" data-action="prev" aria-label="Previous block">‹ prev</button>
+            <button class="page on" data-action="next">Practice</button>
+            <button class="page" data-action="next">Books</button>
+            <button class="page" data-action="next" hidden aria-hidden="true">Records</button>
+            <span class="info">1 / 2</span>
+          </div>
+        </div>
+      </div>
+
+      <footer class="el-footer">
+        <div class="cols">
+          <div class="col"><span class="label">Ledger</span><a href="app.html">The desk</a><a href="catalog.html">Billing packages</a></div>
+          <div class="col"><span class="label">Read</span><a href="article.html">The five-day close</a></div>
+          <div class="col"><span class="label">Books office</span><a href="account.html">Settings</a><a href="account.html">Feeds</a></div>
+          <div class="col"><span class="label">Fine print</span><a href="#">Security</a><a href="#">SOC 1 report</a></div>
+        </div>
+        <div class="small">Books office v4.12 · last save 9 hours ago by R. Whitfield</div>
+      </footer>
+    </main>
+  </div>
+</div>
+
+<!-- delete ledger dialog -->
+<dialog class="el-dialog" id="dlg-delete" aria-label="Delete a ledger">
+  <div class="el-dialog-head">
+    <h3 class="el-dialog-title">Delete a ledger</h3>
+    <button class="el-dialog-close" data-dialog-close aria-label="Close"><svg class="el-icon"><use href="../../../assets/icons.svg#el-i-x"/></svg></button>
+  </div>
+  <div class="el-dialog-body">
+    <div class="el-field">
+      <label class="el-label" for="del-ledger">Ledger</label>
+      <select class="el-select" id="del-ledger"><option>Dusk Trail RV Park (closed 2025)</option><option>Mule Deer Storage (merged 2024)</option></select>
+    </div>
+    <div class="el-field">
+      <label class="el-label" for="del-confirm">Type the ledger name to confirm</label>
+      <input class="el-input" id="del-confirm" placeholder="Dusk Trail RV Park" />
+    </div>
+    <div class="el-inline-alert el-inline-alert--fail">
+      <div><div class="title">The archive outlives the ledger</div><div class="body">Workpapers and journal prints stay for 7 years regardless. What ends is sync, posting, and desk access.</div></div>
+    </div>
+  </div>
+  <div class="el-dialog-foot">
+    <button class="el-btn el-btn--ghost" data-dialog-close>Cancel</button>
+    <button class="el-btn el-btn--danger" data-toast="Ledger deleted: Dusk Trail RV Park (archive intact until 2076)" data-toast-variant="fail" data-dialog-close>Delete ledger</button>
+  </div>
+</dialog>
+
+<!-- quick palette for the office -->
+<div class="el-command" id="cmd-acct" role="dialog" aria-label="Quick find">
+  <div class="el-command-panel">
+    <input class="el-command-input" placeholder="Search ledgers, feeds, actions…" autocomplete="off" />
+    <div class="el-command-results">
+      <div class="el-command-group">Ledgers</div>
+      <button class="el-command-row sel" data-value="hm"><span>Herrera Metalworks</span><span class="key">$620/mo</span></button>
+      <button class="el-command-row" data-value="scr"><span>Sonoran Coffee Roasters</span><span class="key">2 to review</span></button>
+      <button class="el-command-row" data-value="pbc"><span>Papago Bike Co.</span><span class="key">catch-up</span></button>
+      <div class="el-command-group">Actions</div>
+      <button class="el-command-row" data-value="recheck"><span>Re-run feed rules</span><span class="key">R</span></button>
+      <div class="el-command-empty">No ledger matches — try "dental" or "print".</div>
+      <div class="el-command-foot"><span><kbd class="el-kbd">↑↓</kbd> navigate</span><span><kbd class="el-kbd">↵</kbd> open</span><span><kbd class="el-kbd">esc</kbd> close</span></div>
+    </div>
+  </div>
+</div>
+
+<script>
+window.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('[data-banner-close]').forEach(b =>
+    b.addEventListener('click', () => b.closest('.el-banner')?.classList.add('is-dismissed')));
+  const q = new URLSearchParams(location.search).get('open');
+  if (q && window.Elements) {
+    const t = document.getElementById(q);
+    if (t && t.classList.contains('el-dialog') && window.Elements.openDialog) window.Elements.openDialog(t);
+    if (t && t.classList.contains('el-command') && window.Elements.openCommand) window.Elements.openCommand(t);
+  }
+});
+</script>
+</body>
+</html>

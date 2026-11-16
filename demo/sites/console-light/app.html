@@ -1,0 +1,458 @@
+<!doctype html>
+<html lang="en" data-theme="console-light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fleet console — Lodestone</title>
+<link rel="stylesheet" href="../../../base.css">
+<link rel="stylesheet" href="../../../fonts.css">
+<link rel="stylesheet" href="../../../tokens.css">
+<link rel="stylesheet" href="../../../tokens-v2.css">
+<link rel="stylesheet" href="../../../elements-display.css">
+<link rel="stylesheet" href="../../../elements-structure.css">
+<link rel="stylesheet" href="../../../elements-lists.css">
+<link rel="stylesheet" href="../../../elements-app.css">
+<link rel="stylesheet" href="../../../elements-containers.css">
+<link rel="stylesheet" href="../../../elements-controls.css">
+<link rel="stylesheet" href="../../../elements-inputs.css">
+<link rel="stylesheet" href="../../../elements-dataviz.css">
+<link rel="stylesheet" href="../../../elements-overlay.css">
+<link rel="stylesheet" href="../../../elements-interactions.css">
+<link rel="stylesheet" href="../../../elements-misc.css">
+<link rel="stylesheet" href="../../../elements-size.css">
+<link rel="stylesheet" href="../../../elements-workflow.css">
+<link rel="stylesheet" href="../../../elements-inspector.css">
+<link rel="stylesheet" href="../../../elements-reader.css">
+<link rel="stylesheet" href="../../../elements-assistant.css">
+<link rel="stylesheet" href="../../../themes/src/dashboard-light.css">
+<script src="../../../elements.js" defer></script>
+<script src="../../../charts.js" defer></script>
+</head>
+<body class="el-reset">
+<div class="site-shell">
+
+  <nav class="el-navbar el-navbar--rail" aria-label="Lodestone">
+    <a class="brand" href="index.html">
+      <span class="brand-mark" aria-hidden="true">L</span>
+      <span class="brand-label">Lodestone</span>
+    </a>
+    <div class="links">
+      <a href="index.html"><svg class="el-icon"><use href="../../../assets/icons.svg#el-i-search"/></svg>Monitor</a>
+      <a href="catalog.html"><svg class="el-icon"><use href="../../../assets/icons.svg#el-i-heart"/></svg>Collectors</a>
+      <a href="article.html"><svg class="el-icon"><use href="../../../assets/icons.svg#el-i-edit"/></svg>Postmortems</a>
+      <a href="account.html"><svg class="el-icon"><use href="../../../assets/icons.svg#el-i-user"/></svg>Workspace</a>
+      <a href="app.html" aria-current="page"><svg class="el-icon"><use href="../../../assets/icons.svg#el-i-external"/></svg>Console</a>
+    </div>
+    <div class="actions">
+      <button class="el-btn" data-command="cmd-console"><svg class="el-icon"><use href="../../../assets/icons.svg#el-i-search"/></svg>Quick find</button>
+      <span class="el-pill"><span class="el-status-dot live" data-state="live"></span>live</span>
+    </div>
+    <div class="rail-note">
+      <span>Brightcart Logistics · Ops plan</span>
+      <span>pdx-1 · den-2 · ams-3</span>
+    </div>
+  </nav>
+
+  <div class="site-main">
+    <main class="el-page">
+
+      <section class="el-section el-section--flush" style="padding: 0;">
+        <div class="el-appwin">
+          <div class="el-titlebar">
+            <span class="lead"><span class="el-avatar" aria-hidden="true" style="width: 22px; height: 22px; font-size: 11px;">L</span></span>
+            <span class="el-app-title">Brightcart fleet console<small>v4.12.0 · pdx-1</small></span>
+            <span class="winbtns">
+              <button class="el-winbtn" data-tip="Minimize the console" aria-label="Minimize"><span class="el-winbtn-ico"></span></button>
+              <button class="el-winbtn" data-tip="Maximize" aria-label="Maximize"><span class="el-winbtn-ico"></span></button>
+              <button class="el-winbtn" data-tip="Close (nothing really closes in a demo)" aria-label="Close"><span class="el-winbtn-ico"></span></button>
+            </span>
+          </div>
+          <div class="el-menubar" role="menubar">
+            <div class="el-menu-anchor">
+              <button class="el-menubar-item" data-menu="menu-file" aria-haspopup="true">File</button>
+              <div class="el-menu" id="menu-file" role="menu" aria-label="File menu">
+                <div class="el-menu-label">Incident actions</div>
+                <button class="el-menu-item" data-toast="Export started (CSV with 14 columns)">Export last 24 h</button>
+                <button class="el-menu-item" data-toast="Merged into timeline PM-1042">Add to timeline</button>
+                <div class="el-menu-sep" role="separator"></div>
+                <button class="el-menu-item is-danger" data-toast="Mute rule drafted, needs review">Create mute rule…</button>
+              </div>
+            </div>
+            <div class="el-menu-anchor">
+              <button class="el-menubar-item" data-menu="menu-view" aria-haspopup="true">View</button>
+              <div class="el-menu" id="menu-view" role="menu" aria-label="View menu">
+                <button class="el-menu-item" data-toast="Density: compact stays compact">Density · compact</button>
+                <button class="el-menu-item" data-toast="Dark maps are not coming to console-light">Show map grid</button>
+              </div>
+            </div>
+            <div class="el-menu-anchor">
+              <button class="el-menubar-item" data-menu="menu-incidents" aria-haspopup="true">Incidents</button>
+              <div class="el-menu el-menu--end" id="menu-incidents" role="menu" aria-label="Incidents menu">
+                <button class="el-menu-item" data-toast="3 incidents pinned">Pinned incidents</button>
+                <button class="el-menu-item" data-toast="Postmortem PM-1042 opened">Latest postmortem</button>
+              </div>
+            </div>
+            <span class="el-menubar-sep" role="separator"></span>
+            <span class="el-popover">
+              <button class="el-menubar-item" aria-haspopup="true">Help</button>
+              <span class="el-pop">
+                <div class="el-panel-head">why blue?</div>
+                <p style="margin:0; font-size: var(--el-fs-sm); color: var(--el-ink-soft); max-width: 30ch;">Blue is this node's health hue in the watch map: healthy, steady load. Green means a queue; red means a fire.</p>
+              </span>
+            </span>
+            <span class="el-menubar-spring" style="flex:1;"></span>
+            <button class="el-menubar-item" data-toast="Command palette opened (⌘K)" data-command="cmd-console"><kbd class="el-kbd">⌘K</kbd> quick find</button>
+          </div>
+          <div class="el-headerbar">
+            <span class="el-headerbar-label">pdx-1</span>
+            <span class="el-headerbar-title-block">
+              <span class="el-headerbar-title">Live fleet view</span>
+              <span class="el-headerbar-subtitle">148 collectors · 41,206 active series · window: last 15 min</span>
+            </span>
+            <span class="spring" style="flex:1;"></span>
+            <span class="end" style="display:flex; gap:8px; align-items:center;">
+              <span class="el-search-field" style="width: 240px;"><input class="el-search" aria-label="Search in console" placeholder="Search hosts, metrics…" /></span>
+              <button class="el-btn el-btn--outline" data-dialog-open="dlg-add"><svg class="el-icon"><use href="../../../assets/icons.svg#el-i-plus"/></svg>Add monitor</button>
+              <button class="el-btn el-btn--ghost" data-toast="Console pinned to your workspace">Pin view</button>
+            </span>
+          </div>
+
+          <div class="win-body" style="display:grid; grid-template-columns: 212px minmax(0,1fr) 300px; min-height: 640px;">
+
+            <!-- left rail: environments -->
+            <aside class="el-sidebar" aria-label="Environments" style="border-radius:0;">
+              <div class="head">Environments</div>
+              <div class="grp">
+                <span class="label">Production</span>
+                <a href="#" class="is-selected">pdx-1 web tier <span style="margin-left:auto;" class="el-status-dot ok" data-state="ok"></span></a>
+                <a href="#">den-2 workers <span style="margin-left:auto;" class="el-status-dot ok" data-state="ok"></span></a>
+                <a href="#">ams-3 edge <span style="margin-left:auto;" class="el-status-dot warn" data-state="warn"></span></a>
+              </div>
+              <div class="grp">
+                <span class="label">Staging</span>
+                <a href="#">stg-all <span style="margin-left:auto;" class="el-status-dot running" data-state="running"></span></a>
+              </div>
+              <div class="grp">
+                <span class="label">Saved views</span>
+                <a href="#">Golden path</a>
+                <a href="#">Billing corridor</a>
+              </div>
+            </aside>
+
+            <!-- center: the ops workbench -->
+            <div style="display:flex; flex-direction:column; min-width:0;">
+              <div class="el-actionbar">
+                <span class="lead"><strong>Golden path</strong> · p99 &lt; 300 ms, errors &lt; 0.1%</span>
+                <span class="actions" style="display:flex; gap:8px;">
+                  <button class="el-btn el-btn--outline" data-toast="Window set to last 1 hour">1h</button>
+                  <button class="el-btn el-btn--outline" data-toast="Window set to last 15 minutes">15m</button>
+                  <button class="el-btn" data-toast="Snapshot of the golden path copied" data-toast-variant="ok"><svg class="el-icon"><use href="../../../assets/icons.svg#el-i-copy"/></svg>Snapshot</button>
+                </span>
+              </div>
+
+              <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(160px, 1fr)); gap:10px; padding: 12px 14px 4px;">
+                <div class="el-stat is-live"><span class="el-stat-label">p99 first byte</span><span class="el-stat-value">184</span><small style="font-family: var(--el-font-mono);">ms</small><span class="el-sparkline" data-chart="sparkline" data-values="150,166,158,180,171,184,178,184" data-width="240" data-height="30" data-color="#0f62fe"></span></div>
+                <div class="el-stat"><span class="el-stat-label">Error rate</span><span class="el-stat-value">0.04</span><small style="font-family: var(--el-font-mono);">%</small><span class="el-sparkline" data-chart="sparkline" data-values="0.05,0.04,0.06,0.04,0.03,0.05,0.04,0.04" data-width="240" data-height="30" data-color="#198038"></span></div>
+                <div class="el-stat"><span class="el-stat-label">Queue depth</span><span class="el-stat-value">0</span><span class="el-meter ok" data-ticks="4"><span class="fill" style="--el-meter-value: 8%"></span></span></div>
+                <div class="el-stat"><span class="el-stat-label">Series budget</span><span class="el-stat-value">62%</span><span class="el-meter" data-ticks="4"><span class="fill" style="--el-meter-value: 62%"></span></span></div>
+              </div>
+
+              <div style="padding: 12px 14px;">
+                <div class="el-panel" style="overflow: visible;">
+                  <div class="el-panel-head">live incidents · last 24 h</div>
+                  <div class="table-scroll">
+                    <table class="el-table el-table--bank">
+                      <thead><tr><th>Started</th><th>Signal</th><th>Service</th><th>Sev</th><th>Owner</th><th>Ack</th><th></th></tr></thead>
+                      <tbody>
+                        <tr class="crit">
+                          <td style="font-family: var(--el-font-mono); font-size: var(--el-fs-xs);">14:11</td>
+                          <td>p99 first-byte &gt; 3s</td><td>edge-reader</td>
+                          <td><span class="el-status-pill" data-state="fail">crit</span></td>
+                          <td><span class="el-avatar" style="width:22px;height:22px;font-size:10px;">TV</span> T. Väisänen</td>
+                          <td style="font-family: var(--el-font-mono); font-size: var(--el-fs-xs);">14:19</td>
+                          <td><button class="el-btn el-btn--ghost" data-drawer-open="drw-inc">Inspect</button></td>
+                        </tr>
+                        <tr class="high">
+                          <td style="font-family: var(--el-font-mono); font-size: var(--el-fs-xs);">09:52</td>
+                          <td>Replication lag &gt; 12s</td><td>orders-primary</td>
+                          <td><span class="el-status-pill warn" data-state="warn">high</span></td>
+                          <td><span class="el-avatar" style="width:22px;height:22px;font-size:10px;">MO</span> M. Okonjo</td>
+                          <td style="font-family: var(--el-font-mono); font-size: var(--el-fs-xs);">09:58</td>
+                          <td><button class="el-btn el-btn--ghost" data-drawer-open="drw-inc">Inspect</button></td>
+                        </tr>
+                        <tr class="ok">
+                          <td style="font-family: var(--el-font-mono); font-size: var(--el-fs-xs);">07:40</td>
+                          <td>Cert rotate complete</td><td>pdx-1 edge</td>
+                          <td><span class="el-status-pill ok" data-state="ok">ok</span></td>
+                          <td><span class="el-avatar" style="width:22px;height:22px;font-size:10px;">SY</span> system</td>
+                          <td style="font-family: var(--el-font-mono); font-size: var(--el-fs-xs);">—</td>
+                          <td><button class="el-btn el-btn--ghost" data-menu="menu-file">Export</button></td>
+                        </tr>
+                        <tr class="ok">
+                          <td style="font-family: var(--el-font-mono); font-size: var(--el-fs-xs);">06:12</td>
+                          <td>Queue backlog drained</td><td>billing-worker</td>
+                          <td><span class="el-status-pill ok" data-state="ok">ok</span></td>
+                          <td><span class="el-avatar" style="width:22px;height:22px;font-size:10px;">SY</span> system</td>
+                          <td style="font-family: var(--el-font-mono); font-size: var(--el-fs-xs);">—</td>
+                          <td><button class="el-btn el-btn--ghost" data-menu="menu-file">Export</button></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+
+              <div class="panel-pair" style="display:grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 0 14px 12px;">
+                <div class="el-progress-truth" role="status" aria-label="Pipeline stages and counts">
+                    <span class="el-pt-chunk is-done">ingest</span>
+                    <span class="el-pt-chunk is-done">rollups</span>
+                    <span class="el-pt-chunk is-done">indexing</span>
+                    <span class="el-pt-chunk is-running">alerting</span>
+                    <span class="el-pt-chunk is-stale">exports</span>
+                    <span class="el-pt-count">stale: exports pipeline retrying since 13:58</span>
+                </div>
+                <div class="el-ladder">
+                  <div class="el-ladder-step is-done"><span class="el-ladder-idx">01</span><span class="el-ladder-label">Fan-out to 14 collectors</span><span class="el-ladder-meta">2.1s</span></div>
+                  <div class="el-ladder-step is-done"><span class="el-ladder-idx">02</span><span class="el-ladder-label">Rollup 30s buckets</span><span class="el-ladder-meta">0.4s</span></div>
+                  <div class="el-ladder-step is-running"><span class="el-ladder-idx">03</span><span class="el-ladder-label">Anomaly sweep, 41 monitors</span><span class="el-ladder-meta">running · 6s</span></div>
+                  <div class="el-ladder-step is-queued"><span class="el-ladder-idx">04</span><span class="el-ladder-label">Digest to #on-call</span><span class="el-ladder-meta">queued</span></div>
+                </div>
+              </div>
+
+              <div style="padding: 6px 14px 12px; flex: 1; min-height: 0;">
+                <div class="el-panel" style="overflow: visible; height: 100%; display: flex; flex-direction: column;">
+                  <div class="el-panel-head">fleet throughput · requests served per minute, last 16 min</div>
+                  <span class="el-chart" data-chart="area" data-values="52,58,55,61,59,66,63,71,68,74,70,77,73,79,76,82" data-width="820" data-height="104" data-color="#0f62fe" style="display:flex; flex:1; align-items:center; margin-top:6px;" aria-hidden="true"></span>
+                </div>
+              </div>
+              <div class="el-tabbar" style="margin-top: auto;">
+                <button class="el-tabbar-item is-active"><svg class="el-icon"><use href="../../../assets/icons.svg#el-i-search"/></svg>Overview <span class="count">41</span></button>
+                <button class="el-tabbar-item"><svg class="el-icon"><use href="../../../assets/icons.svg#el-i-heart"/></svg>Monitors <span class="count">148</span></button>
+                <button class="el-tabbar-item"><svg class="el-icon"><use href="../../../assets/icons.svg#el-i-clock"/></svg>Incidents <span class="count" data-tip="1 crit, 1 high">4</span></button>
+              </div>
+            </div>
+
+            <!-- right: copilot + inspector -->
+            <div style="display:flex; flex-direction:column; gap:12px; padding:12px; border-left:1px solid var(--el-line); background: color-mix(in oklab, var(--el-panel-2) 55%, var(--el-panel));">
+              <div class="el-notification-stack">
+                <div class="el-notification is-unread">
+                  <span class="icon"><svg class="el-icon"><use href="../../../assets/icons.svg#el-i-info"/></svg></span>
+                  <div class="head"><span class="title">Exports pipeline retrying</span><span class="app">pipelines</span><span class="time">13:58</span></div>
+                  <div class="body">Object store rate-limited us. Retry #6 in 4 min; no customer impact.</div>
+                </div>
+                <div class="el-notification">
+                  <span class="icon"><svg class="el-icon"><use href="../../../assets/icons.svg#el-i-check"/></svg></span>
+                  <div class="head"><span class="title">ams-3 edge recovered</span><span class="app">edge</span><span class="time">09:31</span></div>
+                  <div class="body">BGP session re-established; p99 back to 190 ms.</div>
+                </div>
+              </div>
+
+              <div class="el-assistant-panel">
+                <div class="el-assistant-head">Copilot</div>
+                <div class="el-assistant-log">
+                  <div class="el-msg el-msg--assistant is-streaming">p99 divergence on pdx-1 matches the Oct 17 signature — DNS, not compute. Want me to draft the resolver diff?<div class="el-plan"><div class="el-plan-title">Proposed: run resolver drift check in staging</div>2 actions, reversible, no alerts silenced.</div></div>
+                  <div class="el-msg el-msg--user">Yes. Include ams-3.</div>
+                  <div class="el-msg el-msg--assistant">Drafted. <span class="el-cite-inline">source: runbook rb-114</span> I pinned it to incident PM-1042.<span class="is-unsourced" hidden></span></div>
+                </div>
+                <div class="el-assistant-foot">
+                  <span class="el-search-field" style="flex:1;"><input class="el-search" aria-label="Ask copilot" placeholder="Ask the Copilot anything…" /></span>
+                  <button class="el-assistant-stop" data-toast="Copilot replied: nothing running, nothing stopped" data-toast-variant="ok">Stop</button>
+                </div>
+              </div>
+
+              <div class="el-inspector is-docked">
+                <div class="el-inspector-header">Inspector · edge-reader@pdx-1 <span style="flex:1;"></span><button class="insp-actions" data-toast="Inspector JSON copied" aria-label="Inspector tools">…</button></div>
+                <div class="el-inspector-body">
+                  <div style="display:grid; gap:8px;">
+                    <span class="el-chart" data-chart="donut" data-values="58,22,12,8" data-width="120" data-height="120" data-label="traffic share" style="margin-inline:auto;"></span>
+                    <div class="el-fact-grid" style="grid-template-columns:1fr 1fr;">
+                      <div class="el-fact"><span class="k">pods</span><span class="v">14</span></div>
+                      <div class="el-fact"><span class="k">rss</span><span class="v">1.7 GB</span></div>
+                      <div class="el-fact"><span class="k">restarts</span><span class="v">0</span></div>
+                      <div class="el-fact is-hot"><span class="k">p99</span><span class="v">184 ms</span></div>
+                    </div>
+                    <div class="el-listbox" role="listbox" aria-label="Related monitors on this pod">
+                      <div class="el-listbox-header">related monitors</div>
+                      <button class="el-listbox-row" role="option" aria-selected="true">
+                        <span class="icon"><svg class="el-icon"><use href="../../../assets/icons.svg#el-i-clock"/></svg></span>
+                        <span class="label">p99 first byte <span class="sub">threshold 250 ms</span></span>
+                        <span class="count">ok</span>
+                      </button>
+                      <button class="el-listbox-row" role="option">
+                        <span class="icon"><svg class="el-icon"><use href="../../../assets/icons.svg#el-i-clock"/></svg></span>
+                        <span class="label">GC pause p95 <span class="sub">threshold 40 ms</span></span>
+                        <span class="count">warn</span>
+                      </button>
+                      <button class="el-listbox-row" role="option">
+                        <span class="icon"><svg class="el-icon"><use href="../../../assets/icons.svg#el-i-clock"/></svg></span>
+                        <span class="label">5xx rate <span class="sub">threshold 0.5%</span></span>
+                        <span class="count">0.04%</span>
+                      </button>
+                      <button class="el-listbox-row" role="option" aria-disabled="true">
+                        <span class="icon"><svg class="el-icon"><use href="../../../assets/icons.svg#el-i-search"/></svg></span>
+                        <span class="label">trace sampling <span class="sub">disabled on this pod</span></span>
+                        <span class="action">—</span>
+                      </button>
+                    </div>
+                    <div class="el-empty el-empty--compact" style="padding: 14px;">
+                      <svg class="el-icon"><use href="../../../assets/icons.svg#el-i-search"/></svg>
+                      <div class="el-msg">No traces sampled this window</div>
+                      <div class="el-hint">Trace sampling for edge-reader is disabled — enable it to see spans.</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="el-section el-section--dense">
+        <div class="el-section-head">
+          <div><p class="el-eyebrow">Try the overlays</p><h2>Everything on this page is interactive.</h2></div>
+          <div class="actions"><span class="el-pill">demo bindings, no data at risk</span></div>
+        </div>
+        <div class="demo-row" style="display:flex; flex-wrap:wrap; gap:10px; align-items:center;">
+          <button class="el-btn" data-dialog-open="dlg-add">Open dialog</button>
+          <span class="el-tooltip" data-tip="Incident drawer keeps the row open behind it">
+            <button class="el-btn el-btn--outline" data-drawer-open="drw-inc">Open drawer</button>
+          </span>
+          <button class="el-btn el-btn--outline" data-command="cmd-console">Command palette <kbd class="el-kbd">⌘K</kbd></button>
+          <button class="el-btn el-btn--ghost" data-toast="Incident closed: 'cert rotate complete' archived">Push a toast</button>
+          <button class="el-btn el-btn--ghost" data-toast="Deploy 4.13.0-rc1 promoted to staging" data-toast-variant="ok">Success toast</button>
+          <button class="el-btn el-btn--ghost" data-toast="Exports pipeline retry #7 failed" data-toast-variant="fail">Failure toast</button>
+          <span class="el-popover">
+            <button class="el-btn el-btn--outline" aria-haspopup="true"><svg class="el-icon"><use href="../../../assets/icons.svg#el-i-settings"/></svg>Fleet options</button>
+            <span class="el-pop">
+              <div class="el-panel-head">fleet options</div>
+              <p style="margin:0; font-size: var(--el-fs-sm); color: var(--el-ink-soft); max-width: 30ch;">Auto-refresh every 30s. Timezone per-user. Retention per plan.</p>
+              <div style="display:flex; gap:6px; margin-top:8px;"><button class="el-btn el-btn--outline" data-toast="Auto-refresh paused for this session">Pause 30m</button></div>
+            </span>
+          </span>
+          <span class="el-popover">
+            <button class="el-btn el-btn--ghost" aria-haspopup="true">Why is pdx-1 blue?</button>
+            <span class="el-pop">
+              <div class="el-panel-head">node health hues</div>
+              <p style="margin:0; font-size: var(--el-fs-sm); color: var(--el-ink-soft); max-width: 26ch;">Blue = healthy steady load. Green = queue draining. Amber = noisy neighbor. Red = on fire.</p>
+            </span>
+          </span>
+          <span class="el-pill" data-tip="Mono numerals for humans; tabular digits for machines" tabindex="0">hover me</span>
+        </div>
+
+        <!-- static toast specimens (the dynamic region is bottom-right) -->
+        <div class="toast-specimens" style="display:grid; gap:8px; max-width: 360px; margin-top: var(--el-space-3);">
+          <div class="el-toast" role="status"><span>Collector web-05 back in rotation</span><span class="close" data-toast-demo aria-label="Dismiss">×</span></div>
+          <div class="el-toast ok" role="status"><span>Sampling policy applied to 148 agents</span><span class="close" data-toast-demo aria-label="Dismiss">×</span></div>
+          <div class="el-toast fail" role="status"><span>Exports retry #7 failed — next attempt 4 min</span><span class="close" data-toast-demo aria-label="Dismiss">×</span></div>
+        </div>
+      </section>
+
+      <footer class="el-footer">
+        <div class="cols">
+          <div class="col"><span class="label">Console</span><a href="app.html">Live fleet view</a><a href="app.html">Golden path</a></div>
+          <div class="col"><span class="label">Fleet</span><a href="account.html">Settings</a><a href="index.html">Plans</a></div>
+          <div class="col"><span class="label">Fine print</span><a href="#">Status</a><a href="#">Security</a></div>
+        </div>
+        <div class="small">Console build 4.12.0 · session: M. Okonjo · region pdx-1</div>
+      </footer>
+    </main>
+  </div>
+</div>
+
+<!-- add-monitor dialog -->
+<dialog class="el-dialog" id="dlg-add" aria-label="Add a monitor">
+  <div class="el-dialog-head">
+    <h3 class="el-dialog-title">Add a monitor</h3>
+    <button class="el-dialog-close" data-dialog-close aria-label="Close"><svg class="el-icon"><use href="../../../assets/icons.svg#el-i-x"/></svg></button>
+  </div>
+  <div class="el-dialog-body">
+    <div class="el-field">
+      <label class="el-label" for="mon-name">Monitor name</label>
+      <input class="el-input" id="mon-name" placeholder="p99 first byte, edge-reader" />
+    </div>
+    <div class="el-field">
+      <label class="el-label" for="mon-signal">Signal</label>
+      <select class="el-select" id="mon-signal"><option>p99 first byte</option><option>error rate</option><option>queue depth</option><option>custom query…</option></select>
+    </div>
+    <div class="el-field">
+      <label class="el-label" for="mon-thresh">Threshold (ms)</label>
+      <div class="ctl-with-val" style="display:flex; align-items:center; gap:12px;">
+        <input class="el-slider" id="mon-thresh" type="range" min="100" max="1000" value="300" step="25" style="flex:1;" aria-label="Threshold in milliseconds" />
+        <span class="el-slider-val"><span class="val">300</span> ms</span>
+      </div>
+    </div>
+    <div class="el-field">
+      <label class="el-label" for="mon-where">Where</label>
+      <div class="el-dropdown" tabindex="0">pdx-1 + den-2 <svg class="el-icon"><use href="../../../assets/icons.svg#el-i-chevron-down"/></svg></div>
+    </div>
+    <div class="el-inline-alert el-inline-alert--info">
+      <div><div class="title">Suggestion from Copilot</div><div class="body">A seasonality-aware threshold at 280 ms would have caught the Oct 17 brownout 4 minutes earlier.</div></div>
+    </div>
+  </div>
+  <div class="el-dialog-foot">
+    <button class="el-btn el-btn--ghost" data-dialog-close>Cancel</button>
+    <button class="el-btn" data-toast="Monitor created: p99 first byte, edge-reader (300 ms)" data-toast-variant="ok" data-dialog-close>Create monitor</button>
+  </div>
+</dialog>
+
+<!-- incident drawer -->
+<aside class="el-drawer right" id="drw-inc" aria-label="Incident detail">
+  <header class="el-drawer-head">
+    <span class="el-status-pill" data-state="fail">crit</span>
+    <span>edge-reader · p99 &gt; 3s</span>
+    <button class="el-drawer-close" data-drawer-close aria-label="Close"><svg class="el-icon"><use href="../../../assets/icons.svg#el-i-close"/></svg></button>
+  </header>
+  <div class="el-drawer-body">
+    <p>Started 14:11 PT, matched the anomaly signature at 14:16, acked by T. Väisänen at 14:19, resolved 14:52.</p>
+    <div class="el-stage-rail">
+      <div class="el-stage is-done"><span class="el-stage-dot"></span>detect</div>
+      <div class="el-stage is-done"><span class="el-stage-dot"></span>triage</div>
+      <div class="el-stage is-done"><span class="el-stage-dot"></span>mitigate</div>
+      <div class="el-stage is-running"><span class="el-stage-dot"></span>follow-up</div>
+    </div>
+    <div class="el-fact-grid" style="grid-template-columns:1fr 1fr;">
+      <div class="el-fact"><span class="k">affected</span><span class="v">61%</span></div>
+      <div class="el-fact"><span class="k">first signal</span><span class="v">+6 min</span></div>
+    </div>
+  </div>
+  <footer class="el-drawer-foot">
+    <button class="el-btn" data-toast="Follow-up task created in #on-call-backlog" data-toast-variant="ok">Create follow-up</button>
+    <button class="el-btn el-btn--outline" data-drawer-close>Close</button>
+  </footer>
+</aside>
+
+<!-- quick find -->
+<div class="el-command" id="cmd-console" role="dialog" aria-label="Command palette">
+  <div class="el-command-panel">
+    <input class="el-command-input" placeholder="Type a command or search…" autocomplete="off" />
+    <div class="el-command-results">
+      <div class="el-command-group">Commands</div>
+      <button class="el-command-row sel" data-value="add"><span>Add monitor…</span><span class="key">N</span></button>
+      <button class="el-command-row" data-value="silence"><span>Silence alerts · 1 h</span><span class="key">S</span></button>
+      <button class="el-command-row" data-value="snapshot"><span>Snapshot golden path</span><span class="key">⌘⇧C</span></button>
+      <div class="el-command-group">Go to</div>
+      <button class="el-command-row" data-value="den"><span>den-2 workers</span><span class="key">ok</span></button>
+      <button class="el-command-row" data-value="ams"><span>ams-3 edge</span><span class="key">warn</span></button>
+      <div class="el-command-empty">No match — try "monitors" or a region code.</div>
+    </div>
+    <div class="el-command-foot"><span><kbd class="el-kbd">↑↓</kbd> navigate</span><span><kbd class="el-kbd">↵</kbd> run</span><span><kbd class="el-kbd">esc</kbd> close</span></div>
+  </div>
+</div>
+
+<script>
+window.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('[data-banner-close]').forEach(b =>
+    b.addEventListener('click', () => b.closest('.el-banner')?.classList.add('is-dismissed')));
+  document.querySelectorAll('[data-toast-demo]').forEach(b =>
+    b.addEventListener('click', () => b.closest('.el-toast')?.remove()));
+  const q = new URLSearchParams(location.search).get('open');
+  if (q && window.Elements) {
+    const t = document.getElementById(q);
+    if (t && t.classList.contains('el-dialog') && window.Elements.openDialog) window.Elements.openDialog(t);
+    if (t && t.classList.contains('el-command') && window.Elements.openCommand) window.Elements.openCommand(t);
+    if (t && t.classList.contains('el-drawer') && window.Elements.openDrawer) window.Elements.openDrawer(t);
+  }
+});
+</script>
+</body>
+</html>

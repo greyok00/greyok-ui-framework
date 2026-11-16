@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en" data-theme="mono-console">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Workflows · el-framework</title>
+  <link rel="stylesheet" href="../fonts.css">
+  <link rel="stylesheet" href="../tokens.css">
+  <link rel="stylesheet" href="../tokens-v2.css">
+  <link rel="stylesheet" href="../themes.css">
+  <link rel="stylesheet" href="../base.css">
+  <link rel="stylesheet" href="../elements-workflow.css">
+  <link rel="stylesheet" href="../elements-inspector.css">
+  <link rel="stylesheet" href="../elements-assistant.css">
+  <link rel="stylesheet" href="../elements-reader.css">
+  <link rel="stylesheet" href="../elements-display.css">
+<link rel="stylesheet" href="../elements-structure.css">
+  <link rel="stylesheet" href="../elements-lists.css">
+  <link rel="stylesheet" href="../elements-size.css">
+</head>
+<body class="el-reset">
+  <header class="el-demo-bar">
+    <strong>Workflows</strong>
+    <div id="el-theme-strip" data-theme-strip></div>
+    <a href="index.html">← index</a>
+  </header>
+
+  <main class="el-page" style="max-width:960px">
+    <h1>Run &amp; workflow primitives — v0.2.0</h1>
+    <p>Honest progress, live states, sources with receipts. No fake percentages anywhere on this page.</p>
+
+    <div style="display:grid;grid-template-columns:250px 1fr;gap:24px;align-items:start">
+      <aside>
+        <h2 style="font-size:0.9rem">Stage rail</h2>
+        <div class="el-stage-rail">
+          <div class="el-stage" data-state="done"><span class="el-stage-dot"></span><span class="el-stage-name">search_done</span><span class="el-stage-count">18 lanes</span></div>
+          <div class="el-stage" data-state="done"><span class="el-stage-dot"></span><span class="el-stage-name">scraped</span><span class="el-stage-count" data-el-count>14 pages</span></div>
+          <div class="el-stage" data-state="running"><span class="el-stage-dot"></span><span class="el-stage-name">judged</span><span class="el-stage-count">7 of 14</span></div>
+          <div class="el-stage" data-state="active"><span class="el-stage-dot"></span><span class="el-stage-name">audit</span><span class="el-stage-count">2 rejects</span></div>
+          <div class="el-stage" data-state="queued"><span class="el-stage-dot"></span><span class="el-stage-name">guide</span><span class="el-stage-count">—</span></div>
+          <div class="el-stage" data-state="stale"><span class="el-stage-dot"></span><span class="el-stage-name">images</span><span class="el-stage-count">skipped</span></div>
+        </div>
+      </aside>
+
+      <section>
+        <h2 style="font-size:0.9rem">Run ladder</h2>
+        <div class="el-ladder" data-el-ladder>
+          <div class="el-ladder-step" data-state="done"><span class="el-ladder-idx">01</span><span class="el-ladder-label">Compose run</span><span class="el-ladder-meta">00:04</span></div>
+          <div class="el-ladder-step" data-state="done"><span class="el-ladder-idx">02</span><span class="el-ladder-label">Search lanes</span><span class="el-ladder-meta">00:38</span></div>
+          <div class="el-ladder-step" data-state="running"><span class="el-ladder-idx">03</span><span class="el-ladder-label">Scrape sources</span><span class="el-ladder-meta">9 pages</span></div>
+          <div class="el-ladder-step" data-state="queued"><span class="el-ladder-idx">04</span><span class="el-ladder-label">Judge acceptance</span><span class="el-ladder-meta">—</span></div>
+          <div class="el-ladder-step" data-state="queued"><span class="el-ladder-idx">05</span><span class="el-ladder-label">Compile guide</span><span class="el-ladder-meta">—</span></div>
+        </div>
+
+        <h2 style="font-size:0.9rem">Progress truth (aria-live)</h2>
+        <div class="el-progress-truth" aria-live="polite">
+          <span class="el-pt-chunk" data-state="done">search ✓ <span class="el-pt-count">18</span></span>
+          <span class="el-pt-chunk" data-state="done">scrape ✓ <span class="el-pt-count">14</span></span>
+          <span class="el-pt-chunk" data-state="running">judge <span class="el-pt-count">7/14</span></span>
+          <span class="el-pt-chunk" data-state="stale">images ✗ off</span>
+        </div>
+
+        <h2 style="font-size:0.9rem">Source cards + citation rail</h2>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+          <div>
+            <div class="el-source-card is-cited"><span class="src">linear.app · 2026-03-12</span><span class="ttl">A calmer interface for a product in motion</span><span class="snip">Primary product note on the calmer-interface refresh.</span></div>
+            <div class="el-source-card" style="margin-top:10px"><span class="src">w3.org · APG</span><span class="ttl">Read Me First — ARIA practices</span><span class="snip">Patterns pair semantics with focus and keyboard paths.</span></div>
+          </div>
+          <div class="el-citation-rail">
+            <span class="el-cite"><span class="n">[1]</span> <a href="#">Calmer interface — linear.app</a></span>
+            <span class="el-cite"><span class="n">[2]</span> <a href="#">Reading measure guidance — corpus</a></span>
+            <span class="el-cite"><span class="n">[3]</span> <a href="#">Motion timing ladder — wave 3</a></span>
+          </div>
+        </div>
+
+        <h2 style="font-size:0.9rem">Fact grid (the one bento moment)</h2>
+        <div class="el-fact-grid">
+          <div class="el-fact"><span class="k">Shots indexed</span><span class="v">4,168</span></div>
+          <div class="el-fact"><span class="k">Articles</span><span class="v">74</span></div>
+          <div class="el-fact is-hot"><span class="k">Guides</span><span class="v">19</span></div>
+          <div class="el-fact"><span class="k">Run cost</span><span class="v">3 searches</span></div>
+        </div>
+      </section>
+    </div>
+
+    <h2>Inspector (overlay + scrim)</h2>
+    <button class="el-btn" data-el-inspector-open="#detail">Open run facts</button>
+    <aside class="el-inspector" id="detail" aria-hidden="true">
+      <div class="el-inspector-header">Run facts <button class="el-inspector-close" data-el-inspector-close="#detail" aria-label="Close inspector">×</button></div>
+      <div class="el-inspector-body">
+        <p>Deep run · standard tier · 4 min elapsed.</p>
+        <div class="el-fact-grid" style="margin-top:12px">
+          <div class="el-fact"><span class="k">Lanes</span><span class="v">18</span></div>
+          <div class="el-fact"><span class="k">Accepted</span><span class="v">7</span></div>
+        </div>
+      </div>
+    </aside>
+  </main>
+
+  <script src="../elements.js"></script>
+  <script src="../elements-workflow.js"></script>
+  <script src="../theme-switcher.js"></script>
+  <script>
+    document.addEventListener('click', function (e) {
+      var open = e.target.closest('[data-el-inspector-open]');
+      var close = e.target.closest('[data-el-inspector-close]');
+      if (open && window.ElWorkflow) ElWorkflow.openInspector(open.getAttribute('data-el-inspector-open'));
+      if (close && window.ElWorkflow) ElWorkflow.closeInspector(close.getAttribute('data-el-inspector-close'));
+    });
+  </script>
+</body>
+</html>

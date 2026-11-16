@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="en" data-theme="brutal-stamp">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Back office — Megaphone Press</title>
+<link rel="stylesheet" href="../../../base.css">
+<link rel="stylesheet" href="../../../fonts.css">
+<link rel="stylesheet" href="../../../tokens.css">
+<link rel="stylesheet" href="../../../elements-display.css">
+<link rel="stylesheet" href="../../../elements-structure.css">
+<link rel="stylesheet" href="../../../elements-lists.css">
+<link rel="stylesheet" href="../../../elements-app.css">
+<link rel="stylesheet" href="../../../elements-containers.css">
+<link rel="stylesheet" href="../../../elements-controls.css">
+<link rel="stylesheet" href="../../../elements-inputs.css">
+<link rel="stylesheet" href="../../../elements-dataviz.css">
+<link rel="stylesheet" href="../../../elements-overlay.css">
+<link rel="stylesheet" href="../../../elements-interactions.css">
+<link rel="stylesheet" href="../../../elements-misc.css">
+<link rel="stylesheet" href="../../../elements-size.css">
+<link rel="stylesheet" href="../../../elements-workflow.css">
+<link rel="stylesheet" href="../../../elements-inspector.css">
+<link rel="stylesheet" href="../../../elements-reader.css">
+<link rel="stylesheet" href="../../../elements-assistant.css">
+<link rel="stylesheet" href="../../../themes/src/neo-brutalist.css">
+<script src="../../../elements.js" defer></script>
+<script src="../../../charts.js" defer></script>
+</head>
+<body class="el-reset">
+
+<nav class="el-navbar el-navbar--top" aria-label="Primary">
+  <a class="brand" href="index.html">MEGAPHONE PRESS</a>
+  <div class="links">
+    <a href="index.html">Shows</a>
+    <a href="catalog.html">Flat file</a>
+    <a href="article.html">Press notes</a>
+    <a href="account.html" aria-current="page">Back office</a>
+    <a href="app.html">Box office</a>
+  </div>
+  <div class="actions">
+    <span class="el-tooltip" data-tip="You are signed in as a studio-season subscriber">
+      <span class="el-avatar" aria-label="Account">MK</span>
+    </span>
+  </div>
+</nav>
+
+<main class="el-page">
+
+  <div class="el-banner" style="margin-bottom:6px">
+    <span class="glyph" aria-hidden="true">
+      <svg viewBox="0 0 16 16" width="16" height="16"><circle cx="8" cy="8" r="6" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 5v4" stroke="currentColor" stroke-width="2"/><circle cx="8" cy="11.4" r="1" fill="currentColor"/></svg>
+    </span>
+    <span class="copy"><b>The Nov 30 renewal window is open.</b> <span class="detail">Studio-season
+      subscriptions renew automatically unless you skip a month on this page.</span></span>
+  </div>
+
+  <header class="el-section el-section--flush" style="padding-bottom:4px">
+    <p class="el-eyebrow">BACK OFFICE · ACCOUNT NO. 0412</p>
+    <h1>YOUR ACCOUNT ON THE LEDGER</h1>
+    <p class="el-body" style="max-width:640px;margin-top:8px">Everything the desk can do by hand,
+       you can do here. Holds, trades, the re-poll, and the wall status. Changes save on
+       <b>Write to the ledger</b> — the desk confirms within the hour.</p>
+    <div class="el-inline-alert ok" style="margin-top:14px;max-width:640px">
+      <span class="el-icon" aria-hidden="true">
+        <svg viewBox="0 0 16 16" width="16" height="16"><path d="M2 9l4 4 8-9" fill="none" stroke="currentColor" stroke-width="2.5"/></svg>
+      </span>
+      <span><span class="title">Ledger synced at 07:14</span>
+      <span class="body">Your hold for edition 084 was penciled in by the desk this morning.</span></span>
+      <button class="close" aria-label="Dismiss confirmation">✕</button>
+    </div>
+  </header>
+
+  <ol class="el-stepper" style="max-width:640px;margin:18px 24px">
+    <li class="done"><span class="num">1</span>Holds</li>
+    <li class="active"><span class="num">2</span>Tokens</li>
+    <li><span class="num">3</span>Re-poll</li>
+    <li><span class="num">4</span>Write</li>
+  </ol>
+
+  <section class="el-section el-section--dense el-twain" style="display:grid;gap:24px">
+
+    <div style="display:grid;gap:22px">
+      <!-- identity -->
+      <div class="el-panel">
+        <span class="name">ACCOUNT IDENTITY</span>
+        <div class="el-field">
+          <label class="el-label" for="acct-name">NAME ON THE RUN SHEET</label>
+          <input class="el-input" id="acct-name" value="Maja Kroll">
+          <span class="el-hint">Matches the pencil line. No nicknames unless the desk knows you.</span>
+        </div>
+        <div class="el-field">
+          <label class="el-label" for="acct-mail">EMAIL FOR STAMP NOTICES</label>
+          <input class="el-input" id="acct-mail" type="email" value="maja@megaphone.press">
+        </div>
+        <div class="el-field">
+          <label class="el-label" for="acct-note">DESK NOTE (PENCIL SPACE)</label>
+          <textarea class="el-textarea" id="acct-note" rows="3" placeholder="Anything the desk should know — pickup habits, trade refs, the dog's name.">Case buyers hold the west wall for me. Refs: Driftwood Room, Tape Hiss Era.</textarea>
+          <span class="el-hint">Read aloud at the morning stand-up. Keep it short.</span>
+        </div>
+      </div>
+
+      <!-- pickup prefs -->
+      <div class="el-panel">
+        <span class="name">PICKUP PREFERENCES</span>
+        <div class="el-field">
+          <label class="el-label" for="acct-pickup">DEFAULT PICKUP LANE</label>
+          <select class="el-dropdown" id="acct-pickup">
+            <option>Will call · Friday doors</option>
+            <option>Desk · Tue–Sat 10–6</option>
+            <option>Mail order · wall mailer + $4</option>
+          </select>
+        </div>
+        <div class="el-field">
+          <label class="el-label" for="acct-find">FIND MY HOLDS</label>
+          <div class="el-search-field">
+            <input class="el-search" id="acct-find" type="search" placeholder="Search the ledger — "084", "Static Bloom"…" aria-label="Search the ledger">
+          </div>
+        </div>
+        <div class="el-field">
+          <span class="el-label">NOTIFY ME WHEN</span>
+          <div style="display:flex;gap:18px;flex-wrap:wrap">
+            <label class="el-check-wrapper" style="display:flex;gap:8px;align-items:center">
+              <span class="el-check on"><input type="checkbox" checked></span>
+              <span>Edition lands in the flat file</span>
+            </label>
+            <label class="el-check-wrapper" style="display:flex;gap:8px;align-items:center">
+              <span class="el-check on"><input type="checkbox" checked></span>
+              <span>Hold is stamped</span>
+            </label>
+            <label class="el-check-wrapper" style="display:flex;gap:8px;align-items:center">
+              <span class="el-check"><input type="checkbox"></span>
+              <span>Ink nights are loud</span>
+            </label>
+          </div>
+        </div>
+        <div class="el-field">
+          <label class="el-label" for="acct-pair">PAIR SUBSCRIPTION TO</label>
+          <label class="el-switch on"><input type="checkbox" checked hidden></label>
+          <span style="font-size:var(--el-fs-sm);vertical-align:middle;margin-left:8px">Share wall status with my trade partner</span>
+        </div>
+      </div>
+
+      <!-- wall preferences -->
+      <div class="el-panel">
+        <span class="name">WALL STATUS</span>
+        <div class="el-field">
+          <span class="el-label">PASSES I COLLECT</span>
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <button class="el-chip on">ORANGE</button>
+            <button class="el-chip on">BLACK</button>
+            <button class="el-chip">RISO</button>
+          </div>
+        </div>
+        <div class="el-field">
+          <span class="el-label">HOW LOUD</span>
+          <div class="el-segmented">
+            <button>Quiet</button>
+            <button class="on">Normal</button>
+            <button>Wall-wide</button>
+            <button>Print-only</button>
+          </div>
+        </div>
+        <div class="el-field">
+          <label class="el-label" for="acct-slots">RACK SLOTS RESERVED FOR ME</label>
+          <input type="range" class="el-slider" id="acct-slots" min="0" max="11" value="4">
+          <span class="el-hint">Four of eleven. The rest go to walk-ins on hall nights.</span>
+        </div>
+        <div class="el-field">
+          <span class="el-label">PICKUP RHYTHM</span>
+          <div style="display:flex;gap:18px;flex-wrap:wrap">
+            <label class="el-radio"><input type="radio" name="rhythm" checked><span class="dot"></span>First Friday inks</label>
+          </div>
+          <div style="display:flex;gap:18px;flex-wrap:wrap">
+            <label class="el-radio"><input type="radio" name="rhythm"><span class="dot"></span>Subscriber window</label>
+          </div>
+          <div style="display:flex;gap:18px;flex-wrap:wrap">
+            <label class="el-radio"><input type="radio" name="rhythm"><span class="dot"></span>Walk-in only</label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <aside style="display:grid;gap:20px;align-content:start">
+      <div class="el-panel">
+        <span class="name">TODAY ON THE LEDGER</span>
+        <div style="display:grid;gap:10px;margin-top:10px">
+          <span class="el-skeleton" style="width:88%"></span>
+          <span class="el-skeleton" style="width:70%"></span>
+          <span class="el-skeleton block" style="height:64px"></span>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;margin-top:14px">
+          <span class="el-spinner" aria-hidden="true"></span>
+          <span style="font-size:var(--el-fs-sm)">The desk is logging the morning run…</span>
+        </div>
+      </div>
+
+      <div class="el-panel">
+        <span class="name">RE-POLL QUEUE</span>
+        <div class="el-progress" style="margin-top:10px"><span class="fill" style="width:64%"></span></div>
+        <div class="el-progress-truth" style="margin-top:12px" aria-live="polite">
+          <span class="el-pt-chunk is-done" data-state="done">votes ✓ <span class="el-pt-count">58</span></span>
+          <span class="el-pt-chunk is-running" data-state="running">count <span class="el-pt-count">41</span></span>
+          <span class="el-pt-chunk is-queued" data-state="queued">burn Sat</span>
+        </div>
+        <p class="el-mute-body" style="margin:10px 0 0">Edition 072 (Bellweather) leads the winter
+           re-poll at 41 votes. Closes when the sheet signs at 250.</p>
+      </div>
+
+      <div class="el-panel">
+        <span class="name">THE FINE PRINT</span>
+        <div class="el-inline-alert fail" style="margin-top:8px">
+          <span class="el-icon" aria-hidden="true">
+            <svg viewBox="0 0 16 16" width="16" height="16"><path d="M3 3l10 10M13 3L3 13" stroke="currentColor" stroke-width="2.5" fill="none"/></svg>
+          </span>
+          <span><span class="title">Trades are not transfers</span>
+          <span class="body">Trading references move with you. Selling an unnumbered
+            promo poster as a stamped edition voids the subscription.</span></span>
+          <button class="close" aria-label="Dismiss warning">✕</button>
+        </div>
+        <p class="el-mute-body" style="margin:12px 0 0">The ledger is public in the hall.
+           Personal lines are never printed; trade references are.</p>
+      </div>
+
+      <div class="el-panel">
+        <span class="name">LEDGER BREADCRUMBS</span>
+        <div class="el-ladder-step is-done" data-state="done" style="margin-top:8px"><span class="el-ladder-idx">01</span><span class="el-ladder-label">Holds</span><span class="el-ladder-meta">done</span></div>
+        <div class="el-ladder-step is-running" data-state="running"><span class="el-ladder-idx">02</span><span class="el-ladder-label">Tokens</span><span class="el-ladder-meta">now</span></div>
+        <div class="el-ladder-step is-queued" data-state="queued"><span class="el-ladder-idx">03</span><span class="el-ladder-label">Re-poll</span><span class="el-ladder-meta">Sat</span></div>
+        <div class="el-ladder-step is-queued" data-state="queued"><span class="el-ladder-idx">04</span><span class="el-ladder-label">Write</span><span class="el-ladder-meta">—</span></div>
+      </div>
+
+      <div class="el-banner banner--accent">
+        <span class="glyph" aria-hidden="true">
+          <svg viewBox="0 0 16 16" width="16" height="16"><rect x="2" y="2" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2"/><path d="M5 8h6" stroke="currentColor" stroke-width="2"/></svg>
+        </span>
+        <span class="copy"><b>Fresh ink swap.</b> <span class="detail">Orange batch
+          #44 replaces the old drum on press one — pulls stay at 260/hour.</span></span>
+      </div>
+    </aside>
+  </section>
+
+  <!-- actions -->
+  <section class="el-section el-section--flush" style="padding-top:6px">
+    <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center">
+      <button class="el-btn" data-toast="Written to the ledger — the desk confirms within the hour" data-toast-variant="ok">Write to the ledger</button>
+      <button class="el-btn el-btn--outline">Preview changes</button>
+      <div class="el-btn-group">
+        <button class="el-btn el-btn--ghost">Copy ref line</button>
+        <button class="el-btn el-btn--ghost" data-toast="Ledger CSV copied" data-toast-variant="info">Copy CSV</button>
+      </div>
+      <button class="el-btn el-btn--ghost">Discard</button>
+    </div>
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;margin-top:20px">
+      <div class="el-pagination" aria-label="Ledger pages">
+        <span class="page" data-action="prev">‹</span>
+        <span class="page on">1</span><span class="page">2</span><span class="page">3</span><span class="page">4</span><span class="page">5</span>
+        <span class="page" data-action="next">›</span>
+        <span class="info">page 1 · 5</span>
+      </div>
+      <span class="el-mono" style="font-weight:700">LEDGER NO. 0412 · SINCE 2024</span>
+    </div>
+  </section>
+
+</main>
+
+<footer class="el-footer">
+  <div class="cols">
+    <div class="col">
+      <span class="label">The desk</span>
+      <p class="el-body">Back-office changes print on tomorrow's run sheet. The desk signs
+         what it confirms, in pencil, like everything else here.</p>
+    </div>
+    <div class="col">
+      <span class="label">Account</span>
+      <ul>
+        <li><a href="account.html">Holds + tokens</a></li>
+        <li><a href="account.html">Trade refs</a></li>
+        <li><a href="account.html">Re-poll votes</a></li>
+      </ul>
+    </div>
+    <div class="col">
+      <span class="label">Elsewhere</span>
+      <ul>
+        <li><a href="index.html">Shows</a></li>
+        <li><a href="catalog.html">Flat file</a></li>
+        <li><a href="article.html">Press notes</a></li>
+        <li><a href="app.html">Box office</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="small"><span>© 2026 MEGAPHONE PRESS</span><span>ACCOUNT NO. 0412</span></div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,412 @@
+{
+ "faces": {
+  "archivo": {
+   "family": "Archivo",
+   "source": "google-gwfh",
+   "files": [
+    {
+     "file": "fonts/archivo/archivo-v25-latin_latin-ext-500.woff2",
+     "weight": 500
+    },
+    {
+     "file": "fonts/archivo/archivo-v25-latin_latin-ext-600.woff2",
+     "weight": 600
+    },
+    {
+     "file": "fonts/archivo/archivo-v25-latin_latin-ext-700.woff2",
+     "weight": 700
+    }
+   ]
+  },
+  "archivo-black": {
+   "family": "Archivo Black",
+   "source": "google-css2",
+   "files": [
+    {
+     "file": "fonts/archivo-black/archivo-black-latin-400.woff2",
+     "weight": 400
+    },
+    {
+     "file": "fonts/archivo-black/archivo-black-latin-ext-400.woff2",
+     "weight": 400
+    }
+   ]
+  },
+  "baloo-2": {
+   "family": "Baloo 2",
+   "source": "google-gwfh",
+   "files": [
+    {
+     "file": "fonts/baloo-2/baloo-2-v23-latin_latin-ext-500.woff2",
+     "weight": 500
+    },
+    {
+     "file": "fonts/baloo-2/baloo-2-v23-latin_latin-ext-700.woff2",
+     "weight": 700
+    },
+    {
+     "file": "fonts/baloo-2/baloo-2-v23-latin_latin-ext-800.woff2",
+     "weight": 800
+    }
+   ]
+  },
+  "big-shoulders": {
+   "family": "Big Shoulders",
+   "source": "google-gwfh",
+   "files": [
+    {
+     "file": "fonts/big-shoulders/big-shoulders-v4-latin_latin-ext-600.woff2",
+     "weight": 600
+    },
+    {
+     "file": "fonts/big-shoulders/big-shoulders-v4-latin_latin-ext-800.woff2",
+     "weight": 800
+    }
+   ]
+  },
+  "bodoni-moda": {
+   "family": "Bodoni Moda",
+   "source": "google-gwfh",
+   "files": [
+    {
+     "file": "fonts/bodoni-moda/bodoni-moda-v28-latin_latin-ext-600.woff2",
+     "weight": 600
+    }
+   ]
+  },
+  "caveat": {
+   "family": "Caveat",
+   "source": "google-gwfh",
+   "files": [
+    {
+     "file": "fonts/caveat/caveat-v23-latin_latin-ext-500.woff2",
+     "weight": 500
+    },
+    {
+     "file": "fonts/caveat/caveat-v23-latin_latin-ext-700.woff2",
+     "weight": 700
+    }
+   ]
+  },
+  "dm-sans": {
+   "family": "DM Sans",
+   "source": "google-gwfh",
+   "files": [
+    {
+     "file": "fonts/dm-sans/dm-sans-v17-latin_latin-ext-500.woff2",
+     "weight": 500
+    },
+    {
+     "file": "fonts/dm-sans/dm-sans-v17-latin_latin-ext-700.woff2",
+     "weight": 700
+    }
+   ]
+  },
+  "fraunces": {
+   "family": "Fraunces",
+   "source": "google-gwfh",
+   "files": [
+    {
+     "file": "fonts/fraunces/fraunces-v38-latin_latin-ext-600.woff2",
+     "weight": 600
+    },
+    {
+     "file": "fonts/fraunces/fraunces-v38-latin_latin-ext-900.woff2",
+     "weight": 900
+    }
+   ]
+  },
+  "geist": {
+   "family": "Geist",
+   "source": "google-gwfh",
+   "files": [
+    {
+     "file": "fonts/geist/geist-v5-latin_latin-ext-500.woff2",
+     "weight": 500
+    },
+    {
+     "file": "fonts/geist/geist-v5-latin_latin-ext-700.woff2",
+     "weight": 700
+    }
+   ]
+  },
+  "geist-mono": {
+   "family": "Geist Mono",
+   "source": "google-gwfh",
+   "files": [
+    {
+     "file": "fonts/geist-mono/geist-mono-v6-latin_latin-ext-600.woff2",
+     "weight": 600
+    },
+    {
+     "file": "fonts/geist-mono/geist-mono-v6-latin_latin-ext-700.woff2",
+     "weight": 700
+    }
+   ]
+  },
+  "ibm-plex-mono": {
+   "family": "IBM Plex Mono",
+   "source": "google-gwfh",
+   "files": [
+    {
+     "file": "fonts/ibm-plex-mono/ibm-plex-mono-v20-latin_latin-ext-500.woff2",
+     "weight": 500
+    }
+   ]
+  },
+  "ibm-plex-sans": {
+   "family": "IBM Plex Sans",
+   "source": "google-gwfh",
+   "files": [
+    {
+     "file": "fonts/ibm-plex-sans/ibm-plex-sans-v23-latin_latin-ext-500.woff2",
+     "weight": 500
+    },
+    {
+     "file": "fonts/ibm-plex-sans/ibm-plex-sans-v23-latin_latin-ext-600.woff2",
+     "weight": 600
+    }
+   ]
+  },
+  "instrument-serif": {
+   "family": "Instrument Serif",
+   "source": "google-css2",
+   "files": [
+    {
+     "file": "fonts/instrument-serif/instrument-serif-latin-400.woff2",
+     "weight": 400
+    },
+    {
+     "file": "fonts/instrument-serif/instrument-serif-latin-ext-400.woff2",
+     "weight": 400
+    }
+   ]
+  },
+  "inter": {
+   "family": "Inter",
+   "source": "google-gwfh",
+   "files": [
+    {
+     "file": "fonts/inter/inter-v20-latin_latin-ext-500.woff2",
+     "weight": 500
+    },
+    {
+     "file": "fonts/inter/inter-v20-latin_latin-ext-600.woff2",
+     "weight": 600
+    }
+   ]
+  },
+  "inter-tight": {
+   "family": "Inter Tight",
+   "source": "google-gwfh",
+   "files": [
+    {
+     "file": "fonts/inter-tight/inter-tight-v9-latin_latin-ext-500.woff2",
+     "weight": 500
+    },
+    {
+     "file": "fonts/inter-tight/inter-tight-v9-latin_latin-ext-600.woff2",
+     "weight": 600
+    }
+   ]
+  },
+  "jetbrains-mono": {
+   "family": "JetBrains Mono",
+   "source": "google-gwfh",
+   "files": [
+    {
+     "file": "fonts/jetbrains-mono/jetbrains-mono-v24-latin_latin-ext-600.woff2",
+     "weight": 600
+    }
+   ]
+  },
+  "jost": {
+   "family": "Jost",
+   "source": "google-gwfh",
+   "files": [
+    {
+     "file": "fonts/jost/jost-v20-latin_latin-ext-300.woff2",
+     "weight": 300
+    },
+    {
+     "file": "fonts/jost/jost-v20-latin_latin-ext-500.woff2",
+     "weight": 500
+    }
+   ]
+  },
+  "nunito": {
+   "family": "Nunito",
+   "source": "google-gwfh",
+   "files": [
+    {
+     "file": "fonts/nunito/nunito-v32-latin_latin-ext-600.woff2",
+     "weight": 600
+    },
+    {
+     "file": "fonts/nunito/nunito-v32-latin_latin-ext-700.woff2",
+     "weight": 700
+    }
+   ]
+  },
+  "poppins": {
+   "family": "Poppins",
+   "source": "google-gwfh",
+   "files": [
+    {
+     "file": "fonts/poppins/poppins-v24-latin_latin-ext-500.woff2",
+     "weight": 500
+    },
+    {
+     "file": "fonts/poppins/poppins-v24-latin_latin-ext-600.woff2",
+     "weight": 600
+    }
+   ]
+  },
+  "prata": {
+   "family": "Prata",
+   "source": "google-css2",
+   "files": [
+    {
+     "file": "fonts/prata/prata-latin-400.woff2",
+     "weight": 400
+    },
+    {
+     "file": "fonts/prata/prata-latin-ext-400.woff2",
+     "weight": 400
+    }
+   ]
+  },
+  "space-grotesk": {
+   "family": "Space Grotesk",
+   "source": "google-gwfh",
+   "files": [
+    {
+     "file": "fonts/space-grotesk/space-grotesk-v22-latin_latin-ext-500.woff2",
+     "weight": 500
+    },
+    {
+     "file": "fonts/space-grotesk/space-grotesk-v22-latin_latin-ext-700.woff2",
+     "weight": 700
+    }
+   ]
+  },
+  "space-mono": {
+   "family": "Space Mono",
+   "source": "google-gwfh",
+   "files": [
+    {
+     "file": "fonts/space-mono/space-mono-v17-latin_latin-ext-700.woff2",
+     "weight": 700
+    }
+   ]
+  },
+  "syne": {
+   "family": "Syne",
+   "source": "google-gwfh",
+   "files": [
+    {
+     "file": "fonts/syne/syne-v24-latin_latin-ext-500.woff2",
+     "weight": 500
+    },
+    {
+     "file": "fonts/syne/syne-v24-latin_latin-ext-700.woff2",
+     "weight": 700
+    },
+    {
+     "file": "fonts/syne/syne-v24-latin_latin-ext-800.woff2",
+     "weight": 800
+    }
+   ]
+  },
+  "unbounded": {
+   "family": "Unbounded",
+   "source": "google-gwfh",
+   "files": [
+    {
+     "file": "fonts/unbounded/unbounded-v12-latin_latin-ext-600.woff2",
+     "weight": 600
+    },
+    {
+     "file": "fonts/unbounded/unbounded-v12-latin_latin-ext-800.woff2",
+     "weight": 800
+    }
+   ]
+  },
+  "clash-display": {
+   "family": "Clash Display",
+   "source": "fontshare",
+   "files": [
+    {
+     "file": "fonts/clash-display/clash-display-latin-400.woff2",
+     "weight": 400
+    },
+    {
+     "file": "fonts/clash-display/clash-display-latin-500.woff2",
+     "weight": 500
+    },
+    {
+     "file": "fonts/clash-display/clash-display-latin-600.woff2",
+     "weight": 600
+    },
+    {
+     "file": "fonts/clash-display/clash-display-latin-700.woff2",
+     "weight": 700
+    }
+   ]
+  },
+  "satoshi": {
+   "family": "Satoshi",
+   "source": "fontshare",
+   "files": [
+    {
+     "file": "fonts/satoshi/satoshi-latin-400.woff2",
+     "weight": 400
+    },
+    {
+     "file": "fonts/satoshi/satoshi-latin-500.woff2",
+     "weight": 500
+    },
+    {
+     "file": "fonts/satoshi/satoshi-latin-700.woff2",
+     "weight": 700
+    }
+   ]
+  },
+  "general-sans": {
+   "family": "General Sans",
+   "source": "fontshare",
+   "files": [
+    {
+     "file": "fonts/general-sans/general-sans-latin-400.woff2",
+     "weight": 400
+    },
+    {
+     "file": "fonts/general-sans/general-sans-latin-500.woff2",
+     "weight": 500
+    },
+    {
+     "file": "fonts/general-sans/general-sans-latin-600.woff2",
+     "weight": 600
+    }
+   ]
+  },
+  "sentient": {
+   "family": "Sentient",
+   "source": "fontshare",
+   "files": [
+    {
+     "file": "fonts/sentient/sentient-latin-400.woff2",
+     "weight": 400
+    },
+    {
+     "file": "fonts/sentient/sentient-latin-500.woff2",
+     "weight": 500
+    },
+    {
+     "file": "fonts/sentient/sentient-latin-700.woff2",
+     "weight": 700
+    }
+   ]
+  }
+ }
+}

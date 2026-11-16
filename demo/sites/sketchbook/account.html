@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="en" data-theme="sketchbook">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Commissions portal — Poppy Alder Illustration</title>
+<link rel="stylesheet" href="../../../base.css">
+<link rel="stylesheet" href="../../../fonts.css">
+<link rel="stylesheet" href="../../../tokens.css">
+<link rel="stylesheet" href="../../../elements-display.css">
+<link rel="stylesheet" href="../../../elements-structure.css">
+<link rel="stylesheet" href="../../../elements-lists.css">
+<link rel="stylesheet" href="../../../elements-app.css">
+<link rel="stylesheet" href="../../../elements-containers.css">
+<link rel="stylesheet" href="../../../elements-controls.css">
+<link rel="stylesheet" href="../../../elements-inputs.css">
+<link rel="stylesheet" href="../../../elements-dataviz.css">
+<link rel="stylesheet" href="../../../elements-overlay.css">
+<link rel="stylesheet" href="../../../elements-interactions.css">
+<link rel="stylesheet" href="../../../elements-misc.css">
+<link rel="stylesheet" href="../../../elements-size.css">
+<link rel="stylesheet" href="../../../elements-workflow.css">
+<link rel="stylesheet" href="../../../elements-inspector.css">
+<link rel="stylesheet" href="../../../elements-reader.css">
+<link rel="stylesheet" href="../../../elements-assistant.css">
+<link rel="stylesheet" href="../../../themes/src/illustration.css">
+<script src="../../../elements.js" defer></script>
+<script src="../../../charts.js" defer></script>
+</head>
+<body>
+<div class="el-page">
+
+  <nav class="el-navbar el-navbar--top" aria-label="Primary">
+    <a class="brand" href="index.html">Poppy Alder</a>
+    <ul class="links">
+      <li><a href="index.html">Studio</a></li>
+      <li><a href="catalog.html">Available work</a></li>
+      <li><a href="article.html">Process notes</a></li>
+      <li><a href="account.html" aria-current="page">Commissions</a></li>
+      <li><a href="app.html">Sketch Ledger</a></li>
+    </ul>
+    <div class="actions">
+      <span class="el-avatar" aria-hidden="true">JR</span>
+      <button class="el-btn" type="button" data-command="ledger-cmd"><span class="el-kbd">/</span>&nbsp;Find a brief</button>
+    </div>
+  </nav>
+
+  <header class="el-hero el-hero--centered" style="min-height:0;padding:var(--el-space-5) var(--el-space-5) var(--el-space-4);">
+    <span class="el-eyebrow">radler bakery &middot; client since 2024</span>
+    <h1>J. Radler's commission page</h1>
+    <p>Client portal for the Radler account &middot; two walls delivered, stairwell print edition running &middot; briefs live in Sketch Ledger and mirror here.</p>
+  </header>
+
+  <div class="side-page">
+    <nav class="el-navbar el-navbar--rail" aria-label="Portal sections">
+      <a class="brand" href="account.html">Portal</a>
+      <ul class="links">
+        <li><a href="account.html" aria-current="page">Briefs</a></li>
+        <li><a href="account.html">Contracts</a></li>
+        <li><a href="account.html">Invoices</a></li>
+        <li><a href="catalog.html">Shelf</a></li>
+        <li><a href="index.html">Studio</a></li>
+      </ul>
+      <div class="actions"><button class="el-btn el-btn--ghost" type="button" data-dialog-open="close-brief">Close brief</button></div>
+    </nav>
+
+    <main>
+      <section class="el-section el-section--flush">
+        <div class="el-banner el-banner--warn">
+          <span class="glyph">!</span>
+          <div class="copy"><strong>One contract awaits a signature.</strong> The stairwell print-edition addendum sits in the brief until signed — editions price at $38 a print and the printer holds the plate run.</div>
+          <button class="action el-btn el-btn--outline" type="button" data-dialog-open="sign-contract">Review &amp; sign</button>
+        </div>
+      </section>
+
+      <section class="el-section">
+        <h1 style="margin-top:0;">Winter brief</h1>
+        <p class="el-hint">Briefs mirror the Sketch Ledger entry; edit either side and the ledger records both.</p>
+
+        <div class="el-stepper" role="list" aria-label="commission booking steps">
+          <li class="done" role="listitem"><span class="num">1</span> Inquiry</li>
+          <li class="done" role="listitem"><span class="num">2</span> Truck study</li>
+          <li class="active" role="listitem"><span class="num">3</span> Color pass</li>
+          <li role="listitem"><span class="num">4</span> Sign &amp; paint</li>
+          <li role="listitem"><span class="num">5</span> Delivery</li>
+        </div>
+      </section>
+
+      <section class="el-section el-section--dense">
+        <div class="el-cluster split-cluster">
+          <form class="el-panel" style="padding:var(--el-space-4);display:grid;gap:var(--el-space-3);">
+            <h2 style="margin:0;font-size:var(--el-fs-lg);">The brief</h2>
+
+            <label class="el-field">
+              <span class="el-label">Working title</span>
+              <input class="el-input" type="text" value="Elevator Wall, North Face" required>
+              <span class="el-hint">Titles go on the ledger entry and the plaque draft, in that order.</span>
+            </label>
+
+            <label class="el-field">
+              <span class="el-label">What should the wall hold? (site notes)</span>
+              <textarea class="el-textarea" rows="4" placeholder="Sight lines, the bakery's delivery window, the neighbor's fig tree…">West face done at 100%. North face carries the study's marker-green pass. Keep the fig tree's shadow line — it is the only shade on the lot and it draws itself.</textarea>
+              <span class="el-hint">Read aloud on site, every lift morning.</span>
+            </label>
+
+            <div class="el-field">
+              <span class="el-label">Finish</span>
+              <select class="el-select" style="padding:9px 12px;border-radius:8px 10px 7px 11px;font-family:var(--el-font-body);">
+                <option>Gouache finish, sealed (default)</option>
+                <option>Anti-graffiti coat</option>
+                <option>Matte house paint, no seal</option>
+              </select>
+              <span class="el-hint">Seal adds 4 days and one ledger line; graffiti coat adds a week.</span>
+            </div>
+
+            <div class="el-field">
+              <span class="el-label">Delivery city (site address)</span>
+              <select class="el-dropdown" aria-label="delivery city">
+                <option>Asheville, NC</option>
+                <option>Black Mountain, NC</option>
+                <option>Hendersonville, NC</option>
+              </select>
+              <span class="el-hint">Same-city walls ride the truck; anything out of county needs the lift hire.</span>
+            </div>
+
+            <label class="el-field">
+              <span class="el-label">Look up a ledger entry</span>
+              <span class="el-search-bar" style="display:inline-flex;flex:1;">
+                <input class="el-search el-search-inline" type="search" placeholder="Search briefs and walls — try 'stairwell'" aria-label="Search ledger entries">
+              </span>
+              <span class="el-hint">Searches brief titles, wall entries and paint schedules.</span>
+            </label>
+
+            <h2 style="margin:var(--el-space-2) 0 0;font-size:var(--el-fs-lg);">Schedule &amp; terms</h2>
+
+            <div class="el-field">
+              <span class="el-label">Payment plan</span>
+              <div class="el-segmented" role="group" aria-label="payment plan">
+                <button class="on" type="button">thirds</button>
+                <button type="button">half + half</button>
+                <button type="button">on delivery</button>
+              </div>
+              <span class="el-hint">Thirds is the default: study, color pass, paint.</span>
+            </div>
+
+            <label class="el-field">
+              <span class="el-label">
+                <span class="el-switch on" role="switch" aria-checked="true" tabindex="0"><input type="checkbox" checked></span>
+                Rush the winter window (paint before weather closes)
+              </span>
+              <span class="el-hint">Rush adds the second lift week and keeps the truck overnight.</span>
+            </label>
+
+            <div class="el-field">
+              <span class="el-label">Site access &amp; supplies the client is providing</span>
+              <div style="display:grid;gap:8px;">
+                <label class="check-row" style="display:grid;grid-template-columns:auto 1fr;gap:8px;">
+                  <span class="el-check on"><input type="checkbox" checked></span><span>Bucket water from the bakery tap</span>
+                </label>
+                <label class="check-row" style="display:grid;grid-template-columns:auto 1fr;gap:8px;">
+                  <span class="el-check on"><input type="checkbox" checked></span><span>Overnight parking behind the ovens</span>
+                </label>
+                <label class="check-row" style="display:grid;grid-template-columns:auto 1fr;gap:8px;">
+                  <span class="el-check indeterminate on"><input type="checkbox" aria-label="part selected"></span><span>Scaffold ground cover (pending landlord word)</span>
+                </label>
+              </div>
+              <span class="el-hint">The landlord's half-answer has its own ledger line, of course.</span>
+            </div>
+
+            <div class="el-field">
+              <span class="el-label">Proof delivery</span>
+              <div style="display:grid;gap:8px;">
+                <label class="el-radio check-row"><input type="radio" name="proof" checked><span class="dot"></span><span>Photograph of pass, nightly from the lift</span></label>
+                <label class="el-radio check-row"><input type="radio" name="proof"><span class="dot"></span><span>Weekly visit at the lift, Tuesdays</span></label>
+              </div>
+            </div>
+
+            <label class="el-field">
+              <span class="el-label">Wall budget ceiling</span>
+              <input class="el-slider" type="range" min="8000" max="20000" value="12000" step="500">
+              <span class="el-hint">$12,000 &middot; covers study, gridding, four paint weeks and the lift hire</span>
+            </label>
+
+            <div class="el-inline-alert el-inline-alert--warn" style="display:flex;gap:10px;align-items:start;">
+              <span class="el-icon" aria-hidden="true">&Delta;</span>
+              <div><strong>Weather gate is real.</strong> Underpainting needs four dry days; the paint schedule flexes to Monday if Friday breaks.</div>
+            </div>
+
+            <div class="el-field" data-invalid>
+              <span class="el-label">Invoice address</span>
+              <input class="el-input" aria-invalid="true" value="radler bakery, the corner">
+              <span class="el-error">'The corner' is where the bakery is, not an address — the ledger needs a street.</span>
+            </div>
+
+            <div style="display:flex;gap:var(--el-space-2);align-items:center;flex-wrap:wrap;">
+              <button class="el-btn" type="button" data-toast="Brief saved — Sketch Ledger entry mirrored" data-toast-variant="ok">Save brief</button>
+              <div class="el-btn-group" role="group" aria-label="schedule presets">
+                <button class="el-btn el-btn--outline" type="button">This winter</button>
+                <button class="el-btn el-btn--outline" type="button">Spring</button>
+                <button class="el-btn el-btn--outline" type="button">No rush</button>
+              </div>
+              <button class="el-btn el-btn--ghost" type="button">Discard</button>
+              <button class="el-btn el-btn--danger" type="button" data-dialog-open="close-brief" style="margin-left:auto;">Close brief</button>
+            </div>
+          </form>
+
+          <aside style="display:grid;gap:var(--el-space-3);">
+            <div class="el-panel" style="padding:var(--el-space-3);">
+              <h3 style="margin:0 0 8px;font-size:var(--el-fs-md);">Ledger status</h3>
+              <p style="margin:0 0 10px;display:flex;align-items:center;gap:8px;"><span class="el-status-dot ok" aria-hidden="true"></span><span class="el-status-pill ok">color pass open</span></p>
+              <p style="margin:0 0 10px;display:flex;align-items:center;gap:8px;"><span class="el-status-dot warn" aria-hidden="true"></span><span class="el-status-pill warn">contract unsigned</span></p>
+              <div style="display:grid;gap:8px;">
+                <button class="el-btn el-btn--squared" type="button" data-dialog-open="sign-contract">Sign the addendum</button>
+                <button class="el-btn el-btn--outline" type="button" data-toast="Syncing the lift calendar…" data-toast-variant="info">Sync lift calendar <span class="el-spinner sm" aria-hidden="true"></span></button>
+              </div>
+            </div>
+            <div class="el-panel" style="padding:var(--el-space-3);">
+              <h3 style="margin:0 0 8px;font-size:var(--el-fs-md);">Invoices</h3>
+              <table class="el-table el-table--ruled" style="width:100%;">
+                <thead><tr><th scope="col">Invoice</th><th scope="col" class="num">Amount</th></tr></thead>
+                <tbody>
+                  <tr><td>SL-118 &middot; study</td><td class="num">$4,000.00</td></tr>
+                  <tr><td>SL-121 &middot; grid</td><td class="num">$4,000.00</td></tr>
+                  <tr><td>SL-124 &middot; paint</td><td class="num">$4,000.00</td></tr>
+                </tbody>
+              </table>
+              <nav class="el-pagination" aria-label="invoice pages" style="margin-top:12px;">
+                <button class="page disabled" type="button" aria-label="Previous page">&lsaquo;</button>
+                <button class="page on" type="button">1</button>
+                <button class="page" type="button">2</button>
+                <span class="info">1&ndash;3 of 11</span>
+                <button class="page" type="button" aria-label="Next page">&rsaquo;</button>
+              </nav>
+            </div>
+            <div class="el-panel" style="padding:var(--el-space-3);" aria-hidden="true">
+              <h3 style="margin:0 0 8px;font-size:var(--el-fs-md);">Next lift day</h3>
+              <div class="el-skeleton" style="height:14px;width:70%;margin-bottom:8px;"></div>
+              <div class="el-skeleton" style="height:14px;width:46%;margin-bottom:8px;"></div>
+              <div class="el-skeleton" style="height:14px;width:58%;"></div>
+            </div>
+            <div class="el-panel" style="padding:var(--el-space-3);">
+              <h3 style="margin:0 0 8px;font-size:var(--el-fs-md);">Pins</h3>
+              <span class="el-pill">client:radler</span>
+              <span class="el-badge live" style="margin-left:6px;">winter window</span>
+            </div>
+          </aside>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <footer class="el-footer el-footer--plain">
+    <p class="colophon">Commissions portal &middot; briefs mirror Sketch Ledger &middot; contracts sign once and live in the ledger forever.</p>
+  </footer>
+
+</div>
+
+<dialog class="el-dialog" id="sign-contract">
+  <div class="el-dialog-head">
+    <h3 class="el-dialog-title">Sign the print-edition addendum?</h3>
+    <button class="el-dialog-close" type="button" aria-label="Close" data-dialog-close>&times;</button>
+  </div>
+  <form class="el-dialog-body" method="dialog">
+    <p style="margin-top:0;">Edition of 60 at $38 a print, bakery named as co-author of the line drawing, plate run held by the printer for six months.</p>
+    <label class="el-field">
+      <span class="el-label">Sign as</span>
+      <input class="el-input" type="text" value="J. Radler — Radler Bakery, Asheville NC">
+    </label>
+  </form>
+  <div class="el-dialog-foot">
+    <button class="el-btn el-btn--ghost" type="button" data-dialog-close>Not today</button>
+    <button class="el-btn" type="button" data-toast="Addendum signed — plate run releases Monday" data-toast-variant="ok" data-dialog-close>Sign &amp; release the plate run</button>
+  </div>
+</dialog>
+
+<dialog class="el-dialog" id="close-brief">
+  <div class="el-dialog-head">
+    <h3 class="el-dialog-title">Close the winter brief?</h3>
+    <button class="el-dialog-close" type="button" aria-label="Close" data-dialog-close>&times;</button>
+  </div>
+  <form class="el-dialog-body" method="dialog">
+    <p style="margin-top:0;">Closing stops the lift calendar and the paint schedule. The wall's ledger entry stays open until the anti-graffiti coat — that one can't be closed from a portal.</p>
+    <label class="el-field">
+      <span class="el-label">Reason (goes in the ledger)</span>
+      <span class="el-search-bar" style="display:flex;">
+        <input class="el-search" type="search" placeholder="weather, budget, moved…" aria-label="Reason for closing">
+      </span>
+    </label>
+  </form>
+  <div class="el-dialog-foot">
+    <button class="el-btn el-btn--ghost" type="button" data-dialog-close>Keep it open</button>
+    <button class="el-btn el-btn--danger" type="button" data-toast="Brief closed — lift calendar released" data-toast-variant="fail" data-dialog-close>Close brief</button>
+  </div>
+</dialog>
+
+<div class="el-command" id="ledger-cmd" role="dialog" aria-label="Find a brief">
+  <div class="el-command-panel">
+    <input class="el-command-input" type="text" placeholder="Find a brief, invoice, or wall… try 'stairwell'" aria-label="Find a brief">
+    <div class="el-command-results">
+      <div class="el-command-group">Briefs</div>
+      <button class="el-command-row sel" type="button">Elevator Wall, North Face — winter brief <span class="el-command-hint">E</span></button>
+      <button class="el-command-row" type="button">Stairwell print addendum — awaiting signature <span class="el-command-hint">S</span></button>
+      <div class="el-command-group">Invoices</div>
+      <button class="el-command-row" type="button">SL-124 &middot; paint, $4,000 — due on delivery <span class="el-command-hint">I</span></button>
+      <div class="el-command-empty" hidden>No entry under that name — the ledger keeps its own spelling.</div>
+    </div>
+    <div class="el-command-foot">arrows to move &middot; enter to run &middot; esc to close</div>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,181 @@
+<!doctype html><html lang="en" data-theme="noir-couture"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Press accreditation — Noir Vasseur · noir-couture</title>
+<link rel="stylesheet" href="../../../base.css"><link rel="stylesheet" href="../../../fonts.css">
+<link rel="stylesheet" href="../../../tokens.css">
+<link rel="stylesheet" href="../../../elements-display.css">
+<link rel="stylesheet" href="../../../elements-structure.css">
+<link rel="stylesheet" href="../../../elements-lists.css">
+<link rel="stylesheet" href="../../../elements-app.css">
+<link rel="stylesheet" href="../../../elements-containers.css">
+<link rel="stylesheet" href="../../../elements-controls.css">
+<link rel="stylesheet" href="../../../elements-inputs.css">
+<link rel="stylesheet" href="../../../elements-dataviz.css">
+<link rel="stylesheet" href="../../../elements-overlay.css">
+<link rel="stylesheet" href="../../../elements-interactions.css">
+<link rel="stylesheet" href="../../../elements-misc.css">
+<link rel="stylesheet" href="../../../elements-size.css">
+<link rel="stylesheet" href="../../../elements-workflow.css">
+<link rel="stylesheet" href="../../../elements-inspector.css">
+<link rel="stylesheet" href="../../../elements-reader.css">
+<link rel="stylesheet" href="../../../elements-assistant.css">
+<link rel="stylesheet" href="../../../themes/src/fashion-serif.css">
+<script src="../../../elements.js" defer></script><script src="../../../charts.js" defer></script>
+</head><body>
+<div class="el-page">
+
+  <div class="el-banner el-banner--ok el-banner--attached" role="status">
+    <span class="glyph" aria-hidden="true">✓</span>
+    <span class="copy"><b>Accreditation standing</b><span class="detail"> · your desk card renews for edition fifteen automatically</span></span>
+    <a class="el-btn el-btn--ghost" href="app.html">Open the press desk</a>
+  </div>
+
+  <nav class="el-navbar el-navbar--top" aria-label="Primary">
+    <a class="brand" href="index.html">Noir Vasseur <small>Paris · 1998</small></a>
+    <div class="links">
+      <a href="index.html">Collection</a>
+      <a href="catalog.html">Looks</a>
+      <a href="article.html">Revue</a>
+      <a href="account.html" aria-current="page">Accreditation</a>
+      <a href="app.html">Press desk</a>
+    </div>
+    <div class="actions">
+      <span class="el-avatar">RM</span>
+      <span class="el-status-pill ok"><span class="el-status-dot ok"></span>Accredited · edition fifteen</span>
+    </div>
+  </nav>
+
+  <main>
+    <section class="el-section">
+      <header class="el-section-head"><p class="el-eyebrow">Your desk card</p><h2>Press accreditation</h2><span class="rule"></span></header>
+      <p class="el-body" style="max-width:70ch;">The desk files each correspondent once: the
+         outlet, the seat held, how the desk may reach you, and what the desk may hold under
+         embargo. Nothing at the house is sold, hurried, or granted — it is corresponded.</p>
+
+      <ol class="el-stepper" style="margin:var(--el-space-5) 0;">
+        <li class="done"><span class="num">✓</span>Outlet filed</li>
+        <li class="active"><span class="num">2</span>Desk card</li>
+        <li><span class="num">3</span>Embargo terms</li>
+        <li><span class="num">4</span>Seat request</li>
+        <li><span class="num">5</span>The hour</li>
+      </ol>
+
+      <div class="el-cluster" style="align-items:flex-start;gap:var(--el-space-6);flex-wrap:wrap;">
+        <form class="el-section" style="flex:2 1 360px;padding-block:0;">
+          <div class="el-field">
+            <label class="el-label" for="ac-name">Name as the desk files it</label>
+            <input class="el-input" id="ac-name" value="R. Marchetti">
+            <p class="el-hint">Filed since edition nine; the desk does not amend a filed name.</p>
+          </div>
+
+          <div class="el-field" data-invalid>
+            <label class="el-label" for="ac-mail">Correspondence</label>
+            <input class="el-input" id="ac-mail" value="r.marchetti@revue.example" aria-invalid="true">
+            <span class="el-error">The desk cannot reach this address — last edition&rsquo;s letter returned.</span>
+          </div>
+
+          <div class="el-field">
+            <label class="el-label" for="ac-search">Find a filed edition</label>
+            <div class="el-search-field"><input class="el-search" id="ac-search" type="search" placeholder="Edition, look, or plate number."></div>
+            <p class="el-hint">Your desk file holds 14 editions.</p>
+          </div>
+
+          <div class="el-field">
+            <label class="el-label" for="ac-outlet">Outlet</label>
+            <div class="el-select"><select id="ac-outlet">
+              <option>Revue</option>
+              <option>Wire desk</option>
+              <option>Independent critic</option>
+              <option>Image desk</option>
+            </select></div>
+          </div>
+
+          <div class="el-field">
+            <label class="el-label" for="ac-notes">Notes to the house</label>
+            <textarea class="el-textarea" id="ac-notes" rows="3" placeholder="Anything the desk should hold."></textarea>
+            <p class="el-hint">Never shown to the atelier; read by the desk only.</p>
+          </div>
+
+          <fieldset class="el-field" style="border:0;padding:0;display:grid;gap:12px;justify-items:start;">
+            <legend class="el-label">The desk may reach you by</legend>
+            <label><span class="el-check"><input type="checkbox" checked></span> Wire, the morning after the hour</label>
+            <label><span class="el-check"><input type="checkbox"></span> Telephone, before noon Paris</label>
+            <label><span class="el-check"><input type="checkbox"></span> Bound letter, as edition nine onward</label>
+          </fieldset>
+
+          <fieldset class="el-field" style="border:0;padding:0;display:grid;gap:12px;justify-items:start;">
+            <legend class="el-label">Seat held</legend>
+            <label class="el-radio"><input type="radio" name="seat" checked><span class="dot"></span> Second bar, the dark before the light</label>
+            <label class="el-radio"><input type="radio" name="seat"><span class="dot"></span> First bar, front row by invitation</label>
+            <label class="el-radio"><input type="radio" name="seat"><span class="dot"></span> Standing, act three only</label>
+          </fieldset>
+
+          <fieldset class="el-field" style="border:0;padding:0;">
+            <legend class="el-label">Plate format</legend>
+            <div class="el-segmented">
+              <button type="button">Runway</button>
+              <button type="button" class="on">Runway + backstage</button>
+              <button type="button">Bound edition</button>
+            </div>
+          </fieldset>
+
+          <div class="el-field">
+            <label class="el-label" for="ac-lead">Notice before the hour</label>
+            <div class="el-range"><input class="el-slider" id="ac-lead" type="range" min="1" max="8" value="2" aria-label="Weeks of notice"><span class="val">2 weeks</span></div>
+            <p class="el-hint">The desk writes once; two weeks is the house minimum.</p>
+          </div>
+
+          <div class="el-field">
+            <label class="el-label">Embargo terms</label>
+            <div class="el-switch on" role="switch" aria-checked="true" tabindex="0"></div>
+            <p class="el-hint">Hold all plates until the desk releases the hour. The house has never broken one.</p>
+          </div>
+
+          <div class="el-btn-group">
+            <button class="el-btn" type="submit" data-toast="Your desk card is filed for edition fifteen.">File the card</button>
+            <button class="el-btn el-btn--ghost" type="reset">Return to the file</button>
+          </div>
+        </form>
+
+        <div style="flex:1 1 260px;display:grid;gap:var(--el-space-4);">
+          <div class="el-inline-alert"><span class="el-icon" aria-hidden="true">ⓘ</span>
+            <div><span class="title">Filed once, amendable twice a year</span><span class="body">The desk amends desk cards at the season&rsquo;s turn, in writing.</span></div></div>
+
+          <div class="el-card el-card--flat">
+            <h3 class="el-card-title">Edition fifteen, being held</h3>
+            <p class="el-card-body">Your seat is being written against the house clock:</p>
+            <span class="el-skeleton block" style="width:82%;height:14px;"></span>
+            <span class="el-skeleton block" style="width:64%;height:14px;"></span>
+            <span class="el-skeleton block" style="width:74%;height:14px;"></span>
+            <div class="el-card-foot"><span class="el-spinner sm" role="status" aria-label="Filing"></span>
+              <span class="el-pill live"><span class="el-status-dot live"></span>Held for the hour</span></div>
+          </div>
+
+          <div class="el-card el-card--flat">
+            <h3 class="el-card-title">Your file, at a glance</h3>
+            <div class="el-stat">
+              <span class="el-stat-label">Editions covered</span>
+              <span class="el-stat-value">14</span>
+              <span class="el-stat-delta up">▲ every hour on record</span>
+            </div>
+            <div class="el-meter" style="--el-meter-value:60%;margin-top:var(--el-space-3);" role="meter" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" aria-label="Plates released this edition">
+              <span class="fill"></span>
+            </div>
+            <p class="el-mute-body" style="margin:6px 0 0;font-size:var(--el-fs-sm);">Backstage frames release in four days.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="el-footer">
+    <div class="cols">
+      <div class="col"><p class="label">The label</p><a href="index.html">Collection</a><a href="catalog.html">Looks</a><a href="article.html">Revue</a></div>
+      <div class="col"><p class="label">Your file</p><a href="account.html">Desk card</a><a href="app.html">The press desk</a></div>
+      <div class="col"><p class="label">The house</p><p class="small">Correspondence on house paper · the desk answers in two days</p></div>
+    </div>
+    <p class="colophon">© 1998–2026 Noir Vasseur, Paris · accreditation is corresponded, never sold.</p>
+  </footer>
+
+</div>
+</body></html>
