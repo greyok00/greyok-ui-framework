@@ -1,156 +1,81 @@
-<p align="center">
-  <img src="assets/wordmark.svg" alt="greyok-ui-framework" width="320">
-</p>
+<div align="center">
 
-<p align="center">
-  <strong>A dependency-free CSS + JS design system: 20 complete themes, 20 layout archetypes, 63 evidence-backed elements.</strong>
-  <br><br>
-  Structure and character are independent - every theme matches every layout. Works in HTML, TypeScript, and Python/Tkinter.
-  <br><br>
-  <a href="https://greyok00.github.io/greyok-ui-framework/demo/"><img src="https://img.shields.io/badge/demo-LIVE-success?style=for-the-badge" alt="Live Demo"></a>
-  <a href="https://github.com/greyok00/greyok-ui-framework"><img src="https://img.shields.io/badge/license-Apache--2.0-blue.svg" alt="Apache-2.0"></a>
-  <a href="https://github.com/greyok00/greyok-ui-framework"><img src="https://img.shields.io/badge/version-0.5.0-orange.svg" alt="v0.5.0"></a>
-  <a href="https://github.com/greyok00/greyok-ui-framework"><img src="https://img.shields.io/badge/greyok-00d4aa.svg" alt="greyok"></a>
-</p>
+<img src="assets/wordmark.svg" alt="greyok-ui-framework" width="340">
 
-<p align="center">
-  <img src="docs/screenshots/showcase.png" alt="Showcase front door: the hero and the poster wall of twenty persona sites" width="980">
-</p>
+# greyok-ui-framework
 
-<p align="center"><em>The showcase: one token set, twenty complete personas. Every poster below the hero is a real multi-page site built with the framework.</em></p>
+**A dependency-free CSS and JavaScript design system: 20 themes, 20 layout archetypes and 63 elements.**
+
+Structure and character are independent — every theme matches every layout. The same tokens work in HTML, TypeScript and Python/Tkinter.
+
+[![Version](https://img.shields.io/badge/version-0.5.0-2f6f5e)](package.json)
+[![License](https://img.shields.io/badge/license-Apache--2.0-blue)](LICENSE)
+[![CSS](https://img.shields.io/badge/CSS-cascade%20layers-264de4)](base.css)
+[![Demo](https://img.shields.io/badge/demo-live-success)](https://greyok00.github.io/greyok-ui-framework/demo/)
+
+[Overview](#overview) · [Screenshots](#screenshots) · [Quick start](#quick-start) · [How it works](#how-it-works) · [Demo](#demo) · [License](#license)
+
+</div>
 
 ---
 
-## 👀 See it live
-
-**[→ greyok00.github.io/greyok-ui-framework/demo/](https://greyok00.github.io/greyok-ui-framework/demo/)**
-
-No install, no build. The front door opens on the theme wall; the layout tabs re-shuffle the same content into each of the twenty archetypes. Every card clicks through to a working site.
-
-| | |
-|---|---|
-| 🪟 Showcase | [demo/index.html](https://greyok00.github.io/greyok-ui-framework/demo/) - 20-theme poster wall + layout picker |
-| 🎨 Theme gallery | [demo/themes.html](https://greyok00.github.io/greyok-ui-framework/demo/themes.html) - every theme as a swatch card, click to re-skin the page |
-| 📐 Layout gallery | [demo/layouts.html](https://greyok00.github.io/greyok-ui-framework/demo/layouts.html) - all 20 archetypes, desktop and mobile renders |
-| 🌐 Persona sites | [demo/sites/index.html](https://greyok00.github.io/greyok-ui-framework/demo/sites/index.html) - the 20 sites, grouped by family |
-| 🧩 Element tour | [demo/elements.html](https://greyok00.github.io/greyok-ui-framework/demo/elements.html) - the 63-element inventory on one page |
-
----
-
-## 🖼 The showcase
-
-The showcase is the product. Twenty themes, each worked through a complete site - home, catalog, article, account, and an app-styles mockup - so you can judge the system as a whole rather than as a pile of buttons. The screenshots below are renders of the actual pages, not mockups.
-
-<p align="center">
-  <img src="docs/screenshots/themes.png" alt="Theme gallery: swatch cards for all twenty themes" width="980">
-</p>
-
-<p align="center"><em>The theme gallery. Clicking any card re-skins the whole page instantly - every theme declares the complete token set.</em></p>
-
-<p align="center">
-  <img src="docs/screenshots/twenty-sites.png" alt="Index of the twenty persona sites grouped by theme family" width="980">
-</p>
-
-<p align="center"><em>The persona roster, grouped by family. Each entry is a real site with its own nav anatomy, hero, card treatment and type voice.</em></p>
-
-### The twenty themes
-
-Every theme applies through `[data-theme="<slug>"]` on `<html>`. Each source family carries two skins, so the roster reads coherently while each persona keeps its own voice.
-
-| Family | Themes | Character |
-|---|---|---|
-| tech-mono | `mono-console`, `ghost-terminal` | terminal chrome, phosphor plates, ruled tables |
-| editorial | `cream-journal`, `paper-press` | print shop: cream paper, broadsheet rules, letterpress |
-| neo-brutalist | `brutal-stamp`, `brutal-index` | raw type on harsh fields, stamped blocks |
-| webgl-immersive | `orbit-deep`, `solar-halo` | deep-space instrument glass, halos, glow |
-| agency-classic | `agency-quartz`, `agency-mono-plate` | quartz precision and mono plate composition |
-| fashion-serif | `maison-serif`, `noir-couture` | high-contrast serifs, gallery spacing, noir |
-| illustration | `sticker-pop`, `sketchbook` | pop sticker edges, warm sketchbook grain |
-| dashboard-light | `console-light`, `grid-ledger` | light chrome, data density, ledger precision |
-| motion-brand | `kinetic-ink`, `aperture-motion` | ink sweeps, shutter frames, kinetic underlines |
-| quiet-minimal | `ma-quiet`, `gesshoku` | ma spacing, hairline calm, composed applets |
-
-Plus `neutral` - graphite and amber - which lives in `tokens.css` as the default.
-
-## 📐 The twenty layouts
-
-A layout is **structure only**. It re-orders the home blocks a page already has - hero, intro, findings, stats, contents, cards, disclaimer - and never paints anything. That is why every theme matches every layout: the ink is owned by the theme, the skeleton by the layout.
-
-<p align="center">
-  <img src="docs/screenshots/layouts.png" alt="Layout gallery: twenty desktop renders with names and data-layout slugs" width="980">
-</p>
-
-<p align="center"><em>All twenty archetypes rendered at 1440 px. The same page, restructured twenty ways.</em></p>
-
-Pin one with a single attribute:
-
-```html
-<link rel="stylesheet" href="layouts.css">
-<html data-layout="bento-dashboard" data-theme="mono-console">
-```
-
-| Slug | Name | Structure |
-|---|---|---|
-| `split-hero-left` | Split hero, left | hero beside the intro, findings stacked beside it |
-| `split-hero-right` | Split hero, right | the split flipped |
-| `full-bleed-cover` | Full-bleed cover | edge-to-edge cover photo, cards right under it |
-| `centered-editorial` | Centered editorial | one centered column, generous paper margins |
-| `magazine-grid` | Magazine grid | asymmetric print grid, findings as pull quotes |
-| `bento-dashboard` | Bento dashboard | stat tiles and content panes like a dashboard |
-| `sidebar-rail-nav` | Sidebar rail nav | navigation rail first, content beside it |
-| `top-tab-console` | Top tab console | tab console across the top, panes beneath |
-| `kanban-board` | Kanban board | content lanes laid out like a board |
-| `catalog-aisle-rows` | Catalog aisle rows | one row per piece, aisle style |
-| `pricing-columns` | Pricing columns | columns that read like a table of offers |
-| `masonry-gallery` | Masonry gallery | a staggered gallery wall of cards |
-| `timeline-vertical` | Timeline vertical | a dated vertical spine through the content |
-| `terminal-shell` | Terminal shell | stat readout on top, content in a shell frame |
-| `boxed-frame` | Boxed frame | everything framed inside a page border |
-| `overlapping-panels` | Overlapping panels | cards overlap the hero like stacked prints |
-| `carousel-storefront` | Carousel storefront | shopfront rhythm, cards sweep under the hero |
-| `sticky-index` | Sticky index | the index pinned first, content scrolls beside it |
-| `atlas-map-first` | Atlas map first | the stat atlas up top, detail below |
-| `single-column-zen` | Single column zen | one quiet column, nothing decorative |
-
-The layout sheet expects the page body in `main.el-main` and cards in `.el-card-grid`; both are defined in `layouts.css`, so nothing else is required.
-
----
-
-## What is it?
+## Overview
 
 greyok-ui-framework is a design system you copy into a project. There is no
-package runtime, no build step, and no JavaScript dependency: every visual is
-plain CSS delivered as cascade-layered stylesheets, and the optional JS files
-attach behavior to markup through `data-*` attributes and `.el-*` classes. The
-same theme tokens are readable from TypeScript (element declarations) and
-Python/Tkinter (a bridge that parses the CSS variables directly).
+package runtime, no build step and no JavaScript dependency: every visual is
+plain CSS delivered as cascade-layered stylesheets, and the optional JavaScript
+files attach behavior to markup through `data-*` attributes and `.el-*`
+classes. The same theme tokens are readable from TypeScript and from a
+Python/Tkinter bridge that parses the CSS variables directly.
 
-To use it, copy the files and include the layers in order in your `<head>`:
-fonts first, then tokens, themes, base, then the element sheets you need, then
-`layouts.css` if you want the archetypes, then the scripts. Picking a theme
-means setting `data-theme="slug"` on `<html>`; picking a layout means setting
-`data-layout="slug"`. Every theme declares a complete token set, so components
-re-skin instantly.
-
-| File group | Purpose |
+| Layer | What you get |
 |---|---|
-| `tokens.css` | Neutral theme: ~55 custom properties (color, type, space, radius, shadow, motion) |
-| `themes.css` | Generated `[data-theme]` blocks for the 20-theme roster |
-| `themes/src/` | Ten readable family sources (two themes per file) that build `themes.css` |
-| `layouts.css` | The 20 `[data-layout]` archetypes; structure only |
-| `fonts.css` | `@font-face` rules for the self-hosted woff2 files under `fonts/` |
-| `base.css` | Reset, focus-visible law, scrollbar, and the cascade layer declarations |
-| `elements-*.css` | 16 element sheets, each wrapped in `@layer el-elements` |
-| `elements.js` | Behavior wiring: tabs, toggles, menus, dialogs, drawers, command palette, toasts, keyboard support |
-| `charts.js` | Dependency-free SVG charts: Sparkline, Bar, Line, Area, Donut |
-| `theme-switcher.js` | Applies `[data-theme]`, persists the choice, renders the 32 px icon strip |
-| `elements-workflow.js` | Stage rail, inspector, and assistant plan helpers |
-| `python/`, `typescript/` | Tkinter bridge (CSS variables to `ElTheme`) and element interface declarations |
+| **Themes** | 20 swappable themes plus `neutral`, applied with `[data-theme="…"]` |
+| **Layouts** | 20 structural archetypes applied with `[data-layout="…"]` |
+| **Elements** | 63 elements and about 300 classes across 16 cascade-layered sheets |
+| **Sizes** | Six buckets: `xs`, `sm`, `md`, `lg`, `full`, `tray` |
+| **Tokens** | About 55 CSS variables covering color, type, space, radius, shadow and motion |
+| **Charts** | Dependency-free SVG charts: Sparkline, Bar, Line, Area and Donut |
+| **Bridges** | TypeScript declarations and a Python/Tkinter theme bridge |
 
-## Install
+## Screenshots
 
-<details>
-<summary><strong>HTML / CSS</strong> - zero config</summary>
+<img src="docs/screenshots/showcase.png" alt="The showcase: a hero and a poster wall of twenty persona sites" width="900">
+
+The showcase is the product. Twenty themes are each worked through a complete
+site — home, catalog, article, account and an app-style mockup — so the system
+can be judged as a whole rather than as a pile of buttons.
+
+| Theme gallery | Layout gallery |
+| :---: | :---: |
+| ![Theme gallery](docs/screenshots/themes.png) | ![Layout gallery](docs/screenshots/layouts.png) |
+
+![The twenty persona sites](docs/screenshots/twenty-sites.png)
+
+## How it works
+
+Three ideas keep the system composable:
+
+1. **Tokens own the ink.** Each theme declares the complete token set. A theme
+   never leaves a partial override behind.
+2. **Layouts own the skeleton.** A layout re-orders blocks that already exist.
+   It never paints and never depends on a specific theme.
+3. **Cascade layers keep the peace.** Styles are split into `el-reset`,
+   `el-tokens`, `el-elements` and `el-themes`. Element CSS never fights app CSS,
+   and unlayered app styles always win.
+
+Picking a theme or layout is one attribute:
+
+```html
+<html data-theme="grid-ledger" data-layout="sidebar-rail-nav">
+```
+
+## Quick start
+
+### HTML / CSS
+
+Copy the files into the project and include the layers in order: fonts, tokens,
+themes, base, the element sheets you need, then layouts and scripts.
 
 ```html
 <link rel="stylesheet" href="greyok-ui-framework/fonts.css">
@@ -178,42 +103,29 @@ re-skin instantly.
 <script src="greyok-ui-framework/elements.js" defer></script>
 ```
 
-Pick a theme and, optionally, a layout:
-
-```html
-<html data-theme="grid-ledger" data-layout="sidebar-rail-nav">
-```
-
-That is the whole API.
-</details>
-
-<details>
-<summary><strong>npm</strong></summary>
+### npm
 
 ```bash
 npm install greyok-ui-framework
 ```
 
-Then import the CSS by name (`greyok-ui-framework/tokens.css`, `greyok-ui-framework/layouts.css`, etc.) - the package.json `exports` map covers every file.
-</details>
+Import any CSS file by name (`greyok-ui-framework/tokens.css`,
+`greyok-ui-framework/layouts.css`, and so on). The package `exports` map covers
+every file.
 
-<details>
-<summary><strong>Python / Tkinter</strong></summary>
+### Python / Tkinter
 
 ```python
 from greyok_ui_framework import ElTheme, ElWidget, get_theme
 
-theme = get_theme("grid-ledger")            # any of 20 themes
+theme = get_theme("grid-ledger")
 btn = ElWidget(parent, "btn", theme=theme, text="Run", command=handler)
 btn.pack()
 
-# Or rely on the theme dataclass directly
 print(f"bg={theme.bg}  accent={theme.accent}  live={theme.live}")
 ```
-</details>
 
-<details>
-<summary><strong>TypeScript</strong></summary>
+### TypeScript
 
 ```typescript
 import "greyok-ui-framework/typescript/elements.d.ts";
@@ -221,131 +133,113 @@ import "greyok-ui-framework/typescript/elements.d.ts";
 const pill = document.querySelector(".el-pill.ok") as HTMLSpanElement;
 const tabs = document.querySelector(".el-tabs-h") as HTMLDivElement;
 ```
-</details>
 
-## Theme switcher
+## The twenty themes
 
-`theme-switcher.js` reads `localStorage['el-theme']` first, falls back to URL hash `#theme=mono-console`, then defaults to `neutral`. It auto-renders a 32 px icon strip (one hand-drawn SVG glyph per theme) into any `[data-theme-strip]` container - tiles are `role="radiogroup"` buttons with arrow-key cycling, and all strip styling is injected by the script, so no extra CSS file is needed.
+Themes are grouped into ten families, two skins each:
+
+| Family | Themes |
+|---|---|
+| tech-mono | `mono-console`, `ghost-terminal` |
+| editorial | `cream-journal`, `paper-press` |
+| neo-brutalist | `brutal-stamp`, `brutal-index` |
+| webgl-immersive | `orbit-deep`, `solar-halo` |
+| agency-classic | `agency-quartz`, `agency-mono-plate` |
+| fashion-serif | `maison-serif`, `noir-couture` |
+| illustration | `sticker-pop`, `sketchbook` |
+| dashboard-light | `console-light`, `grid-ledger` |
+| motion-brand | `kinetic-ink`, `aperture-motion` |
+| quiet-minimal | `ma-quiet`, `gesshoku` |
+
+Plus `neutral` — graphite and amber — as the default in `tokens.css`.
+
+## The twenty layouts
+
+Layouts are structure only. They re-order the home blocks a page already has —
+hero, intro, findings, stats, contents, cards, disclaimer — and never paint.
+Pin one with an attribute:
 
 ```html
-<div id="el-theme-strip" data-theme-strip></div>
-<script src="greyok-ui-framework/theme-switcher.js" defer></script>
+<link rel="stylesheet" href="layouts.css">
+<html data-layout="bento-dashboard" data-theme="mono-console">
 ```
 
-## Features
-
-| Layer | What you get |
+| Slug | Structure |
 |---|---|
-| **Showcase** | 20 complete persona sites and a layout picker in `demo/`, plus 20 full-page posters used on this page and in the demo wall |
-| **Themes** | 20 swappable themes + `neutral` via `[data-theme="…"]`, built from ten readable family sources. Switcher persists to `localStorage` + URL hash and ships a 32 px icon strip |
-| **Layouts** | 20 archetypes via `[data-layout="…"]` in one 18 KB sheet - structure only, so every theme matches every layout |
-| **Elements** | 63 evidence-backed elements (~300 shipped classes) across 16 cascade-layered sheets - Display, Structure, Lists, Controls, Inputs, Containers, Dataviz, Interactions, Misc, App chrome, Workflow, Reader, Assistant, Inspector, Overlay, Size |
-| **Sizes** | 6 buckets - `xs` (48 px) / `sm` (50 × 200) / `md` / `lg` (1200 × 400) / `full` (1200 × 800) / `tray` (720 × 420) |
-| **Tokens** | ~55 CSS variables - color, type, space, radius, shadow, motion |
-| **Stubs** | ~40 wire functions in `elements.js` - signature-pad draw, waveform seek/play, file-upload drop, code-block copy, kbd-input capture, palette arrow-nav, tabs keyboard, modal/drawer esc-close, clipboard, … |
-| **Charts** | `charts.js` - dependency-free SVG primitives: `Sparkline`, `Bar`, `Line`, `Area`, `Donut`, with `<title>` tooltips and reduced-motion-aware animation |
-| **Architecture** | Single `@layer` cascade (`el-reset` / `el-tokens` / `el-elements` / `el-themes`) - element CSS never fights app CSS, and unlayered app styles always win |
-| **Tooling** | `bin/verify.sh` release checks · `tools/build_themes.py` assembles `themes.css` from family sources · `tools/build_layouts.py` assembles `layouts.css` · `tools/render_shots.py` renders posters and README screenshots · pytest suite in `tests/` |
-| **Bridges** | TypeScript declarations and a Python/Tkinter bridge (`greyok_ui_framework.py` parses CSS into an `ElTheme` dataclass) |
+| `split-hero-left` / `split-hero-right` | Hero beside the intro, findings stacked beside it |
+| `full-bleed-cover` | Edge-to-edge cover, cards underneath |
+| `centered-editorial` | One centered column with paper margins |
+| `magazine-grid` | Asymmetric print grid |
+| `bento-dashboard` | Stat tiles and content panes |
+| `sidebar-rail-nav` | Navigation rail first, content beside it |
+| `top-tab-console` | Tab console across the top |
+| `kanban-board` | Content lanes as a board |
+| `catalog-aisle-rows` | One row per piece |
+| `pricing-columns` | Columns that read like a table of offers |
+| `masonry-gallery` | Staggered card wall |
+| `timeline-vertical` | Dated vertical spine |
+| `terminal-shell` | Stat readout on top of a shell frame |
+| `boxed-frame` | Everything inside a page border |
+| `overlapping-panels` | Cards overlap the hero |
+| `carousel-storefront` | Shopfront rhythm under the hero |
+| `sticky-index` | Index pinned while content scrolls |
+| `atlas-map-first` | Stat atlas up top, detail below |
+| `single-column-zen` | One quiet column |
 
-## Sizes
+The layout sheet expects the page body in `main.el-main` and cards in
+`.el-card-grid`; both are defined in `layouts.css`.
 
-| Token | Affordance | Use |
-|---|---|---|
-| `.el--xs` | 48 px | icon button, status dot |
-| `.el--sm` | 50 × 200 | vertical tray popup |
-| `.el--md` | fluid | default |
-| `.el--lg` | 1200 × 400 | wide-short banner |
-| `.el--full` | 1200 × 800 | desktop |
-| `.el--tray` | 720 × 420 | popup-shaped wrapper |
+## Demo
 
-Apply directly on any element: `<span class="el-pill el--xs">…</span>`
-
-## Element categories
-
-The element set is the supporting cast, not the pitch - but it is what the themes are made of, and every persona site uses all 63.
-
-| Category | Count | Examples |
-|---|---|---|
-| **Display** | 15 | pill, dot, big-num, gauge, sparkline, barograph, kbd, badge, avatar, progress, skeleton, spinner, rating, swatch, empty |
-| **Lists** | 15 | timeline (h/v), accordion, kanban, table, card, hover-card, chip, tree-list, breadcrumb, pagination, def-list, task-list, stepper |
-| **Controls** | 15 | dropdown, check, toggle, switch, slider, range, segmented, search, palette, combobox, multi-select, dropdown-menu, context-menu, radio |
-| **Data viz** | 10 | mini-bar, mini-line, entity-graph, treemap, sparkline, heatmap, scatter, sankey-stub, diff-view, markdown |
-| **Containers** | 12 | panel, tabs (h/v/pill), modal, drawer, bento, split, sticky-*, masonry, scroll-shadow, toast-region |
-| **Inputs** | 10 | input, textarea, search-bar, prompt, file-upload, swatch-input, signature-pad, audio-waveform, code-block, kbd-input |
-| **Interactions** | 10 | drag/drop, drop-zone, hover-detail, tooltip, popover, context-menu, toast, infinite-trigger, anchor-nav |
-| **Misc** | 9 | datepicker, select, carousel, command palette, split-resizable, bottom-bar, glass, skeleton→content, icon sprite + SPA view transitions |
-| **Charts** | 5 | sparkline, bar, line, area, donut (SVG, `charts.js`) |
-
-## Demo pages
+The full demo runs without a build step:
 
 ```bash
 python3 -m http.server 8768 --bind 127.0.0.1
 # open http://127.0.0.1:8768/demo/
 ```
 
+The live version is at
+[greyok00.github.io/greyok-ui-framework/demo/](https://greyok00.github.io/greyok-ui-framework/demo/).
+
+`demo/index.html` is the theme wall and layout picker; `themes.html`,
+`layouts.html` and `elements.html` are the galleries; `demo/sites/` contains
+the twenty persona sites, five pages each.
+
+## Development
+
+```bash
+./bin/verify.sh                  # release checks: balance, roster, coverage, layers
+python3 tools/build_themes.py    # themes/src/* -> themes.css
+python3 tools/build_layouts.py   # layout kits -> layouts.css
+python3 tools/render_shots.py    # posters and README screenshots
+python3 -m pytest tests/
 ```
-demo/
-├── index.html          ← showcase: 20-theme poster wall + layout picker (live)
-├── themes.html         ← 25 theme cards, click to re-skin the page
-├── layouts.html        ← the 20 archetypes, desktop and mobile
-├── elements.html       ← the 63-element inventory + install snippets
-├── display.html … sizes.html   ← one page per element category
-├── posters/            ← full-page renders of all 20 persona sites
-├── layout-previews/    ← 20 desktop renders (1440 × 860)
-├── layout-previews-mobile/ ← 20 mobile renders (390 × 844)
-└── sites/              ← the 20 persona sites, five pages each
-```
+
+`themes.css` and `layouts.css` are generated artifacts: edit the sources,
+rebuild, and commit both. The palette in `tokens.css` is frozen and enforced by
+`bin/verify.sh`.
 
 ## Project layout
 
-```
+```text
 greyok-ui-framework/
-├── tokens.css               # ~55 CSS vars (neutral defaults)
-├── themes.css               # 25 [data-theme] blocks, built from themes/src/*
-├── themes/src/              # 10 readable family sources
-├── layouts.css              # 20 [data-layout] archetypes (structure only)
-├── base.css                 # reset, focus ring, scrollbar, demo bar
+├── tokens.css               # neutral defaults, ~55 variables
+├── themes.css               # 20 themes plus neutral
+├── themes/src/              # ten readable family sources
+├── layouts.css              # 20 structural archetypes
+├── base.css                 # reset, focus ring, scrollbar
 ├── elements-*.css           # 16 cascade-layered element sheets
-├── elements.js              # ~45 wire functions (interactive stubs)
+├── elements.js              # interaction wiring
 ├── charts.js                # SVG chart primitives
-├── theme-switcher.js        # localStorage + URL hash bridge, 20-theme strip
-├── bin/verify.sh            # release checks (balance, roster, coverage, layers)
-├── tools/
-│   ├── build_themes.py      # themes/src/* → themes.css
-│   ├── build_layouts.py     # layout kits → layouts.css
-│   ├── render_shots.py      # posters and README screenshots
-│   ├── minify.py            # comment stripper / minifier
-│   └── tokens-codegen.py    # design-tokens JSON → CSS custom properties
-├── tests/                   # pytest: tokens, themes, icons, declarations
-├── python/                  # Tkinter bridge - CSS → ElTheme dataclass
-├── typescript/              # declarations for every el-* class + data-* attr
-├── demo/                    # showcase, galleries, and 20 persona sites
-├── assets/                  # wordmark, logo, icon sprite
-├── package.json
-├── LICENSE                  # Apache-2.0
-└── README.md
-```
-
-## Conventions
-
-- All element classes prefixed with `.el-*` (or `data-*` for behavior)
-- All status colors via `--el-ok`, `--el-warn`, `--el-fail`, `--el-info`, `--el-live` (always distinct)
-- Themes declare the **full** token set; never partial overrides
-- Layouts declare **structure only**; never paint, never depend on a specific theme
-- Zero `:root` overrides - themes only inherit through `[data-theme]` selectors
-- **Palette freeze** - the core palette in `tokens.css` is frozen; `bin/verify.sh` enforces it against git HEAD
-- `themes.css` and `layouts.css` are generated artifacts: edit the sources, rebuild, commit both
-
-## Run the demo
-
-```bash
-cd greyok-ui-framework
-python3 -m http.server 8768 --bind 127.0.0.1
-# open http://127.0.0.1:8768/demo/
+├── theme-switcher.js        # localStorage + URL hash theme bridge
+├── python/                  # Tkinter bridge
+├── typescript/              # declarations
+├── demo/                    # showcase, galleries, persona sites
+└── tests/                   # pytest suite
 ```
 
 ## License
 
-Apache License 2.0 © [greyok00](https://github.com/greyok00) - see [LICENSE](LICENSE).
-Third-party typefaces are self-hosted under their own licenses; see [fonts/LICENSES.md](fonts/LICENSES.md).
+Apache License 2.0 © [greyok00](https://github.com/greyok00). See [LICENSE](LICENSE).
+Third-party typefaces are self-hosted under their own licenses; see
+[fonts/LICENSES.md](fonts/LICENSES.md).
