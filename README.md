@@ -34,7 +34,7 @@ Python/Tkinter bridge that parses the CSS variables directly.
 | **Layouts** | 20 structural archetypes applied with `[data-layout="…"]` |
 | **Elements** | 63 elements and about 300 classes across 16 cascade-layered sheets |
 | **Sizes** | Six buckets: `xs`, `sm`, `md`, `lg`, `full`, `tray` |
-| **Tokens** | About 55 CSS variables covering color, type, space, radius, shadow and motion |
+| **Tokens** | About 110 CSS variables covering color, type, space, radius, shadow and motion |
 | **Charts** | Dependency-free SVG charts: Sparkline, Bar, Line, Area and Donut |
 | **Bridges** | TypeScript declarations and a Python/Tkinter theme bridge |
 
@@ -223,7 +223,7 @@ rebuild, and commit both. The palette in `tokens.css` is frozen and enforced by
 
 ```text
 greyok-ui-framework/
-├── tokens.css               # neutral defaults, ~55 variables
+├── tokens.css               # neutral defaults, ~110 variables
 ├── themes.css               # 20 themes plus neutral
 ├── themes/src/              # ten readable family sources
 ├── layouts.css              # 20 structural archetypes
