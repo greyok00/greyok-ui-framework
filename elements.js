@@ -9,6 +9,9 @@
   const $$ = (sel, root) => Array.from((root || document).querySelectorAll(sel));
   const on = (el, ev, fn, opts) => el && el.addEventListener(ev, fn, opts);
   const fire = (el, name, detail) => el && el.dispatchEvent(new CustomEvent(name, { detail, bubbles: true }));
+  // local-calendar ISO date (YYYY-MM-DD): toISOString() converts to UTC, which
+  // shifts local midnights east of UTC onto the previous calendar day
+  const isoDate = d => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
 
   
   
@@ -786,6 +789,8 @@
   function wireTable(root) {
     $$('.el-table', root).forEach(tbl => {
       const ths = $$('thead th', tbl);
+      // "1,204", "0.8%" and "61" all parse — compare them as numbers, not text
+      const numeric = v => /^-?[\d.,]+%?$/.test(v) ? parseFloat(v.replace(/,/g, '')) : NaN;
       ths.forEach((th, i) => {
         if (th.__wired) return; th.__wired = true;
         on(th, 'click', () => {
@@ -796,6 +801,8 @@
           rows.sort((a, b) => {
             const x = a.children[i].textContent.trim();
             const y = b.children[i].textContent.trim();
+            const nx = numeric(x), ny = numeric(y);
+            if (Number.isFinite(nx) && Number.isFinite(ny)) return dir === 'asc' ? nx - ny : ny - nx;
             return dir === 'asc' ? x.localeCompare(y) : y.localeCompare(x);
           });
           const tb = $('tbody', tbl);
@@ -1078,7 +1085,9 @@
         num.style.minWidth = '2ch';
         num.style.textAlign = 'right';
         const code = document.createElement('span');
-        code.innerHTML = line || '&nbsp;';
+        // textContent, not innerHTML: the source text may hold escaped markup
+        // that must stay escaped here, not re-parse as live HTML
+        code.textContent = line || '\u00a0';
         row.appendChild(num); row.appendChild(code);
         cb.appendChild(row);
       });
@@ -1125,18 +1134,20 @@
     $$('.el-rating', root).forEach(r => {
       if (r.__wired) return; r.__wired = true;
       const stars = $$('.star', r);
+      // hover only previews: mouseleave must restore the last CLICKED value,
+      // which is not the same as counting currently lit stars
+      let committed = stars.filter(o => o.classList.contains('on')).length;
       stars.forEach((s, i) => {
         on(s, 'click', () => {
-          const on = i + 1;
-          stars.forEach((o, j) => o.classList.toggle('on', j < on));
-          fire(r, 'el:rate', { value: on });
+          committed = i + 1;
+          stars.forEach((o, j) => o.classList.toggle('on', j < committed));
+          fire(r, 'el:rate', { value: committed });
         });
         on(s, 'mouseenter', () => {
           stars.forEach((o, j) => o.classList.toggle('on', j <= i));
         });
         on(r, 'mouseleave', () => {
-          const cur = stars.filter(o => o.classList.contains('on')).length;
-          stars.forEach((o, j) => o.classList.toggle('on', j < cur));
+          stars.forEach((o, j) => o.classList.toggle('on', j < committed));
         });
       });
     });
@@ -1399,7 +1410,9 @@
         });
         const first = new Date(view.getFullYear(), view.getMonth(), 1);
         const days = new Date(view.getFullYear(), view.getMonth() + 1, 0).getDate();
-        for (let i = 0; i < (first.getDay() + 6) % 7; i++) grid.appendChild(document.createElement('span'));
+        // the header row is Sunday-first, so pad with getDay() blanks (0 for a
+        // Sunday-start month, not the Monday-first (getDay() + 6) % 7)
+        for (let i = 0; i < first.getDay(); i++) grid.appendChild(document.createElement('span'));
         const today = new Date();
         for (let d = 1; d <= days; d++) {
           const b = document.createElement('button');
@@ -1421,7 +1434,7 @@
         if (!b) return;
         sel = new Date(view.getFullYear(), view.getMonth(), parseInt(b.textContent, 10));
         if (owner && owner !== dp) {
-          owner.dataset.value = sel.toISOString().slice(0, 10);
+          owner.dataset.value = isoDate(sel);
           if (owner.tagName === 'INPUT') owner.value = owner.dataset.value;
         }
         fire(dp, 'el:date', { date: sel });

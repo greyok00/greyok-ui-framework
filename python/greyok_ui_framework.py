@@ -19,14 +19,17 @@ def _parse_vars(css_text: str) -> Dict[str, str]:
 
 
 def _resolve(value: str, all_vars: Dict[str, str]) -> str:
+    """Substitute var() references with their stored values.
 
-    seen = set()
+    Key style: _load_themes indexes every var under its `el-`-stripped name
+    ('accent'), while a reference reads var(--el-accent) — strip the same
+    prefix off the reference before the lookup, or every derived token would
+    come back as raw var() text. The pass loop is capped, so chained tokens
+    resolve across passes and no seen-set is needed to stay terminating.
+    """
 
     def sub(match: re.Match) -> str:
-        name = match.group(1)
-        if name in seen:
-            return match.group(0)
-        seen.add(name)
+        name = match.group(1).removeprefix("el-")
         return all_vars.get(name, match.group(0))
 
     out = value
@@ -202,7 +205,12 @@ def _load_themes(
     base = _parse_vars(tokens_path.read_text()) if tokens_path.exists() else {}
 
     base_norm = {k.removeprefix("el-"): v for k, v in base.items()}
-    themes: Dict[str, ElTheme] = {"neutral": ElTheme("neutral", dict(base_norm))}
+    # the neutral base theme resolves like every named theme below, or its
+    # derived tokens (focus-ring, link, …) would ship as raw var() text
+    themes: Dict[str, ElTheme] = {
+        "neutral": ElTheme("neutral",
+                           {k: _resolve(v, base_norm) for k, v in base_norm.items()})
+    }
 
     if themes_path.exists():
         css = themes_path.read_text()

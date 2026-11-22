@@ -66,6 +66,7 @@
     const vals = values.map(Number);
     const { width, height, pad, pts } = resolve(vals, opts);
     const s = svg(width, height);
+    if (!pts.length) return s; // empty data: keep the empty frame, no paths to index
     // baseline
     s.appendChild(el('line', {
       x1: pad, y1: height - pad, x2: width - pad, y2: height - pad,
@@ -102,6 +103,7 @@
     const vals = values.map(Number);
     const { width, height, pad, pts } = resolve(vals, opts);
     const s = svg(width, height);
+    if (!pts.length) return s; // empty data: keep the empty frame, no paths to index
     const d = `${linePath(pts)} L${pts[pts.length - 1].x.toFixed(2)},${height - pad} L${pts[0].x.toFixed(2)},${height - pad} Z`;
     s.appendChild(el('path', {
       d, fill: cssVar(opts.color) === 'currentColor' ? 'var(--el-accent-soft, currentColor)' : cssVar(opts.color),

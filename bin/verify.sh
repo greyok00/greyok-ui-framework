@@ -66,17 +66,18 @@ for name in $(grep -oh "Elements\.icon('\K[a-z-]*" demo/*.html | sort -u) $(grep
   grep -q "id=\"el-i-$name\"" assets/icons.svg || note "missing icon: el-i-$name"
 done
 
-# ── build freshness (themes.css must not be older than any family src) ───────
+# ── build freshness (themes.css must match a fresh build of the sources) ─────
+# Content-based, not mtime-based: a fresh checkout assigns arbitrary mtime
+# order, so "sources newer than themes.css" can fire on a byte-identical tree.
 echo "build: themes.css freshness"
-last=$(mktemp)
-find themes/src -name '*.css' -newer themes.css -print > "$last"
-if [ -s "$last" ]; then
-  note "themes.css STALE — rebuilt sources newer: $(tr '\n' ' ' < "$last")"
-  python3 tools/build_themes.py >/dev/null 2>&1 && echo "    (auto-rebuilt from sources)"
+fresh=$(mktemp)
+if python3 tools/build_themes.py --out "$fresh" >/dev/null 2>&1 && cmp -s "$fresh" themes.css; then
+  ok "themes.css matches a fresh build of themes/src"
 else
-  ok "themes.css is newer than every family src (or rebuilt on the spot)"
+  note "themes.css STALE — differs from a fresh build of themes/src"
+  python3 tools/build_themes.py >/dev/null 2>&1 && echo "    (auto-rebuilt from sources)"
 fi
-rm -f "$last"
+rm -f "$fresh"
 
 # ── 6. cascade layer integrity (D-3: wired checkers) ─────────────────────────
 echo "layer + site coverage: wired tools"
