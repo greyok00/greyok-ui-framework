@@ -8,7 +8,7 @@
 
 Structure and character are independent — every theme matches every layout. The same tokens work in HTML, TypeScript and Python/Tkinter.
 
-[![Version](https://img.shields.io/badge/version-0.5.0-2f6f5e)](package.json)
+[![Version](https://img.shields.io/badge/version-0.5.4-2f6f5e)](package.json)
 [![License](https://img.shields.io/badge/license-Apache--2.0-blue)](LICENSE)
 [![CSS](https://img.shields.io/badge/CSS-cascade%20layers-264de4)](base.css)
 [![Demo](https://img.shields.io/badge/demo-live-success)](https://greyok00.github.io/greyok-ui-framework/demo/)

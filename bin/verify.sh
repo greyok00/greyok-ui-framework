@@ -75,7 +75,7 @@ if python3 tools/build_themes.py --out "$fresh" >/dev/null 2>&1 && cmp -s "$fres
   ok "themes.css matches a fresh build of themes/src"
 else
   note "themes.css STALE — differs from a fresh build of themes/src"
-  python3 tools/build_themes.py >/dev/null 2>&1 && echo "    (auto-rebuilt from sources)"
+  echo "    (run python3 tools/build_themes.py to regenerate, or git checkout themes.css)"
 fi
 rm -f "$fresh"
 
